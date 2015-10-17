@@ -1,0 +1,1611 @@
+
+
+\newpage
+
+
+
+These are notes for a sequence of three lectures delivered at the University of Pittsburgh in June 2015 as part of the workshop \textit{Flavors of Cohomology}.  The goal of the lectures is to advertise a family of cohomology theories called Morava $E$--theories.  Though these spectra do not appear on the first page of any textbook in algebraic topology, they arise naturally in a few different contexts.  Our initial goal will be to show how they arise from the theory of complex-oriented spectra, which will take us on an extended tour of the role of algebraic geometry in the study of homology theories.  Secondly, we will investigate applications suggested by this construction, including the appearance of $E$--theory in the study of finite spectra and in the classification of homology theories with K\"unneth isomorphisms.  Finally, we will talk about the behavior of the $E$--local categories and their role in understanding behaviors in the finite stable category.
+
+The notes are meant to be read by a graduate student with a mild background in algebraic topology: someone with some familiarity with the stable category, with extraordinary cohomology theories, and with simplicial methods.  We also expect some comfortability with basic constructions in algebraic geometry, but by and large we will only encounter the most polite affine schemes and we won't manipulate them in any serious way.
+
+This document was last compiled on \today.
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Day 1: Quillen's theorem}
+
+\begin{abstract}
+For certain ring spectra $E$, we describe a construction of a very rich algebro-geometric category in which $E$--homology is valued, called the \textit{context} for $E$.  We also give a tour of the theory of Thom spectra and announce Quillen's description of the context for the Thom spectrum of the complex $J$--homomorphism.
+\end{abstract}
+
+
+\subsection{Homology cooperations and their structure}
+
+Let's get right to the task advertised in the abstract: for a ring spectrum $E$, we're looking to use algebraic geometry to capture as much of the structure of the output of $E_*$ and $E^*$.  Consider first the case $E = H\F_2$ of ordinary mod--$2$ cohomology, where $H\F_2^*$ is naturally valued in modules for the ``Steenrod algebra'': \[\mathcal A^* \otimes H\F_2^*(X) \to H\F_2^*(X).\]  This action is very useful, but $\mathcal A^*$ has the unfortunate feature of being a highly \emph{noncommutative} ring, which makes it a clumsy object from the perspective of algebraic geometry.  However, the Steenrod algebra is actually a Hopf algebra, and its linear dual $\mathcal A_*$ is \emph{commutative} and it \emph{coacts} on homology: \[(H\F_2)_* X \to (H\F_2)_* X \otimes \mathcal A_*.\]  A theorem of Milnor gives a concise description of this dual Hopf algebra:
+\begin{theorem}[Milnor]
+There is an isomorphism of rings \[\mathcal A_* \cong \F_2[\xi_1, \xi_2, \ldots, \xi_n, \ldots]\] with diagonal \[\Delta \xi_n = \sum_{j=0}^n \xi_j \otimes \xi_{n-j}^{2^j}.\]
+\end{theorem}
+\noindent This is a very reasonable commutative ring, so that we might hope to leverage algebraic geometry, and $\Delta$ is expressed by a very reasonable formula, so we might also hope to express arguments with it slickly.
+
+Stable homotopy theorists are also interested in many other ring spectra $E$, but to generalize this story away from $H\F_2$ we will need to more carefully identify its cast of characters by names internal to topology.  After all, taking $E_*$--linear duals is unlikely to be well--behaved in general.  The dual Steenrod algebra arises as the homotopy of $H\F_2 \sm H\F_2$ and the diagonal map has the signature
+\begin{center}
+\begin{tikzcd}
+\mathcal A_* \arrow{r}{\Delta} & \mathcal A_* \otimes_{\F_2} \mathcal A_* \\
+\pi_* (H\F_2 \sm H\F_2) \arrow{r} \arrow[-,double]{u} & \pi_* (H\F_2 \sm H\F_2 \sm H\F_2) \arrow[-,double]{u}.
+\end{tikzcd}
+\end{center}
+Together with the ring structure and a healthy obsession with simplicial objects, this is clue enough as to what we should be investigating for general $E$:
+\[\mathcal{D}_E(X) := \left\{
+\begin{tikzcd}
+\begin{array}{c} E \\ \sm \\ X \end{array} \arrow[leftarrow, shift left=\baselineskip]{r}{\mu} \arrow[shift left=(2*\baselineskip)]{r}{\eta_L} \arrow{r}{\eta_R} &
+\begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r}{\Delta} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} &
+\begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} &
+\cdots
+\end{tikzcd}
+\right\}.\]
+The leftward arrows come from $E$--multiplication and the rightward arrows come from the unit $\S \to E$.\footnote{Incidentally, this cosimplicial ring spectrum has a name: the descent coring for the map $\S \to H\F_2$.  In terms of descent theory, if the map $\S \to E$ is ``of effective descent'', meaning the homotopy limit of this diagram exists and agrees with $\S \sm X$, then the coskeletal spectral sequence gives a way to compute the homotopy of $X$, starting from its homology.  This is the \textit{$E$--Adams spectral sequence}.}
+
+This object is interesting because of its layers.  The homotopy of the $0$\textsuperscript{th}\, level recovers the homology groups $E_* X$.  The maps $\eta_L$ and $\eta_R$ from the $0$\textsuperscript{th}\, level to the $1$\textsuperscript{st}\, level give maps \[E_* X \xrightarrow{E_* \eta_L, E_* \eta_R} (E \sm E)_* X \xleftarrow{\bigstar} E_* E \otimes_{E_*} E_* X,\] but in general $\bigstar$ will not be an isomorphism, inhibiting our discovery of a ``coaction map''.  In good cases, however, this can be repaired:
+
+\begin{definition}
+Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is a flat map of $E_*$--modules.\todo{Explain {\FH} in terms of a Kunneth spectral sequence.}
+\end{definition}
+
+\noindent If $E$ satisfies \FH, then $\bigstar$ becomes an isomorphism!  In fact, iterating this gives an isomorphism \[\pi_* \mathcal D_E(X)[j] = \pi_* (E^{\sm (j + 1)} \sm X) \xleftarrow{\bigstar} (E_* E)^{\otimes_{E_*} j} \otimes_{E_*} E_* X \cong \pi_* \mathcal D_E[1]^{\otimes_{\pi_* \mathcal D_E[0]} j} \otimes_{\pi_* \mathcal D_E[0]} \pi_* \mathcal D_E(X)[0],\] i.e., the cosimplicial ring $\pi_* \mathcal D_E$ is $1$--truncated and the module $\pi_* \mathcal D_E(X)$ is determined by its $0$\textsuperscript{th}\, level.\footnote{We should further emphasize that even when $X = \S$ for a general $E$ the left- and right-units $E_* \to E_* E$ may differ, making \FH\, have real content.  In the case of $E = H\F_2$, this was not the case, simply because there can't be many maps $\F_2 \to \mathcal A_*$ (and so $H\F_2$ automatically satisfies \FH).  For more complicated rings than $\F_2$, all sorts of behavior can arise.}
+
+Now that I've subjected you to a flurry of ``co-''s, I'd like to take some of them back by finally appealing to algebraic geometry.
+
+\begin{definition}
+$E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis, when $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.
+\end{definition}
+\noindent In the case that $E$ satisfies \CH, we can study the simplicial scheme \[\M_E := \Spec \pi_* \mathcal D_E,\] and the cosimplicial object $\pi_* \mathcal D_E(X)$ determines a quasicoherent sheaf $\M_E(X)$ over $\M_E$.
+
+\begin{definition}
+The object $\M_E$ is called the \textit{context} of $E$.  The construction $\M_E(X)$ describes $E$--homology as a functor \[E_*: \CatOf{Spaces} \to \CatOf{QCoh}(\M_E).\]  If $E$ satisfies \FH, $\M_E$ takes values in groupoids.\todo{Discriminate between the usefulness of $1$--simplices in $\M_E$ vs in $\M_E(X)$. It's not like $\mathcal A_*$ acts interestingly on $\Spec \F_2$.}
+\end{definition}
+
+This is a lot of fancy words for some simple cooperations, but I claim that the conceptual payoff is worth the hassle.  For instance, return to the example $E = H\F_2$, so that $\M_E[0] = \Spec \F_2$ is a point and $\M_E[1] = \Spec \mathcal A_*$ is the spectrum of the infinite polynomial algebra from before.  In order to justify the utility of this language, we should give a geometric description of $\Spec \mathcal A_*$.  Consider the generating function \[F(t) = \sum_{j=0}^\infty \xi_j x^{2^j}.\]  The composition of two such series $F'$ and $F''$ in $\mathcal A_* \otimes \mathcal A_*$ takes the form \[F'(F''(t)) = \sum_{j=0}^\infty \xi'_j \left(\sum_{k=0}^\infty \xi''_k t^{2^k} \right)^{2^j} = \sum_{n=0}^\infty \left( \sum_{j+k=n} \xi'_j (\xi''_k)^{2^j} \right) x^{2^n},\] and so power series composition exactly captures the Milnor diagonal.  The power series $F$ can be identified as the generic mod--$2$ power series satisfying the homomorphism property $F(x' + x'') = F(x') + F(x'')$, and so we identify $\Spec \mathcal A_*$ with $\underline{\operatorname{Aut}}(\G_a)$.\footnote{If this notation makes you uncomfortable, check the end of the talk for an explanation of ``formal group laws''.}  Finally, because $H\F_2$ satisfies \FH, we learn that \[\M_{H\F_2} \simeq \Spec \F_2 \mmod \underline{\operatorname{Aut}}(\G_a).\]  This last line embodies the utility of contexts: starting with this isomorphism, you can unpack that $H\F_2$--homology is valued in $\F_2$--modules with a coaction by a Hopf algebra whose formulas you can write out from memory alone.
+
+
+
+
+\subsection{A general Thom isomorphism}
+
+Today's punchline theorem is about the context $\M_{T(J)}$ of a certain ring spectrum $T(J)$ coming from the theory of Thom spectra.  Once I explain the notation, some of you might recognize this as the complex bordism spectrum, but I don't think I can count on that to quickly supply us with the background we need to recognize $\M_{T(J)}$.  Instead, I'll construct $T(J)$ from scratch in a way that gives us the statements we need for free.  Additionally, this takes us through some interesting tools available to a ``modern'' homotopy theorist --- where ``modern'' primarily means ``geometrically uninclined''.
+
+Given an $S^n$--bundle over a space $X$ \[S^n \to E \xrightarrow\xi X\] its Thom spectrum\footnote{One might prefer the name ``reduced Thom spectrum'', because of the dimension shift in the definition.} $T(\xi)$ is the stable cofiber\todo{Draw a picture of this.}\todo{Does $T(0) \simeq \Susp^\infty_+ X$ follow from the cofiber definition? You need this for the Thom isomorphism, and it seems like it doesn't have the ${}_+$.} \[\Susp^{-n-1} \Susp^\infty_+ E \xrightarrow{\Susp^{-n-1} \Susp^\infty_+ \xi} \Susp^{-n-1} \Susp^\infty_+ X \xrightarrow{\text{cofiber}} T(\xi).\]  Though simple to define, this construction has a number of pleasant properties that indicate it's worth studying:
+\begin{enumerate}
+\item If $\xi$ is the trivial bundle, then $T(\xi)$ recovers the suspension spectrum $\Susp^\infty_+ X$ of $X$.  In general, then, a twisted bundle $\xi$ should be thought of as giving a \emph{twisted suspension} $T(\xi)$ of $X$.
+\item A map of spherical bundles gives rise to a map of Thom spectra, i.e., $T$ is a \emph{functor} \[T: \CatOf{SphericalBundles} \to \CatOf{Spectra}.\]  In particular, this gives rise to a definition of the Thom spectrum for a stable spherical bundle, by taking the colimit over the maps among the stages.
+\item Given a vector bundle $V$, we can restrict to the spherical subbundle of unit--length vectors $J(V)$.
+\item Finally, $J$ and $T$ are both \emph{monoidal}.  The spherical subbundle $J(V \oplus W)$ is the fiberwise join $J(V) \hat\ast J(W)$ of the individual spherical subbundles, and there is an equivalence $T(\xi \hat\ast \zeta) \simeq T(\xi) \sm T(\zeta)$.\footnote{Incidentally, naturality and monoidality mean that Thom spectra associated to group maps like $J$ have the induced structure of ring spectra.}
+\end{enumerate}
+
+We will now deduce the Thom isomorphism theorem from these properties.  The first foothold is that classifying spaces abound: stable spherical bundles are classified by a space $BF$ and stable vector bundles are classified by $BU$.  The fiberwise join and the direct sum constructions imbue $BF$ and $BU$ with the structure of $H$--spaces (in fact, $E_\infty$--spaces), compatible with the induced map \[J: BU \to BF.\]  The second foothold is that the shearing\footnote{This is closely related to a categorical definition of $G$--torsors: a $G$--set $X$ is a $G$--torsor when $(g, x) \mapsto (x, gx)$ is an equivalence.} map $\sigma$ is an equivalence for any group $G$: \[\sigma: (x, y) \mapsto (x y^{-1}, y).\]
+
+Now, we put these two things next to each other.  That $J$ respects product structures is summarized by the commutative diagram
+\begin{center}
+\begin{tikzcd}
+BU \times BU \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BU \times BU \arrow[crossing over]{d}{J \times J} \arrow{r}{\mu_{BU}} \arrow{rd} & BU \arrow{d}{J} \\
+& BF \times BF \arrow[crossing over]{r}{\mu_{BF}} & BF,
+\end{tikzcd}
+\end{center}
+in which we've also drawn the shearing map $\sigma$.  The long composite takes the form \[J \circ \mu_{BU} \circ \sigma (x, y) = J \circ \mu_{BU} (x y^{-1}, y) = J(x y^{-1} y) = J(x).\]  It follows that the second coordinate plays no role, and that the Thom spectrum of the long composite agrees with the Thom spectrum of the map $0 \times J$.\footnote{This is to say that $\mu \circ (0 \times J)$ is homotopic to the long composite, but $(0 \times J)$ is \emph{not} homotopic to $(J \times J) \circ \sigma$.}  Stringing together the properties above, we get: \[T(J) \sm T(J) \simeq T(J \times J) \stackrel{\sigma}{\simeq} T(J \times 0) \simeq T(J) \sm T(0) \simeq T(J) \sm \Susp^\infty_+ BU.\]  It's then easy to extract a more general statement from the one at hand:
+\begin{theorem}[Thom, proof by Mahowald]
+If $f: G \to BF$ is a group map, $T(f) \to E$ is a ring map, and $\xi: X \to G$ classifies a spherical bundle factoring through $f$, then there is an equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
+\end{theorem}
+
+This is called ``the Thom isomorphism'', and we should take a moment to ponder its significance.  The role of the smash product in stable homotopy theory is that it's used to form homology: \[E_*(X) := \pi_*(E \sm \Susp^\infty_+ X).\]  So, this equivalence is a homotopical form of the assertion that $T(\xi)$ and $\Susp^\infty_+ X$ have the same $E$--homology.  Additionally, because we have this topological statement, we can extract a slightly stronger moral: the twisted suspension embodied by the spherical bundle $\xi$ is \emph{invisible} to the homology theory $E$.
+
+
+
+\subsection{Statement of Quillen's theorem}
+
+We've gone far too long without giving an example.  Let $\CP^\infty \simeq BU(1)$ be the classifying space for line bundles, and using $U(1) \simeq S^1$ pass to its  circle--bundle to get
+\begin{center}
+\begin{tikzcd}
+U(1) \arrow{r} \arrow[-,double]{d} & EU(1) \arrow{r}{\mathcal L} \arrow[-,double]{d} & BU(1) \arrow[-,double]{d} \\
+S^1 \arrow{r} & * \arrow{r}{J(\mathcal L)} & \CP^\infty.
+\end{tikzcd}
+\end{center}
+Since $EU(1)$ is contractible, we see $T(J(\mathcal L)) \simeq \Susp^{-2} \Susp^\infty \CP^\infty$.  Given a $J$--oriented spectrum $\phi: T(J) \to E$, the Thom isomorphism machinery above furnishes us with isomorphisms
+\begin{align*}
+E^* \CP^\infty & \cong \tilde E^{*+2} \CP^\infty, &
+E^* \CP^n & \cong \tilde E^{*+2} \CP^{n+1}.
+\end{align*}
+Pushing the canonical class $1 \in E^0 \CP^0$ across this isomorphism, we can inductively deduce\footnote{More miraculously, a piece of vector bundle geometry called the ``splitting principle'' shows that the converse holds: if $E$ is a ring spectrum with a $x$ so that $\S \to \Susp^{-2} \Susp^\infty \CP^\infty \xrightarrow{x} E$ factors the unit map $\S \to E$, then it can be shown that $E$ has a unique $J$--orientation selecting that class.} \[E^* \CP^\infty \cong_\phi E^*\ps{x}.\]
+
+\todo{This day is strangely paced and very hodge-podge. Hm.}As a responsible homotopy theorist, I should admit that spectra are generally very nasty objects, and successfully computing some cohomology ring is actually a pretty big deal.  If we're in a situation where we can \emph{reliably} compute something, it's very important to get all we can from it.  To address this, I'm now going to take off my homotopy theorist hat and put my algebraic geometer hat back on.
+
+As the classifying space for line bundles, $BU(1)$ has a product structure induced by tensoring.  This begets a map
+\begin{center}
+\begin{tikzcd}
+E^* BU(1) \arrow{r} \arrow[-,double]{d}{\cong_\phi} & E^* BU(1) \otimes_{E^*} E^* BU(1) \arrow[-,double]{d}{\cong_\phi} \\
+E^*\ps{t} \arrow{r} & E^*\ps{x, y}
+\end{tikzcd}
+\end{center}
+which is determined by the image of $t$, some bivariate power series $x +_\phi y$.  This notation for this series is useful because it helps us remember what axioms it satisfies:
+\begin{enumerate}
+\item Unitality: $x +_\phi 0 = x$ and $0 +_\phi y = y$.  (Consider tensoring with the trivial line bundle.)
+\item Symmetry: $x +_\phi y = y +_\phi x$.  (Tensoring is commutative.)
+\item Associativity: $(x +_\phi y) +_\phi z = x +_\phi (y +_\phi z)$.  (Tensoring is associative.)
+\end{enumerate}
+Such a power series is called a \textit{formal group law}.\footnote{All the formal group laws we'll consider will implicitly be commutative and $1$--dimensional.}  The universal such power series is represented by an affine scheme $\moduli{fgl}$, and the identity orientation of $T(J)$\todo{For the love of Christ, just call this $MU$.} gives a map $\M_{T(J)}[0] \to \moduli{fgl}$.  Moreover, $T(J) \sm T(J)$ is the universal ring spectrum with two $J$--orientations (coming from the left- and right-units) and a transposition relating them: \[T(J) \sm T(J) \xrightarrow{\text{twist}} T(J) \sm T(J).\]  It follows that the induced formal group laws $x +_{\eta_L} y$ and $x +_{\eta_R} y$ must be related by some ``formal group law isomorphism'' $f(t) \in (T(J) \sm T(J))_*\ps{t}$, i.e., a power series $f$ satisfying \[f(x +_{\eta_L} y) = f(x) +_{\eta_R} f(y).\]
+
+\begin{theorem}[Quillen's theorem]
+The spectrum $T(J)$ satisfies {\FH} and \CH.  Moreover, the maps
+\begin{align*}
+\Spec T(J)_* & \to \moduli{fgl}, \\
+\Spec T(J)_* T(J) & \to \moduli{fgl} \times \moduli{ps}^{\mathrm{gpd}}, \\
+\M_{T(J)} & \to \moduli{fgl} \mmod \moduli{ps}^{\mathrm{gpd}} =: \moduli{fg}
+\end{align*}
+described above are all equivalences.\todo{Explain what ``gpd'' refers to.}
+\end{theorem}
+
+This is a pretty powerful theorem.\footnote{This situation has a strange feature worth remarking on: the ring maps $T(J) \sm T(J) \to E$ act transitively on the set of ring maps $T(J) \to E$, i.e., the ``(decoordinatized) formal group'' associated to $E$ is determined totally by $E$.  This is very different from the algebraic case, where a given ring can support many non-isomorphic formal group laws.}  In our discussion of $T(J)$, we've been so hands off that we've had essentially no control over its behavior.  Nonetheless, this theorem puts $T(J)$ on almost even footing with $H\F_2$: just as the compact description of $\M_{H\F_2}$ given above lets you totally unpack the category in which $H\F_2$--homology is valued, Quillen's description of $\M_{T(J)}$ gives you complete access to the structure theorems governing the category in which $T(J)$--homology is valued.  We will do our best to leverage this tomorrow.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Day 2: $E$--theory and periodic self-maps}
+
+\begin{abstract}
+We outline a program for studying the functor $\M_{T(J)}(X)$ by first studying the local structure of $\moduli{fg}$.  After a brief tour of the arithmetic literature on formal group laws, we deduce the existence of certain homology theories: the Morava $E$-- and $K$--theories.  We then give examples of local-to-global methods in algebraic topology: for instance, a condition for detecting non-nilpotent self-maps.
+\end{abstract}
+
+
+\subsection{Some philosophy on flat maps}
+
+Yesterday, we developed a rich target for $T(J)$--homology: sheaves over an algebro-geometric object $\M_{T(J)}$.  Furthermore, Quillen's theorem gave an identification $\M_{T(J)} \simeq \moduli{fg}$.  Our initial goal for today is to outline a program by which we can leverage this to study $T(J)$.  Abstractly, one can hope to study any sheaf, including $\M_{T(J)}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\M_{T(J)}$, so that we can determine where to even look for those stalks.
+
+With this in mind, given a map \[\Spec R \xrightarrow{f} \moduli{fg},\] life would be easiest if the $R$--module determined by $f^* \M_{T(J)}(X)$ were itself the value of a homology theory $R_*(X) = T(J)_* X \otimes_{T(J)_*} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
+
+\begin{theorem}[Landweber, part 1]
+For any diagram
+\begin{center}
+\begin{tikzcd}
+\Spec R \arrow{r}{i} & \moduli{fgl} \arrow[-,double]{r} \arrow{d} & \M_{T(J)}[0] \arrow{d} \arrow[-,double]{r} & \Spec T(J)_* \\
+& \moduli{fg} \arrow[-,double]{r} \arrow[leftarrow]{lu}{\mathrm{flat}} & \M_{T(J)}
+\end{tikzcd}
+\end{center}
+such that the diagonal arrow is flat, the functor \[R_*(X) := T(J)_*(X) \otimes_{T(J)_*} R\] determines a homology theory. 
+\end{theorem}
+
+\noindent In the course of proving this theorem, Landweber devised a method to recognize flat maps.  Recall that a map $f$ is flat exactly when for any closed substack $i: A \to \moduli{fg}$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \mathcal I \to f^* \mathcal O_{\moduli{fg}} \to f^* i_* \mathcal O_A \to 0.\]  Landweber classified the closed substacks of $\moduli{fg}$, thereby giving a method to check maps for flatness.
+
+This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a closed substack (and so, in particular, a closed point $\Gamma$) is flat only in highly degenerate cases.  This can be repaired: the inclusion of the formal completion of a closed substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each closed point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the closed points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called $E_\Gamma$.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover a \emph{homology theory} $K_\Gamma$ which plays the role of computing the stalk of $\M_{T(J)}(X)$ at $\Gamma$.\footnote{Incidentally, this program has no content when applied to $\M_{H\F_2}$, as $\Spec \F_2$ is simply too small.}
+
+
+\subsection{Local structure of $\moduli{fg}$}
+
+Motivated by the program above, we now set out to describe the local structure of $\moduli{fg}$.  Noting that formal group laws arise as analytic germs of multiplication laws on Lie groups, we will first take a cue from Lie theory and attempt to define exponential and logarithm functions for a given formal group law $F$ over a ring $R$.  In Lie theory, this is accomplished by studying left--invariant differentials: a $1$--form $f(x) dx$ is said to be left--invariant under $F$ when \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $y = 0$, we deduce the condition \[f(0) = f(x) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0}.\]  If $R$ is a $\Q$--algebra, then setting the boundary condition $f(0) = 1$ and integrating against $x$ yields \[\log_F(x) = \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0} \right)^{-1} dx.\]  To see that the series $\log_F$ has the claimed homomorphism property, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x},\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $\log_F(y)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  We thus deduce that $\moduli{fg} \times \Spec \Q$ is contractible: every formal group law is uniquely isomorphic to $\G_a$.\todo{What about rescaling? Should you be honest and call this $\moduli{fg}^{(1)}$?}
+
+However, if $R$ is not a $\Q$--algebra, then we may not be able to perform power series integration.  Nonetheless, thinking of the $\Q$--algebra restriction as localization at $(0)$, this inspires us to work arithmetically locally at a prime $p$ and consider $\moduli{fg} \times \Spec \Z_{(p)}$.  This task is eased considerably by the following fundamental theorem of Lazard:
+
+\begin{theorem}[Lazard, part 1]
+The ring of functions on $\moduli{fgl}$ is polynomial in infinitely many variables.\footnote{His proof does not give a canonical presentation.  Rationally, these are the coordinate functions selecting the logarithm coefficients.}
+\end{theorem}
+
+\noindent As a direct consequence, if $f: S \to R$ is a surjective map of rings and $F_R$ is any formal group law on $R$, then there exists a formal group law $F_S$ on $S$ with $f^* F_S = F_R$.  We can thus reduce to the case where $R$ is a torsion--free (or $\Z$--flat) ring for most of our theorems.
+
+\begin{theorem}[Hazewinkel]
+Every formal group law $F$ over a $\Z_{(p)}$--algebra is isomorphic to some $F'$ whose rational logarithm has the form \[\log_{F'}(x) = \sum_{n=0}^\infty \ell_n x^{p^n}.\]  It follows that the radius of convergence of $\log_{F'}$ must be $p^d$ for some $d$.\footnote{If $F$ is additive, then $d$ can be infinite.}  The integer $d$ is called the \emph{height} of $F'$.  It is an isomorphism invariant and it is insensitive to lifts along surjective maps from torsion--free $\Z_{(p)}$--algebras.
+\end{theorem}
+
+\begin{theorem}[Lazard, part 2: classification of closed points]
+Over an algebraically closed field of characteristic $p$, there is a unique formal group law up to isomorphism for each height.  Moreover, there is a representative $\Gamma_d$ of each isomorphism class with coefficients in $\F_p$ whose logarithm satisfies \[\log_{\Gamma_d}(x) \equiv x \pmod{x^{p^d}}.\]
+\end{theorem}
+
+\begin{theorem}[Landweber, part 2: classification of closed substacks]
+Let $BP_*$ be the ring classifying formal group laws with $p$--typical logarithms.
+\begin{enumerate}
+\item It has the form $BP_* \cong \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$, where $v_d \equiv p \ell_d \pmod{\text{decomposables}}$.
+\item The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $BP_* / (p, v_1, \ldots, v_{d-1})$, and its complementary open substack of dimension $d$ is selected by either of $v_d^{-1} BP_*$ or $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$.\footnote{It's worth pointing out how strange this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.}
+\item A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, v_2, \ldots, v_{d-1}, \ldots)$ is a regular sequence $M$ too.
+\item In particular, $BP_*$ is itself such a module, and so gives rise to a homology theory $BP$ with $\M_{BP} \simeq \moduli{fg} \times \Spec \Z_{(p)}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Lubin--Tate: description of deformation spaces]
+The deformation space of any height $d < \infty$ law $\Gamma$ over a perfect field $k$ of characteristic $p$ is smooth of geometric dimension $(d-1)$.  That is, it is noncanonically isomorphic to $\mathbb W(k)\ps{u_1, \ldots, u_{d-1}}$.  For $\Gamma = \Gamma_d$, the coordinates can be taken to be $v_{0 \le n < d}$.
+\end{theorem}
+
+% \begin{figure}
+% \begin{tikzpicture}
+
+% \end{tikzpicture}
+% \caption{$\moduli{fg}$}
+% \end{figure}
+
+Having stood on the shoulders of all these arithmetic geometers, we can now put our program into practice.  We have a list of the closed points $\Gamma_d$ of $\moduli{fg} \times \Spec \Z_{(p)}$, and their deformation spaces lift to $\moduli{fgl}$ as smooth formal subschemes.  It follows from Landweber's theorem that we can construct homology theories $E_{\Gamma_d}$ for each of these formal groups.  Additionally, we can find regular sequences $(p, u_1, \ldots, u_{d-1}) \in (E_{\Gamma_d})_*$, and hence we can construct the regular quotient\todo{Really emphasize the role of the regular quotient.}\footnote{We think of $K(\Gamma_d)_* X$ as being a model for the stalk of $\M_{T(J)}(X)$ at $\Gamma_d$, though if $(E_{\Gamma_d})_* X$ has torsion this may not agree with $\Gamma_d^* \M_{T(J)}(X)$.} \[K(\Gamma_d) := E_{\Gamma_d} / (p, u_1, \ldots, u_{d-1}).\]  In the case that we pick the lift of $\Gamma_d$ with $p$--series $[p](x) = x^{p^d}$, these objects are typically written $E_d$ and $K(d)$, called Morava $E$--theory and Morava $K$--theory.
+
+
+
+
+\subsection{$E$--theories and periodic self-maps}
+
+Having constructed these ``stalk'' homology theories, I want to show that you can actually perform analyses of the kind I was describing at the beginning of today.  Our example case is a famous theorem: the solution of Ravenel's nilpotence conjectures by Devinatz, Hopkins, and Smith.  Their theorem concerns spectra which ``detect nilpotence'' in the following sense:
+
+\begin{definition}
+A ring spectrum $E$ \textit{detects nilpotence} if, for any ring spectrum $R$, the kernel of the Hurewicz homomorphism $E_*: \pi_* R \to E_* R$ consists of nilpotent elements.
+\end{definition}
+
+First, a word about why one would care about such a condition.  The following theorem is classical:
+\begin{theorem}[Nishida]
+Every homotopy class $\alpha \in \pi_{\ge 1} \S$ is nilpotent.
+\end{theorem}
+
+\noindent However, people studying $K$--theory in the '$70$s discovered the following phenomenon:
+
+\begin{theorem}[Adams]
+Let $M_{2n}(p)$ denote the mod--$p$ Moore spectrum with bottom cell in degree $2n$.  Then there is an index $n$ and a map $v: M_{2n}(p) \to M_0(p)$ such that $KU_* v$ acts by multiplication by the $n$\textsuperscript{th}\, power of the Bott class.\footnote{The minimal such $n$ is given by the formula $n = \begin{cases} p-1 & \text{when $p \ge 3$}, \\ 4 & \text{when $p = 2$}. \end{cases}$}
+\end{theorem}
+
+\noindent In particular, this means that $v$ cannot be nilpotent, since a null-homotopic map induces the zero map in any homology theory.  Just as we took the non-nilpotent endomorphism $p$ in $\pi_0 \End \S$ and coned it off, we can take the endomorphism $v$ in $\pi_{2p-2} \End M_0(p)$ and cone it off to form a new spectrum called $V(1)$.\footnote{$V(1)$ actually means a finite spectrum with $BP_* V(1) \cong BP_* / (p, v_1)$. At $p = 2$ this spectrum doesn't exist and this is a misnomer.}  Ravenel's burning question was whether the pattern continues: does $V(1)$ have a non-nilpotent self-map, and can we cone it off to form a new such spectrum with a new such map?  Can we then do that again, indefinitely?  In order to study this question, we are motivated to find spectra $E$ as above --- and in fact, we found one yesterday.
+
+\begin{theorem}[Devinatz--Hopkins--Smith, hard]
+The spectrum $T(J)$ detects nilpotence.
+\end{theorem}
+
+They also show that the $T(J)$ is the universal object which detects nilpotence, in the sense that any other ring spectrum can have this property checked stalkwise on $\M_{T(J)}$:
+
+\begin{theorem}[Hopkins--Smith, easy]
+A ring spectrum $E$ detects nilpotence if and only if $K(d)_* E \ne 0$ for all $0 \le d \le \infty$ and for all primes $p$.
+\end{theorem}
+\begin{proof}
+If $K(d)_* E = 0$ for some $d$, then the non-nilpotent map $\S \to K(d)$ lies in the kernel of the Hurewicz homomorphism for $E$, so $E$ fails to detect nilpotence.
+
+Hence, for any $d$ we must have $K(d)_* E \ne 0$.  Because $K(d)_*$ is a field, it follows by picking a basis of $K(d)_* E$ that $K(d) \sm E$ is a nonempty wedge of suspensions of $K(d)$.  So, for $\alpha \in \pi_* R$, if $E_* \alpha = 0$ then $(K(d) \sm E)_* \alpha = 0$ and hence $K(d)_* \alpha = 0$.  So, we need to show that if $K(d)_* \alpha = 0$ for all $n$ and all $p$ then $\alpha$ is nilpotent.  Taking Devinatz--Hopkins--Smith as given, it would suffice to show merely that $T(J)_* \alpha$ is nilpotent.  This is equivalent to showing that the ring spectrum $T(J) \sm R[\alpha^{-1}]$ is contractible or that the unit map is null: \[\S \to T(J) \sm R[\alpha^{-1}].\]
+
+Pick a prime $p$ and recall the regular sequence of Landweber's theorem.  We define a spectrum $P(d+1)$ to be the regular quotient of $BP$ by $(p, v_1, \ldots, v_d)$.  A nontrivial result of Johnson and Wilson shows that if $T(J)_* X = 0$ for any $X$, then for any $d$ we have $K([0, d])_* X = 0$ and $P(d+1)_* X = 0$.\footnote{It is immediate that $T(J)_* X = 0$ forces $P(d+1)_* X = 0$ and $v_{d'}^{-1} P(d')_*(X) = 0$ for all $d' < d$.  What's nontrivial is showing that $v_{d'}^{-1} P(d')_*(X) = 0$ if and only if $K(d')_*(X) = 0$.}  Taking $X = R[\alpha^{-1}]$, have assumed all of these are zero except for $P(d+1)$.  But $\colim_d P(d+1) \simeq H\F_p \simeq K(\infty)$, and $\S \to K(\infty) \sm R[\alpha^{-1}]$ is assumed to be null as well.  By compactness of $\S$, that null-homotopy factors through some finite stage $P(d+1) \sm R[\alpha]$ with $d \gg 0$.
+\end{proof}
+
+As another example of the primacy of these methods, we can show the following interesting result.  Say that $R$ is a field spectrum when every $R$--module (in the homotopy category) splits as a wedge of suspensions of $R$.  It is easy to check (as mentioned in the proof above) that $K(d)$ is an example of such a spectrum.
+
+\begin{theorem}
+Every field spectrum $R$ splits as a wedge of Morava $K$--theories.
+\end{theorem}
+\begin{proof}
+Set $E = \bigvee_{\text{primes $p$}} \bigvee_{d \in [0, \infty]} K(d)$, so that $E$ detects nilpotence.  The class $1$ in the field spectrum $R$ is non-nilpotent, so it survives when paired with some $K$--theory $K(d)$, and hence $R \sm K(d)$ is not contractible.  Because both $R$ and $K(d)$ are field spectra, the smash product of the two simultaneously decomposes into a wedge of $K(d)$s and a wedge of $R$s.  So, $R$ is a retract of a wedge of $K(d)$s, and picking a basis for its image on homotopy shows that it is a sub-wedge of $K(d)$s.
+\end{proof}
+
+\noindent This is interesting in its own right, because field spectra are exactly those spectra which have K\"unneth isomorphisms.  So, even if you weren't neck-deep in algebraic geometry, you might still have struck across these homology theories just if you like to compute things, since K\"unneth formulas make things computable.
+
+
+
+
+
+
+\newpage
+\section{Day 3: Chromatic localizations}
+
+\begin{abstract}
+We now try to superimpose some of the structure seen yesterday in $\moduli{fg}$ directly onto the category of finite spectra.  This summons certain Bousfield localizations, and we describe their primary application to the stable category.
+\end{abstract}
+
+
+\subsection{Classification of thick subcategories}
+
+Our first goal for today is to apply these local methods once more to get a positive answer to Ravenel's question about finite spectra and periodic self-maps.  The solution to this problem passes through some now-standard machinery for triangulated $\otimes$--categories.
+
+\begin{definition}
+A subcategory of the category of a triangulated category (e.g., $p$--local finite spectra) is \textit{thick} if it is closed under weak equivalences, it is closed under retracts, and it has a $2$-out-of-$3$ property for cofiber sequences.
+\end{definition}
+
+\noindent Examples of thick subcategories include:
+\begin{itemize}
+\item The category $\CatOf{C}_d$ of $p$--local finite spectra which are $K(d-1)$--acyclic.  (For instance, if $d = 1$, the condition of $K(0)$--acyclicity is that the spectrum have purely torsion homotopy groups.)  These are called ``finite spectra of type at least $d$''.
+\item The category $\CatOf{D}_d$ of $p$--local finite spectra $F$ which have a self-map $v: \Susp^N F \to F$, $N \gg 0$, inducing multiplication by a unit in $K(d)$--homology.  These are called ``$v_d$--self--maps''.
+\end{itemize}
+Hopkins and Smith show the following classification theorem:
+
+\begin{theorem}[Hopkins--Smith, easy]
+Any thick subcategory $\CatOf C$ of $p$--local finite spectra must be $\CatOf C_d$ for some $d$.
+\end{theorem}
+\begin{proof}
+It is sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.  Let $Y \in \CatOf C_d$ be any other spectrum of type at least $d$.  Consider the endomorphism ring spectrum $R = F(X, X)$ and the fiber $f: F \to \S$ of its unit map.\todo{Make it clear what $f$ is. Draw the fiber sequence or something.}  The action of $f$ under $K(n)$--homology is an isomorphism exactly when $X$ is $K(n)$--acyclic, and because the $K(n)$--acyclicity of $X$ implies the $K(n)$--acyclicity of $Y$, it follows that $1 \sm f: Y \sm F \to Y \sm \S$ is always null on $K(n)$--homology for all $n$.  By a small variant of the local nilpotence detection theorem, it follows that \[Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j}\] is null for $j \gg 0$, and hence that \[\operatorname{cofib}\left( Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j} \right) \simeq Y \sm \operatorname{cofib} f^{\sm j} \simeq Y \vee (Y \sm \Susp F^{\sm j}),\] so that $Y$ is a retract.  However, using $\operatorname{cofib}(f) = X \sm DX \in \CatOf C$ and a smash version of the octahedral axiom
+\begin{align*}
+F \sm F^{\sm (j-1)} & \xrightarrow{f \sm 1} \S \sm F^{\sm (j-1)} \xrightarrow{1 \sm f^{\sm (j-1)}} \S \sm \S^{\sm (j-1)} & \Rightarrow & &  F \sm \operatorname{cofib} f^{\sm (j-1)} \to \operatorname{cofib} f^{\sm j} \to \operatorname{cofib} f \sm \S^{\sm (j-1)}
+\end{align*}
+one can inductively show that $\operatorname{cofib}(f^{\sm j})$, hence $Y \sm \operatorname{cofib}(f^{\sm j})$, and hence $Y$ all belong to $\CatOf C$ as well.
+\end{proof}
+
+They also show the \emph{considerably} harder theorem:
+
+\begin{theorem}[Hopkins--Smith, hard]
+A $p$--local finite spectrum is $K(d-1)$--acyclic exactly when it admits a $v_d$--self--map.
+\end{theorem}
+\begin{proof}[Executive summary of proof]
+Given the classification of thick subcategories, if a property is closed under thickness then one need only exhibit a single spectrum with the property to know that all the spectra in the thick subcategory it generates also all have that property.  Inductively, they manually construct finite spectra $M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}})$ for sufficiently large\footnote{Compare this asymptotic condition with the assertion yesterday that there is no root of $v: M_8(2) \to M_0(2)$.} indices $i_*$ which admit a self-map $v$ governed by a commuting square
+\begin{center}
+\begin{tikzcd}
+BP_* M_{|v_d| i_d}(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{v} \arrow[-,double]{d} & BP_* M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow[-,double]{d} \\
+\Susp^{|v_d| i_d} BP_* / (p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{- \cdot v_d^{i_d}} & BP_* / (p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}).
+\end{tikzcd}
+\end{center}
+These maps are guaranteed by very careful study of Adams spectral sequences.
+\end{proof}
+
+
+\subsection{Balmer spectra and chromatic localization}
+
+As part of a broad attempt to analyze a geometric object through its modules, Paul Balmer has demonstrated the following theorem:
+
+\begin{definition}
+Given a triangulated $\otimes$--category $\CatOf C$, define a thick subcategory $\CatOf C' \subseteq \CatOf C$ to be a \textit{$\otimes$--ideal} when it has the additional property that $x \in \CatOf C'$ forces $x \otimes y \in \CatOf C'$ for any $y \in \CatOf C$.  Moreover, $\CatOf C'$ is said to be \textit{prime} when $x \otimes y \in \CatOf C'$ forces at least one of $x \in \CatOf C'$ or $y \in \CatOf C'$.  Define the \textit{spectrum} of $\CatOf C$ to be its collection of prime $\otimes$--ideals, topologized so that $U(x) = \{\CatOf C' \mid x \in \CatOf C'\}$ form a basis of opens.
+\end{definition}
+
+\begin{theorem}[Balmer]
+The spectrum of $D^{\perf}(\CatOf{Mod}_R)$ is naturally homeomorphic to the Zariski spectrum of $R$.
+\end{theorem}
+
+Balmer's construction applies much more generally.  The category $\CatOf{Spectra}$ can be identified with $\CatOf{Modules}_{\S}$, and so one can attempt to compute the Balmer spectrum of $\CatOf{Modules}_{\S}^{\perf} = \CatOf{Spectra}^{\mathrm{fin}}$.  In fact, we just finished this.
+\begin{theorem}
+The Balmer spectrum of $\CatOf{Spectra}_{(p)}^{\mathrm{fin}}$ consists of the thick subcategories $\CatOf C_d$, and $\{\CatOf C_n\}_{n=0}^d$ are its open sets.
+\end{theorem}
+\begin{proof}
+Using the characterization of $\CatOf C_d$ as the kernel of $K(d-1)_*$, we see that it is a prime $\otimes$--ideal: \[K(d-1)_*(X \sm Y) \cong K(d-1)_* X \otimes_{K(d-1)_*} K(d-1)_* Y\] is zero exactly when at least one of $X$ and $Y$ is $K(d-1)$--acyclic.
+\end{proof}
+
+In fact, our favorite functor\footnote{However, this functor is \emph{not} a map of triangulated categories, so this has to be interpreted lightly.} $T(J)_*: \CatOf{Spectra} \to \CatOf{QCoh}(\M_{T(J)})$ induces a homeomorphism of the Balmer spectrum of $\CatOf{Spectra}^{\mathrm{fin}}$ to that of $\moduli{fg}$.  However, Balmer's construction gives only a topological space, and not anything like a locally ringed space (or a space otherwise equipped locally with algebraic data).\footnote{We will address this in our situation, but in general this is an open question: given a ring spectrum $R$, how can one recognize these local categories of spectra in terms of $R$, without reference to auxiliary spectra like $T(J)$?  Or, just as importantly: what makes $T(J)$ a special $\S$--algebra?}  Recalling Landweber's theorem from yesterday, Bousfield's theory of homological localization allows us to extend it as follows:
+
+\begin{theorem}[Bousfield]
+Let $R_*$ denote the homology theory associated to a flat map $j: \Spec R \to \moduli{fg}$ by Landweber's theorem.  There is then a diagram\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak--equivalences.}
+\begin{center}
+\begin{tikzcd}[column sep=2.2cm,row sep=2cm]
+\CatOf{Spectra}_R \arrow[red]{r}{R_* \quad \mathrm{conservative}} \arrow[leftarrow, shift left=0.20cm, red]{d}{L_R} & \CatOf{QCoh}(\Spec R) \arrow[shift left=0.20cm, red, leftarrow]{d}{j^*} \\
+\CatOf{Spectra} \arrow[leftarrow,shift left=0.20cm, "\dashv"']{u}{i} \arrow[red]{ru}{R_*} \arrow[red]{r}{T(J)_*} & \CatOf{QCoh}(\M_{T(J)}), \arrow[leftarrow, shift left=0.20cm, "\dashv"']{u}{j_*}
+\end{tikzcd}
+\end{center}
+such that $i$ is left-adjoint to $L_R$, $j^*$ is left-adjoint to $j_*$, $i$ and $j_*$ are inclusions of full subcategories, the red composites are all equal, and $R_*$ is conservative on $\CatOf{Spectra}_R$.
+\end{theorem}
+
+In the case when $R$ models the inclusion of the deformation space around the point $\Gamma_d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{\widehat L_d} \CatOf{Spectra}_{\Gamma_d}.\]  In the case when $R$ models the inclusion of the open complement of the unique closed substack of codimension $d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{L_d} \CatOf{Spectra}_d = \CatOf{Spectra}_{\moduli{fg}^{\le d}}.\]  We have set up our situation so that the following properties of these localizations either have easy proofs or are intuitive from the algebraic analogue of $j^* \vdash j_*$:
+\begin{enumerate}
+\item There is an equivalence \[L_d X \simeq (L_d \S) \sm X,\] analogous to $j^* M \simeq R \otimes M$ in the algebraic setting.  Because $L_{K(d)}$ is associated to the inclusion of a formal scheme (i.e., an ind-finite scheme), it has the formula \[\widehat L_d X \simeq \lim_I \left( M_0(v^I) \sm L_d X \right)\] analogous to $j^* M \simeq \lim_j (R/I^j \otimes M)$ in the complete algebraic setting.
+\item Because the open substack of dimension $d$ properly contains both the open substack of dimension $(d-1)$ and the infinitesimal deformation neighborhood of the closed point of height $d$, there are natural factorizations
+\begin{align*}
+\operatorname{id} \to L_d \to L_{d-1}, & & \operatorname{id} \to L_d \to \widehat L_d.
+\end{align*}
+In particular, $L_d X = 0$ implies both $L_{d-1} X = 0$ and $\widehat L_d X = 0$.
+\item The inclusion of the open substack of dimension $d-1$ into the one of dimension $d$ has relatively closed complement the point of height $d$.  Algebraically, this gives a gluing square (or Mayer-Vietoris square), and this is reflected in homotopy theory by a homotopy pullback square (the chromatic fracture square):
+\begin{center}
+\begin{tikzcd}
+L_d \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \widehat L_d \arrow{d} \\
+L_{d-1} \arrow{r} & L_{d-1} \widehat L_d.
+\end{tikzcd}
+\end{center}
+\end{enumerate}
+
+
+\subsection{Chromatic dissembly}
+
+There are also considerably more complicated facts known about these functors:
+\begin{theorem}[Hopkins--Ravenel]
+The homotopy limit of the tower \[\cdots \to L_d F \to L_{d-1} F \to \cdots \to L_1 F \to L_0 F\] recovers the $p$--local homotopy type of any finite spectrum $F$.\footnote{Spectra satisfying this limit property are said to be \textit{chromatically complete}, which is closely related to being \textit{harmonic}, i.e., being local with respect to $\bigvee_{d=0}^\infty K(d)$.  (I believe this a joke about ``music of the spheres''.)  It is known that nice Thom spectra (and in particular every suspension and finite spectrum) is harmonic, that every finite spectrum is chromatically complete, and that there exist some harmonic spectra which are not chromatically complete.}
+\end{theorem}
+
+\noindent This suggests a productive method for analyzing the homotopy groups of spheres: study the homotopy groups of each $L_d \S$ and perform the reassembly process encoded by this inverse limit.  Using the fracture square, one sees that it is also profitable to consider the homotopy groups of $\widehat L_d \S$.  In fact, the spectral version of $\M_E(F)$ considered on the first day furnishes us with a tool by which we can approach this:
+
+\begin{theorem}[Bousfield, et al.]
+The coskeletal filtration of $\mathcal D_E(F)$ gives a spectral sequence converging to the homotopy of its totalization, $F^\wedge_E$.\footnote{There is a subtlety here: the object $\mathcal D_E(F)$ must be able to be formed as a homotopy coherent diagram in order to produce the totalization. Essentially, this forces $E$ to be an $A_\infty$--ring spectrum. This holds for all the examples of ring spectra we have discussed.}  When $F$ is finite and $E$ models either of the cases above, this spectral sequence converges to $\pi_* L_E F$.  Furthermore, there is a line bundle $\omega$ on $\M_E$ such that\footnote{The identification of the $E_2$--page as computing stack cohomology is the first place where we really mean to employ the full technology of stacks in this talk.  Everywhere else, we have been essentially content to speak of simplicial presheaves.} \[E_2^{*, *} = H^*_{\mathrm{stack}}(\M_E; \M_E(F) \otimes \omega^{\otimes *}) \Rightarrow \pi_* L_E F.\]
+\end{theorem}
+
+The utility of this theorem is in the identification with stack cohomology.  In the case $E = E_{\Gamma_d}$, recall that $\M_{E_{\Gamma_d}}[0]$ is a smooth infinitesimal thickening of the spectrum of a field, so that \[\M_{E_{\Gamma_d}} = \left( \moduli{fg} \right)^\wedge_{\Gamma_d} \simeq \widehat{\mathbb A}^{d-1}_{\mathbb W(k)} \mmod \underline{\operatorname{Aut}}(\Gamma_d)\] as in the first example of $E = H\F_2$ on the first day.  But, in this specific case, there is an identification of stack cohomology with group cohomology: \[H^*_{\mathrm{stack}}(* \mmod \underline{G}; \mathcal M) = H^*_{\mathrm{group}}(G; M).\]  Another theorem from the arithmetic geometry literature gives \[\operatorname{Aut}(\Gamma_d) \cong \left( \mathbb{W}(k)\langle S \rangle \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right)^\times,\] and so we have reduced the computation of all of the stable homotopy groups of spheres to a very difficult problem in profinite group cohomology --- but one which is arithmetically founded, so that arithmetic geometry might continue to lend a hand.
+
+\begin{example}[Adams]
+In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on $\pi_* E_1 = \Z_p[u^\pm]$ by $\gamma \cdot u^n \mapsto \gamma^n u^n$.  At odd primes $p$ (so that $p$ is coprime to the torsion part of $\Z_p^\times$), one computes \[H^s(\operatorname{Aut}(\Gamma_1); \pi_* E_1) = \begin{cases}\Z_p & \text{when $s = 0$}, \\ \bigoplus_{j = 2(p-1)k} \Z_p\{u^j\} / (pk u^j) & \text{when $s = 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  This, in turn, gives the calculation \[\pi_t \widehat L_1 \S^0 = \begin{cases} \Z_p & \text{when $t = 0$}, \\ \Z_p / (pk) & \text{when $t = t|v_1| - 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  These groups are familiar to homotopy theorists: the $J$--homomorphism $J: BU \to BF$ described on the first day selects exactly these elements (for nonnegative $t$).
+\end{example}
+
+
+
+
+
+
+
+
+\section{-------------------------}
+
+
+
+
+ideas for open questions which i ended up not using:
+
+
+the Goerss--Hopkins--Miller theorem\footnote{Davis and Torii are responsible for the $(E_n \hat\wedge X)^{h\mathbb G_n} \simeq L_{K(n)} X$ equivalence.}
+
+$K(n)$--local homotopy groups
+
+the telescope conjecture
+
+equivariant $E$--theory
+
+connection to $TMF$ and higher orientations
+
+character theories, transchromatic phenomena generally
+
+Dieudonn\'e: Presentation of the endomorphism ring of the generic height $d$ law.
+
+
+\newpage
+\section{-----------------------------}
+
+Nat's MPIM notes
+
+(The first thing Nat says is that Vesna already introduced $tmf$ in the first two talks and that Tobi was going to introduce the chromatic program in the fifth talk.)
+
+\section{Introduction: $K$--theory}
+    \subsection{Quillen's theorem}
+    \subsection{The (integral) Conner--Floyd isomorphism}
+    \subsection{Total power operations in equivariant $K$--theory}
+    \subsection{Hopf invariant one}
+
+\section{Morava $E$--theory and the LEFT}
+    \subsection{Examples of formal group laws}
+    \subsection{Lubin--Tate deformation theory}
+    \subsection{Definition of $E$--theory using LEFT}
+
+\section{Morava $E$--theory as a rigid $E_\infty$--ring}
+    \subsection{The Goerss--Hopkins--Miller theorem}
+    \subsection{Devinatz--Hopkins on fixed point spectral sequences}
+    \subsection{$TMF$ restricted to the supersingular locus}
+    \subsection{The Goerss--Henn--Mahowald--Rezk resolution}
+
+\section{Morava $E$--theory and algebraic geometry}
+    \subsection{$\mathbb C \mathrm P^\infty_E$ as a formal scheme}
+    \subsection{$BA^*_E$ and $BU(n)_E$ as formal schemes}
+    \subsection{Strickland's theorem on finite symmetric groups}
+    \subsection{Power operations and Ando's theorem}
+
+\section{Morava $E$--theory and representation theory}
+    \subsection{The case for equivariant and $p$--adic $K$--theory}
+    \subsection{The classical Chern character}
+    \subsection{The HKR character map}
+
+
+\newpage
+
+\section{Formal schemes for spaces}
+
+The main goal of this talk is to communicate a way to organize computational results from algebraic topology in your head.  If you flip back through the literature in the 70s and 80s (and we will do some of that ourselves in a moment), you'll find yourself very envious of such a system.  People back then were writing these enormous papers with enormous manipulations of enormous formulas, and there was a real industry built around having sufficient facility with, say, the formula for the right--unit for Brown--Peterson cohomology, or with being adept with multi-index bookkeeping.  This was very hard work then, and it's fairly hard work now to go back and try to understand what these topologists were up to.  Attempting to untangle any of it will imbue you with an immediate appreciation for any kind of method that will allow you to compress one of these results into a small space.
+
+I don't know who first considered the following method, but I do know that the majority of its appearance in the literature is connected, directly or indirectly, to Neil Strickland.  The essential idea is to directly apply algebraic geometry to the situation: rather than associating to a space $X$ the cohomology ring $E^* X$, we go one step further and associate the scheme $\Spec E^* X$ (over $\Spec E^*$).  There's a clear caveat here: algebraic geometry interprets commutative rings, so $E^*$ and $E^* X$ had better be commutative, and the easiest way to enforce this is by restricting attention to spaces with $E^* X$ \emph{even--concentrated}.  Secondly, it turns out to be useful to remember some of the topological structure associated to the original space: the sorts of $X$ we consider in homotopy theory are all ``CW'', and the ``C'' means that they're exhausted by their compact subspaces: $X = \colim_\alpha \{X_\alpha\}_\alpha$.  The cohomology $E^* X_\alpha$ of any one of these individual spaces is a finite-dimensional $E^*$--algebra,\footnote{Actually, some care is required here, since $X_\alpha$ need not all have even--concentrated cohomology even if $X$ does. In the examples of interest, this won't be an issue --- for instance, it suffices for $H_* X$ to be even and torsion--free. I'd advise you to ignore the wrinkle for now.} and so we form a \emph{formal scheme} from the system \[X_E := \Spf E^* X := \{\Spec E^* X_\alpha\}_{\alpha}.\]
+
+The prototypical example of this construction is its value on $X = \CP^\infty$ for ordinary cohomology $E = H\F_p$.  As $X$ has a presentation as a cell complex, it's sufficient to take the subsystem of finite subcomplexes to define $X_E$.  In this case, the finite subcomplexes are $X_n = \CP^n$, with cohomology $H\F_p^* \CP^n = \F_p[x] / x^{n+1}$, and so altogether \[\CP^\infty_{H\F_p} = \A^1_{\F_p},\] where $\A^1_R = \Spf R\llbracket x \rrbracket$ is the ``formal affine line''.\footnote{For that matter, a prototypical formal scheme comes from taking the germ of a point in a Noetherian scheme.}  We can make two immediate further observations:
+
+\begin{enumerate}
+\item The condition that a cohomology theory $E$ admit an isomorphism $E^* \CP^\infty \cong E^*\llbracket x \rrbracket$ is called the \emph{complex--orientability} of $E$.  In our language, $E$ being complex orientable exactly means that $\CP^\infty_E$ is (non-canonically) isomorphic to a formal affine line.
+\item The space $\CP^\infty = BU(1)$ has a map classifying the tensor of complex line bundles: \[\CP^\infty \times \CP^\infty \xrightarrow{\otimes} \CP^\infty.\]  Just by checking degrees, one can calculate that the induced map \[\CP^\infty_{H\F_p} \times \CP^\infty_{H\F_p} \to \CP^\infty_{H\F_p}\] acts on points by $(x, y) \mapsto x + y$, and so a yet better name for $\CP^\infty_{H\F_p}$ is $\G_a$.  In general, when $E$ is complex--orientable $\CP^\infty_E$ carries the structure of a commutative $1$--dimensional smooth formal group.\footnote{The reader is invited to check $\CP^\infty_{KU} \cong \G_m$.}
+\end{enumerate}
+
+
+\section{A second example: $BU(n)_E$}
+
+To a certain crowd, illustrating features of this functor as applied to $\CP^\infty$ is old hat; anytime complex orientations are mentioned, formal group laws also arise, and we really weren't exploring anything beyond that.  The thesis I want to advance is that Neil's construction continues to be useful when applied to other spaces too, and the somewhat more serious examples we'll explore are the spaces $BU(n)$.
+
+\subsection{$BU(n)_E \cong \A^n$}
+
+The space $BU(n)$ classifies complex vector bundles of rank $n$; suppose that we have such a bundle $V$ over a space $X$.  Associated to $V$ we can form its fiberwise projectivization $\P(V)$, which is a $\CP^{n-1}$--bundle over $X$.  The space $\P(V)$ itself comes equipped with a canonical line bundle, and hence a map \[\P(V) \xrightarrow{p_V} X \times \CP^\infty.\]
+
+\begin{theorem}
+When $E$ is complex oriented and $E^* X$ is even, the induced map $E^* X$--module map takes the form
+\begin{center}
+\begin{tikzcd}
+E^*(X \times BU(1)) \arrow{r} \arrow[double,-]{d} & E^* \P(V) \arrow[double,-]{d} \\
+E^* X \otimes E^*\llbracket x \rrbracket \arrow{r} & E^* X \otimes E^*\llbracket x \rrbracket / \langle\text{$c_*(V)$, of degree $n$}\rangle.
+\end{tikzcd}
+\end{center}
+\end{theorem}
+
+\noindent Using this theorem, we define the \emph{Chern classes of $V$} by \[0 = x^n - c_1(V) x^{n-1} + c_2(V) x^{n-2} + \cdots + (-1)^n c_n(V).\]  This polynomial is called $c_*(V)$, the \emph{total Chern class of $V$}; it is a monic polynomial generating the ideal corresponding to the quotient ring $E^* \P(V)$.  A second basic theorem declares that these classes $c_j$ account for all of $E^* BU(n)$:
+
+\begin{theorem}
+A complex orientation of $E$ begets an isomorphism $E^* BU(n) \cong E^*\llbracket c_1, \ldots, c_n \rrbracket$.
+\end{theorem}
+
+\noindent In our language, this allows us to identify the formal scheme $BU(n)_E$ as the smooth formal scheme $BU(n)_E \cong \A^n$.
+
+
+\subsection{$BU(n)_E \cong \Div_n^+ \CP^\infty_E$}
+
+We can do better than this.  Applying our formal scheme functor to $p_V$, the same theorem asserts that $\P(V)_E \to X_E \times \CP^\infty_E$ is a closed inclusion, i.e., an effective divisor of degree $n$ on $\CP^\infty_E$, or a $E^* X$--point of $\Div_n^+ \CP^\infty_E$.
+
+\begin{theorem}
+A complex orientation of $E$ begets an isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$.
+\end{theorem}
+
+\noindent Let's take the time to show that this is a serious description, carrying much more information that you might think. To begin, recall that iterated projectivization can be used to prove the following essential theorem:
+
+\begin{theorem}[Splitting principle]
+Suppose $V \downarrow X$ is a rank $n$ complex vector bundle on $X$.  There exists a natural space $f: Y \to X$ over $X$ for which \ldots
+\begin{enumerate}
+\item \ldots the induced map $f^*: E^* X \to E^* Y$ is an injective map of rings.
+\item \ldots the pullback bundle $f^* V$ has a canonical splitting into complex lines: \[f^* V \cong \bigoplus_{j=1}^n \L_j.\]  That is, the classifying map $X \to BU(n)$ lifts across the direct sum map \[\overset{\text{$n$ times}}{\overbrace{BU(1) \times \cdots \times BU(1)}} \xrightarrow{\oplus} BU(n).\]
+\end{enumerate}
+\end{theorem}
+
+Applying the splitting principle to $V$ and using properties of the total Chern class $c_*$, we then have
+\[
+c_*(f^* V) = x^n - f^* c_1(V) x^{n-1} + \cdots + (-1)^n f^* c_n(V) = c_*\left( \bigoplus_{j=1}^n \L_j \right) = \prod_{j=1}^n c_*(\L_j) = \prod_{j=1}^n (x - c_1(\L_j)).
+\]
+These are called the ``Chern roots'' of $c(f^* V)$, and it's now plain that the splitting principle is a topological lift of the factorization of the Chern polynomial.  The space $Y$ enlarges the cohomology ring to be sufficiently solveable so that roots exist, and then additionally the roots are realized by complex lines.  This digression is meant to provide some intuition about how the isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$ behaves: the point corresponding to a vector bundle $V$ is mapped to the divisor which, after sufficient base extension, is given by the formal sum of its Chern roots.
+
+Additionally, the spaces $BU(n)$ come with formal sum and tensor product operations:
+\begin{align*}
+BU(n) \times BU(m) & \xrightarrow{\oplus} BU(n+m), & BU(n) \times BU(m) & \xrightarrow{\otimes} BU(n \cdot m).
+\end{align*}
+The first of these is easy to account for: the total Chern class has $c_*(V \oplus W) = c_*(V) \cdot c_*(W)$, so the induced map
+\begin{center}
+\begin{tikzcd}
+BU(n) \times BU(m) \arrow{r}{\oplus} \arrow[-,double]{d} & BU(n+m) \arrow[-,double]{d} \\
+\Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \arrow[dashed]{r}{+} & \Div_{n+m}^+ \CP^\infty
+\end{tikzcd}
+\end{center}
+sends a pair of divisors to their formal sum.  The tensor product is easiest to describe through the splitting principle:
+\[
+c(V \otimes W) = c\left( \left( \bigoplus_{j=1}^n \L_j\right) \otimes \left( \bigoplus_{k=1}^m \H_k \right)\right) = \prod_{j, k} c(\L_j \otimes \H_k).
+\]
+From the example at the top of the hour, we know what the Chern polynomial of a tensor product of lines corresponds to: we're using the group structure of $\CP^\infty_E$ to build the formal sum \[\left( \sum_{j=1}^n [a_j] \right) \cdot \left( \sum_{k=1}^m [b_k]\right) = \sum_{j,k} [a_j + b_k].\]  Collectively, these isomorphisms efficiently describe a ring scheme structure on $\coprod_n \Div_n^+ \CP^\infty_E$ reflecting all of the structure on the cohomology rings $E^* BU(n)$.
+
+
+
+\section{$\OS{kU}{2k}$}
+
+Given these descriptions, it's easy to take the colimit in $n$ to get a description of $BU_E$: just as $BU$ classifies stable vector bundles of virtual rank zero, $BU_E \cong \Div_0 \CP^\infty_E$ classifies stable divisors of virtual weight zero.  Eliminating this weight condition, we also have $(BU \times \Z)_E \cong \Div \CP^\infty_E$.  These two spaces suggest a new avenue of generalization, as they are both spaces in the connective complex $K$--theory spectrum:
+\begin{align*}
+BU \times \Z & \simeq \OS{kU}{0}, & BU & \simeq \OS{kU}{2}.
+\end{align*}
+The next space in this sequence is also very accessible.  It lies in a fiber sequence\todo{Does is map $\OS{kU}{4} \to \OS{kU}{2}$ a map of of infinite loopspaces?}
+\begin{center}
+\begin{tikzcd}
+BSU \arrow{r} \arrow[-,double]{d} & BU \arrow[-,double]{d} \arrow{r}{\det} & BU(1) \arrow[-,double]{d} \\
+\OS{kU}{4} \arrow{r} & \OS{kU}{2} \arrow{r} & \CP^\infty.
+\end{tikzcd}
+\end{center}
+For complex--orientable $E$, the associated Serre spectral sequence is collapsing and we have an induced short exact sequence of group schemes
+\begin{center}
+\begin{tikzcd}
+BSU_E \arrow{r} \arrow[-,double]{d} & BU_E \arrow{r} \arrow[-,double]{d} & BU(1)_E \arrow[-,double]{d} \\
+\SDiv_0 \CP^\infty_E \arrow{r} & \Div_0 \CP^\infty_E \arrow{r}{\sigma} & \CP^\infty_E,
+\end{tikzcd}
+\end{center}
+where $\sigma$ is the summation map and ``$\SDiv$'' denotes ``special divisors'', i.e., those which sum to zero.
+
+After this space, things get complicated quickly.  The fiber sequence \[K(\Z, 3) \to BU[6, \infty) \to BSU\] has a somewhat accessible Serre spectral sequence, but the higher analogues do not.  In his PhD thesis, Bill Singer completed this calculation for mod--$p$ cohomology using carefully iterated Eilenberg--Moore spectral sequences:
+
+\begin{theorem}[Bill Singer; Bob Stong]
+Take $E = H\F_2$.  There is an isomorphism \[H\F_2^*(BU[2k,\infty)) = \frac{H\F_2^*(BU)}{\F_2[\theta_{2i} \mid \sigma_2(i - 1) < k - 1]} \otimes \operatorname{Op}[\Sq^3 \iota_{2k-3}],\] where ``$\operatorname{Op}[\Sq^3 \iota_{2k-3}]$'' denotes the smallest sub-Steenrod-Hopf-algebra of $H\F_2^*(K(\Z, 2k-3))$ containing $\Sq^3 \iota_{2k-3}$ and $\theta_{2i} \equiv c_i$ modulo decomposables.
+\end{theorem}
+
+This presentation does not suggest any geometric description.  Instead, using as motivation the fact that ``$\Div$'' constructs a sort of free group scheme, Ando, Hopkins, and Strickland went looking for interesting free constructions laying around.  Taking powers of the natural map $(\L - 1): BU(1) \to BU \simeq \OS{kU}{2}$ gives an interesting map \[BU(1)^{\times k} \xrightarrow{f_k} \OS{kU}{2k} \simeq BU[2k, \infty).\]  Some properties of this map are evident: it is symmetric under permuting the domain, and restricting it to the basepoint of any of the factors collapses the map.  There is an interesting third property, most easily visible by postcomposing to $BU$.  There, the associated divisor (i.e., point in $BU_E$) takes the form $\<a_1, \ldots, a_n\> := \prod_i ([a_i] - [0])$.  We then compute:
+\begin{align*}
+\<a_1, \ldots, a_{n+1}\> & = ([0] - [a_1])([0] - [a_2])([0] - [a_3])\<a_4, \ldots, a_{n+1}\> \\
+& = ([0] - [a_1])[a_2]([0] - [a_3])\<a_4, \ldots, a_{n+1}\> + \<a_1, a_3, \ldots, a_{n+1}\> \\
+& = ([0] - [a_1])([a_2] - [a_2 + a_3])\<a_4, \ldots, a_{n+1}\> + \<a_1, a_3, \ldots, a_{n+1}\> \\
+& = \<a_1, a_2, a_4, \ldots, a_{n+1}\> - \<a_1, a_2 + a_3, a_4, \ldots, a_{n+1}\> + \<a_1, a_3, a_4, \ldots, a_{n+1}\> \\
+\Rightarrow \<a_2, \ldots, a_{n+1}\> - \<a_1 + a_2, a_3, \ldots, a_{n+1}\> & = \<a_1, a_2, a_4, \ldots, a_{n+1}\> - \<a_1, a_2 + a_3, a_4, \ldots, a_{n+1}\>,
+\end{align*}
+a kind of cocycle condition.  The most important step of this computation is the transition from the second to the third line: we used the fact that $\Div_0 \CP^\infty_E$ is an ideal for $\Div \CP^\infty_E$.  This informs the following lucky guess:
+
+\begin{theorem}[Ando, Hopkins, Strickland]
+For even--periodic cohomology theories $E$ and $k \le 3$,\footnote{At $k = 2$, this scheme is not obviously equivalent to the $\SDiv_0$ description above. To explain: the map $\delta$ factors through $\ker \sigma = \SDiv_0 \G$; we will define an inverse $\phi$. Set $\phi_n(\underline a)$ for a tuple $\underline a \in \G^n$ to be $\phi_n(\underline a) = \sum_{j=1}^n [\sigma(\underline a_{< j}), a_j].$ This turns out to be $\Sigma_n$--invariant, so one can write $\phi_\infty$. This map has $\phi_\infty(\underline a + \underline b) = \phi_\infty(\underline a) + \phi_\infty(\underline b) + [\sigma(\underline a), \sigma(\underline b)]$, so for $\underline a$ and $\underline b$ in $\ker(\sigma)$ it is a homomorphism. This is the desired inverse.} there is a diagram
+\begin{center}
+\begin{tikzcd}
+BU(1)^{\times k}_E \arrow{rr} \arrow[dashed]{rd} & & BU[2k, \infty)_E \\
+& C_k := \Sym_{\Div \CP^\infty_E}^k (\Div_0 \CP^\infty_E) \arrow{ru}{\simeq}.
+\end{tikzcd}
+\end{center}
+\end{theorem}
+
+This is a hard theorem: not only does that map have to be checked to be an isomorphism, but the mere existence of the symmetric power scheme needs to be checked.  It's also an incredible theorem: suppose that $E$ is an elliptic cohomology theory, so that $\CP^\infty_E$ comes with a chosen isomorphism to the formal group $\widehat{C}$ of some elliptic curve $C$.  \todo{Expand this?}  The ``theorem of the cube'' in algebraic geometry applied to $C$ furnishes us with a canonical point in $MU[6, \infty)_E$, i.e., a canonical multiplicative map $MU[6, \infty) \to E$.  Morally, as $\TMF$ is the ``universal elliptic cohomology theory'', one can take a homotopy inverse limit over the various choices of $C$ to get a map \[MU[6, \infty) \xrightarrow{\sigma} \TMF.\]  This map indeed exists and is the complex--geometric version of ``the $\sigma$--orientation'' or ``Witten's string genus''.  The construction of this canonical point in $MU[6, \infty)_E$ uses in an essential way the schematic description, and it's difficult to conceive of finding the homotopy theoretic instantiation of this map without employing this language.
+
+You'll also notice that we didn't gain many new cases with this theorem: we already understood $\OS{kU}{2k}$ for $k \le 2$, and the Ando--Hopkins--Strickland theorem applies to $k \le 3$.  At $k = 4$, we can already see what's getting in the way: the odd--degree class $\Sq^7 \Sq^3 \iota_{2k-3}$ becomes nonzero for the first time when $k = 4$, and the connection to formal geometry collapses in the presence of odd--degree information.  Nonetheless, the schemes $C_k$ continue to exist, and one can investigate them in their own right.
+
+\begin{theorem}[Hughes, Lau, P.]
+For $E = H\F_2$, the Cartier--dual scheme $C^k = \mathbb{D}(C_k)$ has an explicit and efficient presentation which can be computed as far as out as one cares.  (It isn't very pretty, though.)
+\end{theorem}
+
+Formal geometry or not, the class $f_k$ still exists, and it induces a map \[\mathcal{O} C^k \xrightarrow{f_k'} (H\F_2)_* BU[2k, \infty).\]  Given our explicit presentation, we can attempt to analyze this map.  Since the source is an even--concentrated Hopf algebra, its image in the target will also consist of even classes.  However, Singer's calculation indicates that restricting to the subalgebra of even classes in the target is not sufficient to make $f_k'$ an isomorphism.  Instead, there appears to be one other item to take into account: the Steenrod algebra $\mathcal{A}_* = \mathcal{O} \underline{\operatorname{Aut}}(\G_a)$ naturally coacts on both sides.
+
+\begin{conjecture}[Hughes, Lau, P.]
+The map $f'_k$ is $\underline{\Aut}(\G_a)$--equivariant.  Restricting the target to the Steenrod--Hopf--subalgebra of even classes \emph{which have even diagonals}, this map becomes an isomorphism.
+\end{conjecture}
+
+\noindent We've verified this computationally in thousands of bidegrees.  I can't imagine it isn't true, but I don't have a proof.  This modest conjecture naturally leads to a more seriously speculative question: is there an infinite loopspace $X_{2k}$ over $\OS{kU}{2k}$ realizing this factorization?  I have no real feelings about this either way, but I do have a philosophical soapbox to stand on.  The platform of this talk is basically that algebraic geometry can be used to capture a lot of what we do---and can even lead us to proofs of important ideas in homotopy theory, as with the $\sigma$--orientation.  Faced with the fact that these two computations don't line up, we're forced to admit one of two things: either formal geometry isn't quite capturing the natural object of complex $K$--theory and the formal geometry needs to be augmented, or complex $K$--theory isn't quite capturing the natural algebraic geometry and the spectrum needs to be augmented.
+
+I'm tempted to give the latter viewpoint a fair shake.  Geometers seem a little confused about what, morally, comes after $BU[6, \infty)$ and $B\mathrm{String} = BO[8, \infty)$.  The Thom spectra for the spaces that come after also don't really seem to fit as nicely into homotopy theory; it's known, for instance, that $MO[9, \infty)$ can't participate in a (suitably structured) orientation for the height $3$ Morava $E$--theory.  It sure would be interesting if there were some other candidate spaces $X_{2k}$ with a tighter bond to algebraic geometry and so a better shot at achieving these goals.
+
+Here are three immediate stray thoughts about these proposed spaces:
+\begin{enumerate}
+\item The spaces $X_{2k}$ cannot themselves assemble into a single infinite loopspace. A result from the 1970s of Adams and Priddy shows that any spectrum with $BU[2k, \infty)$ as its zeroth space must be a shift of $kU$.  This is a neat paper; it works by ``running the Adams spectral sequence backwards''.  Borrowing cues from it could turn up interesting results about, say, what the homotopy of $X_{2k}$ must look like.
+\item Old work of Steve Wilson gives a description of all sufficiently nice $H$--spaces local to a prime: they are produces of spaces appearing as $\OS{BP\<m\>}{k}$ in the $\Omega$--spectrum for truncated Brown--Peterson theory.  It would probably be instructive to understand the cohomologies of these spaces (a calculation due to Kathleen Sinkinson) and then to compare them with the ring of functions on $C^k$.
+\item Incredibly, there are tools around (due to Alexander Zabrodsky) to delete odd classes from $H$--space \emph{while preserving their $H$--spaceiness}.  These kinds of techniques could be useful here, but I suspect they'll be too crude to yield the kind of interesting result we're looking for.
+\end{enumerate}
+
+
+\newpage
+
+In this first chapter, we introduce many of the basic players from chromatic homotopy theory needed for our later discussion, espousing a relentlessly algebro-geometric point of view.
+\begin{itemize}
+\item In \Cref{SchemesAndFormalSchemes}, we give a very abbreviated sequence of definitions in algebraic geometry, included so as to emphasize the ``functor of points'' perspective, as this is somewhat idiosyncratic but used to exclusion in this document and elsewhere in the stable homotopy theory literature.
+\item In \Cref{FormalLieGroups}, we recount parts of the theory of formal Lie groups, in preparation for an immediate application to stable homotopy theory in the following \Cref{BasicApplicationsToTopology}.  This includes the definition of formal Lie groups (as built upon the functor of points language in \Cref{SchemesAndFormalSchemes}), their classification (due to Lazard), and various features of their moduli stack.
+\item In \Cref{BasicApplicationsToTopology}, we describe two important constructions which yield algebro-geometric objects from homotopical input.  We explore this in some classical examples, and we leverage it (using theorems from \Cref{FormalLieGroups}) to produce homology theories $E_\Gamma$ and $K_\Gamma$ tied to a formal Lie group $\Gamma$.  These homology theories will be our main focus for the rest of the document.
+\item In \Cref{KLocalCategory}, we describe some salient features of stable homotopy theory after localizing at $K_\Gamma$, i.e., after forcing $K_\Gamma(X) = 0$ to imply $X \simeq *$.  In particular, we describe the ``continuous'' version of $E_\Gamma$, for which there is a good duality theory between homology and cohomology, and we describe the example of the $K_\Gamma$--local homotopy groups of the sphere for $\Gamma = \G_m$.
+\end{itemize}
+
+\noindent We write $\CatOf{C}(X, Y)$ for the set of arrows in a locally small category $\CatOf{C}$ with source $X$ and target $Y$.
+
+\section{Schemes and formal schemes}\label{SchemesAndFormalSchemes}
+
+Throughout this document, we will make use of algebraic geometry and also of coalgebras and coalgebraic geometry.  Motivation for this will be made in \Cref{BasicApplicationsToTopology} and \Cref{KLocalCategory}, but it's useful first to record the basic tools involved.
+
+\subsection{Essentials of algebraic geometry}
+
+The essential idea of scheme theory is to make commutative algebra look formally categorically similar to the study of moduli objects in topology and geometry.  For example, just as cohomology classes in $H^n(X; G)$ correspond naturally to homotopy classes of maps \[X \to K(G, n),\] by fixing an algebra $A$ and studying it by maps $A \to T$ for test rings $T$ we will often see that $A$ has a fruitful interpretation as a moduli--theoretic object.  To this end, we record our first definition:
+
+\begin{definition}\label{AffineScheme}
+An affine scheme $X$ over a ring $R$ is a representable functor
+\begin{align*}
+X & \co \CatOf{Algebras}_R \to \CatOf{Sets}, \\
+X(T) & \cong \CatOf{Algebras}_R(A, T)
+\end{align*}
+for some $R$--algebra $A$.\footnote{A (not necessarily affine) scheme is a functor which is ``locally'' isomorphic to such a representable functor, where the representing object $A$ is allowed to change in a controlled way.}\footnote{This isomorphism is not necessarily canonical; a choice of such an isomorphism is called a chart.}  The functor $\CatOf{Algebras}_R(A, -)$ is written $\Spec(A)$.
+\end{definition}
+
+\begin{example}\label{A1Example}
+The $R$--algebra $R[x]$ determines a functor $\Spec(R[x]) =: \mathbb A^1_R$, referred to as the affine line (over $R$).  This functor has the property that $\mathbb A^1_R(T) = T$ and hence that\footnote{This evaluation is sometimes also written $\sheaf{O}(\Spec T) := \CatOf{AffineSchemes}_R(\Spec T, \mathbb A^1_R)$.} \[\CatOf{AffineSchemes}_R(\Spec T, \mathbb A^1_R) \cong T.\]
+\end{example}
+
+\begin{example}
+Generally, we define $\mathbb A^n_R$ by \[\mathbb A^n_R := \Spec R[x_1, \ldots, x_n].\]  It represents the functor $T \mapsto T^{\times n}$.
+\end{example}
+
+We now define a certain interesting class of subfunctors of affine schemes: the closed subschemes.
+
+\begin{definition}\label{ClosedSubschemes}
+A map of schemes $Y \to X$ is called a subscheme when the induced map $Y(T) \to X(T)$ is injective for all $T$.  Moreover, a subscheme is said to be closed when for any of the following pullbacks along a map $\Spec T \to F$ there is an ideal $I$ of $T$ and an isomorphism completing the left-hand triangle:
+\begin{center}
+\begin{tikzcd}
+\Spec T/I \arrow{r}{\simeq} \arrow{rd} & \Spec T \times_F G \arrow{r} \arrow{d} & G \arrow{d} \\
+& \Spec T \arrow{r} & F.
+\end{tikzcd}
+\end{center}
+\end{definition}
+
+\begin{remark}
+The ``closed'' nomenclature is motivated by the calculus of ideals, which shows that, e.g., the finite union of closed subschemes is itself a closed subscheme.
+\end{remark}
+
+\begin{example}
+The only affine schemes with no proper closed subschemes are of the form $\Spec k$ for $k$ a field.  For this reason, a map $\Spec k \to X$ is sometimes called a closed point of $X$.  More generally, a scheme with at most one proper closed subscheme must have the form $\Spec R$ for $R$ a local ring, and maps $\Spec R \to X$ are called points of $X$.
+\end{example}
+
+With closed subschemes in hand, it is natural to wonder about open subschemes.  These have a more complicated definition, because the complement of a closed subscheme may not be an affine scheme.  For instance, $\A^2 \setminus \{(0, 0)\}$ is not an affine scheme --- but it is covered jointly by the affine schemes $\Spec R[x, y][x^{-1}]$ and $\Spec R[x, y][y^{-1}]$.  This behavior turns out to be generic, and one winds up at the following definition:
+
+\begin{definition}
+A subscheme $Y \to X$ of $X$ is called an open subscheme when for any pullback along a map $\Spec T \to F$ there is a collection of elements $s_k \in T$ such that for any prime $p$ in $T$ with a lift to the pullback there exists a further lift:
+\begin{center}
+\begin{tikzcd}
+\Spec T_{(p)} \arrow[densely dotted]{d} \arrow{rd} \arrow{rdd} \\
+\check{C}(\{\Spec T[s_k^{-1}]\}_k) \arrow[crossing over]{r} \arrow{rd} & \Spec T \times_F G \arrow{r} \arrow{d} & G \arrow{d} \\
+& \Spec T \arrow{r} & F.
+\end{tikzcd}
+\end{center}
+Here $\check{C}(\{\Spec T[s_k^{-1}]\}_k)$ denotes the simplicial object \[\check{C}(\{\Spec T[s_k^{-1}]\}_k) := \left\{
+\begin{tikzcd}
+\coprod_{k_1} \Spec T[s_{k_1}^{-1}] \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} & \coprod_{k_1, k_2} \Spec T\left[ \begin{array}{c} s_{k_1}^{-1} \\ , \\ s_{k_2}^{-1} \end{array} \right] \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} & \cdots
+\end{tikzcd}
+\right\},\]
+where the reader can take ``$\coprod$'' to be a formal symbol expressing the many commutative diagrams to check.
+\end{definition}
+
+\begin{example}\label{GmExample}
+The $R$--algebra $R[x, y] / (xy - 1)$ determines a functor called the ``multiplicative group'': \[\Spec R[x, y]/(xy-1) =: \mathbb{G}_m.\]  This presentation of this functor comes with a natural embedding
+\begin{align*}
+\frac{R[x,y]}{(xy-1)} & \leftarrow R[x, y] \\
+\mathbb{G}_m & \to \mathbb A^2
+\end{align*}
+which on functors of points induces a closed inclusion $\mathbb G_m(T) \subseteq \mathbb A^2(T)$.  The further projection \[\mathbb G_m \to \mathbb A^2 \to \mathbb A^1\] onto either coordinate $x$ or $y$ of $\mathbb A^2$ also gives an open inclusion by \[\Spec((R[x])[x^{-1}]) \to \Spec R[x].\] Its effect on points $\mathbb G_m(T) \subseteq \mathbb A^1(T) \cong T$ is to select exactly the multiplicative group of unit elements in $T$.
+\end{example}
+
+\begin{remark}
+Both \Cref{A1Example} and \Cref{GmExample} are examples of schemes with further algebraic structures.  The scheme $\mathbb G_m$ is naturally valued in abelian groups, and hence (by the Yoneda lemma, as it is a representable functor) receives the following maps:
+\begin{align*}
+\mathbb G_m \times \mathbb G_m & \xrightarrow{\mu} \mathbb G_m & x_1 \otimes x_2 & \mapsfrom x \\
+& & y_1 \otimes y_2 & \mapsfrom y, \\
+\mathbb G_m & \xrightarrow{\chi} \mathbb G_m & (y, x) & \mapsfrom (x, y), \\
+\Spec R & \xrightarrow{\eta} \mathbb G_m & 1 & \mapsfrom x, y.
+\end{align*}
+These assemble to make $\mathbb G_m$ into a \textit{group scheme}, i.e., an abelian group object in the category of affine schemes.  Similarly, the functor $\mathbb A^1$ is valued in commutative algebras, so it is a \textit{ring scheme}, i.e., it has addition and subtraction maps which intertwine with the multiplication map described above.
+\end{remark}
+
+\subsection{Finite schemes and formal schemes}
+
+The most basic and well--behaved class of affine schemes is that of \textit{finite} affine schemes $X$ defined over a field $k$, where ``finite'' means that $X$ has a chart $X = \Spec A$ where $A$ is a $k$--algebra which is finitely generated as a $k$--module.
+\begin{example}\label{DefnA1n}
+The truncation $\mathbb A^{1, (n)} := \Spec k[x] / x^{n+1}$ is such a finite affine scheme.  It represents the subfunctor of $\mathbb A^1$ which selects those elements which are nilpotent of order at most $n$.
+\end{example}
+
+In this nice setting, there is a second presentation of $X$: writing $cX$ for the dual of the chart \[cX := \CatOf{Modules}_k(\mathbb A^1_k(X), k),\] the functor $X$ can be expressed as \[X(T) \cong \Sch(cX)(T) := \left\{u \in cX \otimes_k T \middle| \begin{array}{c} \Delta u = u \otimes u \in (cX \otimes_k T) \otimes_T (cX \otimes_k T), \\ \eps u = 1 \in T \end{array}\right\},\] where $\Delta$ is dual to the multiplication on $A$ and $\eps$ is dual to the unit of $A$.  Given such a $k$--coalgebra, we can define such a functor $\Sch$ generally; diagrammatically, we have the following functors:
+\begin{center}
+\begin{tikzcd}
+\CatOf{FiniteCoalgebras} \arrow[r, "(-)^\vee"', shift right] \arrow[leftarrow, shift left]{r}{(-)^\vee} & \CatOf{FiniteAlgebras} \arrow[r, "\Spec"', shift right] \arrow[shift left, leftarrow]{r}{\mathbb A^1} & \CatOf{FiniteSchemes} \arrow[ll, "c"', bend right=20] \arrow[ll, "\Sch"', leftarrow, bend left=20].
+\end{tikzcd}
+\end{center}
+Additionally, each pair of functors gives an equivalence of categories.
+
+Our immediate goal is to explore the behavior of this equivalence as we loosen the hypotheses of being finite and of being a module over a field $k$.  It is instructive to handle these adjectives separately and to relax finiteness first.  In the case that $A$ is an infinite--dimensional $k$--module there is an inequivalence $(A \otimes_k A)^\vee \not\cong A^\vee \otimes_k A^\vee$ and hence no natural composite diagonal map \[A^\vee \xrightarrow{\mu^\vee} (A \otimes_k A)^\vee \leftarrow A^\vee \otimes_k A^\vee.\] It follows already that linear duality fails to provide an equivalence of categories between algebras and coalgebras.  However, coalgebras over a field $k$ enjoy the following structure theorem:
+\begin{lemma}[Demazure's Lemma, {\cite[pg. 12]{Demazure}, \cite[Appendix 5.3]{Michaelis}}]
+If $C$ is a $k$--coalgebra and $E$ is a finite--dimensional vector subspace of $C$, then there exists a finite--dimensional vector subspace $F$ of $C$ with $E \subseteq F \subseteq C$ and $F$ a $k$--subcoalgebra. \qed
+\end{lemma}
+
+\begin{corollary}
+Every $k$--coalgebra is ``ind-finite'', i.e., there is a natural equivalence between (possibly infinite) $k$--coalgebras and their lattices of finite $k$--subcoalgebras. \qed
+\end{corollary}
+
+Applying linear--algebraic duality to this lattice of finite $k$--subcoalgebras naturally takes values in profinite algebras, and indeed there is the following commuting network of equivalences of categories:
+\begin{center}
+\begin{tikzcd}
+\CatOf{FiniteCoalgebras} \arrow[r, "(-)^\vee"', shift right] \arrow[leftarrow, shift left]{r}{(-)^\vee} \arrow{d} & \CatOf{FiniteAlgebras} \arrow[r, "\Spec"', shift right] \arrow[shift left, leftarrow]{r}{\mathbb A^1} \arrow{d} & \CatOf{FiniteSchemes} \arrow{d} \\
+\CatOf{Coalgebras} \arrow[r, "(-)^\vee"', shift right] \arrow[leftarrow, shift left]{r}{(-)^\vee} & \CatOf{ProfiniteAlgebras} \arrow[r, "\Spf"', shift right] \arrow[shift left, leftarrow]{r}{\mathbb A^1} & \CatOf{FormalSchemes},
+\end{tikzcd}
+\end{center}
+where we have made the following implicit definition:
+\begin{definition}
+A formal $k$--scheme is an ind-system of finite $k$-schemes.
+\end{definition}
+
+\begin{example}\label{AffineSpaceFormulas}
+Our favorite example of a formal affine scheme will be affine $n$--space: \[\A^n := \Spf k\llbracket x_1, \ldots, x_n \rrbracket := \colim_{(i_1, \ldots, i_n)} \Spec \frac{k[x_1, \ldots, x_n]}{(x_1^{i_1}, \ldots, x_n^{i_n})}.\]  The dual system of coalgebras is given by the modules \[C_{n, (i_1, \ldots, i_n)} := k\{\beta_{(j_1, \ldots, j_n)} \mid \text{$j_m \le i_m$ for all $m$}\}\] with diagonal \[\Delta \beta_{(j_1, \ldots, j_n)} = \sum_{k_1 \le j_1} \cdots \sum_{k_n \le j_n} \beta_{k_1, \ldots, k_n} \otimes \beta_{j_1 - k_1, \ldots, j_n - k_n}.\]
+\end{example}
+
+\begin{lemma}[{\cite[pg.\ 32]{StricklandFSFG}}]\label{EARLYMapsOfAffineSpaces}
+There is an isomorphism between maps $\A^n \to \A^m$ and $m$--tuples of $n$--variate power series with vanishing constant term. \qed
+\end{lemma}
+
+\Cref{EARLYMapsOfAffineSpaces} allows us to reinterpret various theorems from the analytic geometry of power series in this ``algebraic'' context of formal schemes.  For example, there is the following version of the inverse function theorem:
+
+\begin{lemma}[Inverse function theorem]\label{InverseFunctionTheorem}
+If $f: \A^n \to \A^n$ is a map of formal varieties, then $f$ has an inverse if and only if $T_0 f: T_0 \A^n \to T_0 \A^n$ is an invertible linear transformation. \qed
+\end{lemma}
+
+\noindent Having this identification of Hom-sets is so useful that we define an interesting class of formal schemes for which these lemmas can be used.
+\begin{definition}
+A formal variety $V$ is a formal scheme which is (noncanonically) isomorphic to formal affine $n$--space for some $n$.  For such an isomorphism $\phi: V \to \A^n$, $\phi$ is called a coordinate (for $V$) and the inverse isomorphism $\phi^{-1}: \A^n \to V$ is called a parameter (for $V$).
+\end{definition}
+
+We now turn to the case of a general ground ring $k$, where Demazure's lemma fails~\cite[Appendix 5.3]{Michaelis}.  Instead, it is standard practice to incorporate his lemma into a definition.
+\begin{definition}[{\cite[Definition 4.58]{StricklandFSFG}}]\label{DefnCoalgebraicScheme}
+Suppose that $C$ is a $k$--coalgebra (where $k$ is not necessarily taken to be a field), and further suppose that as a $k$--module $C$ is free.  If there exists a basis $C \cong R\{e_i \mid i \in I\}$ such that each finitely generated submodule $M$ of $C$ can be enlarged to a subcoalgebra of the form $R\{e_{i_j} \mid j \in J\} \subseteq M$ on a finite indexing set $J$, then $C$ is said to be a ``good coalgebra'' and the basis $\{e_i\}_{i \in I}$ is said to be a ``good basis''.
+\end{definition}
+
+\begin{remark}[{\cite[Appendix 5.3]{Michaelis}}]
+If $C$ is an $R$--coalgebra, free as an $R$--module, where is $R$ a principal ideal domain with no zerodivisors, then $C$ is automatically good with that basis.
+\end{remark}
+
+\begin{theorem}[{\cite[Proposition 4.64]{StricklandFSFG}}]
+Good $k$--coalgebras form a full subcategory of all $k$--coalgebras, and $\Sch$ is a fully faithful functor onto its image in $\CatOf{FormalSchemes}_k$ (called ``coalgebraic formal schemes'').  If $\sheaf{F}: I \to \CatOf{GoodCoalgebras}_k$ is a diagram of coalgebras with colimit $F$, and additionally both $\sheaf{F}$ and its colimit $F$ factor through the subcategory of good coalgebras, then $\Sch F$ is the colimit of $\Sch \circ \sheaf{F}$ in the category of formal schemes. \qed
+\end{theorem}
+
+\begin{example}\label{FormalAffineSpaceEx}
+Formal affine $n$--space $\A^n$ is a coalgebraic formal scheme.
+\end{example}
+
+\begin{lemma}\label{MapsOfAffineSpaces}
+The following analogue of \Cref{EARLYMapsOfAffineSpaces} holds in the generality of \Cref{FormalAffineSpaceEx}: there is an isomorphism between maps $\A^n \to \A^m$ and $m$--tuples of $n$--variate power series with nilpotent constant term. \qed
+\end{lemma}
+
+Hence, in the presence of Demazure's lemma, we can accomplish most anything for general coalgebraic formal schemes that we could have accomplished for coalgebraic formal schemes over a field.  For example, given a closed inclusion \[\Spf S \xrightarrow{s} \Spf A =: X\] of a coalgebraic formal $R$--scheme $\Spf A$, we can form the algebraic tangent space $T_s X$ of $s$ in $X$ in three different ways:
+\begin{enumerate}
+\item Extensions of the shape
+\begin{center}
+\begin{tikzcd}
+\Spf S \arrow{rr}{s} \arrow{rd} & & \Spf A \\ 
+& \Spf S[\eps]/(\eps^2) \arrow{ru},
+\end{tikzcd}
+\end{center}
+where the map $\Spf S \to \Spf S[\eps] / (\eps^2)$ is given by the dual map $\eps \mapsto 0$.
+\item Because $s$ is a closed inclusion, it follows that $S = A / I_s$ for $I_s$ the \textit{ideal of definition}.  There is also a natural isomorphism $T_s X \cong (I_s / I_s^{\otimes_R 2})^*$ with the tangent space as defined above.
+\item Because the formal schemes are assumed to be coalgebraic, we also have that $s$ is represented by a map \[c s: D \into C\] whose quotient $M = C / D$ gives a $C$--comodule.  Dualizing the defining coequalizer diagram for $M \otimes_R N$ for a $k$--algebra $R$, right $R$--module $M$, and left $R$--module $N$:
+\begin{center}
+\begin{tikzcd}
+M \otimes_R N \arrow[leftarrow]{r} & M \otimes_k N \arrow[leftarrow, shift left=0.35em]{r}{\alpha_M \otimes 1} & M \otimes_k R \otimes_k N \arrow[shift left=0.35em]{l}{1 \otimes \alpha_N},
+\end{tikzcd}
+\end{center}
+one produces a defining equalizer diagram for $M \cotensor_C N$ for a $k$--coalgebra $C$, a right $C$--comodule $M$, and a left $C$--comodule $N$:
+\begin{center}
+\begin{tikzcd}
+M \cotensor_C N \arrow{r} & M \otimes_k N \arrow[shift left=0.35em]{r}{\psi_M \otimes 1} & M \otimes_k C \otimes_k N \arrow[leftarrow, shift left=0.35em]{l}{1 \otimes \psi_N}.
+\end{tikzcd}
+\end{center}
+In particular, for $M$ the coideal of definition of a closed inclusion of coalgebraic formal schemes as above, we have \[T^*_s X := \ker\left( M \xrightarrow{\Delta} M \cotensor_C M \right).\]
+\end{enumerate}
+
+\begin{remark}\label{jJetsRemark}
+The scheme $\Spf S[\eps] / (\eps^2)$ used in the first construction could also be called $\A^{1,(1)}_S$, as it participates in the ind--system defining the formal affine line over $S$.  Thus, one can more generally consider the collection of maps to $X$ from $\A^{1,(j)}_S = \Spf S[x] / (x^{j+1})$ participating in a similar commuting triangle, altogether called the $j$--jets at $s$ (cf.\ \Cref{DefnA1n}).
+\end{remark}
+
+\subsection{Sheaves of modules}
+
+Finally, we note that the theory of $A$--modules is visible to the affine scheme $\Spec A$:
+\begin{definition}[{\cite[Definition 2.42, Proposition 2.46]{StricklandFSFG}}]\label{QCohDefinition}
+Given an $A$--module $M$ and an affine scheme $\Spec B$ over $\Spec A$, we define the value of the sheaf $\sheaf M$ at $\Spec B$ by \[\sheaf M(\Spec B \to \Spec A) := M \otimes_A B.\]  Sheaves on the site of affines over $\Spec A$ which are isomorphic to sheaves of this form are said to be ``quasicoherent'', and there is an equivalence of categories between $A$--modules and quasicoherent sheaves on $\Spec A$.
+\end{definition}
+
+\begin{remark}[{\cite[Proposition 4.47]{StricklandFSFG}}]
+This definition immediately extends to the setting of a formal scheme $X$ by considering collections of quasicoherent sheaves, one over each finite scheme in the defining ind--system for $X$, together with compatible isomorphisms among the restrictions.
+\end{remark}
+
+\begin{definition}
+For a map $\phi: \Spec A \to \Spec B$ of affine schemes, there is an induced adjunction on categories of quasicoherent sheaves:
+\begin{center}
+\begin{tikzcd}
+\CatOf{QCoh}(\Spec A) \arrow[shift left=0.3em]{r}{\phi_*} & \CatOf{QCoh}(\Spec B). \arrow[shift left=0.3em]{l}{\phi^*}
+\end{tikzcd}
+\end{center}
+On the level of modules, these are described by the assignments
+\begin{align*}
+\phi_*(M_A) & = \text{$M_A$ (considered as a $B$--module)}, \\
+\phi^*(M_B) & = M_B \otimes_B A.
+\end{align*}
+\end{definition}
+
+\begin{example}
+An ideal $I$ of a ring $A$ is an $A$--submodule of $A$ and so by \Cref{QCohDefinition} begets a quasicoherent sheaf on $\Spec A$ called the ideal sheaf.  A point $p: \Spec P \to \Spec A$ is said to lie in the support of $I$ when $p^* I \ne 0$, and $p$ lifts to a point of the associated closed subscheme $\Spec A/I \to \Spec A$ precisely when it is not in the support of $I$.
+\end{example}
+
+\begin{example}\label{DefnCoideal}
+Dually, one can define comodules for a coalgebra and the quasicoherent sheaves that they determine.  In particular, an inclusion $C \to C'$ of coalgebras induces a quotient $C'$--comodule $C' / C$, and generally we define a $C'$--coideal to be a $C'$--comodule quotient of $C'$ itself.
+\end{example}
+
+
+
+
+
+\section{Formal Lie groups}\label{FormalLieGroups}
+
+One of the applications of \Cref{MapsOfAffineSpaces} is the insertion of some Lie theory into algebraic geometry.  In a coordinate chart centered at the identity element of a $n$--dimensional Lie group, the multiplication law of the Lie group expands into a $n$--tuple of $(2n)$--variate power series.  Interpreting this as a morphism \[\A^{2n} \cong \A^n \times \A^n \to \A^n,\] this inspires the following defintion:
+\begin{definition}\label{DefinitionOfDimension}
+A (commutative) formal group law over a ring $R$ is map $\A^n \times \A^n \to \A^n$ (i.e., an $n$--tuple of $(2n)$--variate power series), written $x +_F y$ with $x$ the first $n$ coordinates and $y$ the second $n$, satisfying the following identities:
+\begin{align*}
+x +_F 0 & = x & \text{(identity)}, \\
+x +_F y & = y +_F x & \text{(symmetry)}, \\
+(x +_F y) +_F z & = x +_F (y +_F z) & \text{(associativity)}.
+\end{align*}
+(In particular, $R$ is no longer required to be $\mathbb{R}$ or $\mathbb C$. These equalities make sense over any ring.)
+\end{definition}
+
+\begin{center}
+\textbf{We will primarily be concerned with the case of formal groups of dimension $1$.}
+
+\textbf{Throughout the rest of this document, unless otherwise specified the dimension will implicitly taken to be $1$.}
+\end{center}
+
+\begin{remark}[{\cite[Theorem I]{Lazard}}]
+In the $1$--dimensional setting, the extra symmetry condition is inoffensive: every $1$--dimensional formal group law is automatically symmetric if and only if the ground ring contains no elements which are simultaneously nilpotent and torsion.
+\end{remark}
+
+Formal group laws are reasonably well--behaved objects, and many basic theorems from Lie groups (especially those whose proofs crucially use the chart at the identity!) carry over immediately.  For example, there is the following lemma:
+
+\begin{lemma}
+Every formal group law has an inverse law.
+\end{lemma}
+\begin{proof}
+Consider the shearing map $\A^{2n} \to \A^{2n}$ defined by $\sigma: (x, x') \mapsto (x, x +_F x')$.  Its action on tangent spaces is given by \[T_0 (\sigma) = \left( \begin{array}{c|c} I_n & T_0( - +_F 1_{\A^n} ) \\ \hline 0 & I_n \end{array} \right).\]  Since this matrix is upper-triangular with unit entries on the diagonal, it is invertible.  It follows by \Cref{InverseFunctionTheorem} that an inverse to $\sigma$ exists, and by restricting to $x = 0$ one extracts the desired inverse map.
+\end{proof}
+
+Inspired by these uses of geometry, we define a ``deeper'' geometric object from which formal group laws arise.
+\begin{definition}
+A formal group $\G$ is a formal variety equipped with a multiplication.\footnote{Some authors use ``formal group'' to signify a group object in the category of formal schemes, and they called a formal group ``smooth'' or ``of Lie type'' when the underlying formal scheme is a formal variety.  Because our applications are so narrow, we will skip the extra adjectives.}
+\end{definition}
+
+\begin{remark}\label{LieGpIntuition}
+A formal group law thus arises from selecting a coordinate on a formal group and transporting the multiplication across the isomorphism.  In the motivating situation of a Lie group, we might draw the following nonsensical diagram:
+\begin{center}
+\begin{tikzcd}
+G \times G \arrow{d} & G^\wedge_0 \times G^\wedge_0 \arrow{d} \arrow{l} & \A^n \times \A^n \arrow{d} \arrow{l}{\cong} \\
+G & G^\wedge_0 \arrow{l} & \A^n, \arrow{l}{\cong}
+\end{tikzcd}
+\end{center}
+where $G^\wedge_0$ denotes an ``infinitesimal neighborhood of $0$'' without an explicit choice of chart.  While it is not actually possible to draw such a diagram in the usual category of manifolds, formal groups give a means by which this can be studied.  The operation ``$(G, 0) \mapsto G^\wedge_0$'' is meaningful in formal schemes: for a Noetherian affine group scheme $G = \Spec A$ with zero--locus detected by the closed subscheme $\Spec (A/I) \to G$, we can associate the formal scheme \[\left\{ \Spec(A/I) \to \Spec(A/I^2) \to \cdots \to \Spec(A/I^n) \to \cdots \right\} =: G^\wedge_0 \to G.\]  The middle vertical arrow in the above diagram corresponds to the restriction of the multiplication map to this formal geometric object, and the choice of horizontal arrows (i.e., a chart) presents the multiplication as a power series (i.e., a Taylor expansion).
+\end{remark}
+
+\begin{example}\label{FormalGaExample}
+We will explore the diagram in \Cref{LieGpIntuition} in the case that $G = \mathbb A^1$, which as we saw in \Cref{A1Example} is naturally valued in abelian groups.  Associated to the zero--section $\Spec R \to \mathbb A^1$, we have the formal scheme $(\mathbb A^1)^\wedge_0$ given by \[\Spf R\llbracket x \rrbracket := \left(\Spec R[x] / (x) \to \Spec R[x] / (x)^2 \to \cdots \to \Spec R[x] / (x)^n \to \cdots\right).\]  Using the formula \[(\Spf R\llbracket x \rrbracket)(T) = \colim_n \left\{(\Spec R[x]/(x^n))(T)\right\}_n,\] we see again that $\A^1$ selects the ideal of nilpotent elements in $T$.  This carries the natural structure of an abelian group restricting the structure of the abelian group on the whole ring --- just as described in \Cref{LieGpIntuition}.  Writing $\G_a$ for this formal variety understood with this group structure and chart, the structure maps are specified by
+\begin{align*}
+\G_a \times \G_a & \xrightarrow{+} \G_a, & x' + x'' & \mapsfrom x, \\
+\G_a & \xrightarrow{\chi} \G_a, & -x & \mapsfrom x,
+\end{align*}
+where we've written $x'$ for $x \otimes 1$ and $x''$ for $1 \otimes x$.
+\end{example}
+
+\begin{example}
+Similarly, we can complete the scheme $\mathbb G_m$ of \Cref{GmExample} at the unit section $\Spec R \to \mathbb G_m$ to produce a formal group scheme $\G_m$.  Since the unit section is a smooth point of $\mathbb G_m$, it follows that
+\begin{align*}
+\G_m & \to \A^1, & 1-x & \mapsfrom x
+\end{align*}
+is a coordinate.  We can then calculate the structure maps in terms of this coordinate:
+\begin{align*}
+\G_m \times \G_m & \xrightarrow{\mu} \G_m & 1 - (1 - x')(1 - x'') & \mapsfrom x \\
+& & x' + x'' - x' \cdot x'' & = \\
+\G_m & \xrightarrow{\chi} \G_m & 1 - (1 - x)^{-1} & \mapsfrom x \\
+& & -x -x^2 -x^3 - \cdots - x^n - \cdots & = 
+\end{align*}
+\end{example}
+
+\begin{remark}\label{WhyDeformationTheory}
+The procedure of completing a scheme $X$ at a closed subscheme $Y$ is generally very useful.  It sometimes goes by the name of building the ``infinitesimal deformation space'' of the subscheme, as it has the property that if $Y \to Y' \to X$ is any nilpotent thickening of $Y$ equipped with a map to $X$ prolonging the inclusion of $Y$, then there is a factorization
+\begin{center}
+\begin{tikzcd}
+Y \arrow{r} \arrow{d} & X^\wedge_Y \arrow{d} \\
+Y' \arrow{r} \arrow[densely dotted]{ru}{\exists!} & X.
+\end{tikzcd}
+\end{center}
+This construction is of special interest when $X$ presents a moduli problem and $Y$ selects a certain solution.  As $X^\wedge_Y$ captures the local geometry of $X$ infinitesimally closed to $Y$, it follows that $X^\wedge_Y$ describes solutions of the moduli problem which are infinitesimally close to the given solution $Y$.  This is often considerably easier to fully analyze than $X$ itself and still gives important partial information about the broader behavior of $X$.
+\end{remark}
+
+\begin{example}
+The completion of the inclusion of the closed point $\Spec \F_p \to \Spec \Z$ gives the $p$--adic integers \[\Spec \F_p \to \Spf \Z_p \to \Spec \Z.\] The assertion of \Cref{WhyDeformationTheory} in this context reads that if $A$ is any complete local ring with residue field $\F_p$, then $A$ is automatically a $\Z_p$--algebra.  More generally, if $k$ is a perfect field of positive characteristic, there is an analogous object $\W(k)$, called the $p$--typical Witt vectors over $k$, so that if $A$ is a complete local ring with residue field $k$, then $A$ is automatically a $\W(k)$--algebra.  For example, for $\zeta_{p^d-1}$ a primitive $(p^d-1)$\th root of unity:
+\begin{align*}
+\W(\F_{p^d}) & \cong \Z_p(\zeta_{p^d-1}), & \W(\F_p) & \cong \Z_p.
+\end{align*}
+\end{example}
+
+\subsection{The moduli of formal groups}
+
+Let us return to considering formal groups by trying to understand their moduli.  We have a fairly thorough classification both of formal groups and formal group laws, due to various arithmetic geometers.
+
+\begin{theorem}[{\cite{Lazard}}]\label{DefnLazardRing}
+The functor assigning a ring $R$ to the set of (commutative, $1$--dimensional) formal group laws over $R$ is an affine scheme.  It is corepresented by the Lazard ring, which has a noncanonical isomorphism to an infinite--dimensional polynomial ring: \[L \cong \Z[c_1, c_2, \ldots, c_n, \ldots]. \qed\]
+\end{theorem}
+
+\begin{corollary}\label{TorsionFreeLifts}
+Let $F$ be any formal group law over any ring $R$.  For any surjective ring map $S \to R$ (which, e.g., can be taken to be torsion--free), there always exists a lift of $F$ to $S$. \qed
+\end{corollary}
+
+Before proceeding to describe the classification of formal groups, we construct a corresponding geometric moduli object in terms of which we will phrase the results.
+
+\begin{definition}
+Set $\moduli{PS}$ to be the moduli of power series with no constant term: \[\moduli{PS} = \Spec \Z[a_1, a_2, \ldots, a_n, \ldots],\] where the universal such power series classified by the identity map is given by $\sum_{i=1}^\infty a_i x^i$.  This is a monoid scheme under composition, and the submoduli $\moduli{PS}^{\gpd}$ of invertible power series is given by \[\moduli{PS}^{\gpd} = \Spec \Z[a_1^\pm, a_2, \ldots, a_n, \ldots].\]  Now, a map \[\Spec R \to \Spec L \times \moduli{PS}^{\gpd} =: X_1\] classifies a formal group law $F$ along with a change-of-coordinate power series $\phi$.  By conjugating $F$ with $\phi$ to get a new law \[x +_{F'} y := \phi^{-1}(\phi x +_F \phi y),\] we produce a second map $\Spec R \to \Spec L$.  In the universal case, this is a map \[\Spec L \times \moduli{PS}^{\gpd} \xrightarrow{\text{target}} \Spec L =: X_0.\]  Continuing in this fashion, we also construct the following maps:
+\begin{align*}
+X_1 & \xrightarrow{\text{source}} X_0 & \text{(selects the FGL $F$)}, \\
+X_1 & \xrightarrow{\text{target}} X_0 & \text{(selects the $\phi$--conjugate of $F$)}, \\
+X_1 {{}^s \times_{X_0}^t} X_1 & \xrightarrow{\text{compose}} X_1 & \text{(composes $\phi_1$ and $\phi_2$ to $\phi_1 \circ \phi_2$)}, \\
+X_0 & \xrightarrow{\text{identity}} X_1 & \text{(augments $F$ with $\phi(x) = x$)}, \\
+X_1 & \xrightarrow{\text{invert}} X_1 & \text{(replaces $F$ by its $\phi$--conjugate, replaces $\phi$ by $\phi^{-1}$)}.
+\end{align*}
+Altogether, this makes the pair $(\Spec L, \Spec L \times \moduli{PS}^{\gpd})$ into a groupoid scheme.  We define the moduli of formal Lie groups to be the following groupoid--valued functor, written as a ``stacky quotient'' or ``homotopy quotient'': \[\Spec L \xrightarrow{C} \moduli{fg} := (\Spec L) \mmod (\Spec L \times \moduli{PS}^{\gpd}).\]
+\end{definition}
+
+\begin{definition}\label{StrictModuliOfFGs}
+It will also be useful to define an auxiliary moduli problem: the moduli of formal groups equipped with a specified unit tangent vector.  To form this, set $\moduli{SPS}$ to be the further submoduli of $\moduli{PS}^{\gpd}$ of those power series with leading term $x$ (i.e., $a_1 = 1$).  Then, we make the definition \[\moduli{fg}^{(1)} := \Spec L \mmod (\Spec L \times \moduli{SPS}).\]  This moduli has a $\mathbb G_m$--action by rescaling the tangent vector, and it follows that \[\moduli{fg}^{(1)} \mmod \mathbb G_m \simeq \moduli{fg}.\]
+\end{definition}
+
+\subsection{The rational moduli of formal groups}
+
+The behavior of $\moduli{fg}$ organizes substantially after localizing at an arithmetic prime, which we investigate now.  At the generic point, its behavior is very simple:
+
+\begin{lemma}[{\cite[Proposition 4]{Lazard}}]\label{RationalFGLsHaveLogs}
+Rationally, every formal group law $F$ admits a unique ``strict logarithm'', $\log_F$: \[\log_F(x +_F y) = x + y = x +_{\G_a} y.\]  (That is, $\moduli{fg} \times \Spec \Q$ is valued in contractible groupoids.)
+\end{lemma}
+\begin{proof}
+We say that a $1$--form $f(x) dx$ is (left--)invariant under $F$ if the following holds: \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial y} dx.\]  Restricting to the origin by setting $x = 0$, we deduce the condition \[f(0) = f(y) \cdot \left.\left( \frac{\partial( y +_F x)}{\partial y} \right) \right|_{x=0}.\]  Setting the boundary condition $f(0) = 1$ gives the ``strict invariant differential $\omega_F$'', and integrating against $y$ yields \[\log_F(y) = \int \left. \left( \frac{\partial(y +_F x)}{\partial x} \right)\right|_{x=0} dy.\]  To see that the series $\log_F$ has the claimed homomorphism property, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x},\] and hence that $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $\log_F(y)$.
+\end{proof}
+
+\begin{remark}
+It is worth remarking that we only need to be able to divide by integers in order to define additive logarithms.  This contrasts with the positive characteristic case, where we also need to be able to take roots to put formal group laws into a canonical form; see \Cref{DefinitionOfDieudonneModules}.
+\end{remark}
+
+\subsection{The $p$--local moduli of formal groups}
+
+At finite primes, the classification is considerably more involved.  In the rest of the section, $\moduli{fg}$ implicitly refers to the localization $\moduli{fg} \times \Spec \Z_{(p)}$.
+\begin{lemma}[{\cite{Cartier}}]\label{AllFGLsCanBePTypical}
+Each formal group law over a torsion--free $p$--local ring is naturally isomorphic to one which is ``$p$--typical'', meaning its rational logarithm has the form\footnote{An equivalent concentration condition can be specified on the rational exponential.  For a second discussion of $p$--typical curves see \Cref{ExCovariantDieudonneThy}.} \[\log_F x = x + \sum_{n=1}^\infty m_n x^{p^n}. \qed\]
+\end{lemma}
+
+However, the $M$--chart for $\moduli{fg} \times \Spec \Q$ does not obviously extend to a chart of $\moduli{fg} \times \Spec \Z_{(p)}$, as not all formal group laws have logarithms.  One can get around this by trying to use the $p$--typical logarithm property to describe other invariants of formal group laws which do not require extra assumptions on the ground ring, such as the following:
+\begin{theorem}[{\cite[Theorem 3.6]{Araki}}]\label{PSeriesHasArakisForm}
+Define the $n$--series of $F$ to be \[[n]_F(x) = \overset{\text{$n$ copies of $x$}}{\overbrace{x +_F \cdots +_F x}}.\]  For a $p$--typical formal group law $F$ over a ring $R$, the following holds:
+\[[p]_F(x) = px +_F v_1 x^p +_F v_2 x^{p^2} +_F \cdots +_F v_d x^{p^d} +_F \cdots,\] for some coefficients $v_d \in R$. \qed
+\end{theorem}
+
+\begin{remark}
+In fact, the rational logarithm coefficients can be recursively recovered from the coefficients $v_d$, using the following manipulation:
+\begin{align*}
+p \log_F(x) & = \log_F\left([p]_F(x)\right) \\
+p \sum_{n=0}^\infty m_n x^{p^n} & = \log_F \left(\sum_{d=0}^\infty{}_F v_d x^{p^d} \right) = \sum_{d=0}^\infty \log_F\left(v_d x^{p^d}\right) \\
+\sum_{n=0}^\infty p m_n x^{p^n} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_j v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_k v_{n-k}^{p^k} \right) x^{p^n},
+\end{align*}
+implicitly taking $m_0 = 1$ and $v_0 = p$.
+\end{remark}
+
+In any event, as the definition of $[p]_F(x)$ requires no conditions on the ground ring $R$, we find a new chart:
+\begin{theorem}\label{VChart}
+The ring $\Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$ provides a $p$--local chart: \[\Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots] \xrightarrow{V} \moduli{fg} \times \Spec \Z_{(p)}.\]
+\end{theorem}
+\begin{proof}
+Starting with a formal group law $F$ over any ground ring $R$, pick a torsion--free $p$--local ring $R'$ surjecting onto $R$ by a map $f: R' \to R$.  By \Cref{TorsionFreeLifts}, there exists a lift $F'$ of $F$ to $R'$, so that $f^* F' = F$.  Applying \Cref{AllFGLsCanBePTypical}, one finds an invertible power series $\phi'$ over $R'$ so that the $\phi'$--conjugate of $F'$ is $p$--typical, and hence by \Cref{PSeriesHasArakisForm} we have \[[p]_{(\phi')^{-1} F' \phi'}(x) = px +_{(\phi')^{-1} F' \phi'} w_1' x^p +_{(\phi')^{-1} F' \phi'} w_2 x^{p^2} + \cdots\] for some coefficients $w'_* \in R'$.  Translating all of this information through $f$, we have produced an invertible power series $\phi = f^* \phi'$ such that \[[p]_{\phi^{-1} F \phi}(x) = px +_{\phi^{-1} F \phi} w_1 x^p +_{\phi^{-1} F \phi} w_2 x^{p^2} + \cdots\] for $w_* = f(w'_*)$.
+\end{proof}
+
+All this begs a geometric interpretation.  The following definition captures the most prominent feature of the $V$--chart.
+
+\begin{definition}\label{DefinitionOfHeight}
+Let $F$ be a formal group law defined over a complete local ring $R$ for which $p$ lies in the maximal ideal.  Then, the height of $F$ is any one of the following equivalent invariants:
+\begin{enumerate}
+\item Recall from \Cref{RationalFGLsHaveLogs} that the logarithm of a torsion--free lift $F'$ of $F$ is determined by the integral equation \[\log_{F'}(x) = \int \omega_{F'}(x) = \int \left. \left( \frac{\partial( x +_{F'} y)}{\partial y}\right) \right|_{y=0} dx.\]  The first coefficient for which this power series integral may fail to be $p$--local must be of the form $x^{p^d}$.  In fact, $d$ is independent of choice of lift, and it is called the height of $F$.
+\item It follows from \Cref{PSeriesHasArakisForm} that the lowest--order nonvanishing coefficient of $[p]_F(x)$ over the residue field of $R$ must be in degree $p^d$, and the integer $d$ is called the height of $F$.
+\item Geometrically, the subscheme of $p$--torsion points $\G[p]$ of the formal group $\G$ associated to $F$ is finite and free of rank $p^d$ for some $d$, called the height of $F$.  (This follows from a form of the Weierstrass Preparation Theorem~\cite[Lemma 5.14]{StricklandFSFG}.)  In particular, it is clear from this definition that height is actually an invariant of the formal group rather than the formal group law.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}\label{ExceptionalAdditiveGps}
+It is common to say that the additive formal group $\G_a$ defined over a ring $R$ as above has height $\infty$, which is an obvious extension of each of the definitions of height given above.  It is also common to say that a formal group defined over a rational ring has height $0$, which --- though rational rings are not complete and local against a maximal ideal $\m$ containing $p$ --- is an extension of the geometric definition.  After all, the rational additive group has no nontrivial $p$--torsion points, so $\G_a[p]$ is of rank $1 = p^0$.
+\end{remark}
+
+The stratification of $p$--local formal group laws by height is \emph{the} way to break up their moduli into pieces, as captured by the following theorems.
+
+\begin{theorem}[{\cite{LandweberIIT}}]\label{LandweberIdealsTheorem}
+There is a \emph{unique} closed substack $\moduli{fg}^{\ge d} \subseteq \moduli{fg}$ for each positive codimension $n$.  It selects the formal groups of height at least $d$, and thus corresponds to the ideal $(p, v_1, \ldots, v_{d-1})$ of the cover $V$. \qed
+\end{theorem}
+
+\noindent Moreover, the content of each stratum is well--understood:
+
+\begin{theorem}[{\cite[Th\'eor\`eme IV]{Lazard}}]\label{GeometricPointsOfMfg}
+There is a unique geometric point of $\moduli{fg}$ in each $\moduli{fg}^{\ge d}$ which is not in $\moduli{fg}^{\ge(d+1)}$.  It can be modeled by a formal group law over $\F_p$ with $p$--series $[p]_{F_d}(x) = x^{p^d}$, called the Honda formal group law.  The only geometric point of $\moduli{fg}$ not captured by this sequence is $\G_a$, considered over $\F_p$. \qed
+\end{theorem}
+
+\begin{theorem}[{\cite[Proposition 1.1]{LubinTate}}]\label{LubinTate}
+The geometric point $F_d$ in \Cref{GeometricPointsOfMfg} has deformation space in $\moduli{fg}^{(1)}$ equivalent to $(d-1)$--dimensional formal affine space over $\Z_p$.  That is, the completion (as in \Cref{FormalGaExample}) of the map $F_d: \Spec \F_p \to \moduli{fg}^{(1)}$ is given by
+\begin{center}
+\begin{tikzcd}
+\Spec \F_p \arrow{r} \arrow[double,-]{dd} & LT_{F_d} \arrow{r} \arrow{d} & \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots] \arrow{d} & \text{(covering schemes)} \\
+& \Def(F_d) \arrow{r} \arrow{d} & \moduli{fg}^{(1)} \arrow[crossing over, leftarrow, "F_d" description]{llu} \arrow{d} & \text{(stacks)} \\
+\Spec \F_p \arrow{r} & \Spf \Z_p \arrow{r} & \Spec \Z_{(p)}, & \text{(ground rings)}
+\end{tikzcd}
+\end{center}
+where $LT_{F_d}$ is noncanonically isomorphic to $\A^{d-1}_{\Z_p}$. \qed
+\end{theorem}
+
+\begin{definition}
+The formal scheme $LT_{F_d}$ is often referred to as ``Lubin--Tate space'', and its ring of functions as the ``Lubin--Tate ring''.
+\end{definition}
+
+Because Lubin--Tate space is smooth, the stacky deformation space $\Def(F_d)$ is given by the stacky quotient of Lubin--Tate space by the automorphisms of $F_d$ as a formal group: \[\Def(F_d) \simeq LT_{F_d} \mmod \S_d.\]  This automorphism group $\S_d$ is also known explicitly.
+
+\begin{theorem}[{\cite{Dieudonne,Lubin}}]\label{DefnStabilizerAlgebra}
+Suppose that $F_d$ is defined over a perfect field $k$.  Then its endomorphism algebra takes the following form \[\operatorname{End} F_d \cong \left.\W(k)\<S\> \middle/\left( \begin{array}{c} Sa = a^\phi S, \\ S^d = p \end{array}\right) \right.,\] where $\phi$ is a lift of the Frobenius from $k$ to the ring of Witt vectors $\W(k)$.  In the case that the instantiation of $F_d$ with $[p]_{F_d}(x) = x^{p^d}$ is chosen, $S$ represents the geometric Frobenius on $\A^1$: $S(x) = x^p$.  The automorphism group \[\S_d := \Aut F_d = (\operatorname{End} F_d)^\times\] is referred to as the $d$\th (Morava) stabilizer group.\footnote{See \Cref{DieudonneModuleForHondaFG} for a sketch of a proof of this fact.} \qed
+\end{theorem}
+
+\begin{remark}[{\cite[Section 24]{StricklandFPFP}}]
+Since it is perhaps not immediately apparent, we indicate how $\S_d$ acts on $LT_{F_d}$.  Given a $\gamma \in \S_d$, we can construct the diagram
+\begin{center}
+\begin{tikzcd}
+& \widetilde{F_d} \arrow[near end, densely dotted]{rr}{\widetilde{\gamma}} \arrow{dd} & & \widetilde{F_d} \arrow{dd} \\
+F_d \arrow[crossing over, near end]{rr}{\gamma} \arrow{ru} \arrow{dd} & & F_d \arrow{ru} \\
+& LT_{F_d} \arrow[densely dotted,near end]{rr}{\exists \gamma_{LT}} & & LT_{F_d} \\
+\Spec k \arrow[-,double]{rr}{1_{LT_{F_d}}} \arrow{ru} & & \Spec k \arrow{ru} \arrow[crossing over, leftarrow]{uu} .
+\end{tikzcd}
+\end{center}
+The dotted arrows exist because the left-most $\widetilde{F_d}$ is a versal deformation of $F_d$ and the right-most $\widetilde{F_d}$ is \emph{some} deformation of $F_d$, hence there is a map $\gamma_{LT}$ selecting it.  This gives the desired map $\S_d \to \Aut LT_{F_d}$.
+\end{remark}
+
+\begin{remark}
+Let $K$ be a local number field with residue field $k$ and let $D$ be the division $K$--algebra with Hasse invariant $1/d$.  Arithmetic geometers may then recognize $\End F_d$ as a maximal order in $D$.  Algebraic topologists who were wondering where our choice of ``$d$'' to denote height came from (rather than their usual ``$n$'') now know.
+\end{remark}
+
+%\todo{Include the drawing?}
+
+
+
+\section{Basic applications to topology}\label{BasicApplicationsToTopology}
+
+These elements of algebraic geometry make contact with homotopy theory via cohomology functors.  For a ring spectrum $E$ and space $X$, the homotopy groups $\pi_* E = E_*$ and cohomology groups $E^* X$ both form rings, and so we can employ the language of affine algebraic geometry to study them.  For the coefficient ring, consider the following construction:
+
+\begin{definition}\label{RingSpToStackDefn}
+Suppose that $E$ is a ring spectrum with $\pi_* E^{\sm j}$ commutative for each $j$ (for instance, it suffices for each $\pi_* E^{\sm j}$ to be even).  We define the simplicial scheme associated to $E$ to be \[\mathcal{M}_E := \left\{
+\begin{tikzcd}
+\Spec \pi_* E \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} & \Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \end{array} \right) \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} & \Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \end{array} \right) \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \arrow[leftarrow, shift right=(3*\baselineskip)]{r} & \cdots
+\end{tikzcd}
+\right\}.\]
+\end{definition}
+
+\begin{remark}
+Since we've espoused the functor--of--points viewpoint in \Cref{AffineScheme}, it is worth remarking on a similar viewpoint here.  Namely, for a ring $T$, levelwise evaluation of the simplicial functor in $\mathcal{M}_E$ at $T$ yields a simplicial set.  This ``levelwise evaluation'' construction actually takes place internally to the category of simplicial schemes: set $\Delta^j \otimes \Spec T$ to be the semisimplicial functor with $\binom{j}{k}$ disjoint copies of $\Spec T$ in dimension $k$, and face and degeneracy maps given by list insertion and deletion.  A $T$--point of $\Spec \pi_* E^{\sm (j+1)}$ is then equivalent to a $(\Delta^j \otimes \Spec T)$--point of $\mathcal{M}_E$, so we are studying the function space from a constant simplicial scheme.
+\end{remark}
+
+Since $E$--homology is valued in $E_*$--modules, which by \Cref{QCohDefinition} are also known as quasicoherent sheaves over $\Spec E_*$, we are prompted to recall the following definitions:
+\begin{definition}
+%\todo{I'd be much happier not citing the stacks project.}
+Let $X$ be a simplicial object in affine schemes and let $\sheaf F[n]$ be a quasicoherent sheaf on $X[n]$.\footnote{This is a slight abuse of notation: $\sheaf F[n]$ is not the $n$\th level of a simplicial object.}
+\begin{enumerate}
+\item $\sheaf F$ is collectively called a sheaf~\cite[Tag 09VK]{stacks-project} on $X$ when each map $\phi: [m] \to [n]$ inducing a map $X(\phi): X[n] \to X[m]$ naturally induces a sheaf map \[\sheaf F(\phi)_* \co \sheaf F[m] \to X(\phi)_* \sheaf F[n].\]
+\item $\sheaf F$ is called quasicoherent~\cite[Tag 07TF]{stacks-project} when it is comprised levelwise of quasicoherent sheaves.
+\item $\sheaf F$ is called Cartesian quasicoherent~\cite[Tag 07TF]{stacks-project} when it is quasicoherent and the adjoint map \[\sheaf F(\phi)^* \co X(\phi)^* \sheaf F[m] \to \sheaf F[n]\] is an isomorphism.
+\end{enumerate}
+\end{definition}
+
+In our specific example, we construct such a sheaf in the following way:
+
+\begin{definition}\label{DefnHomologyFunctorsValuedInSheaves}
+For a spectrum $E$ as in \Cref{RingSpToStackDefn} and input spectrum $X$, we define the following diagram of abelian groups:
+\[\sheaf{E}(X) := \left\{
+\begin{tikzcd}
+\pi_* \left( \begin{array}{c} E \\ \sm \\ X \end{array} \right) \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} &
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} &
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} &
+\cdots
+\end{tikzcd}
+\right\},\]
+where all of the coface and codegeneracy maps are induced by the unit map $\S \to E$ and the multiplication map $E \sm E \to E$.  (In particular, $X$ is not involved.)  The $j$\th object is a module for $\sheaf{O}(\sheaf M_E[j])$, and hence determines a quasicoherent sheaf over the scheme $(\sheaf M_E[j])$.  Suitably interpreted, the maps of abelian groups determine maps of pushforwards so that $\sheaf{E}(X)$ is a quasicoherent sheaf over the simplicial scheme $\sheaf M_E$.
+\end{definition}
+
+In many nice cases, these simplicial constructions are highly redundant and can actually be expressed very simply through equivariant algebraic geometry:
+
+\begin{lemma}[{cf.\ \cite[Theorems 13.75 and 17.8]{Switzer} and \cite[Tag 07TP]{stacks-project}}]\label{FlatnessLemma}
+Consider $E_* E$ as an $E_*$--module via the structure map induced by $\S \sm E \to E \sm E$.  If the other structure map $E \sm \S \to E \sm E$ is a flat map of $E_*$--modules, then $\mathcal{M}_E$ is naturally weakly equivalent to \[\mathcal{M}_E \simeq (\Spec E_*) \mmod (\Spec E_* E),\] and the sheaves constructed in \Cref{DefnHomologyFunctorsValuedInSheaves} are \emph{Cartesian} quasicoherent.
+\end{lemma}
+\begin{proof}[Proof sketch]
+The hypothesis implies $\pi_* E^{\sm j} \cong (E_* E)^{\otimes_{E_*} (j-1)}$.  This isomorphism prohibits nondegenerate higher simplices and the result follows immediately.  Moreover, the associated sheaves $\sheaf E(X)$ are determined by the $E_*$--module $E_* X$ and its coaction map $\psi: E_* X \to E_* E \otimes E_* X$.
+\end{proof}
+
+\begin{example}\label{HF2StackExample}
+The above flatness and commutativity hypotheses are satisfied in the case that $E = H\F_2$ is ordinary mod--$2$ homology.  In this case, $\pi_* H\F_2 \cong \F_2$ gives a one--point scheme, acted on by the Hopf algebra \[\pi_* (H\F_2 \sm H\F_2) = \mathcal{A}_* \cong \F_2[\xi_1, \xi_2, \ldots, \xi_n, \ldots]\] with algebra generators $\xi_n$ in degrees $|\xi_n| = 2^n - 1$.  The dual Steenrod algebra $\mathcal{A}_*$ has the diagonal structure map~\cite[Theorem 3]{Milnor}
+\begin{align*}
+\Delta \co \mathcal{A}_* \to \mathcal{A}_* \otimes_{\F_2} \mathcal{A}_*, & & \Delta(\xi_n) & = \sum_{j=0}^n \xi_j \otimes \xi_{n-j}^{2^j}.
+\end{align*}
+This can be interpreted through algebraic geometry as follows: a generic power series $f(z)$ is an automorphism of the additive formal group law $x' +_{\G_a} x'' = x' + x''$ exactly when it satisfies \[f(x') + f(x'') = f(x') +_{\G_a} f(x'') = f\left( x' +_{\G_a} x'' \right) = f(x' + x''),\] and such an $f$ is further called a ``strict'' automorphism when $f'(0) = 1$ (cf.\ \Cref{StrictModuliOfFGs}).  In characteristic $2$, such strict automorphisms are precisely the power series of the form \[f(x) = x + \sum_{n=1}^\infty \xi_n x^{2^n}\] in indeterminates $\xi_n$.  The functor $\underline{\Aut}(\G_a)$ on $\F_2$--algebras selecting such power series is exactly corepresented by $\mathcal{A}_*$.  More than this, both $\underline{\Aut}(\G_a)$ and $\Spec \mathcal{A}_*$ are group schemes in an obvious way, and the isomorphism indicated above respects these structure maps.  For example, two such series $f(x)$ and $g(x) = x + \sum_{m=0}^\infty \zeta_m x^{2^m}$ compose to give
+\[f(g(x)) = \sum_{n=0}^\infty \xi_n \left( \sum_{m=0}^\infty \zeta_m x^{2^m} \right)^{2^n} = \sum_{n=0}^\infty \sum_{m=0}^\infty \xi_n \zeta_m^{2^m} x^{2^{m+n}} = \sum_{\ell = 0}^\infty \left( \sum_{n=0}^\ell \xi_n \cdot \zeta_{\ell - n}^{2^n} \right) x^{2^\ell},\] where $\xi_0 = \zeta_0 = 1$.  It follows that \[\mathcal{M}_{H\F_2} = * \mmod \underline{\Aut}(\G_a).\]
+\end{example}
+
+\begin{remark}\label{InoueRemark}
+A similar statement can be made for $H\F_p$, $p \ge 3$, but care (in the guise of formal supergeometry) is required to encode the odd--degree, noncommutative Bockstein $\tau_*$ generators.  See work of Inoue for details~\cite{Inoue}.
+\end{remark}
+
+There are much more instructive examples of the utility of this stacky construction, but in order to properly appreciate them we should introduce the second contact point with algebraic geometry.
+
+\begin{definition}
+Suppose that $X$ is a space, $E$ is a ring spectrum, and among the compact subspaces $X_\alpha \subseteq X$ of $X$ there is a cofinal subsystem $\alpha'$ for which $E^* X_{\alpha'}$ is even--concentrated.\footnote{This is the sort of caveat Strickland's definitions are meant to compensate for~\cite[Definition 8.15]{StricklandFSFG}.}  Then, we define $X_E$ to be the formal scheme \[X_E := \Spf E^* X := \{\Spec E^* X_{\alpha'}\}_{\alpha'}.\]
+\end{definition}
+
+\begin{example}
+For example, consider the space $X = \CP^\infty$ and cohomology theory $HR$ for a commutative ring $R$.  Then $X$ admits an exhaustive filtration by the compact subspaces $X_n = \CP^n$, hence \[\CP^\infty_{HR} = \colim_n \Spec HR^*(\CP^n) \cong \colim_n \Spec R[x] / x^{n+1} \cong \A^1_R.\]  Furthermore, because $\CP^\infty$ is an $H$--space there is an induced associative, symmetric, and unital map \[\CP^\infty_{HR} \times_{\Spec R} \CP^\infty_{HR} \xrightarrow{\mu} \CP^\infty_{HR}.\]  Because there is no positive--degree homotopy in $HR_*$, this must be given on coordinates by
+\begin{align*}
+R\llbracket x \rrbracket \widehat\otimes_R R\llbracket x \rrbracket \xleftarrow{\sheaf{O}(\mu)} & R\llbracket x \rrbracket \\
+x \otimes 1 + 1 \otimes x \mapsfrom & x,
+\end{align*}
+and hence as a group scheme $\CP^\infty_{HR}$ is isomorphic to $\G_a$.
+\end{example}
+
+\begin{example}
+%\todo{This example takes place in degree $0$, and the previous one takes place in degree $2$. Is that worth mentioning, or getting around somehow?}
+Again consider $X = \CP^\infty$ but now consider its complex $K$--theory.  The ring $KU^*(\CP^\infty)$ also takes the form \[KU^*(\CP^\infty) \cong KU_*\llbracket x \rrbracket, \quad KU_* \cong \Z[\beta^\pm].\] where $x$ is the degree--zero class representing the virtual bundle $\beta^{-1} \sheaf L - 1$.  The $H$--space structure on $\CP^\infty$ classifies the tensor product of line bundles, and hence we compute
+\begin{align*}
+\beta^{-1} (\sheaf L \cdot \sheaf L') - 1 & = \beta^{-1} (\sheaf L \cdot \sheaf L') - \beta^{-1} \sheaf L - \beta^{-1} \sheaf L' + 1 + \beta^{-1} \sheaf L - 1 + \beta^{-1} \sheaf L' - 1 \\
+& = \beta (\beta^{-1} \sheaf L - 1)(\beta^{-1} \sheaf L' - 1) + (\beta^{-1} \sheaf L - 1) + (\beta^{-1} \sheaf L' - 1),
+\end{align*}
+corresponding to the group law $\beta \cdot (x' \cdot x'') + x' + x''$.  It follows that the formal group $\CP^\infty_{KU}$ is \[\CP^\infty_{KU} \cong \G_m.\]
+\end{example}
+
+This pair of examples is inspiring: varying the cohomology theory and fixing the space, a formal scheme of the ``same shape'' (albeit with different group structures and over different bases) appeared from this construction.  However, not all cohomology theories $E$ have the property that $\CP^\infty_E$ is a formal line --- for instance, the analogous isomorphism is false for real $K$-theory $KO$~\cite[Corollary 2.13]{Yamaguchi}.  This motivates the following definition:
+
+\begin{definition}
+A multiplicative cohomology theory $E$ is said to be complex orientable when $\CP^\infty_E$ is a one--dimensional formal variety over $\Spec \pi_* E$.  In this case, a choice of coordinate on $\CP^\infty_E$ is called a complex orientation of $E$.
+\end{definition}
+
+\begin{remark}
+When a complex orientable cohomology theory is represented by a spectrum, complex orientations are in bijective correspondence with factorizations of the unit map:
+\begin{center}
+\begin{tikzcd}
+\operatorname{Thom}(\mathcal{L} - 1 \downarrow \CP^0) \arrow[double,-]{r} \arrow{d} & \S \arrow{r}{\eta} \arrow{d} & E \\
+\operatorname{Thom}(\mathcal{L} - 1 \downarrow \CP^\infty) \arrow[double,-]{r} & \Susp^{-2+\infty} \CP^\infty \arrow[dashed]{ru},
+\end{tikzcd}
+\end{center}
+i.e., $E$--cohomology classes of $\CP^\infty$ of degree $2$ which map to the unit under the suspension isomorphism~\cite[Lemma I.4.6]{AdamsBlueBook}.  Much more deeply, the theory of Thom spectra supplies us with a multiplicative spectrum $MU$ with the property that complex orientations of $E$ are in bijective correspondence with homotopy--multiplicative maps $MU \to E$.
+\end{remark}
+
+The following theorem of Quillen is the first profound demonstration of the degree to which the geometry of formal groups embeds into the study of multiplicative cohomology theories:
+
+\begin{theorem}[{Quillen~\cite[Theorem 6.5]{QuillenElementaryProofs}, \cite{QuillenFGLsForMSOandMU}, \cite[Appendix 1]{Novikov}}]\label{QuillensTheorem}
+There is an identification of $MU_*$ with the Lazard ring (see \Cref{DefnLazardRing}), so that $\Spec MU_*$ represents the scheme of formal group laws and $\CP^\infty_{MU}$, which is a formal affine line with a canonical coordinate, carries the universal formal group law with rational logarithm \[\log(x) = \sum_{n=1}^\infty \frac{[\CP^{n-1}]}{n} \cdot x^n.\]  Moreover, the ring spectrum $MU$ satisfies the hypotheses of \Cref{FlatnessLemma} and $\Spec MU_* MU$ represents the scheme of formal group laws and ``strict isomorphisms'' (cf.\ \Cref{StrictModuliOfFGs}), so that \[\mathcal{M}_{MU} \simeq \moduli{fg}^{(1)}.\]
+\end{theorem}
+
+\begin{remark}\label{WarningAboutGradings}
+The complex bordism ring $MU_*$ comes with a natural grading by dimension, and this is reflected on Lazard's ring by the following $\mathbb G_m$--action: for a unit $\lambda$ and formal group law $F$, we can produce a new formal group law by the formula \[x +_{\lambda \cdot F} y := \frac{(\lambda x) +_F (\lambda y)}{\lambda}.\]  This grading is also what inhibits \Cref{QuillensTheorem} from being about $\moduli{fg}$ properly, and it's repaired by forgetting the grading on $MU$.  Namely, let \[MUP := MU[u^\pm] = \bigvee_{n=-\infty}^\infty \Susp^{2n} MU,\] so that the following hold:
+\begin{align*}
+MUP_0 & \cong L, & MUP_0 MUP & \cong L[b_0^\pm, b_1, b_2, \ldots], & \Spec MUP_0 \mmod \Spec MUP_0 MUP & \cong \moduli{fg}.
+\end{align*}
+Throughout this document, we will prefer to ignore gradings, working in the periodified setting instead.
+\end{remark}
+
+\begin{remark}
+We take the opportunity to relate \Cref{QuillensTheorem} to the ordinary integral and rational homologies of $MU$.  The map $MU \to H\Z$ given by \[MU \to \colim_n MU / (c_1, c_2, \ldots, c_n)\] selects the integral additive formal group on homotopy.  The induced map $MU \sm MU \to H\Z \sm MU$ presents \[H\Z_* MU = \colim_n MU[b_1, b_2, \ldots] / (c_1, c_2, \ldots, c_n) = \Z[b_1, b_2, \ldots]\] as the universal ring with an integrally--defined strict exponential map $\exp_b(x) = \sum_j b_j x^{j+1}$ selecting another integral formal group law \[x +_b y = \exp_b( \exp^{-1}_b x + \exp^{-1}_b y).\]  By \Cref{TorsionFreeLifts}, every formal group law admits a lift to a torsion--free ring.  Furthermore, by \Cref{RationalFGLsHaveLogs} every formal group law over a rational ring has a logarithm.  It thus follows that the maps \[\pi_* MU \to H\Z_* MU \to H\Q_* MU\] are both injections.
+%\todo{It might be fun to include enough information to compute the value of the Todd genus on the first few integral algebra generators of $MU_*$.}
+\end{remark}
+
+With \Cref{QuillensTheorem} in hand, the following observation of Landweber furnishes us with a great deal of cohomology theories:
+\begin{theorem}[{\cite{LandweberEFT}}]\label{LandweberExactness}
+When $i \co \Spec R \to \moduli{fg}$ is a flat map, the restriction $i^* \sheaf{M}_{MU[u^\pm]}(X)$ determines a complex orientable homology theory.  If $j \co \Spec R \to \Spec L$ is a lift of such an $i$ across Lazard's $C$--cover, then $j$ determines an even--periodic complex oriented homology theory by the formula \[X \mapsto MUP_*(X) \otimes_{MUP_*}^j R.\]
+\end{theorem}
+
+\begin{remark}
+It is worth emphasizing that Landweber's theorem has two serious limitations: it only gives a homology theory rather than a spectrum, and it only applies to flat \emph{affine} maps.  In particular, this makes it very hard to arrange to use Landweber's theorem to approach nonaffine flat maps, e.g., $\moduli{ell} \to \moduli{fg}$.  Much of the work surrounding the construction of topological modular forms (alias \textit{TMF}) grapples with this issue.
+\end{remark}
+
+\begin{example}[Brown--Peterson theories]
+The inclusion $\moduli{fg} \times \Spec \Z_{(p)} \to \moduli{fg}$ is flat since the localization morphism $\Spec \Z_{(p)} \to \Spec \Z$ is flat.  It follows from \Cref{LandweberExactness} that there is a homology theory $BPP$ with coefficients given by the $V$--covering ring $\Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$ of \Cref{VChart}.
+\end{example}
+
+\begin{example}[Johnson--Wilson theories]\label{JohnsonWilsonTheories}
+The inclusion of open substacks is flat.  It follows from \Cref{LandweberIdealsTheorem} and \Cref{LandweberExactness} that there is a cohomology theory $EP(d)$ associated to the open submoduli $\moduli{fg}^{\le d}$ of the $p$--local moduli $\moduli{fg} \times \Spec \Z_{(p)}$.  In the $V$--cover, this is naively given by the coefficient ring $\Z_{(p)}[v_1, \ldots, v_{d-1}, v_d, v_d^{-1}, v_{d+1}, \ldots]$, but in fact the ring $\Z_{(p)}[v_1, \ldots, v_d][v_d^{-1}]$ can be used.
+\end{example}
+
+\begin{example}[Morava $E$--theories]\label{DefnEThy}
+The closed points of \Cref{GeometricPointsOfMfg} are generally not selected by flat maps.  However, completion is meant to correct this problem: the completion of a closed substack of a Noetherian stack prolongs the inclusion to a flat map~\cite{Matsumura}:
+%\todo{Can this be better cited, in stacky language? Is it sufficient to cite the ring version?}
+\begin{center}
+\begin{tikzcd}
+\Spec k \arrow{rr}{\Gamma} \arrow{rd} & & \moduli{fg}^{\le d} \arrow{r}{\text{open}} & \moduli{fg} \arrow[leftarrow]{lld}{\text{flat}} \\
+& \operatorname{Def}(\Gamma). \arrow{ru}{\text{flat}}
+\end{tikzcd}
+\end{center}
+It follows from \Cref{LandweberExactness} that there is a cohomology theory $E_\Gamma$ with coefficients given by the Lubin--Tate ring for $\Gamma$, a formal group of finite height.  This homology theory was famously first considered by Morava~\cite{Morava}.
+\end{example}
+
+\begin{example}[Finite height Morava $K$--theories]\label{DefnKThy}
+Having constructed $E_\Gamma$ for a finite height formal group $\Gamma$, we can then use \Cref{LubinTate} to construct a theory associated to the actual classifying map \[\Gamma \co \Spec k \to \moduli{fg}.\]  Namely, that theorem guarantees the existence of a regular sequence $(p, u_1, \ldots, u_{d-1})$ given by a coordinatization $(u_1, \ldots, u_{d-1})$ of $\operatorname{Def}(\Gamma) \cong \A^{d-1}_{\W(k)}$.  In turn, we can define $K_\Gamma$ to be the quotient $E_\Gamma / (p, u_1, \ldots, u_{d-1})$, where ``quotient'' is taken to mean the iterated cofiber of multiplication by these homotopy elements.
+\end{example}
+
+\begin{example}[Exceptional Morava $K$--theories]
+In accordance with \Cref{ExceptionalAdditiveGps}, we define the Morava $K$--theory associated to an additive group over a field to be the Eilenberg--Mac Lane spectrum for that field.
+\end{example}
+
+\begin{remark}\label{MinimalSummands}
+\Cref{LandweberExactness} bestows all these cohomology theories with $2$--periodic gradings, and this is often not minimal.  Indeed, recall from \Cref{WarningAboutGradings} that the ``$P$'' in our notation is meant to denote ``Periodic''.
+\begin{enumerate}
+\item $MUP$ was formed by setting $MUP = MU[u^\pm]$ with $|u| = 2$, and indeed this gives a minimal multiplicative decomposition of $MUP$ into wedge summands.
+\item $BPP$ similarly decomposes multiplicatively as $BPP = BP[u^\pm]$ for some connective ring spectrum $BP$ and $|u| = 2$.  Moreover, $L_p MU$ decomposes as an infinite wedge sum of shifts of $BP$.
+\item $EP(d)$ splits into a wedge of $(p^d-1)$ summands of identical $2(p^d-1)$--periodic spectra called $E(d)$.
+\item $K_{F_d}$, for $F_d$ the formal group law described in \Cref{GeometricPointsOfMfg}, splits into a wedge of $(p^d-1)$ summands of identical $2(p^d-1)$--periodic spectra called $K(d)$.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}\label{RemarkpDivisibleGpsExist}
+As all of the preceding examples are based on base--change, it is prudent to mention that algebraic geometers have long favored $p$--divisible groups over formal groups in similar situations.  A $p$--divisible group is an inductive sequential system $\{G_k\}$ of finite, flat group schemes, subject to the condition that $G_{k+1}[p^k] \cong G_k$ with quotient $G_{k+1} / G_k \cong G_1$.  Over a $p$--complete ground scheme, connected $p$--divisible groups are equivalent to formal groups of finite height~\cite[Proposition 1]{TatePDiv}.  However, they behave quite differently under base change: as a finite flat scheme, the rank of $G_1$ is constant under base--change (though the system $\{G_k\}$ may not be sent to a \emph{connected} $p$--divisible group!), whereas the height of a formal group can vary after base--change.  The theory of $p$--divisible groups has made some impact in algebraic topology; the reader should turn to Hopkins--Kuhn--Ravenel character theory as a prime example~\cite{HKR}, as well as its ``transchromatic'' extension by Stapleton~\cite{Stapleton}.
+\end{remark}
+
+\begin{remark}\label{ExamplesOfFSchFromAlgTop}
+Having now constructed an ample supply of important cohomology theories, it is now also worth remarking that it is similarly valuable to vary $X$ as well as $E$ in the construction of $X_E$.  This is especially true if $X$ is taken to be a space ``spiritually near'' to $\CP^\infty$.  For example, for a complex--oriented cohomology theory $E$, $BU(n)_E$ can be identified with a certain scheme of effective divisors of weight $n$ on $\CP^\infty_E$~\cite[Section 8.3]{StricklandFSFG}.  When $E$ is complex--orientable and its homotopy ring is complete against $n$, a choice of isomorphism $\Z/n \cong U(1)[n]$ identifies the scheme $B\Z/n_E$ with the subscheme $\CP^\infty_E[n]$ of $n$--torsion of the formal group $\CP^\infty_E$.  See Ravenel and Wilson~\cite[Theorem 5.7]{RavenelWilson} for an early version of this second theorem\footnote{Beware that the subscripts in the proof of Ravenel and Wilson's theorem have typos: $\beta_{nj+i}$ and $\beta_i$ should be $\beta_{(nj+i)}$ and $\beta_{(i)}$ respectively.} or Hopkins--Kuhn--Ravenel~\cite[Section 5]{HKR} and Stapleton~\cite[Theorem 2.1 and Proposition 2.3]{Stapleton} for more elaborate versions.
+\end{remark}
+
+\begin{remark}
+The reader should also be warned of a small inconsistency in the additive case: the formal group on which $\Aut \G_a$ acts in \Cref{HF2StackExample} is $\RP^\infty_{H\F_2}$ rather than $\CP^\infty_{H\F_2}$, and similarly the cohomological object in question in \Cref{InoueRemark} is $H\F_p^*(B\Z/p)$.
+\end{remark}
+
+\begin{remark}\label{AdamsSSeqAndStackCoh}
+The $E_2$--page of the $E$--based Adams spectral sequence for $\pi_* X^\wedge_E$ can be interpreted as the stack cohomology of $\sheaf{M}_E(X)$ over $\sheaf{M}_E$.  Because cohomology is involved, this is a place where the full force of stacky technology can be profitably brought to bear on the problem.  For our purposes, however, it will typically suffice to think of ``stack'' as shorthand for ``equivariant algebraic geometry'' or ``simplicial algebraic geometry'', without worrying about descent or gluing.
+\end{remark}
+
+\begin{remark}\label{DeeperBaseRemark}
+It is tempting to think of the pro-spectrum $\{F(X_\alpha, \S)\}$ associated to a space $X$ as the primal object being studied, and that \[X_E = \{\Spec E^* X_\alpha\} = \{\Spec \pi_* (F(X_\alpha, \S) \sm_{\S} E)\}\] arises from some kind of base--change construction.  This is sometimes useful for intuition, and Mike Mandell has proven results along these lines for ordinary cohomology~\cite{MandellHZCochains,MandellHFpCochains} extending the rational results of Quillen~\cite{QuillenRational}.  However, the author does not know how to make this thought satisfyingly precise for the periodic cohomology theories $E_\Gamma$ relevant to chromatic homotopy theory.
+\end{remark}
+
+
+
+\subsection{Fields in stable homotopy theory}
+
+We conclude this section with some remarks on ``field cohomology theories'' in stable homotopy theory.  A field $k$ in commutative algebra is a commutative ring characterized by the property that its category of modules is free under direct sum on the single generator $k$ itself.  Analogously, we make the following definition:
+
+\begin{definition}
+A field spectrum $K$ is a ring spectrum so that any $K$--module (in the homotopy category) splits as a wedge of suspensions of $K$.
+\end{definition}
+
+The classification of these objects is due to Devinatz, Hopkins, and Smith~\cite{HopkinsSmith}.
+
+\begin{theorem}[{\cite[Proposition 1.9]{HopkinsSmith}}]\label{AnalysisOfFieldSpectra}
+The following statements are true:
+\begin{enumerate}
+\item If $K$ is a field spectrum, then there is a $d$ such that $K$ decomposes as a wedge of suspensions of the spectrum $K(d)$ of \Cref{MinimalSummands} for the formal group $F_d$ of height $d$.
+\item The construction $K_\Gamma$ determines a bijection
+\begin{center}
+\begin{tikzcd}
+\left\{ \begin{array}{c} \text{formal Lie groups} \\ \text{over $k$} \end{array} \right\} \arrow[bend left]{r}{K_{(-)}} \arrow[leftarrow, bend right]{r}{\CP^\infty_{(-)}} & \left\{ \begin{array}{c} \text{$2$--periodic field spectra} \\ \text{with $\pi_0 = k$} \end{array} \right\}.
+\end{tikzcd}
+\end{center}
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+The reader may like to enrich \Cref{AnalysisOfFieldSpectra} to a statement about categories rather than a bijection of sets of isomorphism classes, but we warn that this turns out to be quite tricky.  A smattering of results in this direction can be found in work of Goerss, Hopkins, and Miller~\cite[Corollary 7.6]{GoerssHopkins}, of Ando~\cite[Theorems 1 and 5]{Ando}, and of Strickland~\cite{StricklandEthyOfBSigma}.
+\end{remark}
+
+\begin{remark}
+The reader may also recall the primacy of formal groups in Lubin and Tate's explicit local class field theory.  In that context, for a local number field $K$ with ring of integers $\sheaf O_K$ and residue field $k$, the points of the maximal totally ramified abelian extension $K^{\text{trab}}$ and the Artin reciprocity morphism can both be described in terms of a certain formal group $\Gamma_K$, defined over $\sheaf O_K$ and with height prescribed by properties of $k$.  That is, some significant chunk of the arithmetic of $K$ is controlled by a background formal group.  We would like to make the vague assertion that something similar is happening here: the behavior of the field spectrum $K_\Gamma$ is again controlled by a background formal group $\Gamma \simeq \CP^\infty_{K_\Gamma}$.
+\end{remark}
+
+\begin{remark}
+Paul Balmer has given a procedure for associating a space $\Spec \CatOf C$ to a tensor triangulated category $\CatOf C$, the points of which are specified by the thick tensor ideals of $\CatOf C$~\cite{Balmer}.  For a ring $R$, the Balmer spectrum $\Spec D^{\text{fin}}(\CatOf{Modules}_R)$ associated to the derived category of $R$--modules agrees with the Zariski spectrum, and the points are in natural bijection with the closed subschemes of the functor $\Spec R$ as defined in \Cref{ClosedSubschemes}.  One of the consequences~\cite[Theorem 7]{HopkinsSmith} of \Cref{AnalysisOfFieldSpectra} is that the points in the Balmer spectrum of $\CatOf{Spectra}^{\text{fin}}$ are selected by the $K_\Gamma$--acyclics for various formal groups $\Gamma$~\cite[Corollary 9.5]{Balmer}.
+\end{remark}
+
+
+
+
+\section{The $\Gamma$--local stable category}\label{KLocalCategory}
+
+To fully employ the arithmetic geometry attached to Morava's cohomology theories, it is common to move to the associated ``local'' category --- i.e., to declare that spectra which are $K_\Gamma$--acyclic are in fact contractible, or equivalently to declare that maps which are $K_\Gamma$--homology isomorphisms are in fact weak homotopy equivalences.  This eliminates the ``pathology'' of topological phenomena which are invisible to $K_\Gamma$, and so more tightly binds the behavior of $\CatOf{Spectra}$ to $K_\Gamma$.  For reasons to be discussed in this section, we will refer to this simply as the ``$\Gamma$--local category'' with localization functor $L_\Gamma$, suppressing the letter ``$K$''.
+
+When $\Gamma$ has finite height $d$ this category has fascinating properties, many of which will be the subject of the remainder of this paper.
+
+\begin{center}
+\textbf{From here on, we will always consider $d$ to be finite and positive unless otherwise stated.}
+\end{center}
+
+\subsection{Continuous $E$--theory}\label{sec:ContinuousEThy}
+
+To begin our study of the $\Gamma$--local category, we cite some bulk results which eludicate features of the localization functor:
+\begin{theorem}\label{HoveyMooreSpectrumLemma}
+Let $d$ be the height of $\Gamma$.
+\begin{enumerate}
+\item (\cite[Theorem 7.5.6]{RavenelOrangeBook}) In keeping with the above geometrically--centric notation, let $L_{\moduli{fg}^{\le d}}$ denote the Bousfield localization functor for $E(d)$.  This functor is smashing, i.e., \[L_{\moduli{fg}^{\le d}} X \simeq \left(L_{\moduli{fg}^{\le d}} \S\right) \sm X.\]
+\item (\cite[Lemma 2.3]{HoveyCSC}) There is the following weak equivalence, natural in $X$: \[L_\Gamma(X) \simeq \lim_I \left(L_{\moduli{fg}^{\le d}} \S^0 \sm M_0(v^I) \sm X\right),\] where $\{M_0(v^I)\}_I$ is an inverse system of finite spectra which have bottom cell in dimension zero, which have maps $M_0(v^I) \to M_0(v^{I'})$ for $I \ge I'$, and which have \[BP_* M_0(v^I) \cong BP_* / (p^{I_0}, v_1^{I_1}, \ldots, v_{n-1}^{I_{n-1}}).\]  (Such a system is guaranteed to exist for large enough $I$ by Hopkins--Smith~\cite[Proposition 5.14]{HopkinsSmith}.)
+\item (\Cref{AnalysisOfFieldSpectra}.1) The localization functor $L_\Gamma$ is an invariant of $d$ and of the characteristic $p$ of the ground field.
+\item (\cite[Theorem 2.1.d, Lemma 2.3]{RavenelLocalizationWRTPeriodic}) There is a natural pullback square
+\begin{center}
+\begin{tikzcd}
+L_{\moduli{fg}^{\le d}} X \arrow{r} \arrow{d} & L_\Gamma X \arrow{d} \\
+L_{\moduli{fg}^{\le (d-1)}} X \arrow{r} & L_{\moduli{fg}^{\le (d-1)}} L_\Gamma X.
+\end{tikzcd}
+\end{center}
+\item (\cite[Theorem 7.5.7]{RavenelOrangeBook}) For $X$ a finite spectrum, there is a natural equivalence \[X_{(p)} \simeq \lim_d L_{\moduli{fg}^{\le d}} X. \qed \]
+\end{enumerate}
+\end{theorem}
+
+Before continuing, we must address one important caveat:
+
+\begin{definition}
+The homological Bousfield class of a spectrum $E$ is the collection of all spectra $X$ which have $E_* X \ne 0$.  Similarly, one can define a cohomological Bousfield class for $E$ to be the collection of all spectra $X$ which have $E^* X \ne 0$.
+\end{definition}
+
+\begin{lemma}[{\Cref{GoodCohomBousfieldClass}, \Cref{EthyFromKthy}}]\label{BadBousfieldClasses}
+The cohomological Bousfield classes of $K_\Gamma$ and $E_\Gamma$ agree.  The homological Bousfield class of $E_\Gamma$ is strictly larger than the homological Bousfield class of $K_\Gamma$. \qed
+\end{lemma}
+
+\noindent This lemma has some important philosophy behind it.  \Cref{DefnEThy} and \Cref{DefnKThy} define $E$--theory as associated to the infinitesimal deformation space of $K$--theory, which suggests the presence of a cohomological Bockstein spectral sequence \[K_\Gamma(X) \otimes A \Rightarrow E_\Gamma(X).\]  Here $A$ consists of Bocksteins arising from square--zero deformation fiber sequences of the flavor
+\begin{center}
+\begin{tikzcd}[column sep=4.71em]
+\cdots \arrow{r} & E_\Gamma / \m^{j+1} \arrow{r} \arrow{d} & E_\Gamma / \m^j \arrow{r} \arrow{d} & \cdots \\
+& E_\Gamma \otimes \m^{j+1} / \m^{j+2} \arrow[-,double]{d} & E_\Gamma \otimes \m^j / \m^{j+1} \arrow{lu}{\partial,[+1]} \arrow{l}{[+1]} \arrow[-,double]{d} \\
+& \underset{{\text{$x_i$ basis of $\m^{j+1} / \m^{j+2}$}}}{\bigvee} \Susp^{|x_i|} K_\Gamma & \underset{\text{$y_j$ basis of $\m^j / \m^{j+1}$}}{\bigvee} \Susp^{|y_j|} K_\Gamma \arrow{l}{\text{Bocksteins,[+1]}},
+\end{tikzcd}
+\end{center}
+where $\m$ is the maximal ideal of the Lubin--Tate ring.  Such a spectral sequence indeed turns out to exist for the cohomology theories $K_\Gamma$ and $E_\Gamma$.  In particular, there is the following theorem:
+\begin{theorem}[{\cite[Proposition 2.5]{HoveyStrickland}}]\label{GoodCohomBousfieldClass}
+If $X$ is a spectrum so that $K_\Gamma^* X$ is even--concentrated, then $E_\Gamma^* X$ is pro-free and even--concentrated, so that $K_\Gamma^* X = E_\Gamma^* X \otimes_{E_\Gamma^*} E_\Gamma^* / \m$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+The differentials in the Bockstein spectral sequence take even--degree elements to odd--degree elements. By assumption there are no odd--degree elements, and hence the spectral sequence collapses at $E_1$.
+\end{proof}
+
+However, such a spectral sequence for homology (with reasonable convergence properties) is prohibited by \Cref{BadBousfieldClasses}: there are spectra with vanishing $K_\Gamma$--homology for which the $E_\Gamma$--homology is nonzero.  This is ``corrected'' by remaining inside the $\Gamma$--local category: we define the covariant functor $E_\Gamma$ by the formula \[E_\Gamma(X) := \pi_* L_\Gamma(E_\Gamma \sm X) \cong \pi_* L_\Gamma(E_\Gamma \sm L_\Gamma X).\]  The bifunctor $(X, Y) \mapsto L_\Gamma(X \sm Y)$ on $\Gamma$--local spectra determines a monoidal structure for which the localization map $L_\Gamma$ is a map of monoidal categories.  This means that the above definition of $E_\Gamma$ is the natural one for considerations internal to the $\Gamma$--local category --- and it has the pleasant extra effect of forcefully correcting the ``homological Bousfield class'' of $E_\Gamma$.  In turn, \Cref{HoveyMooreSpectrumLemma} gives the result we sought:
+
+\begin{lemma}[{\cite[Propositions 7.10 and 8.4]{HoveyStrickland}}]\label{MilnorSeqForEThy}
+There is a Milnor exact sequence \[ 0 \to \lim_j{}^1 (E_\Gamma/\m^j (\Susp^{-1} X)) \to E_\Gamma(X) \to \lim_j (E_\Gamma/\m^j(X)) \to 0,\] where the derived inverse limit is taken in abelian groups.
+\end{lemma}
+\begin{proof}
+This is a direct corollary of \Cref{HoveyMooreSpectrumLemma} and the Milnor sequence for homotopy inverse limits (cf.\ \Cref{HomotopyMilnorSequence}).
+\end{proof}
+
+\begin{corollary}[{\cite[Proposition 8.4]{HoveyStrickland}}]\label{EthyFromKthy}
+If $E_\Gamma(X)$ is pro-free then $K_\Gamma(X) \cong E_\Gamma(X) / \m_\Gamma$.  In the other direction, if $K_\Gamma(X)$ is concentrated in even dimensions, then $E_\Gamma(X)$ is pro-free.
+\end{corollary}
+\begin{proof}[Proof sketch]
+Recall from \Cref{HoveyMooreSpectrumLemma} and \Cref{MilnorSeqForEThy} the defining sequence
+\[
+\pi_* L_\Gamma(E_\Gamma \sm X) \cong \pi_* \lim_I \left( M_0(v^I) \sm E_\Gamma \sm X \right).
+\]
+(We have used that $E_\Gamma$ is $E(d)$--local.)  The inverse system is a cofinal subsystem of the system $\pi_* \lim_I \left(E_\Gamma / (v^I) \sm X \right)$, and in the situation that $I' < 2I$ (i.e., the ideal $(v^I)$ is square--zero in $\pi_* E_\Gamma / (v^{I'})$) then the induced map $E_\Gamma / (v^{I'}) \to E_\Gamma / (v^I)$ has fiber a wedge of even--degree suspensions of $K_\Gamma$.  It follows that the long exact sequence of homotopy determining $E_\Gamma / (v^{I'})$ from $E_\Gamma / (v^I)$ degenerates into easily studied short exact sequences.
+\end{proof}
+
+\begin{remark}
+The covariant functor $E_\Gamma$ does \emph{not} satisfy the axioms of a homology functor, because it does not commute with infinite colimits.  (In particular, there is a spectral sequence arising from Hovey's lemma~\cite[Lemma 2.3]{HoveyCSC} comparing the behavior of infinite colimits to a kind of derived completion~\cite{HoveyFilteredColimits}.)  Another way of viewing the difference between the two notions of $E_\Gamma$--homology is that $E_\Gamma$ is naturally expressed as an inverse limit, but the following equivalence fails, sometimes wildly: \[\pi_* \left(\left(\lim_j E_\Gamma / \m^j\right) \sm X\right) \not\cong \pi_* \lim_j \left( (E_\Gamma / \m^j) \sm X \right).\] This observation directly connects this difference to a topic in our \Cref{LimitAppendix} and in the MIT $E$--theory seminar notes~\cite[Section 14]{MITETheory}.  Nonetheless, \Cref{EthyFromKthy} is reason enough to call the covariant $E_\Gamma$ the ``correct'' notion of Morava $E$--homology, and we will unabashedly refer to it as a ``homology functor'' in the rest of this document.
+\end{remark}
+
+\begin{remark}
+In the case that $K_\Gamma(X)$ is even--concentrated for a space $X$, the compact subspaces of $X$ can be used to topologize $E_\Gamma(X)$ and $E_\Gamma^*(X)$ so that they become continuously $(E_\Gamma)_*$--linearly dual to one another.  That is, the sheaf $\sheaf E_\Gamma(X)$ and the scheme $X_{E_\Gamma}$ (together with its $\Aut \Gamma$--action) contain equivalent information.
+\end{remark}
+
+Finally, we remark that $E_\Gamma$ is valued in the correct category of modules so that the functor $\sheaf E_\Gamma$ constructed by \Cref{DefnHomologyFunctorsValuedInSheaves} takes values in the correct category of sheaves:
+\begin{lemma}[{\cite[Theorem 12]{StricklandGHDuality}}]\label{EthyGivesASheaf}
+The functor $E_\Gamma$ is valued in modules with a continuous action of the Lubin--Tate ring (i.e., in pro-systems of modules over the finite stages of the Lubin--Tate scheme).  Additionally, these sheaves are equivariant against the action of the stabilizer group of \Cref{DefnStabilizerAlgebra}, hence they descend to the Lubin--Tate stack $\operatorname{Def}(\Gamma) \subseteq \moduli{fg}$. \qed
+\end{lemma}
+
+
+\subsection{Picard--graded homotopy}\label{SectionPicardGradedHomotopy}
+
+Picard--graded homotopy groups are a recurrent theme in homotopy theory.  For example, the $RO(G)$ grading in equivariant stable homotopy theory refers to the equivariant Picard grading, and the twists in twisted cohomology (e.g., twisted $K$--theory) refer to the Picard grading for parametrized spectra.  It also appears elsewhere in mathematics: in algebraic geometry, one studies sections of a line bundle on a projective variety rather than mere functions (i.e., sections of the trivial bundle) in order to recover further interesting data.  This, too, is an example of a Picard grading (and is where the phrase ``Picard grading'' comes from, as the the group of isomorphism classes of line bundles on a variety is called its Picard group).  The behavior of the appropriate analogue of Picard gradings in chromatic homotopy theory is very telling, and in this subsection we will recount some of what is known.
+
+\begin{definition}\label{DefnPicardGroup}
+The Picard category of a symmetric monoidal ($\infty$--)category $\CatOf{C}$ is the maximal subgroupoid of the full subcategory spanned by the $\otimes$--invertible objects.  Its connected components determine a group $\Pic \CatOf{C}$ called the Picard group of $\CatOf C$.
+\end{definition}
+
+\begin{example}[{\cite[pg. 90]{HMS} or \cite[Theorem 2.2]{StricklandInterpolate}}]\label{GlobalPicardGroup}
+The Picard group of the global stable category $\CatOf{Spectra}$ is isomorphic to $\Z$ and generated by $\S^1$.
+\end{example}
+
+The Picard group of the $\Gamma$--local stable category is considerably more complicated.  Its study was initiated by Hopkins, Mahowald, and Sadofsky~\cite{HMS} at height $d = 1$, but there are now a number of results at height $d = 2$ as well; see \Cref{PicardGroupsWeKnow}.  For our present purposes, the most important of the Hopkins--Mahowald--Sadofsky results is the following theorem:
+
+\begin{theorem}[{\cite[Theorem 1.3]{HMS}}]\label{HMSLines}
+A spectrum $X$ is $\Gamma$--locally invertible if and only if $(K_\Gamma)_* X$ is $1$--dimensional as a graded vector space. \qed
+\end{theorem}
+
+\begin{remark}
+Taking ``$\Pic(\CatOf{C})$'' for a moment to mean the category in \Cref{DefnPicardGroup}, this theorem can also be interpreted as asserting that the following square is a pullback in monoidal categories:
+\begin{center}
+\begin{tikzcd}
+\CatOf{Spectra}_\Gamma \arrow{r} & \CatOf{VectorSpaces}_{K_*} \\
+\Pic(\CatOf{Spectra}_\Gamma) \arrow{r} \arrow{u} & \CatOf{Lines}_{K_*} \arrow{u}.
+\end{tikzcd}
+\end{center}
+\end{remark}
+
+We also note that \Cref{EthyFromKthy} gives a factorization
+\begin{center}
+\begin{tikzcd}
+\CatOf{Spectra}_\Gamma \arrow{r}{\sheaf E_\Gamma} & \CatOf{QCoh}(\Def(\Gamma)) \arrow{r}{i_0^*} & \CatOf{VectorSpaces}_{K_*} \\
+\Pic(\CatOf{Spectra}_\Gamma) \arrow{u} \arrow{r} & \CatOf{LineBundles}(\Def(\Gamma)) \arrow{r}{i_0^*} \arrow{u} & \CatOf{Lines}_{K_*}. \arrow{u}
+\end{tikzcd}
+\end{center}
+The left--hand square in this diagram is also a pullback square, but the categories in the middle column are considerably more rich than those in the right column; in particular, they contain more than one isomorphism class.  In the case of $\CatOf{LineBundles}(\Def(\Gamma))$, this corresponds to tracking the $1$--dimensional $\Aut \Gamma$--representation given by $E_\Gamma(X)$ rather than the mere $1$--dimensional vector space given by $(K_\Gamma)_*(X)$.  The following result expresses just how much more information this encodes:
+
+\begin{lemma}[{\cite[Proposition 7.5]{HMS}}]\label{EthyDeterminesPic}
+The map \[\Pic(\CatOf{Spectra}_\Gamma) \to \CatOf{LineBundles}(\Def(\Gamma))\] is injective on objects for $2p - 2 \ge d^2$ and $p \ne 2$. \qed
+\end{lemma}
+
+Throughout this document, these theorems will be our main tool which we will use to furnish $\Gamma$--locally invertible spectra.  Before proceeding to more complicated situations, we begin with a simple example in the $\G_m$--local category.  Consider the following horizontal system of cofiber sequences in the global stable category:
+\begin{center}
+\begin{tikzcd}
+\cdots \arrow[double,-]{r} & \S^{-1} \arrow[double,-]{r} \arrow{d}{p^j} & \S^{-1} \arrow[double,-]{r} \arrow{d}{p^{j+1}} & \cdots \arrow[double,-]{r} & \S^{-1} \arrow{d} \\
+\cdots \arrow{r}{p} & \S^{-1} \arrow{r}{p} \arrow{d} & \S^{-1} \arrow{r}{p} \arrow{d} & \cdots \arrow{r} & p^{-1} \S^{-1} \arrow{d} \\
+\cdots \arrow[densely dotted]{r} & M^0(p^j) \arrow[densely dotted]{r} & M^0(p^{j+1}) \arrow[densely dotted]{r} & \cdots \arrow[densely dotted]{r} & M^0(p^\infty).
+\end{tikzcd}
+\end{center}
+The row-wise homotopy colimit, pictured on the far right, is also a cofiber sequence.  The topmost object is the colimit of a sequence of identity morphisms, so is simply $\S^{-1}$.  The middle object is the colimit along iterates of the map $p$, so is, by definition, the spectrum $p^{-1} \S^{-1}$ with the $p$--self--map inverted.  Lastly, the spectrum on the bottom does not have a familiar name, so we call it $M^0(p^\infty)$.
+
+When working $p$--locally (and so also when working $\G_m$--locally), we can see that the middle spectrum is contractible: the map $p$ on $p^{-1} \S^{-1}$ is exactly multiplication by $p$ in $K$--homology, but since the coefficient ring $K_*$ is of characteristic $p$, this is the zero map.  On the other hand, $p$ is required to be invertible, which can only mean $K_* p^{-1} \S^{-1} = 0$.  In turn, this means that the going-around map $M^0(p^\infty) \to \S^0$ is a $p$--local equivalence, and so $M^0(p^\infty)$ is an invertible spectrum, albeit not a very interesting one.\footnote{The dimension shift from $\S^{-1}$ to $\S^0$ is a homotopical reflection of the statement that the $p$-primary part of the circle group $S^1$ is the $p$--Pr\"ufer group $\Z/p^\infty = \colim_j \Z/p^j$.}
+
+A different way of at least detecting that $M^0(p^\infty)$ is $\G_m$--locally invertible is to apply $K$--homology to the bottom row: each object in the sequence becomes a $2$--dimensional graded vector space over $K_*$, and each map from one to the next is $- \cdot p = - \cdot 0$ on the $(-1)$--graded piece and the identity on the $0$--graded piece.  Hence, the colimit is a $K_*$--line, and \Cref{HMSLines} thus assures us we have an invertible spectrum.  This is portrayed in \Cref{CellDiagramFigure}.
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}[
+    baseline=(current bounding box.center),
+    normal line/.style={-stealth},
+    node distance=3cm,
+]
+\node (m-1-1) {$\cdots$};
+\node[right of=m-1-1] (m-1-2) {$K_* M^0(p^j)$};
+\node[right of=m-1-2] (m-1-3) {$K_* M^0(p^{j+1})$};
+\node[right of=m-1-3] (m-1-4) {$\cdots$};
+\node[right of=m-1-4] (m-1-5) {$K_* M^0(p^\infty)$};
+    \path[normal line]
+        (m-1-1) edge (m-1-2)
+        (m-1-2) edge (m-1-3)
+        (m-1-3) edge (m-1-4)
+        (m-1-4) edge (m-1-5)
+;
+\node[below of=m-1-1,node distance=0.5cm] (updot-1) {$\cdots$};
+\node[below of=m-1-2,shape=circle,draw,node distance=0.5cm,minimum size=4pt,inner sep=0pt,fill] (updot-2) {};
+\node[below of=m-1-2,shape=circle,draw,node distance=0.9cm,minimum size=4pt,inner sep=0pt,fill] (downdot-2) {};
+\node[below of=m-1-3,shape=circle,draw,node distance=0.5cm,minimum size=4pt,inner sep=0pt,fill] (updot-3) {};
+\node[below of=m-1-3,shape=circle,draw,node distance=0.9cm,minimum size=4pt,inner sep=0pt,fill] (downdot-3) {};
+\node[below of=m-1-4,node distance=0.5cm] (updot-4) {$\cdots$};
+\node[below of=m-1-5,shape=circle,draw,node distance=0.5cm,minimum size=4pt,inner sep=0pt,fill] (updot-5) {};
+\path[normal line]
+    (updot-1) edge (updot-2)
+    (updot-2) edge (updot-3)
+    (updot-3) edge (updot-4)
+    (updot-4) edge (updot-5);
+\end{tikzpicture}
+\end{center}
+\caption{``Cell diagram'' of $K_* M^0(p^\infty)$.}\label{CellDiagramFigure}
+\end{figure}
+This suggests a way we can modify this construction: if we insert other maps which are $K$--homology isomorphisms, then we will not harm this proof that the colimit is an invertible spectrum.  We will make use of the following results to furnish ourselves with such maps:
+
+\begin{definition}[{\cite[Definition 1.5.3]{RavenelOrangeBook}}]
+A finite spectrum $X$ is said to be of type $d$ when it is $\Gamma$--locally acyclic for all $\Gamma$ of height strictly less than $d$ and $\Gamma$--locally nontrivial for a $\Gamma$ of height exactly $d$.  (In fact, it suffices to check that acyclicity condition for any single $\Gamma$ of height $(d-1)$~\cite[Theorem 2.11]{RavenelLocalizationWRTPeriodic}.)
+\end{definition}
+
+\begin{theorem}[{Devinatz--Hopkins--Smith~\cite[Theorem 9]{HopkinsSmith}}]
+A $p$--local finite spectrum $X$ is of type $d$ if and only if for $N \gg 0$ there is a map $v: \Susp^N X \to X$ which is an isomorphism in $K_\Gamma$--homology for $\Gamma$ of height $d$ and which induces the zero map in $K_\Gamma$--homology for $\Gamma$ not of height $d$.
+\end{theorem}
+
+\begin{lemma}[{Adams~\cite[Lemma 12.5]{AdamsJXIV}}]\label{AdamsSelfMaps}
+The spectrum $M^0(p^{j+1})$ is type $1$ and it admits a map \[v_1^{p^j}: M^{2p^j(p-1)}(p^{j+1}) \to M^0(p^{j+1})\] which induces multiplication by $v_1^{p^j}$ in $K(1)$--homology.\footnote{Here $K(1)$ is the close cousin of $K_{\G_m}$ described in \Cref{MinimalSummands}.} Moreover, the following square commutes:
+\begin{center}
+\begin{tikzcd}
+M^{2p^j(p-1)}(p^j) \arrow{r}{\left(v_1^{p^{j-1}}\right)^p} \arrow{d} & M^0(p^j) \arrow{d} \\
+M^{2p^j(p-1)}(p^{j+1}) \arrow{r}{v_1^{p^j}} & M^0(p^{j+1}).
+\end{tikzcd}
+\end{center}
+\end{lemma}
+
+Selecting a $p$-adic integer $a_\infty = \sum_{j=0}^\infty c_j p^j$ with $0 \le c_j < p$, one can now construct the system \[\cdots \to M^{-|v_1| a_{j-1}}(p^j) \to M^{-|v_1| a_{j-1}}(p^{j+1}) \xrightarrow{v_1^{p^j c_j}} M^{-|v_1| a_j}(p^{j+1}) \to M^{-|v_1| a_j}(p^{j+2}) \to \cdots.\] We define $\S^{-|v_1|a_\infty}$ to be its colimit.  \Cref{HMSLines} is then sufficient to check that $\S^{-|v_1| a_\infty}$ is $\G_m$--locally invertible, but more is true:
+\begin{lemma}[{\cite[Proposition 2.1]{HMS}}]\label{padicPicElements}
+The above construction defines an injective continuous homomorphism of groups \[\Z_p \to \Pic(\CatOf{Spectra}_{\G_m}).\]  When $p \ge 3$ (i.e., $p \ne 2$), the cosets of its image are represented by $\S^1, \ldots, \S^{|v_1|}$.  Abstractly, there is an isomorphism \[\Pic(\CatOf{Spectra}_{\G_m}) \cong \Z_p \rtimes \Z/|v_1|. \qed\]
+\end{lemma}
+
+\begin{remark}\label{PicardGroupsWeKnow}
+This is the most thorough result of this kind that we know presently.  We also know a calculation of $\Pic(\CatOf{Spectra}_{K(d)})$ for $d = 1$ at $p = 2$~\cite[Theorem 3.3]{HMS}, for $d = 2$ at $p \ge 5$~\cite[Theorem 8.1]{BehrensRevisited}, and for $d = 2$ at $p = 3$~\cite[Theorem 1.2]{GHMR}.  We have partial information for $d = 2$ and $n = 2$~\cite[pg.\ 50]{StricklandInterpolate}, and we know essentially nothing for $n \ge 3$ apart from the Hopkins--Gross analysis of the Brown--Comenetz dualizing spectrum~\cite[Theorem 6]{HopkinsGrossAnnouncement} and the analogue of \Cref{padicPicElements} using ``generalized Moore spectra''~\cite[Proposition 5.14]{HopkinsSmith},~\cite[Proposition 9.2-3]{HMS}.
+\end{remark}
+
+That $\Pic(\CatOf{Spectra}_{\G_m}) \cong \Z_p$ carries a profinite topology is not an accident; this, too, is found to be an effect internal to algebraic topology.
+\begin{lemma}[{\cite[Proposition 14.3.d]{HoveyStrickland}}]
+Let $F(I)$ denote the collection of $\Gamma$--local invertible spectra which become (noncanonically) isomorphic to $L_\Gamma \S^0$ after smashing with the generalized Moore spectrum $M_0(v^I)$.  The $F(I)$ form a basis of closed neighborhoods at the identity which upon linear translation endow $\Pic(\CatOf{Spectra}_\Gamma)$ with the structure of a profinite group. \qed
+\end{lemma}
+
+This computation of the Picard group pairs well with another classical calculation:
+\begin{theorem}[{\cite[Theorem 1.5]{AdamsJXIV}}]\label{UnpretentiousCalculation}
+There are isomorphisms \[\pi_s L_{K(1)} \S^0 \cong \begin{cases} \Z_p & \text{when $s = 0$}, \\ \Z_p / (pk) & \text{when $s = k|v_1| - 1$}, \\ 0 & \text{otherwise}. \qed \end{cases}\]
+\end{theorem}
+
+\noindent The right--hand side of this formula can be interpreted through the $p$--adic valuations of the Bernoulli numbers --- or, equivalently, through the special negative values of the Riemann $\zeta$--function: \[\mathbb N \xrightarrow{s \mapsto \zeta(1 - s} \Q \xrightarrow{\text{denom}} \Q / \Z_{(p)} \cong \Z / p^\infty.\]  Number theorists have constructed $p$--adic analytic versions of the Riemann $\zeta$--function by interpolating its special values at negative odd integers and have found such constructions to continue to hold interesting number theoretic data~\cite{Iwasawa}.  For our purposes, it is sufficient to note that the $p$--adic valuation of $\zeta^\wedge_p(1-s)$ for a $p$--adic integer $s = k|v_1| - 1$ agrees with that of $1/(pk)$ and is nonnegative otherwise, so that the formula in \Cref{UnpretentiousCalculation} needs no modification.  However, because the variables $s$ and $k$ in the above formula are linked, taking $k$ to be a general $p$--adic integer necessitates that we also take $s$ to be general $p$--adic integer as well.
+
+\begin{corollary}[{Hopkins, see also Strickland~\cite{StricklandInterpolate}}]
+Interpolating the homotopy groups $\pi_* L_{\G_m} \S^0$ using the spectra $\S^{-|v_1|a_\infty}$ constructed in \Cref{padicPicElements} agrees with the number theoretic $p$--adic interpolation of $\zeta$.
+\end{corollary}
+\begin{proof}
+Generally, the cofiber sequence \[\S^n \xrightarrow{p^j} \S^n \to M_n(p^j) \to \S^{n+1} \xrightarrow{p^j} \S^{n+1}\] induces a short exact sequence \[0 \leftarrow (\pi_n X) [p^j] \leftarrow [M_n(p^j), X] \leftarrow (\pi_{n+1} X) / p^j \leftarrow 0,\] and the diagram
+\begin{center}
+\begin{tikzcd}
+\S^n \arrow{r}{p^j} \arrow{d}{1} & \S^n \arrow{r} \arrow{d}{p} & M_n(p^j) \arrow{r} \arrow{d} & \S^{n+1} \arrow{r}{p^j} \arrow{d}{1} & \S^{n+1} \arrow{d}{p} \\
+\S^n \arrow{r}{p^{j+1}} & \S^n \arrow{r} & M_n(p^{j+1}) \arrow{r} & \S^{n+1} \arrow{r}{p^{j+1}} & \S^{n+1}
+\end{tikzcd}
+\end{center}
+induces the following map of short exact sequences:
+\begin{center}
+\begin{tikzcd}
+0 & \arrow{l} (\pi_n X)[p^j] & {[M_n(p^j), X]} \arrow{l} & \arrow{l} (\pi_{n+1} X) / p^j & \arrow{l} 0 \\
+0 & \arrow{l} \arrow{u}{p} (\pi_n X)[p^{j+1}] & {[M_n(p^{j+1}), X]} \arrow{l} \arrow{u} & \arrow{l} \arrow{u}{\text{quotient}} (\pi_{n+1} X) / (p^{j+1}) & \arrow{l} 0.
+\end{tikzcd}
+\end{center}
+This map of short exact sequences interacts with the Adams $v_1$--self--map of \Cref{AdamsSelfMaps} according to the rectangular prism in \Cref{SelfMapFigure}.
+\begin{sidewaysfigure}[ht]
+\begin{center}
+\begin{tikzcd}[column sep=-0.2cm,row sep=1.5cm]
+& 0 & & (\pi_n X)[p^j] \arrow{ll} \arrow{ld} \arrow[leftarrow]{dd} & & {[M_n(p^j), X]} \arrow{ll} \arrow{ld} \arrow[leftarrow]{dd} & & (\pi_{n+1} X) / p^j \arrow{ll} \arrow{ld} \arrow[leftarrow]{dd} & & 0 \arrow{ll} \\
+0 & & (\pi_{n-|v_1|p^j} X)[p^j] \arrow[leftarrow, crossing over]{rr} \arrow[red, in=182, out=2, leftarrow]{rrrrru}{\alpha_{j-1/j-1}^p} \arrow{ll} & & {[M_{n-|v_1|p^j}(p^j), X]} & & (\pi_{n-|v_1|p^j+1} X) / p^j \arrow[crossing over]{ll} & & 0 \arrow[crossing over]{ll} \\
+& 0 & & (\pi_n X)[p^{j+1}] \arrow{ll} \arrow{ld} & & {[M_n(p^{j+1}), X]} \arrow{ll} \arrow{ld} & & (\pi_{n+1} X) / p^{j+1} \arrow{ll} \arrow{ld} \arrow[red, in=2, out=182]{llllld}{\alpha_{j/j}} & & 0 \arrow{ll} \\
+0 & & (\pi_{n-|v_1|p^j} X)[p^{j+1}] \arrow{ll} \arrow[crossing over]{uu} & & {[M_{n-|v_1|p^j}(p^{j+1}), X]} \arrow[crossing over]{uu} \arrow{ll} & & (\pi_{n-|v_1|p^j+1} X) / p^{j+1} \arrow{ll} \arrow[crossing over]{uu} & & 0. \arrow{ll}
+\end{tikzcd}
+\end{center}
+\caption{Interaction of Adams's $v_1$--self--maps with Moore spectra of different indices.}
+\label{SelfMapFigure}
+\end{sidewaysfigure}
+The result follows immediately from the construction of $\S^{-|v_1| a_\infty}$.
+%\todo{Actually check that this is sufficient. What about the $v_1$--self--maps?}
+\end{proof}
+
+\begin{remark}
+We caution the reader that the behavior of the Picard--graded homotopy of the $\Gamma$--local sphere for $\operatorname{ht}(\Gamma) > 1$ is considerably more strangely (i.e., poorly) behaved than that of the $\G_m$--local sphere.  Hovey and Strickland prove a partial ``continuity'' result~\cite[Proposition 14.6]{HoveyStrickland} but also provide details on the remaining bad behavior~\cite[Theorem 15.1]{HoveyStrickland}.  The punchline of the bad news is as follows: take $\Gamma$ to be of height at least $2$, and define $F$ to be the set \[F := \{\lambda \in \Pic(\CatOf{Spectra}_\Gamma) : |\pi_\lambda L_{\Gamma} M^0(p)| < \infty\}.\] Then there is a nonempty open $U$ for which $U \cap F$ is Haar--negligible.  Nonetheless, all but finitely many of the standard spheres belong to $F$ --- a curious situation.
+\end{remark}
+
+\begin{remark}
+Having set up some of the groundwork of chromatic homotopy theory, we pause to make a remark on the philosophy of the rest of this document.  The other homotopical context in which Picard--graded homotopy groups have taken central relevance is equivariant homotopy theory, which concerns itself with spaces and spectra with a suitable notion of a ``$G$--action'', $G$ a compact Lie group.  The notion of ``$G$--action'' turns out to be somewhat complex, and the correct notion enjoys a notion of cellular approximation, where the cells are formed as follows: for a $G$--representation $V$ we form the representation sphere $S^V$ by compactifying $V$ with a single point at $\infty$.  Cellular approximation then states that any map of $G$--spaces can be $G$--equivariantly weakly replaced by a map of ``$G$--CW--complex'', which are suitably built from the spheres $S^V$ as $V$ ranges.
+
+The analogous construction in chromatic homotopy theory has not appeared before. Although Picard--graded phenomena in the $\Gamma$--local category have been studied, ``Picard--cellular'' constructions have escaped attention.  The primary goal of the remainder of the present work is to construct and study a certain Picard--cellular filtration of $\Gamma$--localized Eilenberg--Mac Lane spaces.
+\end{remark}
