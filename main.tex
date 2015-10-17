@@ -126,49 +126,44 @@ I do want to assemble course notes from this class, but it's unlikely that I wil
 
 The goal of this class is to communicate a certain \textit{weltanschauung} uncovered in pieces by many different people working in bordism theory, and the goal just for today is to tell a story about one theorem where it is especially apparent.
 
-To begin, recall that a bordism theory $MX$, where $X$ is some suitable family of structure groups $X_n \to O(n)$, is a homology theory similar to singular homology but where the chains are constructed from $X$--structured manifolds and their boundaries.  The coefficient ring of $MX$, or its value $MX_*(*)$ on a point, gives the ring of $X$--bordism classes, and generally $MX_*(Y)$ of some space $Y$ gives a kind of ``bordism in families''.  There are evident comparison morphisms for the most ordinary kinds of bordism, given by replacing a chain of manifolds with an equivalent simplicial chain: \[MO \to H\Z/2, \quad MSO \to H\Z.\] The first one is essentially an equivalence, but the second one is quite far from being an equivalence. More intriguingly, for $X = e$ the trivial structure group, the Pontryagin--Thom construction gives an equivalence $Me \xrightarrow{\simeq} \S$, and so it is possible (and some people have indeed taken up this viewpoint) that stable homotopy theory can be done solely through the lens of ``framed bordism''.
+To begin, recall that a bordism theory $MX$, where $X$ is some suitable family of structure groups $X_n \to O(n)$, is a homology theory similar to singular homology but where the chains are constructed from $X$--structured manifolds and their boundaries.  The coefficient ring of $MX$, or its value $MX_*(*)$ on a point, gives the ring of $X$--bordism classes, and generally $MX_*(Y)$ of some space $Y$ gives a kind of ``bordism in families''.  There are evident comparison morphisms for the most ordinary kinds of bordism, given by replacing a chain of manifolds with an equivalent simplicial chain: \[MO \to H\Z/2, \quad MSO \to H\Z.\] In both cases, we can evaluate on a point to get ring maps $MO_*(*) \to \Z/2$ and $MSO_*(*) \to \Z$, called ``genera'' --- neither of which is very interesting, since they're both zero in positive degrees.
 
-I'm a stable homotopy theorist rather than a differential topologist, and so I prefer to view this the other way: the sphere spectrum $\S$ often appears in my life as a natural object, and I will sometimes replace it by $Me$, the framed bordism spectrum.  For example, often I encounter a ring spectrum $E$, and it comes equipped with a unit map $\S \to E$, which I can reconsider as a ring map $\S = Me \to E$.
+However, having maps of homology theories (rather than just maps of coefficient rings) is considerably more data: we can extact from this a theory of integration.  Consider the following:
+\begin{align*}
+MSO_n K(\Z, n) & = \left\{ \text{oriented $n$--manifolds mapping to $K(\Z, n)$} \right\} / \sim \\
+& = \left\{ \begin{array}{c}\text{oriented $n$--manifolds $M$} \\ \text{with a specified class $\omega \in H^n(M; \Z)$} \end{array}\right\} / \sim.
+\end{align*}
+The yoga of stable homotopy theory then allows us to build a composite \[\S^0 \xrightarrow{(M, \omega)} MSO \sm (\S^{-n} \sm \Susp^\infty_+ K(\Z, n)) \to MSO \sm H\Z \xrightarrow{\phi \sm 1} H\Z \sm H\Z \xrightarrow\mu H\Z,\] where $\phi$ is the orientation map, and this gives us an integer. This integer is $\int_M \omega$, and it comes equipped with a Stokes' theorem due to the relation ``$\sim$'', and we can begin to see what the techniques of stable homotopy theory have to offer.
 
-This is the situation Ochanine and Witten found themselves in some decades ago. Ochanine had proven the following mysterious theorem:
+Now take $X = e$ to be the trivial structure group, so that the Pontryagin--Thom construction gives an equivalence $Me \xrightarrow{\simeq} \S$.  It is thus possible (and some people have indeed taken up this viewpoint) that stable homotopy theory can be done solely through the lens of ``framed bordism''. I'm a stable homotopy theorist rather than a differential topologist, and so I prefer to view this the other way: the sphere spectrum $\S$ often appears in my life as a natural object, and I will sometimes replace it by $Me$, the framed bordism spectrum.  For example, often I encounter a ring spectrum $E$, and it comes equipped with a unit map $\S \to E$, which I can reconsider as a ring map $\S = Me \to E$.  Following along the lines of the previous paragraph, we learn that we can thus think of any ring spectrum $E$ as automatically equipped with a theory of integration for framed manifolds.
+
+Sometimes, as in the examples above, this unit map factors: \[\S = Me \to MO \to H\Z/2.\]  This is a witness to the overdeterminacy of $H\Z/2$'s integral for framed bordism: if the framed manifold is pushed all the way down to an unoriented manifold, there is still enough residual data to define the integral.  For a generic ring spectrum $E$, we can ask the analogous question: for a Hausdorff filtration on $O$ by structure groups, what stage does the unit map $Me \to E$ factor through?  The map $SO \to O$ considered above is the beginning of the Postnikov filtration of $O$, and we include a diagram of this filtration and some interesting integration theories related to it:
+\begin{center}
+\begin{tikzcd}
+Me \arrow{r} \arrow{rrd} \arrow{rrrd} \arrow{rrrrd} & \cdots \arrow{r} & M\Spin \arrow{r} \arrow[crossing over]{d} & MSO \arrow{r} \arrow[crossing over]{d} & MO \arrow[crossing over]{d} \\
+& & ko & H\Z & H\Z/2.
+\end{tikzcd}
+\end{center}
+
+This is the situation homotopy theorists found themselves in some decades ago, in the wake of two important results of Ochanine and Witten. Ochanine had proven the following mysterious theorem using analytic techniques:
 
 \begin{theorem}[Ochanine]
-There is a cobordism invariant $o(M)$ of an oriented manifold $M$ which is a level $2$ modular form. It is probably multiplicative: if $F \to E \to M$ is a suitable fibration, then $o(E) = o(F) \cdot o(M)$.
+There is a cobordism invariant $o(M)$ of an oriented manifold $M$ which is a level $2$ modular form. It is somewhat multiplicative: if $F \to E \to M$ is an exceedingly nice fibration, then $o(E) = o(F) \cdot o(M)$.
 \end{theorem}
 
-\noindent 
-
-
-
-
-theories of integration
-
-
-
-
-The structure of the class will be, more or less, to work through a sequence of case studies where this perspective on algebraic topology shines through most brightly.  We'll start by working through Thom's calculation of the homotopy of $MO$, which simultaneously holds the attractive features of being free of technical complexity while revealing essentially all of the structural complexity.  Having seen that through to the end, we'll then work on reinforcing our technical underpinnings, and then we'll venture on to other examples.
-
-
-
-
-
-
-The stated goal of this class is to study something called the ``$\sigma$--orientation'', due in various incarnations to Ochanine, Witten, Ando--Hopkins--Strickland, Ando--Strickland, Ando--Hopkins--Rezk, and probably others.
-
-
+\noindent Witten then strengthened this result considerably:
 
 \begin{theorem}[Witten]
-Ochanine's genus is definitely multiplicative. Also, if $M$ is a Spin manifold such that twice the first Pontryagin class vanishes, then $o(M)$ can be refined to a level $1$ modular form $w(M)$.
+Ochanine's genus is in fact multiplicative. Also, if $M$ is a Spin manifold such that twice its first Pontryagin class vanishes, then $o(M)$ can be ``refined'' to a level $1$ modular form $w(M)$.
 \end{theorem}
 
-
-
+\noindent However, neither party gave indication that their result should be valid ``in families'', and no theory of integration was produced.  It wasn't even clear what such a claim would mean: to give a topological enrichment of these theorems would mean finding a ring spectrum $E$ such that $E_*(*)$ had something to do with modular forms.  Around the same time, Landweber, Ravenel, and Stong began studying ``elliptic cohomology'' for independent reasons, and a decade later Ando, Hopkins, and Strickland put them together in the following theorem:
 
 \begin{theorem}[Ando--Hopkins--Strickland]
-If $E$ is an ``elliptic cohomology theory'', then there is a canonical map $M\String \to E$ called the $\sigma$--orientation.  If $E$ is taken to be Tate $K$--theory $K^{\Tate}$, then the induced map $M\String_* \to K^{\Tate}_*$ is (the $q$--expansion of) Witten's genus.
+If $E$ is an ``elliptic cohomology theory'', then there is a canonical map $M\String \to E$ called the $\sigma$--orientation.  Specializing to Tate $K$--theory $K^{\Tate}$, the induced map $M\String_* \to K^{\Tate}_*$ is Witten's genus.
 \end{theorem}
 
-A meta-goal of this class is to focus on how the homotopical $\sigma$--orientation was actually first constructed: using formal geometry.  Their original proof begins with a reduction to understanding maps \[MU[6, \infty) \to E\] and then working to show that they can complete the missing arrow in the diagram
+We now come to the motivation for this class.  The homotopical $\sigma$--orientation was actually first constructed using formal geometry.  The original proof of Ando--Hopkins--Strickland begins with a reduction to understanding maps \[MU[6, \infty) \to E,\] and then they work to show that they can complete the missing arrow in the diagram
 \begin{center}
 \begin{tikzcd}
 MU[6, \infty) \arrow{r} \arrow{rd} & M\String \arrow[densely dotted]{d} \\
@@ -177,20 +172,40 @@ MU[6, \infty) \arrow{r} \arrow{rd} & M\String \arrow[densely dotted]{d} \\
 \end{center}
 Leaving aside the extension problem for the moment, their main theorem is the following description of the cohomology ring $E^* MU[6, \infty)$:
 \begin{theorem}[Ando--Hopkins--Strickland]
-For $E$ an even--periodic cohomology theory, \[\Spec E_* MU[6, \infty) \cong C^3(\G_E; \sheaf I(0)),\] where ``$C^3(\G_E; \sheaf I(0))$'' is a certain scheme.  When $E$ is taken to be elliptic, this furnishes the scheme with a canonical point, and hence gives a preferred class $MU[6, \infty) \to E$.
+For $E$ an even--periodic cohomology theory, \[\Spec E_* MU[6, \infty) \cong C^3(\G_E; \sheaf I(0)),\] where ``$C^3(\G_E; \sheaf I(0))$'' is a certain scheme.  When $E$ is taken to be elliptic, so that there is a specified isomorphism $\G_E \cong C^\wedge_0$ for $C$ an elliptic curve, this furnishes the scheme with a canonical point. Hence, there is a preferred class $MU[6, \infty) \to E$, natural in the choice of elliptic $E$.
 \end{theorem}
-\noindent Our real goal is to understand theorems like these. The class will be made up of case studies where we investigate some phenomenon in algebraic topology and recast its solution in terms of formal geometry. The overriding theme of the class will be that this is a good organizing principle that gives us one avenue of insight into how homotopy theory functions. 
+
+\noindent Our real goal is to understand theorems like these.  The structure of the class will be, more or less, to work through a sequence of case studies where this perspective on algebraic topology shines through most brightly.  We'll start by working through Thom's calculation of the homotopy of $MO$, which simultaneously holds the attractive features of being free of technical complexity while revealing essentially all of the structural complexity.  Having seen that through to the end, we'll then work on reinforcing our technical underpinnings, and then we'll venture on to other examples.  The overriding theme of the class will be that this is a good organizing principle that gives us one avenue of insight into how homotopy theory functions. 
+
+
+
+
+\section{Jan 27}
 
 
 
 
 
-Theories of integration
 
-Framed bordism agrees with the sphere spectrum
+
+
+
+
+
+
 
 
 \section{Material for lecture}
+
+
+Hood made the following nice observation. $MO^{H\F_2}$ is the scheme of coordinates on $\RP^\infty_{H\F_2}$, with coordinate ring $\F_2[x_1, x_2, \ldots]$ and corresponding series $f(t) = \sum_{n=1}^\infty x_{n-1} t^n$ and $x_0 = 1$ implicit. This identification is equivalent to Adams's observation that $MO$ is the ``free homotopy ring spectrum'' on $MO(1)$ his sense. Then, $\Spec \mathcal{A}_* = \underline{\operatorname{Aut}}(\widehat{\G}_a)$ acts on this by coordinate changes (and we can pick a left-- or right--action as we see fit). If we pick an action by postcomposition, then we can do the following nice thing: set $f(t) = f_2(t) + g(t)$, where $f_2(t)$ contains just the terms in degrees perfect powers of $2$. Then $f_2^{-1}(f(t))$ is another coordinate with no terms in degrees perfect powers of $2$, and any nontrivial automorphism applied to this ``reduced'' series will re-introduce terms in degrees perfect powers of $2$.  So, this is a canonical form for the series under the $\underline{\operatorname{Aut}}(\widehat{\mathbb G}_a)$--action which admits no further automorphisms. It should follow that $H^*(\context{H\F_2}; \context{H\F_2}(MO))$ has amplitude $0$ and takes the form $\F_2[x_j \mid j \ne 2^n - 1]$, i.e., whose generating function is arbitrary other than having no terms in degrees perfect powers of $2$.
+
+This means that the Adams spectral sequence degenerates and this computes $\pi_* MO$.  (It would be nice to interpret this in terms of a logarithm on $\RP^\infty_{H\F_2}$.)  It also means that the Hurewicz map is injective, hence that $MO$ is a retract of $H\F_2 \sm MO$, hence that $MO$ is an $H\F_2$--module, hence that $MO$ is a wedge of shifts of $H\F_2$.
+
+
+
+
+
 
 The cohomology of a qc sheaf pushed forward from a scheme to a stack along a cover agrees with just the cohomology over the scheme. (In the case of $* \to * \mmod G$, this probably uses the cospan $* \to * \mmod G \leftarrow *$ with pullback $G$...)
 
@@ -198,7 +213,15 @@ Akhil Mathew has notes from an algebraic geometry class ( https://math.berkeley.
 
 Equivalences of various sorts of cohomologies: Ext in modules and quasicoherent cohomology (goodness. Hartshorne, I suppose); Ext in comodules and quasicoherent cohomology on stacks (COCTALOS Lemma 12.4); quasicoherent cohomology on simplicial schemes (Stacks project 09VK).
 
-\section{Jan 27}
+
+
+
+
+
+
+
+
+
 
 \section{Jan 29}
 
@@ -366,11 +389,6 @@ Ravenel, Wilson
 Kitchloo, Laures, Wilson
 
 
-\section{$\context{H\F_2}(MO)$}
-
-Hood made the following nice observation. $MO^{H\F_2}$ is the scheme of coordinates on $\RP^\infty_{H\F_2}$, with coordinate ring $\F_2[x_1, x_2, \ldots]$ and corresponding series $f(t) = \sum_{n=1}^\infty x_{n-1} t^n$ and $x_0 = 1$ implicit. This identification is equivalent to Adams's observation that $MO$ is the ``free homotopy ring spectrum'' on $MO(1)$ his sense. Then, $\Spec \mathcal{A}_* = \underline{\operatorname{Aut}}(\widehat{\G}_a)$ acts on this by coordinate changes (and we can pick a left-- or right--action as we see fit). If we pick an action by postcomposition, then we can do the following nice thing: set $f(t) = f_2(t) + g(t)$, where $f_2(t)$ contains just the terms in degrees perfect powers of $2$. Then $f_2^{-1}(f(t))$ is another coordinate with no terms in degrees perfect powers of $2$, and any nontrivial automorphism applied to this ``reduced'' series will re-introduce terms in degrees perfect powers of $2$.  So, this is a canonical form for the series under the $\underline{\operatorname{Aut}}(\widehat{\mathbb G}_a)$--action which admits no further automorphisms. It should follow that $H^*(\context{H\F_2}; \context{H\F_2}(MO))$ has amplitude $0$ and takes the form $\F_2[x_j \mid j \ne 2^n - 1]$, i.e., whose generating function is arbitrary other than having no terms in degrees perfect powers of $2$.
-
-This means that the Adams spectral sequence degenerates and this computes $\pi_* MO$.  (It would be nice to interpret this in terms of a logarithm on $\RP^\infty_{H\F_2}$.)  It also means that the Hurewicz map is injective, hence that $MO$ is a retract of $H\F_2 \sm MO$, hence that $MO$ is an $H\F_2$--module, hence that $MO$ is a wedge of shifts of $H\F_2$.
 
 
 \newpage
