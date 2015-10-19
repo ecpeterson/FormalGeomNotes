@@ -81,6 +81,9 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Def}{Def}
 \DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\hAut}{hAut}
+\DeclareMathOperator{\Coord}{Coord}
 
 % \numberwithin{equation}{section}
 
@@ -126,7 +129,7 @@ I do want to assemble course notes from this class, but it's unlikely that I wil
 
 The goal of this class is to communicate a certain \textit{weltanschauung} uncovered in pieces by many different people working in bordism theory, and the goal just for today is to tell a story about one theorem where it is especially apparent.
 
-To begin, recall that a bordism theory $MX$, where $X$ is some suitable family of structure groups $X_n \to O(n)$, is a homology theory similar to singular homology but where the chains are constructed from $X$--structured manifolds and their boundaries.  The coefficient ring of $MX$, or its value $MX_*(*)$ on a point, gives the ring of $X$--bordism classes, and generally $MX_*(Y)$ of some space $Y$ gives a kind of ``bordism in families''.  There are evident comparison morphisms for the most ordinary kinds of bordism, given by replacing a chain of manifolds with an equivalent simplicial chain: \[MO \to H\Z/2, \quad MSO \to H\Z.\] In both cases, we can evaluate on a point to get ring maps $MO_*(*) \to \Z/2$ and $MSO_*(*) \to \Z$, called ``genera'' --- neither of which is very interesting, since they're both zero in positive degrees.
+To begin, recall that a bordism theory $MX$, where $X$ is some suitable family of structure groups $X_n \to O(n)$, is a homology theory similar to singular homology but where the chains are constructed from $X$--structured manifolds and their boundaries.  The coefficient ring of $MX$, or its value $MX_*(*)$ on a point, gives the ring of $X$--bordism classes, and generally $MX_*(Y)$ of some space $Y$ gives a kind of ``bordism in families''.  There are evident comparison morphisms for the most ordinary kinds of bordism, given by replacing a chain of manifolds with an equivalent simplicial chain: \[MO \to H\Z/2, \quad MSO \to H\Z.\] In both cases, we can evaluate on a point to get ring maps $MO_*(*) \to \Z/2$ and $MSO_*(*) \to \Z$, called ``genera'' --- neither of which is very interesting, since they're both zero in positive degrees.\todo{A comparison of this with the usual spectrum definition of $MX$ appears in Switzer 12.35.}
 
 However, having maps of homology theories (rather than just maps of coefficient rings) is considerably more data: we can extact from this a theory of integration.  Consider the following:
 \begin{align*}
@@ -182,9 +185,76 @@ For $E$ an even--periodic cohomology theory, \[\Spec E_* MU[6, \infty) \cong C^3
 
 \section{Jan 27}
 
+Our first case study is a sequence of theorems about the unoriented bordism spectrum $MO$.  I wanted to begin by recalling one definition of the spectrum $MO$, since it will be useful to us throughout the semester.
+
+\begin{definition}
+For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T(\xi).\]
+\end{definition}
+\begin{proof}[``Proof'' of definition]
+There's a more usual construction of the Thom space too: the associated disk bundle by gluing an $n$--disk in fiberwise, then taking the one--point compactification: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\] How does this compare? Well, the thickening of $\xi$ is an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$. Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the one--point compactification.
+\end{proof}
+
+examples: trivial bundles give $T(S^n \times X) \simeq S^{n+1} \sm (X_+)$, and $T(\L; BO(1)) = BO(1)$, with subexamples $T(\L; \RP^n) = \RP^{n+1}$
+
+identification of spherical bundles with maps to $BGL_1 \hAut S^{n-1}$, Thom space as a functor off of this slice category
+
+the $J$--homomorphism as a map $BO(n) \to BGL_1 \hAut S^{n-1}$. compatibility with sums, and especially the block maps $BO(n) \to BO(n+1)$
+
+definition of a normalized Thom spectrum, the spectra $MO(n)$, and the limiting spectrum $MO$
+
+Mahowald's Thom isomorphisms
+
+calculation of $H\F_2^* BO(1)$ and $H\F_2^* MO(1)$ using the module-theoretic part of the Thom isomorphism
 
 
 
+
+
+\section{Jan 29}
+
+Our overriding theme for this semester is to put ``Spec'' in front of things in algebraic topology and see what happens.
+
+
+The schemes $\RP^n_{H\F_2}$, the group structure on $\RP^\infty_{H\F_2}$
+
+The Steenrod algebra: Milnor's theorem that (1) the operations are all visible in $\RP^\infty_{H\F_2}$, (2) the cooperations are polynomial, and (3) formulas for the diagonal and conjugate
+
+Generally: if $X$ is a space, then $X_{H\F_2}$ is a scheme with an $\Aut \widehat \G_a$--action. If $X$ is a spectrum (so it fails to have a diagonal map) then $(H\F_2)_* X$ is just an $\F_2$--module, also with an $\Aut \widehat \G_a$--action.
+
+Make a point that you mean $\Aut \widehat \G_a$ and not $\Aut \G_a$.
+
+
+
+\section{Feb 1}
+
+The Adams spectral sequence
+
+moral value: discerning $2$ from $0$ by $\Sq^1$
+
+by--hand construction with $H\F_2$--injective towers
+
+identification of the $E_2$ page: $\Ext$ in the category of comodules
+
+reinterpretation as $\Aut \widehat \G_a$--equivariant cohomology over $\Spec \F_2$
+
+degenerate example: $H\F_2^{H\F_2}$
+
+picture of the cohomology of the structure sheaf
+
+
+
+
+\section{Feb 3}
+
+the splitting principle
+
+$MO$--orientations agree with factorizations of the unit through $MO(1)$
+
+identification of $MO^{H\F_2}$ with $\Coord(\RP^\infty_{H\F_2})$
+
+Hood made the following nice observation. $MO^{H\F_2}$ is the scheme of coordinates on $\RP^\infty_{H\F_2}$, with coordinate ring $\F_2[x_1, x_2, \ldots]$ and corresponding series $f(t) = \sum_{n=1}^\infty x_{n-1} t^n$ and $x_0 = 1$ implicit. This identification is equivalent to Adams's observation that $MO$ is the ``free homotopy ring spectrum'' on $MO(1)$ his sense. Then, $\Spec \mathcal{A}_* = \underline{\operatorname{Aut}}(\widehat{\G}_a)$ acts on this by coordinate changes (and we can pick a left-- or right--action as we see fit). If we pick an action by postcomposition, then we can do the following nice thing: set $f(t) = f_2(t) + g(t)$, where $f_2(t)$ contains just the terms in degrees perfect powers of $2$. Then $f_2^{-1}(f(t))$ is another coordinate with no terms in degrees perfect powers of $2$, and any nontrivial automorphism applied to this ``reduced'' series will re-introduce terms in degrees perfect powers of $2$.  So, this is a canonical form for the series under the $\underline{\operatorname{Aut}}(\widehat{\mathbb G}_a)$--action which admits no further automorphisms. It should follow that $H^*(\context{H\F_2}; \context{H\F_2}(MO))$ has amplitude $0$ and takes the form $\F_2[x_j \mid j \ne 2^n - 1]$, i.e., whose generating function is arbitrary other than having no terms in degrees perfect powers of $2$.
+
+This means that the Adams spectral sequence degenerates and this computes $\pi_* MO$.  (It would be nice to interpret this in terms of a logarithm on $\RP^\infty_{H\F_2}$.)  It also means that the Hurewicz map is injective, hence that $MO$ is a retract of $H\F_2 \sm MO$, hence that $MO$ is an $H\F_2$--module, hence that $MO$ is a wedge of shifts of $H\F_2$.
 
 
 
@@ -198,9 +268,6 @@ For $E$ an even--periodic cohomology theory, \[\Spec E_* MU[6, \infty) \cong C^3
 \section{Material for lecture}
 
 
-Hood made the following nice observation. $MO^{H\F_2}$ is the scheme of coordinates on $\RP^\infty_{H\F_2}$, with coordinate ring $\F_2[x_1, x_2, \ldots]$ and corresponding series $f(t) = \sum_{n=1}^\infty x_{n-1} t^n$ and $x_0 = 1$ implicit. This identification is equivalent to Adams's observation that $MO$ is the ``free homotopy ring spectrum'' on $MO(1)$ his sense. Then, $\Spec \mathcal{A}_* = \underline{\operatorname{Aut}}(\widehat{\G}_a)$ acts on this by coordinate changes (and we can pick a left-- or right--action as we see fit). If we pick an action by postcomposition, then we can do the following nice thing: set $f(t) = f_2(t) + g(t)$, where $f_2(t)$ contains just the terms in degrees perfect powers of $2$. Then $f_2^{-1}(f(t))$ is another coordinate with no terms in degrees perfect powers of $2$, and any nontrivial automorphism applied to this ``reduced'' series will re-introduce terms in degrees perfect powers of $2$.  So, this is a canonical form for the series under the $\underline{\operatorname{Aut}}(\widehat{\mathbb G}_a)$--action which admits no further automorphisms. It should follow that $H^*(\context{H\F_2}; \context{H\F_2}(MO))$ has amplitude $0$ and takes the form $\F_2[x_j \mid j \ne 2^n - 1]$, i.e., whose generating function is arbitrary other than having no terms in degrees perfect powers of $2$.
-
-This means that the Adams spectral sequence degenerates and this computes $\pi_* MO$.  (It would be nice to interpret this in terms of a logarithm on $\RP^\infty_{H\F_2}$.)  It also means that the Hurewicz map is injective, hence that $MO$ is a retract of $H\F_2 \sm MO$, hence that $MO$ is an $H\F_2$--module, hence that $MO$ is a wedge of shifts of $H\F_2$.
 
 
 
@@ -213,21 +280,13 @@ Akhil Mathew has notes from an algebraic geometry class ( https://math.berkeley.
 
 Equivalences of various sorts of cohomologies: Ext in modules and quasicoherent cohomology (goodness. Hartshorne, I suppose); Ext in comodules and quasicoherent cohomology on stacks (COCTALOS Lemma 12.4); quasicoherent cohomology on simplicial schemes (Stacks project 09VK).
 
+using the splitting principle to describe $\Div^+_n \CP^\infty_E = BU(n)_E$, and in particular that projectivization theorem.
 
 
 
 
 
 
-
-
-
-
-\section{Jan 29}
-
-\section{Feb 1}
-
-\section{Feb 3}
 
 \section{Feb 5}
 
@@ -328,7 +387,7 @@ Equivalences of various sorts of cohomologies: Ext in modules and quasicoherent 
 \item The nonrigid, complex $\sigma$--orientation
 \item Cohomological versions of AHS: $BU[2k, \infty)_E$.
 \item The real version of the $\sigma$--orientation: $B\String_E$
-\item Singer--Stong calculation of $H^* BU[2k, \infty)$.
+\item Singer--Stong calculation of $H^* BU[2k, \infty)$. [ASIDE: $H\F_2^* ko$ and the Hopf algebra quotient of $\A_*$.]
 
 \textsc{Power operations}
 
