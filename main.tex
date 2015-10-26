@@ -1,4 +1,4 @@
-\documentclass{amsart}
+\documentclass{article}
 
 %\usepackage{fullpage}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,stmaryrd}
@@ -200,7 +200,7 @@ Before proceeding, here are two important examples:
 If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T(\xi) = S^n \sm (X_+)$.  This is supposed to indicate what Thom spaces are ``doing'': if you feed in the trivial bundle then you get the suspension out, so if you feed in a twisted bundle you should think of it as a \textit{twisted suspension}.
 \end{example}
 
-\begin{example}
+\begin{example}\label{RPnThomExample}
 Let $\xi$ be the tautological $S^0$--bundle over $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, the cofiber degenerates and it follows that $T(\xi) = \RP^\infty$. More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
 \end{example}
 
@@ -236,7 +236,7 @@ BO \times BO \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BO \times BO \a
 \end{tikzcd}
 \end{center}
 We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.}  We are now in a position to see the Thom isomorphism:
-\begin{lemma}[Thom isomorphism, universal example] $MO \sm MO \simeq MO \sm \Susp^\infty_+ BO$.\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}
+\begin{lemma}[Thom isomorphism, universal example] $MO \sm MO \simeq MO \sm \Susp^\infty_+ BO$.\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}\todo{Is it furthermore clear that the cohomological version of this gives an action of $E^* X$ on $E^* T(\xi)$ by the ``Thom diagonal''?}
 \end{lemma}
 \begin{proof}
 Stringing together the naturality properties of the Thom functor outlined above, we can thus make the following calculation:\todo{This Q.E.D.\ block isn't typeset well.}
@@ -266,12 +266,14 @@ E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
 The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence.
 \end{proof}
 
+We'll close out today by using this to actually make a calculation of something. Recall from \Cref{RPnThomExample} that $T(\L - 1 \downarrow \RP^n) = \RP^{n+1}$.  By killing all the homotopy elements in positive degrees, you can also see that the map $MO \to MO(-\infty, 0] = H\Z/2$ is a ring map\todo{This requires some justification, like $MO$ being connective.}, so that we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
+\begin{align*}
+\pi_* (H\Z/2 \sm T(\L - 1)) & \cong \pi_* (H\Z/2 \sm T(0)) & \text{(Thom isomorphism)} \\
+\pi_* (H\Z/2 \sm \Susp^{-1} \Susp^\infty \RP^{n+1}) & \cong \pi_* (H\Z/2 \sm \Susp^\infty_+ \RP^n) & \text{(\Cref{RPnThomExample})} \\
+\widetilde{H\Z/2}_{*+1} \RP^{n+1} & \cong H\Z/2_* \RP^n. & \text{(generalized homology)}
+\end{align*}
+This powers an induction that shows that $H\Z/2_* \RP^\infty$ has a single class in every degree.\todo{Using the cohomology version of this together with the $H\Z/2^* \RP^n$--module structure of $H\Z/2^* T(\L-1)$ deduces the ring structure too.}
 
-
-
-
-
-calculation of $H\F_2^* BO(1)$ and $H\F_2^* MO(1)$ using the module-theoretic part of the Thom isomorphism
 
 
 
