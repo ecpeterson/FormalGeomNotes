@@ -26,7 +26,7 @@
 \newcommand{\R}{\mathbb R}
 \newcommand{\RP}{\R\mathrm P}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\CP}{\C\P}
+\newcommand{\CP}{\C\mathrm P}
 \newcommand{\A}{\widehat{\mathbb{A}}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\M}{\mathcal{M}}
@@ -85,21 +85,21 @@
 \DeclareMathOperator{\hAut}{hAut}
 \DeclareMathOperator{\Coord}{Coord}
 
-% \numberwithin{equation}{section}
+\numberwithin{equation}{section}
 
 \theoremstyle{plain}
-\newtheorem*{theorem}{Theorem}
-\newtheorem*{proposition}{Proposition}
-\newtheorem*{lemma}{Lemma}
-\newtheorem*{corollary}{Corollary}
-\newtheorem*{conjecture}{Conjecture}
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{proposition}[equation]{Proposition}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{corollary}[equation]{Corollary}
+\newtheorem{conjecture}[equation]{Conjecture}
 \theoremstyle{definition}
-\newtheorem*{definition}{Definition}
-\newtheorem*{construction}{Construction}
-\newtheorem*{warning}{Important Warning}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{construction}[equation]{Construction}
+\newtheorem{warning}[equation]{Important Warning}
 \theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{example}{Example}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
 
 \title{Formal Geometry in Algebraic Topology}
 \author{Eric Peterson}
@@ -194,13 +194,41 @@ For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the c
 There's a more usual construction of the Thom space too: the associated disk bundle by gluing an $n$--disk in fiberwise, then taking the one--point compactification: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\] How does this compare? Well, the thickening of $\xi$ is an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$. Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the one--point compactification.
 \end{proof}
 
-examples: trivial bundles give $T(S^n \times X) \simeq S^{n+1} \sm (X_+)$, and $T(\L; BO(1)) = BO(1)$, with subexamples $T(\L; \RP^n) = \RP^{n+1}$
+Before proceeding, here are two important examples:
+\begin{example}
+If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T(\xi) = S^n \sm (X_+)$.  This is supposed to indicate what Thom spaces are ``doing'': if you feed in the trivial bundle then you get the suspension out, so if you feed in a twisted bundle you should think of it as a \textit{twisted suspension}.
+\end{example}
 
-identification of spherical bundles with maps to $BGL_1 \hAut S^{n-1}$, Thom space as a functor off of this slice category
+\begin{example}
+Let $\xi$ be the tautological $S^0$--bundle over $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, the cofiber degenerates and it follows that $T(\xi) = \RP^\infty$. More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
+\end{example}
 
-the $J$--homomorphism as a map $BO(n) \to BGL_1 \hAut S^{n-1}$. compatibility with sums, and especially the block maps $BO(n) \to BO(n+1)$
+Now we catalog a bunch of useful properties of the Thom space functor. Firstly, recall that a spherical bundle over $X$ is the same data as a map $X \to B \GL_1 S^{n-1}$, where $\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback
+\begin{center}
+\begin{tikzcd}
+\GL_1 S^{n-1} \arrow{r} \arrow{d} & F(S^{n-1}, S^{n-1}) \arrow{d} \\
+\Aut_{h\CatOf{Spaces}} S^{n-1} \arrow{r} & \End_{h\CatOf{Spaces}} S^{n-1} \arrow[-,double]{r} & \pi_0 F(S^{n-1}, S^{n-1}).
+\end{tikzcd}
+\end{center}
+We can interpret $T$ as a functor from the slice category over $BGL_1 S^{n-1}$ to $\CatOf{Spaces}$: maps \[Y \xrightarrow{f} X \xrightarrow{\xi} B \GL_1 S^{n-1}\] induce maps $T(f^* \xi) \to T(\xi)$, and $T$ is suitably homotopy-invariant.
 
-definition of a normalized Thom spectrum, the spectra $MO(n)$, and the limiting spectrum $MO$
+Next, a common source of spherical bundles is taking the spherical subbundle of a vector bundle.  Since rank $n$ vector bundles are also classified by an object $BO(n)$, this begets a map $J_{\R}^n: BO(n) \to B \GL_1 S^{n-1}$ for each $n$.  Homotopy theorists are very interested in the block--inclusion maps $i^n: BO(n) \to BO(n+1)$ and the colimit $BO = BO(\infty)$.  The suspension functor induces a map $\GL_1 S^{n-1} \to \GL_1 S^n$, and we are led to ask about the compatibility of these operations.  As a route to answering this, the block--inclusion maps are a special case of a more general direct sum map $\oplus: BO(n) \times BO(m) \to BO(n+m)$, given by the precomposition \[BO(n) = BO(n) \times * \xrightarrow{\operatorname{id} \times \text{triv}} BO(n) \times BO(1) \xrightarrow\oplus BO(n+1).\] The spaces $B \GL_1 S^{n-1}$ enjoy a similar ``collective monoid'' structure, given by taking the fiberwise join two spherical bundles with a common base.
+\begin{lemma}
+The fiberwise join is represented by maps \[B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \to B\GL_1 S^{n+m-1},\] and these maps commute with the block sum maps on the $BO(n)$ family. \qed
+\end{lemma}
+\noindent Again taking a cue from $K$--theory, we take the colimit as $n$ grows large.
+\begin{corollary}
+There is a map of $H$--spaces $J_{\R}: BO \to B\GL_1 \S$ called the \textit{stable $J$--homomorphism}. \qed
+\end{corollary}
+\noindent Finally, we can ask about the compatibility of $T$ with all of this:
+\begin{lemma}
+$T$ is monoidal: it carries fiberwise joins to smash products of spaces.
+\end{lemma}
+
+We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}^n: BO(n) \to B\GL_1 S^{n-1}$ give Thom spaces $T(J_{\R}^n)$, equipped with maps\todo{Fix this equation.} \[\Susp T(J_{\R}^n) = T(J_{\R}^n \oplus \text{triv}) \to T(J_{\R}^{n+1}).\] We assemble this data into a single object: \[MO := \colim_n \Susp^{-n} T(J_{\R}^n).\]
+
+
+
 
 Mahowald's Thom isomorphisms
 
@@ -287,7 +315,9 @@ using the splitting principle to describe $\Div^+_n \CP^\infty_E = BU(n)_E$, and
 
 character sheaves, $\moduli{fg}$ versus $\moduli{fg}^{(1)}$, graded versus ungraded things. this is explored in some detail around Remark 3.14 and formula (3.4) in Paul's notes on $\CatOf{QCoh}(\moduli{fg})$.
 
-A proof of Quillen's theorem appears in II.8 in Adams's blue book.
+A proof of Quillen's theorem appears in II.8 in Adams's blue book. This actually looks like some of it is amenable to attack under the formal group theoretic perspective? Doing this ``right'' would be tricky: there are odd--dimensional phenomena, and the Bockstein actually matters. Still, a thought.
+
+Make clear the distinction between $E_n$ and $\widehat{E(n)}$. Maybe explain the Devinatz--Hopkins remark that $r: \widehat{E(n)} \to E_n$ is an inclusion of fixed points and as such does not classify the versal formal group law.
 
 
 
