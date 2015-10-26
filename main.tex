@@ -68,6 +68,7 @@
 \newcommand{\GL}{\mathit{GL}}
 \newcommand{\perf}{\mathrm{perf}}
 \newcommand{\gpd}{\mathrm{gpd}}
+\newcommand{\id}{\mathrm{id}}
 
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\Spf}{Spf}
@@ -195,7 +196,7 @@ There's a more usual construction of the Thom space too: the associated disk bun
 \end{proof}
 
 Before proceeding, here are two important examples:
-\begin{example}
+\begin{example}\label{TrivialBundleThomExample}
 If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T(\xi) = S^n \sm (X_+)$.  This is supposed to indicate what Thom spaces are ``doing'': if you feed in the trivial bundle then you get the suspension out, so if you feed in a twisted bundle you should think of it as a \textit{twisted suspension}.
 \end{example}
 
@@ -222,15 +223,53 @@ There is a map of $H$--spaces $J_{\R}: BO \to B\GL_1 \S$ called the \textit{stab
 \end{corollary}
 \noindent Finally, we can ask about the compatibility of $T$ with all of this:
 \begin{lemma}
-$T$ is monoidal: it carries fiberwise joins to smash products of spaces.
+$T$ is monoidal: it carries fiberwise joins to smash products of spaces. \qed
 \end{lemma}
 
-We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}^n: BO(n) \to B\GL_1 S^{n-1}$ give Thom spaces $T(J_{\R}^n)$, equipped with maps\todo{Fix this equation.} \[\Susp T(J_{\R}^n) = T(J_{\R}^n \oplus \text{triv}) \to T(J_{\R}^{n+1}).\] We assemble this data into a single object: \[MO := \colim_n \Susp^{-n} T(J_{\R}^n).\]
+We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}^n: BO(n) \to B\GL_1 S^{n-1}$ give Thom spaces $T(J_{\R}^n)$,\todo{Be careful about dimension here: you really mean a reduced tautological bundle, related to how $BO$ has only one connected component.} equipped with maps\todo{Fix this equation.} \[\Susp T(J_{\R}^n) = T(J_{\R}^n \oplus \text{triv}) \to T(J_{\R}^{n+1}).\] Setting $MO(n) = \Susp^{-n} \Susp^\infty T(J_{\R}^n)$, we again assemble this data into a single object: \[MO := \colim_n MO(n) = \colim_n \Susp^{-n} T(J_{\R}^n).\]
+
+The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces.  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
+\begin{center}
+\begin{tikzcd}
+BO \times BO \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
+& B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
+\end{tikzcd}
+\end{center}
+We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.}  We are now in a position to see the Thom isomorphism:
+\begin{lemma}[Thom isomorphism, universal example] $MO \sm MO \simeq MO \sm \Susp^\infty_+ BO$.\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}
+\end{lemma}
+\begin{proof}
+Stringing together the naturality properties of the Thom functor outlined above, we can thus make the following calculation:\todo{This Q.E.D.\ block isn't typeset well.}
+\begin{align*}
+T(\mu \circ (J_{\R} \times J_{\R})) & \simeq T(\mu \circ (J_{\R} \times J_{\R}) \circ \sigma) & \text{(homotopy invariance)} \\
+& \simeq T(\mu \circ (J_{\R} \times 0)) & \text{(constructed lift)} \\
+& \simeq T(J_{\R}) \sm T(0) & \text{(monoidality)} \\
+& \simeq MO \sm \Susp^\infty_+ BO & \text{(definition of $MO$, \Cref{TrivialBundleThomExample})} \\
+T(J_{\R}) \sm T(J_{\R}) & \simeq MO \sm \Susp^\infty_+ BO & \text{(monoidality)} \\
+MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. & \text{(definition of $MO$) \qedhere}
+\end{align*}
+\end{proof}
+
+From here, the general version of Thom's theorem follows quickly:
+\begin{theorem}[Thom isomorphism]
+Let $\xi: X \to BO$ classify a vector bundle and let $\phi: MO \to E$ be a map of ring spectra. Then there is an equivalence of $E$--modules \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
+\end{theorem}
+\begin{proof}[Modifications to above proof]
+To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma: BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  This gives an equivalence $MO \sm T(\xi) \simeq MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram
+\begin{center}
+\begin{tikzcd}
+E \sm T(\xi) \arrow[densely dotted]{r}{\simeq} \arrow{d}{\eta_{MO} \sm \id \sm \id} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm \id \sm \id} \\
+MO \sm E \sm T(\xi) \arrow{r}{\simeq} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id} & MO \sm E \sm \Susp^\infty_+ X \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id} \\
+E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
+\end{tikzcd}
+\end{center}
+The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence.
+\end{proof}
 
 
 
 
-Mahowald's Thom isomorphisms
+
 
 calculation of $H\F_2^* BO(1)$ and $H\F_2^* MO(1)$ using the module-theoretic part of the Thom isomorphism
 
