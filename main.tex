@@ -286,18 +286,25 @@ This powers an induction that shows that $H\Z/2_* \RP^\infty$ has a single class
 
 \section{Jan 29: Cohomology rings and affine schemes}
 
-\todo{Decide on $\Z/2$ versus $\F_2$. I think in the previous lecture you were avoiding $\F_2$ because it got in the way of your homology subscripts.}An abbreviated summary of this semester is that we're going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents.  For any ``test $\F_2$--algebra'' $T$, we set \[\Spec(R)(T) := \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R) := \CatOf{Algebras}_{\F_2/}(R, T).\]  The centerpiece of thinking about rings in this way is to translate between a presentation of $R$ as a quotient of a free algebra and a presentation of $(\Spec R)(T)$ as selecting tuples of elements in $T$ subject to certain conditions.  Consider the following example:
+\todo{Decide on $\Z/2$ versus $\F_2$. I think in the previous lecture you were avoiding $\F_2$ because it got in the way of your homology subscripts.}An abbreviated summary of this semester is that we're going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents.  For any ``test $\F_2$--algebra'' $T$, we set \[\Spec(R)(T) := \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R) := \CatOf{Algebras}_{\F_2/}(R, T).\]  More generally, we have the following definition:
+\begin{definition}
+An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to \CatOf{Sets}$ which is (noncanonically) isomorphic to $\Spec R$ for some $\F_2$--algebra $R$.
+\end{definition}
+
+The centerpiece of thinking about rings in this way is to translate between a presentation of $R$ as a quotient of a free algebra and a presentation of $(\Spec R)(T)$ as selecting tuples of elements in $T$ subject to certain conditions.  Consider the following example:
 \begin{example}
 Set $R_1 = \F_2[x]$.  Then \[(\Spec R_1)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x], T)\] is determined by where $x$ is sent --- i.e., this Hom--set is naturally isomorphic to $T$ itself.  Consider also what happens when we impose a relation by passing to $R_2 = \F_2[x] / (x^{n+1})$.  The value \[(\Spec R_2)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x] / (x^{n+1}), T)\] of the associated affine scheme is again determined by where $x$ is sent, but now $x$ can only be sent to elements which are nilpotent of order $n+1$.  These schemes are both important enough that we give them special names:
 \begin{align*}
 \mathbb A^1 & := \Spec \F_2[x], & \mathbb A^{1, (n)} & := \Spec \F_2[x] / (x^{n+1}).
 \end{align*}
-The symbol ``$\mathbb A^1$'' is pronounced ``the affine line''.  Note that $\mathbb A^{1, (n)}$ is always subfunctor of $\mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor at the map with $x \mapsto 0$.  Accordingly, we pronounce ``$\mathbb A^{1, (n)}$'' as ``the $n${\th} order neighborhood of zero in the affine line''.
+The symbol ``$\mathbb A^1$'' is pronounced ``the affine line''.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $n${\th} order neighborhood of the origin in the affine line''.
 \end{example}
+
+\todo{Talk more about subobjects?  Say what a closed subscheme of an affine scheme is?}
 
 We can also express in this language another common object in algebraic topology: the Hopf algebra, which arises when taking the mod--$2$ cohomology of an $H$--space.  In addition to the usual cohomology, the extra pieces of data are those induced by the $H$--space multiplication and unit map, which on cohomology beget a diagonal map $\Delta$ and an antipode map $\chi$.  Running through the axioms, one quickly checks the following:
 \begin{lemma}
-For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \textit{group schemes}.  Conversely, a choice of group structure on $(\Spec R)(T)$ natural in $T$ endows $R$ with the structure of a Hopf algebra. \qed
+For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \textit{group schemes}.  Conversely, a choice of group structure on $(\Spec R)(T)$ natural in $T$ endows $R$ with the structure of a Hopf algebra. \todo{Maybe write this out, if you're going to be using this equivalence all semester.} \qed
 \end{lemma}
 
 \begin{example}\label{InformalAdditiveGroupExample}
@@ -319,40 +326,31 @@ We define the \textit{multiplicative group scheme} by\todo{Do you want this to b
 \end{align*}
 \end{example}
 
-Let's now consider the example that we closed with last time, where we calculated $H\Z/2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  However, we will quickly see that the target category of this construction is mildly too lax to be truly useful.  Here are the three deficiencies we will work toward fixing, some slowly and some quickly:
-\begin{enumerate}
-\item \label{GradingDeficiency} Cohomology rings are \emph{graded}, and maps of spaces respect this grading.
-\item \label{SteenrodDeficiency} Cohomology rings receive an action of the Steenrod algebra, and maps of spaces respect this action.
-\item \label{InfiniteCplxDeficiency} Both of these are complicated further when taking the cohomology of an infinite complex.
-\item \label{SkewCommutativeDeficiency} (Cohomology rings for more elaborate cohomology theories are only skew-commutative, but ``$\Spec$'' requires a commutative input.)
-\end{enumerate}
-
-We will turn first to deficiency \ref{GradingDeficiency}.  There is a standard construction in algebraic geometry that recovers gradings:
-\begin{lemma}
-A graded ring $R$ is equivalent data to an affine scheme $\Spec R$ with an action by $\mathbb G_m$.
-\end{lemma}
-\begin{proof}
-\todo{Cite this.} The action map $\mathbb G_m \times \Spec R \to \Spec R$ is equivalent to a ring map $R \to R[u^\pm]$.  Send homogeneous elements $r \in R$ of degree $n$ to $u^{-n} R$ and extend linearly.
-\end{proof}
-\noindent The analogous operation in algebraic topology is to replace $H\F_2$ by the periodified spectrum $H\F_2P = \bigvee_{j=-\infty}^\infty \Susp^j H\F_2$ with coefficient ring $\pi_* H\F_2P = \F_2[u^\pm]$.  A cohomology class $\omega \in H\F_2^n(X)$ is represented in periodified cohomology by the de-scaled class $u^{-n} \omega \in H\F_2P^0(X)$.\todo{This is really lacking substance.}
-
-
-
-
-Deficiencies \ref{SteenrodDeficiency} and \ref{InfiniteCplxDeficiency} we will investigate next time, and deficiency \ref{SkewCommutativeDeficiency} will be something of a motif through the semester.  In the meantime, though, we will try to be content with what we have.  In fact, this construction of taking ``$\Spec$'' of a cohomology ring will be so frequently useful that we give it a notation all its own.
+Let's now consider the example that we closed with last time, where we calculated $H\Z/2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  This is such a useful thing to do that we will give it a notation all of its own:
 
 \begin{definition}
-Let $X$ be a finite cell complex, so that $H\F_2^*(X)$ is a ring which is finite--dimensional as an $\F_2$--vector space.  We will write \[X_{H\F_2} = \Spec H\F_2P^0 X = \Spec H\F_2^* X\] for the corresponding finite affine scheme (with $\G_m$--action).
+Let $X$ be a finite cell complex, so that $H\F_2^*(X)$ is a ring which is finite--dimensional as an $\F_2$--vector space.  We will write \[X_{H\F_2} = \Spec H\F_2^* X\] for the corresponding finite affine scheme.
 \end{definition}
 
 \begin{example}
-Putting this all together, we have calculated \[\RP^n_{H\Z/2} \cong \mathbb A^{1, (n)}.\]
+Putting together the discussions from this time and last time, in the new notation we have calculated \[\RP^n_{H\Z/2} \cong \mathbb A^{1, (n)}.\]
 \end{example}
 
-So far, this example just restates things we knew in a mildly different language.  Our goal now is to incorporate as much information as we have about these cohomology rings $H\F_2^* \RP^n$ into this description, which will result in us giving a more ``precise'' name for this object.  Along the way, we will also address two of our deficiencies.
+So far, this example just restates things we knew in a mildly different language.  Our driving goal for the remainder of today and for tomorrow is to incorporate as much information as we have about these cohomology rings $H\F_2^* \RP^n$ into this description, which will result in us giving a more ``precise'' name for this object.  Along the way, we will discover why $X$ had to be a \emph{finite} complex and how to think about more general $X$.  For now, though, let's content ourselves with investigating the Hopf algebra structure on $H\F_2^* \RP^\infty$.
 
 \begin{example}\label{RPExampleFaulty}
-Recall that $\RP^\infty$ is an $H$--space, using either the identification $\RP^\infty \simeq K(\Z/2, 1)$ and the sum on cohomology or, equivalently, the identification $\RP^\infty \simeq BO(1)$ and the tensor product of real line bundles.  In both cases, this induces a Hopf algebra diagonal \[H\F_2P^0 \RP^\infty \otimes H\F_2P^0 \RP^\infty \xleftarrow\Delta H\F_2P^0 \RP^\infty\] which we would like to analyze.  This map is determined by where it sends the class $u^{-1} x$, and because it must simultaneously respect gradings and belong to a Hopf algebra structure it is forced to take the following form: \[\Delta(u^{-1} x) = u^{-1} x \otimes 1 + 1 \otimes u^{-1} x.\]  Noticing that this is exactly the diagonal map in \Cref{InformalAdditiveGroupExample}, we tentatively identify $\RP^\infty_{H\F_2}$ with the additive group --- but bear in mind that we haven't yet discussed deficiency \ref{InfiniteCplxDeficiency}, so this will probably need realignment.
+Recall that $\RP^\infty$ is an $H$--space in two equivalent ways:
+\begin{enumerate}
+\item There is an identification $\RP^\infty \simeq K(\Z/2, 1)$, and the $H$--space structure is induced by the sum on cohomology.
+\item There is an identification $\RP^\infty \simeq BO(1)$, and the $H$--space structure is induced by the tensor product of real line bundles.
+\end{enumerate}
+In both cases, this induces a Hopf algebra diagonal \[H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \xleftarrow\Delta H\F_2^* \RP^\infty\] which we would like to analyze.  This map is determined by where it sends the class $x$, and because it must simultaneously respect gradings it must be of the form $\Delta x = ax_1 + bx_2$ for some constants $a, b \in \F_2$.  Furthermore, because it belongs to a Hopf algebra structure, it must satisfy the unitality axiom
+\begin{center}
+\begin{tikzcd}
+H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\begin{array}{c} \epsilon \otimes \id \\ \id \otimes \epsilon \end{array}} \arrow[leftarrow, bend right]{rr}{\id} & H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\Delta} & H\F_2^* \RP^\infty.
+\end{tikzcd}
+\end{center}
+and hence it takes the form \[\Delta(x) = x_1 + x_2.\]  Noticing that this is exactly the diagonal map in \Cref{InformalAdditiveGroupExample}, we tentatively identify ``$\RP^\infty_{H\F_2}$'' with the additive group.  This is extremely suggestive but does not take into account the fact that $\RP^\infty$ is an infinite complex, so we can't really write ``$\RP^\infty_{H\F_2}$'' just yet.  We will straighten this out tomorrow.
 \end{example}
 
 
@@ -364,7 +362,33 @@ Recall that $\RP^\infty$ is an $H$--space, using either the identification $\RP^
 
 \section{Feb 1: The Steenrod algebra}
 
-We now consider the action of the Steenrod algebra.  Naively approached, this does not fit into the framework we've been sketching so far: the Steenrod algebra is a noncommutative algebra, and so the action map \[\mathcal A^* \otimes H\F_2P^0 X \to H\F_2P^0 X\] will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, since the Cartan formula on $\mathcal A^*$ is evidently cocommutative.  Second, if $X$ is a \emph{finite} complex, then applying Spanier--Whitehead duality gives rise to the following map:
+
+We left off yesterday complaining that our definition was only made for finite complexes, and that this was getting in the way of a nice theorem.  However, had we naively defined $X_{H\F_2}$ for infinite complexes $X$, we would have quickly seen that the target category of this construction is somewhat too lax to be truly useful, and we would have gotten ``the wrong answer'' for several $X$.  Without going into detail yet about the bad examples we're trying to avoid, here are the deficiencies we will work toward fixing, some quickly and some slowly:
+\begin{enumerate}
+\item \label{GradingDeficiency} Cohomology rings are \emph{graded}, and maps of spaces respect this grading.
+\item \label{SteenrodDeficiency} Cohomology rings receive an action of the Steenrod algebra, and maps of spaces respect this action.
+\item \label{InfiniteCplxDeficiency} Both of these are complicated further when taking the cohomology of an infinite complex.
+\item \label{SkewCommutativeDeficiency} (Cohomology rings for more elaborate cohomology theories are only skew-commutative, but ``$\Spec$'' requires a commutative input.)
+\end{enumerate}
+Today we will fix all these deficiencies except for deficiency \ref{SkewCommutativeDeficiency}, which doesn't matter with mod--$2$ coefficients but which will be something of a bugbear throughout the rest of the semester.
+
+
+------ THINGS BELOW THIS LINE ARE JUMBLED ------
+
+Let's begin with deficiency \ref{GradingDeficiency}.  There is a standard construction in algebraic geometry that tracks gradings:
+\begin{lemma}\todo{Cite this: Strickland FSFG, Prop 2.96.}
+A graded ring $R$ is equivalent data to an affine scheme $\Spec R$ with an action by $\mathbb G_m$.
+\end{lemma}
+\begin{proof}
+\todo{Write this out more fully; see the above citation.} The action map $\mathbb G_m \times \Spec R \to \Spec R$ is equivalent to a ring map $R \to R[u^\pm]$.  Send homogeneous elements $r \in R$ of degree $n$ to $u^{-n} R$ and extend linearly.
+\end{proof}
+\noindent The analogous operation in algebraic topology is to replace $H\F_2$ by the periodified spectrum $H\F_2P = \bigvee_{j=-\infty}^\infty \Susp^j H\F_2$ with coefficient ring $\pi_* H\F_2P = \F_2[u^\pm]$.  A cohomology class $\omega \in H\F_2^n(X)$ is represented in periodified cohomology by the de-scaled class $u^{-n} \omega \in H\F_2P^0(X)$.\todo{This is really lacking substance. You actually do get a coaction by using $\xi_0^\pm \in \mathcal A_*P$.}
+
+
+
+
+
+In an attempt to resolve deficiency \ref{SteenrodDeficiency} from last time, we now consider the action of the Steenrod algebra on cohomology rings.  Naively approached, this does not fit into the framework we've been sketching so far: the Steenrod algebra is a noncommutative algebra, and so the action map \[\mathcal A^* \otimes H\F_2P^0 X \to H\F_2P^0 X\] will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, since the Cartan formula on $\mathcal A^*$ is evidently cocommutative.  Second, if $X$ is a \emph{finite} complex, then applying Spanier--Whitehead duality gives rise to the following map:
 \begin{center}
 \begin{tikzcd}
 \mathcal A^* \otimes H\F_2P^0 DX \arrow{r} \arrow[-,double]{d} & H\F_2P^0 DX \arrow[-,double]{d} \\
@@ -412,6 +436,9 @@ The former is populated by polynomials and the latter is populated by power seri
 Finally, the formula $\RP^\infty_{H\F_2} \cong \G_a$ is meant to point out that this language of formal schemes has a very good compression ratio: you can fit a lot of information into a very tiny space.  This formula simultaneously embodies its cohomology ring, its diagonal, and how the dual Steenrod algebra coacts.
 
 \todo{Include a recursive formula for the antipode map, coming from power series inversion.}
+
+
+
 
 
 
