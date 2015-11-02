@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{book}
 
 %\usepackage{fullpage}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,stmaryrd}
@@ -86,6 +86,7 @@
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\hAut}{hAut}
 \DeclareMathOperator{\Coord}{Coord}
+\DeclareMathOperator{\Tor}{Tor}
 
 \numberwithin{equation}{section}
 
@@ -129,7 +130,7 @@ I do want to assemble course notes from this class, but it's unlikely that I wil
 
 \tableofcontents
 
-\newpage
+\chapter{Introduction}
 
 \section{Jan 25: Introduction}
 
@@ -187,6 +188,12 @@ For $E$ an even--periodic cohomology theory, \[\Spec E_* MU[6, \infty) \cong C^3
 \noindent Our real goal is to understand theorems like these.  The structure of the class will be, more or less, to work through a sequence of case studies where this perspective on algebraic topology shines through most brightly.  We'll start by working through Thom's calculation of the homotopy of $MO$, which simultaneously holds the attractive features of being free of technical complexity while revealing essentially all of the structural complexity.  Having seen that through to the end, we'll then work on reinforcing our technical underpinnings, and then we'll venture on to other examples.  The overriding theme of the class will be that this is a good organizing principle that gives us one avenue of insight into how homotopy theory functions. 
 
 
+
+
+
+
+
+\chapter{Unoriented bordism}
 
 
 \section{Jan 27: Thom spectra and the Thom isomorphism}
@@ -435,8 +442,8 @@ As group schemes, we have calculated \[\RP^\infty_{H\F_2} \cong \G_a.\]
 
 Additionally, this choice allows us to give a name to $\Spec \mathcal AP_0$.  Note that the following morphism sets are very different:
 \begin{align*}
-\CatOf{GroupSchemes}_{\F_2/}(\mathbb G_a, \mathbb G_a) & \cong \CatOf{HopfAlgebras}_{\F_2/}(\F_2[x], \F_2[x]) \\
-\CatOf{FormalGroups}_{\F_2/}(\G_a, \G_a) & \cong \CatOf{HopfProAlgebras}_{\F_2/}(\F_2\llbracket x \rrbracket, \F_2\llbracket x \rrbracket).
+\CatOf{GroupSchemes}_{/\F_2}(\mathbb G_a, \mathbb G_a) & \cong \CatOf{HopfAlgebras}_{\F_2/}(\F_2[x], \F_2[x]) \\
+\CatOf{FormalGroups}_{/\F_2}(\G_a, \G_a) & \cong \CatOf{HopfProAlgebras}_{\F_2/}(\F_2\llbracket x \rrbracket, \F_2\llbracket x \rrbracket).
 \end{align*}
 The former is populated by polynomials satisfying the homomorphism condition and the latter is populated by power series satisfying the homomorphism condition.  Since our description of $\Spec \mathcal AP_0$ involves power series, we can amp up this observation to a scheme: \[\underline{\operatorname{Hom}}(X, Y)(T) = \left\{ (u, f) \middle| \begin{array}{c} u: \Spec T \to \Spec \F_2, \\ f: u^* X \to u^* Y \end{array}\right\}\] and conclude that the correct name for $\Spec \mathcal AP_0$ is \[\Spec \mathcal AP_0 \cong \underline{\Aut}(\G_a).\]
 
@@ -457,6 +464,18 @@ moral value: discerning $2$ from $0$ by $\Sq^1$
 
 by--hand construction with $H\F_2$--injective towers
 
+absolute convergence for $\pi$--finite spectra
+
+convergence to the $2$--completion for bounded--below spectra
+
+the bar complex and $A_\infty$ ring spectra
+
+the Hurewicz edge homomorphism
+
+
+
+\section{Feb 5: Comodule cohomology I: group cohomology}
+
 identification of the $E_2$ page: $\Ext$ in the category of comodules
 
 Example: $\Ext$ in comodules for the group algebra agrees with group cohomology
@@ -467,12 +486,24 @@ degenerate example: $H\F_2^{H\F_2}$
 
 picture of the cohomology of the structure sheaf
 
+Equivalence between comodules and quasicoherent sheaves
+
+Hopf algebras from groups
+
+Example: A(1) is the group ring on a dihedral group
+
+Push and pull functors for maps of groups
+
+Cohomology for induced and restricted modules
+
+Consequence: cohomology of a module induced from the trivial group = global sections
 
 
 
 
 
-\section{Feb 5: The unoriented bordism ring}
+
+\section{Feb 8: The unoriented bordism ring}
 
 the splitting principle
 
@@ -483,6 +514,122 @@ identification of $MO^{H\F_2}$ with $\Coord(\RP^\infty_{H\F_2})$
 Hood made the following nice observation. $MO^{H\F_2}$ is the scheme of coordinates on $\RP^\infty_{H\F_2}$, with coordinate ring $\F_2[x_1, x_2, \ldots]$ and corresponding series $f(t) = \sum_{n=1}^\infty x_{n-1} t^n$ and $x_0 = 1$ implicit. This identification is equivalent to Adams's observation that $MO$ is the ``free homotopy ring spectrum'' on $MO(1)$ his sense. Then, $\Spec \mathcal{A}_* = \underline{\operatorname{Aut}}(\G_a)$ acts on this by coordinate changes (and we can pick a left-- or right--action as we see fit). If we pick an action by postcomposition, then we can do the following nice thing: set $f(t) = f_2(t) + g(t)$, where $f_2(t)$ contains just the terms in degrees perfect powers of $2$. Then $f_2^{-1}(f(t))$ is another coordinate with no terms in degrees perfect powers of $2$, and any nontrivial automorphism applied to this ``reduced'' series will re-introduce terms in degrees perfect powers of $2$.  So, this is a canonical form for the series under the $\underline{\operatorname{Aut}}(\G_a)$--action which admits no further automorphisms. It should follow that $H^*(\context{H\F_2}; \context{H\F_2}(MO))$ has amplitude $0$ and takes the form $\F_2[x_j \mid j \ne 2^n - 1]$, i.e., whose generating function is arbitrary other than having no terms in degrees perfect powers of $2$.
 
 This means that the Adams spectral sequence degenerates and this computes $\pi_* MO$.  (It would be nice to interpret this in terms of a logarithm on $\RP^\infty_{H\F_2}$.)  It also means that the Hurewicz map is injective, hence that $MO$ is a retract of $H\F_2 \sm MO$, hence that $MO$ is an $H\F_2$--module, hence that $MO$ is a wedge of shifts of $H\F_2$.
+
+
+% What is MO^MO, if MO^{HF_2} is already Coord(Ga)?
+
+
+
+
+
+
+\chapter{Finite spectra}
+
+
+\section{The context of a spectrum}
+
+The descent object for the unit map $\S \to E$
+
+Simplicial schemes and the commutativity hypothesis
+
+Sheaves on simplicial schemes, cohomology of sheaves
+
+(Basic properties of simplicial schemes: flat and closed maps? Landweber's theorem?)
+
+Groupoid schemes and the flatness hypothesis
+
+
+
+
+
+
+\section{Comodule cohomology II: groupoid cohomology}
+
+Natural equivalence of groupoids induces an equivalence of comodule categories
+
+Deeper natural equivalence: stackification and locality
+
+The $E$-Adams spectral sequence
+
+
+
+\section{Quillen's theorem}
+
+
+
+\section{The structure of $\moduli{fg}$}
+
+Rational logarithms
+
+Lazard's freeness theorem
+
+$p$-typification, the relation between $p$-typical logarithms and the $p$-series
+
+Classification of closed substacks
+
+Classification of closed points
+
+Lubin--Tate deformation theories
+
+The nice picture I drew for Catherine
+
+
+\section{The nilpotence theorem}
+
+Every skew field spectrum is a wedge of K(n)s
+
+
+\section{The periodicity theorem}
+
+Classification of the thick subcategories
+
+Balmer's Spc functor
+
+
+\section{Chromatic localizations}
+
+
+
+
+\chapter{The Ravenel-Wilson calculations}
+\todo{This is a bad name.}
+
+
+\section{The Ravenel-Wilson calculations}
+
+$BS^1[p^j]_{K(n)} = BS^1_{K(n)}[p^j]$
+
+Coalgebraic rings and ring-valued affine schemes
+
+The bar spectral sequence, naturality
+
+$K(n)_* K(\Z/p^j, q) = \operatorname{Alt}^q BS^1_{K(n)}[p^j]$
+
+The calculation of the Hopf ring $H_* MU_*$
+
+Goerss's result on $H_* E_*$ for Landweber flat $E$
+
+
+\section{Dieudonn\'e modules}
+
+Curves on a formal group
+
+The de Rham crystal of a formal group
+
+The practical approach: projective generators of finite Hopf algebras
+
+
+
+
+
+\chapter{The $\sigma$-orientation}
+
+\section{Schemes for finite $K$--theory spaces}
+
+Divisors and schemes of divisors on 1-dimensional formal groups
+
+$BU(n)_E$, $BU_E$, and $(BU x \Z)_E$
+
 
 
 
@@ -517,11 +664,10 @@ A proof of Quillen's theorem appears in II.8 in Adams's blue book. This actually
 
 Make clear the distinction between $E_n$ and $\widehat{E(n)}$. Maybe explain the Devinatz--Hopkins remark that $r: \widehat{E(n)} \to E_n$ is an inclusion of fixed points and as such does not classify the versal formal group law.
 
+Mike says that in unpublished AHS work they got at $MString^E$ using an equivalence $M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S$ and a collapsing $\Tor$ spectral sequence.
 
 
 
-
-\section*{Feb 8}
 
 \section*{Feb 10}
 
@@ -644,7 +790,6 @@ Make clear the distinction between $E_n$ and $\widehat{E(n)}$. Maybe explain the
 \item Hovey--Ravenel on nonorientations of $E_n$ by $MO[k, \infty)$. Other things in H--R?
 \item Wood's cofiber sequence and $KO_{(p \ge 3)}$
 \item The Serre--Tate theorem
-\item The thick subcategory theorem.  Nilpotence and periodicity.
 \item The chromatic spectral sequence, computations of $\pi_* L_{E(n)} \S$ for low $n$.
 \item The fundamental domain of $\pi_{GH}$
 \item Orientations and the functor $\gl_1$.
