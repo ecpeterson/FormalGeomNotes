@@ -503,19 +503,41 @@ We draw this into the diagram as
 \end{center}
 where the vertical line indicates the nontrivial coaction involving $\xi_1$.  We can now see what trading maps for cofiber sequences has bought us: mod--$2$ cohomology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.  The Adams spectral sequence, which we will presently construct, says that this process is in a certain sense \emph{exhaustive}.  It has the signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, \F_2) \Rightarrow (\pi_* \S^0)^\wedge_2,\] i.e., the $2$--primary component of the maps $\Susp^* \S^0 \to \S^0$ can be detected as a subquotient of all possible extensions of comodules over the dual Steenrod algebra.
 
+To construct the spectral sequence, we will write down the first thing that comes to mind involving the Hurewicz homomorphism.  Our fuss above can be interpreted as trying to distinguish elements which are in the kernel of the Hurewicz image.  This kernel has a topological incarnation in the fiber sequence: \[\overline{H\F_2} \to \S \to H\F_2.\]  It, too, carries a Hurewicz fiber sequence \[\overline{H\F_2}^{\sm 2} \to \overline{H\F_2} \to H\F_2 \sm \overline{H\F_2}\] which we can hope to use to further distinguish elements.  Iterating this process yields a filtration:
+\begin{center}
+\begin{tikzcd}
+\S \arrow{d} & \overline{H\F_2} \arrow{l} \arrow{d} & \overline{H\F_2}^{\sm 2} \arrow{l} \arrow{d} & \overline{H\F_2}^{\sm 3} \arrow{l} \arrow{d} & \cdots \arrow{l} \\
+H\F_2 & H\F_2 \sm \overline{H\F_2} & H\F_2 \sm \overline{H\F_2}^{\sm 2} & H\F_2 \sm \overline{H\F_2}^{\sm 3} & \cdots
+\end{tikzcd}
+\end{center}
+and hence a spectral sequence by applying $\pi_*$.
+
+\begin{example}
+Let's consider what happens to the element $2 \in \pi_0 \S$ considered above.  It lies in the kernel of the map to $\pi_0 H\F_2$, so it lifts (uniquely) to an element $\overline 2 \in \pi_0 \overline{H\F_2}$.  The map $\overline{H\F_2} \to H\F_2 \sm \overline{H\F_2}$ is nontrivial on $\pi_0$, and since $\overline 2$ generates $\pi_0 \overline{H\F_2}$ it follows that $\overline 2$ must have nontrivial image in $\pi_0 (H\F_2 \sm \overline{H\F_2})$.\todo{Yuck, this line splitting.}  We can re-express this target using the cofiber sequence \[H\F_2 \sm \S \xrightarrow{\eta_R} H\F_2 \sm H\F_2 \xrightarrow{/\eta_R} \Susp H\F_2 \sm \overline{H\F_2},\] so that $\pi_0 (H\F_2 \sm \overline{H\F_2})$ is isomorphic to $\pi_1(H\F_2 \sm H\F_2) \cong \mathcal A_1$.  The only nontrivial element for $\overline 2$ to be sent to is $\xi_1$ --- not coincidentally, the element appearing in our extension.\todo{I wonder if this can be phrased more tightly than ``oh, look, that's probably not a coincidence.''}
+\end{example}
+
+\begin{theorem}
+If $X$ is a spectrum with finitely many homotopy groups, all finite, then this spectral sequence converges to $\pi_* X$. \qed \todo{Prove this.}
+\end{theorem}
+
+\begin{theorem}
+If $X$ is any spectrum that is bounded below, then this spectral sequence converges to the $2$--completion $\pi_* X^\wedge_2$. \qed \todo{Maybe don't prove this? I don't know how to deal with $\Z$--towers, actually. At least cite it, anyway.}
+\end{theorem}
+
+\begin{theorem}
+Hopefully we've set this up so that it's obvious that the $0$--line has the Hurewicz homomorphism in it.  Maybe this needs comparison to the constant tower at $\S$?
+\end{theorem}
+
+What remains to do is to identify the information in this spectral sequence with the story that we began the hour with.  In order to do this, we will have to investigate a little homological algebra.  We will do this next time.
 
 
 
 
-by--hand construction with $H\F_2$--injective towers
 
-absolute convergence for $\pi$--finite spectra
 
-convergence to the $2$--completion for bounded--below spectra
 
-the bar complex and $A_\infty$ ring spectra
 
-the Hurewicz edge homomorphism
+
 
 
 
@@ -543,6 +565,8 @@ Cohomology for induced and restricted modules
 
 Consequence: cohomology of a module induced from the trivial group = global sections
 
+Comparison with Yoneda extensions
+
 
 
 
@@ -561,7 +585,7 @@ Hood made the following nice observation. $MO^{H\F_2}$ is the scheme of coordina
 This means that the Adams spectral sequence degenerates and this computes $\pi_* MO$.  (It would be nice to interpret this in terms of a logarithm on $\RP^\infty_{H\F_2}$.)  It also means that the Hurewicz map is injective, hence that $MO$ is a retract of $H\F_2 \sm MO$, hence that $MO$ is an $H\F_2$--module, hence that $MO$ is a wedge of shifts of $H\F_2$.
 
 
-% What is MO^MO, if MO^{HF_2} is already Coord(Ga)?
+\todo{What is $MO^MO$, if $MO^{H\F_2}$ is already $Coord(\G_a)$?}
 
 
 
@@ -572,6 +596,8 @@ This means that the Adams spectral sequence degenerates and this computes $\pi_*
 
 
 \section{The context of a spectrum}
+
+The bar complex and $A_\infty$ ring spectra
 
 The descent object for the unit map $\S \to E$
 
@@ -725,7 +751,7 @@ Mike says that in unpublished AHS work they got at $MString^E$ using an equivale
 
 + Three definitions of complex orientable / oriented cohomology theories.
 + Some proofs: the splitting principle, Chern roots, diagrammatic Adam's condition, ... .
-+ $CP^infty_E$ is a formal group for an orientable theory $E$.
++ $\CP^\infty_E$ is a formal group for an orientable theory $E$.
 + Examples: $HZ$ gives $Ga$, $KU$ gives $Gm$.
 
 ---Day 3
