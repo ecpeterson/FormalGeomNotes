@@ -88,6 +88,7 @@
 \DeclareMathOperator{\hAut}{hAut}
 \DeclareMathOperator{\Coord}{Coord}
 \DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Cotor}{Cotor}
 
 \numberwithin{equation}{section}
 
@@ -516,6 +517,8 @@ and hence a spectral sequence by applying $\pi_*$.
 Let's consider what happens to the element $2 \in \pi_0 \S$ considered above.  It lies in the kernel of the map to $\pi_0 H\F_2$, so it lifts (uniquely) to an element $\overline 2 \in \pi_0 \overline{H\F_2}$.  The map $\overline{H\F_2} \to H\F_2 \sm \overline{H\F_2}$ is nontrivial on $\pi_0$, and since $\overline 2$ generates $\pi_0 \overline{H\F_2}$ it follows that $\overline 2$ must have nontrivial image in $\pi_0 (H\F_2 \sm \overline{H\F_2})$.\todo{Yuck, this line splitting.}  We can re-express this target using the cofiber sequence \[H\F_2 \sm \S \xrightarrow{\eta_R} H\F_2 \sm H\F_2 \xrightarrow{/\eta_R} \Susp H\F_2 \sm \overline{H\F_2},\] so that $\pi_0 (H\F_2 \sm \overline{H\F_2})$ is isomorphic to $\pi_1(H\F_2 \sm H\F_2) \cong \mathcal A_1$.  The only nontrivial element for $\overline 2$ to be sent to is $\xi_1$ --- not coincidentally, the element appearing in our extension.\todo{I wonder if this can be phrased more tightly than ``oh, look, that's probably not a coincidence.''}
 \end{example}
 
+\todo{Also include a discussion of when $X$ is a spectrum other than the sphere.}
+
 \begin{theorem}
 If $X$ is a spectrum with finitely many homotopy groups, all finite, then this spectral sequence converges to $\pi_* X$. \qed \todo{Prove this.}
 \end{theorem}
@@ -525,12 +528,10 @@ If $X$ is any spectrum that is bounded below, then this spectral sequence conver
 \end{theorem}
 
 \begin{theorem}
-Hopefully we've set this up so that it's obvious that the $0$--line has the Hurewicz homomorphism in it.  Maybe this needs comparison to the constant tower at $\S$?
+The Hurewicz homomorphism is detected by the $0$--line. \qed \todo{Prove this. Maybe compare the Adams tower with the constant tower at $\S$.}
 \end{theorem}
 
-What remains to do is to identify the information in this spectral sequence with the story that we began the hour with.  In order to do this, we will have to investigate a little homological algebra.  We will do this next time.
-
-
+What remains to do is to identify the information in this spectral sequence with the story that we began the hour with.  In order to do this, we will have to investigate a little homological algebra.  We will talk about this next time.
 
 
 
@@ -543,29 +544,43 @@ What remains to do is to identify the information in this spectral sequence with
 
 \section{Feb 5: Comodule cohomology I: group cohomology}
 
-identification of the $E_2$ page: $\Ext$ in the category of comodules
+Our goal for today is to get a feel for what the input to the Adams spectral sequence is.  To remind you, here's the resolution we were thinking about last time:
+\begin{center}
+\begin{tikzcd}
+\S \arrow{d} & \overline{H\F_2} \arrow{l} \arrow{d} & \overline{H\F_2}^{\sm 2} \arrow{l} \arrow{d} & \overline{H\F_2}^{\sm 3} \arrow{l} \arrow{d} & \cdots \arrow{l} \\
+H\F_2 & H\F_2 \sm \overline{H\F_2} & H\F_2 \sm \overline{H\F_2}^{\sm 2} & H\F_2 \sm \overline{H\F_2}^{\sm 3} & \cdots.
+\end{tikzcd}
+\end{center}
+Applying $\pi_*$ and considering the bottom row, this gives a complex computing the $E_2$--page: \[\F_2 \to \overline{\mathcal A_*} \to \overline{\mathcal A_*} \otimes \overline{\mathcal A_*} \to \cdots,\] where $\overline{\mathcal A_*}$ denotes the $\mathcal A_*$--comodule $\mathcal A_* / \{1\}$.  We would like to interpret this as a resolution computing some sort of derived functor.  This is a common pattern: many constructions in ``homotopical algebra'' come with spectral sequences comparing its homotopy with an analogous construction in homological algebra.
 
-Example: $\Ext$ in comodules for the group algebra agrees with group cohomology
+We know that we're in search of a theory of extensions of comodules for $\mathcal A_*$, so we'll begin by inventing homological algebra for comodules over a Hopf algebra.  In the usual development of homological algebra for modules, the key observations are the existence of projective and injective modules, and something similar is at work here.
+\begin{lemma}\todo{Cite these. A1.1-2 in Ravenel are relevant?}
+Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  Then there is a \textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k A \otimes_k A. \qed\]
+\end{lemma}
+\begin{corollary}
+The category $\CatOf{Comodules}_A$ has enough injectives.  Namely, if $M$ is an $A$--comodule and $M \to I$ is an inclusion of $k$--modules into an injective $k$--module $I$, then $M \to I \otimes_k A$ is an injective $A$--comodule under $M$. \qed
+\end{corollary}
 
-reinterpretation as $\Aut \G_a$--equivariant cohomology over $\Spec \F_2$
+The Adams resolution is a resolution by injectives
 
-degenerate example: $H\F_2^{H\F_2}$
+Push and pull functors.
 
-picture of the cohomology of the structure sheaf
+The $E_2$ page the Adams spectral sequence is a $\Cotor$. Ravenel A1.1.6.b says $\CatOf{Comodules}_{(A, \Gamma)}(M, N) = \CatOf{Modules}_A(M, A) \cotensor_\Gamma N$, so $\CatOf{Comodules}_\Gamma(A, N) = A \cotensor_\Gamma N$.
 
-Equivalence between comodules and quasicoherent sheaves
+Example: the Hopf algebra of functions on a group
 
-Commutative Hopf algebras from groups: the algebra of functions
+Example: the cohomology of an induced module is trivial
 
-Example: A(1) is the group ring on a dihedral group
+Idea: the Adams $E_2$--page is like group cohomology for a group scheme
 
-Push and pull functors for maps of groups
+\todo{In fact, the functions on a dihedral group gives $\mathcal A(1)_*$.}
 
-Cohomology for induced and restricted modules
+Models for $\Cotor$: (i) the cobar complex, (ii) Yoneda extensions in very good cases
 
-Consequence: cohomology of a module induced from the trivial group = global sections
+A picture of the Adams spectral sequence, for good measure
 
-Comparison with Yoneda extensions
+
+
 
 
 
@@ -659,11 +674,14 @@ Balmer's Spc functor
 
 \section{Chromatic localizations}
 
+Proof of chromatic fracture
+
+Calculation of $\pi_* L_{K(1)} \S$?
 
 
 
-\chapter{The Ravenel-Wilson calculations}
-\todo{This is a bad name.  Maybe ``Unstable cooperations''?}
+
+\chapter{Unstable cooperations}
 
 
 \section{The Ravenel-Wilson calculations}
