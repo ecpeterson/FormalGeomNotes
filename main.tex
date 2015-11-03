@@ -89,6 +89,7 @@
 \DeclareMathOperator{\Coord}{Coord}
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\Cotor}{Cotor}
+\DeclareMathOperator{\coker}{coker}
 
 \numberwithin{equation}{section}
 
@@ -551,20 +552,29 @@ Our goal for today is to get a feel for what the input to the Adams spectral seq
 H\F_2 & H\F_2 \sm \overline{H\F_2} & H\F_2 \sm \overline{H\F_2}^{\sm 2} & H\F_2 \sm \overline{H\F_2}^{\sm 3} & \cdots.
 \end{tikzcd}
 \end{center}
-Applying $\pi_*$ and considering the bottom row, this gives a complex computing the $E_2$--page: \[\F_2 \to \overline{\mathcal A_*} \to \overline{\mathcal A_*} \otimes \overline{\mathcal A_*} \to \cdots,\] where $\overline{\mathcal A_*}$ denotes the $\mathcal A_*$--comodule $\mathcal A_* / \{1\}$.  We would like to interpret this as a resolution computing some sort of derived functor.  This is a common pattern: many constructions in ``homotopical algebra'' come with spectral sequences comparing its homotopy with an analogous construction in homological algebra.
+Applying $\pi_*$ and considering the bottom row, this gives a complex computing the $E_2$--page: \[\F_2 \to \overline{\mathcal A_*} \to \overline{\mathcal A_*} \otimes \overline{\mathcal A_*} \to \cdots,\] where $\overline{\mathcal A_*}$ denotes the $\mathcal A_*$--comodule $\mathcal A_* / \{1\}$.\todo{What are the maps in this complex? Probably we want to identify them with the $\Delta$s below.}  We would like to interpret this as a resolution computing some sort of derived functor.  This is a common pattern: many constructions in ``homotopical algebra'' come with spectral sequences comparing its homotopy with an analogous construction in homological algebra.
 
 We know that we're in search of a theory of extensions of comodules for $\mathcal A_*$, so we'll begin by inventing homological algebra for comodules over a Hopf algebra.  In the usual development of homological algebra for modules, the key observations are the existence of projective and injective modules, and something similar is at work here.
 \begin{lemma}\todo{Cite these. A1.1-2 in Ravenel are relevant?}
-Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  Then there is a \textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k (A \otimes_k A) = (N \otimes_k A) \otimes_k A. \qed\]
+Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  Then there is a \textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k (A \otimes_k A) = (N \otimes_k A) \otimes_k A.\]
 \end{lemma}
+\begin{proof}
+We will describe the assignments involved in the adjunction.  Given a map $f: M \to N$ of $k$--modules, we build the composite \[M \xrightarrow{\psi_M} M \otimes_k A \xrightarrow{f \otimes \id_A} N \otimes_k A.\]  Alternatively, given a map $g: M \to N \otimes_k A$ of $A$--comodules, we build the composite \[M \xrightarrow{g} N \otimes_k A \xrightarrow{\id_N \otimes \eps} N \otimes_k k = N. \qedhere\]
+\end{proof}
+
 \begin{corollary}
 The category $\CatOf{Comodules}_A$ has enough injectives.  Namely, if $M$ is an $A$--comodule and $M \to I$ is an inclusion of $k$--modules into an injective $k$--module $I$, then $M \to I \otimes_k A$ is an injective $A$--comodule under $M$. \qed
 \end{corollary}
+\begin{remark}
+In our case, $M$ itself is always injective, so there's already an injective map $\psi_M: M \to M \otimes A$: the coaction map.  The assertion that this map is coassociative is identical to saying that it is a map of comodules.
+\end{remark}
 
-Using the Corollary, we can construct a resolution of the trivial $\mathcal A_*$--comodule $\F_2$:
+The Corollary constructs a resolution of the trivial $\mathcal A_*$--comodule $\F_2$:\todo{It could be made clearer why these maps come out to be this way. In particular, $\coker \overline \Delta$ requires a nontrivial iso. Literally $\overline \Delta$ kills $1 \otimes \xi_n + \cdots$ with a nontrivial tail, and that we're allowed to ignore the tail is a theorem.}
 \begin{center}
 \begin{tikzcd}
-
+\tiny{0} \arrow{r} & \F_2 \arrow{r} \arrow{d}{\eta} & \tiny{0} \\
+\tiny{0} \arrow{r} & \mathcal A_* \arrow{r}{\overline \Delta} & \mathcal A_* \otimes \overline{\mathcal A_*} \arrow{r} & \mathcal A_* \otimes \mathcal A_* \otimes \mathcal A_* \arrow{r} & \cdots \\
+& & \overline{\mathcal A_*} \arrow{u} \arrow[leftarrow]{lu}{\coker \eta} & \overline{\mathcal A_*} \otimes \overline{\mathcal A_*} \arrow{u} \arrow[leftarrow]{lu}{\coker \overline \Delta} .
 \end{tikzcd}
 \end{center}
 
@@ -574,7 +584,9 @@ Push and pull functors.
 
 The $E_2$ page the Adams spectral sequence is a $\Cotor$. Ravenel A1.1.6.b says $\CatOf{Comodules}_{(A, \Gamma)}(M, N) = \CatOf{Modules}_A(M, A) \cotensor_\Gamma N$, so $\CatOf{Comodules}_\Gamma(A, N) = A \cotensor_\Gamma N$.
 
-Example: the Hopf algebra of functions on a group
+\begin{example}
+Let's work to contextualize this somewhat.  Given a finite group $G$, we can form a commutative Hopf algebra $k^G$, the $k$--valued functions on $G$.  This Hopf algebra is dual to the Hopf algebra $k[G]$, the group--algebra on $G$.  It is classical that a $G$--module $M$ is equivalent data to a $k[G]$--module structure, and if $M$ is suitably finite, we can dualize the action map to produce a coaction map \[M^* \to k^G \otimes M^*.\]  \todo{Now check that $M^* \cotensor_{k^G} k = (H^0 M)^*$.}
+\end{example}
 
 Example: the cohomology of an induced module is trivial
 
@@ -585,6 +597,8 @@ Idea: the Adams $E_2$--page is like group cohomology for a group scheme
 Models for $\Cotor$: (i) the cobar complex, (ii) Yoneda extensions in very good cases
 
 A picture of the Adams spectral sequence, for good measure
+
+\todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?}
 
 
 
@@ -648,13 +662,30 @@ The $E$-Adams spectral sequence
 
 \section{Quillen's theorem}
 
+\begin{theorem}[Quillen]
+There are isomorphisms
+\begin{align*}
+\Spec MU_* & \to \moduli{fgl}, \\
+\Spec MU_* MU & \to \moduli{fgl} \times \moduli{ps}^{\gpd}, \\
+\context{MU} & \to \left. \left. \moduli{fgl} \middle/\!\!\!\middle/ \left( \moduli{fgl} \times \moduli{ps}^{\gpd} \right) = \moduli{fg} \right. \right. . \qed
+\end{align*}
+\end{theorem}
+
 
 
 \section{The structure of $\moduli{fg}$: large scales}
 
 Rational logarithms
 
-Lazard's freeness theorem
+\begin{theorem}[Lazard, part 1]
+The ring of functions on $\moduli{fgl}$ is polynomial in infinitely many variables. \qed \todo{Should we prove this?}
+\end{theorem}
+\begin{remark}
+His proof does not give a canonical presentation.  Rationally, these are the coordinate functions selecting the logarithm coefficients.
+\end{remark}
+\begin{corollary}
+Given a formal group law $\phi$ over a ring $R$ and a surjective ring map $f: S \to R$, there exists a formal group law $\widetilde \phi$ over $S$ with \[\phi = f^* \widetilde \phi. \qed\]
+\end{corollary}
 
 $p$-typification, the relation between $p$-typical logarithms and the $p$-series
 
