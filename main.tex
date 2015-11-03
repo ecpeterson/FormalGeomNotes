@@ -555,11 +555,18 @@ Applying $\pi_*$ and considering the bottom row, this gives a complex computing 
 
 We know that we're in search of a theory of extensions of comodules for $\mathcal A_*$, so we'll begin by inventing homological algebra for comodules over a Hopf algebra.  In the usual development of homological algebra for modules, the key observations are the existence of projective and injective modules, and something similar is at work here.
 \begin{lemma}\todo{Cite these. A1.1-2 in Ravenel are relevant?}
-Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  Then there is a \textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k A \otimes_k A. \qed\]
+Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  Then there is a \textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k (A \otimes_k A) = (N \otimes_k A) \otimes_k A. \qed\]
 \end{lemma}
 \begin{corollary}
 The category $\CatOf{Comodules}_A$ has enough injectives.  Namely, if $M$ is an $A$--comodule and $M \to I$ is an inclusion of $k$--modules into an injective $k$--module $I$, then $M \to I \otimes_k A$ is an injective $A$--comodule under $M$. \qed
 \end{corollary}
+
+Using the Corollary, we can construct a resolution of the trivial $\mathcal A_*$--comodule $\F_2$:
+\begin{center}
+\begin{tikzcd}
+
+\end{tikzcd}
+\end{center}
 
 The Adams resolution is a resolution by injectives
 
@@ -643,7 +650,7 @@ The $E$-Adams spectral sequence
 
 
 
-\section{The structure of $\moduli{fg}$}
+\section{The structure of $\moduli{fg}$: large scales}
 
 Rational logarithms
 
@@ -655,9 +662,35 @@ Classification of closed substacks
 
 Classification of closed points
 
+
+
+\section{The structure of $\moduli{fg}$: small scales}
+
 Lubin--Tate deformation theories
 
 The nice picture I drew for Catherine
+
+
+
+Let $F(x, y)$ be a formal group law over $R$; a deformation of $F$ is a formal group law $F_h(x, y)$ over $R[[h]]$ reducing to $F$ when $h = 0$; an isomorphism of deformations is a strict isomorphism covering the identity on $h = 0$.
+
+Define the deformation complex $C^*(F)$ by \[R \to R\llbracket x_1 \rrbracket \to R\llbracket x_1, x_2 \rrbracket \to R\llbracket x_1, x_2, x_3 \rrbracket \to \cdots\] with differential
+\begin{align*}
+(df)(x_1, \ldots, x_{n+1}) & = F_1\left(\sum_{i=1}^n {}^F x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
+& \quad + \sum (-1)^i f(x_1, \ldots, F(x_i, x_{i+1}), \ldots, x_{n+1}) \\
+& \quad (-1)^{n+1} \left( F_2\left(x_1, \sum_{i=2}^{n+1} {}^F x_i \right) \cdot f(x_2, \ldots, x_{n+1}) \right),
+\end{align*}
+where we have written
+\begin{align*}
+F_1(x, y) & = \frac{\partial F(x, y)}{\partial x}, &
+F_2(x, y) & = \frac{\partial F(x, y)}{\partial y}.
+\end{align*}
+This is quasi-isomorphic to the usual bar complex. The usual bar complex receives a map defined by \[f \mapsto \check{f}(x_1, \ldots, x_n) = F_1\left( 0, \sum_{i=1}^n {}F x_i \right)^{-1} f(x_1, \ldots, x_n),\] and this is the quasi-isomorphism. You'll probably want to know the formulas
+\begin{align*}
+F_1(x, y) & = F_1(0, x)^{-1} F_1(0, F(x, y)), \\
+F_2(x, y) & = F_2(y, 0)^{-1} F_2(F(x, y), 0) = F_1(0, y)^{-1} F_1(0, F(x, y)).
+\end{align*}
+
 
 
 \section{The nilpotence theorem}
