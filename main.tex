@@ -465,9 +465,9 @@ Finally, the formula $\RP^\infty_{H\F_2} \cong \G_a$ is meant to point out that 
 
 
 
-\section{Feb 3: The mod--$2$ Adams spectral sequence}
+\section{Feb 3: Comodule cohomology I: group cohomology}
 
-Today we will construct an important classical tool: the Adams spectral sequence.  There are many ways to introduce this tool, but our approach will be to focus on how to get information out of the Hurewicz homomorphism.  \todo{I first saw this presentation from Matt Ando. He must have learned it from someone. I'd like to know who to attribute this to.}Begin by considering the following three self-maps of the stable sphere:
+\todo{This section is written gradedly and probably shouldn't be, for consistency.} Today we'll focus on an important classical tool: the Adams spectral sequence.  We're going to study this in greater earnest later on, so I will avoid giving a satisfying construction today.  But, even without a construction, it's instructive to see how such a thing comes about.  \todo{I first saw this presentation from Matt Ando. He must have learned it from someone. I'd like to know who to attribute this to.}  Begin by considering the following three self-maps of the stable sphere:
 \begin{align*}
 \S^0 & \xrightarrow{0} \S^0, & \S^0 & \xrightarrow{1} \S^0, & \S^0 & \xrightarrow{2} \S^0.
 \end{align*}
@@ -503,58 +503,14 @@ We draw this into the diagram as
 & H\F_2^* \S^0 & \arrow{l} H\F_2^* C(0) & \arrow{l} H\F_2^* \S^1, & H\F_2^* \S^0 & \arrow{l} H\F_2^* C(2) & \arrow{l} H\F_2^* \S^1,
 \end{tikzcd}
 \end{center}
-where the vertical line indicates the nontrivial coaction involving $\xi_1$.  We can now see what trading maps for cofiber sequences has bought us: mod--$2$ cohomology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.  The Adams spectral sequence, which we will presently construct, says that this process is in a certain sense \emph{exhaustive}.  It has the signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, \F_2) \Rightarrow (\pi_* \S^0)^\wedge_2,\] i.e., the $2$--primary component of the maps $\Susp^* \S^0 \to \S^0$ can be detected as a subquotient of all possible extensions of comodules over the dual Steenrod algebra.
+where the vertical line indicates the nontrivial coaction involving $\xi_1$.  We can now see what trading maps for cofiber sequences has bought us: mod--$2$ cohomology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.\todo{Can this be phrased so as to indicate how this works for longer extensions? I've never tried to think about even what happens for $C(4)$.}  The Adams spectral sequence bundles this thought process into a single machine, of signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, \F_2) \Rightarrow (\pi_* \S^0)^\wedge_2.\]  In effect, this asserts that the above process is \emph{exhaustive}: every element of $(\pi_* \S^0)^\wedge_2$ can be detected by some representative class of extensions of comodules for the dual Steenrod algebra.  Mildly more generally, if $X$ is a bounded-below spectrum, then there is even a spectral sequence of signature\todo{How do you feel about this sub-star notation without parens?}\todo{Mention that there are homological and cohomological $\F_2$--Adams spectral sequences.} \[\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X) \Rightarrow \pi_* X^\wedge_2.\]
 
-To construct the spectral sequence, we will write down the first thing that comes to mind involving the Hurewicz homomorphism.  Our fuss above can be interpreted as trying to distinguish elements which are in the kernel of the Hurewicz image.  This kernel has a topological incarnation in the fiber sequence: \[\overline{H\F_2} \to \S \to H\F_2.\]  It, too, carries a Hurewicz fiber sequence \[\overline{H\F_2}^{\sm 2} \to \overline{H\F_2} \to H\F_2 \sm \overline{H\F_2}\] which we can hope to use to further distinguish elements.  Iterating this process yields a filtration:
-\begin{center}
-\begin{tikzcd}
-\S \arrow{d} & \overline{H\F_2} \arrow{l} \arrow{d} & \overline{H\F_2}^{\sm 2} \arrow{l} \arrow{d} & \overline{H\F_2}^{\sm 3} \arrow{l} \arrow{d} & \cdots \arrow{l} \\
-H\F_2 & H\F_2 \sm \overline{H\F_2} & H\F_2 \sm \overline{H\F_2}^{\sm 2} & H\F_2 \sm \overline{H\F_2}^{\sm 3} & \cdots
-\end{tikzcd}
-\end{center}
-and hence a spectral sequence by applying $\pi_*$.
+Here is where we could divert to talking about the construction of the Adams spectral sequence.  There is a light presentation which we could think about now, but it will fit nicely into a story later on.  So, we will leave this task for later in the semester, when we can do a better job of it.  For now, we will record the following utility lemma about the Adams spectral sequence, which we will need to use before we get around to giving a good construction:
+\begin{lemma}
+The $0$--line of the Adams spectral sequence contains those elements visible to the Hurewicz homomorphism. \qed \todo{This feels sloppily stated.}
+\end{lemma}
 
-\begin{example}
-Let's consider what happens to the element $2 \in \pi_0 \S$ considered above.  It lies in the kernel of the map to $\pi_0 H\F_2$, so it lifts (uniquely) to an element $\overline 2 \in \pi_0 \overline{H\F_2}$.  The map $\overline{H\F_2} \to H\F_2 \sm \overline{H\F_2}$ is nontrivial on $\pi_0$, and since $\overline 2$ generates $\pi_0 \overline{H\F_2}$ it follows that $\overline 2$ must have nontrivial image in $\pi_0 (H\F_2 \sm \overline{H\F_2})$.\todo{Yuck, this line splitting.}  We can re-express this target using the cofiber sequence \[H\F_2 \sm \S \xrightarrow{\eta_R} H\F_2 \sm H\F_2 \xrightarrow{/\eta_R} \Susp H\F_2 \sm \overline{H\F_2},\] so that $\pi_0 (H\F_2 \sm \overline{H\F_2})$ is isomorphic to $\pi_1(H\F_2 \sm H\F_2) \cong \mathcal A_1$.  The only nontrivial element for $\overline 2$ to be sent to is $\xi_1$ --- not coincidentally, the element appearing in our extension.\todo{I wonder if this can be phrased more tightly than ``oh, look, that's probably not a coincidence.''}
-\end{example}
-
-\todo{Also include a discussion of when $X$ is a spectrum other than the sphere.}
-
-\begin{theorem}
-If $X$ is a spectrum with finitely many homotopy groups, all finite, then this spectral sequence converges to $\pi_* X$. \qed \todo{Prove this.}
-\end{theorem}
-
-\begin{theorem}
-If $X$ is any spectrum that is bounded below, then this spectral sequence converges to the $2$--completion $\pi_* X^\wedge_2$. \qed \todo{Maybe don't prove this? I don't know how to deal with $\Z$--towers, actually. At least cite it, anyway.}
-\end{theorem}
-
-\begin{theorem}
-The Hurewicz homomorphism is detected by the $0$--line. \qed \todo{Prove this. Maybe compare the Adams tower with the constant tower at $\S$.}
-\end{theorem}
-
-What remains to do is to identify the information in this spectral sequence with the story that we began the hour with.  In order to do this, we will have to investigate a little homological algebra.  We will talk about this next time.
-
-
-
-
-
-
-
-
-
-
-\section{Feb 5: Comodule cohomology I: group cohomology}
-
-Our goal for today is to get a feel for what the input to the Adams spectral sequence is.  To remind you, here's the resolution we were thinking about last time:
-\begin{center}
-\begin{tikzcd}
-\S \arrow{d} & \overline{H\F_2} \arrow{l} \arrow{d} & \overline{H\F_2}^{\sm 2} \arrow{l} \arrow{d} & \overline{H\F_2}^{\sm 3} \arrow{l} \arrow{d} & \cdots \arrow{l} \\
-H\F_2 & H\F_2 \sm \overline{H\F_2} & H\F_2 \sm \overline{H\F_2}^{\sm 2} & H\F_2 \sm \overline{H\F_2}^{\sm 3} & \cdots.
-\end{tikzcd}
-\end{center}
-Applying $\pi_*$ and considering the bottom row, this gives a complex computing the $E_2$--page: \[\F_2 \to \overline{\mathcal A_*} \to \overline{\mathcal A_*} \otimes \overline{\mathcal A_*} \to \cdots,\] where $\overline{\mathcal A_*}$ denotes the $\mathcal A_*$--comodule $\mathcal A_* / \{1\}$.\todo{What are the maps in this complex? Probably we want to identify them with the $\Delta$s below.}  We would like to interpret this as a resolution computing some sort of derived functor.  This is a common pattern: many constructions in ``homotopical algebra'' come with spectral sequences comparing its homotopy with an analogous construction in homological algebra.
-
-We know that we're in search of a theory of extensions of comodules for $\mathcal A_*$, so we'll begin by inventing homological algebra for comodules over a Hopf algebra.  In the usual development of homological algebra for modules, the key observations are the existence of projective and injective modules, and something similar is at work here.
+Instead, today we will focus on the meaning of the algebraic input $\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X)$, which will require us to grapple some with the homological algebra of comodules for a Hopf algebra.  To begin, it's both reassuring and instructive to see that homological algebra can, in fact, be done with comodules.  In the usual development of homological algebra for modules, the key observations are the existence of projective and injective modules, and something similar is at work here.\todo{Come back to this and either state things generally (at least set $k = \F_2$?) so you can use it in Comodule Cohomology II, or specialize it to get rid of all these pesky $A$s.}
 \begin{lemma}\todo{Cite these. A1.1-2 in Ravenel are relevant?}
 Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  Then there is a \textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k (A \otimes_k A) = (N \otimes_k A) \otimes_k A.\]
 \end{lemma}
@@ -569,34 +525,56 @@ The category $\CatOf{Comodules}_A$ has enough injectives.  Namely, if $M$ is an 
 In our case, $M$ itself is always injective, so there's already an injective map $\psi_M: M \to M \otimes A$: the coaction map.  The assertion that this map is coassociative is identical to saying that it is a map of comodules.
 \end{remark}
 
-The Corollary constructs a resolution of the trivial $\mathcal A_*$--comodule $\F_2$:\todo{It could be made clearer why these maps come out to be this way. In particular, $\coker \overline \Delta$ requires a nontrivial iso. Literally $\overline \Delta$ kills $1 \otimes \xi_n + \cdots$ with a nontrivial tail, and that we're allowed to ignore the tail is a theorem.}
-\begin{center}
-\begin{tikzcd}
-\tiny{0} \arrow{r} & \F_2 \arrow{r} \arrow{d}{\eta} & \tiny{0} \\
-\tiny{0} \arrow{r} & \mathcal A_* \arrow{r}{\overline \Delta} & \mathcal A_* \otimes \overline{\mathcal A_*} \arrow{r} & \mathcal A_* \otimes \mathcal A_* \otimes \mathcal A_* \arrow{r} & \cdots \\
-& & \overline{\mathcal A_*} \arrow{u} \arrow[leftarrow]{lu}{\coker \eta} & \overline{\mathcal A_*} \otimes \overline{\mathcal A_*} \arrow{u} \arrow[leftarrow]{lu}{\coker \overline \Delta} .
-\end{tikzcd}
-\end{center}
+\textbf{While we're here, let's record some facts about base change.}\todo{Put filler here.}
 
-The Adams resolution is a resolution by injectives
+\begin{definition}
+Given $A$--comodules $M$ and $N$, their cotensor product is defined by the coequalizer \[M \cotensor_A N \to M \otimes_k N \xrightarrow{\psi_M \otimes 1 - 1 \otimes \psi_N} M \otimes_k A \otimes_k N.\]
+\end{definition}
 
-Push and pull functors.
+\noindent Cotensoring gives rise to a concise description of what it means to be a comodule map:
 
-The $E_2$ page the Adams spectral sequence is a $\Cotor$. Ravenel A1.1.6.b says $\CatOf{Comodules}_{(A, \Gamma)}(M, N) = \CatOf{Modules}_A(M, A) \cotensor_\Gamma N$, so $\CatOf{Comodules}_\Gamma(A, N) = A \cotensor_\Gamma N$.
+\begin{lemma}\todo{Cite Ravenel: A1.1.6b}
+Let $M$ and $N$ be $A$--comodules with $M$ projective as a $k$--module.  Then there is an equivalence \[\CatOf{Comodules}_A(M, N) = \CatOf{Modules}_k(M, k) \cotensor_A N. \qed\]
+\end{lemma}
+
+\begin{corollary}
+Let $N = N' \otimes_k A$ be a cofree comodule. Then $N \cotensor_A k = N'$.
+\end{corollary}
+\begin{proof}
+Picking $M = k$, we have
+\begin{align*}
+\CatOf{Modules}_k(k, N') & = \CatOf{Comodules}_A(k, N) \\
+& = \CatOf{Modules}_A(A, k) \cotensor_A N \\
+& = k \cotensor_A N. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{corollary}
+There is an isomorphism \[\CatOf{Comodules}_A(k, N) = \CatOf{Modules}_k(k, k) \cotensor_A N = k \cotensor_A N\] and hence \[\Ext_A(k, N) \cong \Cotor_A(k, N).\]
+\end{corollary}
+\begin{proof}
+Resolve $N$ using the cofree modules described above, then apply either functor $\CatOf{Comodules}_A(k, -)$ or $k \cotensor_A -$.  In both cases, you get the same complex.
+\end{proof}
+
+\todo{Put a better base-change theorem here, like $- \cotensor_A B$.}
 
 \begin{example}
 Let's work to contextualize this somewhat.  Given a finite group $G$, we can form a commutative Hopf algebra $k^G$, the $k$--valued functions on $G$.  This Hopf algebra is dual to the Hopf algebra $k[G]$, the group--algebra on $G$.  It is classical that a $G$--module $M$ is equivalent data to a $k[G]$--module structure, and if $M$ is suitably finite, we can dualize the action map to produce a coaction map \[M^* \to k^G \otimes M^*.\]  \todo{Now check that $M^* \cotensor_{k^G} k = (H^0 M)^*$.}
 \end{example}
 
-Example: the cohomology of an induced module is trivial
+\todo{$\mathcal A(1)_*$ is the Hopf algebra for a dihedral group. Is this example appropriate here?}
 
-Idea: the Adams $E_2$--page is like group cohomology for a group scheme
+\begin{example}
+In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\underline{\Aut}(\G_a)$.  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ computes the derived fixed points of $G = \underline{\Aut}(\G_a)$ on the $G$--module $H\F_{2*} X$.
+\end{example}
 
-\todo{In fact, the functions on a dihedral group gives $\mathcal A(1)_*$.}
+\begin{example}
+Consider the degenerate case $X = H\F_2$.  Then $H\F_{2*}(H\F_2) = \mathcal A_*$ is a cofree comodule, and hence $\Cotor$ is concentrated on the $0$--line: \[\Cotor_{\mathcal A_*}(\F_2, H\F_{2*}(H\F_2)) = \F_2.\]  The Adams spectral sequence collapses to show the wholly unsurprising equality $\pi_* H\F_2 = \F_2$, and indeed this is the element in the image of the Hurewicz map $\pi_* H\F_2 \to H\F_{2*} H\F_2$.
+\end{example}
 
-Models for $\Cotor$: (i) the cobar complex, (ii) Yoneda extensions in very good cases
-
-A picture of the Adams spectral sequence, for good measure
+\begin{example}
+At the other extreme, we can pick the extremely nondegenerate case $X = \S$. \todo{Include a picture.}
+\end{example}
 
 \todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?}
 
@@ -608,7 +586,7 @@ A picture of the Adams spectral sequence, for good measure
 
 
 
-\section{Feb 8: The unoriented bordism ring}
+\section{Feb 5: The unoriented bordism ring}
 
 the splitting principle
 
@@ -621,7 +599,7 @@ Hood made the following nice observation. $MO^{H\F_2}$ is the scheme of coordina
 This means that the Adams spectral sequence degenerates and this computes $\pi_* MO$.  (It would be nice to interpret this in terms of a logarithm on $\RP^\infty_{H\F_2}$.)  It also means that the Hurewicz map is injective, hence that $MO$ is a retract of $H\F_2 \sm MO$, hence that $MO$ is an $H\F_2$--module, hence that $MO$ is a wedge of shifts of $H\F_2$.
 
 
-\todo{What is $MO^MO$, if $MO^{H\F_2}$ is already $Coord(\G_a)$?}
+\todo{What is $MO^{MO}$, if $MO^{H\F_2}$ is already $Coord(\G_a)$?}
 
 
 
@@ -636,6 +614,8 @@ This means that the Adams spectral sequence degenerates and this computes $\pi_*
 The bar complex and $A_\infty$ ring spectra
 
 The descent object for the unit map $\S \to E$
+
+The Adams spectral sequence: you owe them this. (Be sure to also remark: spectral sequences comparing homological algebra to homotopical algebra)
 
 Simplicial schemes and the commutativity hypothesis
 
@@ -673,7 +653,7 @@ There are isomorphisms
 
 
 
-\section{The structure of $\moduli{fg}$: large scales}
+\section{The structure of $\moduli{fg}$: Large scales}
 
 Rational logarithms
 
@@ -695,7 +675,7 @@ Classification of closed points
 
 
 
-\section{The structure of $\moduli{fg}$: small scales}
+\section{The structure of $\moduli{fg}$: Small scales}
 
 Lubin--Tate deformation theories
 
@@ -894,6 +874,7 @@ Mike says that in unpublished AHS work they got at $MString^E$ using an equivale
 
 
 
+\section{Feb 8}
 
 \section*{Feb 10}
 
