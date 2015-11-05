@@ -4,7 +4,7 @@
 
 \section{Jan 27: Thom spectra and the Thom isomorphism}
 
-Our first case study is a sequence of theorems about the unoriented bordism spectrum $MO$.  I wanted to begin by recalling one definition of the spectrum $MO$, since it will be useful to us throughout the semester.
+Our first case study is a sequence of theorems about the unoriented bordism spectrum $MO$.  I wanted to begin by recalling one definition of the spectrum $MO$, since it involves ideas that will be useful to us throughout the semester.
 
 \begin{definition}
 For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T(\xi).\]
@@ -101,8 +101,12 @@ This powers an induction that shows that $H\Z/2_* \RP^\infty$ has a single class
 
 \todo{Decide on $\Z/2$ versus $\F_2$. I think in the previous lecture you were avoiding $\F_2$ because it got in the way of your homology subscripts.}An abbreviated summary of this semester is that we're going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents.  For any ``test $\F_2$--algebra'' $T$, we set \[\Spec(R)(T) := \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R) := \CatOf{Algebras}_{\F_2/}(R, T).\]  More generally, we have the following definition:
 \begin{definition}
-An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to \CatOf{Sets}$ which is (noncanonically) isomorphic to $\Spec R$ for some $\F_2$--algebra $R$.
+An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to \CatOf{Sets}$ which is (noncanonically) isomorphic to $\Spec R$ for some $\F_2$--algebra $R$.  Given such an isomorphism, we will refer to $\Spec R \to X$ as a \textit{parameter} for $X$ and its inverse $X \to \Spec R$ as a \textit{coordinate} for $X$.
 \end{definition}
+
+\begin{lemma}
+There is an equivalence of categories \[\Spec: \CatOf{Algebras}_{\F_2/}^{\mathrm{op}} \to \CatOf{AffineSchemes}_{/\F_2}. \qed\]
+\end{lemma}
 
 The centerpiece of thinking about rings in this way is to translate between a presentation of $R$ as a quotient of a free algebra and a presentation of $(\Spec R)(T)$ as selecting tuples of elements in $T$ subject to certain conditions.  Consider the following example:
 \begin{example}
@@ -112,10 +116,6 @@ Set $R_1 = \F_2[x]$.  Then \[(\Spec R_1)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x], 
 \end{align*}
 The symbol ``$\mathbb A^1$'' is pronounced ``the affine line''.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $n${\th} order neighborhood of the origin in the affine line''.
 \end{example}
-
-\todo{Talk more about subobjects?  Say what a closed subscheme of an affine scheme is?}
-\todo{Talk about how maps to $\mathbb A^1$ gives an inverse to $\Spec$.}
-\todo{Note that $\mathbb G_m$ includes into both $\mathbb A^2$ and $\mathbb A^1$.}
 
 We can also express in this language another common object in algebraic topology: the Hopf algebra, which arises when taking the mod--$2$ cohomology of an $H$--space.  In addition to the usual cohomology, the extra pieces of data are those induced by the $H$--space multiplication and unit map, which on cohomology beget a diagonal map $\Delta$ and an antipode map $\chi$.  Running through the axioms, one quickly checks the following:
 \begin{lemma}
@@ -131,6 +131,10 @@ The functor $\mathbb A^1$ introduced above is naturally valued in groups: since 
 \end{align*}
 \end{example}
 
+\begin{remark}
+In fact, $\mathbb A^1$ is naturally valued in \emph{rings}. It models the inverse functor to $\Spec$ in the equivalence of categories above, i.e., the elements of a ring $R$ always form a complete collection of coordinates on some affine scheme $\Spec R$.
+\end{remark}
+
 \begin{example}
 We define the \textit{multiplicative group scheme} by\todo{Do you want this to be a $\Z$--algebra? Ditto with $\mathbb A^1$ and $\mathbb G_a$?} \[\mathbb G_m = \Spec \F_2[x, y] / (xy - 1).\]  Its value $\mathbb G_m(T)$ on a test algebra $T$ is the set of pairs $(x, y)$ such that $y$ is a multiplicative inverse to $x$, and hence $\mathbb G_m$ is valued in groups.  Applying the Yoneda lemma, we deduce the following formulas for the Hopf algebra structure maps:
 \begin{align*}
@@ -140,6 +144,10 @@ We define the \textit{multiplicative group scheme} by\todo{Do you want this to b
 \Spec R & \xrightarrow{\eta} \mathbb G_m & 1 & \mapsfrom x, y.
 \end{align*}
 \end{example}
+
+\begin{remark}
+As presented above, $\mathbb G_m$ comes with a natural inclusion $\mathbb G_m \to \mathbb A^2$.  However, the coordinate $x$ on $\mathbb G_m$ gives a map $x: \mathbb G_m \to \mathbb A^1$, and because multiplicative inverses in a ring are unique, we see that this map is also an inclusion.  These two inclusions have rather different properties, and we'll think harder about their essential differences later on.
+\end{remark}
 
 Let's now consider the example that we closed with last time, where we calculated $H\Z/2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  This is such a useful thing to do that we will give it a notation all of its own:
 
