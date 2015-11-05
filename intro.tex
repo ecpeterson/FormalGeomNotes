@@ -1,0 +1,58 @@
+
+\setcounter{chapter}{-1}
+\chapter{Introduction}
+
+\section{Jan 25: Introduction}
+
+The goal of this class is to communicate a certain \textit{weltanschauung} uncovered in pieces by many different people working in bordism theory, and the goal just for today is to tell a story about one theorem where it is especially apparent.
+
+To begin, recall that a bordism theory $MX$, where $X$ is some suitable family of structure groups $X_n \to O(n)$, is a homology theory similar to singular homology but where the chains are constructed from $X$--structured manifolds and their boundaries.  The coefficient ring of $MX$, or its value $MX_*(*)$ on a point, gives the ring of $X$--bordism classes, and generally $MX_*(Y)$ of some space $Y$ gives a kind of ``bordism in families''.  There are evident comparison morphisms for the most ordinary kinds of bordism, given by replacing a chain of manifolds with an equivalent simplicial chain: \[MO \to H\Z/2, \quad MSO \to H\Z.\] In both cases, we can evaluate on a point to get ring maps $MO_*(*) \to \Z/2$ and $MSO_*(*) \to \Z$, called ``genera'' --- neither of which is very interesting, since they're both zero in positive degrees.\todo{A comparison of this with the usual spectrum definition of $MX$ appears in Switzer 12.35.}
+
+However, having maps of homology theories (rather than just maps of coefficient rings) is considerably more data: we can extact from this a theory of integration.  Consider the following:
+\begin{align*}
+MSO_n K(\Z, n) & = \left\{ \text{oriented $n$--manifolds mapping to $K(\Z, n)$} \right\} / \sim \\
+& = \left\{ \begin{array}{c}\text{oriented $n$--manifolds $M$} \\ \text{with a specified class $\omega \in H^n(M; \Z)$} \end{array}\right\} / \sim.
+\end{align*}
+The yoga of stable homotopy theory then allows us to build a composite \[\S^0 \xrightarrow{(M, \omega)} MSO \sm (\S^{-n} \sm \Susp^\infty_+ K(\Z, n)) \to MSO \sm H\Z \xrightarrow{\phi \sm 1} H\Z \sm H\Z \xrightarrow\mu H\Z,\] where $\phi$ is the orientation map, and this gives us an integer. This integer is $\int_M \omega$, and it comes equipped with a Stokes' theorem due to the relation ``$\sim$'', and we can begin to see what the techniques of stable homotopy theory have to offer.
+
+Now take $X = e$ to be the trivial structure group, so that the Pontryagin--Thom construction gives an equivalence $Me \xrightarrow{\simeq} \S$.  It is thus possible (and some people have indeed taken up this viewpoint) that stable homotopy theory can be done solely through the lens of ``framed bordism''. I'm a stable homotopy theorist rather than a differential topologist, and so I prefer to view this the other way: the sphere spectrum $\S$ often appears in my life as a natural object, and I will sometimes replace it by $Me$, the framed bordism spectrum.  For example, often I encounter a ring spectrum $E$, and it comes equipped with a unit map $\S \to E$, which I can reconsider as a ring map $\S = Me \to E$.  Following along the lines of the previous paragraph, we learn that we can thus think of any ring spectrum $E$ as automatically equipped with a theory of integration for framed manifolds.
+
+Sometimes, as in the examples above, this unit map factors: \[\S = Me \to MO \to H\Z/2.\]  This is a witness to the overdeterminacy of $H\Z/2$'s integral for framed bordism: if the framed manifold is pushed all the way down to an unoriented manifold, there is still enough residual data to define the integral.  For a generic ring spectrum $E$, we can ask the analogous question: for a Hausdorff filtration on $O$ by structure groups, what stage does the unit map $Me \to E$ factor through?  The map $SO \to O$ considered above is the beginning of the Postnikov filtration of $O$, and we include a diagram of this filtration and some interesting integration theories related to it:
+\begin{center}
+\begin{tikzcd}
+Me \arrow{r} \arrow{rrd} \arrow{rrrd} \arrow{rrrrd} & \cdots \arrow{r} & M\Spin \arrow{r} \arrow[crossing over]{d} & MSO \arrow{r} \arrow[crossing over]{d} & MO \arrow[crossing over]{d} \\
+& & ko & H\Z & H\Z/2.
+\end{tikzcd}
+\end{center}
+
+This is the situation homotopy theorists found themselves in some decades ago, in the wake of two important results of Ochanine and Witten. Ochanine had proven the following mysterious theorem using analytic techniques:
+
+\begin{theorem}[Ochanine]
+There is a cobordism invariant $o(M)$ of an oriented manifold $M$ which is a level $2$ modular form. It is somewhat multiplicative: if $F \to E \to M$ is an exceedingly nice fibration, then $o(E) = o(F) \cdot o(M)$.
+\end{theorem}
+
+\noindent Witten then strengthened this result considerably:
+
+\begin{theorem}[Witten]
+Ochanine's genus is in fact multiplicative. Also, if $M$ is a Spin manifold such that twice its first Pontryagin class vanishes, then $o(M)$ can be ``refined''\todo{What does ``refined'' mean, anyway? It's a square root, maybe?} to a level $1$ modular form $w(M)$.
+\end{theorem}
+
+\noindent However, neither party gave indication that their result should be valid ``in families'', and no theory of integration was produced.  It wasn't even clear what such a claim would mean: to give a topological enrichment of these theorems would mean finding a ring spectrum $E$ such that $E_*(*)$ had something to do with modular forms.  Around the same time, Landweber, Ravenel, and Stong began studying ``elliptic cohomology'' for independent reasons, and a decade later Ando, Hopkins, and Strickland put them together in the following theorem:
+
+\begin{theorem}[Ando--Hopkins--Strickland]
+If $E$ is an ``elliptic cohomology theory'', then there is a canonical map $M\String \to E$ called the $\sigma$--orientation.  Specializing to Tate $K$--theory $K^{\Tate}$, the induced map $M\String_* \to K^{\Tate}_*$ is Witten's genus.
+\end{theorem}
+
+We now come to the motivation for this class.  The homotopical $\sigma$--orientation was actually first constructed using formal geometry.  The original proof of Ando--Hopkins--Strickland begins with a reduction to understanding maps \[MU[6, \infty) \to E,\] and then they work to show that they can complete the missing arrow in the diagram
+\begin{center}
+\begin{tikzcd}
+MU[6, \infty) \arrow{r} \arrow{rd} & M\String \arrow[densely dotted]{d} \\
+& E.
+\end{tikzcd}
+\end{center}
+Leaving aside the extension problem for the moment, their main theorem is the following description of the cohomology ring $E^* MU[6, \infty)$:
+\begin{theorem}[Ando--Hopkins--Strickland]
+For $E$ an even--periodic cohomology theory, \[\Spec E_* MU[6, \infty) \cong C^3(\G_E; \sheaf I(0)),\] where ``$C^3(\G_E; \sheaf I(0))$'' is a certain scheme.  When $E$ is taken to be elliptic, so that there is a specified isomorphism $\G_E \cong C^\wedge_0$ for $C$ an elliptic curve, this furnishes the scheme with a canonical point. Hence, there is a preferred class $MU[6, \infty) \to E$, natural in the choice of elliptic $E$.
+\end{theorem}
+
+\noindent Our real goal is to understand theorems like these.  The structure of the class will be, more or less, to work through a sequence of case studies where this perspective on algebraic topology shines through most brightly.  We'll start by working through Thom's calculation of the homotopy of $MO$, which simultaneously holds the attractive features of being free of technical complexity while revealing essentially all of the structural complexity.  Having seen that through to the end, we'll then work on reinforcing our technical underpinnings, and then we'll venture on to other examples.  The overriding theme of the class will be that this is a good organizing principle that gives us one avenue of insight into how homotopy theory functions. 
