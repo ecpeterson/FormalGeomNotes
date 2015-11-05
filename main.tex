@@ -465,7 +465,7 @@ Finally, the formula $\RP^\infty_{H\F_2} \cong \G_a$ is meant to point out that 
 
 
 
-\section{Feb 3: Comodule cohomology I: group cohomology}
+\section{Feb 3: Comodule cohomology I: Group cohomology}
 
 \todo{This section is written gradedly and probably shouldn't be, for consistency.} Today we'll focus on an important classical tool: the Adams spectral sequence.  We're going to study this in greater earnest later on, so I will avoid giving a satisfying construction today.  But, even without a construction, it's instructive to see how such a thing comes about.  \todo{I first saw this presentation from Matt Ando. He must have learned it from someone. I'd like to know who to attribute this to.}  Begin by considering the following three self-maps of the stable sphere:
 \begin{align*}
@@ -613,30 +613,79 @@ This means that the Adams spectral sequence degenerates and this computes $\pi_*
 
 The bar complex and $A_\infty$ ring spectra
 
-The descent object for the unit map $\S \to E$
+The descent object for the unit map $\S \to E$:
 
-The Adams spectral sequence: you owe them this. (Be sure to also remark: spectral sequences comparing homological algebra to homotopical algebra)
+\[\mathcal{D}_E(X) := \left\{
+\begin{tikzcd}
+\begin{array}{c} E \\ \sm \\ X \end{array} \arrow[leftarrow, shift left=\baselineskip]{r}{\mu} \arrow[shift left=(2*\baselineskip)]{r}{\eta_L} \arrow{r}{\eta_R} &
+\begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r}{\Delta} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} &
+\begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} &
+\cdots
+\end{tikzcd}
+\right\}.\]
 
 Simplicial schemes and the commutativity hypothesis
 
+\begin{definition}
+$E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis, when $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.
+\end{definition}
+
+\begin{definition}
+Suppose that $E$ is a ring spectrum satisfying {\CH}.  We define a simplicial scheme associated to $E$, called its \textit{context}, to be \[\mathcal{M}_E := \left\{
+\begin{tikzcd}
+\Spec \pi_* E \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} & \Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \end{array} \right) \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} & \Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \end{array} \right) \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \arrow[leftarrow, shift right=(3*\baselineskip)]{r} & \cdots
+\end{tikzcd}
+\right\}.\]
+\end{definition}
+
 Sheaves on simplicial schemes, cohomology of sheaves
 
-(Basic properties of simplicial schemes: flat and closed maps? Landweber's theorem?)
+Since $E$--homology is valued in $E_*$--modules, which by \Cref{QCohDefinition} are also known as quasicoherent sheaves over $\Spec E_*$, we are prompted to recall the following definitions:
+\begin{definition}
+%\todo{I'd be much happier not citing the stacks project.}
+Let $X$ be a simplicial object in affine schemes and let $\sheaf F[n]$ be a quasicoherent sheaf on $X[n]$.\footnote{This is a slight abuse of notation: $\sheaf F[n]$ is not the $n$\th level of a simplicial object.}
+\begin{enumerate}
+\item $\sheaf F$ is collectively called a sheaf~\cite[Tag 09VK]{stacks-project} on $X$ when each map $\phi: [m] \to [n]$ inducing a map $X(\phi): X[n] \to X[m]$ naturally induces a sheaf map \[\sheaf F(\phi)_* \co \sheaf F[m] \to X(\phi)_* \sheaf F[n].\]
+\item $\sheaf F$ is called quasicoherent~\cite[Tag 07TF]{stacks-project} when it is comprised levelwise of quasicoherent sheaves.
+\item $\sheaf F$ is called Cartesian quasicoherent~\cite[Tag 07TF]{stacks-project} when it is quasicoherent and the adjoint map \[\sheaf F(\phi)^* \co X(\phi)^* \sheaf F[m] \to \sheaf F[n]\] is an isomorphism.
+\end{enumerate}
+\end{definition}
+
+In our specific example, we construct such a sheaf in the following way:
+
+\begin{definition}\label{DefnHomologyFunctorsValuedInSheaves}
+For a spectrum $E$ as in \Cref{RingSpToStackDefn} and input spectrum $X$, we define the following diagram of abelian groups:
+\[\sheaf{E}(X) := \left\{
+\begin{tikzcd}
+\pi_* \left( \begin{array}{c} E \\ \sm \\ X \end{array} \right) \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} &
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} &
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} &
+\cdots
+\end{tikzcd}
+\right\},\]
+where all of the coface and codegeneracy maps are induced by the unit map $\S \to E$ and the multiplication map $E \sm E \to E$.  (In particular, $X$ is not involved.)  The $j$\th object is a module for $\sheaf{O}(\sheaf M_E[j])$, and hence determines a quasicoherent sheaf over the scheme $(\sheaf M_E[j])$.  Suitably interpreted, the maps of abelian groups determine maps of pushforwards so that $\sheaf{E}(X)$ is a quasicoherent sheaf over the simplicial scheme $\sheaf M_E$.
+\end{definition}
+
+(Basic properties of simplicial schemes: flat and closed maps?)
 
 Groupoid schemes and the flatness hypothesis
 
+\begin{definition}
+Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is a flat map of $E_*$--modules.\todo{Explain {\FH} in terms of a Kunneth spectral sequence.}
+\end{definition}
 
 
 
 
 
-\section{Comodule cohomology II: groupoid cohomology}
+
+\section{Comodule cohomology II: Groupoid cohomology}
 
 Natural equivalence of groupoids induces an equivalence of comodule categories
 
 Deeper natural equivalence: stackification and locality
 
-The $E$-Adams spectral sequence
+The $E$-Adams spectral sequence: you owe them this from lecture 1.4
 
 
 
