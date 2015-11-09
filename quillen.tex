@@ -13,20 +13,35 @@ The content of the first lecture can be replicated essentially \textit{mutatis m
 There is a complex $J$--homomorphism \[J_{\C}: BU \to B \GL_1 \S.\]  It has a Thom spectrum $MU$, for a complex vector bundle $\xi$ on a space $X$ and a ring spectrum $E$ under $MU$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]  In particular, it follows that $E^* \CP^\infty$ is isomorphic to a one--dimensional power series ring. \qed
 \end{theorem}
 
-Motivation: $MU$ and $\CP^\infty_E$ for an $MU$--oriented theory $E$
+In light of this theorem, it seems prudent to develop some of the theory of formal schemes and formal varieties.
 
-Formal varieties
 
-Coordinates and parameters, curves
 
-Tangent spaces
+\begin{definition}
+Formal affine $n$--space is defined by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  A \textit{formal affine variety} is a formal scheme $V$ which is (noncanonically) isomorphic to $\A^n$ for some $n$.  The two maps in an isomorphism pair \[V \to \A^n, \quad V \leftarrow \A^n\] are called a coordinate (system) and a parameter (system) respectively.
+\end{definition}
 
-The inverse function theorem
+Maps between affine $n$--spaces
 
-Lemma 9.6.4 from the Crystals notes:
+\begin{definition}
+Let $V$ be a formal variety and let $I_V = \A^1(V)$ be the ideal of functions vanishing at the origin.  Then, we define the \textit{cotangent space of $V$} at the origin by \[T^* V = I_V / I_V^2.\]  Similarly, a point $f \in V(R[t] / t^2)$ can be written as $f = f(0) + v(f) t$ where $v(f)$ is determined by the image of $f - f(0)$ in $T^* V$.  Hence, we define the \textit{tangent space of $V$} by \[TV = V(R[t] / t^2) \cong \CatOf{Modules}_R(T^* V, R).\]
+\end{definition}
 
 \begin{theorem}
-Let $A$ be a Noetherian ring and $G: \CatOf{AdicAlgebras}_A \to \CatOf{AbelianGroups}$ be a functor such that
+A map $f: V \to W$ of formal varieties is an isomorphism if and only if the induced map $Tf: TV \to TW$ is an isomorphism of $R$--modules.
+\end{theorem}
+\begin{proof}
+This is 3.1.8 in the Crystals notes.
+\end{proof}
+
+\begin{remark}
+You can get formal varieties by completing varieties.
+\end{remark}
+
+\todo{You can also get formal varieties using this detection theorem...}
+
+\begin{theorem}
+\todo{I think this theorem is motivated by Artin--Mazur formal groups, and the Crystals notes use it to extract a formal group from a Dieudonn\'e module.  Some motivation could go here.}Let $A$ be a Noetherian ring and $G: \CatOf{AdicAlgebras}_A \to \CatOf{AbelianGroups}$ be a functor such that
 \begin{enumerate}
 \item $G(A) = 0$.
 \item $G$ takes surjective maps to surjective maps.
@@ -34,14 +49,34 @@ Let $A$ be a Noetherian ring and $G: \CatOf{AdicAlgebras}_A \to \CatOf{AbelianGr
 \end{enumerate}
 Then, $G \cong \A^n$ as a functor to sets, where $n = \dim M$.
 \end{theorem}
+\begin{proof}
+This is 9.6.4 in the Crystals notes.
+\end{proof}
 
-Definition of a formal group.  Formal group laws have automatic inverses follows from the inverse function theorem, which is nice.
+\begin{definition}
+A formal group is a formal variety endowed with an abelian group structure.\footnote{Formal groups in dimension $1$ are automatically commutative if and only if the ground ring has no elements which are simultaneously nilpotent and torsion.  \textbf{Cite this.}}
+\end{definition}
 
-Formal groups from completions of algebraic groups
+\begin{remark}
+\todo{Discuss the connection between formal groups with coordinates and formal group laws.  Introduce FGL notation.}
+\end{remark}
 
-Artin-Mazur representability?
+\begin{remark}
+Formal groups automatically have inverses.
+\end{remark}
 
-Quillen's theorem needs to know that rational formal groups have logarithms.  Now is a good time to prove that.
+\begin{remark}
+You can get formal groups from completions of algebraic groups.
+\end{remark}
+
+Quillen's theorem needs to know that rational formal groups have logarithms.  Now is a good time to prove that?  Or maybe this comes later.  If it comes here, it would be good to give the version that uses the tangent space:
+\begin{theorem}
+There is a unique isomorphism \[\G \xrightarrow{\log} \operatorname{Lie} \G \otimes \G_a.\]
+\end{theorem}
+
+\begin{example}
+$\CP^\infty_{H\Z P} \cong \G_a$.  $\CP^\infty_{KU} \cong \G_m$.
+\end{example}
 
 
 
@@ -123,11 +158,9 @@ Q: Once you know that $MU$ has the universal formal group law on it, does the de
 
 --- here's some of the real proof ---
 
-
-
 Need to talk about power operations and the construction of the Steenrod operations for a sufficiently geometric cohomology theory
 
-Need to talk about Gysin pushforwards in complex bordism and in ordinary cohomology
+Need to talk about Gysin pushforwards in complex bordism and in ordinary cohomology.  Compare these with the theory of Thom isomorphism in general.  They're equivalent, right?  A complex orientation makes proper maps induce shriek maps, and shriek maps can be used to deduce what Chern classes are by push-pull: if $\zeta: X \to E$ is the zero section of a complex bundle $\xi$, then $e(\xi) = i^* i_*(1)$ I think.
 
 Need to talk about characteristic classes and the $c_{\mathbf t}(x) = \sum_\alpha c_\alpha(x) \cdot \mathbf t^\alpha$ ``total Chern class''.  This will be hard, since you want to talk about Chern classes way later.  Maybe you'll just have to do it now\ldots
 
