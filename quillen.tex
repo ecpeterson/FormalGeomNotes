@@ -8,12 +8,24 @@
 
 Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots.  We would like to replicate the results above for these other contexts, but we quickly see that only one of the listed bordism theories supports this program.  The space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other bordism theory with a similar ground object is complex bordism, with $\CP^\infty = BU(1)$.  So, we will focus on it.
 
-The content of the first lecture can be replicated essentially \textit{mutatis mutandis}, resulting in the omnibus theorem
+The content of the first lecture can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
 \begin{theorem}
-There is a complex $J$--homomorphism \[J_{\C}: BU \to B \GL_1 \S.\]  It has a Thom spectrum $MU$, for a complex vector bundle $\xi$ on a space $X$ and a ring spectrum $E$ under $MU$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]  In particular, it follows that $E^* \CP^\infty$ is isomorphic to a one--dimensional power series ring. \qed
+There is a complex $J$--homomorphism \[J_{\C}: BU \to B \GL_1 \S. \qed \]
 \end{theorem}
 
-In light of this theorem, it seems prudent to develop some of the theory of formal schemes and formal varieties.
+\begin{definition}
+The associated Thom spectrum is written ``$MU$'' and called \textit{complex bordism}.  A map $MU \to E$ of ring spectra is said to be a \textit{complex orientation of $E$}.
+\end{definition}
+
+\begin{theorem}
+For a complex vector bundle $\xi$ on a space $X$ and a complex-oriented ring spectrum $E$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X. \qed\]
+\end{theorem}
+
+\begin{corollary}\label{CPinftyNiceCalculation}
+In particular, it follows that $E^* \CP^\infty$ is isomorphic to a one--dimensional power series ring for a complex-oriented ring spectrum $E$. \qed
+\end{corollary}
+
+In light of these theorems, it seems prudent to develop some of the theory of formal schemes and formal varieties.
 
 
 
@@ -78,6 +90,13 @@ There is a unique isomorphism \[\G \xrightarrow{\log} \operatorname{Lie} \G \oti
 $\CP^\infty_{H\Z P} \cong \G_a$.  $\CP^\infty_{KU} \cong \G_m$.
 \end{example}
 
+\begin{definition}
+The module of K\"ahler differentials on a $k$--algebra $R$ is given by \todo{Put formula here.}.
+\end{definition}
+
+\begin{lemma}
+It's universal for derivations.  It has something to do with cotangent vectors.
+\end{lemma}
 
 
 
@@ -85,7 +104,170 @@ $\CP^\infty_{H\Z P} \cong \G_a$.  $\CP^\infty_{KU} \cong \G_m$.
 
 
 
-\section{The splitting principle}
+
+\section{Chern classes and divisor schemes}
+
+Having built up some of the background theory of formal varieties, today we're going to pursue another standard calculation for complex-oriented cohomology theories $E$.  Recall our motivating theorem from last time:
+\begin{corollary}[{\Cref{CPinftyNiceCalculation}}]
+A complex-oriented ring spectrum $E$ imbues $E^* \CP^\infty$ with an isomorphism to a one--dimensional power series ring. \qed
+\end{corollary}
+
+\noindent Recalling $\CP^\infty \simeq BU(1)$, we turn to calculating the $E$--cohomology of the other spaces $BU(n)$ in this sequence.  Since these serve as classifying spaces for complex vector bundles, such a calculation will give us a theory of $E$--characteristic classes for complex vector bundles.
+
+\begin{lemma}
+The Serre spectral sequence \[E_2^{*, *} = H^*(S^{2n+1}; E^* BU(n)) \Rightarrow E^* BU(n+1)\] associated to the coset fibration \[BU(n) \to BU(n+1) S^{2n+1}\] degenerates at $E_2$. \qed
+\end{lemma}
+\begin{corollary}\label{ECohomologyOfBUn}
+For each $n$, the complex orientation of $E$ begets an isomorphism \[E^* BU(n) \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_n \rrbracket. \qed\]
+\end{corollary}
+
+Our goal is to imbue this Corollary with algebro-geometric meaning.  This will come out of investigating a related nest of theorems, generally referred to as ``the splitting principle''.  Considering the following construction:
+\begin{definition}
+Let $\xi$ be a complex vector bundle of rank $n$ over a base $X$.  Define $\P(xi)$, the \textit{projectivization of $\xi$}, to be the $\CP^{n-1}$--bundle over $X$ whose fiber of $x \in X$ is the space of complex lines in the original fiber $\xi|_x$.\todo{I think another definition of the Thom space is as the cofiber of $\P(V) \to \P(V \oplus \C)$.  This might come in handy.}
+\end{definition}
+
+\begin{theorem}\label{CohomologyOfProjectivization}
+The $E$--cohomology of $\P(\xi)$ is given by the formula \[E^* \P(\xi) \cong \left. E^*(X) \llbracket x \rrbracket \middle/ c(\xi) \right.\] for a certain monic polynomial \[c(\xi) = x^n - c_1(\xi) x^{n-1} + c_2 x^{n-2} - \cdots + (-1)^n c_n(\xi).\]
+\end{theorem}
+\begin{proof}
+We fit all of the fibrations we have into a single diagram:
+\begin{center}
+\begin{tikzcd}
+& \C^\times \arrow[-,double]{dd} \arrow{rd} \\
+\C^n \arrow{dd} & & \C^n \setminus \{0\} \arrow[crossing over]{ll} \arrow{r} \arrow{dd} & \CP^{n-1} \arrow{r} \arrow{dd} & \CP^\infty \arrow[-,double]{dd} \\
+& \C^\times \arrow{rd} \\
+\xi \arrow{d} & & \xi \setminus \zeta \arrow{ll} \arrow{r} \arrow{d} & \P(\xi) \arrow{r} \arrow{d}{\pi} & \CP^\infty \arrow{d} \\
+X \arrow[-,double]{rr} \arrow[bend left, densely dotted]{u}{\zeta} & & X \arrow[-,double]{r} & X \arrow{r} & *.
+\end{tikzcd}
+\end{center}
+We read this diagram as follows: on the far left, there's the vector bundle we began with, as well as its zero-section $\zeta$.  Deleting the zero-section gives the second bundle, a $\C^n \setminus \{0\}$--bundle over $X$.  Its quotient by the scaling $\C^\times$--action gives the third bundle, a $\CP^{n-1}$--bundle over $X$.  Additionally, the quotient map $\C^n \setminus \{0\} \to \CP^{n-1}$ is itself a $\C^\times$--bundle, and this induces the structure of a $\C^\times$--bundle on the quotient map $\xi \setminus \zeta \to \P(\xi)$.  Thinking of these as complex line bundles, they are classified by a map to $\CP^\infty$, which can itself be thought of as the last vertical fibration, fibering over a point.
+
+Note that the map between these two last fibers is surjective on $E$--cohomology.  It follows that the Serre spectral sequence for the third vertical fibration is degenerate, since all the classes in the fiber must survive.\footnote{This is called the Leray--Hirsch theorem.}  We thus conclude that $E^* \P(\xi)$ is a free $E^*(X)$--module on the classes $\{1, x, x^2, \ldots, x^{n-1}\}$ spanning $E^* \CP^{n-1}$.  To understand the ring structure, we need only compute $x^{n-1} \cdot x$, which must be able to be written in terms of the classes which are lower in $x$--degree: \[x^n = c_1(\xi) x^{n-1} - c_2 x^{n-2} + \cdots + (-1)^{n-1} c_n(\xi)\] for some classes $c_i(\xi) \in E^* X$.  The description in the theorem statement follows.\todo{I think we're going to talk about the ring scheme structure on $\Div_*^+ \CP^\infty_E$ much later on. Don't forget about it.}
+\end{proof}
+
+We have a pair of obvious corollaries:
+\begin{corollary}
+The map $E^* X \to E^* \P(\xi)$ is injective. \qed
+\end{corollary}
+\begin{corollary}
+A line bundle canonically splits off of $\pi^*(\xi)$: consider the sub-bundle of vectors $(v, (\ell, x))$ such that $v$ lies along the line $\ell$. \qed
+\end{corollary}
+
+\noindent Combining these and iterating gives something much stronger:
+
+\begin{corollary}
+Associated to any $n$--dimensional complex vector bundle $\xi$ over a base $X$, there is a canonical map $f_\xi: Y_\xi \to X$ such that $E^* X \to E^* Y$ is injective and there is a canonical splitting into complex line bundles: \[f_\xi^*(\xi) \cong \bigoplus_{i=1}^n \L_i. \qed\]
+\end{corollary}
+
+\textbf{JUSTIFY THIS:}
+\begin{theorem}
+Let $\xi: X \to BU(n)$ classify a vector bundle $\xi$.  Then the coefficient $c_j$ in the polynomial $c(\xi)$ is selected by $\sigma_j$: \[c_j(\xi) = \xi^*(\sigma_j). \qed\]
+\end{theorem}
+
+\todo{We need to have talked about closed subschemes by the time we get here.}
+
+We now finally turn to the algebraic geometry.  Our original calculation of $E^* BU(n)$ in \Cref{ECohomologyOfBUn} showed us that any map $\xi: X \to BU(n)$ classifying a rank $n$ complex vector bundle produces a sequence of $n$ distinct $E$--cohomology classes $\xi^*(\sigma_j) \in E^*(X)$.  \Cref{CohomologyOfProjectivization} showed us what these classes were good for: the belong to the coefficients of a monic polynomial used in a quotient construction.  The algebro-geometric name for quotients are closed subschemes, and so we re-interpret \Cref{CohomologyOfProjectivization} as follows:
+\begin{corollary}[{\Cref{CohomologyOfProjectivization} redux}]
+The map \[P(\xi)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes. \qed
+\end{corollary}
+
+We would like to package this information in terms of the map $X_E \to BU(n)_E$.  Recall the following definition:
+\begin{definition}
+A closed subscheme $D$ of finite rank $d$ of a curve $C$ is called an effective Weil divisor of rank $d$.
+\end{definition}
+\noindent So, we can think of $P(\xi)_E$ as a divisor of rank $d$ on the formal curve $\CP^\infty_E$, base--changed to $X_E$.  Motivated by this, we define the following scheme:
+\begin{definition}
+\todo{Define the $\O_D$ notation.} Let $C$ be a formal curve.  Define the scheme $\Div_n^+(C)$ by \[\Div_n^+(C)(T) = \left\{i: D \to C \times T \middle| \begin{array}{c} \text{$i$ is a closed inclusion of $T$--schemes} \\ \text{$\O_D$ is a rank $d$ $\O_T$--module} \end{array}\right\}.\]
+\end{definition}
+\begin{lemma}
+A coordinate $C \cong \A^1$ begets an isomorphism $\Div_n^+(C) \cong \A^n$. \qed
+\end{lemma}
+
+The main theorem of this section is then:
+\begin{theorem}
+For a complex-oriented cohomology theory $E$, there is an isomorphism \[BU(n)_E \cong \A^n \cong \Div_n^+ \CP^\infty_E,\] so that maps $\xi: X \to BU(n)$ are transported to divisors $\P(\xi)_E \subseteq \CP^\infty_E \times X_E$.
+\end{theorem}
+
+\todo{Say something about what the splitting principle buys you, and how divisors can be either totally disconnected or clumped together in non-algebraically-closed settings.}
+
+\todo{Give some properties of the Chern classes, like Whitney sum is sent to the product of the Chern polynomials.  This will reinforce the name ``divisor'' and it will be useful in the section on operations.}
+
+\todo{This day should probably have fewer proofs of facts about vector bundles, which will be standard to anyone reading these notes, and more of a discussion about why divisors are called divisors.  Maybe we should even compare Cartier divisors and Weil divisors?  That's discussed in Neil's FPFP paper.}
+
+
+
+
+\section{Operations}
+
+Our eventual goal, like last time, is to give an algebro-geometric description of $MU_*(*)$ and of the cooperations $MU_* MU$.  There is such a description that passes through the Adams spectral sequence, also like last time, but $MU_*(*)$ is an integral algebra and so we cannot make do with working out the mod--$2$ Adams spectral sequence.  We would have to at least work out the mod--$p$ Adams spectral sequence for every $p$, but there is the following unfortunate theorem:
+\begin{theorem}
+There is an isomorphism
+\[H\F_pP_0 H\F_pP \cong \F_p[\xi_0^\pm, \xi_1, \xi_2, \ldots] \otimes \Lambda[\tau_0, \tau_1, \ldots]\]
+with $|\xi_j| = 2p^j-2$ and $|\tau_j| = 2p^j - 1$. \qed
+\end{theorem}
+\noindent Because we are no longer working in characteristic $2$ and because there are odd--dimensional classes in this algebra, we see that the dual mod--$p$ Steenrod algebra is \emph{graded-commutative}.  This is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild, and for now we will simply avoid these methods and find another approach.
+
+There is such an alternative proof, due to Quillen, that bypasses the Adams spectral sequence.  This approach has some deficiencies of its own: it requires studying the algebra of operations $MU^* MU$, which we do not expect to be at all commutative, and it requires studying \textit{power operations}, which are in general very technical creatures.  However, we will eventually want to talk about power operations anyway, and because this is the road less traveled we will elect to take it.
+
+Our job today is to define these two kinds of cohomology operations.
+
+
+
+give the specific model for complex bordism that Quillen uses
+
+Landweber--Novikov operations
+
+power operations in $MU$--cohomology.  remark that quadratic power operations in ordinary cohomology give the usual Steenrod operations.
+
+
+
+
+
+
+\section{Quillen's theorem}
+
+riemann-roch formulas and relating the two kinds of operations
+
+quillen's main theorem
+
+consequence: the subring of coefficients of the formal group law generate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Run off}
+
+
+
+
+
+
+
+
+chern classes
+
+landweber--novikov operations, their basic properties
+
+
+
+
+
+
+
+
+
+
+\subsection*{The splitting principle}
 
 the splitting principle: gives Chern classes generally from knowing the calculation for $\CP^\infty$
 
@@ -136,11 +318,9 @@ Remembering that $MO(1) \simeq \Susp^{-1} \Susp^\infty \RP^\infty$, we see that 
 
 The main point is that the fiber map $\CP^{n-1} \to P(V) \to X$ postcomposes by $P(V) \to \CP^\infty$ to the skeletal inclusion, so the Serre spectral sequence degenerates since its fiber is unmolested (or: the Leray--Hirsch theorem). The Chern classes are \emph{defined} by the one remaining multiplicative extension.
 
+The map $X \to BU(n)$ induces a map $X_E \to BU(n)_E \cong \Div_n^+ \CP^\infty_E$, classifying a rank $n$ divisor on $\CP^\infty_E$ base-changed to $X_E$.  this subscheme is selected by the ideal sheaf determined by the total Chern class, but it's also modeled topologically by the projectivization construction.
 
-
-
-
-\section{Divisors and divisor schemes}
+---
 
 Divisors and schemes of divisors on $1$-dimensional formal groups
 
@@ -165,7 +345,7 @@ where ``$\operatorname{Norm}(\alpha)$'' denotes the determinant of multiplicatio
 
 
 
-\section{Quillen's theorem}
+\subsection*{Quillen's theorem}
 
 --- we don't have this language yet ---
 
@@ -279,6 +459,6 @@ We know that $\delta$ is surjective by the arguments about the subring $C$.  On 
 \end{proof}
 
 
-\section{Lazard's theorem}
+\subsection*{Lazard's theorem}
 
 This should have a clever ``The structure of $\moduli{fg}$'' name.
