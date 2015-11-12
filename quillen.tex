@@ -3,6 +3,8 @@
 \chapter{Complex bordism}
 
 
+\todo{Write an introduction for me.}
+
 
 \section{Formal varieties}
 
@@ -115,7 +117,7 @@ A complex-oriented ring spectrum $E$ imbues $E^* \CP^\infty$ with an isomorphism
 \noindent Recalling $\CP^\infty \simeq BU(1)$, we turn to calculating the $E$--cohomology of the other spaces $BU(n)$ in this sequence.  Since these serve as classifying spaces for complex vector bundles, such a calculation will give us a theory of $E$--characteristic classes for complex vector bundles.
 
 \begin{lemma}
-The Serre spectral sequence \[E_2^{*, *} = H^*(S^{2n+1}; E^* BU(n)) \Rightarrow E^* BU(n+1)\] associated to the coset fibration \[BU(n) \to BU(n+1) S^{2n+1}\] degenerates at $E_2$. \qed
+The Serre spectral sequence \[E_2^{*, *} = H^*(S^{2n+1}; E^* BU(n)) \Rightarrow E^* BU(n+1)\] associated to the coset fibration \[BU(n) \to BU(n+1) \to S^{2n+1}\] degenerates at $E_2$. \qed
 \end{lemma}
 \begin{corollary}\label{ECohomologyOfBUn}
 For each $n$, the complex orientation of $E$ begets an isomorphism \[E^* BU(n) \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_n \rrbracket. \qed\]
@@ -188,15 +190,48 @@ The main theorem of this section is then:
 For a complex-oriented cohomology theory $E$, there is an isomorphism \[BU(n)_E \cong \A^n \cong \Div_n^+ \CP^\infty_E,\] so that maps $\xi: X \to BU(n)$ are transported to divisors $\P(\xi)_E \subseteq \CP^\infty_E \times X_E$.
 \end{theorem}
 
-\todo{Say something about what the splitting principle buys you, and how divisors can be either totally disconnected or clumped together in non-algebraically-closed settings.}
+--- stitch these together ---
 
-\todo{Give some properties of the Chern classes, like Whitney sum is sent to the product of the Chern polynomials.  This will reinforce the name ``divisor'' and it will be useful in the section on operations.}
+\begin{lemma}
+The sum map \[BU(n) \times BU(m) \xrightarrow\oplus BU(n+m)\] induces on Chern polynomials the identity \[c(\xi \oplus \zeta) = c(\xi) \cdot c(\zeta).\]  In terms of divisors, \[\P(\xi \oplus \zeta)_E = \P(\xi)_E \sqcup \P(\zeta)_E,\] and hence there is an induced square
+\begin{center}
+\begin{tikzcd}
+BU(n)_E \times BU(m)_E \arrow{r}{\oplus} \arrow[-,double]{d} & BU(n+m) \arrow[-,double]{d} \\
+\Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \arrow{r}{\sqcup} & \Div_{n+m}^+ \CP^\infty_E. \qed
+\end{tikzcd}
+\end{center}
+\end{lemma}
+
+\begin{lemma}
+The map $Y_E \xrightarrow{f_\xi} X_E$ pulls $\P(\xi)_E$ back to give \[Y_E \times_{X_E} \P(\xi)_E \cong \bigoplus_{i=1}^n \left\{ c_1(\L_i) \right\}. \qed\]
+\end{lemma}
+
+--- make a point between complex oriented and complex orientable ---
+
+\begin{theorem}
+For $E$ a complex-orientable ring spectrum, there is a natural isomorphism \[BU(n)_E \cong \Div_n^+ \CP^\infty_E. \qed \]
+\end{theorem}
+
 
 \todo{This day should probably have fewer proofs of facts about vector bundles, which will be standard to anyone reading these notes, and more of a discussion about why divisors are called divisors.  Maybe we should even compare Cartier divisors and Weil divisors?  That's discussed in Neil's FPFP paper.}
 
 \todo{A corollary of the splitting principle is supposed to be that a Thom isomorphism for $\CP^\infty$ begets Thom isomorphisms for everything, and hence a ring spectrum map $MU \to E$.  We should produce that corollary here if we can.}
 
-\todo{The stable situation: $BU_E$ and stable divisors.  This lecture might take two days\ldots}
+\todo{Proposition 8.31 in FSFG shows that the isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$ is independent of coordinate. Read it.}
+
+
+
+
+\section{Stable divisors and free formal groups}
+
+\begin{lemma}
+The object $\A^n / \Sigma_n$ exists.  In fact, $\A^n / \Sigma_n \cong \A^n$.
+\end{lemma}
+\begin{proof}
+Newton polynomials.
+\end{proof}
+
+\todo{The stable situation: $BU_E$ and stable divisors.  This is ``in the Remarks following 5.8'' in FSFG.}
 
 
 
@@ -213,7 +248,7 @@ with $|\xi_j| = 2p^j-2$ and $|\tau_j| = 2p^j - 1$. \qed
 
 There is such an alternative proof, due to Quillen, that bypasses the Adams spectral sequence.  This approach has some deficiencies of its own: it requires studying the algebra of operations $MU^* MU$, which we do not expect to be at all commutative, and it requires studying \textit{power operations}, which are in general very technical creatures.  However, we will eventually want to talk about power operations anyway, and because this is the road less traveled we will elect to take it.
 
-Our job today is to define these two kinds of cohomology operations.
+Our job today is to define these two kinds of cohomology operations, as well as revisit the model of complex cobordism Quillen uses.
 
 
 
@@ -221,20 +256,28 @@ give the specific model for complex bordism that Quillen uses
 
 Landweber--Novikov operations: the reason the ``total Chern class'' looks so unfamiliar is this: $E_* BU$ is polynomial means $E_* MU$ is polynomial, but $E^* BU$ being a nice algebra doesn't really tell you anything about $E^* MU$, since it's no longer an algebra.  so you really need an $E$--module basis of $E^* MU$, and that's what the nasty expansion of the total chern class is doing.
 
-power operations in $MU$--cohomology.  remark that quadratic power operations in ordinary cohomology give the usual Steenrod operations.
+power operations in $MU$--cohomology.
+
+remark that quadratic power operations in ordinary cohomology give the usual Steenrod operations.
 
 
 
 
 
 
-\section{Quillen's theorem}
+\section{Quillen's theorem I: push-pull formulas}
 
-riemann-roch formulas and relating the two kinds of operations
+riemann-roch formulas.  the main relation: the $p$\th cyclic power operation is additive.
 
-quillen's main theorem
 
-consequence: the subring of coefficients of the formal group law generate
+
+\section{Quillen's theorem II: Lazard's theorem}
+
+consequence: the map $L \to MU_*$ surjects
+
+lazard's theorem.
+
+consequence: the subring of coefficients of the formal group law generate.
 
 
 
