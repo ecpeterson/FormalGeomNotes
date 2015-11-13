@@ -165,6 +165,8 @@ The object $C^{\times n}_{\Sigma_n}$ exists, it factors the iterated addition ma
 The first assertion is a consequence of Newton's theorem on symmetric polynomials: the subring of symmetric polynomials in $R[x_1, \ldots, x_n]$ is itself polynomial on generators \[\sigma_j(x_1, \ldots, x_n) = \sum_{\substack{S \subseteq \{1, \ldots, n\} \\ |S| = j}} x_{S_1} \cdots x_{S_j},\] and hence \[R[\sigma_1, \ldots, \sigma_n] \subseteq R[x_1, \ldots, x_n].\]  Picking a coordinate on $C$ allows us to import this fact into formal geometry to deduce the existence of $C^{\times n}_{\Sigma_n}$.  The factorization then follows by noting that the iterated $\sqcup$ map is symmetric.  Finally, \Cref{DescriptionOfSqCupMapOnPolynomials} shows that the horizontal map pulls the coordinate $a_j$ back to $\sigma_j$, so the third assertion follows.
 \end{proof}
 
+\todo[inline]{We could also talk about functoriality for stable divisor schemes. Given a map $q: C \to C'$, we postcompose to get a map $C \to C' \to \Div C'$ and hence an induced free map $q_*: \Div C \to \Div C'$ which acts by $q_*[a] = [q(a)]$.  Also, if $q$ is an \textit{isogeny}, then there is a map $q^*: \Div C' \to \Div C$ given by Cartesian pullback of schemes and using the isogeny condition to guarantee that the pullback scheme still has a good rank over $\sheaf{O}_X$.}
+
 Now we use the pointing $\zeta: X \to C$.  Together with the $\sqcup$ map, this gives a composite
 \begin{center}
 \begin{tikzcd}
@@ -188,28 +190,35 @@ The scheme $\Div^+ C$ models the free formal monoid on the formal curve $C$.  Th
 \end{theorem}
 \noindent We will postpone the proof of this theorem until later, once we've developed a theory of coalgebraic formal schemes.\oweproof{The various $\Div$ constructions give free monoids / groups}
 
-We close today by justifying the name ``divisor'' that we've been using.  It means something in algebraic geometry, and it's not immediately clear that we are respecting their language.
-
-
-
-
-
+We close today by justifying the name ``divisor'' that we've been using.  It means something in algebraic geometry, and it's not immediately clear that we are respecting their language.  Line bundles are the most basic objects in their divisor story.  The data of a line bundle turns out to be equivalent to the data of a certain meromorphic function\todo{How does this comparison work again?} up to suitable equivalence.  From that meromorphic function, one can extract a Weil divisor by considering its loci of zeroes and poles.  In our case of a formal curve $C$, we will show that these data all agree.
 
 \begin{definition}
-Let $X$ be a formal scheme and $C$ a formal curve over $X$ with ring of functions $\sheaf{O}_C$.  The ring of meromorphic functions on $C$, $\sheaf{M}_C$, is obtained by inverting all coordinates in $\sheaf{O}_C$.\todo{In fact, it suffices to invert one.}  A \textit{Cartier divisor} on $C$ is an element in $\sheaf{M}_C^\times / \sheaf{O}_C^\times$.
+Let $X$ be a formal scheme and $C$ a formal curve over $X$ with ring of functions $\sheaf{O}_C$.  The ring of meromorphic functions on $C$, $\sheaf{M}_C$, is obtained by inverting all coordinates in $\sheaf{O}_C$.  We then augment this to a scheme $\operatorname{Mer}(C, \mathbb G_m)$ of meromorphic functions on $C$ by \[\operatorname{Mer}(C, \mathbb G_m)(R) := \left\{ (u, f) \middle| \begin{array}{c} u: \Spec R \to X, \\ f \in \sheaf{M}^\times_{C \times_X \Spec R} \end{array} \right\}.\]
 \end{definition}
 
+\begin{lemma}\todo{FSFG Lemma 5.23}
+Let $x$ be a coordinate on $C$ and let $f(x) = \sum_{k \in \Z} a_k x^k$ be an element of $\sheaf M_C$.  Then $f$ is invertible in $\sheaf M_C$ if and only if the base scheme $X$ can be written as a coproduct $X = \coprod_{k \in \Z} X_k$ where $X_k = \emptyset$ a.e., such that $a_j$ is nilpotent on $X_k$ for $j < k$, and $a_k$ is invertible on $X_k$. \qed
+\end{lemma}
+
+\begin{definition}\todo{FSFG Definition 5.24}
+Let $x$ be a coordinate on $C$ and let $f$ be an invertible element of $\sheaf M_C$ with associated decomposition $X = \coprod_k X_k$.  If $X = X_k$ we say $f$ has constant degree $k$, and more generally we have a map $X \to \underline{\Z}$ selecting the local degree.
+\end{definition}
+
+\begin{lemma}\todo{FSFG Definition 5.25}\todo{This involves Weierstrass.}
+Let $x$ be a coordinate on $C$ and let $f$ be an invertible element of $\sheaf M_C$ with constant degree $k$.  Then there is a unique factorization \[f(x) = x^k u(x) g(x)\] for $u(x) \in \sheaf O_C^\times$ and $g(x) = \sum_{j \ge 0} b_j x^{-j}$, $b_0 = 1$, $b_j$ nilpotent for $j > 0$, and $b_j = 0$ for $j \gg 0$. \qed
+\end{lemma}
+
 \begin{lemma}
-In the case of a formal curve $C$, there is a short exact sequence of formal groups \[0 \to \underline{\Hom}(C, \mathbb G_m) \to \underline{\sheaf{M}}_C^\times \to \Div(C) \to 0.\]
+\todo{This is Prop 5.26 in FSFG.}
+In the case of a formal curve $C$, there is a short exact sequence of formal groups \[0 \to \underline{\CatOf{FormalSchemes}}(C, \mathbb G_m) \to \operatorname{Mer}(C, \mathbb G_m) \to \Div(C) \to 0.\]
 \end{lemma}
 \begin{proof}
-\todo{This is Prop 5.26 in FSFG.}
+One first checks that it suffices to invert \emph{any} one coordinate in forming $\sheaf{M}_C$ and the rest automatically become inverted.  The above lemma gives a decomposition \[\operatorname{Mer}(C, \mathbb G_m) \cong \underline{\CatOf{FormalSchemes}}(C, \mathbb G_m) \times \underline{\Z} \times Y,\] where $Y$ selects the series $g$.  For $f(x) \in \sheaf O_{C \times_X \Spec R}$ so that $\sheaf O_{C \times_X \Spec R} / f$ is free of rank $n$ over $R$, we set $\div(f)$ to be the associated divisor, and we extend to fractions by $\div(f/g) = \div(f) - \div(g)$.  This map has kernel $\underline{\CatOf{FormalSchemes}}(C, \mathbb G_m)$.
+
+Now let $j: C \to \Div C$ be the usual inclusion, and for a point $a \in C(R)$ set $\sigma(a) = x - x(a) = x(1 - x(a)/x) \in \operatorname{Mer}(C, \mathbb G_m)(R)$.  This gives a map $\sigma: C \to \operatorname{Mer}(C, \mathbb G_m)$ satisfying $\div \circ \sigma = j$.  There is also an extension \[ \tau: \Div C \to \operatorname{Mer}(C, \mathbb G_m),\] and one checks $\tau \circ j = \sigma$.  It follows that $\div \circ \tau \circ j = j$ and thus $\div \circ \tau = 1$.  So, the sequence is split exact, though the formula for the splitting (and only the splitting) involved the coordinate $x$.
 \end{proof}
 
-
-----
-
-\todo[inline]{We could also talk about functoriality for stable divisor schemes. Given a map $q: C \to C'$, we postcompose to get a map $C \to C' \to \Div C'$ and hence an induced free map $q_*: \Div C \to \Div C'$ which acts by $q_*[a] = [q(a)]$.  Also, if $q$ is an \textit{isogeny}, then there is a map $q^*: \Div C' \to \Div C$ given by Cartesian pullback of schemes and using the isogeny condition to guarantee that the pullback scheme still has a good rank over $\sheaf{O}_X$.}
+\todo{This is still missing a little.  Include how you take a meromorphic function and build a line bundle?}
 
 
 
@@ -329,9 +338,6 @@ For $E$ a complex-orientable ring spectrum, there is a natural isomorphism \[BU(
 
 
 
-\section{Stable divisors and free formal groups}
-
-\todo{The stable situation: $BU_E$ and stable divisors.  This is ``in the Remarks following 5.8'' in FSFG.}
 
 
 
