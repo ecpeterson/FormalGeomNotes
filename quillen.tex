@@ -54,7 +54,7 @@ You can get formal varieties by completing varieties.
 
 \todo{You can also get formal varieties using this detection theorem...}
 
-\begin{theorem}
+\begin{theorem}\label{DetectingFormalVarieties}
 \todo{I think this theorem is motivated by Artin--Mazur formal groups, and the Crystals notes use it to extract a formal group from a Dieudonn\'e module.  Some motivation could go here.}Let $A$ be a Noetherian ring and $G: \CatOf{AdicAlgebras}_A \to \CatOf{AbelianGroups}$ be a functor such that
 \begin{enumerate}
 \item $G(A) = 0$.
@@ -100,6 +100,54 @@ The module of K\"ahler differentials on a $k$--algebra $R$ is given by \todo{Put
 It's universal for derivations.  It has something to do with cotangent vectors.
 \end{lemma}
 
+Sheaves on formal schemes too?
+
+
+
+
+
+\section{Divisors and divisor schemes}
+
+\begin{definition}
+Let $X$ be an affine formal scheme, and pick a chart $\Spec R \to X$.  A subscheme $Y \subseteq X$ is called \textit{closed} when it has the form
+\begin{center}
+\begin{tikzcd}
+Y \arrow{r} \arrow[-,double,densely dotted]{d} & X \arrow[-,double]{d} \\
+\Spec (R/I) \arrow{r} & \Spec R.
+\end{tikzcd}
+\end{center}
+\end{definition}
+
+\begin{definition}
+An effective Weil divisor on $C$ of rank $d$ is a subscheme of $C$ whose ring of functions is rank $d$ as an $\sheaf{O}_X$--module.
+\end{definition}
+
+\begin{lemma}
+The scheme of such Weil divisors exists.  In fact, a coordinate $x$ on $C$ determines an isomorphism $\Div_n^+ C \cong \A^n$.\todo{I wonder if it's possible to frame this argument with \Cref{DetectingFormalVarieties}.  The proof given here is Prop 5.2 of FSFG.}
+\end{lemma}
+\begin{proof}
+Begin with the definition \[\Div_n^+(C)(R) = \left\{(a, D) \middle| \begin{array}{c} a: \Spec R \to X, \\ \text{$D$ is an effective divisor on $C \times_X \Spec R$} \end{array} \right\}.\]  To show that it is a formal variety, we pick a coordinate $x$ on $C$ and consider a point $(a, D) \in \Div_n^+(C)(R)$.  In this case, $C \times_X \Spec R$ is presented as \[C \times_X \Spec R = \Spf R\llbracket x \rrbracket\] and hence $D$ can be presented as the closed subscheme \[D = \Spf R\llbracket x \rrbracket / (x^n - g(x)), \quad g(x) = \sum_{j=0}^{n-1} a_j(D) x^j.\]  One checks that $a_j(D)$ is a nilpotent element of $R$ for all $j$, and hence determines a map $\Spec R \to \A^n$.  Conversely, given such a map, we can form the polynomial $g(x)$ and hence the divisor $D$.
+\end{proof}
+
+\begin{lemma}
+The object $\A^n / \Sigma_n$ exists.  In fact, $\A^n / \Sigma_n \cong \A^n$.
+\end{lemma}
+\begin{proof}
+Newton polynomials.
+\end{proof}
+
+\begin{definition}
+Let $X$ be a formal scheme and $C$ a formal curve over $X$ with ring of functions $\sheaf{O}_C$.  The ring of meromorphic functions on $C$, $\sheaf{M}_C$, is obtained by inverting all coordinates in $\sheaf{O}_C$.\todo{In fact, it suffices to invert one.}  A \textit{Cartier divisor} on $C$ is an element in $\sheaf{M}_C^\times / \sheaf{O}_C^\times$.
+\end{definition}
+
+\begin{lemma}
+In the case of a formal curve $C$, there is a short exact sequence of formal groups \[0 \to \underline{\Hom}(C, \mathbb G_m) \to \underline{\sheaf{M}}_C^\times \to \Div(C) \to 0.\]
+\end{lemma}
+\begin{proof}
+\todo{This is Prop 5.26 in FSFG.}
+\end{proof}
+
+
 
 
 
@@ -116,14 +164,11 @@ A complex-oriented ring spectrum $E$ imbues $E^* \CP^\infty$ with an isomorphism
 
 \noindent Recalling $\CP^\infty \simeq BU(1)$, we turn to calculating the $E$--cohomology of the other spaces $BU(n)$ in this sequence.  Since these serve as classifying spaces for complex vector bundles, such a calculation will give us a theory of $E$--characteristic classes for complex vector bundles.
 
-\begin{lemma}
-The Serre spectral sequence \[E_2^{*, *} = H^*(S^{2n+1}; E^* BU(n)) \Rightarrow E^* BU(n+1)\] associated to the coset fibration \[BU(n) \to BU(n+1) \to S^{2n+1}\] degenerates at $E_2$. \qed
+\begin{lemma}\label{ECohomologyOfBUn}
+The coset fibration \[U(n-1) \to U(n) \to S^{2n-1}\] deloops to a spherical fibration \[S^{2n-1} \to BU(n-1) \to BU(n).\]  The associated Serre spectral sequence \[E_2^{*, *} = H^*(BU(n); E^* S^{2n-1}) \Rightarrow E^* BU(n-1)\] degenerates at $E_{2n}$ and induces an isomorphism \[E^* BU(n) \cong E^* \llbracket \sigma_1, \ldots, \sigma_n\rrbracket. \qed\]
 \end{lemma}
-\begin{corollary}\label{ECohomologyOfBUn}
-For each $n$, the complex orientation of $E$ begets an isomorphism \[E^* BU(n) \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_n \rrbracket. \qed\]
-\end{corollary}
 
-Our goal is to imbue this Corollary with algebro-geometric meaning.  This will come out of investigating a related nest of theorems, generally referred to as ``the splitting principle''.  Considering the following construction:
+Our goal is to imbue \Cref{ECohomologyOfBUn} with algebro-geometric meaning.  This will come out of investigating a related nest of theorems, generally referred to as ``the splitting principle''.  Considering the following construction:
 \begin{definition}
 Let $\xi$ be a complex vector bundle of rank $n$ over a base $X$.  Define $\P(xi)$, the \textit{projectivization of $\xi$}, to be the $\CP^{n-1}$--bundle over $X$ whose fiber of $x \in X$ is the space of complex lines in the original fiber $\xi|_x$.\todo{I think another definition of the Thom space is as the cofiber of $\P(V) \to \P(V \oplus \C)$.  This might come in handy.}
 \end{definition}
@@ -224,13 +269,6 @@ For $E$ a complex-orientable ring spectrum, there is a natural isomorphism \[BU(
 
 \section{Stable divisors and free formal groups}
 
-\begin{lemma}
-The object $\A^n / \Sigma_n$ exists.  In fact, $\A^n / \Sigma_n \cong \A^n$.
-\end{lemma}
-\begin{proof}
-Newton polynomials.
-\end{proof}
-
 \todo{The stable situation: $BU_E$ and stable divisors.  This is ``in the Remarks following 5.8'' in FSFG.}
 
 
@@ -252,13 +290,22 @@ Our job today is to define these two kinds of cohomology operations, as well as 
 
 
 
-give the specific model for complex bordism that Quillen uses
+give the specific model for complex bordism that Quillen uses.
 
 Landweber--Novikov operations: the reason the ``total Chern class'' looks so unfamiliar is this: $E_* BU$ is polynomial means $E_* MU$ is polynomial, but $E^* BU$ being a nice algebra doesn't really tell you anything about $E^* MU$, since it's no longer an algebra.  so you really need an $E$--module basis of $E^* MU$, and that's what the nasty expansion of the total chern class is doing.
 
 power operations in $MU$--cohomology.
 
 remark that quadratic power operations in ordinary cohomology give the usual Steenrod operations.
+
+
+-----
+
+when describing Quillen's model, he makes a lot of use of Gysin maps and Thom / Euler classes. at this point, maybe you can introduce what a Thom sheaf / Thom class is for a pointed formal curve.
+
+\begin{definition}
+For a divisor $D$ on a curve $C$ over $X$ with pointing $\zeta: X \to C$, set the \textit{Thom sheaf} of $D$ to be the line bundle $L(D) = \zeta^* J(D)$ over $X$, with $J(D)$ the ideal sheaf on $C$ defining $D$.  It satisfies $L(D + D') = L(D) \otimes L(D')$.  If $C$ has a coordinate $x$, then $J(D)$ has a generator $f_D(x)$ and $L(D)$ also has a generator $u_D$, called the \textit{Thom class}.  It satisfies $u_{D + D'} = u_D \otimes u_{D'}$.
+\end{definition}
 
 
 
