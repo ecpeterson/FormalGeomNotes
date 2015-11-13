@@ -108,33 +108,92 @@ Sheaves on formal schemes too?
 
 \section{Divisors and divisor schemes}
 
+Today won't really involve any algebraic topology.  Instead, we are going to talk about a certain class of subschemes called ``divisors''.  These play an important role in the theory of complex-oriented cohomology theories, and they're sufficiently complicated that they deserve their own day.  Throughout today, we will have fixed the following three pieces of data:
+\begin{itemize}
+\item $X$ is our ``base'' formal scheme.
+\item $C$ is a formal curve over $X$.
+\item $\zeta: X \to C$ is a distinguished point on $C$.
+\end{itemize}
+
+First, we owe ourselves a definition of a closed subscheme, which we've somehow avoided up until this point:
 \begin{definition}
-Let $X$ be an affine formal scheme, and pick a chart $\Spec R \to X$.  A subscheme $Y \subseteq X$ is called \textit{closed} when it has the form
+Let $Y$ be an affine formal scheme, and pick a chart $\Spec R \to Y$.  A subscheme $Z \subseteq Y$ is called \textit{closed} when it has the form
 \begin{center}
 \begin{tikzcd}
-Y \arrow{r} \arrow[-,double,densely dotted]{d} & X \arrow[-,double]{d} \\
+Z \arrow{r} \arrow[-,double,densely dotted]{d} & Y \arrow[-,double]{d} \\
 \Spec (R/I) \arrow{r} & \Spec R.
 \end{tikzcd}
 \end{center}
 \end{definition}
 
+There's a dual notion of an open subscheme, which we will continue to avoid for now.  These definitions are both best stated in a coordinate--free way, but the open subscheme version really \emph{requires} it, so we will postpone it until later.\oweproof{Definition of open scheme}\oweproof{Definition of closed subscheme without chart}  For now, this is already enough to get a working definition of a divisor:
+
 \begin{definition}
-An effective Weil divisor on $C$ of rank $d$ is a subscheme of $C$ whose ring of functions is rank $d$ as an $\sheaf{O}_X$--module.
+An \textit{effective Weil divisor} of rank $n$ on $C$ is an $X$--subscheme of $C$ whose ring of functions is rank $n$ as an $\sheaf{O}_X$--module.
 \end{definition}
 
 \begin{lemma}
-The scheme of such Weil divisors exists.  In fact, a coordinate $x$ on $C$ determines an isomorphism $\Div_n^+ C \cong \A^n$.\todo{I wonder if it's possible to frame this argument with \Cref{DetectingFormalVarieties}.  The proof given here is Prop 5.2 of FSFG.}
+The scheme of such effective Weil divisors of rank $n$ exists: $\Div_n^+ C$.  It is a formal variety of dimension $n$.  In fact, a coordinate $x$ on $C$ determines an isomorphism $\Div_n^+ C \cong \A^n$.\todo{I wonder if it's possible to frame this argument with \Cref{DetectingFormalVarieties}.  The proof given here is Prop 5.2 of FSFG.}
 \end{lemma}
 \begin{proof}
 Begin with the definition \[\Div_n^+(C)(R) = \left\{(a, D) \middle| \begin{array}{c} a: \Spec R \to X, \\ \text{$D$ is an effective divisor on $C \times_X \Spec R$} \end{array} \right\}.\]  To show that it is a formal variety, we pick a coordinate $x$ on $C$ and consider a point $(a, D) \in \Div_n^+(C)(R)$.  In this case, $C \times_X \Spec R$ is presented as \[C \times_X \Spec R = \Spf R\llbracket x \rrbracket\] and hence $D$ can be presented as the closed subscheme \[D = \Spf R\llbracket x \rrbracket / (x^n - g(x)), \quad g(x) = \sum_{j=0}^{n-1} a_j(D) x^j.\]  One checks that $a_j(D)$ is a nilpotent element of $R$ for all $j$, and hence determines a map $\Spec R \to \A^n$.  Conversely, given such a map, we can form the polynomial $g(x)$ and hence the divisor $D$.
 \end{proof}
 
+This proof lays bare the moral value of this scheme: it parametrizes collections of points on $C$ which arise as zero loci of polynomials.  It's well-known how basic operations on polynomials affect their zero loci, and these operations are also reflected on the level of divisor schemes.  For instance, there is a unioning map:
 \begin{lemma}
-The object $\A^n / \Sigma_n$ exists.  In fact, $\A^n / \Sigma_n \cong \A^n$.
+There is a map
+\begin{align*}
+\Div_n^+ C \times_X \Div_m^+ C & \to \Div_{n+m}^+ C, \\
+(D_n, D_m) & \mapsto D_n \sqcup D_m. \qed
+\end{align*}
+\end{lemma}
+\begin{remark}\label{DescriptionOfSqCupMapOnPolynomials}
+On the level of the polynomials $g_n$, $g_m$, and $g_{n+m}$, this map is given by \[(g_n, g_m) \mapsto x^{n+m} - (x^n - g_n(x)) \cdot (x^m - g_m(x)) =: g_{n+m}(x).\]
+\end{remark}
+
+Note that there is a canonical isomorphism $C \to \Div_1^+ C$.  Iterating the above addition map gives the vertical map in the following triangle:
+\begin{center}
+\begin{tikzcd}
+& C^{\times_X n} \arrow{ld} \arrow{d} \\
+C^{\times_X n}_{\Sigma_n} \arrow[densely dotted]{r}{\cong} & \Div_n^+ C.
+\end{tikzcd}
+\end{center}
+\begin{lemma}
+The object $C^{\times n}_{\Sigma_n}$ exists, it factors the iterated addition map, and the dotted arrow is an isomorphism. 
 \end{lemma}
 \begin{proof}
-Newton polynomials.
+The first assertion is a consequence of Newton's theorem on symmetric polynomials: the subring of symmetric polynomials in $R[x_1, \ldots, x_n]$ is itself polynomial on generators \[\sigma_j(x_1, \ldots, x_n) = \sum_{\substack{S \subseteq \{1, \ldots, n\} \\ |S| = j}} x_{S_1} \cdots x_{S_j},\] and hence \[R[\sigma_1, \ldots, \sigma_n] \subseteq R[x_1, \ldots, x_n].\]  Picking a coordinate on $C$ allows us to import this fact into formal geometry to deduce the existence of $C^{\times n}_{\Sigma_n}$.  The factorization then follows by noting that the iterated $\sqcup$ map is symmetric.  Finally, \Cref{DescriptionOfSqCupMapOnPolynomials} shows that the horizontal map pulls the coordinate $a_j$ back to $\sigma_j$, so the third assertion follows.
 \end{proof}
+
+Now we use the pointing $\zeta: X \to C$.  Together with the $\sqcup$ map, this gives a composite
+\begin{center}
+\begin{tikzcd}
+\Div_n^+ C \arrow{r} & C \times_X \Div_n^+ C \arrow{r} & \Div_1^+ C \times_X \Div_n^+ C \arrow{r} & \Div_{n+1}^+ C, \\
+D \arrow[|->,r] & (\zeta, D) \arrow[|->,r] & ([\zeta], D) \arrow[|->,r] & {[\zeta] \sqcup D}.
+\end{tikzcd}
+\end{center}
+
+\begin{definition}
+We define the following variants of ``stable divisor schemes'':
+\begin{align*}
+\Div^+ C & = \coprod_{n \ge 0} \Div_n^+ C, \\
+\Div_n C & = \colim \left( \Div_n^+ C \xrightarrow{[\zeta] + -} \Div_{n+1}^+ C \xrightarrow{[\zeta] + -} \cdots \right), \\
+\Div C & = \colim \left( \Div^+ C \xrightarrow{[\zeta] + -} \Div^+ C \xrightarrow{[\zeta] + -} \cdots \right) \\
+& \cong \coprod_{n \in \Z} \Div_n C.
+\end{align*}
+\end{definition}
+
+\begin{theorem}
+The scheme $\Div^+ C$ models the free formal monoid on the formal curve $C$.  The scheme $\Div C$ models the free formal group on the formal curve $C$.  The scheme $\Div_0 C$ simultaneously models the free formal monoid and the free formal group on the \emph{pointed} formal curve $C$. \qed \todo{Can you at least see where the negation maps would come from w/o reference to coalgebras?}
+\end{theorem}
+\noindent We will postpone the proof of this theorem until later, once we've developed a theory of coalgebraic formal schemes.\oweproof{The various $\Div$ constructions give free monoids / groups}
+
+We close today by justifying the name ``divisor'' that we've been using.  It means something in algebraic geometry, and it's not immediately clear that we are respecting their language.
+
+
+
+
+
 
 \begin{definition}
 Let $X$ be a formal scheme and $C$ a formal curve over $X$ with ring of functions $\sheaf{O}_C$.  The ring of meromorphic functions on $C$, $\sheaf{M}_C$, is obtained by inverting all coordinates in $\sheaf{O}_C$.\todo{In fact, it suffices to invert one.}  A \textit{Cartier divisor} on $C$ is an element in $\sheaf{M}_C^\times / \sheaf{O}_C^\times$.
@@ -148,6 +207,9 @@ In the case of a formal curve $C$, there is a short exact sequence of formal gro
 \end{proof}
 
 
+----
+
+\todo[inline]{We could also talk about functoriality for stable divisor schemes. Given a map $q: C \to C'$, we postcompose to get a map $C \to C' \to \Div C'$ and hence an induced free map $q_*: \Div C \to \Div C'$ which acts by $q_*[a] = [q(a)]$.  Also, if $q$ is an \textit{isogeny}, then there is a map $q^*: \Div C' \to \Div C$ given by Cartesian pullback of schemes and using the isogeny condition to guarantee that the pullback scheme still has a good rank over $\sheaf{O}_X$.}
 
 
 
