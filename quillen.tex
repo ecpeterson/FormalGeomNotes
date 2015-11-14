@@ -387,20 +387,46 @@ Let $E = MU$.  The Landweber--Novikov operations are the \emph{stable} operation
 \item $s_\alpha$ is stable: $s_\alpha(\sigma x) = \sigma(s_\alpha x)$.
 \item $s_\alpha$ is additive: $s_\alpha(x + y) = s_\alpha(x) + s_\alpha(y)$.
 \item $s_\alpha$ satisfies a Cartan formula.  Define \[s_{\t}(x) = \sum_\alpha s_\alpha(x) \cdot t_1^{\alpha_1} t_2^{\alpha_2} \cdots t_n^{\alpha_n} \cdots =: \sum_{\alpha} s_\alpha(x) \t^\alpha\] for an infinite sequence of indeterminates $t_1$, $t_2$, \ldots.  Then: \[s_{\t}(x y) = s_{\t}(x) \cdot s_{\t}(y).\]
-\item \todo{You didn't finish this.}
+\item Let $\xi: X \to BU(n)$ classify a vector bundle and let $\phi$ denote the Thom isomorphism \[\phi: MU^* X \to MU^* T(\xi).\]  Then the Chern classes of $\xi$ are related to the Landweber--Novikov operations by the formula \[\sum_\alpha \phi c_\alpha(\xi) \t^\alpha = \sum_\alpha s_\alpha \phi(1) \t^\alpha.\]
 \end{itemize}
 \end{remark}
 
-% Landweber--Novikov operations: the reason the ``total Chern class'' looks so unfamiliar is this: $E_* BU$ is polynomial means $E_* MU$ is polynomial, but $E^* BU$ being a nice algebra doesn't really tell you anything about $E^* MU$, since it's no longer an algebra.  so you really need an $E$--module basis of $E^* MU$, and that's what the nasty expansion of the total chern class is doing.
+We now turn to the construction of the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not (\textit{a priori}) expect them to be additive operations, so they are quite distinct from the Landweber--Novikov operations produced above.  Power operations arise from ``$E_\infty$'' structures on ring spectra\footnote{Or, by some accounts, ``$H_\infty$'' structures.}, but most such structures arise in nature from geometric models of cohomology theories.  To produce them for complex cobordism, we will use a particular model, alluded to in \Cref{IntroductionSection}.
 
+\begin{definition}
+Let $f: Y \to X$ be a map of manifolds.  A \textit{complex-orientation on the map $f$} is the data of a factorization
+\begin{center}
+\begin{tikzcd}
+ & E \arrow{d} \\
+Y \arrow{r}{f} \arrow[densely dotted]{ru}{i} & X
+\end{tikzcd}
+\end{center}
+through a complex vector bundle $E$ on $X$ such that $i$ is an embedding and its normal bundle $\nu_i$ has a complex structure.\todo{Account for the odd-dimensional case and the dimension-jumping case.}  Two such factorizations are \textit{equivalent} when they appear as subbundles of a larger bundle and the embeddings are isotopic, compatibly with the structures on their normal bundles.
+\end{definition}
+\begin{lemma}
+For $\dim E \gg 0$, this equivalence class is unique, if it exists. \qed
+\end{lemma}
+\begin{definition}
+Two complex-oriented maps $f_0: Y_0 \to X$ and $f_1: Y_1 \to X$ are called \textit{cobordant} when there is a complex-oriented map $W \to X \times \R$ and elements $b_0, b_1 \in \R$ such that
+\begin{center}
+\begin{tikzcd}
+Y_0 \arrow{r} \arrow{d} & X \times \{b_0\} \arrow{d} & Y_1 \arrow{r} \arrow{d} & X \times \{b_1\} \arrow{d} \\
+W \arrow{r} & X \times \R & W \arrow{r} & X \times \R
+\end{tikzcd}
+\end{center}
+become pull-back squares of complex-oriented maps of manifolds.
+\end{definition}
 
+\begin{theorem}[Thom]
+For a manifold $X$, $MU^{-q}(X)$ is canonically isomorphic to the cobordism classes of complex-oriented maps of dimension $q$. \qed
+\end{theorem}
 
+\todo{Describe the pushforward operation: precomposition!}
 
-give the specific model for complex bordism that Quillen uses.
+\todo{Describe power operations.  Make sure to point out where the model is actually being used and where a generic spectrum wouldn't cut it.}
 
-power operations in $MU$--cohomology.
+\todo{Remark that quadratic power operations in ordinary cohomology give the usual Steenrod operations.}
 
-remark that quadratic power operations in ordinary cohomology give the usual Steenrod operations.
 
 
 -----
