@@ -429,7 +429,7 @@ Let $E = MU$.  The Landweber--Novikov operations are the \emph{stable} operation
 \item $s_\alpha$ is stable: $s_\alpha(\sigma x) = \sigma(s_\alpha x)$.
 \item $s_\alpha$ is additive: $s_\alpha(x + y) = s_\alpha(x) + s_\alpha(y)$.
 \item $s_\alpha$ satisfies a Cartan formula.  Define \[s_{\t}(x) = \sum_\alpha s_\alpha(x) \cdot t_1^{\alpha_1} t_2^{\alpha_2} \cdots t_n^{\alpha_n} \cdots =: \sum_{\alpha} s_\alpha(x) \t^\alpha\] for an infinite sequence of indeterminates $t_1$, $t_2$, \ldots.  Then: \[s_{\t}(x y) = s_{\t}(x) \cdot s_{\t}(y).\]
-\item Let $\xi: X \to BU(n)$ classify a vector bundle and let $\phi$ denote the Thom isomorphism \[\phi: MU^* X \to MU^* T(\xi).\]  Then the Chern classes of $\xi$ are related to the Landweber--Novikov operations by the formula \[\sum_\alpha \phi c_\alpha(\xi) \t^\alpha = \sum_\alpha s_\alpha \phi(1) \t^\alpha.\]
+\item Let $\xi: X \to BU(n)$ classify a vector bundle and let $\phi$ denote the Thom isomorphism \[\phi: MU^* X \to MU^* T(\xi).\]  Then the Chern classes of $\xi$ are related to the Landweber--Novikov operations on the Thom spectrum by the formula \[\sum_\alpha \phi c_\alpha(\xi) \t^\alpha = \sum_\alpha s_\alpha \phi(1) \t^\alpha.\]
 \end{itemize}
 \end{remark}
 
@@ -564,7 +564,7 @@ Let $f: Z \to X$ be a proper complex-oriented $G$-map, represented by a factoriz
 
 We are now in a position to apply \Cref{ProperCOIntersectionFormula} to our power operation square.
 
-\begin{lemma}\citeme{Proposition 3.12 of Quillen}
+\begin{lemma}\label{PowerOpAndEulerClasses}\citeme{Proposition 3.12 of Quillen}
 Suppose $G$ acts transitively on $\{1, \ldots, k\}$ and let $\rho$ denote the induced reduced regular $G$-representation. Suppose that $f: Z \to X$ is a proper complex-oriented map of dimension $2q$ and that $m$ is an integer larger than the dimension of $Z$, so that $m \eps + \nu_f$ is a vector bundle over $Z$, well-defined up to isomorphism, where $\eps$ is the trivial complex line bundle. Then \[e(\rho)^m P(f_* 1) = f_* e(\rho \otimes (m \eps + \nu_f)) \in MU^{2m(k-1)-2qk}(BG \times X).\]
 \end{lemma}
 \begin{proof}
@@ -594,7 +594,12 @@ The bundle $\rho$ splits as $\bigoplus_{i=1}^{k-1} \eta^{\otimes i}$.  Then, if 
 e(\rho \otimes \L) & = e \left( \bigoplus_{i=1}^{k-1} \eta^i \otimes \L \right) = \prod_{i=1}^{k-1} e(\eta^i \otimes \L) \\
 & = \prod_{i=1}^{k-1} F([i]_F(v), e(\L)) = w + \sum_{j=1}^\infty a_j(v) e(\L)^j,
 \end{align*}
-where \[w = e(\rho) = (k-1)! v^{k-1} + \sum_{j \ge k} b_j v^j\] for $b_j \in C$.  In general, the splitting principle shows that $e(\rho \otimes E)$ has \[e(\rho \otimes E) = \sum_{|\alpha| \le r} w^{r-|\alpha|} a(v)^\alpha c_\alpha(E).\]
+where \[w = e(\rho) = (k-1)! v^{k-1} + \sum_{j \ge k} b_j v^j\] for $b_j \in C$.  In general, the splitting principle shows that $e(\rho \otimes E)$ has \[e(\rho \otimes E) = \sum_{|\alpha| \le r} w^{r-|\alpha|} a(v)^\alpha c_\alpha(E).\]  Setting $r = \dim(m \eps + \nu_f)$, we insert this into \Cref{PowerOpAndEulerClasses} to deduce
+\begin{align*}
+w^m P(f_* 1) & = f_* \left( \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha c_\alpha(m \eps + \nu_f) \right) \\
+& = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha f_* c_\alpha(m \eps + \nu_f)
+\end{align*}
+\todo{I get lost here. The goal is to get $c_\alpha(\nu_f)$ on its own, so that we can use $f_* c_\alpha(\nu_f) = s_\alpha(f_* 1)$, but\ldots}
 \end{proof}
 
 
