@@ -8,9 +8,9 @@
 
 \section{Formal varieties}
 
-Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots.  We would like to replicate the results above for these other contexts, but we quickly see that only one of the listed bordism theories supports this program.  The space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other bordism theory with a similar ground object is complex bordism, with $\CP^\infty = BU(1)$.  So, we will focus on it.
+Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots.  We would like to replicate the results from \Cref{UnorientedBordismChapter} for these other contexts, but we quickly see that only one of the listed bordism theories supports this program.  The space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other bordism theory with a similar ground object is complex bordism, with $\CP^\infty = BU(1)$.  So, we will focus on it.
 
-The content of the first lecture can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
+The contents of \Cref{LectureThomSpectra} can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
 \begin{theorem}
 There is a complex $J$--homomorphism \[J_{\C}: BU \to B \GL_1 \S. \qed \]
 \end{theorem}
@@ -131,8 +131,21 @@ Consider the shearing map
 The induced map $T\sigma$ on tangent spaces is evidently invertible, so by \Cref{InverseFunctionTheoremForFVars} there is an inverse map $(x, y) \mapsto (x, y - x)$.  Setting $y = 0$ and projecting to the second factor gives the inversion map.
 \end{proof}
 
-\begin{example} \todo{Expand me. This is a good way to close the day.}
-$\CP^\infty_{H\Z P} \cong \G_a$.  $\CP^\infty_{KU} \cong \G_m$.
+To close today, let's consider two examples of $E$ which are complex-orientable and describe $\CP^\infty_E$ for them.
+
+\begin{example}
+There is an isomorphism $\CP^\infty_{H\Z P} \cong \G_a$.  This follows from reasoning identical to that given in \Cref{RPinftyExampleForReal}.
+\end{example}
+
+\begin{example}
+There is also an isomorphism $\CP^\infty_{KU} \cong \G_m$.  Given a complex line bundle $\L$ over a space $X$, we use the complex orientation of $KU$ where the total Chern class of $\L$ is given by \[c(\L) = 1 - \beta[\L].\]  Given this definition, we perform a manual computation:
+\begin{align*}
+c(\L_1 \otimes \L_2) & = 1 - \beta [\L_1 \otimes \L_2] = 1 - \beta^2 [\L_1] [\L_2] \\
+& = -1 + \beta[\L_1] + \beta[\L_2] - \beta^2 [\L_1] [\L_2] + 1 - \beta[\L_1] + 1 - \beta[\L_2] \\
+& = (1 - \beta[\L_1]) + (1 - \beta[\L_2]) - (1 - \beta[\L_1])(1 - \beta[\L_2]) \\
+& = c(\L_1) + c(\L_2) - c(\L_1) c(\L_2).
+\end{align*}
+In this coordinate on $\CP^\infty_{KU}$, the group law is then $x +_! y = x + y + xy$.
 \end{example}
 
 
@@ -217,7 +230,7 @@ D \arrow[|->,r] & (\zeta, D) \arrow[|->,r] & ([\zeta], D) \arrow[|->,r] & {[\zet
 \end{tikzcd}
 \end{center}
 
-\begin{definition}
+\begin{definition}\label{StableDivisorSchemeDefn}
 We define the following variants of ``stable divisor schemes'':
 \begin{align*}
 \Div^+ C & = \coprod_{n \ge 0} \Div_n^+ C, \\
@@ -270,9 +283,9 @@ Now let $j: C \to \Div C$ be the usual inclusion, and for a point $a \in C(R)$ s
 
 
 
-\section{Chern classes and divisor schemes}
+\section{Chern classes and divisor schemes}\todo{This title needs improvement.}
 
-Having built up some of the background theory of formal varieties, today we're going to pursue another standard calculation for complex-oriented cohomology theories $E$.  Recall our motivating theorem from last time:
+Having built up some of the background theory of formal varieties, today we're going to pursue another standard calculation for complex-oriented cohomology theories $E$.  Recall our motivating theorem:
 \begin{corollary}[{\Cref{CPinftyNiceCalculation}}]
 A complex-oriented ring spectrum $E$ imbues $E^* \CP^\infty$ with an isomorphism to a one--dimensional power series ring. \qed
 \end{corollary}
@@ -283,7 +296,7 @@ A complex-oriented ring spectrum $E$ imbues $E^* \CP^\infty$ with an isomorphism
 The coset fibration \[U(n-1) \to U(n) \to S^{2n-1}\] deloops to a spherical fibration \[S^{2n-1} \to BU(n-1) \to BU(n).\]  The associated Serre spectral sequence \[E_2^{*, *} = H^*(BU(n); E^* S^{2n-1}) \Rightarrow E^* BU(n-1)\] degenerates at $E_{2n}$ and induces an isomorphism \[E^* BU(n) \cong E^* \llbracket \sigma_1, \ldots, \sigma_n\rrbracket. \qed\]
 \end{lemma}
 
-Our goal is to imbue \Cref{ECohomologyOfBUn} with algebro-geometric meaning.  This will come out of investigating a related nest of theorems, generally referred to as ``the splitting principle''.  Considering the following construction:
+Our goal is to imbue \Cref{ECohomologyOfBUn} with algebro-geometric meaning.  This will come out of investigating a related nest of theorems, generally referred to as ``the splitting principle''.  Begin by considering the following construction:
 \begin{definition}
 Let $\xi$ be a complex vector bundle of rank $n$ over a base $X$.  Define $\P(xi)$, the \textit{projectivization of $\xi$}, to be the $\CP^{n-1}$--bundle over $X$ whose fiber of $x \in X$ is the space of complex lines in the original fiber $\xi|_x$.\todo{I think another definition of the Thom space is as the cofiber of $\P(V) \to \P(V \oplus \C)$.  This might come in handy.}
 \end{definition}
@@ -304,7 +317,7 @@ X \arrow[-,double]{rr} \arrow[bend left, densely dotted]{u}{\zeta} & & X \arrow[
 \end{center}
 We read this diagram as follows: on the far left, there's the vector bundle we began with, as well as its zero-section $\zeta$.  Deleting the zero-section gives the second bundle, a $\C^n \setminus \{0\}$--bundle over $X$.  Its quotient by the scaling $\C^\times$--action gives the third bundle, a $\CP^{n-1}$--bundle over $X$.  Additionally, the quotient map $\C^n \setminus \{0\} \to \CP^{n-1}$ is itself a $\C^\times$--bundle, and this induces the structure of a $\C^\times$--bundle on the quotient map $\xi \setminus \zeta \to \P(\xi)$.  Thinking of these as complex line bundles, they are classified by a map to $\CP^\infty$, which can itself be thought of as the last vertical fibration, fibering over a point.
 
-Note that the map between these two last fibers is surjective on $E$--cohomology.  It follows that the Serre spectral sequence for the third vertical fibration is degenerate, since all the classes in the fiber must survive.\footnote{This is called the Leray--Hirsch theorem.}  We thus conclude that $E^* \P(\xi)$ is a free $E^*(X)$--module on the classes $\{1, x, x^2, \ldots, x^{n-1}\}$ spanning $E^* \CP^{n-1}$.  To understand the ring structure, we need only compute $x^{n-1} \cdot x$, which must be able to be written in terms of the classes which are lower in $x$--degree: \[x^n = c_1(\xi) x^{n-1} - c_2 x^{n-2} + \cdots + (-1)^{n-1} c_n(\xi)\] for some classes $c_i(\xi) \in E^* X$.  The description in the theorem statement follows.\todo{I think we're going to talk about the ring scheme structure on $\Div_*^+ \CP^\infty_E$ much later on. Don't forget about it.}
+Note that the map between these two last fibers is surjective on $E$--cohomology.  It follows that the Serre spectral sequence for the third vertical fibration is degenerate, since all the classes in the fiber must survive.\footnote{This is called the Leray--Hirsch theorem.}  We thus conclude that $E^* \P(\xi)$ is a free $E^*(X)$--module on the classes $\{1, x, x^2, \ldots, x^{n-1}\}$ spanning $E^* \CP^{n-1}$.  To understand the ring structure, we need only compute $x^{n-1} \cdot x$, which must be able to be written in terms of the classes which are lower in $x$--degree: \[x^n = c_1(\xi) x^{n-1} - c_2 x^{n-2} + \cdots + (-1)^{n-1} c_n(\xi)\] for some classes $c_i(\xi) \in E^* X$.  The description in the theorem statement follows.
 \end{proof}
 
 We have a pair of obvious corollaries:
@@ -317,40 +330,37 @@ A line bundle canonically splits off of $\pi^*(\xi)$: consider the sub-bundle of
 
 \noindent Combining these and iterating gives something much stronger:
 
-\begin{corollary}
-Associated to any $n$--dimensional complex vector bundle $\xi$ over a base $X$, there is a canonical map $f_\xi: Y_\xi \to X$ such that $E^* X \to E^* Y$ is injective and there is a canonical splitting into complex line bundles: \[f_\xi^*(\xi) \cong \bigoplus_{i=1}^n \L_i. \qed\]
+\begin{corollary}[``The splitting principle'']
+Associated to any $n$--dimensional complex vector bundle $\xi$ over a base $X$, there is a canonical map $i_\xi: Y_\xi \to X$ such that $i_\xi^*: E^* X \to E^* Y$ is injective and there is a canonical splitting into complex line bundles: \[i_\xi^*(\xi) \cong \bigoplus_{i=1}^n \L_i. \qed\]
 \end{corollary}
 
-\textbf{JUSTIFY THIS:}
-\begin{theorem}
-Let $\xi: X \to BU(n)$ classify a vector bundle $\xi$.  Then the coefficient $c_j$ in the polynomial $c(\xi)$ is selected by $\sigma_j$: \[c_j(\xi) = \xi^*(\sigma_j). \qed\]
-\end{theorem}
+This Corollary is extremely important.  Its essential contents is to say that any question about characteristic classes can be checked for sums of line bundles.  Specifically, because of the injectivity of $i_\xi^*$, any relationship among the characteristic classes deduced in $E^* Y$ must already be true in the ring $E^* X$.  The following theorem is a consequence of this principle:
 
-We now finally turn to the algebraic geometry.  Our original calculation of $E^* BU(n)$ in \Cref{ECohomologyOfBUn} showed us that any map $\xi: X \to BU(n)$ classifying a rank $n$ complex vector bundle produces a sequence of $n$ distinct $E$--cohomology classes $\xi^*(\sigma_j) \in E^*(X)$.  \Cref{CohomologyOfProjectivization} showed us what these classes were good for: the belong to the coefficients of a monic polynomial used in a quotient construction.  The algebro-geometric name for quotients are closed subschemes, and so we re-interpret \Cref{CohomologyOfProjectivization} as follows:
+\begin{theorem}
+Let $\xi: X \to BU(n)$ classify a vector bundle $\xi$.  Then the coefficient $c_j$ in the polynomial $c(\xi)$ is selected by $\sigma_j$: \[c_j(\xi) = \xi^*(\sigma_j).\]
+\end{theorem}
+\begin{proof}
+\todo{This should follow from considering the map $BU(1)^{\times n} \to BU(n)$.}
+\end{proof}
+
+We now turn to algebraic geometry.  Our original calculation of $E^* BU(n)$ in \Cref{ECohomologyOfBUn} showed us that any map $\xi: X \to BU(n)$ classifying a rank $n$ complex vector bundle produces a sequence of $n$ distinct $E$--cohomology classes $\xi^*(\sigma_j) \in E^*(X)$.  \Cref{CohomologyOfProjectivization} showed us what these classes were good for: the belong to the coefficients of a monic polynomial used in a quotient construction.  Recalling that the algebro-geometric name for ring quotients is ``closed subschemes'', we re-interpret \Cref{CohomologyOfProjectivization} as follows:
 \begin{corollary}[{\Cref{CohomologyOfProjectivization} redux}]
-The map \[P(\xi)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes. \qed
+The map \[P(\xi)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes.  In fact, $P(\xi)_E$ is a divisor on $\CP^\infty_E$. \qed
 \end{corollary}
 
-We would like to package this information in terms of the map $X_E \to BU(n)_E$.  Recall the following definition:
-\begin{definition}
-A closed subscheme $D$ of finite rank $d$ of a curve $C$ is called an effective Weil divisor of rank $d$.
-\end{definition}
-\noindent So, we can think of $P(\xi)_E$ as a divisor of rank $d$ on the formal curve $\CP^\infty_E$, base--changed to $X_E$.  Motivated by this, we define the following scheme:
-\begin{definition}
-\todo{Define the $\O_D$ notation.} Let $C$ be a formal curve.  Define the scheme $\Div_n^+(C)$ by \[\Div_n^+(C)(T) = \left\{i: D \to C \times T \middle| \begin{array}{c} \text{$i$ is a closed inclusion of $T$--schemes} \\ \text{$\O_D$ is a rank $d$ $\O_T$--module} \end{array}\right\}.\]
-\end{definition}
-\begin{lemma}
-A coordinate $C \cong \A^1$ begets an isomorphism $\Div_n^+(C) \cong \A^n$. \qed
-\end{lemma}
-
-The main theorem of this section is then:
-\begin{theorem}
-For a complex-oriented cohomology theory $E$, there is an isomorphism \[BU(n)_E \cong \A^n \cong \Div_n^+ \CP^\infty_E,\] so that maps $\xi: X \to BU(n)$ are transported to divisors $\P(\xi)_E \subseteq \CP^\infty_E \times X_E$.
+We would like to package this information in terms of the classifying map $\xi_E: X_E \to BU(n)_E$.
+\begin{theorem}\todo{Proposition 8.31 in FSFG shows that the isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$ is independent of coordinate. Read it.}
+For a complex orientable cohomology theory $E$, there is an isomorphism \[BU(n)_E \cong \Div_n^+ \CP^\infty_E,\] so that maps $\xi: X \to BU(n)$ are transported to divisors $\P(\xi)_E \subseteq \CP^\infty_E \times X_E$.  Selecting a particular complex orientation of $E$ begets two isomorphisms
+\begin{align*}
+BU(n)_E & \cong \A^n, &
+\Div_n^+ \CP^\infty_E & \cong \A^n,
+\end{align*}
+and these are compatible with the centered isomorphism above. \qed
 \end{theorem}
 
---- stitch these together ---
+What's most remarkable about the description in this theorem is its coherence with topological facts we know about $BU(n)$.  The theorem follows from the projectivization construction, but there are natural operations on both sides of the isomorphism that continue to match up.  For instance, the Whitney sum map $BU(n) \times BU(m) \to BU(n+m)$ has the following behavior:
 
-\begin{lemma}
+\begin{lemma}\label{WhitneySumOfDivisors}
 The sum map \[BU(n) \times BU(m) \xrightarrow\oplus BU(n+m)\] induces on Chern polynomials the identity \[c(\xi \oplus \zeta) = c(\xi) \cdot c(\zeta).\]  In terms of divisors, \[\P(\xi \oplus \zeta)_E = \P(\xi)_E \sqcup \P(\zeta)_E,\] and hence there is an induced square
 \begin{center}
 \begin{tikzcd}
@@ -360,30 +370,32 @@ BU(n)_E \times BU(m)_E \arrow{r}{\oplus} \arrow[-,double]{d} & BU(n+m) \arrow[-,
 \end{center}
 \end{lemma}
 
-\begin{lemma}
+The following is a consequence of combining this Lemma with the splitting principle:
+
+\begin{corollary}
 The map $Y_E \xrightarrow{f_\xi} X_E$ pulls $\P(\xi)_E$ back to give \[Y_E \times_{X_E} \P(\xi)_E \cong \bigoplus_{i=1}^n \left\{ c_1(\L_i) \right\}. \qed\]
-\end{lemma}
+\end{corollary}
 
---- make a point between complex oriented and complex orientable ---
+\noindent This is to say that the splitting principle is a topological reflection (or, better, a topological enhancement) of the claim that a divisor base-changed to a separably closed field will split as a sum of points.
 
-\begin{theorem}
-For $E$ a complex-orientable ring spectrum, there is a natural isomorphism \[BU(n)_E \cong \Div_n^+ \CP^\infty_E. \qed \]
-\end{theorem}
+Thinking back to yesterday, we can also use \Cref{WhitneySumOfDivisors} to produce the stable divisor schemes.  Namely, the classifying space of the stable unitary group $BU$ arises as the colimit \[\cdots \to BU(n) \xrightarrow{\id \times 0} BU(n) \times BU(1) \xrightarrow{\oplus} BU(n+1) \to \cdots.\]  Applying the functor $(-)_E$ to this diagram yields one of the systems in \Cref{StableDivisorSchemeDefn}:
 
 \begin{theorem}
-There are natural isomorphisms $(BU \times \Z)_E \cong \Div \CP^\infty_E$ and $BU_E \cong \Div_0 \CP^\infty_E$. \qed
+There is a natural isomorphism $BU_E \cong \Div_0 \CP^\infty_E$. \qed
 \end{theorem}
 
 \begin{corollary}
-$(BU \times \Z)_E$ is the free formal group on the curve $\CP^\infty_E$.
+There is a natural isomorphism $(BU \times \Z)_E \cong \Div \CP^\infty_E$. \qed
 \end{corollary}
 
+\begin{corollary}
+$(BU \times \Z)_E$ is the free formal group on the curve $\CP^\infty_E$. \qed
+\end{corollary}
 
-\todo{This day should probably have fewer proofs of facts about vector bundles, which will be standard to anyone reading these notes, and more of a discussion about why divisors are called divisors.  Maybe we should even compare Cartier divisors and Weil divisors?  That's discussed in Neil's FPFP paper.}
-
-\todo{A corollary of the splitting principle is supposed to be that a Thom isomorphism for $\CP^\infty$ begets Thom isomorphisms for everything, and hence a ring spectrum map $MU \to E$.  We should produce that corollary here if we can.  I think this is Lemma II.4.6 in Adams's blue book.}
-
-\todo{Proposition 8.31 in FSFG shows that the isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$ is independent of coordinate. Read it.}
+Finally, we can also consider the tensoring structure maps \[\otimes: BU(n) \times BU(m) \to BU(nm).\]  In the case $n = m = 1$, this is the map \[\CP^\infty \times \CP^\infty \to \CP^\infty\] classifying the tensor product of line bundles that we've been using to imbue $\CP^\infty_E$ with the structure of a formal group.  A direct consequence of this identification and the splitting principle yields the following:\todo{I think arguing that this map exists purely on the level of formal schemes --- that it's not somehow a consequence of the formal group $\CP^\infty_E$ coming from topology --- requires knowing Weierstrass preparation, so that we can extract a divisor polynomial from the potentially infinite power series coming from just hitting the individual divisor polynomials with $+_!$.}
+\begin{lemma}
+The map \[\Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \to \Div_{nm}^+ \CP^\infty_E\] is the convolution of divisors, using the formal group structure on $\CP^\infty_E$.  On a pair of totally decomposed divisors $\bigsqcup_{i=1}^n [a_i]$ and $\bigsqcup_{j=1}^m [b_j]$, the map acts by \[\left(\bigsqcup_{i=1}^n [a_i] \right) \left( \bigsqcup_{j=1}^m [b_j] \right) = \bigsqcup_{i, j} [a_i +_{\CP^\infty_E} b_j]. \qed\]
+\end{lemma}
 
 \todo{Say that the top Chern class is the Euler class.}
 
@@ -415,6 +427,8 @@ Thomifying these ``$\oplus$'' maps gives maps \[E_* MU(n) \otimes E_* MU(m) \to 
 \begin{corollary}
 The Thom isomorphism $E_* BU \cong E_* MU$ respects both the $E_*$--module structure and the ring structure.  Hence, \[E_* MU \cong E_*[c_1, c_2, \ldots, c_n, \ldots],\] where $c_j$ is the image of $b_j$ under the Thom map. \qed
 \end{corollary}
+
+\todo{A corollary of the splitting principle is supposed to be that a Thom isomorphism for $\CP^\infty$ begets Thom isomorphisms for everything, and hence a ring spectrum map $MU \to E$.  We should produce that corollary now.  This is Lemma II.4.6 in Adams's blue book.}
 
 \noindent This compact description of $E_* MU$ as an algebra will be useful to us later, but right now we are interested in $E^* MU$ and especially in $MU^* MU$.  The former is \emph{not} a ring, and although the latter is a ring its multiplication is exceedingly complicated.  Instead, we will content ourselves with an $E_*$--module basis:
 \begin{definition}
