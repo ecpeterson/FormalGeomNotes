@@ -1,6 +1,6 @@
 % -*- root: main.tex -*-
 
-\chapter{Complex bordism}
+\chapter{Complex bordism}\label{ComplexBordismChapter}
 
 
 \todo{Write an introduction for me.}
@@ -392,10 +392,19 @@ There is a natural isomorphism $(BU \times \Z)_E \cong \Div \CP^\infty_E$. \qed
 $(BU \times \Z)_E$ is the free formal group on the curve $\CP^\infty_E$. \qed
 \end{corollary}
 
-Finally, we can also consider the tensoring structure maps \[\otimes: BU(n) \times BU(m) \to BU(nm).\]  In the case $n = m = 1$, this is the map \[\CP^\infty \times \CP^\infty \to \CP^\infty\] classifying the tensor product of line bundles that we've been using to imbue $\CP^\infty_E$ with the structure of a formal group.  A direct consequence of this identification and the splitting principle yields the following:\todo{I think arguing that this map exists purely on the level of formal schemes --- that it's not somehow a consequence of the formal group $\CP^\infty_E$ coming from topology --- requires knowing Weierstrass preparation, so that we can extract a divisor polynomial from the potentially infinite power series coming from just hitting the individual divisor polynomials with $+_!$.}
+Finally, we can also consider the tensoring structure maps \[\otimes: BU(n) \times BU(m) \to BU(nm).\]  In the case $n = m = 1$, this is the map \[\CP^\infty \times \CP^\infty \to \CP^\infty\] classifying the tensor product of line bundles that we've been using to imbue $\CP^\infty_E$ with the structure of a formal group.  In fact, there is a natural map \[\Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \xrightarrow{\cdot} \Div_{nm}^+ \CP^\infty_E\] which extends this, given by the formula: \[(D_1 \subseteq \CP^\infty_E, D_2 \subseteq \CP^\infty_E) \mapsto (D_1 \times D_2 \subseteq \CP^\infty_E \times \CP^\infty_E \xrightarrow{\mu} \CP^\infty_E).\]
 \begin{lemma}
-The map \[\Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \to \Div_{nm}^+ \CP^\infty_E\] is the convolution of divisors, using the formal group structure on $\CP^\infty_E$.  On a pair of totally decomposed divisors $\bigsqcup_{i=1}^n [a_i]$ and $\bigsqcup_{j=1}^m [b_j]$, the map acts by \[\left(\bigsqcup_{i=1}^n [a_i] \right) \left( \bigsqcup_{j=1}^m [b_j] \right) = \bigsqcup_{i, j} [a_i +_{\CP^\infty_E} b_j]. \qed\]
+There is a commutative diagram
+\begin{center}
+\begin{tikzcd}
+BU(n)_E \times BU(m)_E \arrow{r}{\otimes} \arrow[-,double]{d} & BU(nm)_E \arrow[-,double]{d} \\
+\Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \arrow{r}{\cdot} & \Div_{nm}^+ \CP^\infty_E.
+\end{tikzcd}
+\end{center}
 \end{lemma}
+\begin{proof}
+By the splitting principle, it is enough to check this on sums of line bundles.  A sum of line bundles corresponds to a totally decomposed divisor, and on a pair of such divisors $\bigsqcup_{i=1}^n [a_i]$ and $\bigsqcup_{j=1}^m [b_j]$, the map acts by \[\left(\bigsqcup_{i=1}^n [a_i] \right) \left( \bigsqcup_{j=1}^m [b_j] \right) = \bigsqcup_{i, j} [\mu_{\CP^\infty_E}(a_i, b_j)]. \qedhere\]
+\end{proof}
 
 \todo{Say that the top Chern class is the Euler class.}
 
