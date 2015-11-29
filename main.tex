@@ -135,11 +135,10 @@
 \newcounter{whichdate}
 \setcounter{whichdate}{0}
 \newcommand{\nextdate}{
-\addtocounter{whichdate}{1}
 \ifnum\value{whichdate}=1%
-  Jan 25\fi%
+Jan 25\fi%
 \ifnum\value{whichdate}=2%
-  Jan 27\fi%
+Jan 27\fi%
 \ifnum\value{whichdate}=3%
 Jan 29\fi%
 \ifnum\value{whichdate}=4%
@@ -165,7 +164,7 @@ Feb 24\fi%
 \ifnum\value{whichdate}=14%
 Feb 26\fi%
 \ifnum\value{whichdate}=15%
-Feb 28\fi%
+Feb 29\fi%
 \ifnum\value{whichdate}=16%
 Mar 2\fi%
 \ifnum\value{whichdate}=17%
@@ -210,15 +209,12 @@ Apr 22\fi%
 Apr 25\fi%
 \ifnum\value{whichdate}=37%
 Apr 27\fi%
-\ifnum\value{whichdate}=38%
-Apr 29\fi%
-\ifnum\value{whichdate}=39%
-May 2\fi%
-\ifnum\value{whichdate}=40%
-May 4\fi%
-\ifnum\value{whichdate}>40%
+\ifnum\value{whichdate}>37%
 PAST END\fi%
 }
+
+\let\oldsection\section
+\def\section#1{\addtocounter{whichdate}{1}\edef\temp{\nextdate: }\expandafter\oldsection\expandafter{\temp#1}}
 
 
 
@@ -236,6 +232,8 @@ PAST END\fi%
 \newpage
 
 \include{preface}
+
+\todo[inline]{It would be nice if the section modification above spaced out all the dates to an even width.}
 
 
 \newpage
@@ -409,60 +407,10 @@ $MUP$ happens to be the Thom spectrum of $BU \times \Z$.
 
 
 
-\section*{Mar 4}
-
-\section*{Mar 7}
-
-\section*{Mar 9}
-
-\section*{Mar 11}
-
-\section*{Mar 21}
-
-\section*{Mar 23}
-
-\section*{Mar 25}
-
-\section*{Mar 28}
-
-\section*{Mar 30}
-
-\section*{Apr 1}
-
-\section*{Apr 4}
-
-\section*{Apr 6}
-
-\section*{Apr 8}
-
-\section*{Apr 11}
-
-\section*{Apr 13}
-
-\section*{Apr 15}
-
-\section*{Apr 18}
-
-\section*{Apr 20}
-
-\section*{Apr 22}
-
-\section*{Apr 25}
-
-\section*{Apr 27}
-
-\section*{Apr 29}
-
-\section*{May 2}
-
-\section*{May 4}
-
-
-
 
 \newpage
 
-\section*{Ideas}
+\subsection*{Ideas}
 \begin{enumerate}
 
 \item Neil's $X_E$ construction for a general $E$. Formal schemes and formal groups. Basic theorems on formal varieties.
@@ -509,11 +457,11 @@ $MUP$ happens to be the Thom spectrum of $BU \times \Z$.
 \item Orientations and the functor $\gl_1$.
 \end{enumerate}
 
-\section*{------------------------}
+\subsection*{------------------------}
 
 
 
-\section*{Resources}
+\subsection*{Resources}
 
 Ando, Hopkins, Strickland (Theorem of the Cube)
 
