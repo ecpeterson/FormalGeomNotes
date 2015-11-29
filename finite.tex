@@ -10,7 +10,7 @@
 still need to talk about closed and open subschemes, their basic properties
 
 
-\section{The context of a spectrum}
+\section{Feb 22: The context of a spectrum}
 
 Today we will begin to make good on our promise, made during our investigation of the unoriented bordism ring, to explain where the Adams spectral sequence comes from.  This story neatly divides into two parts, and the first half is just an investigation of how rich of an algebraic category $\CatOf{C}$ we can find that supports a factorization
 % \begin{center}
@@ -96,10 +96,6 @@ Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $
 
 
 
-
-
-\section{Comodule cohomology II: Groupoid cohomology}
-
 Natural equivalence of groupoids induces an equivalence of comodule categories
 
 Deeper natural equivalence: stackification and locality
@@ -111,7 +107,39 @@ The $E$-Adams spectral sequence: you owe them this from lecture 1.4
 
 
 
-\section{The structure of $\moduli{fg}$ I: Large scales}
+\section{Feb 24: The structure of $\moduli{fg}$ I: Large scales}
+
+\needproof{$MU_* MU$ is universal for FGL isomorphisms}
+
+In this lecture:
+
+Lazard's theorem
+The 2--cocycle lemma
+Rational logarithms
+Quillen's theorem, at last
+
+-----
+
+Yesterday, we developed a rich target for $T(J)$--homology: sheaves over an algebro-geometric object $\M_{T(J)}$.  Furthermore, Quillen's theorem gave an identification $\M_{T(J)} \simeq \moduli{fg}$.  Our initial goal for today is to outline a program by which we can leverage this to study $T(J)$.  Abstractly, one can hope to study any sheaf, including $\M_{T(J)}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\M_{T(J)}$, so that we can determine where to even look for those stalks.
+
+With this in mind, given a map \[\Spec R \xrightarrow{f} \moduli{fg},\] life would be easiest if the $R$--module determined by $f^* \M_{T(J)}(X)$ were itself the value of a homology theory $R_*(X) = T(J)_* X \otimes_{T(J)_*} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
+
+\begin{theorem}[Landweber, part 1]
+For any diagram
+\begin{center}
+\begin{tikzcd}
+\Spec R \arrow{r}{i} & \moduli{fgl} \arrow[-,double]{r} \arrow{d} & \M_{T(J)}[0] \arrow{d} \arrow[-,double]{r} & \Spec T(J)_* \\
+& \moduli{fg} \arrow[-,double]{r} \arrow[leftarrow]{lu}{\mathrm{flat}} & \M_{T(J)}
+\end{tikzcd}
+\end{center}
+such that the diagonal arrow is flat, the functor \[R_*(X) := T(J)_*(X) \otimes_{T(J)_*} R\] determines a homology theory. 
+\end{theorem}
+
+\noindent In the course of proving this theorem, Landweber devised a method to recognize flat maps.  Recall that a map $f$ is flat exactly when for any closed substack $i: A \to \moduli{fg}$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \mathcal I \to f^* \mathcal O_{\moduli{fg}} \to f^* i_* \mathcal O_A \to 0.\]  Landweber classified the closed substacks of $\moduli{fg}$, thereby giving a method to check maps for flatness.
+
+This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a closed substack (and so, in particular, a closed point $\Gamma$) is flat only in highly degenerate cases.  This can be repaired: the inclusion of the formal completion of a closed substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each closed point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the closed points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called $E_\Gamma$.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover a \emph{homology theory} $K_\Gamma$ which plays the role of computing the stalk of $\M_{T(J)}(X)$ at $\Gamma$.\footnote{Incidentally, this program has no content when applied to $\M_{H\F_2}$, as $\Spec \F_2$ is simply too small.}
+
+-----
 
 Quillen's theorem furnished us with a concrete description of $\context{MU}$ in terms of ``formal groups'', some purely algebraic objects, and we've realized $MU$--homology as being valued in sheaves over $\context{MU}$.  To get as much control on the behavior of $\context{MU}$ as we can, we're now moved to investigate the theory of formal groups.  In particular, many theorems about the behavior of sheaves can be reduced to stalkwise statements, so we will be particularly interested in a classification of the geometric points of $\moduli{fg}$.
 
@@ -133,23 +161,6 @@ His proof does not give a canonical presentation.  Rationally, these are the coo
 \begin{corollary}
 Given a formal group law $\phi$ over a ring $R$ and a surjective ring map $f: S \to R$, there exists a formal group law $\widetilde \phi$ over $S$ with \[\phi = f^* \widetilde \phi. \qed\]
 \end{corollary}
-
-\begin{theorem}[Hazewinkel]
-Every formal group law $F$ over a $\Z_{(p)}$--algebra is isomorphic to some $F'$ whose rational logarithm has the form \[\log_{F'}(x) = \sum_{n=0}^\infty \ell_n x^{p^n}.\]  It follows that the radius of convergence of $\log_{F'}$ must be $p^d$ for some $d$.\footnote{If $F$ is additive, then $d$ can be infinite.}  The integer $d$ is called the \emph{height} of $F'$.  It is an isomorphism invariant and it is insensitive to lifts along surjective maps from torsion--free $\Z_{(p)}$--algebras. \qed \citeme{The radius of convergence fact follows from Neil's FG notes, 11.7.}
-\end{theorem}
-
-\begin{theorem}[Landweber, part 2: classification of closed substacks]
-Let $BP_*$ be the ring classifying formal group laws with $p$--typical logarithms.
-\begin{enumerate}
-\item It has the form $BP_* \cong \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$, where $v_d \equiv p \ell_d \pmod{\text{decomposables}}$.
-\item The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $BP_* / (p, v_1, \ldots, v_{d-1})$, and its complementary open substack of dimension $d$ is selected by either of $v_d^{-1} BP_*$ or $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$.\footnote{It's worth pointing out how strange this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.}
-\item A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, v_2, \ldots, v_{d-1}, \ldots)$ is a regular sequence $M$ too.
-\item In particular, $BP_*$ is itself such a module, and so gives rise to a homology theory $BP$ with $\M_{BP} \simeq \moduli{fg} \times \Spec \Z_{(p)}$. \qed
-\end{enumerate}
-\end{theorem}
-
-
-$p$-typification, the relation between $p$-typical logarithms and the $p$-series
 
 Classification of closed points
 
@@ -189,11 +200,38 @@ We know that $\delta$ is surjective by the arguments about the subring $C$.  On 
 
 
 
-\section{The structure of $\moduli{fg}$ II: Small scales}
+\section{Feb 26: The structure of $\moduli{fg}$ II: Small scales}
+
+In this lecture:
+
+$p$--typical FGLs and Hazewinkel's / Landweber's theorems
 
 Lubin--Tate deformation theories
 
 The nice picture I drew for Catherine
+
+
+
+---
+
+\begin{theorem}[Hazewinkel]
+Every formal group law $F$ over a $\Z_{(p)}$--algebra is isomorphic to some $F'$ whose rational logarithm has the form \[\log_{F'}(x) = \sum_{n=0}^\infty \ell_n x^{p^n}.\]  It follows that the radius of convergence of $\log_{F'}$ must be $p^d$ for some $d$.\footnote{If $F$ is additive, then $d$ can be infinite.}  The integer $d$ is called the \emph{height} of $F'$.  It is an isomorphism invariant and it is insensitive to lifts along surjective maps from torsion--free $\Z_{(p)}$--algebras. \qed \citeme{The radius of convergence fact follows from Neil's FG notes, 11.7.}
+\end{theorem}
+
+\begin{theorem}[Landweber, part 2: classification of closed substacks]
+Let $BP_*$ be the ring classifying formal group laws with $p$--typical logarithms.
+\begin{enumerate}
+\item It has the form $BP_* \cong \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$, where $v_d \equiv p \ell_d \pmod{\text{decomposables}}$.
+\item The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $BP_* / (p, v_1, \ldots, v_{d-1})$, and its complementary open substack of dimension $d$ is selected by either of $v_d^{-1} BP_*$ or $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$.\footnote{It's worth pointing out how strange this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.}
+\item A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, v_2, \ldots, v_{d-1}, \ldots)$ is a regular sequence $M$ too.
+\item In particular, $BP_*$ is itself such a module, and so gives rise to a homology theory $BP$ with $\M_{BP} \simeq \moduli{fg} \times \Spec \Z_{(p)}$. \qed
+\end{enumerate}
+\end{theorem}
+
+
+$p$-typification, the relation between $p$-typical logarithms and the $p$-series
+
+----
 
 
 
@@ -224,7 +262,10 @@ Talk about this $B\G$ thing as a simplicial scheme. That's what it is.
 
 
 
-\section{The nilpotence theorem}
+
+
+
+\section{Feb 29: Nilpotence and periodicity}
 
 Every skew field spectrum is a wedge of $K(n)$s
 
@@ -233,25 +274,6 @@ Definitions of Morava $K$-- and $E$--theory
 \begin{remark}
 Morava $K$--theory at the even prime is not commutative.\todo{cf.\ Section 5.2 of KLW.}
 \end{remark}
-
-Yesterday, we developed a rich target for $T(J)$--homology: sheaves over an algebro-geometric object $\M_{T(J)}$.  Furthermore, Quillen's theorem gave an identification $\M_{T(J)} \simeq \moduli{fg}$.  Our initial goal for today is to outline a program by which we can leverage this to study $T(J)$.  Abstractly, one can hope to study any sheaf, including $\M_{T(J)}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\M_{T(J)}$, so that we can determine where to even look for those stalks.
-
-With this in mind, given a map \[\Spec R \xrightarrow{f} \moduli{fg},\] life would be easiest if the $R$--module determined by $f^* \M_{T(J)}(X)$ were itself the value of a homology theory $R_*(X) = T(J)_* X \otimes_{T(J)_*} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
-
-\begin{theorem}[Landweber, part 1]
-For any diagram
-\begin{center}
-\begin{tikzcd}
-\Spec R \arrow{r}{i} & \moduli{fgl} \arrow[-,double]{r} \arrow{d} & \M_{T(J)}[0] \arrow{d} \arrow[-,double]{r} & \Spec T(J)_* \\
-& \moduli{fg} \arrow[-,double]{r} \arrow[leftarrow]{lu}{\mathrm{flat}} & \M_{T(J)}
-\end{tikzcd}
-\end{center}
-such that the diagonal arrow is flat, the functor \[R_*(X) := T(J)_*(X) \otimes_{T(J)_*} R\] determines a homology theory. 
-\end{theorem}
-
-\noindent In the course of proving this theorem, Landweber devised a method to recognize flat maps.  Recall that a map $f$ is flat exactly when for any closed substack $i: A \to \moduli{fg}$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \mathcal I \to f^* \mathcal O_{\moduli{fg}} \to f^* i_* \mathcal O_A \to 0.\]  Landweber classified the closed substacks of $\moduli{fg}$, thereby giving a method to check maps for flatness.
-
-This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a closed substack (and so, in particular, a closed point $\Gamma$) is flat only in highly degenerate cases.  This can be repaired: the inclusion of the formal completion of a closed substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each closed point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the closed points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called $E_\Gamma$.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover a \emph{homology theory} $K_\Gamma$ which plays the role of computing the stalk of $\M_{T(J)}(X)$ at $\Gamma$.\footnote{Incidentally, this program has no content when applied to $\M_{H\F_2}$, as $\Spec \F_2$ is simply too small.}
 
 ----
 
@@ -302,10 +324,7 @@ Set $E = \bigvee_{\text{primes $p$}} \bigvee_{d \in [0, \infty]} K(d)$, so that 
 
 \noindent This is interesting in its own right, because field spectra are exactly those spectra which have K\"unneth isomorphisms.  So, even if you weren't neck-deep in algebraic geometry, you might still have struck across these homology theories just if you like to compute things, since K\"unneth formulas make things computable.
 
-
-
-
-\section{The periodicity theorem}
+-------
 
 Classification of the thick subcategories
 
@@ -378,7 +397,11 @@ In fact, our favorite functor\footnote{However, this functor is \emph{not} a map
 
 
 
-\section{Chromatic localizations}
+
+
+
+
+\section{Mar 2: Chromatic localizations}
 
 Proof of chromatic fracture
 
@@ -434,3 +457,4 @@ The utility of this theorem is in the identification with stack cohomology.  In 
 \begin{example}[Adams]
 In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on $\pi_* E_1 = \Z_p[u^\pm]$ by $\gamma \cdot u^n \mapsto \gamma^n u^n$.  At odd primes $p$ (so that $p$ is coprime to the torsion part of $\Z_p^\times$), one computes \[H^s(\operatorname{Aut}(\Gamma_1); \pi_* E_1) = \begin{cases}\Z_p & \text{when $s = 0$}, \\ \bigoplus_{j = 2(p-1)k} \Z_p\{u^j\} / (pk u^j) & \text{when $s = 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  This, in turn, gives the calculation \[\pi_t \widehat L_1 \S^0 = \begin{cases} \Z_p & \text{when $t = 0$}, \\ \Z_p / (pk) & \text{when $t = t|v_1| - 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  These groups are familiar to homotopy theorists: the $J$--homomorphism $J: BU \to BF$ described on the first day selects exactly these elements (for nonnegative $t$).
 \end{example}
+\todo{Actually run this example}
