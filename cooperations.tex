@@ -12,17 +12,70 @@
 
 
 
+
+\section{Unstable contexts}
+
+Hopf rings: algebraic and topological
+
+\begin{definition}\todo{Can this definition be made without specifying the grading as such and instead using a $\G_m$--action?}
+A Hopf ring $A_{*, *}$ over a graded ring $R_*$ is itself a graded ring object in the category $\CatOf{Coalgebras}_{R_*}$, sometimes called an $R_*$--coalgebraic graded ring object.  It has the following structure maps:
+\begin{align*}
++ & \co A_{s, t} \times A_{s, t} \to A_{s, t} & \text{($A_{s, t}$ is an abelian group)} \\
+\cdot & \co R_{s'} \otimes_{R_*} A_{s, t} \to A_{s+s', t} & \text{($A_{*, t}$ is a $R_*$--module)} \\
+\Delta & \co A_{s, t} \to \bigoplus_{s' + s'' = s} A_{s', t} \otimes_{R_*} A_{s'', t} & \text{($A_{*, t}$ is a $R_*$--coalgebra)} \\
+\ast & \co A_{s, t} \otimes_{R_*} A_{s', t} \to A_{s + s', t} & \text{(addition for the ring in $R_*$--coalgebras)} \\
+\eta_\ast & \co R_* \to A_{*, 0} & \text{(null element for ring addition)} \\
+\chi & \co A_{s, t} \to A_{s, t} & \text{(negation for the ring in $R_*$--coalgebras)} \\
+\circ & \co A_{s, t} \otimes_{R_*} A_{s', t'} \to A_{s + s', t + t'} & \text{(multiplication map for the ring in $R_*$--coalgebras)} \\
+\eta_\circ & \co R_* \to A_{*, 0} & \text{(null element for ring multiplication)}.
+\end{align*}
+These are required to satisfy various commutative diagrams. The least obvious is displayed in \Cref{DistributivityDiagram}, encoding the distributivity of $\circ$--``multiplication'' over $\ast$--``addition''.
+\end{definition}
+
+\begin{figure}
+\begin{center}
+\begin{tikzcd}
+A_{s, t} \otimes_{R_*} (A_{s', t'} \otimes_{R_*} A_{s'', t'}) \arrow{r}{1 \otimes \ast} \arrow{d}{\Delta \otimes (1 \otimes 1)} & A_{s, t} \otimes_{R_*} A_{s' + s'', t'} \arrow{dddd}{\circ} \\
+\left(\bigoplus_{s_1 + s_2 = s} A_{s_1, t} \otimes_{R_*} A_{s_2, t} \right) \otimes_{R_*} (A_{s', t'} \otimes_{R_*} A_{s'', t'}) \arrow{d}{\simeq} \\
+\bigoplus_{s_1 + s_2 = s} \left(A_{s_1, t} \otimes_{R_*} A_{s_2, t}  \otimes_{R_*} A_{s', t'} \otimes_{R_*} A_{s'', t'} \right) \arrow{d}{1 \otimes \tau \otimes 1} \\
+\bigoplus_{s_1 + s_2 = s} \left(A_{s_1, t} \otimes_{R_*} A_{s', t'} \otimes_{R_*} A_{s_2, t} \otimes_{R_*} A_{s'', t'} \right) \arrow{d}{\circ \otimes \circ} \\
+\bigoplus_{s_1 + s_2 = s} \left(A_{s_1 + s', t + t'} \otimes_{R_*} A_{s_2 + s'', t + t'}\right) \arrow{r}{\ast} & A_{s + s' + s'', t + t'}, \\
+\end{tikzcd}
+\end{center}
+\caption{The distributivity axiom for $\ast$ over $\circ$ in a Hopf algebra.}\label{DistributivityDiagram}
+\end{figure}
+
+The context of additive unstable cooperations: make the module of $\ast$--indecomposables $QE_* \Susp^{-*} \OS{E}{*}$ into an algebra using the $\circ$--product, noting that it descends to a map \[QE_* \Susp^{-n} \OS{E}{n} \otimes QE_* \Susp^{-m} \OS{E}{m} \to QE_* \Susp^{-(n+m)} \OS{E}{n+m}.\]  The cooperations that survive to the $\ast$--indecomposables are exactly the additive ones.
+
+The context of all unstable cooperations: don't pass to the indecomposable quotient.  This is pretty complicated.
+
+Unbalanced unstable cooperations and Morita functors: I feel that given an unstable $E^*$--comodule $M$, one can produce an unstable $F^*$--comodule by a tensoring operation: $M \otimes_? F_* \OS{E}{*}$ (or something?).  If $M$ is actually $M = E^* X$ for a space $X$, then there should be a comparison map \[F^* X \to E^* X \otimes_? F_* \OS{E}{*}.\]  This will rarely be an isomorphism, but it should fit into the sheaf-over-a-simplicial-scheme picture as something like a face map.
+
+Associated Adams spectral sequences and completions?
+
+Comparison with past scholia on ``piles''?
+
+
+
+
+
+
 \section{Coalgebraic formal schemes}
 
-Hopf rings
-
-The bar spectral sequence
-
 Cartier duality
+
+Free formal groups and symmetric algebras
+
+The strong colimit lemma
+
+
+
 
 
 
 \section{Global cooperations}
+
+The bar spectral sequence
 
 The Ravenel--Wilson calculation of $E_* \OS{MU}{*}$ for complex orientable $E$
 
@@ -46,6 +99,8 @@ The de Rham crystal of a formal group
 
 Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$
 
+\todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
+
 
 
 
@@ -56,7 +111,6 @@ Theorem 6.1 of R--W \textit{The Hopf ring for complex bordism} sounds like somet
 Section III.11 of Wilson's \textit{Primer} has a synopsis of how additive unstable operations should be treated.  (In particular, he remarks on pp.\ 62-3 that primitives in unstable operations are the \emph{additive} unstable operations, which seems important.)  Possibly this is enough to understand how additive unstable cooperations should be treated, or maybe unstable cooperations generally.
 
 There's also a document by Boardman, Johnson, and Wilson (Chapter 2 of the \textit{Handbook of Algebraic Topology}) that discusses an equivalence between Steve's approach and ``unstable comodules''.  Please read this.
-
 
 
 
