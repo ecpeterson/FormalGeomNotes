@@ -15,6 +15,74 @@
 
 \section{Unstable contexts}
 
+\todo[inline]{I would like to construct a framework that these things live in, like simplicial schemes gave a framework for stable contexts.  At first glance, though, I'm not sure what to do / whether this is possible.  My best guess for now is some arboreal thing, where $E_* \OS{F}{*}$ plays the role of an operadic right-module and $E_* \OS{E}{*}$ governs the internal structure of the tree.  This doesn't seem quite right, though, and I'm already getting sick of thinking about it.}
+
+Let $E$ be a ring spectrum with constituent spaces $\OS{E}{*}$ in its $\Omega$--spectrum.  Then for a space $X$ we define the space \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X)\] which has the property $\pi_* E(X) = \widetilde E_* X$.  This construction defines a functor with two evident natural transformations:\todo{Sort out this question mark.}
+\begin{align*}
+\eta \co X & \simeq S^0 \sm X \to \OS{E}{0} \sm X \\
+& \to \colim_{j \to \infty} \Loops^j(\OS{E}{j} \sm X) \simeq E(X), \\
+\\
+\mu \co E(E(X)) & \simeq \colim_{j \to \infty} \Loops^j \left( \OS{E}{j} \sm \colim_{k \to \infty} \Loops^k (\OS{E}{k} \sm X) \right) \\
+& \xrightarrow{\simeq?} \colim_{\substack{j \to \infty \\ k \to \infty}} \Loops^{j+k} (\OS{E}{j} \sm \OS{E}{k} \sm X) \\
+& \xrightarrow{\mu} \colim_{\substack{j \to \infty \\ k \to \infty}} \Loops^{j+k} (\OS{E}{j+k} \sm X) \xleftarrow{\simeq} E(X).
+\end{align*}
+
+\begin{definition}
+Using these maps, we can construct the following cosimplicial space, the unstable analogue of the descent object from \Cref{StableContextLecture}:
+\[\sheaf{UD}_E(X) := \left\{
+\begin{tikzcd}
+\begin{array}{c} E \\ \circ \\ X \end{array} \arrow[leftarrow, shift left=\baselineskip]{r}{\mu} \arrow[shift left=(2*\baselineskip)]{r}{\eta_L} \arrow{r}{\eta_R} &
+\begin{array}{c} E \\ \circ \\ E \\ \circ \\ X \end{array} \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r}{\Delta} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} &
+\begin{array}{c} E \\ \circ \\ E \\ \circ \\ E \\ \circ \\ X \end{array} \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} &
+\cdots
+\end{tikzcd}
+\right\}.\]
+Its totalization gives the \textit{unstable $E$--completion of $X$}.
+\end{definition}
+
+\begin{definition}
+Under suitable hypotheses, we extract from this an \textit{unstable context for $E$}:
+\begin{align*}
+\mathcal{UM}_E & := \Spec \pi_* \sheaf{UD}_E(S^0) \\
+& = \left\{
+\begin{tikzcd}[ampersand replacement=\&]
+\Spec \pi_* E \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r}
+\arrow[leftarrow,shift right=\baselineskip]{r}
+\&
+\Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \end{array} \right)
+\arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r}
+\&
+\cdots
+\end{tikzcd}
+\right\}
+\end{align*}
+as well as a quasicoherent sheaf over it associated to $X$:
+\begin{align*}
+\sheaf{UM}_E(X) & := \left(\pi_* \sheaf{UD}_E(X)\right){\widetilde{}} \\
+& = \left\{
+\begin{tikzcd}[ampersand replacement=\&]
+\pi_* \left( \begin{array}{c} E \\ \sm \\ X \end{array} \right)\widetilde{} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} \&
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \right)\widetilde{} \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \&
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \right)\widetilde{} \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \&
+\cdots
+\end{tikzcd}
+\right\}.
+\end{align*}
+\end{definition}
+
+say when this thing has good convergence properties to $\pi_* X$ (cf. Section 3 of BCM)
+
+say when this thing has an identifiable $E_2$ term (cf. the end of Section 6 of BCM in particular)
+
+give a description of the first two stages of the context in terms of Hopf rings
+
+mention how to select the \emph{additive} unstable cooperations
+
+------------
+
+
+
+
 Hopf rings: algebraic and topological
 
 \begin{definition}\todo{Can this definition be made without specifying the grading as such and instead using a $\G_m$--action?}
@@ -55,6 +123,9 @@ Associated Adams spectral sequences and completions?
 
 Comparison with past scholia on ``piles''?
 
+\citeme{Bendersky Curtis Miller's \textit{The unstable Adams spectral sequence for generalized homology}}
+\citeme{Boardman Johnson Wilson's \textit{Unstable operations in generalized cohomology}}
+
 
 
 
@@ -84,6 +155,8 @@ The Ravenel--Wilson calculation of $E_* \OS{MU}{*}$ for complex orientable $E$
 
 
 \section{Cooperations between theories at geometric points}
+
+\todo{This isn't a good title. You specifically mean from the additive point to a finite height point.}
 
 $BS^1[p^j]_{K(n)} = BS^1_{K(n)}[p^j]$
 
