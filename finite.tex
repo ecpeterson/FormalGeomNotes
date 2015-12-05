@@ -12,31 +12,39 @@ still need to talk about closed and open subschemes, their basic properties
 
 \section{The context of a spectrum}\label{StableContextLecture}
 
-Today we will begin to make good on our promise, made during our investigation of the unoriented bordism ring, to explain where the Adams spectral sequence comes from.  This story neatly divides into two parts, and the first half is just an investigation of how rich of an algebraic category $\CatOf{C}$ we can find that supports a factorization
-% \begin{center}
-% \begin{tikzcd}
-% \CatOf{Spectra} \arrow{rr}{E_*} \arrow{rd} & & \CatOf{$E_*$--modules} \\
-% & \CatOf{C} \arrow{ru}.
-% \end{tikzcd}
-% \end{center}
+Today we will make good on our promise, made during our investigation of the unoriented bordism ring, to explain where the Adams spectral sequence comes from.  This story neatly divides into two parts, and the first half is just an investigation of how rich of an algebraic category $\CatOf{C}$ we can find that supports a factorization
+\begin{center}
+\begin{tikzcd}
+\CatOf{Spectra} \arrow{rr}{E_*} \arrow{rd} & & \CatOf{Modules}_{E_*} \\
+& \CatOf{C} \arrow{ru}.
+\end{tikzcd}
+\end{center}
+Our answer to this question will come out of considering Grothendieck's framework of descent.  Classically, descent concerns itself with a map $f: R \to S$ of a rings and an $S$--module $N$, and it asks the questions:
+\begin{itemize}
+\item (Naive:) When is there a module $M$ such that $N \cong M \otimes_R S$?
+\item (Nuanced:) What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of preimages of $N$ along $f_*$?
+\item (Needy:) What conditions can be placed on $f$ so that the category of descent data for any given module is always contractible?
+\end{itemize}
+The essential structure of these answers is easy to guess if we proceed by example: suppose that we begin instead with an $R$--module $M$ and we set $N = M \otimes_R S$.  We can 
 
 
-\needproof{Sheaves over (simplicial) affine schemes}
 
 
+talk about quasicoherent sheaves over affine schemes
 
+talk about quasicoherent sheaves over simplicial affine schemes
 
+talk about the (Cech) simplicial scheme associated to descending along a cover
 
+give an equivalence between comodules and cartesian qc sheaves over presheaves of groupoids
 
+talk about how equivalence of groupoids induces equivalence of sheaf categories
 
+------
 
-
-\citeme{Pridham's article \textit{Presenting higher stacks as simplicial schemes} seems like a good reference?  Maybe some Toen things are appropriate?  I don't really know where this simplicial scheme stuff is written down.}
-
-The bar complex and $A_\infty$ ring spectra
-
-The descent object for the unit map $\S \to E$:
-
+We now transfer what we've learned to the situation of homotopical algebra.  Recalling that spectra are equivalent to $\S$--modules, $\S$ the usual sphere spectrum, then any other ring spectrum comes equipped with a unit map $\eta: \S \to E$ and hence push and pull functors $\eta_*$ and $\eta^*$.  Correspondingly, to any spectrum $X$ we can define the following cosimplicial spectrum:
+\begin{definition}
+Let $\sheaf D_E(X)$ be the cosimplicial spectrum determined by the formula
 \[\mathcal{D}_E(X) := \left\{
 \begin{tikzcd}
 \begin{array}{c} E \\ \sm \\ X \end{array} \arrow[leftarrow, shift left=\baselineskip]{r}{\mu} \arrow[shift left=(2*\baselineskip)]{r}{\eta_L} \arrow{r}{\eta_R} &
@@ -45,20 +53,89 @@ The descent object for the unit map $\S \to E$:
 \cdots
 \end{tikzcd}
 \right\}.\]
+It is called \textit{the descent object for $X$ from $E$ to $\S$}.
+\end{definition}
+It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
+\begin{lemma}
+When $E$ is an $A_\infty$--ring spectrum, the descent object $X^\wedge_E$ can be naturally considered cosimplicial object in the $\infty$--category of spectra. \qed \todo{I don't intend to prove this, but maybe we could say some mealy words about why it's true. At worst, we could give reference to the relevant part of Higher Algebra.}
+\end{lemma}
+\begin{definition}
+Let $E$ be an $A_\infty$--ring spectrum.  Then $X^\wedge_E := \Tot \sheaf D_E(X)$ is called the \textit{$E$--nilpotent completion of $X$}.
+\end{definition}
 
-Simplicial schemes and the commutativity hypothesis
+
+
+talk about when the nilpotent completion can be expected to agree with the original spectrum.  (you can probably even prove this.)  talk also about when the nilpotent completion agrees with the Bousfield localization.  (you can't prove this.)
+
+--------
+
+Finally, we can compare the topological situation with the algebraic situation.  To have any hope of applying algebra and algebraic geometry, we must impose some nicety properties.  Here is the first:
 
 \begin{definition}
 $E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis, when $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.
 \end{definition}
 
 \begin{definition}
-Suppose that $E$ is a ring spectrum satisfying {\CH}.  We define a simplicial scheme associated to $E$, called its \textit{context}, to be \[\mathcal{M}_E := \left\{
-\begin{tikzcd}
-\Spec \pi_* E \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} & \Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \end{array} \right) \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} & \Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \end{array} \right) \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \arrow[leftarrow, shift right=(3*\baselineskip)]{r} & \cdots
+Suppose that $E$ is a ring spectrum satisfying {\CH}.  We define a simplicial scheme associated to $E$, called its \textit{context}, to be
+\begin{align*}
+\mathcal{M}_E & := \Spec \pi_* \sheaf D_E(\S) \\
+& = \left\{
+\begin{tikzcd}[ampersand replacement=\&]
+\Spec \pi_* E \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} \&
+\Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \end{array} \right) \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} \&
+\Spec \pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \end{array} \right) \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \arrow[leftarrow, shift right=(3*\baselineskip)]{r} \&
+\cdots
 \end{tikzcd}
-\right\}.\]
+\right\}.
+\end{align*}
 \end{definition}
+
+The context is the wellspring of the algebraic category $\CatOf C$ dreamed of in the introduction to this lecture.
+
+\begin{definition}\label{DefnHomologyFunctorsValuedInSheaves}
+For a ring spectrum $E$ satisfying {\CH} and input spectrum $X$, we define the following diagram of abelian groups:
+\begin{align*}
+\context{E}(X) & := \\
+& = \left\{
+\begin{tikzcd}[ampersand replacement=\&]
+\pi_* \left( \begin{array}{c} E \\ \sm \\ X \end{array} \right) \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} \&
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \&
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \&
+\cdots
+\end{tikzcd}
+\right\},
+\end{align*}
+The $j$\th object is a module for $\sheaf{O}(\context{E}[j])$, and hence determines a quasicoherent sheaf over the scheme $(\context{E}[j])$.  Suitably interpreted, the maps of abelian groups determine maps of pushforwards so that $\context{E}(X)$ is a quasicoherent sheaf over the simplicial scheme $\context{E}$.
+\end{definition}
+
+\begin{remark}
+All of the coface and codegeneracy maps in $\context{E}(X)$ are induced by the unit map $\S \to E$ and the multiplication map $E \sm E \to E$.  In particular, $X$ is not involved.
+\end{remark}
+
+
+-------
+
+flatness hypothesis
+
+\begin{definition}
+Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is a flat map of $E_*$--modules.\todo{Explain {\FH} in terms of a Kunneth spectral sequence.}
+\end{definition}
+
+
+
+
+---------
+
+You haven't actually talked about the Adams spectral sequence yet.
+
+cohomology of sheaves on simplicial schemes
+
+
+----------
+
+
+\citeme{Pridham's article \textit{Presenting higher stacks as simplicial schemes} seems like a good reference?  Maybe some Toen things are appropriate?  I don't really know where this simplicial scheme stuff is written down.}
+
 
 Sheaves on simplicial schemes, cohomology of sheaves
 
@@ -73,41 +150,16 @@ Let $X$ be a simplicial object in affine schemes and let $\sheaf F[n]$ be a quas
 \end{enumerate}
 \end{definition}
 
-In our specific example, we construct such a sheaf in the following way:
 
-\begin{definition}\label{DefnHomologyFunctorsValuedInSheaves}
-For a spectrum $E$ as in \Cref{RingSpToStackDefn} and input spectrum $X$, we define the following diagram of abelian groups:
-\[\sheaf{E}(X) := \left\{
-\begin{tikzcd}
-\pi_* \left( \begin{array}{c} E \\ \sm \\ X \end{array} \right) \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} &
-\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} &
-\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} &
-\cdots
-\end{tikzcd}
-\right\},\]
-where all of the coface and codegeneracy maps are induced by the unit map $\S \to E$ and the multiplication map $E \sm E \to E$.  (In particular, $X$ is not involved.)  The $j$\th object is a module for $\sheaf{O}(\sheaf M_E[j])$, and hence determines a quasicoherent sheaf over the scheme $(\sheaf M_E[j])$.  Suitably interpreted, the maps of abelian groups determine maps of pushforwards so that $\sheaf{E}(X)$ is a quasicoherent sheaf over the simplicial scheme $\sheaf M_E$.
-\end{definition}
 
 (Basic properties of simplicial schemes: flat and closed maps?)
 
-Groupoid schemes and the flatness hypothesis
-
-\begin{definition}
-Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is a flat map of $E_*$--modules.\todo{Explain {\FH} in terms of a Kunneth spectral sequence.}
-\end{definition}
 
 
-
-
-Natural equivalence of groupoids induces an equivalence of comodule categories
 
 Deeper natural equivalence: stackification and locality
 
-The $E$-Adams spectral sequence: you owe them this from lecture 1.4
-
 Mention that complex orientations cause $\context{MU}(E)$ to degenerate, so that stackiness of $\context{MU}(E)$ is a measure of the failure of orientability.  Mention also Wood's cofiber sequence?  Talk about Hopkins's stacky pullback theorem from his Talbot lecture?
-
-Talk about how $\S \to E$ is being treated like a cover. If you have two covers, you can take their joint cover $\S \to E \vee F$, whose $1$--simplices pick up a mixed term: \[(E \vee F) \sm (E \vee F) \simeq E^{\sm 2} \vee F^{\sm 2} \vee (E \sm F)^{\vee 2}.\]  This mixed term prevents double-counting, and it makes it sort of reasonable that it should involve isomorphisms between mixed formal group types.  (This mixed cooperations perspective might have to wait until the chapter on unstable contexts.)
 
 Hovey's \textit{Morita theory for Hopf algebroids and presheaves of groupoids} has nice proofs of various utility theorems, like the homotopy invariance of sheaf categories or the equivalence between comodules and (Cartesian) quasicoherent sheaves over sheaves of groupoids (in the trivial topology).  It would be good to draw a finer distinction than he does: the Adams descent object always exists, and it always yields a quasicoherent sheaf which is only sometimes Cartesian.
 
