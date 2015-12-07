@@ -17,12 +17,13 @@
 
 \todo[inline]{I would like to construct a framework that these things live in, like simplicial schemes gave a framework for stable contexts.  At first glance, though, I'm not sure what to do / whether this is possible.  My best guess for now is some arboreal thing, where $E_* \OS{F}{*}$ plays the role of an operadic right-module and $E_* \OS{E}{*}$ governs the internal structure of the tree.  This doesn't seem quite right, though, and I'm already getting sick of thinking about it.}
 
-Let $E$ be a ring spectrum with constituent spaces $\OS{E}{*}$ in its $\Omega$--spectrum.  Then for a space $X$ we define the space \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X)\] which has the property $\pi_* E(X) = \widetilde E_* X$.  This construction defines a functor with two evident natural transformations:\todo{Sort out this question mark.}
+Let $E$ be a ring spectrum with constituent spaces $\OS{E}{*}$ in its $\Omega$--spectrum.  Then for a space $X$ we define the space \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X) = \Loops^\infty (E \sm \Susp^\infty X)\] which has the property $\pi_* E(X) = \widetilde E_* X$.  This construction defines a functor with two evident natural transformations:\todo{Sort out this question mark.}
 \begin{align*}
-\eta \co X & \simeq S^0 \sm X \to \OS{E}{0} \sm X \\
+\eta \co X & \simeq S^0 \sm X \\
+& \to \OS{E}{0} \sm X \\
 & \to \colim_{j \to \infty} \Loops^j(\OS{E}{j} \sm X) \simeq E(X), \\
 \\
-\mu \co E(E(X)) & \simeq \colim_{j \to \infty} \Loops^j \left( \OS{E}{j} \sm \colim_{k \to \infty} \Loops^k (\OS{E}{k} \sm X) \right) \\
+\mu \co E(E(X)) & = \colim_{j \to \infty} \Loops^j \left( \OS{E}{j} \sm \colim_{k \to \infty} \Loops^k (\OS{E}{k} \sm X) \right) \\
 & \xrightarrow{\simeq?} \colim_{\substack{j \to \infty \\ k \to \infty}} \Loops^{j+k} (\OS{E}{j} \sm \OS{E}{k} \sm X) \\
 & \xrightarrow{\mu} \colim_{\substack{j \to \infty \\ k \to \infty}} \Loops^{j+k} (\OS{E}{j+k} \sm X) \xleftarrow{\simeq} E(X).
 \end{align*}
@@ -143,6 +144,25 @@ I'm fairly certain that the monad associated to the unstable composite adjunctio
 \section{Global cooperations}
 
 The bar spectral sequence
+
+\begin{theorem}\citeme{Theorem 3.8 of RW}
+For $E$ and $G$ sufficiently nice, there is an equation \[b(s) +_{[G]} b(t) = b(s +_E t),\] where
+\begin{align*}
+b(s) & = \sum_i b_i x^i, \\
+b(s +_E t) & = \sum_n b_n \left(\sum_{i, j} a_{ij}^E s^i t^j \right)^n, \\
+b(s) +_{[G]} b(t) & = \bigast_{i, j} [a_{ij}^G] \circ \left( \sum_k b_k s^k \right)^{\circ i} \circ \left( \sum_\ell b_\ell t^\ell \right)^{\circ j}. \qed
+\end{align*}
+\end{theorem}
+
+Calculation of $H\F_{p*} \OS{MU}{2*}$\citeme{Pages 266--270 of Ravenel--Wilson, especially the bottom of 268.}
+
+Calculation of $H\Z_* \OS{MU}{2*}$: no torsion, since $H\F_{p*} \OS{MU}{2*}$ is even, and since the free map is an isomorphism for all primes it's an isomorphism integrally
+
+Since $H\Z_* \OS{MU}{2*}$ is $\Z$--free and even, $MU_* \OS{MU}{2*}$ is $MU_*$--free and even.  It follows that since the free Hopf ring map to $H\Z_* \OS{MU}{2*}$ is an isomorphism, so is the one tensored up to $MU_*$.
+
+
+
+
 
 The Ravenel--Wilson calculation of $E_* \OS{MU}{*}$ for complex orientable $E$
 
