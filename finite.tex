@@ -95,8 +95,7 @@ The context is the wellspring of the algebraic category $\CatOf C$ dreamed of in
 \begin{definition}\label{DefnHomologyFunctorsValuedInSheaves}
 For a ring spectrum $E$ satisfying {\CH} and input spectrum $X$, we define the following diagram of abelian groups:
 \begin{align*}
-\context{E}(X) & := \\
-& = \left\{
+\Gamma \context{E}(X) & := \left\{
 \begin{tikzcd}[ampersand replacement=\&]
 \pi_* \left( \begin{array}{c} E \\ \sm \\ X \end{array} \right) \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} \&
 \pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \&
@@ -105,7 +104,7 @@ For a ring spectrum $E$ satisfying {\CH} and input spectrum $X$, we define the f
 \end{tikzcd}
 \right\},
 \end{align*}
-The $j$\th object is a module for $\sheaf{O}(\context{E}[j])$, and hence determines a quasicoherent sheaf over the scheme $(\context{E}[j])$.  Suitably interpreted, the maps of abelian groups determine maps of pushforwards so that $\context{E}(X)$ is a quasicoherent sheaf over the simplicial scheme $\context{E}$.
+The $j$\th object is a module for $\sheaf{O}(\context{E}[j])$, and hence determines a quasicoherent sheaf over the scheme $\context{E}[j]$.  Suitably interpreted, the maps of abelian groups determine maps of pushforwards so that $\context{E}(X)$ is a quasicoherent sheaf over the simplicial scheme $\context{E}$.
 \end{definition}
 
 \begin{remark}
@@ -196,7 +195,7 @@ We have thus assembled a task list:
 \item Describe the geometric points of $\moduli{fg}$.
 \item Analyze their infinitesimal deformation spaces.
 \end{itemize}
-This will occupy us for the next two lectures.
+This will occupy us for the next two lectures.\todo{``occupy'' is used twice}
 
 -----
 
@@ -272,7 +271,7 @@ We know that $\delta$ is surjective by the arguments about the subring $C$.  On 
 \end{proof}
 
 \begin{remark}
-\todo[inline]{Maybe we can say something about $H\Z \sm MU$ here, since that's the ring used in the proof of Lazard's theorem.  Also, Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
+\todo[inline]{Maybe we can say something about $H\Z \sm MU$ here, since that's the ring used in the proof of Lazard's theorem.  Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I think we should phrase things in those terms.  Also also, Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
 \end{remark}
 
 \needproof{$MU_* MU$ is universal for FGL isomorphisms}
@@ -296,7 +295,7 @@ Definition of $p$--typicality: comparison of logarithm coefficients with $p$--se
 Landweber's little theorem
 
 \begin{lemma}\citeme{Wilson's primer, Theorem 4.6}
-\[\sum_{\substack{i \ge 0 // j > 0}}{}^F t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 // j \ge 0}}{}^F v_i t_j^{p^i} \pmod p.\]
+\[\sum_{\substack{i \ge 0 \\ j > 0}}{}^F t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}^F v_i t_j^{p^i} \pmod p.\]
 \end{lemma}
 
 \begin{corollary}\citeme{Lemmas 4.7-8 of Wilson's primer}
@@ -486,11 +485,8 @@ Hopkins and Smith show the following classification theorem:
 Any thick subcategory $\CatOf C$ of $p$--local finite spectra must be $\CatOf C_d$ for some $d$.
 \end{theorem}
 \begin{proof}
-It is sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.  Let $Y \in \CatOf C_d$ be any other spectrum of type at least $d$.  Consider the endomorphism ring spectrum $R = F(X, X)$ and the fiber $f: F \to \S$ of its unit map.\todo{Make it clear what $f$ is. Draw the fiber sequence or something.}  The action of $f$ under $K(n)$--homology is an isomorphism exactly when $X$ is $K(n)$--acyclic, and because the $K(n)$--acyclicity of $X$ implies the $K(n)$--acyclicity of $Y$, it follows that $1 \sm f: Y \sm F \to Y \sm \S$ is always null on $K(n)$--homology for all $n$.  By a small variant of the local nilpotence detection theorem, it follows that \[Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j}\] is null for $j \gg 0$, and hence that \[\operatorname{cofib}\left( Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j} \right) \simeq Y \sm \operatorname{cofib} f^{\sm j} \simeq Y \vee (Y \sm \Susp F^{\sm j}),\] so that $Y$ is a retract.  However, using $\operatorname{cofib}(f) = X \sm DX \in \CatOf C$ and a smash version of the octahedral axiom
-\begin{align*}
-F \sm F^{\sm (j-1)} & \xrightarrow{f \sm 1} \S \sm F^{\sm (j-1)} \xrightarrow{1 \sm f^{\sm (j-1)}} \S \sm \S^{\sm (j-1)} & \Rightarrow & &  F \sm \operatorname{cofib} f^{\sm (j-1)} \to \operatorname{cofib} f^{\sm j} \to \operatorname{cofib} f \sm \S^{\sm (j-1)}
-\end{align*}
-one can inductively show that $\operatorname{cofib}(f^{\sm j})$, hence $Y \sm \operatorname{cofib}(f^{\sm j})$, and hence $Y$ all belong to $\CatOf C$ as well.
+It is sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.  Let $Y \in \CatOf C_d$ be any other spectrum of type at least $d$.  Consider the endomorphism ring spectrum $R = F(X, X)$ and the fiber $f: F \to \S$ of its unit map.\todo{Make it clear what $f$ is. Draw the fiber sequence or something.}  The action of $f$ under $K(n)$--homology is an isomorphism exactly when $X$ is $K(n)$--acyclic, and because the $K(n)$--acyclicity of $X$ implies the $K(n)$--acyclicity of $Y$, it follows that $1 \sm f: Y \sm F \to Y \sm \S$ is always null on $K(n)$--homology for all $n$.  By a small variant of the local nilpotence detection theorem, it follows that \[Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j}\] is null for $j \gg 0$, and hence that \[\operatorname{cofib}\left( Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j} \right) \simeq Y \sm \operatorname{cofib} f^{\sm j} \simeq Y \vee (Y \sm \Susp F^{\sm j}),\] so that $Y$ is a retract.  However, consider the following smash version of the octahedral axiom: the factorization \[F \sm F^{\sm (j-1)} \xrightarrow{f \sm 1} \S \sm F^{\sm (j-1)} \xrightarrow{1 \sm f^{\sm (j-1)}} \S \sm \S^{\sm (j-1)}\] begets a cofiber sequence \[F \sm \operatorname{cofib} f^{\sm (j-1)} \to \operatorname{cofib} f^{\sm j} \to \operatorname{cofib} f \sm \S^{\sm (j-1)}.\]
+Using $\operatorname{cofib}(f) = X \sm DX \in \CatOf C$, one can inductively show that $\operatorname{cofib}(f^{\sm j})$, hence $Y \sm \operatorname{cofib}(f^{\sm j})$, and hence $Y$ all belong to $\CatOf C$ as well.
 \end{proof}
 
 They also show the \emph{considerably} harder theorem:
