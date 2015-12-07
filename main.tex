@@ -19,6 +19,9 @@
 \usepackage{rotating}
 \usepackage{mathtools}
 
+% used for \bigast
+\usepackage{relsize}
+
 % make the bibliography appear in the table of contents
 \usepackage[nottoc,numbib]{tocbibind}
 
@@ -67,6 +70,9 @@
 \newcommand{\cotensor}{\square}
 \renewcommand{\th}{\textsuperscript{th}}
 \newcommand{\from}{\leftarrow}
+
+\newcommand{\bigast}{\mathop{\Huge \mathlarger{\mathlarger{\ast}}}}
+% \newcommand{\bigcirc}{\mathop{\Huge \mathlarger{\mathlarger{\circ}}}}
 
 \newcommand{\context}[1]{\mathcal{M}_{#1}}
 \newcommand{\CatOf}[1]{\mathsf{#1}}
@@ -217,8 +223,11 @@ Apr 27\fi%
 PAST END\fi%
 }
 
+\newlength{\tocspacerlength}
+\settowidth{\tocspacerlength}{Mar 999:}
+
 \let\oldsection\section
-\def\section#1{\addtocounter{whichdate}{1}\edef\temp{\nextdate: }\expandafter\oldsection\expandafter{\temp#1}}
+\def\section#1{\addtocounter{whichdate}{1}\edef\temp{\nextdate: }\expandafter\oldsection\expandafter[\expandafter{\makebox[\the\tocspacerlength][l]{\temp}#1}\expandafter]{\temp#1}}
 
 
 
@@ -236,8 +245,6 @@ PAST END\fi%
 \newpage
 
 \include{preface}
-
-\todo[inline]{It would be nice if the section modification above spaced out all the dates to an even width.}
 
 
 \newpage
