@@ -225,10 +225,19 @@ PAST END\fi%
 }
 
 \newlength{\tocspacerlength}
-\settowidth{\tocspacerlength}{Mar 999:}
-
+\settowidth{\tocspacerlength}{Mar 999: }
+\makeatletter
 \let\oldsection\section
-\def\section#1{\addtocounter{whichdate}{1}\edef\temp{\nextdate: }\expandafter\oldsection\expandafter[\expandafter{\makebox[\the\tocspacerlength][l]{\temp}#1}\expandafter]{\temp#1}}
+\newtoks\temptoks
+\def\section#1{%
+    \addtocounter{whichdate}{1}%
+    \temptoks{#1}
+    \edef\temp{
+        \@nx\oldsection[\rlap{\nextdate:}\hskip\tocspacerlength\the\temptoks]{\nextdate: \the\temptoks}%
+    }
+    \temp
+}
+\makeatother
 
 
 
