@@ -11,13 +11,49 @@
 
 \section{The complex Atiyah--Bott--Shapiro orientation}
 
+The analysis of $BSU_K$, purely in terms of special divisors.
 
 
+I'm not sure what story I mean to tell on this day.  I want to get some low-order version of the story out of the way, to use as a template for the topological side of things.
 
 
 \section{Elliptic curves and $\theta$--functions}
 
-Every elliptic curve is projective
+-------
+
+This is just a list of theorems and ideas, not a coherent lecture.  I guess the point of this lecture is that this material is somewhat ``standard training'' for an algebraic geometer (or, perhaps, any algebraically-inclined graduate student), and so it's not strange for these constructions to be in the front of someone's mind.  This will matter when we start to analyze $kU^{2n}(\CP^\infty)^{\times n}$ and come across familiar constructions all over again.  So, the goal should be to introduce the players in this story in its own context, but to put emphasis on the ``shapes'' of things.
+
+\begin{theorem}[Theorem of the cube]\label{TheoremOfTheCube}\citeme{Milne's Abelian Varieties chapter, Theorem 6.1}\todo{This is stated far more generally than we care.}
+Let $U$, $V$, and $W$ be complete varieties over $k$ with base points $u_0 \in U(k)$, $v_0 \in V(k)$, $w_0 \in W(k)$.  An invertible sheaf $\L$ on $U \times V \times W$ is trivial if its restrictions to $\{u_0\} \times V \times W$, $U \times \{v_0\} \times W$, and $U \times V \times \{w_0\}$ are all trivial. \qed
+\end{theorem}
+
+\begin{corollary}\label{Theta3IsTrivial}\citeme{Milne's Abelian Varieties chapter, Corollary 6.4}
+Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the projection onto the $i${\th} factor, and let $p_{ij} = p_i +_A p_j$, $p_{ijk} = p_i +_A p_j +_A p_k$.  Then for any invertible sheaf $\L$ on $A$, the sheaf \[\Theta^3(\L) := \frac{p_{123}^* \L \otimes p_1^* \L \otimes p_2^* \L \otimes p_3^* \L}{p_{12}^* \L \otimes p_{23}^* \L \otimes p_{31}^* \L}\] on $A \times A \times A$ is trivial.  If $\L$ is rigid, then $\Theta^3(\L)$ is canonically trivialized. \qed
+\end{corollary}
+
+\begin{theorem}[Theorem of the square]\label{TheoremOfTheSquare}
+For all invertible sheaves $\L$ on an abelian variety $A$ and points $a, b \in A(k)$, \[\L \otimes t_{a+b}^* \L \cong t_a^* \L \otimes t_b^* \L.\]
+\end{theorem}
+\begin{proof}
+Pull back the sheaf in \Cref{Theta3IsTrivial} along the map \[A \xrightarrow{(\id, a, b)} A \times A \times A\] to get the canonically trivialized sheaf \[\frac{t_{a+b}^* \L \otimes \L \otimes a^* \L \otimes b^* \L}{t_a^* \L \otimes (a+b)^* \L \otimes t_b^* \L}.\]  Cancelling the constant factors gives the theorem.
+\end{proof}
+
+\begin{remark}\citeme{Remarks 6.8-9 of Milne's Abelian Varities chapter}
+Fixing $\L$, the assignment \[a \in A(k) \mapsto t_a^* \L \otimes \L^{-1} \in \Pic(A)\] is a homomorphism.  To see this, tensor both sides of \Cref{TheoremOfTheSquare} with $\L^{-2}$.  If we write $D \simeq D'$ for linear equivalence of divisors (i.e., for $\L(D) \cong \L(D')$), then we have \[t_{a+b} D + D = t_a D + t_b D\] and hence for $\sum_{i=1}^n{}^A a_i = 0$ it follows that \[\sum_{i=1}^n t_{a_i} D = nD.\]
+\end{remark}
+
+\begin{theorem}\citeme{Strip out the easy parts of Milne's Theorem 7.1}
+Every elliptic curve is projective.
+\end{theorem}
+\begin{proof}
+First, assume that the ground field $k$ is algebraically closed.  We aim to construct a very ample linear system, meaning that it separates points (for every pair $a, b$ of distinct closed points on the variety, there is a $D$ in the system with $a \in D$ but $b \not\in D$) and it separates tangent vectors (for every closed point $a$ and tangent vector $t$ at $a$, there is a $D$ in the system with $a \in D$ but $t \not\in T_a D$).  Consider just the condition that a linear system separates the origin point from all other closed points in $A$; the case of a curve is too low-dimensional for this is to be interesting, as we can pick our linear system to consist of only the point divisor $D = \{0\}$.  If $a$ and $b$ are any two points in $A(k)$, then one can always find a third point $c$ so that $D_a + D_c + D_{-c-a}$ misses $b$ --- that is, the duplicated and translated system of divisors separates $a$ from $b$.  The theorem of the cube shows that $D_a + D_c + D_{-c-a} = 3D$, regardless of $a$ and $c$, so we take $3D$ as the basic unit of our system of divisors.  Finally, looking around II.7.8.2 of Hartshorne\todo{Expand this out.} shows that this gives rise to the appropriate projective embedding.
+
+Finally, one can show that the projectivity of $A_{\bar k}$ entails the projectivity of $A_k$.\todo{Expand me?}
+\end{proof}
+
+\begin{remark}
+Let $D = 3\{0\}$ and choose a suitable basis $\{1, x, y\}$ of $H^0(A; \L(3D))$. Then the map $A \to \P^2$ defined by the basis identifies $A$ with the cubic projective curve \[Y^2 Z + a_1 XYZ + a_3 YZ^2 = X^3 + a_2 X^2 Z + a^4 X Z^2 + a_6 Z^3.\]
+\end{remark}
 
 Every abelian variety is projective (Theorem 7.1 of Milne's \textit{Abelian varieties (short)})
 
