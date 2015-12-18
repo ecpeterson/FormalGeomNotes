@@ -388,6 +388,58 @@ Criteria for the existence of symmetric cocycle schemes.
 AHS: they exist
 \todo[inline]{The technical condition guaranteeing the existence of symmetric power schemes is that the symmetric cocycle schemes are coalgebraic formal schemes, since then we have an involutive Cartier duality functor.  This comparison essentially comes out of saying that $C_k$ can be defined by a strong colimit, so if we can check that this strong colimit exists\ldots (cf. Prop 3.3 of the AHS preprint).}
 
+------------
+
+Here's what the published version of AHS has to say about the $\sigma$--orientation of $K_{\Tate}$.  (See Section 2.7.)
+
+$K_{\Tate}$ has multiplicative cohomology theory $K\ps{q}$, formal group multiplicative (as induced by $K$--theory), and isomorphism to $\widehat C_{\Tate}$ given by $1 - u(t)$ as in Lecture 5.2.  Since the cubical structure on $\widehat C_{\Tate}$ is given as $\delta^3$ of something, it follows that the $\sigma$--orientation factors as
+\begin{center}
+\begin{tikzcd}
+MU[6, \infty) \arrow{d} \arrow{drr} \\
+MU \arrow{r} & MUP \arrow{r}{\tilde \theta} & K\ps{q}.
+\end{tikzcd}
+\end{center}
+Our goal is to express in terms of characteristic classes the induced map on homotopy by the horizontal composite.
+
+To start with, the topological restriction $MU \to MUP \to E$ sends the coordinate $f$ on $\G_E$ to the rigid section $\delta f$ of $\Theta^1(\sheaf I(0)) = \sheaf I(0)_{0} \otimes \sheaf I(0)^{-1}$.  The most straightforward formula for $\delta f$ is $f(0) / f$, which is confusing, since $f(0) = 0$ usually but not as a section of $\sheaf I(0)_0$.  It's probably clearer to express $\delta f$ in terms of the isomorphism \[\sheaf I(0)_0 \otimes \sheaf I(0)^{-1} \cong \omega \otimes \sheaf I(0)^{-1},\] where $\delta f$ is given by the formula \[\delta f = \frac{f'(0) Dx}{f(x)},\] $Dx$ the invariant differential with value $dx$ at $0$.
+
+In the example of $K$--theory, the usual complex Atiyah--Bott--Shapiro map $MP \to K$ corresponds to the coordinate $1 - u$ on the formal completion of $\Gm = \Spec \Z[u^\pm]$.  The invariant differential is $D(1 - u) = -du/u$, and the restriction to $MU$ classifies the $\Theta^1$--struucture \[\delta(1 - u) = \frac{1}{1 - u}\left(-\frac{du}{u}\right).\]  In the more complex example of Tate $K$--theory, the map \[MU \to MUP \xrightarrow{\tilde\theta} K_{\Tate}\] factors by the coordinate change map \[MU \to MU \sm MU \simeq MU \sm BU_+ \xrightarrow{\delta(1 - u) \sm \theta'} K_{\Tate},\] where $\theta'$ is the element of $BU^{K_{\Tate}} \cong C^1(\widehat C_{\Tate}; \Gm)$ given by the formula \[\theta' = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}.\]
+
+\needproof{The Todd genus}
+In geometric terms, the homotopy groups $\pi_* MU \sm BU_+$ are the bordism groups of pairs $(M, V)$ consisting of a stably almost complex manifold $M$ and a virtual complex vector bundle $V$ over $M$ of virtual dimension $0$.  The map \[\pi_* MU \to \pi_* (MU \sm BU_+)\] sends a manifold $M$ to the pair $(M, \nu)$ where $\nu$ is the reduced stable normal bundle.  Next, the map $\pi_* \delta(1 - u)$ sends a manifold $M$ of dimension $2n$ to $p_!(1) \in K^{-2n}(*)$ where $p: M \to *$ is the unique map.  One has \[p_!(1) = \operatorname{Td}(M) \left( -\frac{du}{u} \right)^n,\] where $\operatorname{Td}(M)$ is the Todd genus of $M$ (and it is customary to suppress the grading and write $p_!(1) = \operatorname{Td}(M)$).  The map $\theta'$ is where the real work is: it is the stable exponential characteristic class taking the value \[\prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n \L)(1 - q^n \L^{-1})}\] on the reduced class $(1 - \L)$ of a line bundle $\L$.  This stable exponential characteristic class can easily be identified with \[V \mapsto \bigotimes_{n \ge 1} \Sym_{q^n}(- \bar V_{\C}),\] where $V_{\C} = V \otimes_{\R} \C$, $\bar V_{\C} = V_{\C} - \eps^{\oplus \dim V}$, and $\Sym_t(W)$ is defined for (complex) vector bundles $W$ by \[\Sym_t(W) = \bigoplus_{m \ge 0} \Sym^m(V) t^m \in K(M)\ps{t}\] and extended to virtual bundles using the exponential rule $\Sym_t(W_1 - W_2) = \Sym_t(W_1) / \Sym_t(W_2)$.  Altogether, the effect of the $\sigma$--orientation therefore sends an almost complex manifold $M$ of dimension $2n$ to
+\begin{align*}
+\pi_* \sigma_{K_{\Tate}}(M) & = f_! \left( \bigotimes_{n \ge 1} \Sym_{q^n}(\bar T_{\C}) \right) \\
+& = \operatorname{Td}\left(M; \bigotimes_{n \ge 1} \Sym_{q^n}(\bar T_{\C}) \right) \left( -\frac{du}{u} \right)^n \\
+& \in \widetilde K\ps{q}^0(S^{2n}).
+\end{align*}
+
+This is basically Witten's formula for his genus.  There is a small caveat: Witten's genus is defined for Spin manifolds.  With some care, perhaps we could construct a homotopical square\todo{Is this possible?  Or do we really need the $\String$--orientation to make this happen?  Is this exactly the topic for the next day?!!}
+\begin{center}
+\begin{tikzcd}
+MSU \arrow{r} \arrow{d} & MU \arrow{d} \\
+M\Spin \arrow[densely dotted]{r} & K_{\Tate},
+\end{tikzcd}
+\end{center}
+but for the moment we content ourselves with a square of homotopy groups
+\begin{center}
+\begin{tikzcd}
+\pi_* MSU \arrow{r} \arrow{d} & \pi_* MU \arrow{d} \\
+\pi_* M\Spin \arrow[densely dotted]{r} & \pi_* K_{\Tate}.
+\end{tikzcd}
+\end{center}
+Let $M$ be a $\Spin$--manifold of dimension $2n$, and use the splitting principle to write \[TM = \L_1 \oplus \cdots \oplus \L_n\] for complex line bundles $\L_i$.  The $\Spin$--structure gives a square root of $\prod \L_i$, which is equivalent to picking a square root for each $\L_i$.\todo{Is it?}  Since, for each $i$, the $O(2)$--bundles underlying $\L_i^{1/2}$ and $\L_i^{-1/2}$ are isomorphic, we can write \[TM = \sum \L_i + \L_i^{-1/2} - \L_i^{1/2},\] which is now a sum of $SU$--bundles.  Using this, one easily checks that the $\sigma$--orientation of $M$ gives \[\widehat A \left(M; \bigotimes_{n \ge 1} \Sym_{q^n}(\bar T_{\C}) \right) \left(-\frac{du}{u}\right)^n,\] where the $\widehat A$--genus is the push-forward in $KO$--theory associated to the unique orientation $M\Spin \to KO$ fitting into the commutative diagram
+\begin{center}
+\begin{tikzcd}
+MSU \arrow{r} \arrow{d} & MU \arrow{d} \\
+M\Spin \arrow{rd} \arrow{r} & K \\
+& KO \arrow{u}{\widehat A}.
+\end{tikzcd}
+\end{center}
+
+Finally, we want to see that for $[M] \in \pi_{2n} MU[6, \infty)$, \[\Phi(M) := (\pi_{2n} \sigma_{K_{\Tate}})(M) \left( -\frac{du}{u} \right)^{-n} \in \pi_0 K_{\Tate} = Z\ps{q}\] is a modular form.  We've at least seen that $\Phi(M)$ is a holomorphic function on $D$, with integral $q$--expansion coefficients.  It suffices to show that if $\pi: \h \to D$ is the map $\pi(\tau) = e^{2 \pi i \tau}$, then $\pi^* \Phi(M)$ transforms correctly under the action of $SL_2(\Z)$.  This is supposed to follow from stuff in the introduction (pp.\ 600-1, also Example 2.3).
+
+
+
 
 
 
