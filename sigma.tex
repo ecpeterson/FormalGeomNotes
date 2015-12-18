@@ -131,6 +131,44 @@ In fact, the second derivative of the logarithm of $\theta_\tau^{1/2, 1/2}$ give
 
 What's left to copy over is in sections 10.5-6 of Husemoller's \textit{Elliptic curves}.
 
+-------
+
+Here's what AHS has to say about things (in Section 2.6):
+
+Start by thinking complex-analytically, so that $D'$ is the punctured unit-radius complex disk and $C'_{an}$ is the Tate curve over it: \[C'_{an} = \C^\times \times D' / (u, q) \sim (qu, q).\]  Meromorphic functions on $C'_{an}$ are meromorphic functions $f$ on $C^\times \times D'$ satisfying $f(u, q) = f(qu, q)$.  The pullback of the ideal sheaf $\sheaf I'(0)$ of functions vanishing at the origin on $C'_{an}$ to $\C^\times \times D'$ is the line bundle whose holomorphic sections are functions vanishing at the points $(q^{\Z}, q)$.  We can naively define such a function with simple zeroes on this locus: \[\tilde \theta(u, q) = \prod_{n \in \Z}(1 - q^n u).\]  This gives a trivialization of the pulled-back line bundle, but it doesn't descend to $C'_{an}$, since it doesn't satisfy the right functional equation --- instead, it satisfies \[\tilde \theta(qu, q) = -u^{-1} \tilde\theta(u, q).\]  However, they claim it's easy to check that $\delta^3 \tilde\theta(u, q)$ does descend to a rigid trivialization of $\Theta^3(\sheaf I(0))$, so gives the unique cubical structure on $C'_{an}$.
+
+Next, we can provide an actual equation for the Tate curve, which will show us how to compactify it at the puncture point.  Make the definitions
+\begin{align*}
+\sigma_k(n) & = \sum_{d \mid n} d^k, &
+\alpha_k & = \sum_{n > 0} \sigma_k(n) q^n,
+\end{align*}
+so that the Weierstrass cubic \[y^2 + xy = x^3 + -5\alpha_3 x + -\frac{5\alpha_3 + 7\alpha_5}{12}\] presents a projective plane curve.  This transforms isomorphically to the Tate curve by the coordinates
+\begin{align*}
+x & = \frac{u}{(1 - u)^2} + \sum_{n > 0} q^n \sum_{d \mid n} d(u^d - 2 + u^{-d}), \\
+y & = \frac{u^2}{(1 - u)^3} + \sum_{n > 0} q^n \sum_{d \mid n} \frac{d}{2} ((d - 1) u^d + 2 - (d+1)u^{-d}).
+\end{align*}
+The Weierstrass version of the equation makes sense at $q = 0$ (although it becomes singular), so we get a family $C_{an}$ of generalized elliptic curves over the open unit disk $D$.  (The fiber over $q = 0$ is the twisted cubic $y^2 + xy = x^3$.)  The invariant differential is $dx / (2y + x) = du / u$, and the cubical structure is given by the unique extension of $\delta^3 \tilde\theta(u, q)$.
+
+Now let $A \subseteq \Z\ps{q}$ by the subring of power series which converge absolutely on the open unit disk; then the coefficients of the Weierstrass cubic lie in $A$, so it determines a generalized elliptic curve $C$ over $\Spec A$, and $C_{an}$ is the curve given by base-change from $A$ to the ring of holomorphic functions on $D$.  The Tate curve $C_{\Tate} $is defined to be the generalized elliptic curve over the intermediate object $D_{\Tate} = \Spec \Z\ps{q}$ as base-changed from $A$.  Since meromorphic sections of $\Theta^3 \sheaf I(0)$ on $C^3$ inject into such over $C_{an}^3$, the (transcendental) equation $s(C_{an}^3) = \delta^3 \tilde\theta(u, q)$ nonetheless determines the cubical structure on $\sheaf I(0)$ over $C$ and hence over $C_{\Tate}$ as well.
+
+Finally, we turn to the associated formal groups.  First, the quotient map \[\C^\times \times D' = \Gm \times D' \to C_{an}'\] is a local analytic isomorphism, so it restricts to an isomorphism \[\G_m \times D' \to \widehat C_{an}'\] and extends across the origin to an isomorphism \[\G_m \times D \to \widehat C_{an}.\]  Additionally, even though $\tilde\theta$ does not descend to $C_{an}$, it does descend to $\widehat C_{an}$ --- and there it gives a coordinate.  Hence, $s(\widehat C_{an}) = \delta^3 \tilde\theta(u, q)$, where $\tilde\theta$ is treated directly as a coordinate on $\widehat C_{an}$.
+
+Lastly, we compare the three coordinates we have available on $\widehat C_{an}'$:
+\begin{align*}
+t & = x/y, &
+\tilde\theta(u, q) & = \tilde\theta(t), &
+1 - u & = 1 - u(t).
+\end{align*}
+Of these, only $t$ gives an algebraic coordinate on $C_{an}'$ (and in fact on $C_{an}$).  As power series in $t$,
+\begin{align*}
+\tilde\theta(t) & = t + O(t^2), &
+1 - u(t) & = t + O(t^2).
+\end{align*}
+The coefficients of the powers of $t$ in these series are holomorphic functions on the punctured disk $D'$.  In fact, they extend to $D$ and have integer coefficients (which you see by working over the completion of $\Z[u^pm]\ps{q}$ at $(1 - u)$).  Thus $\tilde\theta(t)$ and $u(t)$ actually lie in $A\ps{t}$, so give functions on $\widehat C$ and $\widehat C_{\Tate}$.  It's supposed to follow, finally, that $s(\widehat C/A) \in C^3(\widehat C; \sheaf I(0))$ is $\delta^3 \tilde\theta(t)$, using all the definitions above.
+
+
+
+
 
 
 
@@ -283,7 +321,7 @@ Moving from $BU$ to $MU$: $MU\<6\>^E$ is a $\G_m$--torsor over $BU\<6\>^E$, so i
 An \textit{elliptic spectrum} consists of:
 \begin{enumerate}
 \item An even-periodic ring spectrum $E$.
-\item A (generalized) elliptic curve $C$ over $S_E$.\todo{I'm not sure if this is worth explaining. I guess we just mean elliptic curves with certain singularities allowed far away from the origin.}
+\item A (generalized) elliptic curve $C$ over $S_E$.\todo{I'm not sure if this is worth explaining. I guess we just mean elliptic curves with certain singularities allowed far away from the origin. Maybe it is worth explaining: you don't get examples like $H\Z P$ or $K^{\Tate}$ without allowing degeneracies.}
 \item An isomorphism $\phi: C^\wedge_0 \cong \CP^\infty_E$.
 \end{enumerate}
 A \textit{map of elliptic spectra} consists of
@@ -367,6 +405,13 @@ The Atiyah--Bott--Shapiro orientation and the fibration $BSU \to BSpin$ \citeme{
 The $\String$ orientation and $\Sigma$--structures
 
 
+
+
+-------
+
+Some other things that might belong in this chapter:
+
+The cubical structure on a singular (generalized) elliptic curve is not unique, but (published) AHS has an argument showing that the unicity of the choice on the nonsingular ``bulk'' extends to a unique choice on the ``boundary'' of the compactified moduli too.
 
 
 
