@@ -287,9 +287,27 @@ The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU
 
 ------
 
-Prove the symmetric cocycle lemma
+\todo{Separate this into a calculation of $\Ext(\G_a, \G_a)$ and the separate symmetric $2$--cocycle lemma.}
 
-Calculate $\Ext(\G_a, \G_a)$.
+\begin{proof}[Proof of the symmetric cocycle lemma]\todo{Rework this.}\citeme{This follows Chapter 3 of COCTALOS.}
+It suffices to show the lemma over a finitely generated ring.  In fact, the lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, so the structure theorem for finitely generated abelian groups reduces to the cases of $\Z$ and $\Z/p^r$.  If $A \subseteq B$ and the lemma is true for $B$, it's true for $A$, so we can reduce the $\Z$ case to $\Q$.\todo{Rephrase this in terms of localizations.}  We can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive Bockstein type argument.  In particular, we can now freely assume that our ground object is a field.
+
+For any formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usual way:
+\[B\G := \left\{
+\begin{tikzcd}[ampersand replacement=\&]
+\begin{array}{c} * \\ \times \\ * \end{array} \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} \&
+\begin{array}{c} * \\ \times \\ \G \\ \times \\ * \end{array} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} \&
+\begin{array}{c} * \\ \times \\ \G \\ \times \\ \G \\ \times \\ *\end{array} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \arrow[leftarrow, shift right=(3*\baselineskip)]{r} \&
+\cdots
+\end{tikzcd}
+\right\}.\]
+By applying $\InternalHom{FormalGroups}(-, \G_a)(k)$, we get a cosimplicial abelian group, hence a cochain complex, of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} the things we've been calling $2$--cocycles.  In this case, the first observation is that $d^1(x^k) = d_k c_k$.  Secondly, one may also check that this complex computes $\Cotor_{\sheaf O_{\G}^*}(k, k)$, which we're now going to compute using a more efficient complex.
+
+\begin{itemize}
+\item[$\Q$:] In the homological version of this case, you use the resolution $0 \to \Q[t] \xrightarrow{\cdot t} \Q[t] \to \Q \to 0$, from which this follows: \[H^* B\G_a(\Q) = \begin{cases} \Q & \text{when $* = 0$}, \\ \Q & \text{when $* = 1$}, \\ 0 & \text{otherwise}, \end{cases}\] from which this case follows.  This means that every $2$--cocycle is a coboundary, symmetric or not.
+\item[$\F_p$:] Again, switch to the homological setting, so that we're working with $\Ext$ over a free divided power algebra over $\F_p$.  Such an algebra splits as a tensor of truncated polynomial algebras, and again computing a minimal free resolution results in the calculation \[H^* B\G_a(\F_p) = \Lambda[\alpha_k \mid k \ge 0] \otimes \F_p[\beta_k \mid k \ge 0],\] with $\alpha_k \in \Ext^1$ and $\beta_k \in \Ext^2$.  In fact, $\alpha_k$ is represented by $x^{p^k}$ and $\beta_k$ is represented by $c_{p^k}(x, y)$, and in the case $p = 2$ the exceptional class $\alpha_{k-1}^2$ is represented by $C_{2^k}(x, y)$.\todo{I'm not sure how to do any of these calculations! Ha.}  Since we have representatives for the surviving homology classes and we know where the bounding class lives, it follows that $c_n(x, y)$ and $x^{p^a} y^{p^b}$ give a basis for \emph{all} of the $2$--cocycles.  It's easy to select the symmetric ones, and it agrees with the prediction of the statement of the Lemma. \qedhere
+\end{itemize}
+\end{proof}
 
 
 
