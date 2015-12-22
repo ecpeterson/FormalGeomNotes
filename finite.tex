@@ -172,7 +172,7 @@ I think you can make sense of ``Cartesian'' directly on $\sheaf D_E(X)$, and tha
 
 \section{The structure of $\moduli{fgl}$}
 
-Our first goal for today is to outline a program that will occupy us for the rest of this Case Study.  Yesterday, we developed a rich target for $E$--homology: sheaves over an algebro-geometric object $\context{E}$.  Furthermore, we have promised a strengthening of Quillen's theorem, \Cref{QuillenSurjective}, which would result in an identification $\context{MU} \simeq \moduli{fg}$, where $\moduli{fg}$ is the ``moduli of formal groups''.  Our initial goal for today is to outline a program by which we can leverage this to study $MU$.  Abstractly, one can hope to study any sheaf, including $\context{MU}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\context{MU}$, so that we can determine where to even look for those stalks.
+Our first goal for today is to outline a program for the rest of this Case Study.  Yesterday, we developed a rich target for $E$--homology: sheaves over an algebro-geometric object $\context{E}$.  Furthermore, we have promised a strengthening of Quillen's theorem, \Cref{QuillenSurjective}, which would result in an identification $\context{MU} \simeq \moduli{fg}$, where $\moduli{fg}$ is the ``moduli of formal groups''.  Our initial goal for today is to outline a program by which we can leverage this to study $MU$.  Abstractly, one can hope to study any sheaf, including $\context{MU}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\context{MU}$, so that we can determine where to even look for those stalks.
 
 With this in mind, given a map \[\Spec R \xrightarrow{f} \moduli{fg},\] life would be easiest if the $R$--module determined by $f^* \context{MU}(X)$ were itself the value of a homology theory $R_*(X) = MU_* X \otimes_{MU_*} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
 
@@ -197,15 +197,38 @@ We have thus assembled a task list:
 \item Describe the geometric points of $\moduli{fg}$.
 \item Analyze their infinitesimal deformation spaces.
 \end{itemize}
-This will occupy us for the next two lectures.\todo{``occupy'' is used twice}
+This will occupy us for the next two lectures.  Today, we will embark on this analysis by studying the scheme $\moduli{fgl}$ which naturally covers $\moduli{fg}$.
 
------
+\todo{The rest of this lecture is written with respect to logical order rather than with respect to narrative order. The narrative could use a lot of beefing up.}
 
+\begin{definition}
+There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying all bivariate power series:
+\begin{align*}
+\Spec \Z[a_{ij} \mid i, j \ge 0] & \leftrightarrow \left\{ \text{bivariate power series} \right\}, \\
+f \in \Spec\Z[a_{ij} \mid i, j \ge 0](R) & \leftrightarrow \sum_{i, j \ge 0} f(a_{ij}) x^i y^j.
+\end{align*}
+Then, set $\moduli{fgl}$ to be the closed subscheme selected by the formal group law axioms in \Cref{FGLDefinition}.
+\end{definition}
 
+This presentation of $\moduli{fgl}$ as a subscheme appears to be extremely complicated, but $\moduli{fgl}$ itself is actually not complicated at all.  We will prove the following theorem:
+\begin{theorem}\label{LazardsTheorem}
+There is a noncanonical isomorphism \[\sheaf{O}_{\moduli{fgl}} \cong \Z[t_n \mid 1 \le n < \infty].\]
+\end{theorem}
 
-Define the rings $L_r$ classifying $r$--buds, $L_\infty = L$
+The most important consequence that we can draw from this is \emph{smoothness}, stated as follows:
+\begin{corollary}
+Given a formal group law $\phi$ over a ring $R$ and a surjective ring map $f: S \to R$, there exists a formal group law $\widetilde \phi$ over $S$ with \[\phi = f^* \widetilde \phi. \qed\]
+\end{corollary}
 
-\begin{theorem}\label{LazardsTheorem}\citeme{Lazard??}
+\begin{definition}
+In order to prove \Cref{LazardsTheorem}, we will study a sequence of intermediate rings where the series $+_\phi$ is only determined modulo $(x, y)^{n+1}$, i.e., through degree $n$.  Such a series satisfying the analogues of the formal group law axioms is called a \textit{formal $n$--bud}.  The ring of functions on the scheme parametrizing formal $n$--buds is written $L_n$, and the colimit of these rings is $L_\infty = \sheaf{O}_{\moduli{fgl}}$.
+\end{definition}
+
+\begin{remark}
+One might hope that the filtration above has an immediate geometric realization.  After all, one can consider the $n${\th} order formal neighborhood $\A^{1, (n)}$ of \Cref{FiniteOrderAffineSpaceDefn}.  The appropriate analogue of \Cref{MapsOfFVarsArePowerSeries} shows that a map $\A^{1, (n)} \times \A^{1, (n)} \to \A^{1, (n)}$ is represented by a bivariate power series, \emph{modulo the ideal $(x^{n+1}, y^{n+1})$}.  This ideal is distinct from $(x, y)^{n+1}$, and so the source scheme of a formal $n$--bud is not the square of $\A^{1, (n)}$, and a formal $n$--bud does not determine a group object on some finite scheme.  This is actually a good thing: there are structure theorems preventing many of these intermediate group structures on finite schemes from existing.\citeme{Akhil is who reminded me of this, back in Berkeley.}
+\end{remark}
+
+\begin{theorem}[{cf. \Cref{LazardsTheorem}}]\citeme{Lazard??}
 There are elements $t_n \in L$, $0 < n < \infty$, such that
 \begin{align*}
 L_r & \cong \Z[t_1, t_2, \ldots, t_r], &
@@ -214,18 +237,14 @@ L & \cong \Z[t_1, t_2, \ldots, t_r, \ldots],
 and such that $L_r \to L_{r+1}$ is the evident inclusion.
 \end{theorem}
 
-Two corollaries:
-
-\begin{corollary}
-Given a formal group law $\phi$ over a ring $R$ and a surjective ring map $f: S \to R$, there exists a formal group law $\widetilde \phi$ over $S$ with \[\phi = f^* \widetilde \phi. \qed\]
-\end{corollary}
+In addition to the Corollary above, we can deduce the following:
 
 \begin{corollary}
 Given an $r$--bud over $R$, there exists an $(r+1)$--bud extending it. \qed
 \end{corollary}
 
 \begin{proof}[{Proof of \Cref{LazardsTheorem}}]
-Let $U = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting an exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $U$ by the formula \[x +_U y = \exp(\log(x) + \log(y)),\] classified by a map $u: L \to U$.  Modulo decomposables, this map can be computed as \[u(a_{ij}) = \binom{i+j}{i} b_{i+j-1} \pmod{I^2}.\]  Equivalently stated, writing $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$, the map $Qu$ on degree $2n$ is the subgroup generated by $d_{n+1} b_n$.  We use the splitting from \Cref{Symmetric2CocycleLemma} and the freeness of $U$ to construct a splitting \[U \xrightarrow{v} L \xrightarrow{u} U.\]  The map $v$ is an isomorphism because $uv$ is injective and because we have checked that $v$ is surjective on indecomposables.\todo{Emphasize this choice. Lazard's identification is not canonical.}
+Let $U = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting an exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $U$ by the formula \[x +_U y = \exp(\log(x) + \log(y)),\] classified by a map $u: L \to U$.  Modulo decomposables, this map can be computed as \[u(a_{n(n-i)}) = \binom{n}{i} b_{n-1} \pmod{I^2}.\]  Equivalently stated, writing $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$, the map $Qu$ on degree $2n$ is the subgroup generated by $d_{n+1} b_n$.  We \emph{choose} a splitting from \Cref{Symmetric2CocycleLemma}.4 below and the freeness of $U$ to construct an algebra splitting \[U \xrightarrow{v} L \xrightarrow{u} U.\]  The map $v$ is an isomorphism because $uv$ is injective and because we have checked that $v$ is surjective on indecomposables.\todo{Why do the intermediate rings matter? It must matter just in the tail of this proof.}
 \end{proof}
 
 
@@ -238,13 +257,32 @@ The following are equivalent and true:
 \item There is a canonical splitting $T_{2n} \to (QL)_{2n}$.
 \end{enumerate}
 \end{lemma}
-\begin{proof}[Notes on proof]
-Verifying that the claims are equivalent to one another is straightforward.  Claim (1) is the version that actually get proved, by considering the homological algebra of formal groups.  \todo{More on this tomorrow?}
+\begin{proof}[Notes on proof]\todo{Actually prove these reductions?}
+Verifying that the claims are equivalent to one another is straightforward.  Claim (1) is the version that actually get proved, by considering the homological algebra of formal groups.
 \end{proof}
 
+\todo{Separate this into a calculation of $\Ext(\G_a, \G_a)$ and the separate symmetric $2$--cocycle lemma.}
 
+\begin{proof}[Proof of the symmetric cocycle lemma]\todo{Rework this.}\citeme{This follows Chapter 3 of COCTALOS.}
+It suffices to show the lemma over a finitely generated ring.  In fact, the lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, so the structure theorem for finitely generated abelian groups reduces to the cases of $\Z$ and $\Z/p^r$.  If $A \subseteq B$ and the lemma is true for $B$, it's true for $A$, so we can reduce the $\Z$ case to $\Q$.\todo{Rephrase this in terms of localizations.}  We can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive Bockstein type argument.  In particular, we can now freely assume that our ground object is a field.
 
-------
+For any formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usual way:
+\[B\G := \left\{
+\begin{tikzcd}[ampersand replacement=\&]
+\begin{array}{c} * \\ \times \\ * \end{array} \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} \&
+\begin{array}{c} * \\ \times \\ \G \\ \times \\ * \end{array} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} \&
+\begin{array}{c} * \\ \times \\ \G \\ \times \\ \G \\ \times \\ *\end{array} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \arrow[leftarrow, shift right=(3*\baselineskip)]{r} \&
+\cdots
+\end{tikzcd}
+\right\}.\]
+By applying $\InternalHom{FormalGroups}(-, \G_a)(k)$, we get a cosimplicial abelian group, hence a cochain complex, of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} the things we've been calling $2$--cocycles.  In this case, the first observation is that $d^1(x^k) = d_k c_k$.  Secondly, one may also check that this complex computes $\Cotor_{\sheaf O_{\G}^*}(k, k)$, which we're now going to compute using a more efficient complex.
+
+\begin{itemize}
+\item[$\Q$:] In the homological version of this case, you use the resolution $0 \to \Q[t] \xrightarrow{\cdot t} \Q[t] \to \Q \to 0$, from which this follows: \[H^* B\G_a(\Q) = \begin{cases} \Q & \text{when $* = 0$}, \\ \Q & \text{when $* = 1$}, \\ 0 & \text{otherwise}, \end{cases}\] from which this case follows.  This means that every $2$--cocycle is a coboundary, symmetric or not.
+\item[$\F_p$:] Again, switch to the homological setting, so that we're working with $\Ext$ over a free divided power algebra over $\F_p$.  Such an algebra splits as a tensor of truncated polynomial algebras, and again computing a minimal free resolution results in the calculation \[H^* B\G_a(\F_p) = \Lambda[\alpha_k \mid k \ge 0] \otimes \F_p[\beta_k \mid k \ge 0],\] with $\alpha_k \in \Ext^1$ and $\beta_k \in \Ext^2$.  In fact, $\alpha_k$ is represented by $x^{p^k}$ and $\beta_k$ is represented by $c_{p^k}(x, y)$, and in the case $p = 2$ the exceptional class $\alpha_{k-1}^2$ is represented by $C_{2^k}(x, y)$.\todo{I'm not sure how to do any of these calculations! Ha.}  Since we have representatives for the surviving homology classes and we know where the bounding class lives, it follows that $c_n(x, y)$ and $x^{p^a} y^{p^b}$ give a basis for \emph{all} of the $2$--cocycles.  It's easy to select the symmetric ones, and it agrees with the prediction of the statement of the Lemma. \qedhere
+\end{itemize}
+\end{proof}
+
 
 As a consequence, we should be able to get that $\pi_* MU$ is \emph{exactly} the Lazard ring, since it rationalizes to the theory of logarithms, where it's an isomorphism.
 
@@ -283,30 +321,6 @@ The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU
 \end{corollary}
 \begin{proof}
 \todo{Prove me.}
-\end{proof}
-
-------
-
-\todo{Separate this into a calculation of $\Ext(\G_a, \G_a)$ and the separate symmetric $2$--cocycle lemma.}
-
-\begin{proof}[Proof of the symmetric cocycle lemma]\todo{Rework this.}\citeme{This follows Chapter 3 of COCTALOS.}
-It suffices to show the lemma over a finitely generated ring.  In fact, the lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, so the structure theorem for finitely generated abelian groups reduces to the cases of $\Z$ and $\Z/p^r$.  If $A \subseteq B$ and the lemma is true for $B$, it's true for $A$, so we can reduce the $\Z$ case to $\Q$.\todo{Rephrase this in terms of localizations.}  We can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive Bockstein type argument.  In particular, we can now freely assume that our ground object is a field.
-
-For any formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usual way:
-\[B\G := \left\{
-\begin{tikzcd}[ampersand replacement=\&]
-\begin{array}{c} * \\ \times \\ * \end{array} \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} \&
-\begin{array}{c} * \\ \times \\ \G \\ \times \\ * \end{array} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} \&
-\begin{array}{c} * \\ \times \\ \G \\ \times \\ \G \\ \times \\ *\end{array} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \arrow[leftarrow, shift right=(3*\baselineskip)]{r} \&
-\cdots
-\end{tikzcd}
-\right\}.\]
-By applying $\InternalHom{FormalGroups}(-, \G_a)(k)$, we get a cosimplicial abelian group, hence a cochain complex, of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} the things we've been calling $2$--cocycles.  In this case, the first observation is that $d^1(x^k) = d_k c_k$.  Secondly, one may also check that this complex computes $\Cotor_{\sheaf O_{\G}^*}(k, k)$, which we're now going to compute using a more efficient complex.
-
-\begin{itemize}
-\item[$\Q$:] In the homological version of this case, you use the resolution $0 \to \Q[t] \xrightarrow{\cdot t} \Q[t] \to \Q \to 0$, from which this follows: \[H^* B\G_a(\Q) = \begin{cases} \Q & \text{when $* = 0$}, \\ \Q & \text{when $* = 1$}, \\ 0 & \text{otherwise}, \end{cases}\] from which this case follows.  This means that every $2$--cocycle is a coboundary, symmetric or not.
-\item[$\F_p$:] Again, switch to the homological setting, so that we're working with $\Ext$ over a free divided power algebra over $\F_p$.  Such an algebra splits as a tensor of truncated polynomial algebras, and again computing a minimal free resolution results in the calculation \[H^* B\G_a(\F_p) = \Lambda[\alpha_k \mid k \ge 0] \otimes \F_p[\beta_k \mid k \ge 0],\] with $\alpha_k \in \Ext^1$ and $\beta_k \in \Ext^2$.  In fact, $\alpha_k$ is represented by $x^{p^k}$ and $\beta_k$ is represented by $c_{p^k}(x, y)$, and in the case $p = 2$ the exceptional class $\alpha_{k-1}^2$ is represented by $C_{2^k}(x, y)$.\todo{I'm not sure how to do any of these calculations! Ha.}  Since we have representatives for the surviving homology classes and we know where the bounding class lives, it follows that $c_n(x, y)$ and $x^{p^a} y^{p^b}$ give a basis for \emph{all} of the $2$--cocycles.  It's easy to select the symmetric ones, and it agrees with the prediction of the statement of the Lemma. \qedhere
-\end{itemize}
 \end{proof}
 
 
