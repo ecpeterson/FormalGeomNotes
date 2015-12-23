@@ -331,31 +331,107 @@ The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU
 
 \section{The structure of $\moduli{fg}$}
 
-In this lecture:
+Having described the structure of $\moduli{fgl}$, we turn to understanding the quotient stack $\moduli{fg}$.  Earlier, we proved the following theorem:
 
-Classification of closed points\citeme{Theorem IV on p.\ 270 of Lazard}
+\begin{theorem}\todo{Be careful about $\star$-isomorphisms versus isomorphisms.}
+Let $k$ be any field of characteristic $0$.  Then there is a unique map \[\Spec k \to \moduli{fg}. \qed\]
+\end{theorem}
+\begin{proof}
+This is a rephrasing of \Cref{RationalFGLsHaveLogarithms} in the language of stacks.
+\end{proof}
 
-Define what a deformation even is. Make the dependence upon the ambient moduli problem apparent.
+\noindent We would like to have a similar classification of the closed points in positive characteristic.  We proved the theorem above by solving a certain differential equation, which necessitated integrating a power series.  Integration is what we expect to fail in positive characteristic.  The following definition tracks \emph{where} it fails:
+\begin{definition}
+Let $+_\phi$ be a formal group law.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $n$--bud determined by $+_\phi$.  The \textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
+\end{definition}
 
-Show that the action of the stabilizer group lifts to an action on Lubin--Tate space
+In fact, we will show that this definition is well-behaved, in the following sense:
+\begin{lemma}\label{FGLHeightIsAnInteger}
+Over a field of positive characteristic, the $p$--height of a formal group law is always an integer.  (That is, $n = p^d$ for some natural number $d$.)
+\end{lemma}
+\noindent We will have to develop some machinery to get there.  First, notice that this definition of height really depends on the formal group rather than the formal group law.
 
-Lubin--Tate deformation theory
+\begin{lemma}
+The height of a formal group law is an isomorphism invariant, i.e., it descends to a function on $\moduli{fg}$.
+\end{lemma}
+\begin{proof}
+The series $\ell$ is a partial logarithm for the formal group law $\phi$, i.e., an isomorphism between the formal group defined by $\phi$ and the additive group.  Since isomorphisms compose, this statement follows.
+\end{proof}
 
-Calculation of some $\Ext$ groups in formal groups
+With this in mind, we look for a more standard form for formal group laws.  In light of our goal Lemma, the most obvious standard form is as follows:
+\begin{definition}
+Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that $+_\phi$ has a \textit{$p$--typical logarithm} in the case that its logarithm has the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
+\end{definition}
 
-The nice picture I drew for Catherine
+Of course, not every formal group law supports a logarithm --- after all, this is the point of ``height''.  We therefore should an intermediate definition that applies to all formal group laws and which specializes to the one above in the presence of a logarithm.  To do this, we consider what computations are made easier with this sort of formula for a logarithm, and we arrive at the following:
 
+\begin{definition}
+The \textit{$p$--series} of a formal group law $+_\phi$ is given by the formula \[[p]_\phi(x) := \overset{\text{$p$ times}}{\overbrace{x +_\phi \cdots +_\phi x}}.\]
+\end{definition}
 
+\begin{lemma}
+If $+_\phi$ is a formal group law with $p$--typical logarithm, then there are elements $v_n$ with \[[p]_\phi(x) = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots.\]
+\end{lemma}
+\begin{proof}[Proof sketch]
+This comes from comparing the two series
+\begin{align*}
+\log_\phi(px) & = px + \cdots, \\
+\log_\phi([p]_\phi(x)) & = p \log_\phi(x) = px + \cdots.
+\end{align*}
+The difference is concentrated degrees of the form $p^d$, beginning in degree $p$, so one can find an element $v_1$ so that \[p \log_\phi(x) - (\log_\phi(px) + \log_\phi(v_1 x^p))\] starts in degree $p^2$, and so on.  In all, this gives the equation
+\begin{align*}
+p \log_\phi(x) & = \log_\phi (px) + \log_\phi(v_1 x^p) + \log_\phi(v_2 x^{p^2}) + \cdots \\
+\intertext{at which point we can use formal properties of the logarithm to deduce}
+\log_\phi [p]_\phi(x) & = \log_\phi \left(px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots\right) \\
+[p]_\phi(x) & = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots \qedhere
+\end{align*}
+\end{proof}
 
-----
+\begin{remark}
+In fact, the rational logarithm coefficients can be recursively recovered from the coefficients $v_d$, using a similar manipulation:
+\begin{align*}
+p \log_F(x) & = \log_F\left([p]_F(x)\right) \\
+p \sum_{n=0}^\infty m_n x^{p^n} & = \log_F \left(\sum_{d=0}^\infty{}_F v_d x^{p^d} \right) = \sum_{d=0}^\infty \log_F\left(v_d x^{p^d}\right) \\
+\sum_{n=0}^\infty p m_n x^{p^n} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_j v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_k v_{n-k}^{p^k} \right) x^{p^n},
+\end{align*}
+implicitly taking $m_0 = 1$ and $v_0 = p$.
+\end{remark}
 
-Definition of height: radius of convergence of the logarithm
+\todo{Did you make it clear what the $v_n$ have to do with height?}
 
-Definition of $p$--typicality: comparison of logarithm coefficients with $p$--series coefficients
+\begin{definition}
+A formal group law is itself said to be \textit{$p$--typical} when its $p$--series has the above form.  (In particular, the logarithm of a $p$--typical formal group law is a $p$--typical logarithm.)
+\end{definition}
 
+\begin{lemma}\label{EveryFGLIsPTypical}\citeme{This is due to Hazewinkel}
+Every formal group law is uniquely isomorphic to one a $p$--typical formal group law, called its $p$--typification.
+\end{lemma}
+\begin{proof}
+\todo[inline]{The slickest proof is to extend the base ring by a bunch of unramified roots of unity, use those to write down an isomorphism that obviously gets rid of the non-power-of-$p$ terms in the logarithm, then note that the formula for the isomorphism is Galois invariant and so descends to the original ring.}
+\todo{Build Quillen's idempotent. Maybe lift it to $L_p MU$?}
+\end{proof}
 
+\begin{remark}
+There is an inclusion of groupoid--valued sheaves from $p$--typical formal group laws with isomorphisms to all formal group laws with isomorphisms.  \Cref{EveryFGLIsPTypical} can be viewed as presenting this inclusion as a deformation retraction, and in particular the inclusion is a natural \emph{equivalence} of groupoids.  It follows\needproof{Equivalence of groupoids is a reasonable notion in stacks} that these both present the same stack: $\moduli{fg}$.\todo{This isn't stated very well.}
+\end{remark}
 
-Landweber's little theorem
+\begin{proof}[{Proof of \Cref{FGLHeightIsAnInteger}}]
+Replace the formal group law by its $p$--typification.  \todo{Finish this.}
+\end{proof}
+
+We're now in a position to 
+\begin{theorem}\citeme{Lazard Theorem IV on p.\ 270}
+Let $k$ be an algebraically closed field of positive characteristic.  There is a bijection between maps \[\Gamma: \Spec k \to \moduli{fg}\] and numbers $1 \le d \le \infty$ given by $\Gamma \mapsto \height(\Gamma)$.
+\end{theorem}
+\begin{proof}
+The easy part of the proof is surjectivity: take the $p$--typical formal group law over $\F_p$ determined by the $p$--series $[p]_{\phi_d}(x) = x^{p^d}$, sometimes called the \textit{Honda formal group law}.
+
+To show injectivity, we must show that every formal group law over $\bar k$ is isomorphic to the appropriate Honda group law. \todo{Produce such an isomorphism.}
+\end{proof}
+
+\todo[inline]{Here's a remark, 11.2 in Neil's FG class notes: the functor to iso classes of formal groups (i.e., the course moduli) is definitely not a scheme, since it's infinite on $\F_p$, so it's infinite on $\Z$, yet it's a singleton on $\Q$. If it were representable by a scheme, the value on $\Z$ would inject to the value on $\Q$.}
+
+\textbf{Now analyze the open sets.}
 
 \begin{lemma}\citeme{Wilson's primer, Theorem 4.6}
 \[\sum_{\substack{i \ge 0 \\ j > 0}}{}^F t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}^F v_i t_j^{p^i} \pmod p.\]
@@ -372,31 +448,31 @@ If $I$ is an invariant prime ideal, then $I = I_n$ for some $n$.
 Inductively assume that $I_n \subseteq I$.  If this is not an equality, we want to show that $I_{n+1} \subseteq I$ is forced.  Take $y \in I \setminus I_n$; if we could show \[\eta_R(y) = a v_n^j t^K + \cdots,\] we could proceed by primality to show that $v_n \in I$ and hence $I_{n+1} \subseteq I$.  This is possible, but requires serious bookkeeping.
 \end{proof}
 
-
-
----
-
-\begin{theorem}[Hazewinkel]
-Every formal group law $F$ over a $\Z_{(p)}$--algebra is isomorphic to some $F'$ whose rational logarithm has the form \[\log_{F'}(x) = \sum_{n=0}^\infty \ell_n x^{p^n}.\]  It follows that the radius of convergence of $\log_{F'}$ must be $p^d$ for some $d$.\footnote{If $F$ is additive, then $d$ can be infinite.}  The integer $d$ is called the \emph{height} of $F'$.  It is an isomorphism invariant and it is insensitive to lifts along surjective maps from torsion--free $\Z_{(p)}$--algebras. \qed \citeme{The radius of convergence fact follows from Neil's FG notes, 11.7.}
-\end{theorem}
+\textbf{Here's an omnibus theorem:}
 
 \begin{theorem}[Landweber, part 2: classification of closed substacks]
-Let $BP_*$ be the ring classifying formal group laws with $p$--typical logarithms.
-\begin{enumerate}
-\item It has the form $BP_* \cong \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$, where $v_d \equiv p \ell_d \pmod{\text{decomposables}}$.
-\item The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $BP_* / (p, v_1, \ldots, v_{d-1})$, and its complementary open substack of dimension $d$ is selected by either of $v_d^{-1} BP_*$ or $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$.\footnote{It's worth pointing out how strange this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.}
-\item A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, v_2, \ldots, v_{d-1}, \ldots)$ is a regular sequence $M$ too.
-\item In particular, $BP_*$ is itself such a module, and so gives rise to a homology theory $BP$ with $\context{BP} \simeq \moduli{fg} \times \Spec \Z_{(p)}$. \qed
-\end{enumerate}
+Let $BP_*$ be the ring classifying formal group laws with $p$--typical logarithms.  It has the form $BP_* \cong \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$, where $v_d \equiv p \ell_d \pmod{\text{decomposables}}$.  The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $BP_* / (p, v_1, \ldots, v_{d-1})$, and its complementary open substack of dimension $d$ is selected by either of $v_d^{-1} BP_*$ or $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$. \qed
 \end{theorem}
+
+\begin{remark}
+\todo[inline]{It's worth pointing out how strange this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.}
+\end{remark}
 
 -----
 
+Define what a deformation even is. Make the dependence upon the ambient moduli problem apparent.
+
+Show that the action of the stabilizer group lifts to an action on Lubin--Tate space
+
+Lubin--Tate deformation theory
+
+Calculation of some $\Ext$ groups in formal groups
 
 
-Let $F(x, y)$ be a formal group law over $R$; a deformation of $F$ is a formal group law $F_h(x, y)$ over $R[[h]]$ reducing to $F$ when $h = 0$; an isomorphism of deformations is a strict isomorphism covering the identity on $h = 0$.
 
-Define the deformation complex $C^*(F)$ by \[R \to R\llbracket x_1 \rrbracket \to R\llbracket x_1, x_2 \rrbracket \to R\llbracket x_1, x_2, x_3 \rrbracket \to \cdots\] with differential
+Let $F(x, y)$ be a formal group law over $R$; a deformation of $F$ is a formal group law $F_h(x, y)$ over $R\ps{h}$ reducing to $F$ when $h = 0$; an isomorphism of deformations is a strict isomorphism covering the identity on $h = 0$.
+
+Define the deformation complex $C^*(F)$ by \[R \to R\ps{x_1} \to R\ps{x_1, x_2} \to R\ps{x_1, x_2, x_3} \to \cdots\] with differential
 \begin{align*}
 (df)(x_1, \ldots, x_{n+1}) & = F_1\left(\sum_{i=1}^n {}^F x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
 & \quad + \sum (-1)^i f(x_1, \ldots, F(x_i, x_{i+1}), \ldots, x_{n+1}) \\
@@ -414,16 +490,12 @@ F_2(x, y) & = F_2(y, 0)^{-1} F_2(F(x, y), 0) = F_1(0, y)^{-1} F_1(0, F(x, y)).
 \end{align*}
 
 
-Talk about this $B\G$ thing as a simplicial scheme. That's what it is.
+Write a deformed automorphism $f$ of $+_\phi$ as $f(x) = f_0(x) + h f_1(x) + h^2 f_2(x) + \cdots$, so that \[f(x +_\phi y) = f(x) +_\phi f(y).\]  Applying $\left.\frac{\partial}{\partial h}\right|_{h=0}$ to this equality gives \[f_1(x +_\phi y) = \phi_1(x, y)f_1(x) + \phi_2(x, y)f_1(y)\] and thus $f_1$ is a $1$--cocycle in the deformation complex.
+
 
 The relationship between $H^2_{LT}(\Gamma)$ and $\Ext(\Gamma, M \otimes \G_a)$ is Prop 7.3.7 in the crystals notes.
 
 \citeme{Neil's FG notes in the first half of section 18 talk about additive extensions and their relation to infinitesimal deformations.  In the second half, he (more or less) talks about the de Rham crystal and shows that $\Ext_{\mathrm{rigid}}(G, \G_a) \cong \operatorname{Prim}(H^1_{dR}(G/X))$ in 18.37.}
-
-
-
-The calculational part of the symmetric $2$--cocycle lemma requires knowing $\Ext(\G_a, \G_a)$.  This is Lemma 4.3.5 in the Formal Groups notes.  You can also find it in COCTALOS.
-
 
 
 The calculation part of Lubin and Tate's theorem is done in 7.4.5. in the Formal Groups notes. It uses the tangent spectral sequence.
@@ -436,6 +508,10 @@ Actually constructing the object representing the universal lift is done in 7.4.
 
 \todo[inline]{I still have some confusion about the formal similarity between deforming formal group laws over square-zero extensions of the base and deforming formal $n$--buds over the finite order nilpotent neighborhoods of a point.  This would be a good place to sort that out.}
 
+----
+
+The nice picture I drew for Catherine
+
 
 
 
@@ -444,6 +520,11 @@ Actually constructing the object representing the universal lift is done in 7.4.
 \section{Nilpotence and periodicity}
 
 Every skew field spectrum is a wedge of $K(n)$s
+
+Definition of $BP$ homology
+
+% \item A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, v_2, \ldots, v_{d-1}, \ldots)$ is a regular sequence $M$ too.
+% \item In particular, $BP_*$ is itself such a module, and so gives rise to a homology theory $BP$ with $\context{BP} \simeq \moduli{fg} \times \Spec \Z_{(p)}$.
 
 Definitions of Morava $K$-- and $E$--theory
 
