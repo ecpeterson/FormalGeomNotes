@@ -331,6 +331,8 @@ The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU
 
 \section{The structure of $\moduli{fg}$}
 
+\todo{Should sections have subsections?  Does that help organize the TOC?}
+
 Having described the structure of $\moduli{fgl}$, we turn to understanding the quotient stack $\moduli{fg}$.  Earlier, we proved the following theorem:
 
 \begin{theorem}\todo{Be careful about $\star$-isomorphisms versus isomorphisms.}
@@ -340,7 +342,7 @@ Let $k$ be any field of characteristic $0$.  Then there is a unique map \[\Spec 
 This is a rephrasing of \Cref{RationalFGLsHaveLogarithms} in the language of stacks.
 \end{proof}
 
-\noindent We would like to have a similar classification of the closed points in positive characteristic.  We proved the theorem above by solving a certain differential equation, which necessitated integrating a power series.  Integration is what we expect to fail in positive characteristic.  The following definition tracks \emph{where} it fails:
+We would like to have a similar classification of the closed points in positive characteristic.  We proved the theorem above by solving a certain differential equation, which necessitated integrating a power series.  Integration is what we expect to fail in positive characteristic.  The following definition tracks \emph{where} it fails:
 \begin{definition}
 Let $+_\phi$ be a formal group law.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $n$--bud determined by $+_\phi$.  The \textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
 \end{definition}
@@ -404,7 +406,7 @@ A formal group law is itself said to be \textit{$p$--typical} when its $p$--seri
 \end{definition}
 
 \begin{lemma}\label{EveryFGLIsPTypical}\citeme{This is due to Hazewinkel}
-Every formal group law is uniquely isomorphic to one a $p$--typical formal group law, called its $p$--typification.
+Every formal group law is naturally isomorphic to one a $p$--typical formal group law, called its $p$--typification.
 \end{lemma}
 \begin{proof}
 \todo[inline]{The slickest proof is to extend the base ring by a bunch of unramified roots of unity, use those to write down an isomorphism that obviously gets rid of the non-power-of-$p$ terms in the logarithm, then note that the formula for the isomorphism is Galois invariant and so descends to the original ring.}
@@ -431,7 +433,8 @@ To show injectivity, we must show that every formal group law over $\bar k$ is i
 
 \todo[inline]{Here's a remark, 11.2 in Neil's FG class notes: the functor to iso classes of formal groups (i.e., the course moduli) is definitely not a scheme, since it's infinite on $\F_p$, so it's infinite on $\Z$, yet it's a singleton on $\Q$. If it were representable by a scheme, the value on $\Z$ would inject to the value on $\Q$.}
 
-\textbf{Now analyze the open sets.}
+
+\textbf{Now analyze the open and closed substacks.}
 
 \begin{lemma}\citeme{Wilson's primer, Theorem 4.6}
 \[\sum_{\substack{i \ge 0 \\ j > 0}}{}^F t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}^F v_i t_j^{p^i} \pmod p.\]
@@ -455,54 +458,94 @@ Let $BP_*$ be the ring classifying formal group laws with $p$--typical logarithm
 \end{theorem}
 
 \begin{remark}
-\todo[inline]{It's worth pointing out how strange this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.}
+It's worth pointing out how strange this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.  Here, proper open substacks of every dimension appear, and every nonempty closed substack is $\infty$--dimensional (albeit of positive codimension).
 \end{remark}
 
------
 
-Define what a deformation even is. Make the dependence upon the ambient moduli problem apparent.
+\textbf{Now analyze the deformation spaces}
+
+We now turn to the deformation theory of formal groups, which is about the appearance of formal groups in families.
+
+\begin{definition}
+Given a formal group $\Gamma$ classified by a map $\Spec k \to \moduli{fg}$, then a \textit{deformation of $\Gamma$ to a scheme $X$} is a factorization \[\Spec k \to X \to \moduli{fg}.\]  If $X$ is a nilpotent thickening of $\Spec k$ (or an ind-system of such), then the deformation is said to be \textit{infinitesimal}.
+\end{definition}
+
+The study of all possible infinitesimal deformations of a particular map $\Spec k \to \moduli{fg}$ has a geometric interpretation, embodied by the following Lemma:
+
+\begin{lemma}\todo{Actually, maybe this came up at the beginning of the previous day?}
+Let $\Spec k \to Y$ be any map, and let $\Spec k \to X \to Y$ be a factorization through a nilpotent thickening $X$ of $\Spec k$.  Then there is a natural further factorization \[\Spec k \to X \dashrightarrow Y^\wedge_X \to Y. \qed\]
+\end{lemma}
+
+\noindent The spirit of the Lemma, then, is that the study of infinitesimal deformations of $\Gamma: \Spec k \to \moduli{fg}$ is equivalent to the study of $(\moduli{fg})^\wedge_\Gamma$ itself.  So, this fits into our program of analyzing the structure of $\moduli{fg}$.
+
+\begin{example}
+Consider the case of an infinitesimal parameter space $X = \A^1$.  A map $\A^1 \to \moduli{fg}$ then is presented by a map $\A^1 \to \moduli{fgl}$, which corresponds to a ``family'' of formal group laws $+_{\phi_h}$ of the form \[x +_{\phi_h} y = (x +_\phi y) + h(x +_{\phi(1)} y) + h^2(x +_{\phi(2)} y) + \cdots\] for some series $+_{\phi(n)}$.  In particular, $+_{\phi(0)}$ is a formal group law over $k$.
+\end{example}
+
+The analysis of $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate, but we follow a more structured approach written down by Lazarev.\citeme{Cite both of these}
+\begin{definition}\todo{Phrase this geometrically?  Can you?}
+Let $+_\phi$ be a formal group law. The deformation complex $\widehat C^*(\phi)$ is defined by \[R \to R\ps{x_1} \to R\ps{x_1, x_2} \to R\ps{x_1, x_2, x_3} \to \cdots\] with differential
+\begin{align*}
+(df)(x_1, \ldots, x_{n+1}) & = \phi_1\left(\sum_{i=1}^n {}_\phi x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
+& \quad + \sum (-1)^i f(x_1, \ldots, x_i +_\phi x_{i+1}, \ldots, x_{n+1}) \\
+& \quad (-1)^{n+1} \left( \phi_2\left(x_1, \sum_{i=2}^{n+1} {}_\phi x_i \right) \cdot f(x_2, \ldots, x_{n+1}) \right),
+\end{align*}
+where we have written
+\begin{align*}
+\phi_1(x, y) & = \frac{\partial x +_\phi y}{\partial x}, &
+\phi_2(x, y) & = \frac{\partial x +_\phi y}{\partial y}.
+\end{align*}
+\end{definition}
+
+This complex tracks the data of infinitesimal deformations.  For instance, consider a deformed automorphism $f$ of $+_\phi$, expressed as \[f(x) = f_0(x) + h f_1(x) + h^2 f_2(x) + \cdots,\] and satisfying \[f(x +_\phi y) = f(x) +_\phi f(y).\]  Applying $\left.\frac{\partial}{\partial h}\right|_{h=0}$ to this equality gives \[f_1(x +_\phi y) = \phi_1(x, y)f_1(x) + \phi_2(x, y)f_1(y)\] and thus $f_1$ is a $1$--cocycle in the deformation complex.  A similar sequence of observations culminates in the following theorem:
+\begin{theorem}\citeme{Definitely blame this on Lazarev}
+Let $+_\phi$ be a formal group law over a ring $R$ and let $S \to R$ be a square--zero extension with kernel $M$.
+\begin{enumerate}
+\item Automorphisms of $+_\phi$ over $S$ give elements in $\widehat Z^1(\phi)$.
+\item Two automorphisms are equivalent if...?
+\item Extensions of $+_\phi$ to $S$ give elements in $\widehat Z^2(\phi)$.
+\item Two such extensions are isomorphic over $S$ if their cocycles are bounded by an element in $\widehat B^2(\phi)$. \qed
+\end{enumerate}
+\todo{Summarize all the facts about the deformation complex here.}
+\end{theorem}
+
+So, this complex contains all the information we're interested in.  Miraculously, we actually already studied the main input to computing this complex yesterday:
+
+\begin{lemma}
+This is quasi-isomorphic to the usual bar complex.
+\end{lemma}
+\begin{proof}\todo{Actually write this.}
+The usual bar complex receives a map defined by \[f \mapsto \check{f}(x_1, \ldots, x_n) = F_1\left( 0, \sum_{i=1}^n {}F x_i \right)^{-1} f(x_1, \ldots, x_n),\] and this is the quasi-isomorphism.
+
+You'll probably want to know the formulas
+\begin{align*}
+F_1(x, y) & = F_1(0, x)^{-1} F_1(0, F(x, y)), \\
+F_2(x, y) & = F_2(y, 0)^{-1} F_2(F(x, y), 0) = F_1(0, y)^{-1} F_1(0, F(x, y)).
+\end{align*}
+\end{proof}
+
+\begin{lemma}
+Let $\G$ be a formal group of finite height $\height(\G) = d$ over a field $k$.  Then, $H^2(\G; M \otimes \G_a)$ is a free $k$--vector space of dimension $(d - 1)$.
+\end{lemma}
+\begin{proof}
+Filter $\G$ by degree and consider the resulting spectral sequence.  Its input is $H^*(\G_a; M \otimes \G_a)$, which we computed yesterday.  To compute the differentials, one computes \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are at least $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed cocycles.\todo{This follows from Corollary 7.4.4 in the crystals notes.  Finish this.}
+\end{proof}
+
+\textbf{Now build the universal object and check its universal property.  The construction is done in 7.4.3 and the universal property is done in 7.5 of the crystals notes.}
+
+
 
 Show that the action of the stabilizer group lifts to an action on Lubin--Tate space
 
 Lubin--Tate deformation theory
 
-Calculation of some $\Ext$ groups in formal groups
 
-
-
-Let $F(x, y)$ be a formal group law over $R$; a deformation of $F$ is a formal group law $F_h(x, y)$ over $R\ps{h}$ reducing to $F$ when $h = 0$; an isomorphism of deformations is a strict isomorphism covering the identity on $h = 0$.
-
-Define the deformation complex $C^*(F)$ by \[R \to R\ps{x_1} \to R\ps{x_1, x_2} \to R\ps{x_1, x_2, x_3} \to \cdots\] with differential
-\begin{align*}
-(df)(x_1, \ldots, x_{n+1}) & = F_1\left(\sum_{i=1}^n {}^F x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
-& \quad + \sum (-1)^i f(x_1, \ldots, F(x_i, x_{i+1}), \ldots, x_{n+1}) \\
-& \quad (-1)^{n+1} \left( F_2\left(x_1, \sum_{i=2}^{n+1} {}^F x_i \right) \cdot f(x_2, \ldots, x_{n+1}) \right),
-\end{align*}
-where we have written
-\begin{align*}
-F_1(x, y) & = \frac{\partial F(x, y)}{\partial x}, &
-F_2(x, y) & = \frac{\partial F(x, y)}{\partial y}.
-\end{align*}
-This is quasi-isomorphic to the usual bar complex. The usual bar complex receives a map defined by \[f \mapsto \check{f}(x_1, \ldots, x_n) = F_1\left( 0, \sum_{i=1}^n {}F x_i \right)^{-1} f(x_1, \ldots, x_n),\] and this is the quasi-isomorphism. You'll probably want to know the formulas
-\begin{align*}
-F_1(x, y) & = F_1(0, x)^{-1} F_1(0, F(x, y)), \\
-F_2(x, y) & = F_2(y, 0)^{-1} F_2(F(x, y), 0) = F_1(0, y)^{-1} F_1(0, F(x, y)).
-\end{align*}
-
-
-Write a deformed automorphism $f$ of $+_\phi$ as $f(x) = f_0(x) + h f_1(x) + h^2 f_2(x) + \cdots$, so that \[f(x +_\phi y) = f(x) +_\phi f(y).\]  Applying $\left.\frac{\partial}{\partial h}\right|_{h=0}$ to this equality gives \[f_1(x +_\phi y) = \phi_1(x, y)f_1(x) + \phi_2(x, y)f_1(y)\] and thus $f_1$ is a $1$--cocycle in the deformation complex.
-
-
-The relationship between $H^2_{LT}(\Gamma)$ and $\Ext(\Gamma, M \otimes \G_a)$ is Prop 7.3.7 in the crystals notes.
 
 \citeme{Neil's FG notes in the first half of section 18 talk about additive extensions and their relation to infinitesimal deformations.  In the second half, he (more or less) talks about the de Rham crystal and shows that $\Ext_{\mathrm{rigid}}(G, \G_a) \cong \operatorname{Prim}(H^1_{dR}(G/X))$ in 18.37.}
 
 
 The calculation part of Lubin and Tate's theorem is done in 7.4.5. in the Formal Groups notes. It uses the tangent spectral sequence.
 
-
-
-Actually constructing the object representing the universal lift is done in 7.4.3 and checking its universal property is done in 7.5 of the crystals notes.
 
 
 
