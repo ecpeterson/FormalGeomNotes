@@ -4,6 +4,7 @@
 \usepackage{amsmath,amssymb,amsfonts,amsthm,stmaryrd}
 \usepackage{hyperref}
 %\usepackage{stmaryrd}
+%\usepackage{MnSymbol}
 
 \usepackage{mathpazo} % math & rm
 \linespread{1.05}        % Palatino needs more leading (space between lines)
@@ -26,7 +27,35 @@
 \usepackage[nottoc,numbib]{tocbibind}
 
 \usepackage{cleveref}
+
+% used to set custom chapter titles
 \usepackage{tocloft,calc}
+
+% this steals from http://tex.stackexchange.com/questions/36006/how-can-i-use-a-symbol-provided-by-a-package-without-changing-the-entire-mathema to import the "action" arrow
+\DeclareFontFamily{U} {MnSymbolA}{}
+
+\DeclareFontShape{U}{MnSymbolA}{m}{n}{
+  <-6> MnSymbolA5
+  <6-7> MnSymbolA6
+  <7-8> MnSymbolA7
+  <8-9> MnSymbolA8
+  <9-10> MnSymbolA9
+  <10-12> MnSymbolA10
+  <12-> MnSymbolA12}{}
+\DeclareFontShape{U}{MnSymbolA}{b}{n}{
+  <-6> MnSymbolA-Bold5
+  <6-7> MnSymbolA-Bold6
+  <7-8> MnSymbolA-Bold7
+  <8-9> MnSymbolA-Bold8
+  <9-10> MnSymbolA-Bold9
+  <10-12> MnSymbolA-Bold10
+  <12-> MnSymbolA-Bold12}{}
+\DeclareSymbolFont{MnSyA} {U} {MnSymbolA}{m}{n}
+% 184 and 255 are both good options
+\DeclareMathSymbol{\actson}{\mathrel}{MnSyA}{255}
+
+
+%%% DONE WITH PACKAGES
 
 
 \newcommand{\oweproof}[1]{\todo[color=red]{\textbf{You owe a proof of: } #1.}}
@@ -87,7 +116,9 @@
 \newcommand{\Spin}{\mathit{Spin}}
 \newcommand{\String}{\mathit{String}}
 \newcommand{\TMF}{\mathit{TMF}}
+\newcommand{\Tmf}{\mathit{Tmf}}
 \newcommand{\tmf}{\mathit{tmf}}
+\newcommand{\TAF}{\mathit{TAF}}
 \newcommand{\BP}{\mathit{BP}}
 \newcommand{\MU}{\mathit{MU}}
 \newcommand{\Tate}{\mathrm{Tate}}
