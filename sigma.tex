@@ -463,6 +463,98 @@ The $\String$ orientation and $\Sigma$--structures
 
 
 
+\begin{theorem}
+There is a bi-Cartesian square
+\begin{center}
+\begin{tikzcd}
+& \Div_0 \overline{\G}[2] \arrow{rr} \arrow{ld} & & \Div_0 \G[2] \arrow{ld} \\
+\Div_0 \overline{\G} \arrow{rr} & & BO_K.
+\end{tikzcd}
+\end{center}
+\end{theorem}
+\begin{proof}
+\todo{Analyze the Atiyah--Hirzebruch spectral sequence}
+\end{proof}
+
+\begin{lemma}
+Consider the cube constructed by taking pointwise fibers of the composite to $X$.
+\begin{center}
+\begin{tikzcd}
+& A' \arrow{rr} \arrow{ld} \arrow{dd} & & B' \arrow{ld} \arrow{dd} \\
+C' \arrow{rr} \arrow{dd} & & D' \arrow[crossing over]{dd} \\
+& A \arrow{rr} \arrow{ld} & & B \arrow{ld} \\
+C \arrow{rr} & & D \arrow{rr} & & X.
+\end{tikzcd}
+\end{center}
+If the bottom face is bi-Cartesian, then so is the top.
+\end{lemma}
+\begin{proof}
+\todo{Prove this? It's valid in an arbitrary abelian category.}
+\end{proof}
+
+\begin{corollary}
+There is a bi-Cartesian square
+\begin{center}
+\begin{tikzcd}
+& \Div_0 \overline{\G}[2] \arrow{rr} \arrow{ld} & & \SDiv_0 \G[2] \arrow{ld} \\
+\Div_0 \overline{\G} \arrow{rr} & & BSO_K. & & \qed
+\end{tikzcd}
+\end{center}
+\end{corollary}
+\begin{proof}
+\todo{Write this for real.}
+The fibration $BSO \to BO \to BO(1)$ gives a short exact sequence of Hopf algebras.  The composite $\Div \overline{\G} \to \G[2]$ acts by zero and the composite $\Div \G[2] \to \G[2]$ acts by summation.  The summation one you can probably prove by comparing with the determinant (or Postnikov) section for $BU$.
+\end{proof}
+
+\begin{corollary}
+\todo{Write this for real. Even the statement is bad: see ``$\ker \omega$''.}
+There is a bi-Cartesian square
+\begin{center}
+\begin{tikzcd}
+& \Div_0 \overline{\G}[2] \arrow{rr} \arrow{ld} & & \ker \omega \arrow{ld} \\
+\Div_0 \overline{\G} \arrow{rr} & & B\Spin_K. & & \qed
+\end{tikzcd}
+\end{center}
+\end{corollary}
+\begin{proof}
+This goes similarly to the one above.  You can compute that the composite $\Div \overline{\G} \to \G[2]^{\wedge 2}$ is zero using an identical technique.  To compute the action on the other factor, KLW show that there's a diagram of exact sequences
+\begin{center}
+\begin{tikzcd}
+& & & K_* \arrow{d} \\
+& & & K_* K(\Z, 3) \arrow{d} \\
+K_* \arrow{r} & K_* B\Spin \arrow{r} \arrow{d} & K_* BSU \arrow{r}{\tau} \arrow[-,double]{d} & K_* BU[6, \infty) \arrow{d}{\delta} \\
+K_* \arrow{r} & K_* BSO \arrow{r}{i} & K_* BSU \arrow{r}{1 - \xi} & K_* BSU \arrow{d} \\
+& & & K_* .
+\end{tikzcd}
+\end{center}
+Since $(1 - \xi) \circ i = 0$, we have that $\delta \circ \tau \circ i = 0$ and hence that $\tau \circ i$ lifts to $K_* K(\Z, 3)$.  Identifying $\SDiv_0 \G[2]$ with $C_2 \G[2]$, we check that the composites \[C_2 \G[2] \xrightarrow{\omega} \G[2]^{\wedge 2} \xrightarrow{\eps} C_3 \G\] and \[C_2 \G[2] \to C_2 \G \xrightarrow{\tau} C_3 \G\] agree.  For a point $[a, b] \in C_2 \G$, this is the claim
+\begin{align*}
+0 & = \eps(a \wedge b) - \tau[a, b] \\
+& = [a, a, b] - [b, a, b] - [-a - b, a, b] \\
+& = [a, a, b] - [b + a, a, b] + [b, a + a, b] - [b, a, b],
+\end{align*}
+and this is the expression called $R(b, a, a, b)$, which is forced null in $C_3 \G$.
+
+\todo[inline]{I'm a little fuzzy on the coherence of this with the Bockstein: this computes the lift of $\tau \circ f$ into $K(\Z, 3)_K$, and it does happen to factor through the subscheme $K(\Z/2, 2)_K$ determined by the Bockstein. However, I don't immediately see why this agrees with the bottom Postnikov section of $BSO$: that's a map off of $BSO$ and this is a rotated map into $BU[6, \infty)$, so it's not an immediate consequence of naturality.}
+\end{proof}
+
+
+
+\todo{What follows is the analysis for $M\String$.  Is the one for $M\Spin$ analogous and do-able?  Does it involve $CK_2$ and maybe a clever choice of $MSU$--orientation?}
+
+
+The sequence $\Spin/SU \to BU[6, \infty) \to B\String$ is exact and right-exact.  The kernel of the map $\Spin/SU \to BU[6, \infty)$ is ``$CK_3$'' \citeme{Theorem 2.3.5.vi of KLW}, where \[CK_j = \bigoplus_{k=j}^\infty K_* K(\Z/2, k).\]  More than that, KLW even say where the polynomial and nonpolynomial parts of $K_* \Spin/SU$ land inside of $K_* BU[6, \infty)$.  I think\todo{But I have not checked!} that this means that $K_* BU[6, \infty)$ is a flat $K_* \Spin/SU$--module at heights $d \le 2$.
+
+Anyway, there's always a $\Tor$--spectral sequence owing to the pushout diagram
+\begin{center}
+\begin{tikzcd}
+\Susp^\infty_+ \Spin/SU \arrow{r} \arrow{d} & MU[6, \infty) \arrow{d} \\
+* \arrow{r} & M\String
+\end{tikzcd}
+\end{center}
+of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
+
+
 
 
 
