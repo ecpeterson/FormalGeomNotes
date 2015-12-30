@@ -354,9 +354,11 @@ Talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Pos
 
 \section{Dieudonn\'e modules}
 
-The practical approach: projective generators of finite Hopf algebras
+\todo[inline]{This section is out of logical order with the B--G one.  Goerss's proof that $\Loops^2 S^3$ has anything to do with anything relies on knowing that the Snaith splitting of $\Loops^2 S^3$ into Brown--Gitler spectra is directly relevant to Dieudonn\'e theory.  I think this section really should be an exposition of the algebraic ideas involved (perhaps closing with the Gross--Hopkins period map?) and that all topological applications should be postponed until the next lecture.}
 
-The de Rham crystal of a formal group
+Three approaches: projective generators, the de Rham crystal, and Cartier's curves functor
+
+$\CatOf{HopfAlgebras}^{> 0}_{\F_p/}$
 
 Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$
 
@@ -366,6 +368,9 @@ Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$
 Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.
 
 
+You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.
+
+
 
 
 
@@ -373,7 +378,20 @@ Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings
 
 \section{Brown--Gitler spectra}
 
-Goerss's construction of Brown--Gitler spectra using unstable cooperations
+Classification of finite Hopf algebras over $\F_p$ with $\Gm$--action
+
+There's a collection of Hopf algebras called $H(n)$ which are the projective covers of the standard Hopf algebras $S(n)$, themselves described as symmetric Hopf algebras on a single class in dimension $n$.  The $H(n)$ form a series of projective \emph{generators} of the category.  So, we can give a Tannakian description of the category as modules over the ``endomorphism ring'' $\mathsf{Hom}(H(*), H(*))$, which is calculable.  You end up seeing the same data as a covariant Dieudonn\'e module, which is cool, and generally given a hopf algebra $H$ you can build a graded Dieudonn\'e module functor by \[D_n(H) = \CatOf{HopfAlgebras}_{/\F_p}(H(n), H).\]
+
+Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B_n$ such that \[B_{n*}(X) = D_n H_* \Loops^\infty X.\]
+
+Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
+
+A lot of this requires knowing things about the behavior of Cotor spectral sequences and unstable modules over the Steenrod algebra.
+
+
+
+
+\todo[inline]{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.}
 
 
 
