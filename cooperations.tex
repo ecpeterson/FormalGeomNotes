@@ -141,7 +141,7 @@ Does the adjective ``Cartesian'' make sense here?  Is it still the case that the
 
 
 
-\section{Unstable cooperations in additive homology}
+\section{Unstable cooperations in additive homology}\label{UnstableSteenrodCoops}
 
 The bar spectral sequence: connectivity assumption, it's a spectral sequence of Hopf algebras, interaction with the $\circ$--product structure
 
@@ -336,15 +336,92 @@ This follows from: Since $MU_{(p)}$ splits multiplicatively as a wedge of $BP$s,
 
 \todo{This isn't a good title. You specifically mean from the additive point to a finite height point.}
 
-$BS^1[p^j]_{K(n)} = BS^1_{K(n)}[p^j]$
+Throughout today, we will write $K$ for a Morava $K$--theory $K_\Gamma$ (which, if you like, you can take to be $K(d)$) and $A$ for a finitely generated abelian group, and $H$ for the associated Eilenberg--Mac Lane spectrum.  Our goal is to study the unstable mixed cooperations $K_* \OS{H}{*}$.  Of course, this fits into our broader program of understanding various forms of unstable cooperations, especially if we were to pursue a ``stalkwise analysis'' of the sort in \Cref{ChapterFiniteSpectra}.  However, this calculation is especially interesting because of the appearance of the Eilenberg--Mac Lane spaces $\OS{H}{*}$ in other settings.  For instance, if we want to analyze the $K$--homology of a Postnikov tower (as we will in \Cref{ChapterSigmaOrientation}), we will naturally encounter pieces of $K_* \OS{H}{*}$, and we would be wise to have a firm handle on these objects.  It is another tribute to the power of structure that the successful way to approach this computation is not one-at-a-time, as one coming from the Postnikov perspective might attempt, but all-at-once, as suggested by the unstable cooperations picture.
 
-The Ravenel--Wilson calculation of $K(n)_* \OS{Hk}{*} = \Alt^* BS^1_{K(n)}[p] \otimes_{\F_p} k$
+Our calculation will eventually turn into an induction, so we will pursue a simple example first: the $K$--theory of just the classifying space $BA$, rather than a general Eilenberg--Mac Lane space.  Since $K$--theory has K\"unneth isomorphisms and $B(A_1 \times A_2) \simeq BA_1 \times BA_2$, it suffices to do the computation just for $A = C_{p^j}$.
 
-cf.\ also Hopkins--Lurie.  Make a point to distinguish between the cases of the full $p$--divisible group and its varous $p^j$--torsion subgroups.
+\begin{theorem}\citeme{Theorem 5.7 of RW, or Prop 2.4.4 of HL}
+There is an isomorphism \[BS^1[p^j]_K \cong BS^1_K[p^j].\]
+\end{theorem}
+\begin{proof}
+Consider the diagram of spherical fibrations:\todo{Put in a pullback corner here.}
+\begin{center}
+\begin{tikzcd}
+S^1 \arrow{r} \arrow[-,double]{d} & B(S^1[p^j]) \arrow{r} \arrow{d} & BS^1 \arrow{d}{p^j} \\
+S^1 \arrow{r} & ES^1 \arrow{r} & BS^1.
+\end{tikzcd}
+\end{center}
+The induced long exact sequence (known as the Gysin sequence, or as the couple in the Serre spectral sequence for the first fibration) takes the form
+\begin{center}
+\begin{tikzcd}
+& K_* BS^1 \arrow{rd}{- \frown [p^j](x)} \\
+K_*(BS^1[p^j]) \arrow{ru} & & K_* BS^1 \arrow{ll}{\partial}
+\end{tikzcd}
+\end{center}
+where $x$ is a coordinate on $BS^1_K$.  Because $BS^1_K$ is of finite height, the right diagonal map is surjective.  It follows that $\partial = 0$, and so this gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[B(S^1[p^j])_K \to BS^1_K \xrightarrow{p^j} BS^1_K. \qedhere\]
+\end{proof}
 
-Point out that the stable cooperations vanish
+There are a couple of approaches to the rest of this calculation, i.e., $K_* \OS{H}{q}$ for $q > 1$.  The original, due to Ravenel and Wilson, is to complete the calculation for the smallest abelian group $C_p$ and then induct upward toward more complicated groups like $C_{p^j}$ and $C_{p^\infty}$.  More recently, there is also a preprint of Hopkins and Lurie that begins with $A = C_{p^\infty}$ and then works downward.  We will do the \emph{easy} parts of both calculations, to give a feel for their relative strengths and deficiencies.
 
-Talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Postnikov towers and so on?
+The Ravenel--Wilson version of the calculation proceeds much along the same lines as \Cref{UnstableSteenrodCoops}.  We will study the bar spectral sequences \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}\] for different indices $q$ and use the $\circ$--product to push differentials around among them.  We begin by rephrasing the calculation above in terms of the case $q = 0$.\citeme{Theorem 8.1 of RW}  In that setting, the ground algebra is given by \[K_* \OS{H\Z/p^j}{0} = K_*[[1]] / \<[1]^{p^j} - 1\> = K_*[[1] - [0]] / \<[1] - [0]\>^{p^j}.\]  Then, the $\Tor$--algebra for the truncated polynomial algebra $K_*[a_\emptyset] / a_\emptyset^{p^j}$ is given by the formula \[\Tor^{K_*[a_\emptyset] / a_\emptyset^{p^j}}_{*, *}(K_*, K_*) = \Lambda[\sigma a_\emptyset] \otimes \Gamma[\phi a_\emptyset],\] the combination of an exterior algebra and a divided power algebra.  We know which classes are supposed to survive this spectral sequence, and hence we know where the differentials must be:
+\begin{align*}
+d(\phi a_\emptyset)^{[p^{dj}]} & = \sigma a_\emptyset, \\
+\Rightarrow d(\phi a_\emptyset)^{[i + p^{dj}]} & = \sigma a_\emptyset \cdot (\phi a_\emptyset)^{[i]}.
+\end{align*}
+After this differential the spectral sequence collapses, but there are some multiplicative extensions to sort out when $j > 1$.  Of course, these are all determined by already knowing the multiplicative structure on $K_* \OS{H\Z/p^j}{1}$.
+
+We now turn to the general finite case:
+\begin{theorem}\citeme{Theorems 9.2 and 11.1 of RW}
+Using the $\circ$--product, \[K_* \OS{H\Z/p^j}{q} = \Alt^q \OS{H\Z/p^j}{1}.\]
+\end{theorem}
+\begin{proof}[Proof sketch]
+The inductive step turns out to be extremely index-rich, so I won't be so explicit or complete, but I'll point out the major landmarks.  It will be useful to use the shorthand $a_{(i)} = a_\emptyset^{[p^i]}$, where $(i)$ is thought of as a multi-index with one entry.
+
+We proceed by induction, assuming that $K_* \OS{H\Z/p^j}{q} = \Alt^q \OS{H\Z/p^j}{1}$ for a fixed $q$.  Computing the algebraic homology of $K_* \OS{H\Z/p^j}{q}$ yields a tensor of divided power and exterior classes, a pair for each algebra generator of $K_* \OS{H\Z/p^j}{q}$.  There is then a wonderful rewriting formula:\citeme{Ravenel Wilson, somewhere} \[(\phi a_{(i_1, \ldots, i_q)})^{[p^j]} \equiv  (\phi a_{(i_1, \ldots, i_{q-1})})^{[p^j]} \circ a_{(i_q + j)} \mod *\text{--decomposables}.\]  Since every class can be so decomposed, all the differentials and extensions are determined by the previous spectral sequence.  In particular, classes are hit by differentials exactly when $i_q + j$ is large enough.  It follows that the inductive assumption that $K_* \OS{H\Z/p^j}{q+1}$ is an exterior power holds, and the class $(\phi a_{(i_1, \ldots, i_q)})^{[p^j]}$ represents $a_{(j, i_1 + j, \ldots, i_q + j)}$.\todo{Indicate exactly where the intertwining between different values of $j$ happens.}
+\end{proof}
+
+\todo{Mike has said something about the pairing $C_{p^j} \times C_{p^j}^* \to \Q/\Z$ not being functorial in $j$ (so as to pass to the direct limit) which gave me pause.  I should make sure I'm not messing something up here.}
+
+The case $j = 1$ of this proof is messy enough, and the case of a general $j$ requires interrelating the cases using the restriction map $C_{p^j} \to C_{p^{j+1}}$ and the projection map $C_{p^{j+1}} \to C_{p^j}$.  Then, these tools are revisited to give a computation in the limiting case $A = C_{p^\infty}$, where there's a $p$--adic equivalence $HC_{p^\infty} \simeq\widehat{{}_p} \Susp H\Z$.\citeme{Theorem 12.4 of RW}  The calculation in this setting is the most interesting one of all --- after all, it contains the case $BS^1_K$, which is of special interest to us.  Remarkable, it is easier to access directly than passing through all of this intermediate work.  To begin, we need the following algebraic calculation:
+
+\begin{theorem}\citeme{Theorem 2.2.10 of Hopkins--Lurie}\todo{Use the same cohomology notation you have been using for the cohomology of formal groups on previous days.}
+Suppose we have an exact sequence of Hopf $k$--algebras \[k \to A' \to A \xrightarrow{u} A'' \to k\] such that $A$ is connected and $F$--divisible, $A'$ is finite--dimensional, and the map $u$ factors through the relative Frobenius ${A''}^{(p)} \to A''$.  Write $\partial: \Ext^1 A' \to \Ext^2 A''$ for the going--around map.  The following are true:
+\begin{itemize}
+\item The Hopf algebra $A''$ is connected and $F$--divisible.
+\item The map $\partial$ induces an isomorphism \[\Sym^* \Ext^1 A' \to \Ext^* A''.\]
+\item Let $y_1, \ldots, y_n$ form a basis for $\Ext^1 A'$.  Then $\Ext^* A'$ is freely generated by the elements $y_*$ as a module over $\Ext^* A$. \qed
+\end{itemize}
+\end{theorem}
+
+\begin{corollary}\citeme{Example 2.2.12 of Hopkins--Lurie}
+If $A$ is a connected $p$--divisible Hopf $k$--algebra, then \[k \to A[p^j] \to A \xrightarrow{p^j} A \to k\] is such an exact sequence.  Hence, $\Ext^* A$ is isomorphic to the symmetric algebra on $\Ext^1 A[p^j]$.  \qed
+\end{corollary}
+
+
+\todo[inline]{The point is supposed to be that there are no differentials in the limiting $j \to \infty$ case of the above spectral sequences.  So, all that's left is to check that the pairing gives the right isomorphism, which is an exercise in counting dimensions.  This is Prop 2.4.11 in Hopkins--Lurie.}
+
+
+
+
+
+\begin{remark}
+You'll notice that in $K_* \OS{H}{q+1}$ if we let the $q$--index tend to $\infty$, we get the $K$--homology of a point.  This is another way to see that the stable cooperations $K_* H$ vanish, meaning that the \emph{only} information present comes from unstable cooperations.\todo{We could even provide a quick proof of the stable calculation?  Cf.\ http://mathoverflow.net/questions/220952/localization-at-the-johnson-wilson-spectrum-and-rationalization.}
+\end{remark}
+
+\begin{remark}
+Since everything in sight is even, you also get a calculation of the $E$--theory for free.  In fact, as Hopf algebras, \[E_\Gamma \OS{H(\Q/\Z)}{q} \simeq \Alt^q E_\Gamma \OS{H(\Q/\Z)}{1}.\]
+\end{remark}
+
+\begin{remark}
+Also mention the base--change type formula: as an abelian group, a positive characteristic field $k$ splits as a wedge of $C_p$s, so \[K_* \OS{Hk}{*} = K_* \OS{H\F_p}{*} \otimes_{\F_p} k.\]
+\end{remark}
+
+
+
+
+
+Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Postnikov towers and so on?
+
 
 
 
@@ -369,6 +446,12 @@ Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings
 
 
 You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.
+
+
+As a running example, you should rephrase a bunch of the results from the previous lecture (on $K(d)_* \OS{Hk}*$) in terms of Dieudonn\'e modules.
+
+
+There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power group scheme without passing through Dieudonn\'e modules.  It should at least be mentioned.
 
 
 
