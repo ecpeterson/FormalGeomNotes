@@ -43,6 +43,10 @@ The Drinfel'd moduli ring, level structures
 
 There's a sufficient amount of reliance on character theory in Matt's thesis that we should talk about it.  You should write that action and then backtrack here to see what you need for it.
 
+See Theorem 2.6 of Greenlees--Strickland
+
+See Morava's \textit{Local fields} paper
+
 
 
 
@@ -72,7 +76,7 @@ Section 3.3 is the part that uses HKR character theory.  The beginning only uses
 
 
 
-\section{Strickland's theorem}
+\section{The moduli of subgroup divisors}
 
 Following... the original? Following Nat?
 
@@ -105,6 +109,17 @@ H_k \arrow{rr} \arrow{dd} & & \D(V_{p^k}) \\
 We will show the existence of the dashed map, implying that the restricted divisor $H_k$ is a subgroup divisor on $Y_k = \Spf E^0 B\Sigma_{p^k} / \mathrm{tr}$.
 
 (Prop 9.1:) This proof falls into two parts: first we construct a family of maps to $(B\Sigma_{p^k})_E$ on whose image $\D(V_{p^k})$ restricts to a subgroup divisor, and then we show that the union of their images is exactly $Y_k$.  Let $A$ be an abelian $p$--subgroup of $\Sigma_{p^k}$ that acts transitively on $\{1, \ldots, p^k\}$ (i.e., it is not boosted from some transfer).  The restriction of $V_{p^k}$ to $A$ is the regular representation, which splits as a sum of characters $V_{p^k}|_A = \bigoplus_{\L \in A^*} \L$.  Identifying $BA_E = \InternalHom{FormalGroups}(A^*, \CP^\infty_E)$, $\D(V_{p^k})$ restricts all the way to $\sum_{\L \in A^*} [\phi(\L)]$, with $\phi: A^* \to $``$\Gamma(\operatorname{Hom}(A^*, \G), \G)$''.  In Finite Subgroups of Formal Groups (see Props 22 and 32), we learned that the restriction of $\D(V_{p^k})$ further to $\Level(A^*, \CP^\infty_E)$ is a subgroup divisor.  So, our collection of maps are those of the form \[\Level(A^*, \CP^\infty_E) \to \InternalHom{FormalGroups}(A^*, \CP^\infty_E) = BA_E \to (B\Sigma_{p^k})_E.\]  Here, finally, is where we have to do some real work involving Chern classes and commutative algebra, so I'm inclined to skip it in the lectures.  Finally, you do a dimension count to see that $Z_k$ and $\Spf E^0 B\Sigma_{p^k} / \mathrm{tr}$ have the same dimension (which requires checking enough commutative algebra to see that ``dimension'' even makes sense), and so you show the map is injective and you're done.
+
+
+-----
+
+Here's Neil's proof of the joint images claim.  It seems like a clear enough use of character theory that we should include it, if we can make character theory itself clear.
+
+Recall from [18, Theorem 23] that $\Level(A^*,\G)$ is a smooth scheme, and thus that $D(A) = \sheaf O_{\Level(A^*,\G)}$ is an integral domain. Using [18, Proposition 26], we see that when $\L \in A^*$ is nontrivial, we have $\phi(\L) \ne 0$ as sections of $\G$ over $\Level(A^*, \G)$, and thus $e(\L) = x(\phi(\L)) \ne 0$ in $D(A)$. It follows that that $c_{p^k} = \prod_{\L \ne 1} e(\L)$ is not a zero-divisor in $D(A)$. On the other hand, if $A'$ is an Abelian $p$-subgroup of $\Sigma_{p^k}$ which does not act transitively on $\{1, \ldots, p^k\}$, then the restriction of $V_{p^k} − 1$ to $A'$ has a trivial summand, and thus $c_{p^k}$ maps to zero in $D(A')$. Next, we recall the version of generalised character theory described in [8, Appendix A].
+\[p^{-1} E^0 BG = \left(\prod_A p^{-1} D(A)\right)^G\]
+where $A$ runs over all Abelian $p$-subgroups of $G$. As $\overline R_k = E^0(B\Sigma_{p^k} )/ ann(c_{p^k} )$ and everything in sight is torsion-free, we see that $p^{−1} \overline R_k$ is the quotient of $p^{−1}E^0B\Sigma_{p^k}$ by the annihilator of the image of $c_{p^k}$ . Using our analysis of the images of $c_{p^k}$ in the rings $D(A)$, we conclude that
+\[p^{-1} \overline R_k = \left(\prod_A p^{−1}D(A)\right)^{\Sigma_{p^k}},\]
+where the product is now over all transitive Abelian $p$-subgroups. This implies that for such $A$, the map $E^0B\Sigma_{p^k} \to D(A)$ factors through $\overline R_k$, and that the resulting maps $\overline R_k \to D(A)$ are jointly injective. This means that $Y_k = \Spf \overline R_k$ is the union of the images of the corresponding schemes $\Level(A^*,\G)$, as required.
 
 
 
