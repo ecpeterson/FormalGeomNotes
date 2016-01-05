@@ -31,6 +31,9 @@ Write out isogenies of the additive formal group, note that you just get the uns
 Push and pull maps for divisor schemes
 
 
+Moduli of subgroup divisors
+
+
 The Drinfel'd moduli ring, level structures
 
 
@@ -74,6 +77,36 @@ Section 3.3 is the part that uses HKR character theory.  The beginning only uses
 Following... the original? Following Nat?
 
 Continuing on from the above, if we expected $E_n$ to be $E_\infty$ (or even $H_\infty$) so that it had power operations, then we would want to understand $E_n B\Sigma_{p^j}$ and match that with the operations we see.
+
+---
+
+There are union maps \[B\Sigma_j \times B\Sigma_k \to B\Sigma_{j+k},\] stable transfer maps \[B\Sigma_{j+k} \to B\Sigma_j \times B\Sigma_k,\] and diagonal maps \[B\Sigma_j \to B\Sigma_j \times B\Sigma_j.\]  These induce a coproduct $\psi$ as well as products $\times$ and $\bullet$ on $E^0 \P \S^0$, where $\P\S^0 = \coprod_{j=0}^\infty B\Sigma_j$ is the free $E_\infty$--ring on $\S^0$.  This is a Hopf ring, and under $\times$ alone it is a formal power series ring.  The $\times$--indecomposables (which, I guess, are analogues of considering additive unstable cooperations) are \[Q^\times E^0 \P\S^0 = \prod_{k \ge 0} \left( E^0 B\Sigma_{p^k} / \operatorname{tr} E^0 B\Sigma_{p^{k-1}}^p \right),\] where the $k${\th} factor in the product is naturally isomorphic to $\sheaf{O}_{\Sub_{p^k}(\G)}$.  The primitives are also accessible as the kernel of the dual restriction map.
+
+Theorem 3.2 shows that $E^0 B\Sigma_k$ is free over $E^0$, Noetherian, and of rank controlled by generalized binomial coefficients.  Prop 3.4 is the only place where work gets done, and it's all in terms of $K$--theory and HKR characters.
+
+There's actually an extra coproduct, coming from applying $D$ to the fold map $S^0 \vee S^0 \to S^0$.
+
+The main content of Prop 5.1 (due to Kashiwabara) is that $K_0 \P \S^0$ injects into $K_0 \OS{BP}{0}$.  Grading $K_0 \P \S^0$ using the $k$--index in $B\Sigma_k$, you can see that it's of graded finite type, so we need only know it has no nilpotent elements to see that $K_0 \P \S^0$ is $\ast$--polynomial.  This follows from our computation that $K_0 \OS{BP}{0}$ is a tensor of power series and Laurent series rings.  Corollary 5.2 is about $K_0 Q S^0$, which is the group completion of $K_0 \P \S^0$, so it's the tensor of $K_0 \P \S^0$ with a graded field.
+
+Prop 5.6, using a double bar spectral sequence method, shows that $K^0 Q S^2$ is a formal power series algebra.  Tracking the spectral sequences through, you'll find that $Q^\times K^0 Q S^0$ agrees with $P K^0 Q S^2$.  (You'll also notice that $K^0 Q S^2$ only has one product on it, cf.\ Remark 5.4.)
+
+Snaith's theorem says $\Sigma^\infty QX = \Sigma^\infty \P X$ for connected spaces $X$.  You can also see (just after Theorem 6.2) the nice equivalences \[\P_k S^2 \simeq B\Sigma_k^{V_k} \simeq \P_k(S^0)^{V_k},\] where superscript denotes Thom complex.  So, for a complex-orientable cohomology theory, you can learn about $\P_k S^0$ from $\P_k S^2$.  In particular, we finally learn that $E^0 \P S^0$ is a formal power series $\times$--algebra (once checking that the Thom isomorphism is a ring map).  (We already knew the homological version of this claim.)
+
+Section 8 has a nice discussion about indecomposables and primitives, to help move back and forth between homology and cohomology.  It probably helps most with the dimension count argument below that we aren't going to get into.
+
+Start again with $D_{p^k} S^2 \simeq B\Sigma_{p^k}^{V_{p^k}}$.  We can associate to this a divisor $\D(V_{p^k})$ on $(B\Sigma_{p^k})_E$, which we know little about, but it is classified by a map to $\Div_{p^k} \CP^\infty_E$.  This receives a closed inclusion from $\Sub_{p^k} \CP^\infty_E$, so their pullback $Z_k$ is the largest subscheme of $(B\Sigma_{p^k})_E$ over which $\D(V_{p^k})$ is a subgroup divisor.
+\begin{center}
+\begin{tikzcd}
+H_k \arrow{rr} \arrow{dd} & & \D(V_{p^k}) \\
+& Z_k \arrow{rr} \arrow{rd} & & \Sub_{p^k} \CP^\infty_E \arrow{rd} \\
+\Spf E^0 B\Sigma_{p^k} / \mathrm{tr} \arrow{rr} \arrow[densely dotted]{ru} & & (B\Sigma_{p^k})_E \arrow{rr} \arrow[crossing over,leftarrow]{uu} & & \Div_{p^k} \CP^\infty_E
+\end{tikzcd}
+\end{center}
+We will show the existence of the dashed map, implying that the restricted divisor $H_k$ is a subgroup divisor on $Y_k = \Spf E^0 B\Sigma_{p^k} / \mathrm{tr}$.
+
+(Prop 9.1:) This proof falls into two parts: first we construct a family of maps to $(B\Sigma_{p^k})_E$ on whose image $\D(V_{p^k})$ restricts to a subgroup divisor, and then we show that the union of their images is exactly $Y_k$.  Let $A$ be an abelian $p$--subgroup of $\Sigma_{p^k}$ that acts transitively on $\{1, \ldots, p^k\}$ (i.e., it is not boosted from some transfer).  The restriction of $V_{p^k}$ to $A$ is the regular representation, which splits as a sum of characters $V_{p^k}|_A = \bigoplus_{\L \in A^*} \L$.  Identifying $BA_E = \InternalHom{FormalGroups}(A^*, \CP^\infty_E)$, $\D(V_{p^k})$ restricts all the way to $\sum_{\L \in A^*} [\phi(\L)]$, with $\phi: A^* \to $``$\Gamma(\operatorname{Hom}(A^*, \G), \G)$''.  In Finite Subgroups of Formal Groups (see Props 22 and 32), we learned that the restriction of $\D(V_{p^k})$ further to $\Level(A^*, \CP^\infty_E)$ is a subgroup divisor.  So, our collection of maps are those of the form \[\Level(A^*, \CP^\infty_E) \to \InternalHom{FormalGroups}(A^*, \CP^\infty_E) = BA_E \to (B\Sigma_{p^k})_E.\]  Here, finally, is where we have to do some real work involving Chern classes and commutative algebra, so I'm inclined to skip it in the lectures.  Finally, you do a dimension count to see that $Z_k$ and $\Spf E^0 B\Sigma_{p^k} / \mathrm{tr}$ have the same dimension (which requires checking enough commutative algebra to see that ``dimension'' even makes sense), and so you show the map is injective and you're done.
+
+
 
 
 
