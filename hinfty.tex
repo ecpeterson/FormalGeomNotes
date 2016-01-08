@@ -85,6 +85,8 @@ A \textit{finite subgroup} of $\G$ will mean a divisor $K$ on $\G$ which is also
 Write $y = N_\pi \mu^* x \in \sheaf O_{\G}$.\footnote{Remember that if $f: X \to Y$ is a finite flat map, then $N_f: \sheaf O_X \to \sheaf O_Y$ is the nonadditive map sending $u$ to the determinant of multiplication by $u$, considered as an $\sheaf O_Y$--linear endomorphism of $\sheaf O_X$.}  Then $y \equiv x^{p^m} \pmod{\m_X}$ and $\sheaf O_{\G/K} = \sheaf O_X\ps{y}$.  Moreover, the projection $\G \to \G/K$ is the categorical cokernel of $K \to \G$.  This all commutes with base change: given $f: Y \to X$ we have $f^* \G / f^* K = f^*(\G/K)$. \qed \todo{Expand this out in the case of a subgroup scheme given by a sum of point divisors.}
 \end{lemma}
 
+\todo{cf.\ also Prop 2.2.2 of Matt's thesis}
+
 Section 6: coordinate-free lubin-tate theory
 
 nothing you haven't already seen. in fact, most of it is done in coordinates, with only passing reference to the decoordinatization.
@@ -175,6 +177,8 @@ Now let $\G' / X'$ be the universal deformation of $\G'_0 / X'_0$.  The above co
 $b$ is finite and flat of degree $|\Sub_{p^m}(\Lambda)|$. \qed
 \end{theorem}
 
+\todo[inline]{Cf. Matt's thesis's Prop 2.5.1: $\Phi$ is a formal group over $\F_p$, $F$ a lift of $\Phi$ to $E_n$, $H$ a finite subgroup of $F(D_k)$, then $F/H$ is a lift of $\Phi$ to $D_k$.  (This is because the quotient map to $F/H$ reduces to $t \mapsto t^{p^r}$ for some $r$ over $\F_p$, which is an endomorphism of $\Phi$, so the quotient map over the residue field doesn't do anything!)  See also Prop 2.5.4, where he characterizes all isogenies of this sort as arising from this construction.}
+
 Section 14: connections to AT
 
 Neil's \textit{Finite Subgroups of Formal Groups} has (in addition to lots of results) a section 14 where he talks about the action of a generalized Hecke algebra on the $E$--theory of a space.  Let $a$ and $b$ be two points of $X$, with fibers $\G_a$ and $\G_b$, and let $q: \G_a \to \G_b$ be an isogeny.  Then there's an induced map $(Z_E)_a \to (Z_E)_b$, functorial in $q$ and natural in $Z$.  ``Certain $\Ext$ groups over this Hecke algebra form the input to spectral sequences that compute homotopy groups of spaces of maps of strictly commutative ring spectra, for example.''  \textbf{This sounds like the beginning of an answer to my context question.}
@@ -183,6 +187,12 @@ Section 11: flags of controlled rank ascending to $\G[p]$ and a map $\Level(1, \
 Section 12: the orbit scheme $\operatorname{Type}(A, \G) = \Level(A, \G) / \operatorname{Aut}(A)$: smooth, finite, flat
 Section 15: formulas for computation
 Section 16: examples
+
+------
+
+\begin{theorem}\citeme{See Theorem 2.4.1 of Ando's thesis, though he just cites other people}
+Let $R$ be a complete local domain with positive residue characteristic $p$, and let $F$ be a formal group of finite height $d$ over $R$.  If $\sheaf O$ is the ring of integers in the algebraic closure of the fraction field of $R$, then $F(\sheaf O)[p^k] \cong (\Z/p^k)^d$ and $F(\sheaf O)_{\mathrm{tors}} \cong (\Q_p / \Z_p)^d$. \qed
+\end{theorem}
 
 
 
@@ -259,6 +269,8 @@ Now, apply the genuine $G$-equivariant Chern character to the $K_G$ factor to ge
 
 \section{Descending coordinates along level structures}
 
+\todo[inline]{It's not clear to me what theorems about level structures and so forth are best included on this day and which belong back in the lecture above.  We should be able to split things apart into stuff desired for character theory and stuff desired for descent.}
+
 Ando's Theorem 3.4.4: Let $D_j$ be the ring extension of $E_n$ which trivializes the $p^j$--torsion subgroup of $\G_{E_n}$.  Let $H$ be a finite subgroup of $\G_{E_n}(D_k)$.  There is an unstable transformation of ring-valued functors \[E_n X \xrightarrow{\Psi^H} D_j \otimes E_n X,\] and if $F$ is an Ando coordinate then for any line bundle $\L \to X$ there is a formula \[\psi^H(e\L) = \prod_{h \in H} (h +_F e\L) \in D_j \otimes E_n(X).\]
 
 $D_j$ is Galois over $E_n$ with Galois group $\GL_n(\Z/p^j)$.  If $\rho$ is a collection of finite subgroups weighted by elements of $E_n$ which is stable under the action of the Galois group, then $\Psi^\rho$ descends to take values in just $E_n$.  (For example, the entire subgroup has this property.)
@@ -271,7 +283,54 @@ Q^H(e_{MU} \L) & = \prod_{h \in H} h +_F e\L.
 
 Then we need to factor $Q^H: MU(X) \to D_j \otimes E_n(X)$ across the orienting map $MU \to E_n$.  Since $E_n$ is Landweber flat and $Q^H$ is a ring map, it suffices to do this for the one--point space, i.e., to construct a ring homomorphism \[\Psi^H: E_n \to D_j\] so that $\Psi^H = \Psi^H(*) \otimes Q^H$.  The first condition above then translates to $\Psi^H F^{MU} = F/H$.
 
-Matt claims that 3.2.10 is the beating heart of the paper.  Certainly it deserves mention here, since we saw the version in Quillen's paper weeks ago.
+\begin{theorem}\citeme{Theorem 2.5.7 of Matt's thesis}
+For each $\star$--isomorphism class of lift $F$ of $\Phi$ to $E_n$, there is a unique choice of coordinate $x$ on $F$, lifting the preferred coordinate on $\Phi$, such that $\alpha^H_* F_x = F_x/H$, or equivalently that $l_H^x = f_H^x$, for all finite subgroups $H$.  (These morphisms are arranged in the following diagram:)
+\begin{center}
+\begin{tikzcd}
+F_x \arrow{r}{f_H^x} \arrow[bend left]{rr}{l_H^x} & F_x / H \arrow{r}{g_H^x} & \alpha^H_* F_x \\
+F \arrow{u}{x} \arrow{r} & F/H \arrow{u}{x_H} \arrow{r}{g_H} & \alpha^H_* F \arrow{u}{\alpha_* x} ,
+\end{tikzcd}
+\end{center}
+where $\alpha_H: E_n \to D_k$ is the unique ring homomorphism such that there is a $\star$--isomorphism $g_H: F/H \to \alpha^H_* F$. \qed \todo{This is some serious work, and I don't think we'll prove it.  The main point is that $\alpha^p_* F_x = F_x / p$ can be reimagined as $f_p^x(t) = [p]_{F_x}(t)$, and this already is enough to determine what $x$ is by descending along the power of the maximal ideal in $E_n$, the length of a full level structure, and pieces of a smaller level structure inside of the full one.  It really is a long argument.}
+\end{theorem}
+
+\todo[inline]{Section 2.7 of Matt's thesis works the example of a normalized coordinate for $\G_m$. It's \emph{not} the $p$--typical coordinate. It \emph{is} the standard one! Cool.}
+
+\begin{lemma}\citeme{Lemma 3.2.7 of Matt's thesis, BMMS86 page 25, AHS $H_\infty$ appendix}
+$P_r(x + y) = \sum_{j=0}^r \operatorname{Tr}_{j,r}^{MU} d^*(P_j x \times P_{r-j}y)$.
+
+\todo[inline]{This expresses the non-additivity of the power operations on $MU$. It's apparently needed in the proof that $Q^H$ acts as it should on Euler classes. It involves transfer formulas, which may mean we need to work that section of HKR into that day.}
+\end{lemma}
+\begin{proof}
+Represent $x$ and $y$ by maps
+\begin{align*}
+U & \xrightarrow{f} X, &
+V & \xrightarrow{g} Y.
+\end{align*}
+Then $P_r(x+y)$ is represented by \[D_r(U \sqcup V) \xrightarrow{D_r(f \sqcup g)} D_r X.\]  There is a decomposition \[D_r(U \sqcup V) = \coprod_{j=0}^r E\Sigma_r \times_{\Sigma_j \times \Sigma_{r-j}} (U^j \times V^{r-j}),\] and on the $j$ factor the map $D_r(f \sqcup g)$ restricts to
+\begin{center}
+\begin{tikzcd}
+E\Sigma_r \times_{\Sigma_j \times \Sigma_{r-j}} (U^j \times V^{r-j}) \arrow{r}{E\Sigma_r \times_{\Sigma_j \times \Sigma_{r-j}} (f^j \times g^{r-j})} \arrow{d} & E\Sigma_r \times_{\Sigma_j \times \Sigma_{r-j}} X^r \arrow{d} \\
+D_r(U \sqcup V) \arrow{r}{D_r(f \sqcup g)} & D_r X,
+\end{tikzcd}
+\end{center}
+where the vertical maps are projections.  The counterclockwise composite represents the $j$ summand of $P_r(x+y)$ coming from the decomposition above; the clockwise composite represents the class $\operatorname{Tr}_{j,r}^{MU} d^*(P_j x \times P_{r-j} y)$. \qedhere
+\end{proof}
+
+\todo{There's also this useful naturality Lemma for power operations and Euler classes: $P_\pi(eV) = e(D_\pi V \to D_\pi X)$.  Does that come up in the Quillen chapter?  Maybe it should.}
+
+\begin{lemma}\citeme{Prop 3.2.10 of Matt's thesis, see also p.\ 42 of Quillen}
+Write $\Delta: B\pi \times X \to D_\pi X$ and let $\L$ be a complex line bundle on $X$.
+\[\Delta^* P_\pi(e\L) = \prod_{u \in \pi^*} \left( e\left(\begin{array}{c} E\pi \times_u \C \\ \downarrow \\ B\pi \end{array} \right) +_{MU} e(\L) \right).\]
+\end{lemma}
+
+\needproof{Matt claims that 3.2.10, the above Lemma, is the beating heart of the paper.  Look how similar it looks to the formal group law quotient formula!  That's why an expanded formula must be included in the previous days, not just Neil's geometric scribblings}
+
+\todo[color=red,inline]{Matt in and before Theorem 3.3.2 describes the ring $D_k$ as the \emph{image} of the localization map $E_n(B\Lambda_k) \to S^{-1} E_n(B\Lambda_k)$ rather than as the whole target.  Why??  He cites HKR for this, but the citation is meaningless because the theorem numbering scheme is so old.  Ah, comparing with Lemma 3.3.3 yields a clue: $D_k$ has a universal property as it sits under $E_n$, rather than under $E_n(B\Lambda_k)$...}
+
+\todo[color=red,inline]{I left off at the discussion preceding Definition 3.3.5, where he's going to describe what a character map for a \emph{subgroup of the formal group} should be, rather than an abstract group $G$.}
+
+
 
 Section 3.3 is the part that uses HKR character theory.  The beginning only uses the familiar description of $BA_{E_n}$ for finite abelian $A$, but then it gets serious.
 
@@ -362,3 +421,5 @@ Dyer--Lashof operations, the Steenrod operations, and isogenies of the formal ad
 Another augmentation to the notion of a context: working not just with $E_* X$ but with $E_*(X \times BG)$ for finite $G$.
 
 Charles's \textit{The congruence criterion} paper codifies the Hecke algebra picture Neil is talking about, and in particular it talks about sheaves over the pile of isogenies.
+
+If we're going to talk about that Hecke algebra, then maybe we can also talk about the period map, since one of the main points of it is that it's equivariant for that action.
