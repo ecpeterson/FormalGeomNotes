@@ -328,12 +328,51 @@ Write $\Delta: B\pi \times X \to D_\pi X$ and let $\L$ be a complex line bundle 
 
 \todo[color=red,inline]{Matt in and before Theorem 3.3.2 describes the ring $D_k$ as the \emph{image} of the localization map $E_n(B\Lambda_k) \to S^{-1} E_n(B\Lambda_k)$ rather than as the whole target.  Why??  He cites HKR for this, but the citation is meaningless because the theorem numbering scheme is so old.  Ah, comparing with Lemma 3.3.3 yields a clue: $D_k$ has a universal property as it sits under $E_n$, rather than under $E_n(B\Lambda_k)$...}
 
-\todo[color=red,inline]{I left off at the discussion preceding Definition 3.3.5, where he's going to describe what a character map for a \emph{subgroup of the formal group} should be, rather than an abstract group $G$.}
+Now, suppose that we pass down to the $k${\th} Drinfel'd ring, so that the $p^k$--torsion in the formal group is presented as a discrete group $\Lambda^*[p^k]$.  Pick such a subgroup $H \subseteq \Lambda^*[p^k]$ with $|H| = r$, and consider also the dual map $\pi: \Lambda[p^k] \to H^*$.  We define the character map associated to $H$ to be the composite \[\chi^H \co E_n(D_{H^*} X) \xrightarrow{\Delta^*} E_n(BH^*) \otimes_{E_n} E_n(X) \xrightarrow{\chi_\pi \otimes 1} D_k \otimes_{E_n} E_n(X) =: D_k(X).\]  This definition is set up so that \[\chi^H \left( e \left( \begin{array}{c} EH^* \times_u \C \\ \downarrow \\ BH^* \end{array} \right) \right).\]  In the presence of a coordinate $x$, this sews together to give a cohomology operation:
+\begin{align*}
+Q^H \co MU^{2*}(X) & \xrightarrow{P^{MU}_G} MU^{2r*}(D_{H^*} X) \\
+& \xrightarrow{\Delta^*} MU^{2r*}(BH^* \times X) \\
+& \xrightarrow{t_x} E_n(BH^* \times X) \\
+& \xrightarrow{\simeq} E_n BH^* \otimes_{E_n} E_n X \\
+& \xrightarrow{\chi^H \otimes 1} D_k X.
+\end{align*}
+It turns out that $Q^H$ is a ring homomorphism (cf.\ careful manipulation of HKR's Theorem C, which may not be worth it to write out, but it seems like the main manipulation is the last line of Proof of Theorem 3.3.8 on pg.\ 466), so each choice of $H$ (and $x$) determines a new coordinate on $D_k$.
+\begin{theorem}
+The effect of $Q^H$ on Euler classes is \[Q^H e_{MU} \L = f_H^x e_x \L \in D_k(X),\] and its effect on coefficients is \[Q^H_* F_{MU} = F_x / H.\]
+\end{theorem}
+\begin{proof}
+We chase through results established so far:
+\begin{align*}
+Q^H(e_{MU} \L) & = (\chi^H \otimes 1) \circ t_x \circ \Delta^* \circ P^{MU}_G (e_{MU} \L) \\
+& = (\chi^H \otimes 1) \circ t_x \left( \prod_{u \in H^** = H} e_{MU} \left( \begin{array}{c} EH^* \times_u \C \\ \downarrow \\ BH^* \end{array} \right) +_{MU} e_{MU} \L \right) \\
+& = (\chi^H \otimes 1) \left( \prod_{u \in H} e_{E_n} \left( \begin{array}{c} EH^* \times_u \C \\ \downarrow \\ BH^* \end{array} \right) +_{F_x} e_{E_n} \L \right) \\
+& = \prod_{u \in H} (\phi_{univ}(u) +_{F_x} e_{E_n} \L) = f_H^x(e_{E_n} \L).
+\end{align*}
+Then, ``since $D_k$ is a domain, $F_x/H$ is completely determined by the functional equation'' \[f_H^x(F_x(t_1, t_2)) = F_x/H(f_H^x(t_1, f_H^x(t_2))).\]  Take $t_1$ and $t_2$ to be the Euler classes of the two tautological bundles $\L_1$ and $\L_2$ over $\CP^\infty \times \CP^\infty$, so that
+\begin{align*}
+Q^H(e_{MU} \L_1 +_{MU} e_{MU} \L_2) & = Q^H\left(e_{MU} \left( \begin{array}{c} \L_1 \otimes \L_2 \\ \downarrow \\ \CP^\infty \times \CP^\infty \end{array} \right)\right) \\
+& = f_H^x \left(e_{E_n} \left( \begin{array}{c} \L_1 \otimes \L_2 \\ \downarrow \\ \CP^\infty \times \CP^\infty \end{array} \right)\right) = f_H^x(t_1 +_{F_x} t_2).
+\end{align*}
+On the other hand, $Q^H$ is a ring homomorphism, so we can also split it over the sum first:
+\begin{align*}
+Q^H(e_{MU} \L_1 +_{MU} e_{MU} \L_2) & = Q^H(e_{MU} \L_1) +_{Q^H_* F^{MU}} Q^H(e_{MU} \L_2) \\
+& = f_H^x(t_1) +_{Q^H_* F^{MU}} f_H^x(t_2),
+\end{align*}
+hence $f_H^x(t_1) +_{Q^H_* F^{MU}} f_H^x(t_2) = f_H^x(t_1 +_{F_x} t_2)$ and $Q^H_* F^{MU} = F_x / H$.
+\end{proof}
 
+Finally, we would like to produce a factorization \[MU \xrightarrow{\Psi^H} E_n \to D_k\] of the long natural transformation $Q^H$.  Since $E_n$ was built by Landweber flatness, it suffices to do this on coefficient rings, i.e., when applying the functors in the diagram to the one-point space.  On a point, our calculations above show that $\Psi^H$ exists exactly when $\alpha^H_* F_x = F_x / H$.  We did this algebraic calculation earlier: given any coordinate, there is a unique coordinate $P$ that is $\star$--isomorphic to it and through which the operations $Q^H$ factor to give ring operations $\Psi^H$ for all subgroups $H \subseteq \Lambda_k^* = F_P(D_k)[p^k]$.  This solves the problem of giving the operations the right \emph{source}.
 
+\todo[inline]{Leave a remark in here about this: McClure in BMMS works along similar lines to show that the Quillen idempotent is not $H_\infty$, but he doesn't get any positive results (and, in particular, he can't complete his analysis as we do because he doesn't have access to the $BP$--homology of finite groups and to HKR character theory).  One wonders whether the stuff here does say something about $BP$ as the height tends toward $\infty$.  So far as I know, no one has written much about this.  Surely it remains a bee in Matt's bonnet.}
 
-Section 3.3 is the part that uses HKR character theory.  The beginning only uses the familiar description of $BA_{E_n}$ for finite abelian $A$, but then it gets serious.
+Now we focus on giving the operations the right \emph{target}.  This is considerably easier.  The group $\Aut(\Lambda_k^*)$ acts on the set of subgroups of $\Lambda_k^*$, and we define a ring $Op^k$ by the fixed points of $\Aut(\Lambda_k^*)$ acting on the polynomial ring $E_n[\text{subgroups of $\Lambda_k^*$}]$.  Note that $Op^k \subseteq Op^{k+1}$, and define $Op = \colim_k Op^k$, which consists of elements $\rho = \sum_{i \in I} a_i \prod_{H \in \alpha_i} H$, $I$ a finite set, $a_i \in E_n$, and $\alpha_i$ are certain $\Aut(\Lambda_k^*)$--stable lists of subgroups of $\Lambda_k^*$, $k \gg 0$, with possible repetitions.  For such a $\rho$, we define the associated operations
+\begin{align*}
+Q^\rho \co MU^{2*}(X) & \xrightarrow{\sum_{i \in I} a_i \prod_{H \in \alpha_i} Q^H} D_k(X), \\
+\Psi^\rho \co E_n(X) & \xrightarrow{\sum_{i \in I} a_i \prod_{H \in \alpha_i} \Psi^H} D_k(X).
+\end{align*}
+The theorem is that these actually land in $E_n(X)$, as they definitely land in $D_k^{\Aut(\Lambda_k^*)} \otimes_{E_n} E_n(X)$, and Galois descent for level structures says that left--hand factor is just $E_n$.
 
+\todo{Matt runs the example of the subgroups $\G_m[p^j]$ in $p$--adic $K$--theory and he compares it with some Hopf ring analysis of $E_n \OS{E_n}{*}$ due to Wilson}
 
 
 
@@ -423,3 +462,9 @@ Another augmentation to the notion of a context: working not just with $E_* X$ b
 Charles's \textit{The congruence criterion} paper codifies the Hecke algebra picture Neil is talking about, and in particular it talks about sheaves over the pile of isogenies.
 
 If we're going to talk about that Hecke algebra, then maybe we can also talk about the period map, since one of the main points of it is that it's equivariant for that action.
+
+Section 3.7 of Matt's thesis also seems to deal with the context question: he gives a character-theoretic description of the total power operation, which ties the behavior of the total power operation to a formula of type ``decomposition into subgroups''.  Worth reading.
+
+\todo{This is Nat's claim. Check back with him about how this is visible.}The rational story: start with a sheaf on the isogenies pile.  Tensor everything with $\Q$.  That turns this thing into a rational algebra under the Drinfel'd ring together with an equivariant action of $\GL_n \Q_p$.
+
+Matt's Section 4 talks about the $E_\infty$ structure on $E_n$ and compatibility with his power operations.  It's not clear how this doesn't immediately follow from the stuff he proves in Section 3, but I think I'm just running out of stream in reading this thesis.  One of the neat features of this later section is that it relies on calculations in $E_n D_\pi \OS{MU}{2*}$, which is an interesting way to mix operations coming from instability and from an $H_\infty$--structure.  This is yet another clue about what the relevant picture of a context should look like.  He often cites VIII.7 of BMMS.
