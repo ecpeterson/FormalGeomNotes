@@ -445,10 +445,41 @@ The main classical point is that an $MU\<0\>$--orientation is $H_\infty$ when th
 
 Similarly, an $MU\<6\>$--orientation corresponds to a section of the sheaf of cubical structures on a certain Thom sheaf.  Using the $H_\infty$ structures on $MU\<6\>$ and on $E$ give two sections of the pulled back sheaf of cubical structures, and the $H_\infty$ condition is that they agree for all choices of group $A$.
 
+Then you also need to check that the $\sigma$--orientation actually satisfies this.
 
+\todo[inline]{The AHS document really restrictions attention to $E_2$.  Is there a version of this story that gives non-supersingular orientations too, or even the $K_{\Tate}$ orientation?  I can't tell if the restriction in AHS's exposition comes from not knowing that $K_{\Tate}$ has an $E_\infty$ structure or if it comes from a restriction on the formal group.  (At one point it looks like they only need to know that $p$ is regular on $\pi_0 E$, cf.\ 16.5...)}
 
+Section 3.1: Intrinsic description of the isogenies story for an $H_\infty$ \emph{complex orientable} ring spectrum, without mention of a specific orientation / coordinate.  This is nice: it means that a complex orientation has to be a coordinate which is compatible with the descent picture already extant on the level of formal groups, which is indeed the conclusion of Matt's thesis.
 
-\todo{Section 12.4 compares doing $H_\infty$ descent with doing $E_\infty$ descent and shows that they're the same (in the case of interest?).}
+Section 3.2: They define an abelian group indexed extended power construction \[D_A(X) = \L(U^{A^*}, U) \sm_{A^*} X^{(A^*)},\] where $\L(U^{A^*}, U)$ is the space of linear isometries from the $A^*${\th} power of a universe $U$ down to itself.  Yuck.  Then, given a level structure $(i\co \Spf R \to S_E, \ell\co A_{\Spf R} \to i^* \G)$, they construct a map \[\psi^E_\ell \co \pi_0 E \xrightarrow{D_A} \pi_0 \CatOf{Spectra}(D_A S^0, E) = \pi_0 E^{BA^*_+} \to \sheaf{O}((BA^*)_E) \xrightarrow{\chi_\ell} R,\] where $\chi_\ell$ is the map classifying the homomorphism $\ell$.  This is a continuous map of rings: it's clearly multiplicative, it's additive up to transfers (but those vanish for an abelian group), and it's continuous by an argument in Lemma 3.10.  (You don't actually need an abelian group here; you can work in the scheme of subgroups --- i.e., in the cohomology of $B\Sigma_k$ modulo transfers --- and this will still work.)  This construction is natural in $H_\infty$ maps $f\co E \to F$:
+\begin{center}
+\begin{tikzcd}
+i^* S_F \arrow[bend left]{rrd}{\psi_\ell^F} \arrow[densely dotted]{rd}{\psi_\ell^{F/E}} \arrow[bend right]{rdd} \\
+& \Spf R \times_{i, S_E, S_f} S_F \arrow{r}{\psi_\ell^F} \arrow{d} & S_F \arrow{d}{S_f} \\
+& \Spf R \arrow{r}{\psi_\ell^E} & S_E,
+\end{tikzcd}
+\end{center}
+begetting the relative map $\psi_\ell^{F/E}\co i^* S_F \to (\psi_\ell^E)^* S_F$ as indicated.  For example, take $F = E^{\CP^\infty_+}$, so that $\G = S_F$, giving the (group) map \[\psi_\ell^{\G/E}\co i^* \G \to (\psi_\ell^E)^* \G.\]  One of the immediate goals is to show that this is an isogeny.  A different construction we can do is take $V$ to be a virtual bundle over $X$ and set $F = E^{X_+}$.  Given $m \in \pi_0 \CatOf{Spectra}(X^V, E)$ applying the construction of $D_A$ above gives an element \[\psi_\ell^V(m) \in R \underset{\chi_\ell, \hat\pi_0 E^{BA^*_+}}{\widehat{\otimes}} \hat\pi_0 \CatOf{Spectra}((BA^* \times X)^{V_{reg} \otimes V}, E).\]  This map is additive and also $\psi_\ell^V(xm) = \psi_\ell^F(x) \psi_\ell^V(m)$, so we can interpret this as a map \[\psi_\ell^V\co (\psi_\ell^F)^* \ThomSheaf{V} \to \chi_\ell^*\ThomSheaf{V_{reg} \otimes V}\] of line bundles over $i^* S_F = i^* X_E$.
+
+\begin{lemma}\citeme{Lemma 3.19 of AHS $H_\infty$}
+The map $\psi_\ell^V$ has the following properties:
+\begin{enumerate}
+\item If $m$ trivializes $\ThomSheaf{V}$ then $\psi_\ell^V(m)$ trivializes $\chi_\ell^* \ThomSheaf{V_{reg} \otimes V}$.
+\item $\psi_\ell^{V_1 \oplus V_2} = \psi_\ell^{V_1} \otimes \psi_\ell^{V_2}$.
+\item For $f\co Y \to X$ a map, $\psi_\ell^{f^* V} = f^* \psi_\ell^V$. \qed 
+\end{enumerate}
+\end{lemma}
+
+In particular, we can apply this to $X = \CP^\infty$ and $\ThomSheaf{\L - 1} = \sheaf I(0)$.  Then 8.11 gives \[\psi_\ell^{\L - 1} \co (\psi_\ell^F)^* \sheaf I_{\G}(0) \to \chi_\ell^* \ThomSheaf{V_{reg} \otimes (\L - 1)} = \sheaf I_{i^* \G}(\ell).\]
+
+\begin{theorem}\citeme{Prop 3.21}
+The map $\psi_\ell^{\G/E} \co i^* \G \to (\psi_\ell^E)^* \G$ of 3.15 is an isogeny with kernel $[\ell(A)]$.  Using $\psi_\ell^{\G/E}$ to make the identification \[(\psi_\ell^{\G/E})^* \sheaf I_{(\psi_\ell^E)^* \G}(0) \cong \sheaf I_{i^* \G}(\ell),\] the map $\psi_\ell^{\L - 1}$ sends a coordinate $x$ on $\G$ to the trivialization $(\psi_\ell^{\G/E})^* (\psi_\ell^E)^* x$ of $\sheaf I_{i^*\G}(\ell)$. \qed
+\end{theorem}
+
+3.24 might be interesting.
+
+\todo[color=red,inline]{I left off at Section 4.3.  So far, it seems like the point is that the identity map on $MU\<0\>$ classifies a section of the ideal sheaf at zero of the universal formal group which is compatible with descent for level structures, so any $H_\infty$ map out of $MU\<0\>$ classifies not just a section of the ideal sheaf at zero of whatever other formal group but does so in a way that is, again, compatible with descent for level structures.}
+
 
 
 
