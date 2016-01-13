@@ -443,27 +443,122 @@ Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on fini
 
 \section{Dieudonn\'e modules}
 
-\todo[inline]{This section is out of logical order with the B--G one.  Goerss's proof that $\Loops^2 S^3$ has anything to do with anything relies on knowing that the Snaith splitting of $\Loops^2 S^3$ into Brown--Gitler spectra is directly relevant to Dieudonn\'e theory.  I think this section really should be an exposition of the algebraic ideas involved (perhaps closing with the Gross--Hopkins period map?) and that all topological applications should be postponed until the next lecture.}
+Our goal today is strictly algebraic: we have seen that the category of finite dimension Hopf algebras over a ground field $k$ is an abelian category.  This means that it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \emph{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, starting with three different presentations of the subject.
 
-Three approaches: projective generators, the de Rham crystal, and Cartier's curves functor
+---
+
+\citeme{Weinstein's geometry of Lubin--Tate spaces notes}
+
+For a formal variety $V$ over the ground ring $k$, let $\Omega^1_{V/k}$ be its module of K\"ahler differentials and let $\Omega^*_{V/k}$ be the algebraic de Rham complex.  If $k$ is a $\Q$--algebra, then higher cohomology vanishes since exact forms can be integrated, but if $k$ has positive characteristic then there's an obstruction to integrating things with exponents of the form $-1 \pmod p$.  Now put a group structure $\G$ on the formal variety.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that $\mu^* - \pi_1^* - \pi_2^*$ is zero (at the chain level).  If we weaken this to requesting that that difference be \emph{exact}, we arrive at the sub--$A$--module $D(\G/A)$ of $H^1_{dR}(\G/A)$ which are cohomologically translation invariant.
+
+\begin{lemma}
+Take $A$ to be $\Z$--flat and set $K = A \otimes \Q$.  Let $x$ be a coordinate on $\G$.  We then have a diagram of exact rows
+\begin{center}
+\begin{tikzcd}
+0 \arrow{r} & x A\ps{x} \arrow{r} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{x} \right\} \arrow{r}{d} & H^1_{dR}(\G/A) \arrow{r} & 0 \\
+0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[-,double]{u} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{X}, \partial f \in A\ps{x,y} \right\} \arrow{u} \arrow{r}{d} & D(\G/A) \arrow{r} \arrow{u} & 0,
+\end{tikzcd}
+\end{center}
+where $\partial[\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
+\end{lemma}
+
+\begin{lemma}
+In the case that $\G$ is $p$--divisible, there is an exact sequence \[0 \to \omega_{\G} \to D(\G/A) \to \operatorname{Lie} \G^\vee \to 0.\]
+\end{lemma}
+
+\begin{remark}
+Let $A$ be a complex abelian variety, in which case there is a classical Hodge decomposition \[0 \to H^0(A; \Omega^1) \to H^1_{dR}(A; \C) \to H^1(A; \sheaf O_A) \to 0.\]  The first term agrees with invariant differentials, and the second term agrees with $\operatorname{Lie} A^\vee$.
+\end{remark}
+
+\begin{theorem}
+Let $A$ be a $\Z_p$--flat ring, let $f_1(x), f_2(x) \in A\ps{x}$ without constant term, and let $\omega \in A\ps{x} dx$ be a differential.  If $f_1 \equiv f_2 \pmod{pA}$, then $f_1^*(\omega) - f_2^*(\omega)$ is exact. \qed \todo{This is a really easy Poincar\'e Lemma type thing.}\todo{Categorically: if $f_1, f_2: V \to V'$ are maps of pointed formal varieties which agree mod $p$, then they induce the same map on $H^1_{dR}$.}
+\end{theorem}
+
+\begin{corollary}
+Let $f: \G' \to \G$ be a map of pointed varieties which, mod $p$, is a group homomorphism.  Then $f^*$ maps $D(\G/A)$ into $D(\G'/A)$.  Additionally, if $f_3 = \equiv f_1 + f_2 \pmod{p}$ in $\InternalHom{FormalGroups}(\G'/p, \G/p)$ then $f_3^* = f_1^* + f_2^*$ as maps $D(\G/A) \to D(\G'/A)$.  \qed
+\end{corollary}
+
+\begin{definition}
+Let $k$ be a perfect field of characteristic $p > 0$, and let $\G_0$ be a $p$--divisible group over $k$ of finite height $d$.  Then, choose a lift $\G$ of $\G_0$ to $W(k)$, and define the \textit{(contravariant) Dieudonn\'e module} of $\G_0$ by $M(\G_0) := D(\G / W(k))$.
+\end{definition}
+
+This is independent of choice of lift.  (Pick a map just of formal varieties which restricts to the identity on $\G_0$, then use crystallineness.)  This is another statement of what it means for $M$ (or $H^1_{dR}$) to be \textit{crystalline}.
+
+The Frobenius map $x \mapsto x^p$ is a group homomorphism mod $p$, so induces a $\sigma$--linear map $F\co M(\G_0) \to M(\G_0)$.  This means $F(\alpha v) = \sigma(\alpha) F(v)$.  The Verschiebung map is given by the formula \[\sum_{n=1}^\infty a_n x^n \mapsto p \sum_{n=1}^\infty a_{pn}^{\sigma^{-1}} x^n,\] and it satisfies $FV = p$.
+
+\todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
+\todo{Weinstein's Section 1 also ends with a discussion of the Dieudonn\'e functor extended to the crystalline site.  This is necessary to get access to the period map.}
+
+---
+
+Let $\G$ be a formal Lie group and consider Cartier's \textit{functor of curves} $C\G = \InternalHom{FormalSchemes}(\A^1, \G)$.  We can imagine three kinds of operations on a curve $\gamma: \A^1 \to \G$:
+\begin{itemize}
+\item Homothety: given a scalar $a \in A$, we define $[a] \cdot \gamma(t) = \gamma(at)$.
+\item Verschiebung: given an integer $n \ge 1$, we define $V_n \gamma(t) = \gamma(t^n)$.
+\item Frobenius: given an integer $n \ge 1$, we define \[F_n \gamma(t) = \sum_{i=1}^n{}_{\G} \gamma(\zeta_n t^{1/n}),\] where $\zeta_{n}$ is an $n${\th} root of unity.  This formula is invariant under permuting the root of unity chosen, so gives a series lying in the original ground ring.
+\end{itemize}
+
+Fixing a prime $p$, we can define what it means for a curve to be $p$--typical: $\gamma$ is $p$--typical when $F_n \gamma = 0$ for $n \ne p^j$.  This is an algebraic condition, and so we write $D \subseteq C$ for the functor of $p$--typical curves, a subscheme of all curves.  In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D\G$, and there is a natural section $C\G \to D\G$ called $p$--typification.
+
+\begin{remark}
+This actually agrees with $p$--typicality as discussed earlier in the semester: a logarithm $\G \to \G_a$ is said to be $p$--typical when, considered as a curve on $\G_a$, it satisfies the definition of $p$--typicality above.  The $p$--typification construction given there is a specialization of a natural one for all curves on a formal group.
+\end{remark}
+
+The (covariant) Dieudonn\'e module associated to a $p$--local formal group $\G$ is $D\G$.  It carries a residual action of the homotheties, $V_p$, and $F_p$.
+
+\todo[inline]{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...}
+
+---
+
+Cartier duality: There is a duality on commutative and cocommutative finite--dimensional Hopf algebras, given by taking the linear dual.  There is also a duality on Dieudonn\'e modules, also given by taking the linear dual.  These also relate the two kind of Dieudonn\'e functors described above.
+
+---
+
+Define $S(n)$ to be the free Hopf algebra on a single generator in degree $n$, so that at odd primes $S(2n+1) = \Lambda[x]$ and $S(2n) = P[x]$ (and at $p = 2$ all the $S(n)$ are polynomial algebras).  Schoeller proves that there's a projective cover $H(n) \to S(n)$.  Most of the time this map is the identity, except in the two cases: $p = 2$ and $n = 2^m k$ for $k$ odd and $m > 0$, or $p > 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$.  In these exceptional cases, $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the ``Witt vector diagonal''.
+
+the projective generators
 
 $\CatOf{HopfAlgebras}^{> 0}_{\F_p/}$
 
-Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$
+Classification of finite Hopf algebras over $\F_p$ with $\Gm$--action
 
-\todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
+The $H(n)$ form a series of projective \emph{generators} of the category.  So, we can give a Tannakian description of the category as modules over the ``endomorphism ring'' $\mathsf{Hom}(H(*), H(*))$, which is calculable.  You end up seeing the same data as a covariant Dieudonn\'e module, which is cool, and generally given a Hopf algebra $H$ you can build a graded Dieudonn\'e module functor by \[D_n(H) = \CatOf{HopfAlgebras}_{/\F_p}(H(n), H).\]
+
+---
+
+We have only described a framework for encoding Hopf algebras so far.  We also want to incorporate Hopf rings into our discussion, since we are coming off of the study of unstable cooperations.  Hunton and Turner were among the first to consider ``bilinear'' constructions on Hopf algebras in the abstract, and a similar study of bilinearity on the level of Dieudonn\'e modules is due to Goerss and to Buchstaber--Lazarev.  Our definitions are motivated by the following observation:
+
+\begin{lemma}\citeme{Lemma 7.6 of Goerss's bilinear paper, Lemma 7.1.c of Ravenel--Wilson}
+The pairing \[\circ \co D(K_\Gamma \OS{H\Z/p^j}{k_1}) \times D(K_\Gamma \OS{H\Z/p^j}{k_2}) \to D(K_\Gamma \OS{H\Z/p^j}{k_1 + k_2})\] is bilinear in $\W(k)$ and satisfies
+\begin{align*}
+V(x \circ y) & = Vx \circ Vy, &
+Fx \circ y & = F(x \circ Vy), &
+x \circ Fy & = F(Vx \circ y). \qed
+\end{align*}
+\end{lemma}
+
+\begin{definition}
+The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+\end{definition}
+
+\begin{theorem}\citeme{Theorem 7.7 of Goerss's bilinear paper}
+The natural map \[D(M) \boxtimes D(N) \to D(M \boxtimes N)\] is an isomorphism. \qed
+\end{theorem}
+
+Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.\todo{It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.  I guess a related question is: what's the relationship between $Q^\ast$ and the free Dieudonn\'e algebra functor?  Do they commute?  Almost certainly not...}
 
 
-Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.
-
-
-You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.
+You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
 
 
 As a running example, you should rephrase a bunch of the results from the previous lecture (on $K(d)_* \OS{Hk}*$) in terms of Dieudonn\'e modules.
 
+\begin{remark}
+\todo[inline]{There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power group scheme without passing through Dieudonn\'e modules.  It should at least be mentioned.}
+\end{remark}
 
-There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power group scheme without passing through Dieudonn\'e modules.  It should at least be mentioned.
+
+Definition of the inverse functor to the Dieudonn\'e module functor?  I think this appears in the formal groups notes.
 
 
 
@@ -473,15 +568,15 @@ There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power 
 
 \section{Brown--Gitler spectra}
 
-Classification of finite Hopf algebras over $\F_p$ with $\Gm$--action
-
-There's a collection of Hopf algebras called $H(n)$ which are the projective covers of the standard Hopf algebras $S(n)$, themselves described as symmetric Hopf algebras on a single class in dimension $n$.  The $H(n)$ form a series of projective \emph{generators} of the category.  So, we can give a Tannakian description of the category as modules over the ``endomorphism ring'' $\mathsf{Hom}(H(*), H(*))$, which is calculable.  You end up seeing the same data as a covariant Dieudonn\'e module, which is cool, and generally given a hopf algebra $H$ you can build a graded Dieudonn\'e module functor by \[D_n(H) = \CatOf{HopfAlgebras}_{/\F_p}(H(n), H).\]
-
 Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B_n$ such that \[B_{n*}(X) = D_n H_* \Loops^\infty X.\]
 
 Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
 
 A lot of this requires knowing things about the behavior of Cotor spectral sequences and unstable modules over the Steenrod algebra.
+
+
+
+Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$.  The main point is that this can be interchanged with $E_* B_*$ for the Brown--Gitler spectra $B$, and then also $B_*$ assemble into the stable homotopy type of $\Loops^2 S^3$.
 
 
 
