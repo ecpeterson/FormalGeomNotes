@@ -157,7 +157,7 @@ The bar spectral sequence: connectivity assumption, it's a spectral sequence of 
 
 Restricting to additive cooperations: the indecomposable quotient
 
-The homology suspension element, the relation $e \circ e = b_{(0)}$, and passing to the stabilization
+The homology suspension element, the relation $e \circ e = b_{(0)}$, and passing to the stabilization.  I think that the relation above is analogous to $S^1 \sm S^1 \simeq \CP^1$?
 
 \todo{Neil's MO answer about $H_* K(\Z, 3)$: http://mathoverflow.net/a/216041/1094}
 
@@ -570,9 +570,48 @@ Definition of the inverse functor to the Dieudonn\'e module functor?  I think th
 
 Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B_n$ such that \[B_{n*}(X) = D_n H_* \Loops^\infty X.\]
 
-Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
 
-A lot of this requires knowing things about the behavior of Cotor spectral sequences and unstable modules over the Steenrod algebra.
+
+
+\citeme{Lemma 2.8}Consider a fiber sequence of spectra \[X \xrightarrow i Y \xrightarrow q Z\] with associated fiber sequence of infinite loopspaces \[\Loops^\infty X \xrightarrow{\Loops^\infty i} \Loops^\infty Y \xrightarrow{\Loops^\infty q} \Loops^\infty Z.\]  We may assume that $Y$ and $Z$ are $0$--connected, as this won't affect the value of $D_n \circ H_*$.  We then consider the Postnikov tower of $Y$ relative to $Z$
+\begin{center}
+\begin{tikzcd}
+\cdots \arrow{r} & Y_{s+1} \arrow{r}{q_s} & Y_s \arrow{d}{k_s} \arrow{r} & \cdots \arrow{r} & Y_1 \arrow{d}{k_1} \arrow{r}{q_0} & Z \arrow{d}{k_0} \\
+& & \Susp^{s+1} HG_s & & \Susp^2 HG_1 & \Susp HG_0
+\end{tikzcd}
+\end{center}
+as well as the associated fibrations \[X_s \xrightarrow{i_s} Y_s \to Z\] which assemble into the Postnikov tower for $X$
+\begin{center}
+\begin{tikzcd}
+\cdots \arrow{r} & X_{s+1} \arrow{r}{r_s} & X_s \arrow{d}{l_s} \arrow{r} & \cdots \arrow{r} & X_1 \cong HG_0 \arrow{d} \\
+& & \Susp^{s+1} HG_s & & \Susp^2 HG_1.
+\end{tikzcd}
+\end{center}
+
+For $f\co A \to B$ a map of spectra, we write $f_\sharp = D_n \Loops^\infty f_*$.  Our goal is to prove exactness, so for $y \in D_n H_* \Loops^\infty Y$ with $q_\sharp(y) = 0$ we must produce $x \in D_n H_* \Loops^\infty X$ with $i_\sharp(x) = y$.  Define $y_s \in D_n H_* \Loops^\infty Y_s$ by projection, and we will produce $x_s \in D_n H_* \Loops^\infty X_s$ with $(i_s)_\sharp(x_s) = y_s$, $(r_s)_\sharp x_{s+1} = x_s$.  Then, since $D_n H_* K(G_s, s) = 0$ for $s \gg 0$, the result will follow from
+\begin{center}
+\begin{tikzcd}
+D_n H_* \Loops^\infty X \arrow{r}{i_\sharp} \arrow[-,double]{d} & D_n H_* \Loops^\infty Y \arrow[-,double]{d} \\
+\lim_s D_n H_* \Loops^\infty X_s \arrow{r} & \lim_s D_n H_* \Loops^\infty Y_s.
+\end{tikzcd}
+\end{center}
+We have thus reduced to studying the effect of the sharp construction on a fibration involving an Eilenberg--Mac Lane spectrum.
+
+\todo{These two Lemmas involve a lot of fussing around with the Eilenberg--Moore spectral sequence.}
+\begin{lemma}\citeme{Lemma 2.5}
+Given a fibration sequence \[\Susp^m HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp^{m+1} HG\] with $m \ge 1$ and $n \ne \pm 1 \pmod{2p}$, then the sequence of abelian groups \[D_n H_* \Loops^\infty \Susp^m HG \xrightarrow{i_\sharp} D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp^{m+1} HG\] is exact. \qed
+\end{lemma}
+
+\begin{lemma}\citeme{Lemma 2.6, corollary of Lemma 2.7}
+Let \[HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp HG\] be a fibration sequence where $k_* \pi_1 Y \to G$ is onto.  If $n \not\equiv \pm 1 \pmod{2p}$, then the sequence of abelian groups \[0 \to D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp HG\] is exact. \qed
+\end{lemma}
+
+Note that this latter Lemma means $y_1 = 0$, since $\pi_0 Y = 0$, so we can set $x_1 = 0$.  Inductively, suppose that $x_s$ has been chosen.  Since \[(l_s)_\sharp x_s = (k_s)_\sharp (i_s)_\sharp x_s = (k_s)_\sharp y_s = 0\] there exists, by the earlier Lemma, a $z \in D_n H_* \Loops^\infty X_{s+1}$ with $(r_s)_\sharp z = x_s$.  Since \[(q_s)_\sharp(y_{s+1} - (i_{s+1})_\sharp z) = y_s - (i_s)_\sharp (r_s)_\sharp z = 0\] the earlier Lemma again shows there exists $w \in D_n H_* \Loops^\infty \Susp^s HG_s$ with \[(f_{s+1})_\sharp w = y_{s+1} - (i_{s+1})_\sharp z.\]  We set $x_{s+1} = z + (g_{s+1})_\sharp w$, and one can check that this works.
+
+
+
+
+Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
 
 
 
