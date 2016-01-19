@@ -221,63 +221,67 @@ A \textit{grading} on a ring $R$ is a system of additive subgroups $R_k$ of $R$ 
 A graded ring $R$ is equivalent data to an affine scheme $\Spec R$ with an action by $\mathbb G_m$.  Additionally, a map $R \to S$ is homogeneous exactly when the induced map $\Spec S \to \Spec R$ is $\mathbb G_m$--equivariant.
 \end{lemma}
 \begin{proof}
-A $\mathbb G_m$--action on $\Spec R$ is equivalent data to a coaction map $\alpha^*: R \to R \otimes \F_2[x^\pm]$.  Define $R_k$ to be those points in $r$ satisfying $\alpha^* r = r \otimes x^k$.  It is clear that we have $1 \in R_0$ and that $R_j R_k \subseteq R_{j+k}$.  To see that $R = \bigoplus_k R_k$, note that every tensor can be written as a sum of pure tensors.  Conversely, given a graded ring $R$, define the coaction map on $R_k$ by \[(r_k \in R_k) \mapsto x^k r_k\] and extend linearly.
+A $\mathbb G_m$--action on $\Spec R$ is equivalent data to a coaction map \[\alpha^*: R \to R \otimes \F_2[x^\pm].\]  Define $R_k$ to be those points in $r$ satisfying $\alpha^*(r) = r \otimes x^k$.  It is clear that we have $1 \in R_0$ and that $R_j R_k \subseteq R_{j+k}$.  To see that $R = \bigoplus_k R_k$, note that every tensor can be written as a sum of pure tensors.  Conversely, given a graded ring $R$, define the coaction map on $R_k$ by \[(r_k \in R_k) \mapsto x^k r_k\] and extend linearly.
 \end{proof}
 
-This notion from algebraic geometry is somewhat different from what we are used to in algebraic topology, as it is designed to deal with things like polynomial rings, but in classical algebraic topology we only ever encounter homogeneous sums.  We can modify our perspectively very slightly to arrive at the algebraic geometers': replace $H\F_2$ by the periodified spectrum \[H\F_2P = \bigvee_{j=-\infty}^\infty \Susp^j H\F_2.\]  This spectrum has the property that $H\F_2P^0(X)$ is isomorphic to $H\F_2^*(X)$ as ungraded rings, but now we can make sense of the sum of two classes which used to live in different $H\F_2$--degrees.  At this point we can manually craft the desired coaction map $\alpha^*$ so that we are in the situation of \Cref{GradedAndGmEquivAgree}, but we will shortly find that algebraic topology gifts us with it on its own.
+This notion from algebraic geometry is somewhat different from what we are used to in classical algebraic topology, as it is designed to deal with things like polynomial rings (where the difference of two polynomials can lie in lower degree), but in classical algebraic topology we only ever encounter sums of terms with homogeneous degree.  We can modify our perspectively very slightly to arrive at the algebraic geometers': replace $H\F_2$ by the periodified spectrum \[H\F_2P = \bigvee_{j=-\infty}^\infty \Susp^j H\F_2.\]  This spectrum has the property that $H\F_2P^0(X)$ is isomorphic to $H\F_2^*(X)$ as ungraded rings, but now we can make sense of the sum of two classes which used to live in different $H\F_2$--degrees.  At this point we can manually craft the desired coaction map $\alpha^*$ so that we are in the situation of \Cref{GradedAndGmEquivAgree}, but we will shortly find that algebraic topology gifts us with it on its own.
 
-Our route to finding this natural $\alpha^*$ is by turning to the next extra structure: the action of the Steenrod algebra.  Naively approached, this does not fit into the framework we've been sketching so far: the Steenrod algebra is a noncommutative algebra, and so the action map \[\mathcal A^* \otimes H\F_2^* X \to H\F_2^* X\] will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, since the Cartan formula expressing the diagonal on $\mathcal A^*$ is evidently symmetric.  Second, if $X$ is a \emph{finite} complex, then tinkering with Spanier--Whitehead duality gives rise to a map: \[\mathcal A^* \otimes (H\F_2)_* X \to (H\F_2)_* X.\]  Applying linear-algebraic duality to this bottom map allows us to reinterpret this as a coaction map \[\lambda^*: H\F_2^* X \to H\F_2^* X \otimes \mathcal A_*,\] which we will then re-re-interpret as an action map \[\alpha: \Spec \mathcal A_* \times X_{H\F_2} \to X_{H\F_2}.\]  Milnor works out the Hopf algebra structure of $\mathcal A_*$, by defining elements $\xi_j \in \mathcal A_*$ dual to $\Sq^{2^{j-1}} \cdots \Sq^{2^0} \in \mathcal A^*$.  Taking $X = \RP^n$ and $x \in H\F_2^1(\RP^n)$ the generator, then since $\Sq^{2^{j-1}} \cdots \Sq^{2^0} x = x^{2^j}$ he deduces the formula \[\lambda^*(x) = \sum_{j=0}^{\lfloor \log_2 n \rfloor} x^{2^j} \otimes \xi_j.\]  Notice that we can take the limit $n \to \infty$ if we aren't afraid of infinite sums.  He then makes the following calculation, stable in $n$:
+Our route to finding this natural $\alpha^*$ is by turning to the next extra structure: the action of the Steenrod algebra.  Naively approached, this does not fit into the framework we've been sketching so far: the Steenrod algebra is a \emph{noncommutative} algebra, and so the action map \[\mathcal A^* \otimes H\F_2^* X \to H\F_2^* X\] will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, since the Cartan formula expressing the diagonal on $\mathcal A^*$ is evidently symmetric: \[\Sq^n(x y) = \sum_{i+j=n} \Sq^i(x) \Sq^j(y).\]  Second, if $X$ is a \emph{finite} complex, then tinkering with Spanier--Whitehead duality gives rise to a map: \[\mathcal A^* \otimes (H\F_2)_* X \to (H\F_2)_* X.\]  Applying linear-algebraic duality to this bottom map allows us to reinterpret this as a coaction map \[\lambda^*: H\F_2^* X \to H\F_2^* X \otimes \mathcal A_*,\] which we will then re-re-interpret as an action map \[\alpha: \Spec \mathcal A_* \times X_{H\F_2} \to X_{H\F_2}.\]  Milnor works out the Hopf algebra structure of $\mathcal A_*$, by defining elements $\xi_j \in \mathcal A_*$ dual to $\Sq^{2^{j-1}} \cdots \Sq^{2^0} \in \mathcal A^*$.  Taking $X = \RP^n$ and $x \in H\F_2^1(\RP^n)$ the generator, then since $\Sq^{2^{j-1}} \cdots \Sq^{2^0} x = x^{2^j}$ he deduces the formula \[\lambda^*(x) = \sum_{j=0}^{\lfloor \log_2 n \rfloor} x^{2^j} \otimes \xi_j.\]  Notice that we can take the limit $n \to \infty$ to get a well-defined infinite sum, provided we permit ourselves to make sense of such a thing.  He then makes the following calculation, stable in $n$:
 \begin{align*}
-(\lambda^* \otimes \id) \circ \lambda^*(x) & = (\id \otimes \Delta) \circ \lambda^*(x) & \text{(coaction)} \\
+(\lambda^* \otimes \id) \circ \lambda^*(x) & = (\id \otimes \Delta) \circ \lambda^*(x) & \text{(coassociativity)} \\
 (\lambda^* \otimes \id) \left( \sum_{j=0}^\infty x^{2^j} \otimes \xi_j \right) & = \\
 \sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^i} \otimes \xi_i \right)^{2^j} \otimes \xi_j & = & \text{(ring homomorphism)} \\
-\sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = & \text{(characteristic $2$)} \\
+\sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = & \text{(characteristic $2$)}.
+\end{align*}
+Then, turning to the right-hand side:
+\begin{align*}
 \sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = (\id \otimes \Delta) \left( \sum_{m=0}^\infty x^{2^m} \otimes \xi_m \right) \\
 \sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = \sum_{m=0}^\infty x^{2^m} \otimes \Delta(\xi_m),
 \end{align*}
 from which it follows that \[\Delta \xi_m = \sum_{i+j=m} \xi_i^{2^j} \otimes \xi_j.\]  Finally, Milnor shows that this is the complete story:
-\begin{theorem}[Milnor]
+\begin{theorem}[Milnor]\citeme{Give a reference in Milnor's paper}
 $\mathcal A_* = \F_2[\xi_1, \xi_2, \ldots, \xi_j, \ldots]$.
 \end{theorem}
 \begin{proof}[Flippant proof]
 Milnor counts how many elements he has produced, compares against how many Adem and Cartan found, and sees that he has exactly enough.
 \end{proof}
 
-We are now in a position to uncover the desired map $\alpha^*$ desired earlier.  Suppose that we were interested in re-telling Milnor's story with $H\F_2P$ in place of $H\F_2$.  The dual Steenrod algebra is defined by \[\mathcal A_* := \pi_*(H\F_2 \sm H\F_2),\] which we replace by \[\mathcal AP_0 := \pi_0 (H\F_2 P \sm H\F_2 P) = H\F_2P_0(H\F_2) = \mathcal A_*[\xi_0^\pm].\]  Restricting to the quotient Hopf algebra $\mathcal AP_0 \to \F_2[\xi_0^\pm]$ gives exactly the coaction map $\alpha^*$.\todo{If you wanted to add a citation to this, there's Remark 3.14 and formula (3.4) in Paul Goerss's notes on $\moduli{fg}$.}
+We are now in a position to uncover the desired map $\alpha^*$ desired earlier.  Suppose that we were interested in re-telling Milnor's story with $H\F_2P$ in place of $H\F_2$.  The dual Steenrod algebra is defined by \[\mathcal A_* := \pi_*(H\F_2 \sm H\F_2),\] which we replace by \[\mathcal AP_0 := \pi_0 (H\F_2 P \sm H\F_2 P) = H\F_2P_0(H\F_2) = \mathcal A_*[\xi_0^\pm].\]  Projecting to the quotient Hopf algebra $\mathcal AP_0 \to \F_2[\xi_0^\pm]$ gives exactly the coaction map $\alpha^*$.\citeme{If you wanted to add a citation to this, there's Remark 3.14 and formula (3.4) in Paul Goerss's notes on $\moduli{fg}$}
 
 To study the rest of $\mathcal AP_0$ in terms of algebraic geometry, we need only identify what the series $\lambda^*(x)$ embodies.  Note that this necessarily involves some creativity, and the only justification we can supply will be moral, borne out over time.  With that caveat in mind, here is one such description.  Recall the map induced by the $H$--space multiplication \[H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \leftarrow H\F_2^* \RP^\infty.\]  Taking a colimit over finite complexes, we produce an coaction of $\mathcal A_*$, and since the map above comes from a map of spaces, it is equivariant for the coaction.  Since the action on the left is diagonal, we deduce the formula \[\lambda^*(x_1 + x_2) = \lambda^*(x_1) + \lambda^*(x_2).\]
 
 \begin{lemma}
-The series $\lambda^*(x) = \sum_{j=0}^\infty x^{2^j} \otimes \xi_j$ is the universal example of a series satisfying $\lambda^*(x_1 + x_2) = \lambda^*(x_1) + \lambda^*(x_2)$.  The value $(\Spec \mathcal AP_0)(T)$ is the set of power series $f$ with coefficients in $T$ satisfying \[f(x_1 + x_2) = f(x_1) + f(x_2). \qed\]
+The series $\lambda^*(x) = \sum_{j=0}^\infty x^{2^j} \otimes \xi_j$ is the universal example of a series satisfying $\lambda^*(x_1 + x_2) = \lambda^*(x_1) + \lambda^*(x_2)$.  The value $(\Spec \mathcal AP_0)(T)$ is the set of power series $f$ with coefficients in the $\F_2$--algebra $T$ satisfying \[f(x_1 + x_2) = f(x_1) + f(x_2). \qed\]
 \end{lemma}
 
-We close our discussion by codifying what Milnor did when he stabilized against $n$.  Each $\RP^n_{H\F_2}$ is a finite affine scheme, and to make sense of the object $\RP^\infty_{H\F_2}$ Milnor's technique was to consider the ind-system $\{\RP^n_{H\F_2}\}_{n=0}^\infty$ of finite affine schemes.  We give a name to these sorts of objects:\todo{Maybe move formal schemes into the previous lecture and talk about completions too?}
+We close our discussion by codifying what Milnor did when he stabilized against $n$.  Each $\RP^n_{H\F_2}$ is a finite affine scheme, and to make sense of the object $\RP^\infty_{H\F_2}$ Milnor's technique was to consider the ind-system $\{\RP^n_{H\F_2}\}_{n=0}^\infty$ of finite affine schemes.  We give a name to these sorts of objects, and we will follow this technique ourselves to handle general infinite complexes:\todo{Maybe move formal schemes into the previous lecture and talk about completions too?}
 \begin{definition}
 An \textit{affine formal scheme} is an ind-system of finite affine schemes.
 \end{definition}
-\noindent We will follow this technique ourselves to handle general infinite complexes:
 \begin{definition}
 When $X$ is an infinite complex, filter it by its subskeleta $X^{(n)}$ and define $X_{H\F_2}$ to be the ind-system $\{X^{(n)}_{H\F_2}\}_{n=0}^\infty$ of finite schemes.
 \end{definition}
 
 This choice clarifies the example from last time:
-\begin{example}[{cf. \Cref{RPExampleFaulty}}]\label{RPinftyExampleForReal}
-Write $\G_a$ for the ind-system $\mathbb A^{1, (n)}$ with the group scheme structure given in \Cref{RPExampleFaulty}.  That this group scheme structure filters this way is a simultaneous reflection of two facts:
+\begin{example}[{cf.\ \Cref{RPExampleFaulty}}]\label{RPinftyExampleForReal}
+Write $\G_a$ for the ind-system $\mathbb A^{1, (n)}$ with the group scheme structure given in \Cref{RPExampleFaulty}.  That this group scheme structure filters in this way is a simultaneous reflection of two facts:
 \begin{enumerate}
-\item $\G_a(T)$ consists of all nilpotent elements in $T$.  The sum of two nilpotent elements of orders $n$ and $m$ is guaranteed to itself be nilpotent with order at most $n+m$.
-\item There is a skeletal factorization of the multiplication map on $\RP^\infty$ as $\RP^n \times \RP^m \to \RP^{n+m}$ purely for dimensional reasons.\todo{Is there an off-by-one here?}
+\item Algebraic: The set $\G_a(T)$ consists of all nilpotent elements in $T$.  The sum of two nilpotent elements of orders $n$ and $m$ is guaranteed to itself be nilpotent with order at most $n+m$.
+\item Topological: There is a factorization of the multiplication map on $\RP^\infty$ as $\RP^n \times \RP^m \to \RP^{n+m}$ purely for dimensional reasons.\todo{Is there an off-by-one here?}
 \end{enumerate}
-As group schemes, we have calculated \[\RP^\infty_{H\F_2} \cong \G_a.\]
+As group schemes, we have thus calculated \[\RP^\infty_{H\F_2} \cong \G_a.\]
 \end{example}
 
-Additionally, this choice allows us to give a name to $\Spec \mathcal AP_0$.  Note that the following morphism sets are very different:
+\begin{example}
+Additionally, this convention comports with our analysis $\Spec \mathcal AP_0$.  Note that the following morphism sets are very different:
 \begin{align*}
 \CatOf{GroupSchemes}_{/\F_2}(\mathbb G_a, \mathbb G_a) & \cong \CatOf{HopfAlgebras}_{\F_2/}(\F_2[x], \F_2[x]) \\
 \CatOf{FormalGroups}_{/\F_2}(\G_a, \G_a) & \cong \CatOf{HopfProAlgebras}_{\F_2/}(\F_2\llbracket x \rrbracket, \F_2\llbracket x \rrbracket).
 \end{align*}
-The former is populated by polynomials satisfying the homomorphism condition and the latter is populated by power series satisfying the homomorphism condition.  Since our description of $\Spec \mathcal AP_0$ involves power series, we can amp up this observation to a scheme: \[\InternalHom{FormalSchemes}(X, Y)(T) = \left\{ (u, f) \middle| \begin{array}{c} u: \Spec T \to \Spec \F_2, \\ f: u^* X \to u^* Y \end{array}\right\}\] and conclude that the correct name for $\Spec \mathcal AP_0$ is \[\Spec \mathcal AP_0 \cong \InternalAut \G_a.\]
+The former is populated by polynomials satisfying the homomorphism condition and the latter is populated by \emph{power series} satisfying the same.  Since our description of $\Spec \mathcal AP_0$ involves power series, we can amp up this observation to a scheme: \[\InternalHom{FormalSchemes}(X, Y)(T) = \left\{ (u, f) \middle| \begin{array}{c} u: \Spec T \to \Spec \F_2, \\ f: u^* X \to u^* Y \end{array}\right\}\] and conclude that the correct name for $\Spec \mathcal AP_0$ is \[\Spec \mathcal AP_0 \cong \InternalAut \G_a.\]
+\end{example}
 
-Finally, the formula $\RP^\infty_{H\F_2} \cong \G_a$ is meant to point out that this language of formal schemes has an extremely good compression ratio: you can fit a lot of information into a very tiny space.  This formula simultaneously embodies the cohomology ring of $\RP^\infty$, its diagonal, and how the dual Steenrod algebra coacts.
+Finally, the formula $\RP^\infty_{H\F_2} \cong \G_a$ is meant to point out that this language of formal schemes has an extremely good compression ratio --- you can fit a lot of information into a very tiny space.  This formula simultaneously encodes the cohomology ring of $\RP^\infty$ as the formal scheme, its diagonal as the group scheme structure, and the coaction of the dual Steenrod algebra by the identification with $\InternalAut{\G_a}$.
 
 \todo{Include a recursive formula for the antipode map, coming from power series inversion.}
 
