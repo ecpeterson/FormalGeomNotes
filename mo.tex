@@ -14,7 +14,7 @@ Our first case study is a sequence of theorems about the unoriented bordism spec
 For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T(\xi).\]
 \end{definition}
 \begin{proof}[``Proof'' of definition]
-There's a more usual construction of the Thom space too: the associated disk bundle by gluing an $n$--disk in fiberwise, then taking the one--point compactification: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\] How does this compare? Well, the thickening of $\xi$ is an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$. Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the one--point compactification.
+There's a more usual construction of the Thom space too: the associated disk bundle by gluing an $n$--disk in fiberwise, then adding in a point at infinity: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ is an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
 \end{proof}
 
 Before proceeding, here are two important examples:
@@ -33,11 +33,18 @@ Now we catalog a bunch of useful properties of the Thom space functor. Firstly, 
 \Aut_{h\CatOf{Spaces}} S^{n-1} \arrow{r} & \End_{h\CatOf{Spaces}} S^{n-1} \arrow[-,double]{r} & \pi_0 F(S^{n-1}, S^{n-1}).
 \end{tikzcd}
 \end{center}
-We can interpret $T$ as a functor from the slice category over $BGL_1 S^{n-1}$ to $\CatOf{Spaces}$: maps \[Y \xrightarrow{f} X \xrightarrow{\xi} B \GL_1 S^{n-1}\] induce maps $T(f^* \xi) \to T(\xi)$, and $T$ is suitably homotopy-invariant.
+We can interpret $T$ as a functor off of the slice category over $BGL_1 S^{n-1}$: maps \[Y \xrightarrow{f} X \xrightarrow{\xi} B \GL_1 S^{n-1}\] induce maps $T(f^* \xi) \to T(\xi)$, and $T$ is suitably homotopy-invariant.
 
-Next, a common source of spherical bundles is taking the spherical subbundle of a vector bundle.  Since rank $n$ vector bundles are also classified by an object $BO(n)$, this begets a map $J_{\R}^n: BO(n) \to B \GL_1 S^{n-1}$ for each $n$.  Homotopy theorists are very interested in the block--inclusion maps $i^n: BO(n) \to BO(n+1)$ and the colimit $BO = BO(\infty)$.  The suspension functor induces a map $\GL_1 S^{n-1} \to \GL_1 S^n$, and we are led to ask about the compatibility of these operations.  As a route to answering this, the block--inclusion maps are a special case of a more general direct sum map $\oplus: BO(n) \times BO(m) \to BO(n+m)$, given by the precomposition \[BO(n) = BO(n) \times * \xrightarrow{\operatorname{id} \times \text{triv}} BO(n) \times BO(1) \xrightarrow\oplus BO(n+1).\] The spaces $B \GL_1 S^{n-1}$ enjoy a similar ``collective monoid'' structure, given by taking the fiberwise join two spherical bundles with a common base.
+Next, the spherical subbundle of a vector bundle gives a common source of spherical bundles.  Since rank $n$ vector bundles are also classified by an object $BO(n)$, this begets a map $J_{\R}^n: BO(n) \to B \GL_1 S^{n-1}$ for each $n$.  Stable homotopy theorists are very interested in the block--inclusion maps $i^n: BO(n) \to BO(n+1)$ and the colimit $BO = BO(\infty)$.  The suspension functor induces a map $\GL_1 S^{n-1} \to \GL_1 S^n$, and we are led to ask about the compatibility of these operations.  As a route to answering this, the block--inclusion maps are a special case of a more general direct sum map $\oplus: BO(n) \times BO(m) \to BO(n+m)$, given by the precomposition \[BO(n) = BO(n) \times * \xrightarrow{\operatorname{id} \times \text{triv}} BO(n) \times BO(1) \xrightarrow\oplus BO(n+1).\] The spaces $B \GL_1 S^{n-1}$ enjoy a similar ``collective monoid'' structure, given by taking the fiberwise join two spherical bundles with a common base.
 \begin{lemma}
-The fiberwise join is represented by maps \[B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \to B\GL_1 S^{n+m-1},\] and these maps commute with the block sum maps on the $BO(n)$ family. \qed
+The fiberwise join is represented by maps \[B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \to B\GL_1 S^{n+m-1},\] and these maps commute with the block sum maps on the $BO(n)$ family: \todo{Split the left vertical arrow into two?}
+\begin{center}
+\begin{tikzcd}
+BO(n) \times BO(m) \arrow{d} \arrow{r} & BO(n+m) \arrow{d} \\
+B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \arrow{r} & B\GL_1 S^{n+m-1}.
+\qed
+\end{tikzcd}
+\end{center}
 \end{lemma}
 \noindent Again taking a cue from $K$--theory, we take the colimit as $n$ grows large.
 \begin{corollary}
@@ -45,7 +52,7 @@ There is a map of $H$--spaces $J_{\R}: BO \to B\GL_1 \S$ called the \textit{stab
 \end{corollary}
 \noindent Finally, we can ask about the compatibility of $T$ with all of this:
 \begin{lemma}
-$T$ is monoidal: it carries fiberwise joins to smash products of spaces. \qed
+$T$ is monoidal: it carries external fiberwise joins to smash products of Thom spaces. \qed
 \end{lemma}
 
 We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}^n: BO(n) \to B\GL_1 S^{n-1}$ give Thom spaces $T(J_{\R}^n)$,\todo{Be careful about dimension here: you really mean a reduced tautological bundle, related to how $BO$ has only one connected component.} equipped with maps\todo{Fix this equation.} \[\Susp T(J_{\R}^n) = T(J_{\R}^n \oplus \text{triv}) \to T(J_{\R}^{n+1}).\] Setting $MO(n) = \Susp^{-n} \Susp^\infty T(J_{\R}^n)$, we again assemble this data into a single object: \[MO := \colim_n MO(n) = \colim_n \Susp^{-n} T(J_{\R}^n).\]
@@ -58,21 +65,22 @@ BO \times BO \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BO \times BO \a
 \end{tikzcd}
 \end{center}
 We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.}  We are now in a position to see the Thom isomorphism:
-\begin{lemma}[Thom isomorphism, universal example] $MO \sm MO \simeq MO \sm \Susp^\infty_+ BO$.\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}\todo{Is it furthermore clear that the cohomological version of this gives an action of $E^* X$ on $E^* T(\xi)$ by the ``Thom diagonal''?}
+\begin{lemma}[Thom isomorphism, universal example] As $MO$--modules,\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}\todo{Is it furthermore clear that the cohomological version of this gives an action of $E^* X$ on $E^* T(\xi)$ by the ``Thom diagonal''?} \[MO \sm MO \simeq MO \sm \Susp^\infty_+ BO.\]
 \end{lemma}
 \begin{proof}
-Stringing together the naturality properties of the Thom functor outlined above, we can thus make the following calculation:\todo{This Q.E.D.\ block isn't typeset well.}
+Stringing together the naturality properties of the Thom functor outlined above, we can thus make the following calculation:
 \begin{align*}
 T(\mu \circ (J_{\R} \times J_{\R})) & \simeq T(\mu \circ (J_{\R} \times J_{\R}) \circ \sigma) & \text{(homotopy invariance)} \\
 & \simeq T(\mu \circ (J_{\R} \times 0)) & \text{(constructed lift)} \\
 & \simeq T(J_{\R}) \sm T(0) & \text{(monoidality)} \\
-& \simeq MO \sm \Susp^\infty_+ BO & \text{(definition of $MO$, \Cref{TrivialBundleThomExample})} \\
-T(J_{\R}) \sm T(J_{\R}) & \simeq MO \sm \Susp^\infty_+ BO & \text{(monoidality)} \\
-MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. & \text{(definition of $MO$) \qedhere}
+& \simeq T(J_{\R}) \sm \Susp^\infty_+ BO & \text{(\Cref{TrivialBundleThomExample})} \\
+T(J_{\R}) \sm T(J_{\R}) & \simeq T(J_{\R}) \sm \Susp^\infty_+ BO & \text{(monoidality)} \\
+MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. & \text{(definition of $MO$)} & \phantom{.} \qedhere
 \end{align*}
 \end{proof}
 
-From here, the general version of Thom's theorem follows quickly:
+\noindent From here, the general version of Thom's theorem follows quickly:
+
 \begin{theorem}[Thom isomorphism]
 Let $\xi: X \to BO$ classify a vector bundle and let $\phi: MO \to E$ be a map of ring spectra. Then there is an equivalence of $E$--modules \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
 \end{theorem}
@@ -88,13 +96,15 @@ E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
 The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence.
 \end{proof}
 
-We'll close out today by using this to actually make a calculation of something. Recall from \Cref{RPnThomExample} that $T(\L - 1 \downarrow \RP^n) = \RP^{n+1}$.  By killing all the homotopy elements in positive degrees, you can also see that the map $MO \to MO(-\infty, 0] = H\Z/2$ is a ring map\todo{This requires some justification, like $MO$ being connective.}, so that we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
+\begin{example}
+We'll close out today by using this to actually make a calculation of something. Recall from \Cref{RPnThomExample} that $T(\L - 1 \downarrow \RP^n) = \RP^{n+1}$.  By killing all the homotopy elements in positive degrees, you can also see that the map $MO = H\F_2$ is a ring map\todo{This requires some justification, like $MO$ being connective .}, so that we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
 \begin{align*}
-\pi_* (H\Z/2 \sm T(\L - 1)) & \cong \pi_* (H\Z/2 \sm T(0)) & \text{(Thom isomorphism)} \\
-\pi_* (H\Z/2 \sm \Susp^{-1} \Susp^\infty \RP^{n+1}) & \cong \pi_* (H\Z/2 \sm \Susp^\infty_+ \RP^n) & \text{(\Cref{RPnThomExample})} \\
-\widetilde{H\Z/2}_{*+1} \RP^{n+1} & \cong H\Z/2_* \RP^n. & \text{(generalized homology)}
+\pi_* (H\F_2 \sm T(\L - 1)) & \cong \pi_* (H\F_2 \sm T(0)) & \text{(Thom isomorphism)} \\
+\pi_* (H\F_2 \sm \Susp^{-1} \Susp^\infty \RP^{n+1}) & \cong \pi_* (H\F_2 \sm \Susp^\infty_+ \RP^n) & \text{(\Cref{RPnThomExample})} \\
+\widetilde{H\F_2}_{*+1} \RP^{n+1} & \cong H\F_2{}_* \RP^n. & \text{(generalized homology)}
 \end{align*}
-This powers an induction that shows that $H\Z/2_* \RP^\infty$ has a single class in every degree.\todo{Using the cohomology version of this together with the $H\Z/2^* \RP^n$--module structure of $H\Z/2^* T(\L-1)$ deduces the ring structure too.}
+This powers an induction that shows that $H\F_2{}_* \RP^\infty$ has a single class in every degree.  \todo{Wouldn't hurt to expand on this.}  The cohomology version of all this, together with the $H\F_2^* \RP^n$--module structure of $H\F_2^* T(\L-1)$, also gives the ring structure: \[H\F_2^* \RP^n = \F_2[x] / x^{n+1}.\]
+\end{example}
 
 
 
