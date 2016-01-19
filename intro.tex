@@ -15,24 +15,24 @@ To begin, we will define a homology theory called ``bordism homology''.  Recall 
 \end{align*}
 
 \begin{lemma}
-This forms a chain complex of monoids under direct sum of manifolds.  The homology of the chain complex takes values in abelian groups $MO_*(X)$, and these groups satisfy the axioms of a generalized homology theory. \qed
+This forms a chain complex of monoids under direct sum of manifolds, ands it homology is written $MO_*(X)$.  These are naturally abelian groups, and moreover they satisfy the axioms of a generalized homology theory. \qed
 \end{lemma}
 
-In fact, we can define a bordism theory $MX$ for any suitable family of structure groups $X_n \to O(n)$.  The coefficient ring of $MX$, or its value $MX_*(*)$ on a point, gives the ring of $X$--bordism classes, and generally $MX_*(Y)$ of some space $Y$ gives a kind of ``bordism in families''.  There are evident comparison morphisms for the most ordinary kinds of bordism, given by replacing a chain of manifolds with an equivalent simplicial chain: \[MO \to H\Z/2, \quad MSO \to H\Z.\] In both cases, we can evaluate on a point to get ring maps $MO_*(*) \to \Z/2$ and $MSO_*(*) \to \Z$, called ``genera'' --- neither of which is very interesting, since they're both zero in positive degrees.\todo{A comparison of this with the usual spectrum definition of $MX$ appears in Switzer 12.35.}
+In fact, we can define a bordism theory $MX$ for any suitable family of structure groups $X_n \to O(n)$.  The coefficient ring of $MX$, or its value $MX_*(*)$ on a point, gives the ring of $X$--bordism classes, and generally $MX_*(Y)$ of some space $Y$ gives a kind of ``bordism in families (over $Y$)''.  There are evident comparison morphisms for the most ordinary kinds of bordism, given by replacing a chain of manifolds with an equivalent simplicial chain: \[MO \to H\Z/2, \quad MSO \to H\Z.\] In both cases, we can evaluate on a point to get ring maps $MO_*(*) \to \Z/2$ and $MSO_*(*) \to \Z$, called ``genera'' --- neither of which is very interesting, since they're both zero in positive degrees.\todo{A comparison of this with the usual spectrum definition of $MX$ appears in Switzer 12.35.}
 
-However, having maps of homology theories (rather than just maps of coefficient rings) is considerably more data: we can extact from this a theory of integration.  Consider the following special case of bordism, where we evaluate $MSO_*$ on an infinite loopspace:
+However, having maps of homology theories (rather than just maps of coefficient rings) is considerably more data then just the genus.  In fact, we can extact a theory of integration.  Consider the following special case of oriented bordism, where we evaluate $MSO_*$ on an infinite loopspace:
 \begin{align*}
 MSO_n K(\Z, n) & = \left\{ \text{oriented $n$--manifolds mapping to $K(\Z, n)$} \right\} / \sim \\
 & = \left\{ \begin{array}{c}\text{oriented $n$--manifolds $M$} \\ \text{with a specified class $\omega \in H^n(M; \Z)$} \end{array}\right\} / \sim.
 \end{align*}
-The yoga of stable homotopy theory then allows us to build a composite
+Associated to such a representative $(M, \omega)$, the yoga of stable homotopy theory then allows us to build a composite
 \begin{align*}
 \S^0 & \xrightarrow{\mathmakebox[2.5em]{(M, \omega)}} MSO \sm (\S^{-n} \sm \Susp^\infty_+ K(\Z, n)) \\ 
 & \xrightarrow{\mathmakebox[2.5em]{\colim}} MSO \sm H\Z \\
 & \xrightarrow{\mathmakebox[2.5em]{\phi \sm 1}} H\Z \sm H\Z \\
 & \xrightarrow{\mathmakebox[2.5em]{\mu}} H\Z,
 \end{align*}
-where $\phi$ is the orientation map.  Altogether, this composite gives us an element of $\pi_0 H\Z$, i.e., an integer.  Remarkably, this construction recovers the usual theory of integration of forms on an oriented manifold:
+where $\phi$ is the orientation map.  Altogether, this composite gives us an element of $\pi_0 H\Z$, i.e., an integer.
 
 \begin{lemma}
 The integer obtained by the above process is $\int_M \omega$. \qed
@@ -40,13 +40,13 @@ The integer obtained by the above process is $\int_M \omega$. \qed
 
 \noindent This definition of $\int_M \omega$ via stable homotopy theory is pretty nice, in the sense that many theorems accompany it for free.  For instance, the relation ``$\sim$'' automatically imposes a Stokes' theorem on it.
 
-Now take $X = e$ to be the trivial structure group, so that Pontryagin--Thom gives an equivalence $Me \xrightarrow{\simeq} \S$.  It is thus possible (and some people have indeed taken up this viewpoint) that stable homotopy theory can be done solely through the lens of ``framed bordism''.  We will prefer to view this the other way: the sphere spectrum $\S$ often appears for us as a natural object, and we will occasionally replace it by $Me$, the framed bordism spectrum.  For example, given a ring spectrum $E$ with unit map $\S \to E$, we can reconsider this as a ring map $\S = Me \to E$.  Following along the lines of the previous paragraph, we learn that any ring spectrum $E$ as automatically equipped with a theory of integration for framed manifolds.
+Now take $X = e$ to be the trivial structure group, so that Pontryagin--Thom gives an equivalence $Me \xrightarrow{\simeq} \S$.  It is thus possible (and some people have indeed taken up this viewpoint) that stable homotopy theory can be done solely through the lens of ``framed bordism''.  We will prefer to view this the other way: the sphere spectrum $\S$ often appears for us as a natural object, and we will occasionally replace it by $Me$, the framed bordism spectrum.  For example, given a ring spectrum $E$ with unit map $\S \to E$, we can reconsider this as a ring map $\S = Me \to E$.  Following along the lines of the previous paragraph, we learn that any ring spectrum $E$ is automatically equipped with a theory of integration for framed manifolds.
 
-Sometimes, as in the examples above, this unit map factors: \[\S = Me \to MO \to H\Z/2.\]  This is a witness to the overdeterminacy of $H\Z/2$'s integral for framed bordism: if the framed manifold is pushed all the way down to an unoriented manifold, there is still enough residual data to define the integral.  For a generic ring spectrum $E$, we can ask the analogous question: filtering $O$ by systems of structure groups, what stage does the unit map $Me \to E$ factor through?  The map $SO \to O$ considered above is the beginning of the Postnikov filtration of $O$, and we now present a diagram of this filtration and some interesting integration theories related to it:
+Sometimes, as in the examples above, this unit map factors: \[\S = Me \to MO \to H\Z/2.\]  This is a witness to the overdeterminacy of $H\Z/2$'s integral for framed bordism: if the framed manifold is pushed all the way down to an unoriented manifold, there is still enough residual data to define the integral.  For a generic ring spectrum $E$, we can ask the analogous question: filtering $O$ by systems of structure groups, what stage does the unit map $Me \to E$ factor through?  For instance, the map \[\S = Me \to MSO \to H\Z\] considered above does \emph{not} factor further through $MO$ --- an orientation is \emph{required} to define the integral of an integer--valued cohomology class.  More generally, the map $SO \to O$ is the beginning of the Postnikov filtration of $O$, and we now present a diagram of this filtration and some interesting integration theories related to it:
 \begin{center}
 \begin{tikzcd}
 Me \arrow{r} \arrow{rrd} \arrow{rrrd} \arrow{rrrrd} & \cdots \arrow{r} & M\Spin \arrow{r} \arrow[crossing over]{d} & MSO \arrow{r} \arrow[crossing over]{d} & MO \arrow[crossing over]{d} \\
-& & ko & H\Z & H\Z/2.
+& & kO & H\Z & H\Z/2.
 \end{tikzcd}
 \end{center}
 
@@ -56,13 +56,13 @@ This is the situation homotopy theorists found themselves in some decades ago, w
 There is a map of rings \[\sigma: M\Spin_* \to \C(\!(q)\!).\]  Moreover, if $M$ is a Spin manifold such that twice its first Pontryagin class vanishes --- that is, if $M$ lifts to a $\String$--manifold --- then $\sigma(M)$ lands in the subring $MF \subseteq \Z\ps{q}$ of modular forms with integral coefficients. \qed
 \end{theorem}
 
-\noindent However, neither party gave indication that their result should be valid ``in families'', and no theory of integration was produced.  It wasn't even clear what such a claim would mean: to give a topological enrichment of these theorems would mean finding a ring spectrum $E$ such that $E_*(*)$ had something to do with modular forms.  Around the same time, Landweber, Ravenel, and Stong began studying ``elliptic cohomology'' for independent reasons, and a decade later Ando, Hopkins, and Strickland put them together in the following theorem:
+\noindent However, neither party gave indication that their result should be valid ``in families'', and no theory of integration was produced.  From the perspective of the homotopy theorist, it wasn't even totally clear what such a claim would mean: to give a topological enrichment of these theorems would mean finding a ring spectrum $E$ such that $E_*(*)$ had something to do with modular forms.  Around the same time, Landweber, Ravenel, and Stong began studying ``elliptic cohomology'' for independent reasons; sometime much earlier, Morava had constructed an object ``$K^{\Tate}$'' associated to the Tate elliptic curve; and a decade later Ando, Hopkins, and Strickland put all these things together in the following theorem:
 
 \begin{theorem}[Ando--Hopkins--Strickland]
-If $E$ is an ``elliptic cohomology theory'', then there is a canonical map $M\String \to E$ called the $\sigma$--orientation.  There is a particular elliptic cohomology theory, $K^{\Tate}$, such that the induced map $M\String_* \to K^{\Tate}_*$ is Witten's genus. \qed
+If $E$ is an ``elliptic cohomology theory'', then there is a canonical map $M\String \to E$ called the $\sigma$--orientation.  In particular, the map $M\String_* \to K^{\Tate}_*$ is Witten's genus. \qed
 \end{theorem}
 
-We now come to the motivation for this class.  The homotopical $\sigma$--orientation was actually first constructed using formal geometry.  The original proof of Ando--Hopkins--Strickland begins with a reduction to maps of the form \[MU[6, \infty) \to E.\]  They then work to show that they can complete the missing arrow in the diagram
+We now come to the motivation for this class.  The homotopical $\sigma$--orientation was actually first constructed using formal geometry.  The original proof of Ando--Hopkins--Strickland begins with a reduction to maps of the form \[MU[6, \infty) \to E.\]  They then work to show that in especially good cases they can complete the missing arrow in the diagram
 \begin{center}
 \begin{tikzcd}
 MU[6, \infty) \arrow{r} \arrow{rd} & M\String \arrow[densely dotted]{d} \\
@@ -74,14 +74,16 @@ Leaving aside the extension problem for the moment, their main theorem is the fo
 For $E$ an even--periodic cohomology theory, \[\Spec E_* MU[6, \infty) \cong C^3(\G_E; \sheaf I(0)),\] where ``$C^3(\G_E; \sheaf I(0))$'' is a certain scheme.  When $E$ is taken to be elliptic, so that there is a specified isomorphism $\G_E \cong C^\wedge_0$ for $C$ an elliptic curve, the theory of elliptic curves furnishes the scheme with a canonical point.  Hence, there is a preferred class $MU[6, \infty) \to E$, natural in the choice of elliptic $E$. \qed
 \end{theorem}
 
-\noindent Our real goal is to understand theorems like this last one, where algebraic geometry asserts some real control over something in the domain of homotopy theory.  The structure of the class will be to work through a sequence of case studies where this perspective shines through most brightly.  We'll start by working through Thom's calculation of the homotopy of $MO$, which simultaneously holds the attractive features of being free of technical complexity while revealing essentially all of the structural complexity.  Having seen that through to the end, we'll then venture on to other examples: the complex bordism ring, structure theorems for finite spectra, unstable cooperations, and, finally, the theorem above.  The overriding theme of the class will be that algebraic geometry is a good organizing principle that gives us one avenue of insight into how homotopy theory functions.  In particular, it will give us a means to organize collections of maps, or ``operations'' of various sorts, between various spectra derived from bordism theories.
+\noindent Our real goal is to understand theorems like this last one, where algebraic geometry asserts some real control over something in the domain of homotopy theory.  The structure of the class will be to work through a sequence of case studies where this perspective shines through most brightly.  We'll start by working through Thom's calculation of the homotopy of $MO$, which simultaneously holds the attractive features of being free of technical complexity while revealing essentially all of the structural complexity.  Having seen that through to the end, we'll then venture on to other examples: the complex bordism ring, structure theorems for finite spectra, unstable cooperations, and, finally, the theorem above and its extensions.  The overriding theme of the class will be that algebraic geometry is a good organizing principle that gives us one avenue of insight into how homotopy theory functions.  In particular, it will give us a means to organize ``operations'' of various sorts between spectra derived from bordism theories.
 
 We should also mention that we will specifically \emph{not} discuss the following aspects of this story:
 \begin{itemize}
 \item Analytic techniques will be completely omitted.  Much of modern research stemming from the above problem is an attempt to extend index theory across Witten's genus, and this often means heavy analytic work.  We will strictly confine ourselves to the domain of homotopy theory.
+\item As sort of a sub-point (and despite the motivation provided in this Introduction), we will also mostly avoid manifold geometry.  Again, much of the contemporary research about $\tmf$ is in attempt to find a geometric model, so that geometric techniques can be imported (including equivariance and the geometry of quantum field theories, to name two).
+\item In a different direction, our focus will not linger on actually computing bordism rings $MX_*$, nor will we consider geometric constructions on manifolds and their behavior after imagining into the bordism ring.  This is also the source of active research: the structure of the symplectic bordism ring remains, to large extent, mysterious, and what we do understand of it comes through a mix of formal geometry and raw manifold geometry.  This could be a topic that fits logically into this document, were it not for time limitations and the author's inexpertise.
 \item The geometry of $E_\infty$ rings will also be avoided.  These really are inescapable at the conclusion of the story we will tell here, but there are better resources from which to learn about $E_\infty$ rings, and the pre--$E_\infty$ story is not told so often these days.  So, we will focus on the unstructured part and leave $E_\infty$ rings to other authors.
 \end{itemize}
 
-\todo[inline]{Talk about existing resources here.  Be sure to mention Strickland's FSFG.}
+Finally, we will also mention good companions to these notes.  Essentially none of the material here is original --- it's almost all cribbed either from published or unpublished sources --- but the source documents are quite scattered and dense.  We will make a point to cite useful references as we go.  One document stands out above all others, though: Neil Strickland's \textit{Functorial Philosophy for Formal Phenomena}~\cite{StricklandFPFP}.  These lecture notes can basically be viewed as an attempt to make it through this paper in the span of a semester.
 
 \todo{Akhil wrote a couple of blog posts about Ochanine's theorem: \texttt{https://amathew.wordpress.com/2012/05/30/ochanines-theorem-on-elliptic-genera/} and \texttt{https://amathew.wordpress.com/2012/05/31/the-other-direction-of-ochaines-theorem/}. Mentioning a more precise result might lend to a more beefy introduction.}
