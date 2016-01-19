@@ -113,7 +113,8 @@ This powers an induction that shows that $H\F_2{}_* \RP^\infty$ has a single cla
 
 \section{Cohomology rings and affine schemes}
 
-\todo{Decide on $\Z/2$ versus $\F_2$. I think in the previous lecture you were avoiding $\F_2$ because it got in the way of your homology subscripts.}An abbreviated summary of this semester is that we're going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents.  For any ``test $\F_2$--algebra'' $T$, we set \[\Spec(R)(T) := \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R) := \CatOf{Algebras}_{\F_2/}(R, T).\]  More generally, we have the following definition:
+\todo[inline]{Make sure you use $\F_2$ everywhere, rather than $\Z/2$.}
+An abbreviated summary of this semester is that we're going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents, $\Spec R$.  For any ``test $\F_2$--algebra'' $T$, we set \[(\Spec R)(T) := \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R) := \CatOf{Algebras}_{\F_2/}(R, T).\]  More generally, we have the following definition:
 \begin{definition}
 An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to \CatOf{Sets}$ which is (noncanonically) isomorphic to $\Spec R$ for some $\F_2$--algebra $R$.  Given such an isomorphism, we will refer to $\Spec R \to X$ as a \textit{parameter} for $X$ and its inverse $X \to \Spec R$ as a \textit{coordinate} for $X$.
 \end{definition}
@@ -131,9 +132,9 @@ Set $R_1 = \F_2[x]$.  Then \[(\Spec R_1)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x], 
 The symbol ``$\mathbb A^1$'' is pronounced ``the affine line''.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $n${\th} order neighborhood of the origin in the affine line''.
 \end{example}
 
-We can also express in this language another common object in algebraic topology: the Hopf algebra, which arises when taking the mod--$2$ cohomology of an $H$--space.  In addition to the usual cohomology, the extra pieces of data are those induced by the $H$--space multiplication and unit map, which on cohomology beget a diagonal map $\Delta$ and an antipode map $\chi$.  Running through the axioms, one quickly checks the following:
+We can also express in this language another common object in algebraic topology: the Hopf algebra, which arises when taking the mod--$2$ cohomology of an $H$--space.  In addition to the usual cohomology, the extra pieces of data are those induced by the $H$--space multiplication, unit, and inversion maps, which on cohomology beget a diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
 \begin{lemma}
-For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \textit{group schemes}.  Conversely, a choice of group structure on $(\Spec R)(T)$ natural in $T$ endows $R$ with the structure of a Hopf algebra. \todo{Maybe write this out, if you're going to be using this equivalence all semester.} \qed
+For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \textit{group schemes}.  Conversely, a choice of group structure on $\Spec R$ endows $R$ with the structure of a Hopf algebra. \todo{Maybe write this out, if you're going to be using this equivalence all semester.} \qed
 \end{lemma}
 
 \begin{example}\label{InformalAdditiveGroupExample}
@@ -146,7 +147,7 @@ The functor $\mathbb A^1$ introduced above is naturally valued in groups: since 
 \end{example}
 
 \begin{remark}
-In fact, $\mathbb A^1$ is naturally valued in \emph{rings}. It models the inverse functor to $\Spec$ in the equivalence of categories above, i.e., the elements of a ring $R$ always form a complete collection of coordinates on some affine scheme $\Spec R$.
+In fact, $\mathbb A^1$ is naturally valued in \emph{rings}. It models the inverse functor to $\Spec$ in the equivalence of categories above, i.e., the elements of a ring $R$ always form a complete collection of $\A^1$--valued functions on some affine scheme $\Spec R$.
 \end{remark}
 
 \begin{example}
@@ -160,17 +161,17 @@ We define the \textit{multiplicative group scheme} by\todo{Do you want this to b
 \end{example}
 
 \begin{remark}
-As presented above, $\mathbb G_m$ comes with a natural inclusion $\mathbb G_m \to \mathbb A^2$.  However, the coordinate $x$ on $\mathbb G_m$ gives a map $x: \mathbb G_m \to \mathbb A^1$, and because multiplicative inverses in a ring are unique, we see that this map is also an inclusion.  These two inclusions have rather different properties, and we'll think harder about their essential differences later on.
+As presented above, the multiplicative group comes with a natural inclusion $\mathbb G_m \to \mathbb A^2$.  However, the element $x$ also gives an $\mathbb A^1$--valued function $x: \mathbb G_m \to \mathbb A^1$, and because multiplicative inverses in a ring are unique, we see that this map is also an inclusion.  These two inclusions have rather different properties, and we'll think harder about their essential differences later on.
 \end{remark}
 
-Let's now consider the example that we closed with last time, where we calculated $H\Z/2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  This is such a useful thing to do that we will give it a notation all of its own:
+Let's now consider the example that we closed with last time, where we calculated $H\F_2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  This is such a useful thing to do that we will give it a notation all of its own:
 
 \begin{definition}
 Let $X$ be a finite cell complex, so that $H\F_2^*(X)$ is a ring which is finite--dimensional as an $\F_2$--vector space.  We will write \[X_{H\F_2} = \Spec H\F_2^* X\] for the corresponding finite affine scheme.
 \end{definition}
 
 \begin{example}
-Putting together the discussions from this time and last time, in the new notation we have calculated \[\RP^n_{H\Z/2} \cong \mathbb A^{1, (n)}.\]
+Putting together the discussions from this time and last time, in the new notation we have calculated \[\RP^n_{H\F_2} \cong \mathbb A^{1, (n)}.\]
 \end{example}
 
 So far, this example just restates things we knew in a mildly different language.  Our driving goal for the remainder of today and for tomorrow is to incorporate as much information as we have about these cohomology rings $H\F_2^* \RP^n$ into this description, which will result in us giving a more ``precise'' name for this object.  Along the way, we will discover why $X$ had to be a \emph{finite} complex and how to think about more general $X$.  For now, though, let's content ourselves with investigating the Hopf algebra structure on $H\F_2^* \RP^\infty$.
@@ -181,7 +182,7 @@ Recall that $\RP^\infty$ is an $H$--space in two equivalent ways:
 \item There is an identification $\RP^\infty \simeq K(\Z/2, 1)$, and the $H$--space structure is induced by the sum on cohomology.
 \item There is an identification $\RP^\infty \simeq BO(1)$, and the $H$--space structure is induced by the tensor product of real line bundles.
 \end{enumerate}
-In both cases, this induces a Hopf algebra diagonal \[H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \xleftarrow\Delta H\F_2^* \RP^\infty\] which we would like to analyze.  This map is determined by where it sends the class $x$, and because it must simultaneously respect gradings it must be of the form $\Delta x = ax_1 + bx_2$ for some constants $a, b \in \F_2$.  Furthermore, because it belongs to a Hopf algebra structure, it must satisfy the unitality axiom
+In either case, this induces a Hopf algebra diagonal \[H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \xleftarrow\Delta H\F_2^* \RP^\infty\] which we would like to analyze.  This map is determined by where it sends the class $x$, and because it must respect gradings it must be of the form $\Delta x = ax_1 + bx_2$ for some constants $a, b \in \F_2$.  Furthermore, because it belongs to a Hopf algebra structure, it must satisfy the unitality axiom
 \begin{center}
 \begin{tikzcd}
 H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\begin{array}{c} \epsilon \otimes \id \\ \id \otimes \epsilon \end{array}} \arrow[leftarrow, bend right]{rr}{\id} & H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\Delta} & H\F_2^* \RP^\infty.
@@ -210,13 +211,13 @@ We left off yesterday complaining that our definition was only made for finite c
 \end{enumerate}
 Today we will fix all these deficiencies of $X_{H\F_2}$ except for \#\ref{SkewCommutativeDeficiency}, which doesn't matter with mod--$2$ coefficients but which will be something of a bugbear throughout the rest of the semester.
 
-Let's begin by considering the grading on $H\F_2^* X$.  There is a standard construction in algebraic geometry that tracks gradings, which we now recall:
+Let's begin by considering the grading on $H\F_2^* X$.  In algebraic geometry, the following standard construction is used to track gradings:
 
-\begin{definition}\todo{Cite: Strickland FSFG, Defn 2.95.}
+\begin{definition}[{\cite[Definition 2.95]{StricklandFSFG}}]
 A \textit{grading} on a ring $R$ is a system of additive subgroups $R_k$ of $R$ satisfying $R = \bigoplus_k R_k$, $1 \in R_0$, and $R_j R_k \subseteq R_{j+k}$.  Additionally, a map $f: R \to S$ of graded rings is said to be \textit{homogeneous} or to \textit{respect the grading} if $f(R_k) \subseteq S_k$.
 \end{definition}
 
-\begin{lemma}\label{GradedAndGmEquivAgree}\todo{Cite this: Strickland FSFG, Prop 2.96.}
+\begin{lemma}[{\cite[Proposition 2.96]{StricklandFSFG}}]\label{GradedAndGmEquivAgree}
 A graded ring $R$ is equivalent data to an affine scheme $\Spec R$ with an action by $\mathbb G_m$.  Additionally, a map $R \to S$ is homogeneous exactly when the induced map $\Spec S \to \Spec R$ is $\mathbb G_m$--equivariant.
 \end{lemma}
 \begin{proof}
