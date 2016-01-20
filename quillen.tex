@@ -8,26 +8,28 @@
 
 \section{Formal varieties}\label{FormalVarietiesLecture}
 
+\todo[inline]{I think this lecture may be too long.  On the other hand, the rational stuff at the end will go rather quickly --- which I know from experience in the Pittsburgh talks.}
+
 Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots.  We would like to replicate the results from \Cref{UnorientedBordismChapter} for these other contexts, but we quickly see that only one of the listed bordism theories supports this program.  The space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other bordism theory with a similar ground object is complex bordism, with $\CP^\infty = BU(1)$.  So, we will focus on it.
 
 The contents of \Cref{LectureThomSpectra} can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
-\begin{theorem}
+\begin{theorem}\citeme{Give a reference from Lecture 1.1}
 There is a complex $J$--homomorphism \[J_{\C}: BU \to B \GL_1 \S. \qed \]
 \end{theorem}
 
-\begin{definition}
+\begin{definition}\citeme{Give a reference from Lecture 1.1}
 The associated Thom spectrum is written ``$MU$'' and called \textit{complex bordism}.  A map $MU \to E$ of ring spectra is said to be a \textit{complex orientation of $E$}.\todo{Something I've seen more than once is an equivalence $MU(k) \simeq BU(k) / BU(k-1)$. It's not immediately obvious to me where this comes from. Where does it come from? Is it helpful to think about?}
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\citeme{Give a reference from Lecture 1.1}
 For a complex vector bundle $\xi$ on a space $X$ and a complex-oriented ring spectrum $E$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X. \qed\]
 \end{theorem}
 
-\begin{corollary}\label{CPinftyNiceCalculation}
+\begin{corollary}\label{CPinftyNiceCalculation}\citeme{Give a reference from Lecture 1.1}
 In particular, it follows that $E^* \CP^\infty$ is isomorphic to a one--dimensional power series ring for a complex-oriented ring spectrum $E$. \qed
 \end{corollary}
 
-In light of these theorems, it seems prudent to develop some of the theory of formal schemes and formal varieties.
+In light of these results, it seems prudent to develop some of the theory of formal schemes and formal varieties outside of the context of $\F_2$--algebras.
 
 \begin{definition}
 Fix a scheme $S$.  A formal $S$--scheme $X = \{X_\alpha\}_\alpha$ is an ind-system of Artinian $S$--schemes $X_\alpha$.
@@ -37,7 +39,7 @@ Fix a scheme $S$.  A formal $S$--scheme $X = \{X_\alpha\}_\alpha$ is an ind-syst
 In the case $S = \Spec k$ for a field $k$, ``Artinian'' means that $\sheaf{O}_{X_\alpha}$ is a finite--dimensional $k$--vector space.
 \end{remark}
 
-These ind-systems arise when studying completions of rings.  To address the geometric situation, we first owe ourselves a definition of a closed subscheme, which we've somehow avoided up until this point:
+These ind-systems arise when studying completions of rings.  To address the geometric situation, we first owe ourselves a definition of a closed subscheme:
 \begin{definition}\label{DefnCompletion}
 Let $X$ be an affine formal scheme, and pick a chart $\Spec R \to X$.  A subscheme $Y \subseteq X$ is called \textit{closed} when it has the form
 \begin{center}
@@ -48,7 +50,7 @@ Y \arrow{r} \arrow[-,double,densely dotted]{d} & X \arrow[-,double]{d} \\
 \end{center}
 \end{definition}
 
-There's a dual notion of an open subscheme, which we will continue to avoid for now.  These definitions are both best stated in a coordinate--free way, but the open subscheme version really \emph{requires} it, so we will postpone it until later.\oweproof{Definition of open scheme}\oweproof{Definition of closed subscheme without chart}  For now, we will proceed with the geometry:
+There's a complementary notion of an open subscheme, which we will continue to avoid for now.  These definitions are both best stated in a coordinate--free way, but the open subscheme version really \emph{requires} it, so we will postpone it until later.\oweproof{Definition of open scheme}\oweproof{Definition of closed subscheme without chart}  For now, we will proceed with the geometry:
 
 \begin{definition}
 Consider such a closed subscheme $Y$ of an affine $S$--scheme $X$, modeled by a map $\Spec R/I \to \Spec R$.  We define the \textit{$n${\th} order neighborhood of $Y$ in $X$} to be the scheme $\Spec R/I^{n+1}$.  The \textit{formal neighborhood of $Y$ in $X$} is then the ind-system \[X^\wedge_Y := \left\{ \Spec R/I \to \Spec R/I^2 \to \Spec R/I^3 \to \cdots \right\}.\]
@@ -57,15 +59,15 @@ Consider such a closed subscheme $Y$ of an affine $S$--scheme $X$, modeled by a 
 \noindent So, formal schemes arise naturally when studying the local geometry of $X$ near a subscheme $Y$.  An exceedingly common situation is for $X$ to be a variety and $Y$ to be a smooth point, so that $X^\wedge_Y$ looks like ``a small piece of affine space''.  We pin this important case down with a definition:
 
 \begin{definition}
-In the case that $S = \Spec R$ is affine, formal affine $n$--space over $S$ is defined by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  A \textit{formal affine variety} is a formal scheme $V$ which is (noncanonically) isomorphic to $\A^n$ for some $n$.  The two maps in an isomorphism pair \[V \to \A^n, \quad V \leftarrow \A^n\] are called a coordinate (system) and a parameter (system) respectively.
+In the case that $S = \Spec R$ is affine, formal affine $n$--space over $S$ is defined by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  A \textit{formal affine variety} is a formal scheme $V$ which is (noncanonically) isomorphic to $\A^n$ for some $n$.  The two maps in an isomorphism pair \[V \to \A^n, \quad V \leftarrow \A^n\] are called a \textit{coordinate (system)} and a \textit{parameter (system)} respectively.
 \end{definition}
 
 \begin{lemma}\label{MapsOfFVarsArePowerSeries}
-A map $\A^n \to \A^m$ is specified by an $m$--tuple of $n$--variate power series. \qed \todo{Prove this?}
+A pointed map $\A^n \to \A^m$ is identical to an $m$--tuple of $n$--variate power series with no constant term. \qed
 \end{lemma}
 
 \begin{remark}
-In some sense, \Cref{MapsOfFVarsArePowerSeries} is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology are frequently expressed in terms of power series rings, and with this Lemma formal geometry promises to give geometric interpretations to such objects.
+In some sense, \Cref{MapsOfFVarsArePowerSeries} is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology are frequently expressed in terms of power series rings, and with this Lemma we are proved geometric interpretations for such statements.
 \end{remark}
 
 \Cref{MapsOfFVarsArePowerSeries} shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.  In particular, this allows theorems from analytic differential geometry to be imported, including a version of the inverse function theorem, which we will now work towards.
@@ -79,7 +81,7 @@ Similarly, a point $f \in V(R[t] / t^2)$ can be written as $f = f(0) + v(f) t$ w
 \end{definition}
 
 \begin{theorem}\label{InverseFunctionTheoremForFVars}\citeme{This is 3.1.8 in the Crystals notes.}
-A map $f: V \to W$ of finite--dimensional formal varieties is an isomorphism if and only if the induced map $Tf: TV \to TW$ is an isomorphism of $R$--modules.
+A map $f\co V \to W$ of finite--dimensional formal varieties is an isomorphism if and only if the induced map $Tf\co TV \to TW$ is an isomorphism of $R$--modules.
 \end{theorem}
 \begin{proof}
 First, reduce to the case where $V \cong \A^n$ and $W \cong \A^n$ have the same dimension, and select charts for both.  Then, $Tf$ is a matrix of dimension $n \times n$.  If $Tf$ fails to be invertible, we are done, and if it is invertible, we replace $f$ by $f \circ (Tf)^{-1}$ so that $Tf$ is the identity matrix.
@@ -89,7 +91,7 @@ We now construct the inverse function by induction on degree.  Set $g^{(1)}$ to 
 
 We now return to our motivating example of $\CP^\infty_E$ for $E$ a complex-oriented cohomology theory, where we saw that the complex-orientation determines an isomorphism $\CP^\infty_E \cong \A^1$.  However, the object ``$E^* \CP^\infty$'' is something that exists independent of the orientation map $MU \to E$, and we now have the language to tease apart this situation:
 \begin{lemma}
-Suppose that $E$ is a \textit{complex orientable} cohomology theory, i.e., it is able to receive a ring map from $MU$.  In that case, $\CP^\infty_E$ is a formal curve.  A choice of map $MU \to E$ determines a coordinate $\CP^\infty_E \cong \A^1$. \qed
+A cohomology theory $E$ is \textit{complex orientable} (i.e., it is able to receive a ring map from $MU$) precisely when $\CP^\infty_E$ is a formal curve.  A choice of map $MU \to E$ determines a coordinate $\CP^\infty_E \cong \A^1$. \qed
 \end{lemma}
 
 As we saw in the first case study, $\CP^\infty_E$ has more structure than just a formal scheme: it also carries the structure of a group.  We close today with some remarks about such objects.
@@ -99,8 +101,20 @@ A formal group is a formal variety endowed with an abelian group structure.\foot
 \end{definition}
 
 \begin{remark}
-As with formal schemes, formal groups can arise as formal completions of an algebraic group at its identity point.  It turns out that there are many more formal groups than come from this procedure, a phenomenon that will be of keen interest to us.
+As with formal schemes, formal groups can arise as formal completions of an algebraic group at its identity point.  It turns out that there are many more formal groups than come from this procedure, a phenomenon that is of keen interest to stable homotopy theorists.\todo{Add some kind of reference to a complaint about this?  It's not like we're going to talk about $\TMF$ much.}
 \end{remark}
+
+\begin{corollary}
+As with physical groups, the formal group addition map on $\G$ determines the inverse law.
+\end{corollary}
+\begin{proof}
+Consider the shearing map
+\begin{align*}
+\G \times \G & \xrightarrow{\sigma} \G \times \G, \\
+(x, y) & \mapsto (x, x + y).
+\end{align*}
+The induced map $T\sigma$ on tangent spaces is evidently invertible, so by \Cref{InverseFunctionTheoremForFVars} there is an inverse map $(x, y) \mapsto (x, y - x)$.  Setting $y = 0$ and projecting to the second factor gives the inversion map.
+\end{proof}
 
 \begin{definition}\label{FGLDefinition}
 Let $\G$ be a formal group.  In the presence of a coordinate $\phi \co \G \cong \A^n$, the addition law on $\G$ begets a map
@@ -119,33 +133,21 @@ and hence a $n$-tuple of $(2n)$-variate power series ``$+_\phi$'', satisfying
 Such a tuple $+_\phi$ is called a \textit{formal group law}.
 \end{definition}
 
-\begin{corollary}
-The formal group addition map on $\G$ determines the inverse law.
-\end{corollary}
-\begin{proof}
-Consider the shearing map
-\begin{align*}
-\G \times \G & \xrightarrow{\sigma} \G \times \G, \\
-(x, y) & \mapsto (x, x + y).
-\end{align*}
-The induced map $T\sigma$ on tangent spaces is evidently invertible, so by \Cref{InverseFunctionTheoremForFVars} there is an inverse map $(x, y) \mapsto (x, y - x)$.  Setting $y = 0$ and projecting to the second factor gives the inversion map.
-\end{proof}
-
 Let's now consider two examples of $E$ which are complex-orientable and describe $\CP^\infty_E$ for them.
 
 \begin{example}
 There is an isomorphism $\CP^\infty_{H\Z P} \cong \G_a$.  This follows from reasoning identical to that given in \Cref{RPinftyExampleForReal}.
 \end{example}
 
-\begin{example}
-There is also an isomorphism $\CP^\infty_{KU} \cong \G_m$.  Given a complex line bundle $\L$ over a space $X$, we use the complex orientation of $KU$ where the total Chern class of $\L$ is given by \[c(\L) = 1 - \beta[\L].\]  Given this definition, we perform a manual computation:
+\begin{example}\todo{This calculation ignores the grading, which isn't great notation. Put the Bott class where it belongs}
+There is also an isomorphism $\CP^\infty_{KU} \cong \G_m$.  Given a complex line bundle $\L$ over a space $X$, we use the complex orientation of $KU$ where the total Chern class of $\L$ is given by \[c(\L) = 1 - [\L].\]  Given this definition, we perform a manual computation:
 \begin{align*}
-c(\L_1 \otimes \L_2) & = 1 - \beta [\L_1 \otimes \L_2] = 1 - \beta^2 [\L_1] [\L_2] \\
-& = -1 + \beta[\L_1] + \beta[\L_2] - \beta^2 [\L_1] [\L_2] + 1 - \beta[\L_1] + 1 - \beta[\L_2] \\
-& = (1 - \beta[\L_1]) + (1 - \beta[\L_2]) - (1 - \beta[\L_1])(1 - \beta[\L_2]) \\
+c(\L_1 \otimes \L_2) & = 1 - [\L_1 \otimes \L_2] = 1 - [\L_1] [\L_2] \\
+& = -1 + [\L_1] + [\L_2] - [\L_1] [\L_2] + 1 - [\L_1] + 1 - [\L_2] \\
+& = (1 - [\L_1]) + (1 - [\L_2]) - (1 - [\L_1])(1 - [\L_2]) \\
 & = c(\L_1) + c(\L_2) - c(\L_1) c(\L_2).
 \end{align*}
-In this coordinate on $\CP^\infty_{KU}$, the group law is then $x +_! y = x + y - xy$.\todo{This calculation is malformed.}
+In this coordinate on $\CP^\infty_{KU}$, the group law is then $x +_! y = x + y - xy$.
 \end{example}
 
 We will close today by showing that the rational theory of formal groups is highly degenerate, similar to the rational theory of spectra.
@@ -163,7 +165,7 @@ Elements of $\Omega^1_{R/k}$ are referred to as \textit{$1$--forms}.
 The module $\Omega^1_{R/k}$ is universal for derivations into $R$--modules: \[\CatOf{Derivations}_k(R, M) = \CatOf{Modules}_R(\Omega^1_{R/k}, M). \qed\]
 \end{lemma}
 
-These definitions are interesting in this level of generality, but suppose now that $k$ is a $\Q$--algebra and that $R = k\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $k$.  What's special about this case is that differentiation gives an isomorphism between $\Omega^1_{R/k}$ and the ideal $(x)$ of functions vanishing at the origin, i.e., the ideal sheaf selecting the closed subscheme $\Spec k \to \Spf R$.  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]
+These definitions are interesting in this level of generality, but suppose now that $k$ is a $\Q$--algebra and that $R = k\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $k$.  What's special about this rational curve case is that differentiation gives an isomorphism between $\Omega^1_{R/k}$ and the ideal $(x)$ of functions vanishing at the origin, i.e., the ideal sheaf selecting the closed subscheme $\Spec k \to \Spf R$.  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]
 
 Taking a cue from classical Lie theory, we attempt to define exponential and logarithm functions for a given formal group law $F$.  This is typically accomplished by studying left--invariant differentials: a $1$--form $f(x) dx$ is said to be left--invariant under $F$ when \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $y = 0$, we deduce the condition \[f(0) = f(x) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0}.\]  If $R$ is a $\Q$--algebra, then setting the boundary condition $f(0) = 1$ and integrating against $x$ yields \[\log_F(x) = \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0} \right)^{-1} dx.\]  To see that the series $\log_F$ has the claimed homomorphism property, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x},\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $\log_F(y)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  In all, this argument bundles into the following coordinate-free theorem:
 \begin{theorem}\label{RationalFGLsHaveLogarithms}
@@ -171,9 +173,6 @@ There is a unique isomorphism \[\G \xrightarrow{\log} \operatorname{Lie} \G \oti
 \end{theorem}
 
 
------
-
-Sheaves on formal schemes too?
 
 
 
