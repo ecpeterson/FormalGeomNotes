@@ -328,15 +328,24 @@ We draw this into the diagram as
 & H\F_2^* \S^0 & \arrow{l} H\F_2^* C(0) & \arrow{l} H\F_2^* \S^1, & H\F_2^* \S^0 & \arrow{l} H\F_2^* C(2) & \arrow{l} H\F_2^* \S^1,
 \end{tikzcd}
 \end{center}
-where the vertical line indicates the nontrivial coaction involving $\xi_1$.  We can now see what trading maps for cofiber sequences has bought us: mod--$2$ cohomology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.\todo{Can this be phrased so as to indicate how this works for longer extensions? I've never tried to think about even what happens for $C(4)$.}  The Adams spectral sequence bundles this thought process into a single machine, of signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, \F_2) \Rightarrow (\pi_* \S^0)^\wedge_2.\]  In effect, this asserts that the above process is \emph{exhaustive}: every element of $(\pi_* \S^0)^\wedge_2$ can be detected by some representative class of extensions of comodules for the dual Steenrod algebra.  Mildly more generally, if $X$ is a bounded-below spectrum, then there is even a spectral sequence of signature\todo{How do you feel about this sub-star notation without parens?}\todo{Mention that there are homological and cohomological $\F_2$--Adams spectral sequences.} \[\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X) \Rightarrow \pi_* X^\wedge_2.\]
+where the vertical line indicates the nontrivial coaction involving $\xi_1$.  We can now see what trading maps for cofiber sequences has bought us: mod--$2$ cohomology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.\todo{Can this be phrased so as to indicate how this works for longer extensions? I've never tried to think about even what happens for $C(4)$.}  The Adams spectral sequence bundles this thought process into a single machine:
+\begin{theorem}\citeme{Cite this somehow, or at least put a forward reference in}
+There is a convergent spectral sequence of signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, \F_2) \Rightarrow (\pi_* \S^0)^\wedge_2. \qed\]
+\end{theorem}
+In effect, this asserts that the above process is \emph{exhaustive}: every element of $(\pi_* \S^0)^\wedge_2$ can be detected and distinguished by some representative class of extensions of comodules for the dual Steenrod algebra.  Mildly more generally, if $X$ is a bounded-below spectrum, then there is even a spectral sequence of signature\todo{Mention that there are homological and cohomological $\F_2$--Adams spectral sequences.} \[\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X) \Rightarrow \pi_* X^\wedge_2.\]
 
-Here is where we could divert to talking about the construction of the Adams spectral sequence.\todo{You could actually do this. The unstable Adams spectral sequence is also most easily defined using a really similar construction. Just a thought.}  There is a light presentation which we could think about now, but it will fit nicely into a story later on.  So, we will leave this task for later in the semester, when we can do a better job of it.  For now, we will record the following utility lemma about the Adams spectral sequence, which we will need to use before we get around to giving a good construction:
+Here is where we could divert to talking about the construction of the Adams spectral sequence, but it will fit more nicely into a story later on.  Thus, for now we will leave this task for later in the semester\todo{Put in a forward reference here for sure.}.  Before moving on, we will record the following utility lemma about the Adams spectral sequence.  It is believable based on the above discussion, and we will need to use before we get around to examining the guts of the spectral sequence.
 \begin{lemma}
 The $0$--line of the Adams spectral sequence contains those elements visible to the Hurewicz homomorphism. \qed \todo{This feels sloppily stated.}
 \end{lemma}
 
-Instead, today we will focus on the meaning of the algebraic input $\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X)$, which will require us to grapple some with the homological algebra of comodules for a Hopf algebra.  To begin, it's both reassuring and instructive to see that homological algebra can, in fact, be done with comodules.  In the usual development of homological algebra for modules, the key observations are the existence of projective and injective modules, and something similar is at work here.\todo{Come back to this and either state things generally (at least set $k = \F_2$?) so you can use it in Comodule Cohomology II, or specialize it to get rid of all these pesky $A$s.}
-\begin{lemma}\todo{Cite these. A1.1-2 in Ravenel are relevant?}
+Today we will focus on the algebraic input $\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X)$, which will require us to grapple with the homological algebra of comodules for a Hopf algebra.  To begin, it's both reassuring and instructive to see that homological algebra can, in fact, be done with comodules.  In the usual development of homological algebra for modules, the key observations are the existence of projective and injective modules, and something similar is at work here.
+
+\begin{remark}
+Much of the results below do not rely on working with a Hopf algebra over the field $k = \F_2$.  In fact, $k$ can usually be taken to be a ring rather than a field.
+\end{remark}
+
+\begin{lemma}\citeme{Cite these. A1.1-2 in Ravenel are relevant}
 Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  Then there is a \textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k (A \otimes_k A) = (N \otimes_k A) \otimes_k A.\]
 \end{lemma}
 \begin{proof}
@@ -347,22 +356,38 @@ We will describe the assignments involved in the adjunction.  Given a map $f: M 
 The category $\CatOf{Comodules}_A$ has enough injectives.  Namely, if $M$ is an $A$--comodule and $M \to I$ is an inclusion of $k$--modules into an injective $k$--module $I$, then $M \to I \otimes_k A$ is an injective $A$--comodule under $M$. \qed
 \end{corollary}
 \begin{remark}
-In our case, $M$ itself is always injective, so there's already an injective map $\psi_M: M \to M \otimes A$: the coaction map.  The assertion that this map is coassociative is identical to saying that it is a map of comodules.
+In our case, $M$ itself is always $k$--injective, so there's already an injective map $\psi_M: M \to M \otimes A$: the coaction map.  The assertion that this map is coassociative is identical to saying that it is a map of comodules.
 \end{remark}
 
-\todo{Dylan says that ``cotensor of comodules over Hopf algebroids agrees with global sections of tensor product of sheaves''.  Maybe you can introduce this now, or maybe it belongs in the opening bits of Finite Spectra.}
+Satisfied that ``$\Ext$'' at least makes sense, we're free to chase more conceptual pursuits.  Recall from algebraic geometry that a module $M$ over a ring $R$ gives rise to quasi-coherent sheaf $\widetilde{M}$ over $\Spec R$.  We give a definition that fits with our functorial perspective:\todo{Can this definition be motivated?  Is there an easily graspable sense in which it looks like a bundle?}
+\begin{definition}
+A presheaf (of modules) over a scheme $X$ is an assignment of maps $\sheaf F\co X(T) \to \CatOf{Modules}_T$, functorially in $T$. \todo{Straighten this out.}  Such a presheaf is said to be \textit{quasicoherent} when a map $\Spec S \to \Spec T \to X$ induces a natural isomorphism $\sheaf F(T) \otimes_T S \cong \sheaf F(S)$.
+\end{definition}
 
-\textbf{While we're here, let's record some facts about base change.}\todo{Put filler here.}
+\begin{lemma}\citeme{Surely this is in Neil's FSFG somewhere}
+An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec R$ by the rule $(\Spec T \to \Spec R) \mapsto M \otimes_R T$.  Conversely, every quasicoherent sheaf over an affine scheme arises in this way.  \qed
+\end{lemma}
+
+The usual formula for the sheaf cohomology of a sheaf $\sheaf F$ over an $S$--scheme $X$ with structure map $\pi\co X \to S$ is given by $\Ext(\sheaf F, \pi^* \sheaf O_S)$ which is, indeed, reminiscent of the formula we were considering above.  Experience in algebraic geometry shows that it is conceptually profitable to consider the \emph{six--functors yoga} and, in particular, base-change formulas.  This yields formulas like\todo{Are you using the right combination of stars and shrieks?} \[\Ext_X(\pi_* \sheaf O_S, \sheaf F) \cong \Ext_S(\sheaf O_S, R\pi^! \sheaf F).\]  This last formula seems particularly nice: in the case that $S$ is a field, the groups $\Ext_S$ degenerate and we see that computing cohomology is equivalent to understanding ``derived base-change''.  In the classical case, the push and pull functors associated to a map $f\co \Spec S \to \Spec R$ belong to the following diagram:
+\begin{center}
+\begin{tikzcd}
+\CatOf{QCoh}_{\Spec R} \arrow[shift left=0.2em]{r}{f^!} \arrow[-,double]{d} & \CatOf{QCoh}_{\Spec S} \arrow[shift left=0.2em]{l}{f_*} \arrow[-,double]{d} \\
+\CatOf{Modules}_R \arrow[shift left=0.2em]{r}{M \mapsto M \otimes_R S} & \CatOf{Modules}_S \arrow[shift left=0.2em]{l}{M \mapsfrom M}.
+\end{tikzcd}
+\end{center}
+We are thus moved to study derived base-change for comodules, thought of as sheaves equipped with an action by a group scheme.  In particular, we want to understand what it means to ``tensor'' two comodules together.  Unsurprisingly, the solution is dual to that for modules: tensor the two comodules together, then restrict to the elements where the coactions on either factor agree.
 
 \begin{definition}
 Given $A$--comodules $M$ and $N$, their cotensor product is defined by the coequalizer \[M \cotensor_A N \to M \otimes_k N \xrightarrow{\psi_M \otimes 1 - 1 \otimes \psi_N} M \otimes_k A \otimes_k N.\]
 \end{definition}
 
-\noindent Cotensoring gives rise to a concise description of what it means to be a comodule map:
+\noindent As an example application, cotensoring gives rise to a concise description of what it means to be a comodule map:
 
-\begin{lemma}\todo{Cite Ravenel: A1.1.6b}
+\begin{lemma}[{\cite[A1.1.6b]{RavenelGreenBook}}]
 Let $M$ and $N$ be $A$--comodules with $M$ projective as a $k$--module.  Then there is an equivalence \[\CatOf{Comodules}_A(M, N) = \CatOf{Modules}_k(M, k) \cotensor_A N. \qed\]
 \end{lemma}
+
+\noindent From this, we can deduce the six--functors formula described above:
 
 \begin{corollary}
 Let $N = N' \otimes_k A$ be a cofree comodule. Then $N \cotensor_A k = N'$.
@@ -386,7 +411,7 @@ Resolve $N$ using the cofree modules described above, then apply either functor 
 \todo{Put a better base-change theorem here, like $- \cotensor_A B$.}
 
 \begin{example}
-Let's work to contextualize this somewhat.  Given a finite group $G$, we can form a commutative Hopf algebra $k^G$, the $k$--valued functions on $G$.  This Hopf algebra is dual to the Hopf algebra $k[G]$, the group--algebra on $G$.  It is classical that a $G$--module $M$ is equivalent data to a $k[G]$--module structure, and if $M$ is suitably finite, we can dualize the action map to produce a coaction map \[M^* \to k^G \otimes M^*.\]  \todo{Now check that $M^* \cotensor_{k^G} k = (H^0 M)^*$.}
+Let's contextualize this somewhat.  Given a finite group $G$, we can form a commutative Hopf algebra $k^G$, the $k$--valued functions on $G$.  This Hopf algebra is dual to the Hopf algebra $k[G]$, the group--algebra on $G$.  It is classical that a $G$--module $M$ is equivalent data to a $k[G]$--module structure, and if $M$ is suitably finite, we can dualize the action map to produce a coaction map \[M^* \to k^G \otimes M^*.\]  Additionally, we have $M^* \cotensor_{k^G} N^* = (M \otimes_G N)^*$, so that $M^* \cotensor_{k^G} k = (H^0 M)^*$.
 \end{example}
 
 \todo{$\mathcal A(1)_*$ is the Hopf algebra for a dihedral group. Is this example appropriate here?}
@@ -400,10 +425,92 @@ Consider the degenerate case $X = H\F_2$.  Then $H\F_{2*}(H\F_2) = \mathcal A_*$
 \end{example}
 
 \begin{example}
-At the other extreme, we can pick the extremely nondegenerate case $X = \S$. \todo{Include a picture.}
+At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pictured through a range in \Cref{HF2ASSFigure}.\todo{Label elements?  Identify some groups?}
+\begin{figure}[b]
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+% the axes
+\draw [<->] (0,9.5) |- (0,0) |- (17.5,0);
+% the grid
+\draw[black!50] (0,0) grid (17,9);
+
+% the groups
+\foreach \y in {0,...,9}
+    {\node (one\y) at (0,\y) {$\bullet$};};
+\node at (1,1) {$\bullet$};
+\node at (2,2) {$\bullet$};
+\node at (3,3) {$\bullet$};
+\node at (3,1) {$\bullet$};
+\node at (3,2) {$\bullet$};
+\node at (6,2) {$\bullet$};
+\node at (7,1) {$\bullet$};
+\node at (7,2) {$\bullet$};
+\node at (7,3) {$\bullet$};
+\node at (7,4) {$\bullet$};
+\node at (8,2) {$\bullet$};
+\node at (8,3) {$\bullet$};
+\node at (9,3) {$\bullet$};
+\node at (9,4) {$\bullet$};
+\node at (9,5) {$\bullet$};
+\node at (10,6) {$\bullet$};
+\node at (11,5) {$\bullet$};
+\node at (11,6) {$\bullet$};
+\node at (11,7) {$\bullet$};
+\node at (14,2) {$\bullet$};
+\node at (14,3) {$\bullet$};
+\node at (14,4) {$\bullet$};
+\node at (14,5) {$\bullet$};
+\node at (14,6) {$\bullet$};
+\node at (15,1) {$\bullet$};
+\node at (15,2) {$\bullet$};
+\node at (15,3) {$\bullet$};
+\node at (15,4) {$\bullet$};
+\node at (15,5) {$\bullet$};
+\node at (15,6) {$\bullet$};
+\node at (15,7) {$\bullet$};
+\node at (15,8) {$\bullet$};
+\node at (16,2) {$\bullet$};
+\node at (16,6) {$\bullet$};
+\node at (16,7) {$\bullet$};
+\node at (17,3) {$\bullet$};
+\node at (17,4) {$\bullet$};
+\node at (17,5) {$\bullet$};
+\node at (17,6) {$\bullet$};
+\node at (17,7) {$\bullet$};
+\node at (17,8) {$\bullet$};
+\node at (17,9) {$\bullet$};
+
+% multiplicative structure
+
+\path (0,0) edge[thick] (0,9)
+      (0,0) edge[thick] (3,3)
+      (3,1) edge[thick] (3,3)
+      (7,1) edge[thick] (7,4)
+      (7,1) edge[thick] (9,3)
+      (8,3) edge[thick] (9,4)
+      (9,5) edge[thick] (11,7)
+      (11,5) edge[thick] (11,7)
+      (14,2) edge[thick] (14,3)
+      (14,4) edge[thick] (14,6)
+      (15,1) edge[thick] (15,8)
+      (15,1) edge[thick] (17,3)
+      (16,6) edge[thick] (17,7)
+      (16,7) edge[thick] (17,8)
+      (17,4) edge[thick] (17,7);
+
+% differentials
+
+\path (15,1) edge[-stealth] (14,3)
+      (15,2) edge[-stealth] (14,5)
+      (15,3) edge[-stealth] (14,6)
+      (17,4) edge[-stealth] (16,6);
+\end{tikzpicture}
+\end{center}
+\caption{The $H\F_2$-Adams spectral sequence, beginning at the second page.  Thin lines denote multiplication by $2$ and by $\eta$, thin arrows denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
+\end{figure}
 \end{example}
 
-\todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?}
+\todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?  I think this is a duality effect: working with the Steenrod algebra versus its dual.}
 
 
 
