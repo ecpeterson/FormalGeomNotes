@@ -13,40 +13,10 @@
 
 \section{Thom sheaves and duality}
 
-\begin{definition}
-Let $E$ be a complex-orientable theory and let $V \to X$ be a complex vector bundle over a space $X$.  The cohomology of the Thom space $E^* T(V)$ forms a $1$--dimensional $E^* X$--module, and we denote the associated line bundle over $X_E$ by $\ThomSheaf{V}$.
-\end{definition}
+\todo{A bunch of this stuff got moved into Lecture 2.3.}
 
-\todo{This construction is natural for pullbacks of vector bundles, and it takes sums of bundles to tensor products of sheaves.}
-
-\begin{remark}
-The utility of this definition is that it only uses the \emph{property} that $E$ is complex-orientable, and it begets only the \emph{property} that $\ThomSheaf{V}$ is a line bundle.
-\end{remark}
-
-\begin{example}
-\todo[inline]{The line bundle associated to the reduced tautological bundle on $\CP^\infty$ is the the sheaf of functions vanishing to first order at the origin.}
-\end{example}
-
-\todo{Relationship between $\ThomSheaf{V}$ and the divisor inspired by $V$.}
-
-\todo{Euler classes and Thom classes}
-
-------
-
-\textbf{I'm going to retype a bunch of stuff from Section 8 of the $H_\infty$ AHS paper.  It's a pretty nice sequence of examples.  Not all of it (i.e., the level structure stuff at the end) belongs right here and right now.}
-
-Suppose that $X$ is a space, and that $V$ is a complex vector bundle over $X$.  The $\pi_0 X^{E_+}$--module $\pi_0 \InternalHom{Spectra}(X^V, E)$ is free of rank one (since $E$ is complex orientable) and so can be interpreted as the module of sections of a line bundle $\ThomSheaf{V}$ over $X_E$.  The fact that the Thom complex of an external Whitney sum is the smash product of the Thom complexes gives rise to a canonical isomorphism $\ThomSheaf{V \oplus W} = \ThomSheaf{V} \otimes \ThomSheaf{W}$.  This property can then be used to extend the definition of $\ThomSheaf{V}$ to virtual bundles: $\ThomSheaf{V - W} = \ThomSheaf{V} \otimes \ThomSheaf{W}^{-1}$.  If $f \co X \to Y$ is a map and $V$ is a virtual bundle over $Y$, then there is an isomorphism \[\pi_0 \InternalHom{Spectra}(X^{f^* V}, E) \cong (\pi_0 E^{X_+}) \otimes \pi_0 \InternalHom{Spectra}(Y^V, E).\]  In terms of algebraic geometry, this means that there is a natural isomorphism \[\ThomSheaf{f^* V} \cong (f_E)^* \ThomSheaf{V}.\]
-
-Here is a series of examples that lead to a fairly complete understanding of the functor $\mathbb L$:
 \begin{enumerate}
-\item If $\L$ denotes the canonical line bundle over $\CP^\infty$, then the zero section identifies $E^0 (\CP^\infty)^{\L}$ with the augmentation ideal in $E^0 \CP^\infty$, and so we have an isomorphism $\ThomSheaf{\L} \cong \sheaf I(0)$.
-\item Suppose that $V$ is a line bundle over $X$, classified by a map $b \co X \to \CP^\infty$.  In terms of algebraic geometry, the map $b$ defines an $X_E$--valued point $b = b_E$ of $\G$.  It follows that \[\ThomSheaf{V} \cong b^* \sheaf I(0) \cong 0^* \sheaf I(-b).\]
-\item Taking $X$ to be a point and $V$ to be the trivial complex line bundle in the above, we have $\ThomSheaf{V} \cong 0^* \sheaf I(0)$.  Now $\ThomSheaf{V}$ is the sheaf associated to $\pi_2 E$, while $0^* \sheaf I(0)$ is the sheaf of cotangent vectors at the origin of $\G$, isomorphic to the sheaf $\omega_{\G}$ of invariant differentials on $\G$.
-\item If $V$ is the trivial bundle of dimension $k$, then $\ThomSheaf{V}$ is just $\omega_{\G}^k$.  If $f \co E \to F$ is an $E$--algebra (e.g., $F = E^{X_+}$), then this gives an interpretation of $\pi_{2k} F$ as $f^* \omega_{\G}^k$.
 \item If $V = (1 - \L)$ is the reduced canonical line bundle over $\CP^\infty$, then using all the above we have \[\ThomSheaf{V} \cong \pi^* 0^* \sheaf I (0) \otimes \sheaf I(0)^{-1} = \Theta^1(\sheaf I(0)),\] where $\pi: \G_E \to S_E$ is the structural map and $\Theta^1$ is the usual.
-\item With the notation of (2), consider the line bundle $V \otimes \L$ over $X \times \CP^\infty$.  Then $\ThomSheaf{V \otimes \L}$ is pulled back from $\sheaf I_{\G} (0)$ along the map \[X_E \times \G \xrightarrow{b \times 1} \G \times \G \xrightarrow{\mu} \G,\] from which it follows that \[\ThomSheaf{V \otimes \L} \cong T_b^* \sheaf I(0) = \sheaf I_{X_E \times \G}(-b).\]
-\item More generally, suppose $V = \sum_i n_i \L_i$ is a virtual sum of line bundles over $X$.  The line bundles $\L_i$ define points $b_i$ of $\G$ over $X_E$, and the bundle $V$ determines the divisor $D = \sum_i n_i [b_i]$.  Together, this means \[\ThomSheaf{V \otimes \L} = \sheaf I_{X_E \times \G}(D^{-1}).\]
-\item By the splitting principle, the line bundles $\ThomSheaf{V \otimes \L}$ can be computed in this manner even when $V$ is not a virtual sum of line bundles.  Indeed, there is a map $f: F \to X$ with the properties that $f_E$ is finite and faithfully flat, and $f^* V$ is a virtual sum of line bundles.  The line bundle $\ThomSheaf{f^* V \otimes \L}$ can then be computed as $\sheaf O(D^{-1})$ as above, and the divisor $D$ descends to $X_E \times \G$, even if none of its points do.
 \item Let $A$ be a finite abelian group.  An element $a \in A$ can be regarded as a character of $A^*$, and we let $V_a$ denote the associated line bundle over $BA^*$.  This gives a group homomorphism $\chi\co A \to \G(BA^*_E)$.  The line bundle $\ThomSheaf{V_a \otimes V \otimes \L}$ over $BA^*_E \times X_E \times \G$ is \[\ThomSheaf{V_a \otimes V \otimes \L} \cong T_a^* \sheaf I(D^{-1}),\] and taking $V$ to be the trivial line bundle over a point gives \[\ThomSheaf{V_a \otimes \L} \cong T_a^* \sheaf I(0) = \sheaf I(a^{-1}).\]
 \item Now let $V_{reg} = \bigoplus_{a \in A} V_a$ be the regular representation of $A^*$.  Over the scheme $(BA^*)_E \times \G$, the line bundle associated to the Thom complex of $V_{reg} \otimes V \otimes \L$ is \[\ThomSheaf{V_{reg} \otimes V \otimes \L} \cong \bigotimes_{a \in A} T_a^* \sheaf I(D^{-1}) \cong \sheaf I \left( \sum_{a \in A} T_a^* D^{-1} \right).\]  In particular, \[\ThomSheaf{V_{reg} \otimes \L} \cong \bigotimes_{a \in A} T_a \sheaf I(0) \cong \sheaf I(\chi).\]
 \item Suppose that the map \[\widetilde \chi\co (BA^*)_E \to \InternalHom{FormalGroups}(A, \G)\] is an isomorphism.  Given a level structure and cokernel pair \[A_T \xrightarrow{\ell} i^* \G \xrightarrow{q} \G',\] changing base along $T \times \G \xrightarrow{\chi_\ell} \InternalHom{FormalGroups}(A, \G) \times \G$ gives \[\chi_\ell^* \ThomSheaf{V_{reg} \otimes \L} \cong q^* N_q \sheaf I_{\G}(0) \cong q^* \sheaf I_{\G'}(0) \cong \sheaf I_{\G}(\ell).\]
