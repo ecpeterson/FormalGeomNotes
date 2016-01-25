@@ -590,15 +590,16 @@ The chain model for ordinary homology is actually rigid enough to define power o
 \section{Quillen's theorem}
 
 \todo{Danny pointed out that this is a little confused about fixed points versus orbits and homotopy vs genuine.  Make sure this is straightened out.}
+\todo{It would be nice if all the Cartesian diagrams in this section were typeset with the little pullback corners.}
 
 Our goal today is to apply a version of \Cref{PushPullFormulaForMU} to the push-pull definition of the power operation for $MU$ given in \Cref{DefnPowerOperationForMU}.  The relevant Cartesian square in that case has the form
 \begin{center}
 \begin{tikzcd}
-W \arrow{r} \arrow{d}{g} & EG \times_G \arrow{d}{f^{\times k}_{hG}} \\
+W \arrow{r} \arrow{d}{g} & EG \times_G Y^{\times k} \arrow{d}{f^{\times k}_{hG}} \\
 BG \times X \arrow{r}{\Delta} & EG \times_G X^{\times k}.
 \end{tikzcd}
 \end{center}
-However, since the vertical map $f^{\times k}_{hG}$ is not an inclusion, we can't rely on \todo{Wait, why can't we just use \Cref{PushPullFormulaForMU}?}  So, we investigate the following slightly more general situation.
+However, since we have so little control over vertical map $f^{\times k}_{hG}$, we can't rely on the other hypotheses of \Cref{PushPullFormulaForMU} to be satisfied.  So, we investigate the following slightly more general situation.
 
 \begin{definition}
 Let $X$ be a manifold.  Two closed submanifolds $Y$ and $Z$ are said to \textit{intersect cleanly} when $W = Y \cap Z$ is a submanifold and for each $w \in W$, the tangent space of $W$ at $w$ is given by $T_w W = T_w Y \cap T_w X$.  In this case, we draw a Cartesian square
@@ -621,11 +622,11 @@ The \textit{excess bundle} of the intersection, $F$, is defined by the exact seq
 $Y$ and $Z$ intersect transversally exactly when $F = 0$.
 \end{remark}
 
-\begin{lemma}\label{CleanIntersectionFormula}\citeme{Proposition 3.3 of Quillen}\needproof{Euler classes}
+\begin{lemma}[{\cite[Propositin 3.3]{Quillen}}]\label{CleanIntersectionFormula}\needproof{Euler classes}
 Suppose that $\nu_{i'}$, $\nu_i$, and $F$ are endowed with complex structures compatible with this exact sequence. For $z \in MU^*(Z)$, \[j^* i_* z = i'_*(e(F) \cdot (j')^* z)\] in $MU^{*+a}(Y, Y \setminus W)$, where $a = \dim \nu_i$. \qed \todo{The proof of this is easy, but not very relevant to formal geometry. Let's skip it and give a reference.}
 \end{lemma}
 
-Now let $G$ be a finite group and let $i: Z \to X$ be an embedding of $G$--manifolds. Then the $G$--fixed submanifold $X^G$ and $Z$ intersect cleanly in the diagram
+Now let $G$ be a finite group and let $i\co Z \to X$ be an embedding of $G$--manifolds. Then the $G$--fixed submanifold $X^G$ and $Z$ intersect cleanly in the diagram
 \begin{center}
 \begin{tikzcd}
 Z^G \arrow{r}{r_Z} \arrow{d}{i^G} & Z \arrow{d}{i} \\
@@ -634,8 +635,8 @@ X^G \arrow{r}{r_X} & X.
 \end{center}
 Since $r_Z^*(\nu_i)$ is a $G$--bundle over a trivial $G$ space, there is a decomposition $r_Z^*(\nu_i) = \nu_{i^G} \oplus \mu_i$, where $\nu_{i^G}$ has no $G$--action and $\mu_i = F$, the excess bundle, carries all of the nontrivial $G$--action.  Applying $EG \times_G (-)$ to the diagram and picking $z \in MU^*(EG \times_G Z)$, \Cref{CleanIntersectionFormula} then gives \[r_X^* i_* z = i^G_*(e(\mu_i) \cdot r_Z^* z) \in MU^*(BG \times X^G, (BG \times X^G) \setminus (BG \times Z^G)).\]  Replacing the embedding condition with orientability, this gives the following:
 
-\begin{lemma}\label{ProperCOIntersectionFormula}\citeme{Proposition 3.8 of Quillen}
-Let $f: Z \to X$ be a proper complex-oriented $G$-map, represented by a factorization \[Z \xrightarrow i E \xrightarrow p X.\]  Let $\mu(E)$ be excess summand of $r_X^* E$ corresponding to the part of $E$ on which $G$ acts nontrivially, where, as before, $r_X$ is the inclusion of the fixpoint submanifold $X^G \subseteq X$.  Then, for $z \in MU^*(EG \times_G Z)$, we have: \[e(\mu(E)) \cdot r_X^* f_* z = f^G_*(e(\mu_i) \cdot r_Z^* z) \in MU^*(BG \times X^G). \qed\]
+\begin{lemma}[{\cite[Proposition 3.8]{Quillen}}]\label{ProperCOIntersectionFormula}
+Let $f\co Z \to X$ be a proper complex-oriented $G$-map, represented by a factorization \[Z \xrightarrow i E \xrightarrow p X.\]  Let $\mu(E)$ be excess summand of $r_X^* E$ corresponding to the part of $E$ on which $G$ acts nontrivially, where, as before, $r_X$ is the inclusion of the fixpoint submanifold $X^G \subseteq X$.  Then, for $z \in MU^*(EG \times_G Z)$, we have: \[e(\mu(E)) \cdot r_X^* f_* z = f^G_*(e(\mu_i) \cdot r_Z^* z) \in MU^*(BG \times X^G). \qed\]
 \end{lemma}
 
 We are now in a position to apply \Cref{ProperCOIntersectionFormula} to our power operation square.
@@ -679,8 +680,7 @@ w^{r+q} P(f_* 1) & = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha f_* c_\a
 \todo{Check that this last line is right. Can you pull Gysin maps past Euler classes?  What happened to $m \eps$? --- are you using the definition of Landweber--Novikov operations for $\nu_i$ instead of $\nu_f$?  Why?}
 \end{proof}
 
-
-
+With this tool in hand, we can deduce Quillen's major structural theorem about $MU_*$.
 \begin{theorem}\citeme{Quillen Theorem 5.1}
 If $X$ is the homotopy type of a finite complex, then
 \begin{align*}
@@ -689,15 +689,15 @@ MU^*(X) & = C \cdot \sum_{q \ge 0} MU^q(X), \\
 \end{align*}
 \end{theorem}
 \begin{proof}
-We can focus on \[\widetilde{MU}^{2*}(X) = C \cdot \sum_{q > 0} MU^{2q}(X) =: R^{2*},\] since $MU^{2*+1}(*) = 0$ and $\widetilde{MU}^{2*+1}(X)$ can be handled by suspending $X$ once, and then the unreduced case follows directly.  We will show this by inducting on the value of ``$*$'': suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $n \gg 0$, we have \[w^{n+q} P x = \sum_{|\alpha| \le n} w^{n - |\alpha|} a(v)^\alpha s_\alpha x.\]  Recall that $w$ is a power series in $v$ with coefficients in $C$ and leading term $(p-1)! v^{p-1}$, so that $v^{p-1} = w \cdot \theta(v)$ for some invertible series $\theta$ with coefficients in $C$.  Since $s_\alpha$ lowers degree, we have $s_\alpha x \in R$ by the inductive hypothesis, so \[v^m(w^qPx - x) = \psi_x(v)\] for $\psi_x(T) \in R_{(p)}\llbracket T \rrbracket$.
+We can focus on \[\widetilde{MU}^{2*}(X) = C \cdot \sum_{q > 0} MU^{2q}(X) =: R^{2*},\] since $MU^{2*+1}(*) = 0$ and $\widetilde{MU}^{2*+1}(X)$ can be handled by suspending $X$ once, and then the unreduced case follows directly.  We will show this by inducting on the value of ``$*$'': suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $n \gg 0$, we have \[w^{n+q} P x = \sum_{|\alpha| \le n} w^{n - |\alpha|} a(v)^\alpha s_\alpha x.\]  Recall that $w$ is a power series in $v$ with coefficients in $C$ and leading term $(p-1)! v^{p-1}$, so that $v^{p-1} = w \cdot \theta(v)$ for some invertible series $\theta$ with coefficients in $C$.  Since $s_\alpha$ lowers degree, we have $s_\alpha x \in R$ by the inductive hypothesis, so we may write \[v^m(w^qPx - x) = \psi_x(v)\] with $\psi_x(T) \in R_{(p)}\llbracket T \rrbracket$.
 
-Suppose $m \ge 1$ is the least integer for which we can write such an equation.  Applying the inclusion $i: X \to X \times B\Z/p$ to this equation sets $v = 0$ and yields $\psi(0) = 0$, hence $\psi_x(T) = T \omega_x(T)$ and \[v (v^{m-1}(w^qPx - x) - \omega_x(v)) = 0.\]  Since $v$ annihilates this equation, we can use the Gysin sequence associated to the spherical bundle \[S^1 \to B\Z/p \to \CP^\infty\] to produce a class $y \in \widetilde{MU}^{2(m-1)-2q}(X)$ with \[v^{m-1}(w^q P x - x) = \psi_1(x) + y \<p\>(v).\]  If $m > 1$, then $y \in R$ for degree reasons and hence the right-hand side gives an equation contradicting our minimality hypothesis.  So, $m = 1$, and the outer factor of $v^{m-1}$ is not present.  Restricting along $i$ again, we obtain the equation \[\left. \begin{array}{rr} -x & \text{if $q > 0$} \\ x^p - x & \text{if $q = 0$} \end{array} \right\} = \psi_1(0) + py.\]
+Suppose $m \ge 1$ is the least integer for which we can write such an equation --- we will show $m = 1$ in a moment.  Applying the inclusion $i\co X \to X \times B\Z/p$ to this equation sets $v = 0$ and yields $\psi(0) = 0$, hence $\psi_x(T) = T \omega_x(T)$ and \[v (v^{m-1}(w^qPx - x) - \omega_x(v)) = 0.\]  Since $v$ annihilates this equation, we can use the Gysin sequence associated to the spherical bundle \[S^1 \to B\Z/p \to \CP^\infty\] to produce a class $y \in \widetilde{MU}^{2(m-1)-2q}(X)$ with \[v^{m-1}(w^q P x - x) = \psi_1(x) + y \<p\>(v).\]  If $m > 1$, then $y \in R$ for degree reasons and hence the right-hand side gives an equation contradicting our minimality hypothesis.  So, $m = 1$, and the outer factor of $v^{m-1}$ is not present in the last expression.  Restricting along $i$ again, we obtain the equation \[\left. \begin{array}{rr} -x & \text{if $q > 0$} \\ x^p - x & \text{if $q = 0$} \end{array} \right\} = \psi_1(0) + py.\]
 
 In the first case, where $q > 0$, it follows that $MU^{-2q}(X) \subseteq R^{-2q} + pMU^{-2q}(X)$, and since $MU^{-2q}(X)$ has finite order torsion, it follows that $MU^{-2q}(X) = R^{-2q}$.  In the other case, $x \mapsto x^p - x$ kills $\widetilde{MU}^0(X)/(R^0 + p\widetilde{MU}^0(X))$.  But the ideal $\widetilde{MU}^0(X)$ is nilpotent, so $x \mapsto x^p$ is a nilpotent endomorphism of $\widetilde{MU}^0(X) / p\widetilde{MU}^0(X)$.  So, it follows that $\widetilde{MU}^0(X) = R^0$, and induction proves the theorem.\todo{I feel I don't understand the algebra in this second case.}
 \end{proof}
 
 \begin{corollary}\label{QuillenSurjective}
-The map $Laz \to MU^*$ is surjective. \qed
+The coefficients of the formal group law span $MU_*$. \qed
 \end{corollary}
 
 This is motivation enough for us to investigate the moduli of formal groups.  We will soon strengthen \Cref{QuillenSurjective} to show that this map is an isomorphism.
