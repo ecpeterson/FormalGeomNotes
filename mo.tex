@@ -14,7 +14,7 @@ Our first case study is a sequence of theorems about the unoriented bordism spec
 For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T(\xi).\]
 \end{definition}
 \begin{proof}[``Proof'' of definition]
-There's a more usual construction of the Thom space too: the associated disk bundle by gluing an $n$--disk in fiberwise, then adding in a point at infinity: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ is an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
+There's a more usual construction of the Thom space too: the associated disk bundle by gluing an $n$--disk in fiberwise, then adding in a point at infinity: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ to an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
 \end{proof}
 
 Before proceeding, here are two important examples:
@@ -35,7 +35,7 @@ Now we catalog a bunch of useful properties of the Thom space functor. Firstly, 
 \end{center}
 We can interpret $T$ as a functor off of the slice category over $BGL_1 S^{n-1}$: maps \[Y \xrightarrow{f} X \xrightarrow{\xi} B \GL_1 S^{n-1}\] induce maps $T(f^* \xi) \to T(\xi)$, and $T$ is suitably homotopy-invariant.
 
-Next, the spherical subbundle of a vector bundle gives a common source of spherical bundles.  Since rank $n$ vector bundles are also classified by an object $BO(n)$, this begets a map $J_{\R}^n: BO(n) \to B \GL_1 S^{n-1}$ for each $n$.  Stable homotopy theorists are very interested in the block--inclusion maps $i^n: BO(n) \to BO(n+1)$ and the colimit $BO = BO(\infty)$.  The suspension functor induces a map $\GL_1 S^{n-1} \to \GL_1 S^n$, and we are led to ask about the compatibility of these operations.  As a route to answering this, the block--inclusion maps are a special case of a more general direct sum map $\oplus: BO(n) \times BO(m) \to BO(n+m)$, given by the precomposition \[BO(n) = BO(n) \times * \xrightarrow{\operatorname{id} \times \text{triv}} BO(n) \times BO(1) \xrightarrow\oplus BO(n+1).\] The spaces $B \GL_1 S^{n-1}$ enjoy a similar ``collective monoid'' structure, given by taking the fiberwise join two spherical bundles with a common base.
+Next, the spherical subbundle of a vector bundle gives a common source of spherical bundles.  Since rank $n$ vector bundles are also classified by an object $BO(n)$, this begets a map $J_{\R}^n\co BO(n) \to B \GL_1 S^{n-1}$ for each $n$.  Stable homotopy theorists are very interested in the block--inclusion maps $i^n\co BO(n) \to BO(n+1)$ and the colimit $BO = BO(\infty)$.  The suspension functor induces a map $\GL_1 S^{n-1} \to \GL_1 S^n$, and we are led to ask about the compatibility of these operations.  As a route to answering this, the block--inclusion maps are a special case of a more general direct sum map $\oplus\co BO(n) \times BO(m) \to BO(n+m)$, given by the precomposition \[BO(n) = BO(n) \times * \xrightarrow{\operatorname{id} \times \text{triv}} BO(n) \times BO(1) \xrightarrow\oplus BO(n+1).\] The spaces $B \GL_1 S^{n-1}$ enjoy a similar ``collective monoid'' structure, given by taking the fiberwise join two spherical bundles with a common base.
 \begin{lemma}
 The fiberwise join is represented by maps \[B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \to B\GL_1 S^{n+m-1},\] and these maps commute with the block sum maps on the $BO(n)$ family: \todo{Split the left vertical arrow into two?}
 \begin{center}
@@ -48,14 +48,14 @@ B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \arrow{r} & B\GL_1 S^{n+m-1}.
 \end{lemma}
 \noindent Again taking a cue from $K$--theory, we take the colimit as $n$ grows large.
 \begin{corollary}
-There is a map of $H$--spaces $J_{\R}: BO \to B\GL_1 \S$ called the \textit{stable $J$--homomorphism}. \qed
+There is a map of $H$--spaces $J_{\R}\co BO \to B\GL_1 \S$ called the \textit{stable $J$--homomorphism}. \qed
 \end{corollary}
 \noindent Finally, we can ask about the compatibility of $T$ with all of this:
 \begin{lemma}\label{ThomSpacesAreMonoidal}
 $T$ is monoidal: it carries external fiberwise joins to smash products of Thom spaces. \qed
 \end{lemma}
 
-We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}^n: BO(n) \to B\GL_1 S^{n-1}$ give Thom spaces $T(J_{\R}^n)$,\todo{Be careful about dimension here: you really mean a reduced tautological bundle, related to how $BO$ has only one connected component.} equipped with maps\todo{Fix this equation.} \[\Susp T(J_{\R}^n) = T(J_{\R}^n \oplus \text{triv}) \to T(J_{\R}^{n+1}).\] Setting $MO(n) = \Susp^{-n} \Susp^\infty T(J_{\R}^n)$, we again assemble this data into a single object: \[MO := \colim_n MO(n) = \colim_n \Susp^{-n} T(J_{\R}^n).\]
+We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}^n\co BO(n) \to B\GL_1 S^{n-1}$ give Thom spaces $T(J_{\R}^n)$,\todo{Be careful about dimension here: you really mean a reduced tautological bundle, related to how $BO$ has only one connected component.} equipped with maps\todo{Fix this equation.} \[\Susp T(J_{\R}^n) = T(J_{\R}^n \oplus \text{triv}) \to T(J_{\R}^{n+1}).\] Setting $MO(n) = \Susp^{-n} \Susp^\infty T(J_{\R}^n)$, we again assemble this data into a single object: \[MO := \colim_n MO(n) = \colim_n \Susp^{-n} T(J_{\R}^n).\]
 
 The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces.  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
 \begin{center}
@@ -82,10 +82,10 @@ MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. & \text{(definition of $MO$)} & \ph
 \noindent From here, the general version of Thom's theorem follows quickly:
 
 \begin{theorem}[Thom isomorphism]
-Let $\xi: X \to BO$ classify a vector bundle and let $\phi: MO \to E$ be a map of ring spectra. Then there is an equivalence of $E$--modules \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
+Let $\xi\co X \to BO$ classify a vector bundle and let $\phi: MO \to E$ be a map of ring spectra. Then there is an equivalence of $E$--modules \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
 \end{theorem}
 \begin{proof}[Modifications to above proof]
-To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma: BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  This gives an equivalence $MO \sm T(\xi) \simeq MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram
+To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma\co BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  This gives an equivalence $MO \sm T(\xi) \simeq MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram
 \begin{center}
 \begin{tikzcd}
 E \sm T(\xi) \arrow[densely dotted]{r}{\simeq} \arrow{d}{\eta_{MO} \sm \id \sm \id} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm \id \sm \id} \\
