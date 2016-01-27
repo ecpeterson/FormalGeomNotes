@@ -26,7 +26,7 @@ If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T(\xi) = S^n \sm (X_+)$
 Let $\xi$ be the tautological $S^0$--bundle over $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, the cofiber degenerates and it follows that $T(\xi) = \RP^\infty$. More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
 \end{example}
 
-Now we catalog a bunch of useful properties of the Thom space functor. Firstly, recall that a spherical bundle over $X$ is the same data as a map $X \to B \GL_1 S^{n-1}$, where $\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback
+Now we catalog a bunch of useful properties of the Thom space functor. Firstly, recall that a spherical bundle over $X$ is the same data as a map $X \to B \GL_1 S^{n-1}$, where $\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback\todo{In lecture, you decided to call these $B h\operatorname{Aut}(S^{n-1})$, which is maybe a healthier choice?}
 \begin{center}
 \begin{tikzcd}
 \GL_1 S^{n-1} \arrow{r} \arrow{d} & F(S^{n-1}, S^{n-1}) \arrow{d} \\
@@ -50,7 +50,7 @@ B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \arrow{r} & B\GL_1 S^{n+m-1}.
 \begin{corollary}
 There is a map of $H$--spaces $J_{\R}\co BO \to B\GL_1 \S$ called the \textit{stable $J$--homomorphism}. \qed
 \end{corollary}
-\noindent Finally, we can ask about the compatibility of $T$ with all of this:
+\noindent Finally, we can ask about the compatibility of $T$ with all of this:\todo{The right place to address dimension is here.  $T$, as defined above, does not extend to a functor off of the system $\{BhAut(S^{n-1})\}$ unless you reduce each Thom complex by the appropriate dimension shift.}
 \begin{lemma}\label{ThomSpacesAreMonoidal}
 $T$ is monoidal: it carries external fiberwise joins to smash products of Thom spaces. \qed
 \end{lemma}
@@ -114,7 +114,7 @@ This powers an induction that shows that $H\F_2{}_* \RP^\infty$ has a single cla
 \section{Cohomology rings and affine schemes}
 
 \todo[inline]{Make sure you use $\F_2$ everywhere, rather than $\Z/2$.}
-An abbreviated summary of this semester is that we're going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents, $\Spec R$.  For any ``test $\F_2$--algebra'' $T$, we set \[(\Spec R)(T) := \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R) := \CatOf{Algebras}_{\F_2/}(R, T).\]  More generally, we have the following definition:
+An abbreviated summary of this semester is that we're going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents, $\Spec R$.  For any ``test $\F_2$--algebra'' $T$, we set \[(\Spec R)(T) := \CatOf{Algebras}_{\F_2/}(R, T) \cong \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R).\]  More generally, we have the following definition:
 \begin{definition}
 An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to \CatOf{Sets}$ which is (noncanonically) isomorphic to $\Spec R$ for some $\F_2$--algebra $R$.  Given such an isomorphism, we will refer to $\Spec R \to X$ as a \textit{parameter} for $X$ and its inverse $X \to \Spec R$ as a \textit{coordinate} for $X$.
 \end{definition}
@@ -123,16 +123,16 @@ An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to 
 There is an equivalence of categories \[\Spec: \CatOf{Algebras}_{\F_2/}^{\mathrm{op}} \to \CatOf{AffineSchemes}_{/\F_2}. \qed\]
 \end{lemma}
 
-The centerpiece of thinking about rings in this way is to translate between a presentation of $R$ as a quotient of a free algebra and a presentation of $(\Spec R)(T)$ as selecting tuples of elements in $T$ subject to certain conditions.  Consider the following example:
+The centerpiece of thinking about rings in this way, for us and for now, is to translate between a presentation of $R$ as a quotient of a free algebra and a presentation of $(\Spec R)(T)$ as selecting tuples of elements in $T$ subject to certain conditions.  Consider the following example:
 \begin{example}\label{FiniteOrderAffineSpaceDefn}
 Set $R_1 = \F_2[x]$.  Then \[(\Spec R_1)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x], T)\] is determined by where $x$ is sent --- i.e., this Hom--set is naturally isomorphic to $T$ itself.  Consider also what happens when we impose a relation by passing to $R_2 = \F_2[x] / (x^{n+1})$.  The value \[(\Spec R_2)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x] / (x^{n+1}), T)\] of the associated affine scheme is again determined by where $x$ is sent, but now $x$ can only be sent to elements which are nilpotent of order $n+1$.  These schemes are both important enough that we give them special names:
 \begin{align*}
 \mathbb A^1 & := \Spec \F_2[x], & \mathbb A^{1, (n)} & := \Spec \F_2[x] / (x^{n+1}).
 \end{align*}
-The symbol ``$\mathbb A^1$'' is pronounced ``the affine line''.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $n${\th} order neighborhood of the origin in the affine line''.
+The symbol ``$\mathbb A^1$'' is pronounced ``the affine line'' --- reasonable, since the value $\mathbb A^1(T)$ is, indeed, a single $T$'s worth of points.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $n${\th} order (nilpotent) neighborhood of the origin in the affine line''.
 \end{example}
 
-We can also express in this language another common object in algebraic topology: the Hopf algebra, which arises when taking the mod--$2$ cohomology of an $H$--space.  In addition to the usual cohomology, the extra pieces of data are those induced by the $H$--space multiplication, unit, and inversion maps, which on cohomology beget a diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
+We can also express in this language another common object arising from algebraic topology: the Hopf algebra, which appears when taking the mod--$2$ cohomology of an $H$--group.  In addition to the usual cohomology, the extra pieces of data are those induced by the $H$--group multiplication, unit, and inversion maps, which on cohomology beget a diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
 \begin{lemma}
 For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \textit{group schemes}.  Conversely, a choice of group structure on $\Spec R$ endows $R$ with the structure of a Hopf algebra. \todo{Maybe write this out, if you're going to be using this equivalence all semester.} \qed
 \end{lemma}
@@ -161,8 +161,17 @@ We define the \textit{multiplicative group scheme} by\todo{Do you want this to b
 \end{example}
 
 \begin{remark}
-As presented above, the multiplicative group comes with a natural inclusion $\mathbb G_m \to \mathbb A^2$.  However, the element $x$ also gives an $\mathbb A^1$--valued function $x: \mathbb G_m \to \mathbb A^1$, and because multiplicative inverses in a ring are unique, we see that this map is also an inclusion.  These two inclusions have rather different properties, and we'll think harder about their essential differences later on.
+As presented above, the multiplicative group comes with a natural inclusion $\mathbb G_m \to \mathbb A^2$.  Specifically, the subset $\mathbb G_m \subseteq \mathbb A^2$ consists of pairs $(x, y)$ in the graph of the hyperbola $y = 1/x$.  However, the element $x$ also gives an $\mathbb A^1$--valued function $x\co \mathbb G_m \to \mathbb A^1$, and because multiplicative inverses in a ring are unique, we see that this map too is an inclusion.  These two inclusions have rather different properties relative to their ambient spaces, and we'll think harder about these essential differences later on.
 \end{remark}
+
+Additionally, the colimit of the sets $\colim_{n \to \infty} \mathbb A^{1,(n)}(T)$ is of use in algebra: it is the collection of nilpotent elements in $T$.  These kinds of conditions which are ``unbounded in $n$'' appear frequently enough that we are moved to give these functors a name too:
+\begin{definition}
+An \textit{affine formal scheme} is an ind-system of finite affine schemes.
+\end{definition}
+
+\begin{example}\label{FormalGaExample}
+The individual schemes $\mathbb A^{1, (n)}$ do not support group structures.  After all, the sum of two elements which are nilpotent of order $n$ can only be guaranteed to be nilpotent of order $2n$.  It follows that the entire ind-system $\{\mathbb A^{1, (n)}\} =: \A^1$ supports a group structure, even though none of its constituent pieces do.  We call such an object a \textit{formal group scheme}, and this particular formal group scheme we denote by $\G_a$.
+\end{example}
 
 Let's now consider the example that we closed with last time, where we calculated $H\F_2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  This is such a useful thing to do that we will give it a notation all of its own:
 
@@ -188,7 +197,7 @@ In either case, this induces a Hopf algebra diagonal \[H\F_2^* \RP^\infty \otime
 H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\begin{array}{c} \epsilon \otimes \id \\ \id \otimes \epsilon \end{array}} \arrow[leftarrow, bend right]{rr}{\id} & H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\Delta} & H\F_2^* \RP^\infty.
 \end{tikzcd}
 \end{center}
-and hence it takes the form \[\Delta(x) = x_1 + x_2.\]  Noticing that this is exactly the diagonal map in \Cref{InformalAdditiveGroupExample}, we tentatively identify ``$\RP^\infty_{H\F_2}$'' with the additive group.  This is extremely suggestive but does not take into account the fact that $\RP^\infty$ is an infinite complex, so we haven't allowed ourselves to write ``$\RP^\infty_{H\F_2}$'' just yet.  We will straighten this out tomorrow.
+and hence it takes the form \[\Delta(x) = x_1 + x_2.\]  Noticing that this is exactly the diagonal map in \Cref{InformalAdditiveGroupExample}, we tentatively identify ``$\RP^\infty_{H\F_2}$'' with the additive group.  This is extremely suggestive but does not take into account the fact that $\RP^\infty$ is an infinite complex, so we haven't allowed ourselves to write ``$\RP^\infty_{H\F_2}$'' just yet.  In light of the above discussion, we have left a very particular point open: it's not clear if we should use the name ``$\mathbb G_a$'' or ``$\G_a$''.  We will straighten this out tomorrow.
 \end{example}
 
 
@@ -202,7 +211,7 @@ and hence it takes the form \[\Delta(x) = x_1 + x_2.\]  Noticing that this is ex
 \label{TheSteenrodAlgebraSection}
 
 
-We left off yesterday complaining that our definition was only made for finite complexes, and that this was getting in the way of a nice theorem.  However, had we naively defined $X_{H\F_2}$ for infinite complexes $X$, we would have quickly seen that we would have gotten ``the wrong answer'' for several $X$.  Without going into detail yet about the bad examples we're trying to avoid, it will turn out that we can fix them by rigidifying the target category somewhat.  Here are the extra structures we will work toward incorporating, some quickly and some slowly:
+We left off yesterday complaining that our definition was only made for finite complexes, and that this was getting in the way of a nice theorem.  \todo{This introduction should be reworked now that formal schemes are defined in the previous section.}  However, had we naively defined $X_{H\F_2}$ for infinite complexes $X$, we would have quickly seen that we would have gotten ``the wrong answer'' for several $X$.  Without going into detail yet about the bad examples we're trying to avoid, it will turn out that we can fix them by rigidifying the target category somewhat.  Here are the extra structures we will work toward incorporating, some quickly and some slowly:
 \begin{enumerate}
 \item Cohomology rings are \emph{graded}, and maps of spaces respect this grading.
 \item Cohomology rings receive an action of the Steenrod algebra, and maps of spaces respect this action.
@@ -254,16 +263,13 @@ To study the rest of $\mathcal AP_0$ in terms of algebraic geometry, we need onl
 The series $\lambda^*(x) = \sum_{j=0}^\infty x^{2^j} \otimes \xi_j$ is the universal example of a series satisfying $\lambda^*(x_1 + x_2) = \lambda^*(x_1) + \lambda^*(x_2)$.  The value $(\Spec \mathcal AP_0)(T)$ is the set of power series $f$ with coefficients in the $\F_2$--algebra $T$ satisfying \[f(x_1 + x_2) = f(x_1) + f(x_2). \qed\]
 \end{lemma}
 
-We close our discussion by codifying what Milnor did when he stabilized against $n$.  Each $\RP^n_{H\F_2}$ is a finite affine scheme, and to make sense of the object $\RP^\infty_{H\F_2}$ Milnor's technique was to consider the ind-system $\{\RP^n_{H\F_2}\}_{n=0}^\infty$ of finite affine schemes.  We give a name to these sorts of objects, and we will follow this technique ourselves to handle general infinite complexes:\todo{Maybe move formal schemes into the previous lecture and talk about completions too?}
-\begin{definition}
-An \textit{affine formal scheme} is an ind-system of finite affine schemes.
-\end{definition}
+We close our discussion by codifying what Milnor did when he stabilized against $n$.  Each $\RP^n_{H\F_2}$ is a finite affine scheme, and to make sense of the object $\RP^\infty_{H\F_2}$ Milnor's technique was to consider the ind-system $\{\RP^n_{H\F_2}\}_{n=0}^\infty$ of finite affine schemes.  We will record this as our technique to handle general infinite complexes:
 \begin{definition}
 When $X$ is an infinite complex, filter it by its subskeleta $X^{(n)}$ and define $X_{H\F_2}$ to be the ind-system $\{X^{(n)}_{H\F_2}\}_{n=0}^\infty$ of finite schemes.
 \end{definition}
 
-This choice clarifies the example from last time:
-\begin{example}[{cf.\ \Cref{RPExampleFaulty}}]\label{RPinftyExampleForReal}
+This choice clarifies the topological example from last time:
+\begin{example}[{cf.\ \Cref{FormalGaExample,RPExampleFaulty}}]\label{RPinftyExampleForReal}
 Write $\G_a$ for the ind-system $\mathbb A^{1, (n)}$ with the group scheme structure given in \Cref{RPExampleFaulty}.  That this group scheme structure filters in this way is a simultaneous reflection of two facts:
 \begin{enumerate}
 \item Algebraic: The set $\G_a(T)$ consists of all nilpotent elements in $T$.  The sum of two nilpotent elements of orders $n$ and $m$ is guaranteed to itself be nilpotent with order at most $n+m$.
