@@ -308,7 +308,7 @@ This finally concludes the proof of \Cref{LazardsTheorem}.  We now deduce an imp
 The map $\delta\co L_\infty \to MU_*$ is an isomorphism.
 \end{corollary}
 \begin{proof}
-Consider the diagram
+Consider the diagram\todo{You haven't justified why the arcing arrow is named $u$.  This comes out of understanding the flip action, and it should also yield a proof of the Corollary below.}
 \begin{center}
 \begin{tikzcd}
 U \arrow{r}{v} & L_\infty \arrow{r}{\delta} \arrow[bend left]{rrr}{u} & MU_* \arrow{r}{1 \sm \eta_{H\Z}} & MU_* H\Z \arrow[-,double]{r} & U.
@@ -319,21 +319,14 @@ In \Cref{QuillenSurjective}, we previously showed that $\delta$ was surjective. 
 
 ------
 
-
-\begin{remark}
-alsdkfj
-
-\todo[inline]{Maybe we can say something about $H\Z \sm MU$ here, since that's the ring used in the proof of Lazard's theorem.  Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I think we should phrase things in those terms.  Also also, Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
-\end{remark}
-
-\needproof{$MU_* MU$ is universal for FGL isomorphisms}
-
 \begin{corollary}\todo{Explain what $\moduli{ps}$ is.}
 The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd}.\]  
 \end{corollary}
 \begin{proof}
 \todo{Prove me.}
 \end{proof}
+
+\todo[inline]{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I think we should phrase things in those terms.  Also also, Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
 
 
 
@@ -377,7 +370,15 @@ With this in mind, we look for a more standard form for formal group laws.  In l
 Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that $+_\phi$ has a \textit{$p$--typical logarithm} in the case that its logarithm has the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
 \end{definition}
 
-Of course, not every formal group law supports a logarithm --- after all, this is the point of ``height''.  We therefore should an intermediate definition that applies to all formal group laws and which specializes to the one above in the presence of a logarithm.  To do this, we consider what computations are made easier with this sort of formula for a logarithm, and we arrive at the following:
+\begin{lemma}\label{EveryLogHaspTypification}\citeme{This is due to Hazewinkel}
+Every formal group law $+_\phi$ with a logarithm $\log_\phi$ is naturally isomorphic to one whose logarithm is $p$--typical, called the $p$--typification of $+_\phi$.
+\end{lemma}
+\begin{proof}
+\todo[inline]{The slickest proof is to extend the base ring by a bunch of unramified roots of unity, use those to write down an isomorphism that obviously gets rid of the non-power-of-$p$ terms in the logarithm, then note that the formula for the isomorphism is Galois invariant and so descends to the original ring.}
+\todo{Build Quillen's idempotent. Maybe lift it to $L_p MU$?}
+\end{proof}
+
+Of course, not every formal group law supports a logarithm --- after all, this is the point of ``height''.  There are two ways around this: one is to pick a surjection $S \to R$ from a torsion-free ring $S$, \emph{choose} a lift of the formal group law to $S$, then pass to $S \otimes \Q$ and study how much of the resulting logarithm descends to $R$.  However, it is not clear that this procedure is independent of choice.  We therefore pursue an alternative approach: an intermediate definition that applies to all formal group laws and which specializes to the one above in the presence of a logarithm.  To do this, we consider what computations are made easier with this sort of formula for a logarithm, and we arrive at the following:
 
 \begin{definition}
 The \textit{$p$--series} of a formal group law $+_\phi$ is given by the formula \[[p]_\phi(x) := \overset{\text{$p$ times}}{\overbrace{x +_\phi \cdots +_\phi x}}.\]
@@ -417,12 +418,11 @@ implicitly taking $m_0 = 1$ and $v_0 = p$.
 A formal group law is itself said to be \textit{$p$--typical} when its $p$--series has the above form.  (In particular, the logarithm of a $p$--typical formal group law is a $p$--typical logarithm.)
 \end{definition}
 
-\begin{lemma}\label{EveryFGLIsPTypical}\citeme{This is due to Hazewinkel}
-Every formal group law is naturally isomorphic to one a $p$--typical formal group law, called its $p$--typification.
-\end{lemma}
+\begin{corollary}[{\Cref{EveryLogHaspTypification}}]\label{EveryFGLIsPTypical}
+Every formal group law is naturally isomorphic to a $p$--typical one.
+\end{corollary}
 \begin{proof}
-\todo[inline]{The slickest proof is to extend the base ring by a bunch of unramified roots of unity, use those to write down an isomorphism that obviously gets rid of the non-power-of-$p$ terms in the logarithm, then note that the formula for the isomorphism is Galois invariant and so descends to the original ring.}
-\todo{Build Quillen's idempotent. Maybe lift it to $L_p MU$?}
+The procedure applied to the formal group law $+_\phi$ in the proof of \Cref{EveryLogHaspTypification} applies equally well to an arbitrary formal group law, even without a logarithm --- it just wasn't clear what was being gained.  Now, it is clear: we are gaining the conclusion of this Corollary.
 \end{proof}
 
 \begin{remark}
