@@ -173,6 +173,23 @@ We define the \textit{multiplicative group scheme} by\todo{Do you want this to b
 As presented above, the multiplicative group comes with a natural inclusion $\mathbb G_m \to \mathbb A^2$.  Specifically, the subset $\mathbb G_m \subseteq \mathbb A^2$ consists of pairs $(x, y)$ in the graph of the hyperbola $y = 1/x$.  However, the element $x$ also gives an $\mathbb A^1$--valued function $x\co \mathbb G_m \to \mathbb A^1$, and because multiplicative inverses in a ring are unique, we see that this map too is an inclusion.  These two inclusions have rather different properties relative to their ambient spaces, and we'll think harder about these essential differences later on.
 \end{remark}
 
+\begin{example}
+The following example shows that it is a bad idea to think of affine group schemes as a schemeified version of linear lie groups.  Define the group scheme $\alpha_2$ to be $\mathrm{Spec}(\mathbb{F}_2[x]/(x^2))$ with group scheme structure given by
+\begin{align*}
+\alpha_2 \times \alpha_2 &\xrightarrow{\mu} \alpha_2 & x_1 + x_2 \mapsfrom x, \\
+\alpha_2 & \xrightarrow{\chi} \alpha_2 & -x & \mapsfrom x, \\
+\Spec \F_2 & \xrightarrow{\eta} \alpha_2 & 0 & \mapsfrom x.
+\end{align*}
+
+This group scheme has several interesting properties:
+\begin{enumerate}
+\item $\alpha_2$ has the same underlying structure ring as $\mu_2 = \mathbb{G}_m[2]$ but is not isomorphic to it.  The easiest way to see this is that $\mathrm{Hom}(\mu_2, \mu_2) = \mathbb{Z}/2\mathbb{Z}$ but $\mathrm{Hom}(\alpha_2, \mu_2) = \alpha_2$ (these homs are in the category of affine group schemes and give out an affine group scheme).
+\item There is no commutative group scheme $G$ of rank four such that $\alpha_2 = G[2]$.
+\item If $E/\mathbb{F}_2$ is the supersingular elliptic curve, then there is a short exact sequence $0 \rightarrow \alpha_2 \rightarrow E[2] \rightarrow \alpha_2 \rightarrow 0$.  However, this short exact sequence doesn't split (even after making a base change).
+\item The subgroups of $\alpha_2 \times \alpha_2$ of order two are parameterized by $\mathbb{P}^1$.  That is to say. if $R$ is an $\mathbb{F}_2$-algebra, then the subgroup schemes of $(\alpha_2 \times \alpha_2)_R$ of order two defined over $R$ are parameterized by $\mathbb{P}^1(R)$.
+\end{enumerate}
+\end{example}
+
 Additionally, the colimit of the sets $\colim_{n \to \infty} \mathbb A^{1,(n)}(T)$ is of use in algebra: it is the collection of nilpotent elements in $T$.  These kinds of conditions which are ``unbounded in $n$'' appear frequently enough that we are moved to give these functors a name too:
 \begin{definition}
 An \textit{affine formal scheme} is an ind-system of finite affine schemes.  \todo{Several people had questions about the utility of this. Does it just add certain colimits to the category of \emph{finite} affine schemes?}  The morphisms between such schemes are computed by \[\CatOf{FormalSchemes}(\{X_\alpha\}, \{Y_\beta\}) = \lim_\beta \colim_\alpha \CatOf{Schemes}(X_\alpha, Y_\beta).\]
