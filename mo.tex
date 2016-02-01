@@ -401,26 +401,45 @@ In our case, $M$ itself is always $k$--injective, so there's already an injectiv
 
 Satisfied that ``$\Ext$'' at least makes sense, we're free to chase more conceptual pursuits.  Recall from algebraic geometry that a module $M$ over a ring $R$ gives rise to quasi-coherent sheaf $\widetilde{M}$ over $\Spec R$.  We give a definition that fits with our functorial perspective:\todo{Can this definition be motivated?  Is there an easily graspable sense in which it looks like a bundle?}
 \begin{definition}
-A presheaf (of modules) over a scheme $X$ is an assignment of maps $\sheaf F\co X(T) \to \CatOf{Modules}_T$, functorially in $T$. \todo{Straighten this out.}  Such a presheaf is said to be \textit{quasicoherent} when a map $\Spec S \to \Spec T \to X$ induces a natural isomorphism $\sheaf F(T) \otimes_T S \cong \sheaf F(S)$.
+A presheaf (of modules) over a scheme $X$ is an assignment of maps $\sheaf F\co X(T) \to \CatOf{Modules}_T$, functorially in $T$. \todo{Straighten this out.}  Such a presheaf is said to be \textit{quasicoherent} when a map $\Spec S \to \Spec T \to X$ induces a natural isomorphism $\sheaf F(T) \otimes_T S \cong \sheaf F(S)$.  
 \end{definition}
 
 \begin{lemma}\citeme{Surely this is in Neil's FSFG somewhere}
 An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec R$ by the rule $(\Spec T \to \Spec R) \mapsto M \otimes_R T$.  Conversely, every quasicoherent sheaf over an affine scheme arises in this way.  \qed
 \end{lemma}
 
-\todo[inline]{This is wrong.  Sort it out.}
-The usual formula for the sheaf cohomology of a sheaf $\sheaf F$ over an $S$--scheme $X$ with structure map $\pi\co X \to S$ is given by $\Ext(\sheaf O_S, \pi_* \sheaf F)$ which is, indeed, reminiscent of the formula we were considering above.  Experience in algebraic geometry shows that it is conceptually profitable to consider the \emph{six--functors yoga} and, in particular, base-change formulas.  This yields formulas like \[\Ext_X(\pi^* \sheaf O_S, \sheaf F) \cong \Ext_S(\sheaf O_S, R\pi_* \sheaf F).\]  This last formula seems particularly nice: in the case that $S$ is a field, the groups $\Ext_S$ degenerate and we see that computing cohomology is equivalent to understanding ``derived base-change''.  In the classical case, the push and pull functors associated to a map $f\co \Spec S \to \Spec R$ belong to the following diagram:
+\begin{definition}
+ map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of module sheaf categories, which on the level of quasi-coherent sheaves is given by
 \begin{center}
 \begin{tikzcd}
-\CatOf{QCoh}_{\Spec R} \arrow[shift left=0.2em]{r}{f^!} \arrow[-,double]{d} & \CatOf{QCoh}_{\Spec S} \arrow[shift left=0.2em]{l}{f_*} \arrow[-,double]{d} \\
-\CatOf{Modules}_R \arrow[shift left=0.2em]{r}{M \mapsto M \otimes_R S} & \CatOf{Modules}_S \arrow[shift left=0.2em]{l}{M \mapsfrom M}.
+\CatOf{QCoh}_{\Spec R} \arrow[shift left=0.2em]{r}{f^*} \arrow[-,double]{d} & \CatOf{QCoh}_{\Spec S} \arrow[shift left=0.2em]{l}{f_*} \arrow[-,double]{d} \\
+\CatOf{Modules}_R \arrow[shift left=0.2em]{r}{M \mapsto M \otimes_R S} & \CatOf{Modules}_S \arrow[shift left=0.2em]{l}{N \mapsfrom N}.
 \end{tikzcd}
 \end{center}
+\end{definition}
+
+The usual formula for the sheaf cohomology of a sheaf $\sheaf F$ over an $S$--scheme $X$ with structure map $\pi\co X \to S$ is given by $\Ext(\sheaf O_S, \pi_* \sheaf F)$ which is, indeed, vaguely reminiscent of the formula we were considering above as input to the Adams spectral sequence.  Experience in algebraic geometry shows that it is conceptually profitable to consider the \emph{six--functors yoga} more generally and their accompanying base-change formulas.  A very basic example of such a formula is \[\Ext_X(\pi^* \sheaf O_S, \sheaf F) \cong \Ext_S(\sheaf O_S, R\pi_* \sheaf F),\] which describes the functor ``$\Ext$'' on quasicoherent sheaves of modules over $X$ in terms of the derived functor $R\pi_*$.
+
 We are thus moved to study derived base-change for comodules, thought of as sheaves equipped with an action by a group scheme.  In particular, we want to understand what it means to ``tensor'' two comodules together.  Unsurprisingly, the solution is dual to that for modules: tensor the two comodules together, then restrict to the elements where the coactions on either factor agree.
 
 \begin{definition}
 Given $A$--comodules $M$ and $N$, their cotensor product is defined by the coequalizer \[M \cotensor_A N \to M \otimes_k N \xrightarrow{\psi_M \otimes 1 - 1 \otimes \psi_N} M \otimes_k A \otimes_k N.\]
 \end{definition}
+
+\begin{lemma}
+Given a map $f \co A \to B$ of Hopf $k$--algebras, the induced adjunction $f^* \dashv f_*$ is given at the level of comodules by
+\begin{center}
+\begin{tikzcd}
+\CatOf{QCoh}_{\Spec k \mmod \Spec A} \arrow[shift left=0.2em]{r}{f^*} \arrow[-,double]{d} & \CatOf{QCoh}_{\Spec k \mmod \Spec B} \arrow[shift left=0.2em]{l}{f_*} \arrow[-,double]{d} \\
+\CatOf{Modules}_R \arrow[shift left=0.2em]{r}{M \mapsto M} & \CatOf{Modules}_S \arrow[shift left=0.2em]{l}{N \cotensor_B A \mapsfrom N}.
+\qed
+\end{tikzcd}
+\end{center}
+\end{lemma}
+
+\begin{remark}
+The formula for $f_* N$ is what one would guess from the formula for pushforward along maps of affine schemes.  The comodule $f_* N$ wants to have as its underlying module $N$, but the coaction map on $N$ needs to be reduced to lie only in $A$.  The equalizer diagram in the definition of the cotensor product enforces this.
+\end{remark}
 
 \noindent As an example application, cotensoring gives rise to a concise description of what it means to be a comodule map:
 
