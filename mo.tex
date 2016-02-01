@@ -26,6 +26,7 @@ If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T(\xi) = S^n \sm (X_+)$
 Let $\xi$ be the tautological $S^0$--bundle over $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, $EO(1)$, the cofiber degenerates and it follows that $T(\xi) = \RP^\infty$. More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
 \end{example}
 
+\todo{Two people (Mauro and someone else) asked in what generality this ``$Bh\Aut F$'' construction works.  This can be clarified in a remark.}
 Now we catalog a bunch of useful properties of the Thom space functor. Firstly, recall that a spherical bundle over $X$ is the same data as a map $X \to B \GL_1 S^{n-1}$, where $\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback\todo{In lecture, you decided to call these $B h\operatorname{Aut}(S^{n-1})$, which is maybe a healthier choice?} \todo{does this mean we are regarding $h\operatorname{Aut}(S^{n-1})$ as a group? Is $\operatorname{Aut}(S^{n-1})$ a topological group? Would it make sense to say $B \operatorname{Aut}(S^{n-1})$? To be honest I personally like $GL_1S^n$. It might cause some potential for confusion but it looks more clean. - danny}
 \begin{center}
 \begin{tikzcd}
@@ -35,6 +36,7 @@ Now we catalog a bunch of useful properties of the Thom space functor. Firstly, 
 \end{center}
 We can interpret $T$ as a functor off of the slice category over $BGL_1 S^{n-1}$: maps \[Y \xrightarrow{f} X \xrightarrow{\xi} B \GL_1 S^{n-1}\] induce maps $T(f^* \xi) \to T(\xi)$, and $T$ is suitably homotopy-invariant.
 
+\todo{You can make this section clearer by noticing that the map $J_{\R}^n$ is directly induced by a map $O(n) \to h\Aut S^{n-1}$ by the action of $O(n)$ on $\R^n$.  This makes the commutativity of the relevant diagrams clear, whereas using the Yoneda lemma does not make it clear that we can take the appropriate homotopy colimits.  --Mauro}
 Next, the spherical subbundle of a vector bundle gives a common source of spherical bundles.  Since rank $n$ vector bundles are also classified by an object $BO(n)$, this begets a map $J_{\R}^n\co BO(n) \to B \GL_1 S^{n-1}$ for each $n$.  Stable homotopy theorists are very interested in the block--inclusion maps $i^n\co BO(n) \to BO(n+1)$ and the colimit $BO = BO(\infty)$.  The suspension functor induces a map $\GL_1 S^{n-1} \to \GL_1 S^n$, and we are led to ask about the compatibility of these operations.  As a route to answering this, the block--inclusion maps are a special case of a more general direct sum map $\oplus\co BO(n) \times BO(m) \to BO(n+m)$, given by the precomposition \[BO(n) = BO(n) \times * \xrightarrow{\operatorname{id} \times \text{triv}} BO(n) \times BO(1) \xrightarrow\oplus BO(n+1).\] The spaces $B \GL_1 S^{n-1}$ enjoy a similar ``collective monoid'' structure, given by taking the fiberwise join two spherical bundles with a common base.
 \begin{lemma}
 The fiberwise join is represented by maps \[B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \to B\GL_1 S^{n+m-1},\] and these maps commute with the block sum maps on the $BO(n)$ family: \todo{Split the left vertical arrow into two?} \todo{Index it by $J_\mathbb{R}^n \times J_\mathbb{R}^m$, and the right vertical arrow by $J_\mathbb{R}^{n+m}$? -Danny}
@@ -57,6 +59,7 @@ $T$ is monoidal: it carries external fiberwise joins to smash products of Thom s
 
 We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}^n\co BO(n) \to B\GL_1 S^{n-1}$ give Thom spaces $T(J_{\R}^n)$,\todo{Be careful about dimension here: you really mean a reduced tautological bundle, related to how $BO$ has only one connected component.} equipped with maps\todo{Fix this equation.}\todo{What's wrong with it?-danny} \[\Susp T(J_{\R}^n) = T(J_{\R}^n \oplus \text{triv}) \to T(J_{\R}^{n+1}).\] Setting $MO(n) = \Susp^{-n} \Susp^\infty T(J_{\R}^n)$, we again assemble this data into a single object: \[MO := \colim_n MO(n) = \colim_n \Susp^{-n} T(J_{\R}^n).\]
 \todo{Question: You essentially defined $MO$ here by piecing together the $T(J_\mathbb{R}^n)$'s. We should mention that another way to pack all this info together is to say $MO = T(J_\mathbb{R})$ -danny}
+\todo{There should be a Theorem here saying that we recover $MO$ as defined on the first day.}
 
 The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces.  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
 \begin{center}
@@ -96,6 +99,7 @@ E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
 \end{center}
 The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence. \todo{I'm a little confused here. Once we have the equivalence $MO \wedge T(\xi) \simeq MO \wedge \Sigma_+^\infty X$, why can't be apply $(\varphi, id)$ to this equivalence to obtain $E \wedge T(\xi) \simeq E \wedge \Sigma_+^\infty X$? -danny}
 \end{proof}
+\todo{At least hint that there's a converse to this Theorem, to be explored later.}
 
 \begin{example}
 We'll close out today by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L - 1 \downarrow \RP^n) = \RP^{n+1}$.\todo{Is there a disuspension here?-danny}  By killing all the homotopy elements in positive degrees, we can also see that the map $MO \to H\F_2$ is a ring map\todo{This requires some justification, like $MO$ being connective .}, so that we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
@@ -250,7 +254,7 @@ Today we will fix all these deficiencies of $X_{H\F_2}$ except for \#\ref{SkewCo
 
 Let's begin by considering the grading on $H\F_2^* X$.  In algebraic geometry, the following standard construction is used to track gradings:
 
-\begin{definition}[{\cite[Definition 2.95]{StricklandFSFG}}]
+\begin{definition}[{\cite[Definition 2.95]{StricklandFSFG}}]\todo{Maybe ``$\Z$--filtering'' is more appropriate.}
 A \textit{$\Z$--grading} on a ring $R$ is a system of additive subgroups $R_k$ of $R$ satisfying $R = \bigoplus_k R_k$, $1 \in R_0$, and $R_j R_k \subseteq R_{j+k}$.  Additionally, a map $f\co R \to S$ of graded rings is said to \textit{respect the grading} if $f(R_k) \subseteq S_k$.
 \end{definition}
 
@@ -288,6 +292,8 @@ We are now in a position to uncover the desired map $\alpha^*$ desired earlier. 
 \begin{lemma}[{\cite[Formula 3.4, Remark 3.14]{GoerssQCohOnMfg}}]
 Projecting to the quotient Hopf algebra $\mathcal AP_0 \to \F_2[\xi_0^\pm]$ gives exactly the coaction map $\alpha^*$. \qed
 \end{lemma}
+
+\todo{The point of this lemma is to say that earlier we traded saying ``graded map'' for ``$\Gm$--equivariant map'', which did not seem like a substantial gain.  Now we see that saying ``Steenrod--equivariant map'' already includes saying ``graded map'', which is a gain in brevity.  Try to make this clearer.}
 
 To study the rest of $\mathcal AP_0$ in terms of algebraic geometry, we need only identify what the series $\lambda^*(x)$ embodies.  Note that this necessarily involves some creativity, and the only justification we can supply will be moral, borne out over time, as our narrative encompasses more and more phenomena.  With that caveat in mind, here is one such description.  Recall the map induced by the $H$--space multiplication \[H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \leftarrow H\F_2^* \RP^\infty.\]  Taking a colimit over finite complexes, we produce an coaction of $\mathcal A_*$, and since the map above comes from a map of spaces, it is equivariant for the coaction.  Since the action on the left is diagonal, we deduce the formula \[\lambda^*(x_1 + x_2) = \lambda^*(x_1) + \lambda^*(x_2).\]
 
