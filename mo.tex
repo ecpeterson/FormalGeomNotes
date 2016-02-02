@@ -572,7 +572,7 @@ At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pic
       (17,4) edge[-stealth] (16,6);
 \end{tikzpicture}
 \end{center}
-\caption{The $H\F_2$-Adams spectral sequence for the sphere, beginning at the second page.  Thin lines denote multiplication by $2$ and by $\eta$, thin arrows denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
+\caption{A small piece of the $H\F_2$-Adams spectral sequence for the sphere, beginning at the second page.  Lines denote multiplication by $2$ and by $\eta$, thin arrows denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
 \end{figure}
 \end{example}
 
@@ -588,28 +588,28 @@ At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pic
 
 \section{The unoriented bordism ring}
 
-Our goal today is to use the results of the previous lectures to make a calculation of $\pi_* MO$, the unoriented bordism ring.  The Adams spectral sequence converging to this has signature \[H^*_{\mathrm{gp}}(\InternalAut(\G_a); \widetilde{H\F_2P_0(MO)}) \Rightarrow \pi_* MO,\] and so we see that we need to understand $H\F_2P_0(MO)$, together with its comodule structure over the dual Steenrod algebra.
+Our goal today is to use the results of the previous lectures to make a calculation of $\pi_* MO$, the unoriented bordism ring.  The Adams spectral sequence converging to this has signature \[H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{H\F_2P_0(MO)}) \Rightarrow \pi_* MO,\] and so we see that we need to understand $H\F_2P_0(MO)$, together with its comodule structure over the dual Steenrod algebra.
 
 Our first step toward this is the following calculation:
 \begin{lemma}
 $H\F_2P^0 BO(n) \cong \F_2 \llbracket w_1, \ldots, w_n \rrbracket$.
 \end{lemma}
 \begin{proof}
-The orthogonal groups sit in coset fibration sequences \[O(n-1) \to O(n) \to S^{n-1},\] and delooping the groups gives a rotated spherical fibration \[S^{n-1} \to BO(n-1) \to BO(n).\]  The associated Serre spectral sequence shows that $H\F_2P^0 BO(n)$ must have one extra free generator in it to receive a differential from the exterior generator of $H\F_2P^0 S^{n-1}$.  Noting $BO(1) \simeq \RP^\infty$, our discussion from previous lectures takes care of the base case.
+The orthogonal groups sit in coset fibration sequences \[O(n-1) \to O(n) \to S^{n-1},\] and delooping the groups gives a rotated spherical fibration \[S^{n-1} \to BO(n-1) \to BO(n).\]  The associated Serre spectral sequence shows that $H\F_2P^0(BO(n))$ must have one extra free generator in it to receive a differential from the exterior generator of $H\F_2P^0(S^{n-1})$.  Noting $BO(1) \simeq \RP^\infty$, our discussion from previous lectures takes care of the base case.
 \end{proof}
 
 \begin{corollary}
 There is a triangle
 \begin{center}
 \begin{tikzcd}
-& \Sym H\F_2P_0 BO(1) \arrow{d}{\simeq} \\
-H\F_2P_0 BO(1) \arrow{r} \arrow{ru} & H\F_2P_0 BO. \qed
+& \Sym H\F_2P_0(BO(1)) \arrow{d}{\simeq} \\
+H\F_2P_0(BO(1)) \arrow{r} \arrow{ru} & H\F_2P_0(BO). \qed
 \end{tikzcd}
 \end{center}
 \end{corollary}
-\noindent We will defer the proof of this until \Cref{ComplexBordismChapter}, since it requires knowing that \[H\F_2P^0 BO(k) \to H\F_2P^0 BO(1)^{\times k}\] is injective, which we will revisit later anyhow.\oweproof{$H_* BO$ is a symmetric algebra on $H_* BO(1)$}
+\noindent We will defer the proof of this until \Cref{ComplexBordismChapter}, since it requires knowing that \[H\F_2P^0(BO(k)) \to H\F_2P^0(BO(1)^{\times k})\] is injective, which we will revisit later anyhow.\oweproof{$H_* BO$ is a symmetric algebra on $H_* BO(1)$}
 
-With this in hand, however, we can uncover the ring structure on $H\F_2P_0 MO$:
+With this in hand, however, we can uncover the ring structure on $H\F_2P_0(MO)$:
 \begin{corollary}\label{HF2MOisFree}
 There is also a triangle
 \begin{center}
@@ -624,18 +624,18 @@ In particular, $H\F_2P_0 MO \cong \F_2[b_1, b_2, \ldots]$.
 The block sum maps \[BO(n) \times BO(m) \to BO(n+m)\] Thomify to give compatible maps \[MO(n) \sm MO(m) \to MO(n+m).\]  Taking the limit in $n$ and $m$, this gives a ring structure on $MO$ compatible with that on $BO$.  The Corollary then follows from the functoriality of Thom isomorphisms.
 \end{proof}
 
-We now seek to understand the scheme $\Spec H\F_2P_0 MO$, and in particular its action of $\InternalAut(\G_a)$.  Our launching-off point for this is a topological version of the ``freeness'' result in the previous Corollary:
+We now seek to understand the scheme $\Spec H\F_2P_0(MO)$, and in particular its action of $\InternalAut(\G_a)$.  Our launching-off point for this is a topological version of the ``freeness'' result in the previous Corollary:
 \begin{lemma}\label{DetectingMORingMapsInHomotopy}
 The following square commutes:
 \begin{center}
 \begin{tikzcd}
-\CatOf{Modules}_{\F_2}(H\F_2P_0 MO, \F_2) & \CatOf{Spectra}(MO, H\F_2P) \arrow{l}{\simeq} \\
-\CatOf{Algebras}_{\F_2/}(H\F_2P_0 MO, \F_2) \arrow[hookrightarrow]{u} & \CatOf{RingSpectra}(MO, H\F_2P) \arrow{l}{\simeq} \arrow[hookrightarrow]{u}.
+\CatOf{Modules}_{\F_2}(H\F_2P_0(MO), \F_2) & \CatOf{Spectra}(MO, H\F_2P) \arrow{l}{\simeq} \\
+\CatOf{Algebras}_{\F_2/}(H\F_2P_0(MO), \F_2) \arrow[hookrightarrow]{u} & \CatOf{RingSpectra}(MO, H\F_2P) \arrow{l}{\simeq} \arrow[hookrightarrow]{u}.
 \end{tikzcd}
 \end{center}
 \end{lemma}
 \begin{proof}
-The top isomorphism is asserting only that $\F_2$--cohomology and $\F_2$--homology are linearly dual to one another.  The second follows immediately from investigating the effect of the ring homomorphism diagrams in the bottom-right corner in terms of the subset they select in the top-left.
+The top isomorphism asserts only that $\F_2$--cohomology and $\F_2$--homology are linearly dual to one another.  The second follows immediately from investigating the effect of the ring homomorphism diagrams in the bottom-right corner in terms of the subset they select in the top-left.
 \end{proof}
 
 \begin{corollary}
@@ -648,19 +648,19 @@ There is a correspondence between homotopy classes of ring maps $MO \to H\F_2P$ 
 \end{center}
 \end{corollary}
 \begin{proof}
-Given a ring map $MO \to H\F_2P$, we can restrict it along the inclusion $MO(1) \to MO$ to produce a particular cohomology class \[f \in H\F_2P^0 MO(1) = \CatOf{Modules}_{\F_2}(H\F_2P_0 MO(1), \F_2).\]  Interpreting $f$ as such a function, it is determined by its behavior on the basis of vectors in $\widetilde{H\F_2P}_0 MO(1)$ dual to the powers of the usual coordinate $x \in H\F_2^1 \RP^\infty$.  Finally, given \emph{any} module map $\widetilde{H\F_2P}_0 MO(1) \to \F_2$, we can employ \Cref{HF2MOisFree} and to produce an algebra map $H\F_2P_0 MO \to \F_2$ and hence \Cref{DetectingMORingMapsInHomotopy} gives a ring spectrum map $MO \to H\F_2P$.
+Given a ring map $MO \to H\F_2P$, we can restrict it along the inclusion $MO(1) \to MO$ to produce a particular cohomology class \[f \in H\F_2P^0(MO(1)) = \CatOf{Modules}_{\F_2}(H\F_2P_0(MO(1)), \F_2).\]  Interpreting $f$ as such a function, it is determined by its behavior on the basis of vectors in $\widetilde{H\F_2P}_0(MO(1))$ dual to the powers of the usual coordinate $x \in H\F_2^1(\RP^\infty)$.  Finally, given \emph{any} module map $\widetilde{H\F_2P}_0(MO(1)) \to \F_2$, we can employ \Cref{HF2MOisFree} and to produce an algebra map $H\F_2P_0(MO) \to \F_2$ and hence \Cref{DetectingMORingMapsInHomotopy} gives a ring spectrum map $MO \to H\F_2P$.
 \end{proof}
 
 \begin{corollary}
-There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes between $\Spec H\F_2P_0 MO$ and $\Coord_1(\RP^\infty_{H\F_2P})$, the scheme of coordinate functions on $\RP^\infty_{H\F_2P} \to \A^1$ which restrict to the canonical identification of tangent spaces $\RP^1_{H\F_2P} = \A^{1,(1)}$.
+There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes \[\Spec H\F_2P_0 MO \cong \Coord_1(\RP^\infty_{H\F_2P}),\] where the latter is the scheme of coordinate functions on $\RP^\infty_{H\F_2P} \to \A^1$ which restrict to the canonical identification of tangent spaces $\RP^1_{H\F_2P} = \A^{1,(1)}$.
 \end{corollary}
 \begin{proof}
-The method of the previous proof is to exhibit a isomorphism between these schemes.  To learn that this isomorphism is equivariant for $\InternalAut(\G_a)$, you need only know that the image of the map $BO(1) \to BO$ on mod--$2$ homology generates $H\F_2P_0 BO$ as an algebra.\todo{This is clumsily stated.}
+The method of the previous proof is to exhibit a isomorphism between these schemes.  To learn that this isomorphism is equivariant for $\InternalAut(\G_a)$, you need only know that the image of the map $BO(1) \to BO$ on mod--$2$ homology generates $H\F_2P_0(BO)$ as an algebra.\todo{This is clumsily stated.}
 \end{proof}
 
-We are now ready to analyze the group cohomology of $\InternalAut(\G_a)$ with coefficients in the comodule $H\F_2P_0 MO$.
+We are now ready to analyze the group cohomology of $\InternalAut(\G_a)$ with coefficients in the comodule $H\F_2P_0(MO)$.
 \begin{theorem}
-The action of $\InternalAut_1(\G_a)$ on $\Coord_1(\G_a)$ is free, where $\InternalAut_1(\G_a)$ is defined by the kernel sequence \[0 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 0.\]
+The action of $\InternalAut_1(\G_a)$ on $\Coord_1(\G_a)$ is \emph{free}, where $\InternalAut_1(\G_a)$ is defined by the (split) kernel sequence \[0 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 0.\]
 \end{theorem}
 \begin{proof}
 Consider a point $f \in \Coord_1(\G_a)(R)$, which in terms of the standard coordinate can be expressed as \[f(x) = \sum_{j=1}^\infty b_{j-1} x^j,\] where $b_0 = 1$.  Decompose this series as $f(x) = f_2(x) + f_r(x)$, with
