@@ -14,7 +14,7 @@ Our first case study is a sequence of theorems about the unoriented bordism spec
 For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T(\xi).\]
 \end{definition}
 \begin{proof}[``Proof'' of definition]
-There is a more classical construction of the Thom space: take the associated disk bundle by gluing an $n$--disk fiberwise, and add a point at infinity: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ to an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
+There is a more classical construction of the Thom space: take the associated disk bundle by gluing an $n$--disk fiberwise, and add a point at infinity by collapsing $\xi$: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ to an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
 \end{proof}
 
 Before proceeding, here are two important examples:
@@ -68,7 +68,7 @@ BO \times BO \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BO \times BO \a
 & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
-We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.} \todo{I'm confused about the commutativity of this factorization with the rest of the diagram.-danny}  We are now in a position to see the Thom isomorphism:
+We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}\todo{Have you already mentioned that $BO$ is not just an $H$-space, but an $H$-group?}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.} \todo{I'm confused about the commutativity of this factorization with the rest of the diagram.-danny}  We are now in a position to see the Thom isomorphism:
 \begin{lemma}[Thom isomorphism, universal example] As $MO$--modules,\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}\todo{Is it furthermore clear that the cohomological version of this gives an action of $E^* X$ on $E^* T(\xi)$ by the ``Thom diagonal''?} \[MO \sm MO \simeq MO \sm \Susp^\infty_+ BO.\]
 \end{lemma}
 \begin{proof}
@@ -97,7 +97,7 @@ MO \sm E \sm T(\xi) \arrow{r}{\simeq} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \
 E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
 \end{tikzcd}
 \end{center}
-The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence. \todo{I'm a little confused here. Once we have the equivalence $MO \wedge T(\xi) \simeq MO \wedge \Sigma_+^\infty X$, why can't be apply $(\varphi, id)$ to this equivalence to obtain $E \wedge T(\xi) \simeq E \wedge \Sigma_+^\infty X$? -danny}
+The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence. \todo{I'm a little confused here. Once we have the equivalence $MO \wedge T(\xi) \simeq MO \wedge \Sigma_+^\infty X$, why can't be apply $(\varphi, id)$ to this equivalence to obtain $E \wedge T(\xi) \simeq E \wedge \Sigma_+^\infty X$? -danny} \todo{The ``unitality'' shows that the vertical compositions are the identity, and then the middle map is a retract of an equivalence, right?}
 \end{proof}
 \todo{At least hint that there's a converse to this Theorem, to be explored later.}
 
@@ -157,10 +157,11 @@ The functor $\mathbb A^1$ introduced above is naturally valued in groups: since 
 \mathbb G_a & \xrightarrow{\chi} \mathbb G_a & -x & \mapsfrom x, \\
 \Spec \F_2 & \xrightarrow{\eta} \mathbb G_a & 0 & \mapsfrom x.
 \end{align*}
+\todo{I think you explained this differently in class, so I wanted to work out how to use the Yoneda lemma to deduce these.  The idea is that we want a map, e.g., $\mu \in \mathrm{Nat}(\mathbb A^1 \times \mathbb A^1, \mathbb A^1)$.  The functors involved are corepresented, so this is just $\mathrm{Nat}(h^{\mathbb{F}_2[x_1,x_2]},h^{\mathbb{F}_2[x]})$.  The Yoneda lemma says that this is the same as an algebra map $\mathbb{F}_2[x] \rightarrow \mathbb{F}_2[x_1,x_2]$, which is obtained by evaluating the natural transformation at $\mathbb{F}_2[x_1,x_2]$.  The identity map of $\mathbb{F}_2[x_1,x_2]$ corresponds to the pair of elements $x_1, x_2$ in $\mathbb{F}_2[x_1,x_2]$, which gets sent to $x_1 + x_2$.  So the algebra homomorphism we want sends $x$ to $x_1 + x_2$.} 
 \end{example}
 
 \begin{remark}
-In fact, $\mathbb A^1$ is naturally valued in \emph{rings}. It models the inverse functor to $\Spec$ in the equivalence of categories above, i.e., the elements of a ring $R$ always form a complete collection of $\A^1$--valued functions on some affine scheme $\Spec R$ \todo{We haven't defined $\A^1$ at this point yet -danny}.
+In fact, $\mathbb A^1$ is naturally valued in \emph{rings}. It models the inverse functor to $\Spec$ in the equivalence of categories above, i.e., the elements of a ring $R$ always form a complete collection of $\A^1$--valued functions on some affine scheme $\Spec R$ \todo{We haven't defined $\A^1$ at this point yet -danny}\todo{re:danny. Should this just be $\mathbb A^1$?}.
 \end{remark}
 
 \begin{example}
