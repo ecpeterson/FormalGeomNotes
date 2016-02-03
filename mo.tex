@@ -335,7 +335,7 @@ Finally, the formula $\RP^\infty_{H\F_2} \cong \G_a$ is meant to point out that 
 
 
 \section{Hopf algebra cohomology}\label{HopfAlgebraLecture}
-\todo{This section is written gradedly and probably shouldn't be, for consistency.}
+\todo{This section is written gradedly and probably shouldn't be, for consistency.  (In fact, this is the cause of some of the confusion about the $\Gm$--action used tomorrow to separate out the homotopy degrees...)}
 
 \todo{It's not clear to me that this introduction should be written in terms of cohomology rather than homology. It's true that yesterday we were talking about cohomology, but it's also true that the spectral sequence we're going to build takes in homology.  (More generally, contexts take in homology.  I still find this a little puzzling, that Strickland's formal schemes don't seem to live in the descent picture.)}
 Today we'll focus on an important classical tool: the Adams spectral sequence.  We're going to study this in greater earnest later on, so I will avoid giving a satisfying construction today.  But, even without a construction, it's instructive to see how such a thing comes about.  \citeme{I first saw this presentation from Matt Ando. He must have learned it from someone. I'd like to know who to attribute this to}  Begin by considering the following three self-maps of the stable sphere:
@@ -437,7 +437,7 @@ Given a map $f \co A \to B$ of Hopf $k$--algebras, the induced adjunction $f^* \
 \begin{center}
 \begin{tikzcd}
 \CatOf{QCoh}_{\Spec k \mmod \Spec A} \arrow[shift left=0.2em]{r}{f^*} \arrow[-,double]{d} & \CatOf{QCoh}_{\Spec k \mmod \Spec B} \arrow[shift left=0.2em]{l}{f_*} \arrow[-,double]{d} \\
-\CatOf{Modules}_R \arrow[shift left=0.2em]{r}{M \mapsto M} & \CatOf{Modules}_S \arrow[shift left=0.2em]{l}{N \cotensor_B A \mapsfrom N}.
+\CatOf{Comodules}_A \arrow[shift left=0.2em]{r}{M \mapsto M} & \CatOf{Comodules}_B \arrow[shift left=0.2em]{l}{N \cotensor_B A \mapsfrom N}.
 \qed
 \end{tikzcd}
 \end{center}
@@ -474,13 +474,9 @@ There is an isomorphism \[\CatOf{Comodules}_A(k, N) = \CatOf{Modules}_k(k, k) \c
 Resolve $N$ using the cofree modules described above, then apply either functor $\CatOf{Comodules}_A(k, -)$ or $k \cotensor_A -$.  In both cases, you get the same complex.
 \end{proof}
 
-\todo{Put a better base-change theorem here, like $- \cotensor_A B$.}
-
 \begin{example}\label{HopfAlgebrasFromFiniteGroups}
 Let's contextualize this somewhat.  Given a finite group $G$, we can form a commutative Hopf algebra $k^G$, the $k$--valued functions on $G$.  This Hopf algebra is dual to the Hopf algebra $k[G]$, the group--algebra on $G$.  It is classical that a $G$--module $M$ is equivalent data to a $k[G]$--module structure, and if $M$ is suitably finite, we can dualize the action map to produce a coaction map \[M^* \to k^G \otimes M^*.\]  Additionally, we have $M^* \cotensor_{k^G} N^* = (M \otimes_G N)^*$, so that $M^* \cotensor_{k^G} k = (H^0 M)^*$.
 \end{example}
-
-\todo{$\mathcal A(1)_*$ is the Hopf algebra for a dihedral group. Is this example appropriate here?}
 
 \begin{example}\label{HF2HomologyIsValuedInAutGaEquivarModules}
 In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut(\G_a)$.  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ computes the derived fixed points of $G = \InternalAut(\G_a)$ on the $G$--module $H\F_{2*} X$.
@@ -577,6 +573,7 @@ At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pic
 \end{example}
 
 \todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?  I think this is a duality effect: working with the Steenrod algebra versus its dual.}
+\todo{$\mathcal A(1)_*$ is the Hopf algebra for a dihedral group. Is this example appropriate somewhere in this section?}
 
 
 
