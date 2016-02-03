@@ -97,7 +97,7 @@ MO \sm E \sm T(\xi) \arrow{r}{\simeq} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \
 E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
 \end{tikzcd}
 \end{center}
-The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence. \todo{I'm a little confused here. Once we have the equivalence $MO \wedge T(\xi) \simeq MO \wedge \Sigma_+^\infty X$, why can't be apply $(\varphi, id)$ to this equivalence to obtain $E \wedge T(\xi) \simeq E \wedge \Sigma_+^\infty X$? -danny}
+The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence. \todo{I'm a little confused here. Once we have the equivalence $MO \wedge T(\xi) \simeq MO \wedge \Sigma_+^\infty X$, why can't be apply $(\varphi, id)$ to this equivalence to obtain $E \wedge T(\xi) \simeq E \wedge \Sigma_+^\infty X$? -danny}\todo{This proof is poorly written. The bottom arrow comes from following the S-shaped composite from top-left to bottom-right. Why is it an equivalence (of $E$--modules)? Maybe you can check that it's a \emph{weak} equivalence by using the middle map to construct pre-images...}
 \end{proof}
 \todo{At least hint that there's a converse to this Theorem, to be explored later.}
 
@@ -185,7 +185,7 @@ The following example shows that it is a bad idea to think of affine group schem
 \Spec \F_2 & \xrightarrow{\eta} \alpha_2 & 0 & \mapsfrom x.
 \end{align*}
 
-This group scheme has several interesting properties:
+This group scheme has several interesting properties:\todo{All of these can be proven using Dieudonn\'e theory, which we can write out and stick in a reference to Chapter 4.}
 \begin{enumerate}
 \item $\alpha_2$ has the same underlying structure ring as $\mu_2 = \mathbb{G}_m[2]$ but is not isomorphic to it.  The easiest way to see this is that $\mathrm{Hom}(\mu_2, \mu_2) = \mathbb{Z}/2\mathbb{Z}$ but $\mathrm{Hom}(\alpha_2, \mu_2) = \alpha_2$ (these homs are in the category of affine group schemes and give out an affine group scheme).
 \item There is no commutative group scheme $G$ of rank four such that $\alpha_2 = G[2]$.
@@ -407,15 +407,15 @@ In our case, $M$ itself is always $k$--injective, so there's already an injectiv
 
 Satisfied that ``$\Ext$'' at least makes sense, we're free to chase more conceptual pursuits.  Recall from algebraic geometry that a module $M$ over a ring $R$ gives rise to quasi-coherent sheaf $\widetilde{M}$ over $\Spec R$.  We give a definition that fits with our functorial perspective:\todo{Can this definition be motivated?  Is there an easily graspable sense in which it looks like a bundle?}
 \begin{definition}
-A presheaf (of modules) over a scheme $X$ is an assignment of maps $\sheaf F\co X(T) \to \CatOf{Modules}_T$, functorially in $T$. \todo{Straighten this out.}  Such a presheaf is said to be \textit{quasicoherent} when a map $\Spec S \to \Spec T \to X$ induces a natural isomorphism $\sheaf F(T) \otimes_T S \cong \sheaf F(S)$.  
+A presheaf (of modules) over a scheme $X$ is an assignment of maps $\sheaf F\co X(T) \to \CatOf{Modules}_T$, functorially in $T$. \todo{Straighten this out, using fibered categories?}\todo{Mention how the usual definition of a sheaf of $\sheaf O_X$--modules gives rise to such a thing: global sections over $\Spec T$.}  Such a presheaf is said to be \textit{quasicoherent} when a map $\Spec S \to \Spec T \to X$ induces a natural isomorphism $\sheaf F(T) \otimes_T S \cong \sheaf F(S)$.
 \end{definition}
 
 \begin{lemma}\citeme{Surely this is in Neil's FSFG somewhere}
 An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec R$ by the rule $(\Spec T \to \Spec R) \mapsto M \otimes_R T$.  Conversely, every quasicoherent sheaf over an affine scheme arises in this way.  \qed
 \end{lemma}
 
-\begin{definition}
- map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of module sheaf categories, which on the level of quasi-coherent sheaves is given by
+\begin{definition}\todo{Jay was frustrated with which adjoint I put on top (and perhaps which went on which side). Apparently there's some convention, which I should look up and obey.}
+A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of module sheaf categories, which on the level of quasi-coherent sheaves is given by
 \begin{center}
 \begin{tikzcd}
 \CatOf{QCoh}_{\Spec R} \arrow[shift left=0.2em]{r}{f^*} \arrow[-,double]{d} & \CatOf{QCoh}_{\Spec S} \arrow[shift left=0.2em]{l}{f_*} \arrow[-,double]{d} \\
@@ -426,6 +426,7 @@ An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec 
 
 The usual formula for the sheaf cohomology of a sheaf $\sheaf F$ over an $S$--scheme $X$ with structure map $\pi\co X \to S$ is given by $\Ext(\sheaf O_S, \pi_* \sheaf F)$ which is, indeed, vaguely reminiscent of the formula we were considering above as input to the Adams spectral sequence.  Experience in algebraic geometry shows that it is conceptually profitable to consider the \emph{six--functors yoga} more generally and their accompanying base-change formulas.  A very basic example of such a formula is \[\Ext_X(\pi^* \sheaf O_S, \sheaf F) \cong \Ext_S(\sheaf O_S, R\pi_* \sheaf F),\] which describes the functor ``$\Ext$'' on quasicoherent sheaves of modules over $X$ in terms of the derived functor $R\pi_*$.
 
+\todo{Rearrange this middle bit some. ``Definition of sheaf, six functors for sheaves on affines, definition of cotensor, adjunction assertion for comodules, remark about cotensoring restricting the image of the coaction'' seems too convoluted a narrative structure.}
 We are thus moved to study derived base-change for comodules, thought of as sheaves equipped with an action by a group scheme.  In particular, we want to understand what it means to ``tensor'' two comodules together.  Unsurprisingly, the solution is dual to that for modules: tensor the two comodules together, then restrict to the elements where the coactions on either factor agree.
 
 \begin{definition}
