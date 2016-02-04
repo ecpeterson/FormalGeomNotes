@@ -480,7 +480,7 @@ Let's contextualize this somewhat.  Given a finite group $G$, we can form a comm
 \end{example}
 
 \begin{example}\label{HF2HomologyIsValuedInAutGaEquivarModules}
-In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut(\G_a)$.  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ computes the derived fixed points of $G = \InternalAut(\G_a)$ on the $G$--module $H\F_{2*} X$.
+In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut_1(\G_a)$, which is defined by the kernel sequence \[1 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 1.\]  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ is thought of as ``the derived fixed points'' of ``$G = \InternalAut_1(\G_a)$'' on the ``$G$--module'' $H\F_{2*} X$.
 \end{example}
 
 \begin{example}
@@ -612,11 +612,11 @@ With this in hand, however, we can uncover the ring structure on $H\F_2P_0(MO)$:
 There is also a triangle
 \begin{center}
 \begin{tikzcd}
-& \Sym H\F_2P_0 MO(1) \arrow{d}{\simeq} \\
-H\F_2P_0 MO(1) \arrow{r} \arrow{ru} & H\F_2P_0 MO.
+& \Sym H\F_2P_0(MO(1)) \arrow{d}{\simeq} \\
+H\F_2P_0(MO(1)) \arrow{r} \arrow{ru} & H\F_2P_0(MO).
 \end{tikzcd}
 \end{center}
-In particular, $H\F_2P_0 MO \cong \F_2[b_1, b_2, \ldots]$.
+In particular, $H\F_2P_0(MO) \cong \F_2[b_1, b_2, \ldots]$.
 \end{corollary}
 \begin{proof}
 The block sum maps \[BO(n) \times BO(m) \to BO(n+m)\] Thomify to give compatible maps \[MO(n) \sm MO(m) \to MO(n+m).\]  Taking the limit in $n$ and $m$, this gives a ring structure on $MO$ compatible with that on $BO$.  The Corollary then follows from the functoriality of Thom isomorphisms.
@@ -637,16 +637,16 @@ The top isomorphism asserts only that $\F_2$--cohomology and $\F_2$--homology ar
 \end{proof}
 
 \begin{corollary}
-There is a correspondence between homotopy classes of ring maps $MO \to H\F_2P$ and homotopy classes of factorizations
+There is a bijection between homotopy classes of ring maps $MO \to H\F_2P$ and homotopy classes of factorizations
 \begin{center}
 \begin{tikzcd}
-\S^0 \arrow{r} & MO(1) \arrow[densely dotted]{d} \\
+\S^0 \arrow{r} \arrow{rd} & MO(1) \arrow[densely dotted]{d} \\
 & H\F_2P.
 \end{tikzcd}
 \end{center}
 \end{corollary}
 \begin{proof}
-Given a ring map $MO \to H\F_2P$, we can restrict it along the inclusion $MO(1) \to MO$ to produce a particular cohomology class \[f \in H\F_2P^0(MO(1)) = \CatOf{Modules}_{\F_2}(H\F_2P_0(MO(1)), \F_2).\]  Interpreting $f$ as such a function, it is determined by its behavior on the basis of vectors in $\widetilde{H\F_2P}_0(MO(1))$ dual to the powers of the usual coordinate $x \in H\F_2^1(\RP^\infty)$.  Finally, given \emph{any} module map $\widetilde{H\F_2P}_0(MO(1)) \to \F_2$, we can employ \Cref{HF2MOisFree} and to produce an algebra map $H\F_2P_0(MO) \to \F_2$ and hence \Cref{DetectingMORingMapsInHomotopy} gives a ring spectrum map $MO \to H\F_2P$.
+Given a ring map $MO \to H\F_2P$, we can restrict it along the inclusion $MO(1) \to MO$ to produce a particular cohomology class \[f \in H\F_2P^0(MO(1)) = \CatOf{Modules}_{\F_2}(H\F_2P_0(MO(1)), \F_2).\]  Interpreting $f$ as such a function, it is determined by its behavior on the basis of vectors in $\widetilde{H\F_2P}_0(MO(1))$ dual to the powers of the usual coordinate $x \in H\F_2^1(\RP^\infty)$.  Finally, given \emph{any} module map $\widetilde{H\F_2P}_0(MO(1)) \to \F_2$, we can employ \Cref{HF2MOisFree} and to produce an algebra map $H\F_2P_0(MO) \to \F_2$. \Cref{DetectingMORingMapsInHomotopy} then gives a ring spectrum map $MO \to H\F_2P$.
 \end{proof}
 
 \begin{corollary}
@@ -658,10 +658,10 @@ The method of the previous proof is to exhibit a isomorphism between these schem
 
 We are now ready to analyze the group cohomology of $\InternalAut(\G_a)$ with coefficients in the comodule $H\F_2P_0(MO)$.
 \begin{theorem}
-The action of $\InternalAut_1(\G_a)$ on $\Coord_1(\G_a)$ is \emph{free}, where $\InternalAut_1(\G_a)$ is defined by the (split) kernel sequence \[0 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 0.\]
+The action of $\InternalAut_1(\G_a)$ on $\Coord_1(\G_a)$ is \emph{free}.
 \end{theorem}
 \begin{proof}
-Consider a point $f \in \Coord_1(\G_a)(R)$, which in terms of the standard coordinate can be expressed as \[f(x) = \sum_{j=1}^\infty b_{j-1} x^j,\] where $b_0 = 1$.  Decompose this series as $f(x) = f_2(x) + f_r(x)$, with
+Recall that $\InternalAut_1(\G_a)$ is defined by the (split) kernel sequence \[0 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 0.\]  Consider a point $f \in \Coord_1(\G_a)(R)$, which in terms of the standard coordinate can be expressed as \[f(x) = \sum_{j=1}^\infty b_{j-1} x^j,\] where $b_0 = 1$.  Decompose this series as $f(x) = f_2(x) + f_r(x)$, with
 \begin{align*}
 f_2(x) & = \sum_{k=0}^\infty b_{2^k-1} x^{2^k}, &
 f_r(x) & = \sum_{j \ne 2^k} b_{j-1} x^j.
