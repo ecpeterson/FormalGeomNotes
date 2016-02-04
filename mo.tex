@@ -360,6 +360,7 @@ Applying cohomology, these again appear to be the same:
 \begin{tikzcd}[column sep=1.0em]
 {[1]} & & \bullet & \arrow{l} \bullet & & \bullet & \arrow{l} \bullet \\
 {[0]} & \bullet & \arrow{l} \bullet & & \bullet & \arrow{l} \bullet \\
+\todo{It would be nice if the dots aligned directly beneath the spaces in the cofiber sequences above.}
 & H\F_2^* \S^0 & \arrow{l} H\F_2^* C(0) & \arrow{l} H\F_2^* \S^1, & H\F_2^* \S^0 & \arrow{l} H\F_2^* C(2) & \arrow{l} H\F_2^* \S^1,
 \end{tikzcd}
 \end{center}
@@ -369,6 +370,7 @@ where we have drawn a ``$\bullet$'' for a generator of an $\F_2$--vector space, 
 \lambda^*: e_0 & \mapsto e_0 \otimes 1 & \lambda^*: e_0 & \mapsto e_0 \otimes 1 + e_1 \otimes \xi_1 \\
 \lambda^*: e_1 & \mapsto e_1 \otimes 1, & \lambda^*: e_1 & \mapsto e_1 \otimes 1.
 \end{align*}
+\todo{Is it possible to work out the coaction on the cones without first identifying their homotopy types?}
 We draw this into the diagram as
 \begin{center}
 \begin{tikzcd}[column sep=1.0em]
@@ -412,6 +414,7 @@ Satisfied that ``$\Ext$'' at least makes sense, we're free to chase more concept
 \begin{definition}
 A presheaf (of modules) over a scheme $X$ is an assignment of maps $\sheaf F\co X(T) \to \CatOf{Modules}_T$, functorially in $T$. \todo{Straighten this out, using fibered categories?}\todo{Mention how the usual definition of a sheaf of $\sheaf O_X$--modules gives rise to such a thing: global sections over $\Spec T$.}  Such a presheaf is said to be \textit{quasicoherent} when a map $\Spec S \to \Spec T \to X$ induces a natural isomorphism $\sheaf F(T) \otimes_T S \cong \sheaf F(S)$.
 \end{definition}
+\todo{I'm confused about this definition.  First, when you wrote $\sheaf F(T)$ (resp.\ $\sheaf F(S)$), you really meant $\sheaf F(t)$ (resp.\ $\sheaf F(s)$) where $t$ (resp.\ $s$) is a map $\Spec T \to X$ (resp.\ $\Spec S \to X$), right?  Second, I thought that functoriality of $\sheaf F = \{\sheaf F_T\}$ meant that given a map $u: T \to S$ of rings over $X$, we have $\sheaf_T (\bullet) \otimes_T S = \sheaf S(u \circ \bullet)$, i.e., all presheaves are quasicoherent.  What am I missing here?  Third, only \emph{affine} schemes have been defined so far, but here it seems that $X$ is assumed to be an arbitrary scheme.} 
 
 \begin{lemma}\citeme{Surely this is in Neil's FSFG somewhere}
 An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec R$ by the rule $(\Spec T \to \Spec R) \mapsto M \otimes_R T$.  Conversely, every quasicoherent sheaf over an affine scheme arises in this way.  \qed
@@ -435,6 +438,7 @@ We are thus moved to study derived base-change for comodules, thought of as shea
 \begin{definition}
 Given $A$--comodules $M$ and $N$, their cotensor product is defined by the coequalizer \[M \cotensor_A N \to M \otimes_k N \xrightarrow{\psi_M \otimes 1 - 1 \otimes \psi_N} M \otimes_k A \otimes_k N.\]
 \end{definition}
+\todo{Typographical suggestion: can you use a slightly small box for the cotensor product?  It's very similar to the ``qed box''; see lemma 1.4.13.}
 
 \begin{lemma}
 Given a map $f \co A \to B$ of Hopf $k$--algebras, the induced adjunction $f^* \dashv f_*$ is given at the level of comodules by
@@ -446,6 +450,7 @@ Given a map $f \co A \to B$ of Hopf $k$--algebras, the induced adjunction $f^* \
 \end{tikzcd}
 \end{center}
 \end{lemma}
+\todo{What is this notation $\Spec k$ double-slash $\Spec A$?  Jeremy mentioned it's a stack, but it hasn't been introduced yet.  Without more information, I can't verify this lemma.  Perhaps mention that it will be defined more precisely later?}
 
 \begin{remark}
 The formula for $f_* N$ is what one would guess from the formula for pushforward along maps of affine schemes.  The comodule $f_* N$ wants to have as its underlying module $N$, but the coaction map on $N$ needs to be reduced to lie only in $A$.  The equalizer diagram in the definition of the cotensor product enforces this.
@@ -466,7 +471,7 @@ Let $N = N' \otimes_k A$ be a cofree comodule. Then $N \cotensor_A k = N'$.
 Picking $M = k$, we have
 \begin{align*}
 \CatOf{Modules}_k(k, N') & = \CatOf{Comodules}_A(k, N) \\
-& = \CatOf{Modules}_A(A, k) \cotensor_A N \\
+& = \CatOf{Modules}_k(k, k) \cotensor_A N \\
 & = k \cotensor_A N. \qedhere
 \end{align*}
 \end{proof}
@@ -479,11 +484,11 @@ Resolve $N$ using the cofree modules described above, then apply either functor 
 \end{proof}
 
 \begin{example}\label{HopfAlgebrasFromFiniteGroups}
-Let's contextualize this somewhat.  Given a finite group $G$, we can form a commutative Hopf algebra $k^G$, the $k$--valued functions on $G$.  This Hopf algebra is dual to the Hopf algebra $k[G]$, the group--algebra on $G$.  It is classical that a $G$--module $M$ is equivalent data to a $k[G]$--module structure, and if $M$ is suitably finite, we can dualize the action map to produce a coaction map \[M^* \to k^G \otimes M^*.\]  Additionally, we have $M^* \cotensor_{k^G} N^* = (M \otimes_G N)^*$, so that $M^* \cotensor_{k^G} k = (H^0 M)^*$.
+Let's contextualize this somewhat.  Given a finite group $G$, we can form a commutative Hopf algebra $k^G$, the $k$--valued functions on $G$.  This Hopf algebra is dual to the Hopf algebra $k[G]$, the group--algebra on $G$.  It is classical that a $G$--module $M$ is equivalent data to a $k[G]$--module structure, and if $M$ is suitably finite, we can dualize the action map to produce a coaction map \[M^* \to k^G \otimes M^*.\]  Additionally, we have $M^* \cotensor_{k^G} N^* = (M \otimes_G N)^*$, so that $M^* \cotensor_{k^G} k = (H^0 (G,M))^*$.
 \end{example}
 
 \begin{example}\label{HF2HomologyIsValuedInAutGaEquivarModules}
-In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut_1(\G_a)$, which is defined by the kernel sequence \[1 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 1.\]  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ is thought of as ``the derived fixed points'' of ``$G = \InternalAut_1(\G_a)$'' on the ``$G$--module'' $H\F_{2*} X$.
+In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut_1(\G_a)$, which is defined by the kernel sequence \[1 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 1.\]  \todo{Technically, we've only identified $\Spec \mathcal AP_0$, but at least it's plausible that the sub-group scheme in degree 0 (what does this mean??) gives us $\Spec \mathcal A_*$???}  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ is thought of as ``the derived fixed points'' of ``$G = \InternalAut_1(\G_a)$'' on the ``$G$--module'' $H\F_{2*} X$.  \todo{How do the duals from the above argument play into this?  Do they just cancel out?}
 \end{example}
 
 \begin{example}
