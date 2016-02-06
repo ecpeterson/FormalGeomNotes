@@ -598,7 +598,7 @@ At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pic
 Our goal today is to use the results of the previous lectures to make a calculation of $\pi_* MO$, the unoriented bordism ring.  The Adams spectral sequence converging to this has signature \[H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{H\F_2P_0(MO)}) \Rightarrow \pi_* MO,\] and so we see that we need to understand $H\F_2P_0(MO)$, together with its comodule structure over the dual Steenrod algebra.
 
 Our first step toward this is the following calculation:
-\begin{lemma}
+\begin{lemma}\todo{Why do you state this Lemma?  What's below isn't exactly a Corollary, I don't feel, without saying a lot more about how the diagonal on cohomology behaves (and then knowing something about Cartier duality or coalgebraic formal schemes).}
 $H\F_2P^0 BO(n) \cong \F_2 \llbracket w_1, \ldots, w_n \rrbracket$.
 \end{lemma}
 \begin{proof}
@@ -617,7 +617,7 @@ H\F_2P_0(BO(1)) \arrow{r} \arrow{ru} & H\F_2P_0(BO). \qed
 \noindent We will defer the proof of this until \Cref{ComplexBordismChapter}, since it requires knowing that \[H\F_2P^0(BO(k)) \to H\F_2P^0(BO(1)^{\times k})\] is injective, which we will revisit later anyhow.\oweproof{$H_* BO$ is a symmetric algebra on $H_* BO(1)$}
 
 With this in hand, however, we can uncover the ring structure on $H\F_2P_0(MO)$:
-\begin{corollary}\label{HF2MOisFree}
+\begin{corollary}\label{HF2MOisFree}]\todo{There's some confusion in these propositions about whether we're taking the symmetric algebra on the reduced homology module or what.  This really matters: it has something to do with the difference between any old $H\F_2P^0(MO(1))$ class and one which factors the ring spectrum unit.}
 There is also a triangle
 \begin{center}
 \begin{tikzcd}
@@ -659,7 +659,7 @@ Given a ring map $MO \to H\F_2P$, we can restrict it along the inclusion $MO(1) 
 \end{proof}
 
 \begin{corollary}
-There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes \[\Spec H\F_2P_0(MO) \cong \Coord_1(\RP^\infty_{H\F_2P}),\] where the latter is the scheme of coordinate functions on $\RP^\infty_{H\F_2P} \to \A^1$ which restrict to the canonical identification of tangent spaces $\RP^1_{H\F_2P} = \A^{1,(1)}$.
+There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes \[\Spec H\F_2P_0(MO) \cong \Coord_1(\RP^\infty_{H\F_2P}),\] where the latter is the scheme of coordinate functions on $\RP^\infty_{H\F_2P} \to \A^1$ which restrict to the canonical identification of tangent spaces $\RP^1_{H\F_2P} = \A^{1,(1)}$.\todo{Here's the unitality assumption again.}\todo{I don't really see what argument is being made about $\Aut \G_a$--equivariance.  I don't think that the topological map is surjective...?}
 \end{corollary}
 \begin{proof}
 The method of the previous proof is to exhibit a isomorphism between these schemes.  To learn that this isomorphism is equivariant for $\InternalAut(\G_a)$, you need only know that the image of the map $MO(1) \to MO$ on mod--$2$ homology generates $H\F_2P_0(MO)$ as an algebra.\todo{This is clumsily stated.}
@@ -697,7 +697,7 @@ This is pretty remarkable: some big statement about manifold geometry came down 
 $MO$ splits as a wedge of shifts of $H\F_2$.
 \end{lemma}
 \begin{proof}
-Referring to \Cref{HurewiczImageOnZeroLine}, we have a $\pi_*$--injection $MO \to H\F_2 \sm MO$.  Pick an $\F_2$--basis $\{v_\alpha\}_\alpha$ for $\pi_* MO$ and extend it to a $\F_2$--basis $\{v_\alpha\}_\alpha \cup \{w_\beta\}_\beta$ for $H\F_2 \sm MO$.  Altogether, this larger basis can be represented as a single map \[\bigvee_\alpha \Susp^{m_\alpha} \S \vee \bigvee_\beta \Susp^{n_\beta} \S \xrightarrow{\bigvee_\alpha v_\alpha \vee \bigvee_\beta w_\beta} H\F_2 \sm MO.\]  Smashing through with $H\F_2$ gives an equivalence \[\bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \xrightarrow\simeq H\F_2 \sm MO.\]  The composite map \[MO \to H\F_2 \sm MO \xleftarrow\simeq \bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \to \bigvee_\alpha \Susp^{m_\alpha} H\F_2\] is a weak equivalence.
+Referring to \Cref{HurewiczImageOnZeroLine}, we have a $\pi_*$--injection $MO \to H\F_2 \sm MO$.  Pick an $\F_2$--basis $\{v_\alpha\}_\alpha$ for $\pi_* MO$ and extend it to a $\F_2$--basis $\{v_\alpha\}_\alpha \cup \{w_\beta\}_\beta$ for $\pi_* H\F_2 \sm MO$.  Altogether, this larger basis can be represented as a single map \[\bigvee_\alpha \Susp^{m_\alpha} \S \vee \bigvee_\beta \Susp^{n_\beta} \S \xrightarrow{\bigvee_\alpha v_\alpha \vee \bigvee_\beta w_\beta} H\F_2 \sm MO.\]  Smashing through with $H\F_2$ gives an equivalence \[\bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \xrightarrow\simeq H\F_2 \sm MO.\]  The composite map \[MO \to H\F_2 \sm MO \xleftarrow\simeq \bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \to \bigvee_\alpha \Susp^{m_\alpha} H\F_2\] is a weak equivalence.
 \end{proof}
 
 \begin{remark}
