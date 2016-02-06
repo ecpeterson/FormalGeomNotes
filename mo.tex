@@ -594,7 +594,7 @@ At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pic
 
 \section{The unoriented bordism ring}
 
-Our goal today is to use the results of the previous lectures to make a calculation of $\pi_* MO$, the unoriented bordism ring.  The Adams spectral sequence converging to this has signature \[H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{H\F_2P_0(MO)}) \Rightarrow \pi_* MO,\] and so we see that we need to understand $H\F_2P_0(MO)$, together with its comodule structure over the dual Steenrod algebra.
+Our goal today is to use the results of the previous lectures to make a calculation of $\pi_* MO$, the unoriented bordism ring.  The Adams spectral sequence converging to this has signature \[H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{H\F_2P_0(MO)}) \Rightarrow \pi_* MO,\] \todo{Last time you used $H\F_{2*}$ instead of $\widetilde{H\F_2P_0}$.} and so we see that we need to understand $H\F_2P_0(MO)$, together with its comodule structure over the dual Steenrod algebra.
 
 Our first step toward this is the following calculation:
 \begin{lemma}
@@ -654,14 +654,14 @@ There is a bijection between homotopy classes of ring maps $MO \to H\F_2P$ and h
 \end{center}
 \end{corollary}
 \begin{proof}
-Given a ring map $MO \to H\F_2P$, we can restrict it along the inclusion $MO(1) \to MO$ to produce a particular cohomology class \[f \in H\F_2P^0(MO(1)) = \CatOf{Modules}_{\F_2}(H\F_2P_0(MO(1)), \F_2).\]  Interpreting $f$ as such a function, it is determined by its behavior on the basis of vectors in $\widetilde{H\F_2P}_0(MO(1))$ dual to the powers of the usual coordinate $x \in H\F_2^1(\RP^\infty)$.  Finally, given \emph{any} module map $\widetilde{H\F_2P}_0(MO(1)) \to \F_2$, we can employ \Cref{HF2MOisFree} and to produce an algebra map $H\F_2P_0(MO) \to \F_2$. \Cref{DetectingMORingMapsInHomotopy} then gives a ring spectrum map $MO \to H\F_2P$.
+Given a ring map $MO \to H\F_2P$, we can restrict it along the inclusion $MO(1) \to MO$ to produce a particular cohomology class \[f \in H\F_2P^0(MO(1)) = \CatOf{Modules}_{\F_2}(H\F_2P_0(MO(1)), \F_2).\]  Interpreting $f$ as such a function, it is determined by its behavior on the basis of vectors in $\widetilde{H\F_2P}_0(MO(1))$ dual to the powers of the usual coordinate $x \in H\F_2^1(\RP^\infty)$.  \todo{Why is this sentence ``Interpreting\ldots'' needed?  Also, the Thom isomorphism should appear somewhere, right?} Finally, given \emph{any} module map $\widetilde{H\F_2P}_0(MO(1)) \to \F_2$, we can employ \Cref{HF2MOisFree} and to produce an algebra map $H\F_2P_0(MO) \to \F_2$. \Cref{DetectingMORingMapsInHomotopy} then gives a ring spectrum map $MO \to H\F_2P$.
 \end{proof}
 
 \begin{corollary}
-There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes \[\Spec H\F_2P_0 MO \cong \Coord_1(\RP^\infty_{H\F_2P}),\] where the latter is the scheme of coordinate functions on $\RP^\infty_{H\F_2P} \to \A^1$ which restrict to the canonical identification of tangent spaces $\RP^1_{H\F_2P} = \A^{1,(1)}$.
+There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes \[\Spec H\F_2P_0 MO \cong \Coord_1(\RP^\infty_{H\F_2P}),\] where the latter is the scheme of coordinate functions $\RP^\infty_{H\F_2P} \to \A^1$ which restrict to the canonical identification of tangent spaces $\RP^1_{H\F_2P} \xrightarrow{\cong} \A^{1,(1)}$.
 \end{corollary}
 \begin{proof}
-The method of the previous proof is to exhibit a isomorphism between these schemes.  To learn that this isomorphism is equivariant for $\InternalAut(\G_a)$, you need only know that the image of the map $BO(1) \to BO$ on mod--$2$ homology generates $H\F_2P_0(BO)$ as an algebra.\todo{This is clumsily stated.}
+The method of the previous proof is to exhibit a isomorphism between these schemes.  To learn that this isomorphism is equivariant for $\InternalAut(\G_a)$, you need only know that the image of the map $BO(1) \to BO$ on mod--$2$ homology generates $H\F_2P_0(BO)$ as an algebra.\todo{This is clumsily stated.} \todo{I'd like more details for this argument too.}
 \end{proof}
 
 We are now ready to analyze the group cohomology of $\InternalAut(\G_a)$ with coefficients in the comodule $H\F_2P_0(MO)$.
@@ -669,34 +669,35 @@ We are now ready to analyze the group cohomology of $\InternalAut(\G_a)$ with co
 The action of $\InternalAut_1(\G_a)$ on $\Coord_1(\G_a)$ is \emph{free}.
 \end{theorem}
 \begin{proof}
-Recall that $\InternalAut_1(\G_a)$ is defined by the (split) kernel sequence \[0 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 0.\]  Consider a point $f \in \Coord_1(\G_a)(R)$, which in terms of the standard coordinate can be expressed as \[f(x) = \sum_{j=1}^\infty b_{j-1} x^j,\] where $b_0 = 1$.  Decompose this series as $f(x) = f_2(x) + f_r(x)$, with
+Recall that $\InternalAut_1(\G_a)$ is defined by the (split) kernel sequence \[0 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 0.\]  Consider a point $f \in \Coord_1(\G_a)(R)$, which in terms of the standard coordinate can be expressed as \[f(x) = \sum_{j=1}^\infty b_{j-1} x^j,\] \todo{Why is this?  I think I have a somewhat incorrect idea of what $\Coord$ is.  In addition to being a set map that sends the set of nilpotent elements in $R$ to itself, what other conditions does $f$ have to satisfy?} where $b_0 = 1$.  Decompose this series as $f(x) = f_2(x) + f_r(x)$, with
 \begin{align*}
 f_2(x) & = \sum_{k=0}^\infty b_{2^k-1} x^{2^k}, &
 f_r(x) & = \sum_{j \ne 2^k} b_{j-1} x^j.
 \end{align*}
-Note that $f_2$ gives a point $f_2 \in \InternalAut_1(\G_a)(R)$, so we can de-scale by it to give a new coordinate $g(x) = f_2^{-1}(f(x))$ with analogous series $g_2(x)$ and $g_r(x)$.  Note that $g_2(x) = x$ and that $f_2$ is the unique point in $\InternalAut_1(\G_a)(R)$ that has this property.
+Note that $f_2$ gives a point $f_2 \in \InternalAut_1(\G_a)(R)$ \todo{Right, because raising to powers of two satisfies ``Freshman's dream'', so $f_2(x+y) = f_2(x) + f_2(y)$, so $f_2$ is a automorphism of group schemes.  What condition does the subscript $1$ imply in this case?}, so we can de-scale by it to give a new coordinate $g(x) = f_2^{-1}(f(x))$ with analogous series $g_2(x)$ and $g_r(x)$.  Note that $g_2(x) = x$ and that $f_2$ is the unique point in $\InternalAut_1(\G_a)(R)$ that has this property.
 \end{proof}
 
 \begin{corollary}
 $\pi_* MO = \F_2[b_j \mid j \ne 2^k - 1, j \ge 1]$ with $|b_j| = j$.
 \end{corollary}
 \begin{proof}
-Set $M = \F_2[b_j \mid j \ne 2^k - 1]$.  \todo{Compare this with the base change theorems from the previous day.} It follows from the above that the $\InternalAut_1(\G_a)$--cohomology of $H\F_2P_0(MO)$ has amplitude $0$:\todo{Maybe you should justify the step that looks like reassociation of the tensor and cotensor products. You almost definitely proved this on the previous day.}
+Set $M = \F_2[b_j \mid j \ne 2^k - 1]$.  \todo{Compare this with the base change theorems from the previous day.} It follows from the above that the $\InternalAut_1(\G_a)$--cohomology of $H\F_2P_0(MO)$ has amplitude $0$\todo{Amplitude just means row, right?}:\todo{Maybe you should justify the step that looks like reassociation of the tensor and cotensor products. You almost definitely proved this on the previous day.}
 \begin{align*}
 \Cotor_{\mathcal A_*}^{*, *}(\F_2, H\F_2P_0(MO)) & = \Cotor_{\mathcal A_*}^{*, *}(\F_2, \mathcal A_* \otimes_{\F_2} M) \\
 & = \F_2 \cotensor_{\mathcal A_*} (\mathcal A_* \otimes_{\F_2} M) \\
 & = \F_2 \otimes_{\F_2} M = M.
 \end{align*}
-Since the Adams spectral sequence \[H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); H\F_2P_0(MO)) \Rightarrow \pi_* MO\] is concentrated on the $0$--line, it collapses.  Using the residual $\Gm$--action to infer the grading, we thus deduce \[\pi_* MO = \F_2[b_j \mid j \ne 2^k-1]. \qedhere\]
+\todo{Here you used $H\F_2P_0(MO) \cong \mathcal A_* \otimes M$, but what you seem to have proved in the previous theorem has to do with $\mathcal A P_0$ instead.  Does it make a difference?}
+Since the Adams spectral sequence \[H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); H\F_2P_0(MO)) \Rightarrow \pi_* MO\] is concentrated on the $0$--line, it collapses.  Using the residual $\Gm$--action to infer the grading\todo{How?}, we thus deduce \[\pi_* MO = \F_2[b_j \mid j \ne 2^k-1]. \qedhere\]
 \end{proof}
 
-This is pretty remarkable: some big statement about manifold geometry came down to understanding how we could reparametrize a certain formal group, itself a (fairly simple) purely algebraic problem.  We could close here, but there's an easy homotopical consequence of this fact that is worth recording before we leave:
+This is pretty remarkable: some big statement about manifold geometry came down to understanding how we could reparametrize a certain formal group, itself a (fairly simple) purely algebraic problem.  \todo{Is there a reason we should expect this, even in hindsight?}We could close here, but there's an easy homotopical consequence of this fact that is worth recording before we leave:
 
 \begin{lemma}
 $MO$ splits as a wedge of shifts of $H\F_2$.
 \end{lemma}
 \begin{proof}
-Referring to \Cref{HurewiczImageOnZeroLine}, we have a $\pi_*$--injection $MO \to H\F_2 \sm MO$.  Pick an $\F_2$--basis $\{v_\alpha\}_\alpha$ for $\pi_* MO$ and extend it to a $\F_2$--basis $\{v_\alpha\}_\alpha \cup \{w_\beta\}_\beta$ for $H\F_2 \sm MO$.  Altogether, this larger basis can be represented as a single map \[\bigvee_\alpha \Susp^{m_\alpha} \S \vee \bigvee_\beta \Susp^{n_\beta} \S \xrightarrow{\bigvee_\alpha v_\alpha \vee \bigvee_\beta w_\beta} H\F_2 \sm MO.\]  Smashing through with $H\F_2$ gives an equivalence \[\bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \xrightarrow\simeq H\F_2 \sm MO.\]  The composite map \[MO \to H\F_2 \sm MO \xleftarrow\simeq \bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \to \bigvee_\alpha \Susp^{m_\alpha} H\F_2\] is a weak equivalence.
+Referring to \Cref{HurewiczImageOnZeroLine}, we have a $\pi_*$--injection $MO \to H\F_2 \sm MO$ \todo{Does this not just follow from the fact that $\pi_* MO$ is a $\F_2$ vector space?}.  Pick an $\F_2$--basis $\{v_\alpha\}_\alpha$ for $\pi_* MO$ and extend it to a $\F_2$--basis $\{v_\alpha\}_\alpha \cup \{w_\beta\}_\beta$ for $H\F_2 \sm MO$.  Altogether, this larger basis can be represented as a single map \[\bigvee_\alpha \Susp^{m_\alpha} \S \vee \bigvee_\beta \Susp^{n_\beta} \S \xrightarrow{\bigvee_\alpha v_\alpha \vee \bigvee_\beta w_\beta} H\F_2 \sm MO.\]  Smashing through with $H\F_2$ gives an equivalence \[\bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \xrightarrow\simeq H\F_2 \sm MO.\]  \todo{It's clear, but you haven't specified that $m_\alpha$ and $n_\beta$ are the degrees of $v_\alpha$ and $w_\beta$.} The composite map \[MO \to H\F_2 \sm MO \xleftarrow\simeq \bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \to \bigvee_\alpha \Susp^{m_\alpha} H\F_2\] is a weak equivalence.
 \end{proof}
 
 \begin{remark}
