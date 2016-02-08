@@ -53,7 +53,7 @@ Y \arrow{r} \arrow[-,double,densely dotted]{d} & X \arrow[-,double]{d} \\
 There's a complementary notion of an open subscheme, which we will continue to avoid for now.  These definitions are both best stated in a coordinate--free way, but the open subscheme version really \emph{requires} it, so we will postpone it until later.\oweproof{Definition of open scheme}\oweproof{Definition of closed subscheme without chart}  For now, we will proceed with the geometry:
 
 \begin{definition}
-Consider such a closed subscheme $Y$ of an affine $S$--scheme $X$, modeled by a map $\Spec R/I \to \Spec R$.  We define the \textit{$n${\th} order neighborhood of $Y$ in $X$} to be the scheme $\Spec R/I^{n+1}$.  The \textit{formal neighborhood of $Y$ in $X$} is then the ind-system \[X^\wedge_Y := \left\{ \Spec R/I \to \Spec R/I^2 \to \Spec R/I^3 \to \cdots \right\}.\]
+Consider such a closed subscheme $Y$ of an affine $S$--scheme $X$, modeled by a map $\Spec R/I \to \Spec R$.  We define the \textit{$n${\th} order neighborhood of $Y$ in $X$} to be the scheme $\Spec R/I^{n+1}$.  The \textit{formal neighborhood of $Y$ in $X$} is then the ind-system \[X^\wedge_Y := \left\{ \Spec R/I \to \Spec R/I^2 \to \Spec R/I^3 \to \cdots \right\}.\]\todo{When is this system one of Artinian schemes?  The condition we came to in class was that $I$ is its own radical and $R$ is Noetherian.  I'm very mildly uncomfortable with this condition on $I$.}
 \end{definition}
 
 \noindent So, formal schemes arise naturally when studying the local geometry of $X$ near a subscheme $Y$.  An exceedingly common situation is for $X$ to be a variety and $Y$ to be a smooth point, so that $X^\wedge_Y$ looks like ``a small piece of affine space''.  We pin this important case down with a definition:
@@ -73,12 +73,22 @@ In some sense, \Cref{MapsOfFVarsArePowerSeries} is a full explanation for why an
 \Cref{MapsOfFVarsArePowerSeries} shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.  In particular, this allows local theorems from analytic differential geometry to be imported, including a version of the inverse function theorem, which we will now work towards.
 
 \begin{definition}
-Let $V$ be a formal variety and let $I_V = \A^1(V)$ be the ideal of functions vanishing at the origin.  Then, we define the \textit{cotangent space of $V$} at the origin by \[T^* V = I_V / I_V^2.\]
+Let $V$ be a formal variety and let $I_V = \A^1(V)$ be the ideal of functions vanishing at the origin.  Then, we define the \textit{cotangent space of $V$} at the origin by \[T^* V = I_V / I_V^2.\]  We also define the tangent space by the subset of pointed maps $TV \subseteq V(R[\eps] / \eps^2)$.
 \end{definition}
 
-\begin{definition}
-Similarly, a point $f \in V(R[t] / t^2)$ can be written as $f = f(0) + v(f) t$ where $v(f)$ is determined by the image of $f - f(0)$ in $T^* V$.  Hence, we define the \textit{tangent space of $V$} by \[TV = V(R[t] / t^2) \cong \CatOf{Modules}_R(T^* V, R).\]
-\end{definition}
+\begin{lemma}
+There is an isomorphism \[TV \cong \CatOf{Modules}_R(T^* V, R).\]
+\end{lemma}
+\begin{proof}
+A point $f \in V(R[\eps] / \eps^2)$ is given by a map $f\co \sheaf O_V \to R[\eps] / \eps^2$.  If $f$ is pointed, then it carries the ideal $I(0)$ of functions vanishing at zero to the ideal $(\eps)$, and hence also carries $I(0)^2$ to $(\eps)^2 = 0$.  Hence, $f$ induces a map
+\begin{center}
+\begin{tikzcd}
+I(0) / I(0)^2 \arrow{r}{f} \arrow[-,double]{d} & (\eps) / (\eps)^2 \arrow[-,double]{d} \\
+T^* V \arrow{r}{f} & R,
+\end{tikzcd}
+\end{center}
+hence a point in $\CatOf{Modules}_R(T^* V, R)$.  This assignment is visibly bijective.
+\end{proof}
 
 \begin{theorem}\label{InverseFunctionTheoremForFVars}\citeme{This is 3.1.8 in the Crystals notes.}
 A map $f\co V \to W$ of finite--dimensional formal varieties is an isomorphism if and only if the induced map $Tf\co TV \to TW$ is an isomorphism of $R$--modules.
@@ -139,7 +149,7 @@ Let's now consider two examples of $E$ which are complex-orientable and describe
 There is an isomorphism $\CP^\infty_{H\Z P} \cong \G_a$.  This follows from reasoning identical to that given in \Cref{RPinftyExampleForReal}.
 \end{example}
 
-\begin{example}\todo{This calculation ignores the grading, which isn't great notation. Put the Bott class where it belongs}
+\begin{example}\todo{This calculation ignores the grading, which isn't great. If you're careful and distinguish $c$ from $c_1$, things should fall into place better.}\todo{Make it clear that we're using the coordinate $1 - t$ on $\Gm$.}
 There is also an isomorphism $\CP^\infty_{KU} \cong \G_m$.  Given a complex line bundle $\L$ over a space $X$, we use the complex orientation of $KU$ where the total Chern class of $\L$ is given by \[c(\L) = 1 - [\L].\]  Given this definition, we perform a manual computation:
 \begin{align*}
 c(\L_1 \otimes \L_2) & = 1 - [\L_1 \otimes \L_2] = 1 - [\L_1] [\L_2] \\
@@ -161,7 +171,7 @@ d(rr') & = rdr' + r'dr. & \text{($d$ is a derivation)}
 Elements of $\Omega^1_{R/k}$ are referred to as \textit{$1$--forms}.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\todo{Do we ever use this? Does it provide intuition? Hmph.}
 The module $\Omega^1_{R/k}$ is universal for derivations into $R$--modules: \[\CatOf{Derivations}_k(R, M) = \CatOf{Modules}_R(\Omega^1_{R/k}, M). \qed\]
 \end{lemma}
 
