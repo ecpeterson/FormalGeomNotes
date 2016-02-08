@@ -61,21 +61,21 @@ We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}
 \todo{Question: You essentially defined $MO$ here by piecing together the $T(J_\mathbb{R}^n)$'s. We should mention that another way to pack all this info together is to say $MO = T(J_\mathbb{R})$ -danny}
 \todo{There should be a Theorem here saying that we recover $MO$ as defined on the first day.}
 
-The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces.  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
+The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces (from Lemma 1.4).  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
 \begin{center}
 \begin{tikzcd}
 BO \times BO \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
 & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
-We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}\todo{Have you already mentioned that $BO$ is not just an $H$-space, but an $H$-group?}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.} \todo{I'm confused about the commutativity of this factorization with the rest of the diagram.-danny}  We are now in a position to see the Thom isomorphism:
+We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.  \todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}\todo{Have you already mentioned that $BO$ is not just an $H$-space, but an $H$-group?}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.} \todo{I'm confused about the commutativity of this factorization with the rest of the diagram.-danny}  We are now in a position to see the Thom isomorphism:
 \begin{lemma}[Thom isomorphism, universal example] As $MO$--modules,\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}\todo{Is it furthermore clear that the cohomological version of this gives an action of $E^* X$ on $E^* T(\xi)$ by the ``Thom diagonal''?} \[MO \sm MO \simeq MO \sm \Susp^\infty_+ BO.\]
 \end{lemma}
 \begin{proof}
 Stringing together the naturality properties of the Thom functor outlined above, we can thus make the following calculation:
 \begin{align*}
 T(\mu \circ (J_{\R} \times J_{\R})) & \simeq T(\mu \circ (J_{\R} \times J_{\R}) \circ \sigma) & \text{(homotopy invariance)} \\
-& \simeq T(\mu \circ (J_{\R} \times 0)) & \text{(constructed lift)} \\
+& \simeq T(J_{\R} \times 0) & \text{(constructed lift)} \\
 & \simeq T(J_{\R}) \sm T(0) & \text{(monoidality)} \\
 & \simeq T(J_{\R}) \sm \Susp^\infty_+ BO & \text{(\Cref{TrivialBundleThomExample})} \\
 T(J_{\R}) \sm T(J_{\R}) & \simeq T(J_{\R}) \sm \Susp^\infty_+ BO & \text{(monoidality)} \\
@@ -88,16 +88,42 @@ MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. & \text{(definition of $MO$)} & \ph
 \begin{theorem}[Thom isomorphism]
 Let $\xi\co X \to BO$ classify a vector bundle and let $\phi: MO \to E$ be a map of ring spectra. Then there is an equivalence of $E$--modules \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
 \end{theorem}
+
 \begin{proof}[Modifications to above proof]
-To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma\co BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  This gives an equivalence $MO \sm T(\xi) \simeq MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram
+\todo{Added a little clarification, and gave what I think is a correct proof of the E case.  -Krishanu}
+To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma\co BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  Follow the same proof as before with the diagram
 \begin{center}
 \begin{tikzcd}
-E \sm T(\xi) \arrow[densely dotted]{r}{\simeq} \arrow{d}{\eta_{MO} \sm \id \sm \id} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm \id \sm \id} \\
-MO \sm E \sm T(\xi) \arrow{r}{\simeq} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id} & MO \sm E \sm \Susp^\infty_+ X \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id} \\
-E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
+BO \times X \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrrd} & BO \times X \arrow{r}{\simeq, \xi}& BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
+& & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
-The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence. \todo{I'm a little confused here. Once we have the equivalence $MO \wedge T(\xi) \simeq MO \wedge \Sigma_+^\infty X$, why can't be apply $(\varphi, id)$ to this equivalence to obtain $E \wedge T(\xi) \simeq E \wedge \Sigma_+^\infty X$? -danny}\todo{The ``unitality'' shows that the vertical compositions are the identity, and then the top map is a retract of an equivalence, right?  (If we want to use a retraction property, do we need to show that the grid diagram commutes...?  Maybe we can check a weak equivalence condition instead by pushing around homotopy elements...)}
+This gives an equivalence $\theta_{MO}: MO \sm T(\xi) \rightarrow MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram
+\begin{center}
+\begin{tikzcd}
+E \sm T(\xi)  \arrow{d}{\eta_{MO} \sm \id \sm \id=f} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm \id \sm \id} \\
+MO \sm E \sm T(\xi) \arrow{r}{\theta_{MO} \sm E} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id=g} & MO \sm E \sm \Susp^\infty_+ X\arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id=h} \\
+E \sm T(\xi) \arrow{r}{\theta_E} & E \sm \Susp^\infty_+ X
+\end{tikzcd}
+\end{center}
+The bottom arrow $\theta_E$ exists by applying the action map to both sides and pushing the map $\theta_{MO} \sm E$ down.  $\theta_{MO}$ is an equivalence, and so it has an inverse $\alpha_{MO}$ - therefore the middle map has inverse $\alpha_{MO} \sm E$ and we can similarly push this down to a map $\alpha_E$ which we want to show is the inverse to $\theta_E$.  From here it is a simple diagram chase - we have renamed three of the maps in the diagram to $f$, $g$, and $h$ for brevity.  Note that $g \circ f$ is the identity map because of the unit axiom.  Then
+
+\begin{align*}
+g\circ f &\simeq g \circ (\alpha_{MO}\sm E) \circ (\theta_{MO} \sm E) \circ f& \\
+& \simeq \alpha_E \circ h \circ (\theta_{MO}\sm E) \circ f & \text{(action map)}\\
+& \simeq \alpha_E \circ \theta_E \circ g \circ f & \text{(action map)}\\
+&\simeq \alpha_E \circ \theta_E & \qedhere
+\end{align*}
+%This gives an equivalence $\theta_{MO}: MO \sm T(\xi) \rightarrow MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram
+%\begin{center}
+%\begin{tikzcd}
+%E \sm T(\xi) \arrow[densely dotted]{r}{\simeq} \arrow{d}{\eta_{MO} \sm \id \sm \id} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm \id \sm \id} \\
+%MO \sm E \sm T(\xi) \arrow{r}{\simeq} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id} & MO \sm E \sm \Susp^\infty_+ X \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id} \\
+%E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
+%\end{tikzcd}
+%\end{center}
+%The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence.
+\todo{I'm a little confused here. Once we have the equivalence $MO \wedge T(\xi) \simeq MO \wedge \Sigma_+^\infty X$, why can't be apply $(\varphi, id)$ to this equivalence to obtain $E \wedge T(\xi) \simeq E \wedge \Sigma_+^\infty X$? -danny}\todo{The ``unitality'' shows that the vertical compositions are the identity, and then the top map is a retract of an equivalence, right?  (If we want to use a retraction property, do we need to show that the grid diagram commutes...?  Maybe we can check a weak equivalence condition instead by pushing around homotopy elements...)}
 \end{proof}
 \todo{At least hint that there's a converse to this Theorem, to be explored later.}
 
