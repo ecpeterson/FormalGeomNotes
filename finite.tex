@@ -407,8 +407,8 @@ p \log_\phi(x) & = \log_\phi (px) + \log_\phi(v_1 x^p) + \log_\phi(v_2 x^{p^2}) 
 \begin{remark}
 In fact, the rational logarithm coefficients can be recursively recovered from the coefficients $v_d$, using a similar manipulation:
 \begin{align*}
-p \log_F(x) & = \log_F\left([p]_F(x)\right) \\
-p \sum_{n=0}^\infty m_n x^{p^n} & = \log_F \left(\sum_{d=0}^\infty{}_F v_d x^{p^d} \right) = \sum_{d=0}^\infty \log_F\left(v_d x^{p^d}\right) \\
+p \log_\phi(x) & = \log_\phi\left([p]_\phi(x)\right) \\
+p \sum_{n=0}^\infty m_n x^{p^n} & = \log_\phi \left(\sum_{d=0}^\infty{}_\phi v_d x^{p^d} \right) = \sum_{d=0}^\infty \log_\phi\left(v_d x^{p^d}\right) \\
 \sum_{n=0}^\infty p m_n x^{p^n} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_j v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_k v_{n-k}^{p^k} \right) x^{p^n},
 \end{align*}
 implicitly taking $m_0 = 1$ and $v_0 = p$.
@@ -579,16 +579,18 @@ The nice picture I drew for Catherine
 
 -----
 
-Our first goal for today is to capitalize on our analysis of $\moduli{fg}$ to construct some of the homology theories alluded to in \Cref{StructureOfMfgl}.
+We have now arrived at the conclusion of our program from \Cref{StructureOfMfgl} for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open substacks of $\moduli{fg}$, and we have analyzed its closed points as well as their deformation neighborhoods.  We make the following definitions:
+\begin{itemize}
+\item Recall that the moduli of $p$--typical group laws is affine, presented by the scheme $\Spec BP_*$, $BP_* := \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$.  Since the inclusion of $p$--typical group laws into all group laws induces an equivalence of stacks, it follows that this formula determines a homology theory, called \textit{Brown--Peterson homology}: \[BP_*(X) := MU_*(X) \otimes)_{MU_*} BP_*.\]
+\item A chart for the open substack $\moduli{fg}^{\le d}$ in terms of $\moduli{fg}{}_{,(p)} \cong \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$ is $\Spec \Z_{(p)}[v_1, v_2, \ldots, v_d^\pm]$.  It follows that there is a homology theory $E(d)_*(X)$, called \textit{the $d${\th} Johnson--Wilson homology}, defined by \[E(d)_*(X) := BP_*(X) \otimes_{BP_*} E(d)_*.\]
+\item Similarly, for a formal group $\Gamma$ of height $d < \infty$, there is a chart $\Spf \Z_p\ps{u_1, \ldots, u_{d-1}}$ for its deformation neighborhood.  Correspondingly, there is a homology theory $E_\Gamma{}_*$, called \textit{the Morava $E$--theory for $\Gamma$}, determined by \textbf{Actually, this one is complicated: you want to tensor down to every formal neighborhood, but there may be infinite divisibility data to keep track of and shuffle around.  I should think this through more carefully.}
+\item Finally, since $(p, u_1, \ldots, u_{d-1})$ forms a regular sequence on $E_\Gamma{}_*$, we can form the regular quotient $K_\Gamma$ in the homotopy category.  This determines a spectrum, and hence determines a homology theory called \textit{the Morava $K$--theory for $\Gamma$}.
+\end{itemize}
 
 Landweber's flatness criterion
 
-% \item A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, v_2, \ldots, v_{d-1}, \ldots)$ is a regular sequence $M$ too.
-% \item In particular, $BP_*$ is itself such a module, and so gives rise to a homology theory $BP$ with $\context{BP} \simeq \moduli{fg} \times \Spec \Z_{(p)}$.
+A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, v_2, \ldots, v_{d-1}, \ldots)$ is a regular sequence $M$ too.  (In particular, $BP_*$ is itself such a module, and so gives rise to a homology theory $BP$ with $\context{BP} \simeq \moduli{fg} \times \Spec \Z_{(p)}$.)
 
-Construction of $BP$
-
-Construction of $E_\Gamma$ and $K_\Gamma$
 
 Point out that it's most important to understand $K(d)$ for each $d$, not $K_\Gamma$ for every $\Gamma$.
 
