@@ -552,6 +552,70 @@ The natural map \[\sheaf O(\InternalHom{FormalGroups}(\Z/p, \G)) \to R \times \s
 \todo[color=red,inline]{I left off at Section 10.}
 
 
+------ Descent along level structures, simplicially (Section 11) ------
+
+\todo[inline]{Actually, this section appears \emph{not} to be about $\FGps$, and instead it's about the \emph{coarse moduli quotient} to the functor of formal groups, which is not locally representable.  I'm a little confused about this --- I intend to ask Mike what's going on.}
+
+Write $\Level(A) \to \FGps$ for the parameter space of a formal group equipped with a level--$A$ structure, together with its structure map (to the \emph{coarse moduli of formal groups!!!}).  We define a sequence of schemes by: $\Level_0 = \FGps$, $\Level_1 = \coprod_{A_0} \Level(A_0)$ for finite abelian groups $A_0$, and most generally \[\Level_n = \coprod_{0 = A_n \subseteq \cdots \subseteq A_0} \Level(A_0).\]  There are two maps $\Level_1 \to \Level_0$.  One is the structural one, where we simply peel off the formal group and forget the level structure.  The other comes from the quotient map: $\ell\co A \to \G$ yields a quotient isogeny $q\co \G \to \G/\ell$, and we take the second map $\Level_1 \to \Level_0$ to send $\ell$ to $\G / \ell$.  Then, consider the following Lemma:
+
+\begin{lemma}\citeme{AHS Lemma 11.3}
+For $\ell\co A \to \G$ a level structure and $B \subseteq A$ a subgroup, the induced map $\ell|_B\co B \to \G$ is a level structure and the quotient $\G / \ell|_B$ receives a level structure $\ell'\co A/B \to \G/\ell|_B$. \qed
+\end{lemma}
+
+This gives us enough compatibility among quotients to use the two maps above to assemble the $\Level_*$ schemes into a simplicial object.  Most face maps just omit a subgroup, except for the last face map, since the zero subgroup is not permitted to be omitted.  Instead, the last face map sends the string of subgroups $0 = A_n \subseteq A_{n-1} \subseteq \cdots \subseteq A_0$ and level structure $\ell\co A_0 \to \G$ to the quotient string $0 = A_{n-1} / A_{n-1} \subseteq \cdots \subseteq A_0 / A_{n-1}$ and quotient level structure $\ell\co A_0 / A_{n-1} \to \G/\ell|_{A_{n-1}}$.  The degeneracy maps come from lengthening one of these strings by an identity inclusion.
+
+\begin{definition}\citeme{Definition 11.10, Remark 11.11}
+Let $\G\co F \to \FGps$ be a functor over formal groups, and define schemes $\Level(A, F) = \Level(A) \times_{\G} F$ and $\Level_n(F) = \Level_n \times_{\G} F$.  Then, \textit{descent data for level structures on $F$} is the structure of a simplicial scheme on $\Level_*(F)$, together with a morphism of simplicial schemes $\Level_*(F) \to \Level_*$.  It is enough to specify a map $d_1\co \Level_1(F) \to F$, use that to build the simplicial scheme structure as in the above Lemma, and assert that the following square commutes:
+\begin{center}
+\begin{tikzcd}
+\Level_1(F) \arrow{r} \arrow{d}{d_1} & \Level_1 \arrow{d}{d_1} \\
+F \arrow{r} & \FGps.
+\end{tikzcd}
+\end{center}
+\end{definition}
+
+\begin{example}
+Let $\G\co S \to \FGps$ be a formal group of finite height over a $p$--local formal scheme $S$.  The functor $\Level(A, \G)$ is exactly the functor defined in Section 9 (see above), and in particular it is represented by an $S$--scheme.  The maps $\psi_\ell$ and $f_\ell$ from Definition 3.1 amount to giving a map $d_1\co \Level_1(\G) \to S$ and an isogeny $q\co d_0^* \G \to d_1^* \G$ whose kernel on $\Level(A, \G)$ is $A$.  The other conditions on Definition 3.1 exactly ensure that $(\Level_*(\G), d_*, s_*)$ is a simplicial functor and over $\Level_2(\G)$ the relevant hexagonal diagram commutes:
+\begin{center}
+\begin{tikzcd}
+& d_0^* d_0^* \G \arrow[-,double]{ld} \arrow{rd}{d_0^* q} \\
+d_1^* d_0^* \G \arrow{d}{d_1^* q} & & d_0^* d_1^* \G \arrow[-,double]{d} \\
+d_1^* d_1^* \G \arrow[-,double]{rd} & & d_2^* d_0^* \G \arrow{ld}{d_2^* q} \\
+& d_2^* d_1^* \G.
+\end{tikzcd}
+\end{center}
+\end{example}
+
+\begin{example}
+We now further package this into a single object.  Let $\underline{\G}$ be the functor over $\FGps$ whose value on $R$ is the set of pullback diagrams
+\begin{center}
+\begin{tikzcd}
+\G' \arrow{r}{f} \arrow{d} & \G \arrow{d} \\
+\Spf R \arrow{r}{i} & S
+\end{tikzcd}
+\end{center}
+such that the map $\G' \to i^* \G$ induced by $f$ is a homomorphism (hence isomorphism) of formal groups over $\Spf R$.  For a finite abelian group $A$, write $\Level(A, \underline{\G})(R)$ for the set of diagrams
+\begin{center}
+\begin{tikzcd}
+A_{\Spf R} \arrow{r}{\ell} \arrow{rd} & \G' \arrow{r}{f} \arrow{d} & \G \arrow{d} \\
+& \Spf R \arrow{r}{i} & S
+\end{tikzcd}
+\end{center}
+where the square forms a point in $\underline{\G}(R)$ and $\ell$ is a level--$A$ structure.  Giving a map of functors $d_1\co \Level_1(\underline{\G}) \to \underline{\G}$ making the above square commute is to give a pullback diagram
+\begin{center}
+\begin{tikzcd}
+\G / \ell \arrow{r} \arrow{d} & \G \arrow{d} \\
+\Level_1(\G) \arrow{r} & S,
+\end{tikzcd}
+\end{center}
+or equivalently a map of formal schemes $\Level_1(\G) \to S$ and an isogeny $q\co d_0^* \G d_1^* \G$ whose kernel on $\Level(A, \G)$ is $A$.  Therefore, descent data for level structures on the formal group $\G$ (in the sense of Section 3) are equivalent to descent data for level structures on the functor $\underline{\G}$.
+\end{example}
+
+
+
+
+
+
 
 
 
