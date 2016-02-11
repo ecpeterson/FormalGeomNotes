@@ -50,7 +50,7 @@ Its totalization gives the \textit{unstable $E$--completion of $X$}.
 Under suitable hypotheses, we can extract from this an unstable analog of $\context{E}$:
 \begin{definition}
 Suppose that $\sheaf{UM}_E(S^{2*})$ is level-wise even-concentrated for each value of $*$.  Then, we define the \textit{unstable context of $E$} to be the following graded simplicial scheme:\todo{I don't think this is satisfied even in the case of ordinary homology.  I think you're obligated to just say ``well, up to odd information...''}
-\[\sheaf{UM}_E^n := \left\{
+\[\Ucontext{E}^n := \left\{
 \begin{tikzcd}
 \Spec \pi_* \left( \begin{array}{c} E \\ \circ \\ S^{2n} \end{array} \right) \arrow[shift left=\baselineskip]{r}{\mu} \arrow[leftarrow, shift left=(2*\baselineskip)]{r}{\eta_L} \arrow[leftarrow]{r}{\eta_R} &
 \Spec \pi_* \left( \begin{array}{c} E \\ \circ \\ E \\ \circ \\ S^{2n} \end{array} \right) \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r}{\Delta} \arrow{r} \arrow[shift right=\baselineskip]{r} &
@@ -59,7 +59,7 @@ Suppose that $\sheaf{UM}_E(S^{2*})$ is level-wise even-concentrated for each val
 \right\}.\]
 as well as a quasicoherent sheaf over it associated to $X$:\todo{I don't think that it's correct to drag the suspension through this object.}
 \begin{align*}
-\sheaf{UM}_E^n(X) & := \left(\pi_* \sheaf{UD}_E(\Susp^{2n} X)\right){\widetilde{}} \\
+\Ucontext{E}^n(X) & := \left(\pi_* \sheaf{UD}_E(\Susp^{2n} X)\right){\widetilde{}} \\
 & = \left\{
 \begin{tikzcd}[ampersand replacement=\&]
 \pi_* \left( \begin{array}{c} E \\ \circ \\ \Susp^{2n} X \end{array} \right)\widetilde{} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} \&
@@ -174,7 +174,27 @@ I think the ``algebraic'' part (or ``wrong-way'' part, anyway) of the coaction m
 
 \section{Unstable cooperations in additive homology}\label{UnstableSteenrodCoops}
 
-The bar spectral sequence: connectivity assumption, it's a spectral sequence of Hopf algebras, interaction with the $\circ$--product structure
+The objects discussed in the previous Lecture appear to be almost bottomlessly complicated: there are so many groups and so many structure maps.  At first glance, it might seem like it's a hopeless enterprise to actually try to compute $\Ucontext{E}^*$ for any spectrum $E$, but in fact the plenty of structure maps give enough footholds that this is often feasible, provided we have sufficiently strong stomachs.  Today we will treat the case $E = H\F_2$, which requires us to introduce all of the relevant tools but whose computations turn out to be very straightforward.
+
+The place to start is with a very old lemma:
+\begin{lemma}
+If $E$ is a spectrum with $\pi_{-1} E = 0$, then $\OS{E}{1} \simeq B\OS{E}{0}$. \qed
+\end{lemma}
+\noindent The essential point is that $B$ gives the connective delooping of $\OS{E}{0}$, so if $E$ is connective then this will yield the spaces in the $\Omega$--spectrum of $E$.  This is useful to us because $B\OS{E}{0}$ comes with a natural skeletal filtration, and this gives rise to a spectral sequence:
+\begin{corollary}[{\cite[Theorem 2.1]{RavenelWilsonKthyOfEMSpaces}}]
+There is a convergent spectral sequence of Hopf algebras of signature \[E^1_{*, j} = F_*(\Susp \OS{E}{0})^{\sm j} \Rightarrow F_* \OS{E}{1}.\]  In the case that $F$ has K\"unneth isomorphisms of the form \[F(\Susp \OS{E}{0})^{\sm j} \cong F(\Susp \OS{E}{0})^{\otimes j},\] the $E^2$--page is identifiable as \[E^2_{*, *} \cong \Tor^{F_* \OS{E}{0}}_{*, *}(F_*, F_*). \qed\]
+\end{corollary}
+
+That this spectral sequence is multiplicative for the $\ast$--product is useful enough, but the situation is actually much, much better than this:
+\begin{lemma}[{\cite[Theorem 2.2]{RavenelWilsonKthyOfEMSpaces}}]\citeme{This isn't the right citation. They blame this generality on a Thomason--Wilson article.}
+Denote by $E^r_{*, *}(F_* \OS{E}{j})$ the spectral sequence considered above whose $E^2$--term is constructed from $\Tor$ over $F_* \OS{E}{j}$.  There are maps \[E^r_{*, *}(F_* \OS{E}{j}) \otimes_{F_*} F_* \OS{E}{m} \to E^r_{*, *}(F_* \OS{E}{j+m})\] which agree with the map \[F_* \OS{E}{j+1} \otimes_{F_*} F_* \OS{E}{m} \xrightarrow{\circ} F_* \OS{E}{j+m+1}\] on the $E^\infty$--page and which satisfy \[d^r(x \circ y) = (d^r x) \circ y. \qed\]
+\end{lemma}
+\noindent This Lemma is obscenely useful: it means that differentials can be transported \emph{between spectral sequences} for classes which can be decomposed as $\circ$--products.  This means that the bottom spectral sequence (i.e., the case $j = 0$) exerts a large amount of control over the others --- and this spectral sequence often turns out to be very computable.
+
+We now turn to our example of $E = H\F_2$.
+
+
+------
 
 Restricting to additive cooperations: the indecomposable quotient
 
@@ -183,9 +203,8 @@ The homology suspension element, the relation $e \circ e = b_{(0)}$, and passing
 \todo{Neil's MO answer about $H_* K(\Z, 3)$: http://mathoverflow.net/a/216041/1094}
 
 
------
+------
 
-\begin{example}
 Because $H\Z/2$ has field coefficients, it always has K\"unneth isomorphisms, and in particular we can study the Hopf ring \[A_{s, t} = (H\Z/2)_s \OS{H\Z/2}{t} = H_s(K(\Z/2, t); \F_2)\] for $E = H\Z/2$ and $F = H\Z/2$.  We compute this object in three steps.
 
 First, recall that there is a canonical isomorphism $H^*(\RP^\infty; \F_2) \cong \F_2[x]$ for $|x| = 1$.  In turn, the homology groups $H_*(\RP^\infty; \F_2)$ can be written as \[H_*(\RP^\infty; \F_2) \cong \F_2\{a_0, a_1, a_2, \ldots, a_n, \ldots\}\] for generators $a_n$ of degree $n$ with Kronecker pairing $\<x^m, a_n\> = \delta{}^m{}_n$.  For degree reasons, the diagonal on cohomology takes the form $\Delta x = x \otimes 1 + 1 \otimes x$ (cf.\ \Cref{HF2StackExample}), from which it follows that the $\ast$--algebra structure on homology takes the form of a divided power algebra on a single class: \[H_*(\RP^\infty; \F_2) \cong \Gamma[a_\emptyset] \cong \bigotimes_{j=0}^\infty \F_2[a_{(j)}] / (a_{(j)})^2.\]  Mysteriously, we have labeled the generating class ``$a_\emptyset$'' and defined $a_\emptyset^{[2^j]} =: a_{(j)}$. This notation will align with complications later in the example.
@@ -202,7 +221,6 @@ d((a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]}) & \equiv d(a_{(j_1)}
 & = a_{(j_1)} \circ d(a_{(j_2)} \circ \cdots \circ a_{(j_{t+1})}) = 0.
 \end{align*}
 Hence, the spectral sequence collapses and the induction holds.  It follows that \[A_{*, *} \stackrel\cong\leftarrow \bigoplus_{t=0}^\infty (H_*(\RP^\infty; \F_2))^{\wedge t},\] where $(-)^{\wedge t}$ denotes the $t$\textsuperscript{th} exterior power in the category of Hopf algebras.  The leftward direction of this isomorphism is realized by the $\circ$--product.
-\end{example}
 
 \begin{definition}
 We spell out some of the Hopf algebra constructions named above.  For a cocommutative $R$--coalgebra $C$, we define its free commutative and cocommutative Hopf $R$--algebra~\cite{Takeuchi} to have underlying algebra \[\frac{\operatorname{SymmetricAlgebra} \left(C \otimes_R (\chi C)\right)}{\left( \begin{array}{c} c \otimes \chi c = 1 \end{array} \right)}\] with diagonal \[\Delta(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \Delta c_1 \otimes \cdots \otimes \Delta c_k \otimes \chi (\Delta c'_1) \otimes \cdots \otimes \chi(\Delta c'_{k'})\] and antipode \[\chi(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \chi c_1 \otimes \cdots \otimes \chi c_k \otimes c'_1 \otimes \cdots \otimes c'_{k'}.\]  Then, given a Hopf $R$--algebra $A$, we define the free Hopf ring~\cite[Definition 4.2, Proposition 2.16]{HuntonTurner} to be \[\left. \bigoplus_{k=0}^\infty A^{\wedge_R k} \middle/ \left(x \wedge y = \sum_i (x'_i \ast y') \wedge (x''_i \ast y'') \middle| \begin{array}{c} y = y' \ast y'', \\ \Delta x = \sum_i x'_i \otimes x''_i \end{array} \right) \right.\] with $\circ$--product given by the natural maps $A^{\wedge_R n} \otimes_R A^{\wedge_R m} \to A^{\wedge_R (n+m)}$.
