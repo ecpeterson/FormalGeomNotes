@@ -184,53 +184,70 @@ If $E$ is a spectrum with $\pi_{-1} E = 0$, then $\OS{E}{1} \simeq B\OS{E}{0}$. 
 \begin{corollary}[{\cite[Theorem 2.1]{RavenelWilsonKthyOfEMSpaces}}]
 There is a convergent spectral sequence of Hopf algebras of signature \[E^1_{*, j} = F_*(\Susp \OS{E}{0})^{\sm j} \Rightarrow F_* \OS{E}{1}.\]  In the case that $F$ has K\"unneth isomorphisms of the form \[F(\Susp \OS{E}{0})^{\sm j} \cong F(\Susp \OS{E}{0})^{\otimes j},\] the $E^2$--page is identifiable as \[E^2_{*, *} \cong \Tor^{F_* \OS{E}{0}}_{*, *}(F_*, F_*). \qed\]
 \end{corollary}
+\noindent In general, if $E$ is a connective spectrum, we get a family of spectral sequences of signature \[E^2_{*, *} \cong \Tor^{F_* \OS{E}{j}}_{*, *}(F_*, F_*) \Rightarrow F_* \OS{E}{j+1}.\]
 
 That this spectral sequence is multiplicative for the $\ast$--product is useful enough, but the situation is actually much, much better than this:
-\begin{lemma}[{\cite[Theorem 2.2]{RavenelWilsonKthyOfEMSpaces}}]\citeme{This isn't the right citation. They blame this generality on a Thomason--Wilson article.}
+\begin{lemma}[{\cite[Theorem 2.2]{RavenelWilsonKthyOfEMSpaces}}]\label{CircProductAndDifferentials}
+\citeme{This isn't the right citation. They blame this generality on a Thomason--Wilson article.}
 Denote by $E^r_{*, *}(F_* \OS{E}{j})$ the spectral sequence considered above whose $E^2$--term is constructed from $\Tor$ over $F_* \OS{E}{j}$.  There are maps \[E^r_{*, *}(F_* \OS{E}{j}) \otimes_{F_*} F_* \OS{E}{m} \to E^r_{*, *}(F_* \OS{E}{j+m})\] which agree with the map \[F_* \OS{E}{j+1} \otimes_{F_*} F_* \OS{E}{m} \xrightarrow{\circ} F_* \OS{E}{j+m+1}\] on the $E^\infty$--page and which satisfy \[d^r(x \circ y) = (d^r x) \circ y. \qed\]
 \end{lemma}
 \noindent This Lemma is obscenely useful: it means that differentials can be transported \emph{between spectral sequences} for classes which can be decomposed as $\circ$--products.  This means that the bottom spectral sequence (i.e., the case $j = 0$) exerts a large amount of control over the others --- and this spectral sequence often turns out to be very computable.
 
-We now turn to our example of $E = H\F_2$.
+We now turn to our example of $E = H\F_2$ and $F = H\F_2$.  To ground our induction, we will consider the first spectral sequence \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) \Rightarrow H\F_2{}_* B\F_2.\]  Using that $\RP^\infty$ gives a model for $B\F_2$, we use \Cref{HF2RPinftyExample} to analyze this spectral sequence: that Example states that as an $\F_2$--module, there is an isomorphism \[H\F_2{}_* B\F_2 \cong \F_2\{a_j \mid j \ge 0\}.\]  Using our further computation in \Cref{RPExampleFaulty}, we can also give a presentation of the Hopf algebra structure on $H\F_2{}_* B\F_2$: it is dual to the primitively-generated polynomial algebra on a single class, so forms a divided power algebra on a single class.  In characteristic $2$, this decomposes as \[H\F_2{}_* B\F_2 \cong \Gamma[a_\emptyset] \cong \bigotimes_{j=0}^\infty \F_2[a_{(j)}] / a_{(j)}^2,\] where we have written $a_{(j)}$ for $a_\emptyset^{[2^j]}$ in the divided power structure.
 
+\begin{corollary}
+This $\Tor$ spectral sequence collapses at the $E^2$--page.
+\end{corollary}
+\begin{proof}
+As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is presented by the truncated polynomial algebra \[H\F_2{}_*(\F_2) \cong \F_2[\F_2] = \F_2[[1] - [0]] / ([1] - [0])^{\ast 2}.\]  The $\Tor$--algebra of this is then divided power on a single class: \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) = \Gamma[a_\emptyset].\]  In order for the two computations to agree, there can therefore be no differentials in the spectral sequence.
+\end{proof}
 
-------
-
-Restricting to additive cooperations: the indecomposable quotient
-
-The homology suspension element, the relation $e \circ e = b_{(0)}$, and passing to the stabilization.  I think that the relation above is analogous to $S^1 \sm S^1 \simeq \CP^1$?
-
-\todo{Neil's MO answer about $H_* K(\Z, 3)$: http://mathoverflow.net/a/216041/1094}
-
-
-------
-
-Because $H\Z/2$ has field coefficients, it always has K\"unneth isomorphisms, and in particular we can study the Hopf ring \[A_{s, t} = (H\Z/2)_s \OS{H\Z/2}{t} = H_s(K(\Z/2, t); \F_2)\] for $E = H\Z/2$ and $F = H\Z/2$.  We compute this object in three steps.
-
-First, recall that there is a canonical isomorphism $H^*(\RP^\infty; \F_2) \cong \F_2[x]$ for $|x| = 1$.  In turn, the homology groups $H_*(\RP^\infty; \F_2)$ can be written as \[H_*(\RP^\infty; \F_2) \cong \F_2\{a_0, a_1, a_2, \ldots, a_n, \ldots\}\] for generators $a_n$ of degree $n$ with Kronecker pairing $\<x^m, a_n\> = \delta{}^m{}_n$.  For degree reasons, the diagonal on cohomology takes the form $\Delta x = x \otimes 1 + 1 \otimes x$ (cf.\ \Cref{HF2StackExample}), from which it follows that the $\ast$--algebra structure on homology takes the form of a divided power algebra on a single class: \[H_*(\RP^\infty; \F_2) \cong \Gamma[a_\emptyset] \cong \bigotimes_{j=0}^\infty \F_2[a_{(j)}] / (a_{(j)})^2.\]  Mysteriously, we have labeled the generating class ``$a_\emptyset$'' and defined $a_\emptyset^{[2^j]} =: a_{(j)}$. This notation will align with complications later in the example.
-
-Second, using the fact that $\RP^\infty \simeq K(\Z/2, 1) \simeq B\Z/2$ has a bar filtration, we study the associated bar spectral sequence, which has the signature \[E^2_{*, *} = \Tor^{H_*(\Z/2; \F_2)}_{*, *}(\F_2, \F_2) \Rightarrow H_*(K(\Z/2, 1); \F_2).\]  The homology of the discrete group $\Z/2$ can be expressed as an algebra as
-\[
-H_*(\Z/2; \F_2) \cong \left. \F_2[\underline 0, \underline 1] \middle/ \left(\begin{array}{c} \underline 0 = 1 \\ \underline 1^{\ast 2} = \underline 0\end{array}\right) \right. \cong \F_2[\underline 1 - 1] / (\underline 1 - 1)^{\ast 2} =: \F_2[a_\emptyset] / a_\emptyset^{\ast 2},
-\]
-where $\underline n$ denotes the degree--zero class representing the point $n$ in $\Z/2$ and we have additionally defined $a_\emptyset := \underline 1 - 1$.  The $\Tor$ groups of this truncated polynomial algebra form a divided power algebra~\cite{TateResolutions}: \[\Tor^{H_*(\Z/2; \F_2)}_{*, *} \cong \Gamma[a_\emptyset].\]  It follows that the bar spectral sequence collapses at $E^2 = E^\infty$, and there are no differentials.
-
-Third, we use the second step as the base of an inductive argument, powered by Ravenel and Wilson's key lemma~\cite[Theorem 2.2]{RavenelWilson}, to analyze the other bar spectral sequences: \[\Tor^{H_*(K(\Z/2, t); \F_2)}_{*, *}(\F_2; \F_2) \Rightarrow H_*(K(\Z/2, t+1); \F_2).\]  Inductively assume that the $t$\th level $A_{*, t}$ of the Hopf ring is an exterior $\ast$--algebra on classes which are $t$--fold $\circ$--products of the classes $a_{(j)}$.  It follows that the $\Tor$ groups of the bar spectral sequence computing $A_{t+1, *}$ form a divided power algebra generated by the same $t$--fold $\circ$--products.  An analogue of another Ravenel--Wilson lemma~\cite[Lemma 9.5]{RavenelWilson} gives a congruence\footnote{It's conceivable that this congruence can be repaired to an equality, since the $2$--series for $\G_a$ is so abbreviated.  I have not worked this out.} \[(a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]} \equiv a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})} \pmod{\text{decomposables}}.\]  It follows from the key lemma~\cite[Theorem 2.2]{RavenelWilson}, which lets us transport differentials from earlier bar spectral sequences to the current one by applying the $\circ$--product, that the differentials vanish:
+Now we turn to the rest of the induction:
+\begin{theorem}
+$H\F_2{}_* \OS{H\F_2}{t}$ is the exterior $\ast$--algebra on the $t$--fold $\circ$--products of the generators $a_{(j)} \in H\F_2{}_* B\F_2$.
+\end{theorem}
+\begin{proof}
+Make the inductive assumption that this is true for some fixed value of $t$.  It follows that the $\Tor$ groups of the bar spectral sequence \[\Tor^{H\F_2{}_* \OS{H\F_2}{t}}_{*, *}(\F_2, \F_2) \Rightarrow H\F_2{}_* \OS{H\F_2}{t+1}\] form a divided power algebra generated by the same $t$--fold $\circ$--products.  An analogue of another Ravenel--Wilson lemma~\cite[Lemma 9.5]{RavenelWilsonKthyOfEMSpaces} gives a congruence\todo{It's conceivable that this congruence can be repaired to an equality, since the $2$--series for $\G_a$ is so abbreviated.  I have not worked this out.} \[(a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]} \equiv a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})} \pmod{\text{decomposables}}.\]  It follows from \Cref{CircProductAndDifferentials} that the differentials vanish:
 \begin{align*}
 d((a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]}) & \equiv d(a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})}) \pmod{\text{decomposables}} \\
 & = a_{(j_1)} \circ d(a_{(j_2)} \circ \cdots \circ a_{(j_{t+1})}) = 0.
 \end{align*}
-Hence, the spectral sequence collapses and the induction holds.  It follows that \[A_{*, *} \stackrel\cong\leftarrow \bigoplus_{t=0}^\infty (H_*(\RP^\infty; \F_2))^{\wedge t},\] where $(-)^{\wedge t}$ denotes the $t$\textsuperscript{th} exterior power in the category of Hopf algebras.  The leftward direction of this isomorphism is realized by the $\circ$--product.
+Hence, the spectral sequence collapses and the induction holds.
+\end{proof}
+
+\begin{corollary}
+It follows that \[H\F_2{}_* \OS{H\F_2}{*} \stackrel\cong\leftarrow \bigoplus_{t=0}^\infty (H_*(\RP^\infty; \F_2))^{\wedge t},\] where $(-)^{\wedge t}$ denotes the $t$\textsuperscript{th} exterior power in the category of Hopf algebras.
+\end{corollary}
+\begin{proof}
+The leftward direction of this isomorphism is realized by the $\circ$--product.
+\end{proof}
+
+\begin{remark}
+Our computation of the full Hopf ring of unstable cooperations can be winnowed down to give information about particular classes of cooperations.  For instance, the \emph{additive} unstable cooperations are given by passing to the $\ast$--indecomposable quotient
+\begin{align*}
+Q_{\ast} H\F_2{}_* \OS{H\F_2}{*} & \cong \F_2\left\{a_{(I_0)} \circ \cdots \circ a_{(I_t)}\right\} \\
+& \cong \F_2[\xi_0, \xi_1, \xi_2, \ldots].
+\end{align*}
+In terms of \Cref{SteenrodAlgIdentifiedWithAutGa}, we have \[\Spec Q_{\ast} H\F_2{}_* \OS{H\F_2}{*} \cong \underline{\smash{\operatorname{End}}}(\G_a).\]  One passes to the \emph{stable} cooperations by taking the colimit along the homology suspension element $a_{(0)} = \xi_0$.  This has the effect of adjoining a $\circ$--product inverse to $a_{(0)}$, i.e.,
+\begin{align*}
+(Q_{\ast} H\F_2{}_* \OS{H\F_2}{*})[a_{(0)}^{\circ(-1)}] & \cong \F_2[\xi_0^\pm, \xi_1, \xi_2, \ldots],
+\end{align*}
+which is exactly the ring of functions on $\InternalAut(\G_a)$ considered in \Cref{SteenrodAlgIdentifiedWithAutGa}.
+\end{remark}
+
+
+\begin{remark}[{\cite[Theorems 8.5 and 8.11]{Wilson}}]
+The odd--primary analogue of this result appears in Wilson's book.  In that situation, the bar spectral sequences do not degenerate but rather have a single family of differentials, and the result imposes a single relation on the free Hopf ring.  The end result is \[H\F_p{}_* \OS{H\F_p}{*} \cong \frac{\bigotimes_{I, J} \F_p[e_1 \circ \alpha_I \circ \beta^J, \alpha_I \circ \beta^J]}{(e_1 \circ \alpha_I \circ \beta^J)^{\ast 2} = 0, (\alpha_I \circ \beta^J)^{\ast p} = 0, e_1 \circ e_1 = \beta_1},\] where $e_1 \in (H\F_p)_1 \OS{H\F_p}{1}$ is the homology suspension element, $\alpha_{(j)} \in (H\F_p)_{2p^j} \OS{H\F_p}{1}$ are the analogues of the elements considered above, and $\beta_{(j)} \in (H\F_p)_{2p^j} \CP^\infty$ are the algebra generators of the Hopf algebra dual of the ring of functions on the formal group $\CP^\infty_{H\F_p}$ associated to $H\F_p$ by its natural complex orientation.  (In particular, the Hopf ring is \emph{free} on these Hopf algebras, subject to the single interesting relation $e_1 \circ e_1 = \beta_{(0)}$.)\todo{I think this relation is supposed to be analogous to $S^1 \sm S^1 \simeq S^2 = \CP^1$.}
+\end{remark}
+
+
+------
+
+\todo{Neil's MO answer about $H_* K(\Z, 3)$: http://mathoverflow.net/a/216041/1094}
 
 \begin{definition}
 We spell out some of the Hopf algebra constructions named above.  For a cocommutative $R$--coalgebra $C$, we define its free commutative and cocommutative Hopf $R$--algebra~\cite{Takeuchi} to have underlying algebra \[\frac{\operatorname{SymmetricAlgebra} \left(C \otimes_R (\chi C)\right)}{\left( \begin{array}{c} c \otimes \chi c = 1 \end{array} \right)}\] with diagonal \[\Delta(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \Delta c_1 \otimes \cdots \otimes \Delta c_k \otimes \chi (\Delta c'_1) \otimes \cdots \otimes \chi(\Delta c'_{k'})\] and antipode \[\chi(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \chi c_1 \otimes \cdots \otimes \chi c_k \otimes c'_1 \otimes \cdots \otimes c'_{k'}.\]  Then, given a Hopf $R$--algebra $A$, we define the free Hopf ring~\cite[Definition 4.2, Proposition 2.16]{HuntonTurner} to be \[\left. \bigoplus_{k=0}^\infty A^{\wedge_R k} \middle/ \left(x \wedge y = \sum_i (x'_i \ast y') \wedge (x''_i \ast y'') \middle| \begin{array}{c} y = y' \ast y'', \\ \Delta x = \sum_i x'_i \otimes x''_i \end{array} \right) \right.\] with $\circ$--product given by the natural maps $A^{\wedge_R n} \otimes_R A^{\wedge_R m} \to A^{\wedge_R (n+m)}$.
 \end{definition}
-
-\begin{remark}
-The odd--primary analogue of this result appears in Wilson's book~\cite[Theorem 8.5]{Wilson}.  In that situation, the bar spectral sequences do not degenerate but rather have a single family of differentials, and the result imposes a single relation on the free Hopf ring.
-\end{remark}
-
-\todo[inline]{Pass to the additive unstable cooperations and note that you recover the \emph{monoid of endomorphisms} of $\G_a$.  In algebraic terms, this looks like the dual Steenrod algebra where $\xi_0$ has not been inverted.}
 
 
 
