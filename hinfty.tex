@@ -11,6 +11,33 @@
 
 \todo[inline]{Since you spend so much time talking about descent in other parts of these notes, maybe you should also read the end of the AHS $H_\infty$ paper where they claim to recast their results in the usual language of descent.}
 
+\todo[inline]{Conversation with Nat on 2/9 suggests taking the following route in this chapter:
+contexts for $E_\infty$ mapping spaces in general;
+Subgroups and level structures;
+the Drinfel'd ring and the universal level structure;
+the isogenies pile;
+power operations and Adams operations, after Ando (naturally indexed vs indexed on subgroups; have a look at the Screenshot you took on this day);
+comparison of comodules $M$ for the isogenies pile with the action of $M_n(\Z_p)$ on $M \otimes_{E_n^*} D_\infty$ (this is a modern result due to Tomer, Tobi, Lukas, and Nat);
+$H_\infty$ $MU$--orientations and Matt's thesis;
+the analogous results for $\Theta^k$--structures.
+In particular, leave character theory, $p$--divisible groups, and rational phenomena for spillover at the end of the year. They aren't strictly necessary to telling the story; you just need to know a little about the Drinfel'd ring to construct Matt's maps.  (If you have time, though, the point is that the rationalized Drinfel'd ring carries the universal level structure which is also an isomorphism.)}
+
+\todo[inline]{The stuff around 4.3.1-2 of Matt's published thesis talks about $H_\infty$--maps being determined by their values on $*$ and $\CP^\infty$, which is an interesting result.  You might also compare with Butowiez--Turner.}
+
+\todo[inline]{Work in height $1$ (and height $2$??) examples through this?  $K$--theory is pretty accessible, and the height $2$ examples are somewhat understood (Charles, Yifei), and they're both relevant for the elliptic $M\String$ story.  (There's also the pile of elliptic curves with isogenies...)}
+
+\todo[inline]{Nat warns that the very end of Matt's thesis uses character theory for $S^1$, which you have to be very careful about to pull off correctly.  ($S^1$ is not a finite group, but in certain contexts it can be approximated by its torsion subgroups...)}
+
+
+
+
+
+
+\section{$E_\infty$ ring spectra and their contexts}
+
+
+
+
 
 
 \section{Subgroups and level structures}
@@ -21,6 +48,9 @@ Here's a definition of an isogeny.  Weierstrass preparation can be phrased as sa
 \begin{definition}
 Take $C$ and $D$ to be formal curves over $X$.  A map $f: C \to D$ is an \textit{isogeny} when the induced map $C \to C \times_X D$ exhibits $C$ as a divisor on $C \times_X D$ as $D$--schemes.
 \end{definition}
+\todo{Be sure to compare this definition with the usual one for formal groups: surjections with finite cokernel.  These are easy to come up with lots of examples for!  (Don't ditch this definition, though, since it's the one that lets you prove something about Weierstrass preparation geometrically.)}
+
+
 
 
 In fact, every map in positive characteristic can be factored as a coordinate change and an isogeny, which is a weak form of preparation.
@@ -95,6 +125,7 @@ nothing you haven't already seen. in fact, most of it is done in coordinates, wi
 
 Section 7: level--$A$ structures: smooth, finite, flat
 
+\todo{Be careful to distinguish the physical group $A$ from the associated \emph{constant group scheme}.}
 As discussed long ago, for finite abelian $p$--groups there's a scheme \[\InternalHom{FormalGroups}(A, \G)(Y) = \InternalHom{Groups}(A, \G(Y)).\]  If $\G$ were a discrete group, we could decompose this as \[\text{``$\InternalHom{FormalGroups}(A, \G) = \coprod_{B \le A} \Mono(A/B, \G)$''}\] along the different kernel types of homomorphisms, but $\Mono$ does not exist as a scheme.\todo{Come up with a really compelling example.  You had one when you were talking to Danny and Jeremy.  Probably you got it \emph{from} Jeremy.}  Level structures approximate this as best one can be approximating $\G$ by something essentially discrete: an \'etale group scheme.
 
 For a map $\phi: A \to \G(Y)$, we write $[\phi A] = \sum_{a \in A}[\phi(a)]$.  We also write $\Lambda = (\Q_p / \Z_p)^n$, so that $\Lambda[p^m] = (\Z/p^m)^{\times n}$.  Note \[|\CatOf{AbelianGroups}(A, \Lambda)| = |A|^n = \operatorname{rank} \left( \InternalHom{FormalGroups}(A, \G) \to X \right).\]
@@ -199,73 +230,6 @@ Let $R$ be a complete local domain with positive residue characteristic $p$, and
 ------
 
 Section 20 of FPFP is about ``full sets of points'' and the comparison with the cohomology of the flag variety of a vector bundle.
-
-
-
-
-
-
-\section{Character theory for Lubin--Tate spectra}
-
-There's a sufficient amount of reliance on character theory in Matt's thesis that we should talk about it.  You should write that action and then backtrack here to see what you need for it.
-
-See Morava's \textit{Local fields} paper
-
-\begin{remark}
-Theorem 2.6 of Greenlees--Strickland for a nice transchromatic perspective.  See also work of Stapleton and Schlank--Stapleton, of course.\todo{Flesh this out.}
-\end{remark}
-
-
-------
-
-\begin{theorem}\citeme{Theorem A}
-Let $E$ be any complex-oriented cohomology theory.  Take $G$ to be a finite group and let $\CatOf{Ab}_G$ be the full subcategory of the orbit category of $G$ built out of abelian subgroups of $G$.  Finally, let $X$ be a finite $G$--CW complex.  Then, each of the natural maps \[E^*(EG \times_G X) \to \lim_{A \in \CatOf{Ab}_G} E^*(EG \times_A X) \to \int_{A \in \CatOf{Ab}_G} E^*(BA \times X^A)\] becomes an isomorphism after inverting the order of $G$.  In particular, there is an isomorphism \[\frac{1}{|G|} E^* BG \to \lim_{A \in \CatOf{Ab}_G} \frac{1}{|G|} E^* BA. \qed\]
-\end{theorem}
-
-This is an analogue of Artin's theorem:
-\begin{theorem}
-There is an isomorphism \[\frac{1}{|G|} R(G) \to \lim_{C \in \CatOf{Cyclic}_G} \frac{1}{|G|} R(C). \qed\]
-\end{theorem}
-
-
-------
-
-HKR intro material connecting Theorem A to character theory:
-
-Recall that classical characters for finite groups are defined in the following situation: take $L = \Q^{\mathrm{ab}}$ to be the smallest characteristic $0$ field containing all roots of unity, and for a finite group $G$ let $Cl(G; L)$ be the ring of class functions on $G$ with values in $L$.  The units in the profinite integers $\widehat{\Z}$ act on $L$ as the Galois group over $\Q$, and since $G = \CatOf{Groups}(\widehat{\Z}, G)$ they also act naturally on $G$.  Together, this gives a conjugation action on $Cl(G; L)$: for $\phi \in \widehat{\Z}$, $g \in G$, and $\chi \in Cl(G; L)$, one sets \[(\phi \cdot \chi)(g) = \phi(\chi(\phi^{-1}(g))).\]  The character map is a ring homomorphism \[\chi: R(G) \to Cl(G; L)^{\widehat{\Z}},\] and this induces isomorphisms \[\chi: L \otimes R(G) \xrightarrow{\simeq} Cl(G; L)\] and even \[\chi: \Q \otimes R(G) \xrightarrow{\simeq} Cl(G; L)^{\widehat{\Z}}.\]
-
-Now take $E = E_\Gamma$ to be a Morava $E$--theory of finite height $d = \height(\Gamma)$.  Take $E^*(B\Z_p^d)$ to be topologized by $B(\Z/p^j)^d$.  A character $\alpha: \Z_p^d \to S^1$ will induce a map $\alpha^*: E^* \CP^\infty \to E^* B\Z_p^d$.  We define $L(E^*) = S^{-1} E^*(B\Z_p^d)$, where $S$ is the set of images of a coordinate on $\CP^\infty_E$ under $\alpha^*$ for nonzero characters $\alpha$.  Note that this ring inherits an $\operatorname{Aut}(\Z_p^d)$ action by $E^*$--algebra maps.
-
-The analogue of $Cl(G; L)$ will be $Cl_{d,p}(G; L(E^*))$, defined to be the ring of functions $\chi: G_{d, p} \to L(E^*)$ stable under $G$--orbits.  Noting that \[G_{d,p} = \operatorname{Hom}(\Z_p^d, G),\] one sees that $\operatorname{Aut}(\Z_p^d)$ acts on $G_{d,p}$ and thus on $Cl_{d,p}(G; L(E^*))$ as a ring of $E^*$--algebra maps: given $\phi \in \operatorname{Aut}(\Z_p^d)$, $\alpha \in G_{d,p}$, and $\chi \in Cl_{d,p}(G; L(E^*))$ one lets \[(\phi \cdot \chi)(\alpha) = \phi(\chi(\phi^{-1}(\alpha))).\]
-
-Now we introduce a finite $G$--CW complex $X$.  Let \[\operatorname{Fix}_{d, p}(G, X) = \coprod_{\alpha \in \operatorname{Hom}(\Z_p^d, G)} X^{\operatorname{im} \alpha}.\]  This space has commuting actions of $G$ and $\operatorname{Aut}(\Z_p^d)$.  We set \[Cl_{d, p}(G, X; L(E^*)) = L(E^*) \otimes_{E^*} E^*(\operatorname{Fix}_{d,p}(G, X))^G,\] which is again an $E^*$--algebra acted on by $\operatorname{Aut}(Z_p^d)$.  We define the character map ``componentwise'': a homomorphism $\alpha \in \operatorname{Hom}(\Z_p^d, G)$ induces \[E^*(EG \times_G X) \to E^*(B\Z_p^d) \otimes_{E^*} E^*(X^{\operatorname{im} \alpha}) \to L(E^*) \otimes_{E^*} E^*(X^{\operatorname{im} \alpha}).\]  Taking the direct sum over $\alpha$, this assembles into a map \[\chi_{d,p}^G: E^*(EG \times_G X) \to Cl_{d,p}(G, X; L(E^*))^{\operatorname{Aut}(Z_p^d)}.\]
-\todo{Nat taught you how to say all these things with $p$--adic tori, which was \emph{much} clearer.}
-\begin{theorem}\citeme{Theorem C}
-The invariant ring is $L(E^*)^{\operatorname{Aut}(\Z_p^d)} = p^{-1} E^*$, and $L(E^*)$ is faithfully flat over $p^{-1} E^*$.\todo{Checking this invariant ring claim is easiest done by comparing the functors the two things corepresent.}  The character map $\chi_{d,p}^G$ induces isomorphisms
-\begin{align*}
-\chi_{d,p}^G \co L(E^*) \otimes_{E^*} E^*(EG \times_G X) & \xrightarrow{\simeq} Cl_{d,p}(G, X; L(E^*)), \\
-\chi_{d,p}^G \co p^{-1} E^*(EG \times_G X) & \xrightarrow{\simeq} Cl_{d,p}(G, X; L(E^*))^{\operatorname{Aut}(\Z_p^d)}.
-\end{align*}
-In particular, when $X = *$, there are isomorphisms
-\begin{align*}
-\chi_{d,p}^G \co L(E^*) \otimes_{E^*} E^*(BG) & \xrightarrow{\simeq} Cl_{d,p}(G; L(E^*)), \\
-\chi_{d,p}^G \co p^{-1} E^*(BG) & \xrightarrow{\simeq} Cl_{d,p}(G; L(E^*))^{\operatorname{Aut}(\Z_p^d)}. \qed
-\end{align*}
-\end{theorem}
-
-------
-
-Jack gives an interpretation of this in terms of formal $\sheaf{O}_L$--modules.
-
-------
-
-I also have this summary of Nat's of the classical case:
-
-It's not easy to decipher if you weren't there for the conversation, but here's my take on it. First, the map we wrote down today was the non-equivariant chern character: it mapped non-equivariant $KU \otimes \Q$ to non-equivariant $H\Q$, periodified. The first line on Nat's board points out that if you use this map on Borel-equivariant cohomology, you get nothing interesting: $K^0(BG)$ is interesting, but $H\Q^*(BG) = H\Q^*(*)$ collapses for finite $G$. So, you have to do something more impressive than just directly marry these two constructions to get something interesting.
-
-That bottom row is Nat's suggestion of what ``more interesting'' could mean. (Not really his, of course, but I don't know who did this first. Chern, I suppose.) For an integer $n$, there's an evaluation map of (forgive me) topological stacks \[* \mmod (\Z/n) \times \operatorname{Hom}(* \mmod (\Z/n), * \mmod G) \xrightarrow{\mathrm{ev}} * \mmod G\] which upon applying a global-equivariant theory like $K_G$ gives \[K_{\Z/n}(*) \otimes K_G(\coprod_{\text{conjugacy classes of $g$ in $G$}} *) \xleftarrow{ev^*} K_G(*).\]
-
-Now, apply the genuine $G$-equivariant Chern character to the $K_G$ factor to get \[K_{\Z/n}(*) \otimes H\Q_G(\coprod *) \from K_{\Z/n}(*) \otimes K_G(\coprod *),\] where the coproduct is again taken over conjugacy classes in G. Now, compute $K_{\Z/n}(*) = R(\Z/n) = \Z[x] / (x^n - 1)$, and insert this calculation to get \[K_{\Z/n}(*) \otimes H\Q_G(\coprod *) = \Q(\zeta_n) \otimes (\bigoplus_{\text{conjugacy classes}} \Q),\] where $\zeta_n$ is an $n${\th} root of unity.  As $n$ grows large, this selects sort of the part of the complex numbers $\C$ that the character theory of finite groups cares about, and so following all the composites we've built a map \[K_G(*) \to \C \otimes (\bigoplus_{\text{conjugacy classes}} \C).\]  The claim, finally, is that this map sends a $G$-representation (thought of as a point in $K_G(*)$) to its class function decomposition.
 
 
 
@@ -527,6 +491,102 @@ The natural map \[\sheaf O(\InternalHom{FormalGroups}(\Z/p, \G)) \to R \times \s
 \todo[color=red,inline]{I left off at Section 10.}
 
 
+------ Descent along level structures, simplicially (Section 11) ------
+
+\todo[inline]{Actually, this section appears \emph{not} to be about $\FGps$, and instead it's about the \emph{coarse moduli quotient} to the functor of formal groups, which is not locally representable.  I'm a little confused about this --- I intend to ask Mike what's going on.}
+
+Write $\Level(A) \to \FGps$ for the parameter space of a formal group equipped with a level--$A$ structure, together with its structure map (to the \emph{coarse moduli of formal groups!!!}).  We define a sequence of schemes by: $\Level_0 = \FGps$, $\Level_1 = \coprod_{A_0} \Level(A_0)$ for finite abelian groups $A_0$, and most generally \[\Level_n = \coprod_{0 = A_n \subseteq \cdots \subseteq A_0} \Level(A_0).\]  There are two maps $\Level_1 \to \Level_0$.  One is the structural one, where we simply peel off the formal group and forget the level structure.  The other comes from the quotient map: $\ell\co A \to \G$ yields a quotient isogeny $q\co \G \to \G/\ell$, and we take the second map $\Level_1 \to \Level_0$ to send $\ell$ to $\G / \ell$.  Then, consider the following Lemma:
+
+\begin{lemma}\citeme{AHS Lemma 11.3}
+For $\ell\co A \to \G$ a level structure and $B \subseteq A$ a subgroup, the induced map $\ell|_B\co B \to \G$ is a level structure and the quotient $\G / \ell|_B$ receives a level structure $\ell'\co A/B \to \G/\ell|_B$. \qed
+\end{lemma}
+
+This gives us enough compatibility among quotients to use the two maps above to assemble the $\Level_*$ schemes into a simplicial object.  Most face maps just omit a subgroup, except for the last face map, since the zero subgroup is not permitted to be omitted.  Instead, the last face map sends the string of subgroups $0 = A_n \subseteq A_{n-1} \subseteq \cdots \subseteq A_0$ and level structure $\ell\co A_0 \to \G$ to the quotient string $0 = A_{n-1} / A_{n-1} \subseteq \cdots \subseteq A_0 / A_{n-1}$ and quotient level structure $\ell\co A_0 / A_{n-1} \to \G/\ell|_{A_{n-1}}$.  The degeneracy maps come from lengthening one of these strings by an identity inclusion.
+
+\begin{definition}\citeme{Definition 11.10, Remark 11.11}
+Let $\G\co F \to \FGps$ be a functor over formal groups, and define schemes $\Level(A, F) = \Level(A) \times_{\G} F$ and $\Level_n(F) = \Level_n \times_{\G} F$.  Then, \textit{descent data for level structures on $F$} is the structure of a simplicial scheme on $\Level_*(F)$, together with a morphism of simplicial schemes $\Level_*(F) \to \Level_*$.  It is enough to specify a map $d_1\co \Level_1(F) \to F$, use that to build the simplicial scheme structure as in the above Lemma, and assert that the following square commutes:
+\begin{center}
+\begin{tikzcd}
+\Level_1(F) \arrow{r} \arrow{d}{d_1} & \Level_1 \arrow{d}{d_1} \\
+F \arrow{r} & \FGps.
+\end{tikzcd}
+\end{center}
+\end{definition}
+
+\begin{example}
+Let $\G\co S \to \FGps$ be a formal group of finite height over a $p$--local formal scheme $S$.  The functor $\Level(A, \G)$ is exactly the functor defined in Section 9 (see above), and in particular it is represented by an $S$--scheme.  The maps $\psi_\ell$ and $f_\ell$ from Definition 3.1 amount to giving a map $d_1\co \Level_1(\G) \to S$ and an isogeny $q\co d_0^* \G \to d_1^* \G$ whose kernel on $\Level(A, \G)$ is $A$.  The other conditions on Definition 3.1 exactly ensure that $(\Level_*(\G), d_*, s_*)$ is a simplicial functor and over $\Level_2(\G)$ the relevant hexagonal diagram commutes:
+\begin{center}
+\begin{tikzcd}
+& d_0^* d_0^* \G \arrow[-,double]{ld} \arrow{rd}{d_0^* q} \\
+d_1^* d_0^* \G \arrow{d}{d_1^* q} & & d_0^* d_1^* \G \arrow[-,double]{d} \\
+d_1^* d_1^* \G \arrow[-,double]{rd} & & d_2^* d_0^* \G \arrow{ld}{d_2^* q} \\
+& d_2^* d_1^* \G.
+\end{tikzcd}
+\end{center}
+\end{example}
+
+\begin{example}
+We now further package this into a single object.  Let $\underline{\G}$ be the functor over $\FGps$ whose value on $R$ is the set of pullback diagrams
+\begin{center}
+\begin{tikzcd}
+\G' \arrow{r}{f} \arrow{d} & \G \arrow{d} \\
+\Spf R \arrow{r}{i} & S
+\end{tikzcd}
+\end{center}
+such that the map $\G' \to i^* \G$ induced by $f$ is a homomorphism (hence isomorphism) of formal groups over $\Spf R$.  For a finite abelian group $A$, write $\Level(A, \underline{\G})(R)$ for the set of diagrams
+\begin{center}
+\begin{tikzcd}
+A_{\Spf R} \arrow{r}{\ell} \arrow{rd} & \G' \arrow{r}{f} \arrow{d} & \G \arrow{d} \\
+& \Spf R \arrow{r}{i} & S
+\end{tikzcd}
+\end{center}
+where the square forms a point in $\underline{\G}(R)$ and $\ell$ is a level--$A$ structure.  Giving a map of functors $d_1\co \Level_1(\underline{\G}) \to \underline{\G}$ making the above square commute is to give a pullback diagram
+\begin{center}
+\begin{tikzcd}
+\G / \ell \arrow{r} \arrow{d} & \G \arrow{d} \\
+\Level_1(\G) \arrow{r} & S,
+\end{tikzcd}
+\end{center}
+or equivalently a map of formal schemes $\Level_1(\G) \to S$ and an isogeny $q\co d_0^* \G d_1^* \G$ whose kernel on $\Level(A, \G)$ is $A$.  Therefore, descent data for level structures on the formal group $\G$ (in the sense of Section 3) are equivalent to descent data for level structures on the functor $\underline{\G}$.
+\end{example}
+
+------ Section 12: Descent for level structures on Lubin--Tate groups ------
+
+Let $k$ be perfect of positive characteristic $p$, and let $\Gamma$ be a formal group of finite height over $k$.  Recall that this induces a relative Frobenius
+\begin{center}
+\begin{tikzcd}
+\Gamma \arrow{r}{F} \arrow[bend left]{rr}{\phi_\Gamma} \arrow{rd} & \phi_k^* \Gamma \arrow{r} \arrow{d} & \Gamma \arrow{d} \\
+& \Spec k \arrow{r}{\phi_k} & \Spec k.
+\end{tikzcd}
+\end{center}
+The map $F$ is an isogeny of degree $p$, with kernel the divisor $p \cdot [0]$.  Recall also that a deformation $H$ of $\Gamma$ to $T$ induces a map $\underline{H} \to \Def(\Gamma)$, and there is a universal such $\G$ over the ground scheme $S \cong \Spf \W(k)\ps{u_1, \ldots, u_{d-1}}$ such that $\underline{\G} \to \Def(\Gamma)$ is an isomorphism of functors over $\FGps$.
+
+Now consider a point in $\Level(A, \Def \Gamma)$:
+\begin{center}
+\begin{tikzcd}
+A_T \arrow{r}{\ell} \arrow{rd} & H \arrow{d} & H_0 \arrow{l} \arrow{r}{f} \arrow{d} & \Gamma \arrow{d} \\
+& T & T_0 \arrow{l} \arrow{r}{j} & \Spec k.
+\end{tikzcd}
+\end{center}
+The level structure $\ell$ gives rise to a quotient isogeny $q\co H \to H'$.  Since $A$ is sent to $0$ in $\sheaf O_{T_0}$, there is a canonical map $\bar q$ fitting into the diagram
+\begin{center}
+\begin{tikzcd}
+H \arrow{rr}{q} \arrow{rdd} & & H' \arrow{ldd} \\
+& & & H_0 \arrow{rdd} \arrow[crossing over]{lllu} \arrow{r} & H_0' \arrow[crossing over]{llu} \arrow{dd} \arrow[densely dotted]{r}{\bar q} & (\phi^r)^* H_0 \arrow{ldd} \arrow{r} \arrow[leftarrow, bend right, crossing over]{ll} & H_0 \arrow{dd} \arrow{r}{f} & \Gamma \arrow{dd} \\
+& T \\
+& & & & T_0 \arrow{lllu} \arrow{rr}{\phi^r} & & T_0 \arrow{r}{j} & \Spec k.
+\end{tikzcd}
+\end{center}
+The map $\bar q$ combines with the rest of the maps to exhibit $H'$ as a deformation of $\Gamma$, and hence we get a natural transformation \[d_1\co \Level_1(\Def(\Gamma)) \to \Def(\Gamma).\]  Since $\phi^r \phi^s = \phi^{r+s}$, this gives descent data for level structures on $\Def(\Gamma)$.  Identifying this functor with $\underline{\G}$ using Lubin--Tate theory, we equivalently have shown the existence of descent data for level structures on $\underline{\G}$.
+
+Incidentally, the descent data constructed here is also the descent data that would come from the structure of an $E_\infty$--orientation on the Morava $E$--theory $E_d$, essentially because the divisor associated to the kernel of the relative Frobenius on the special fiber is forced to be $p[0]$, and everything is dictated by how the deformation theory \emph{has} to go (and the fact that the topological operations we're studying induce deformation-theoretic-describable operations on algebra).
+
+------Section 15: Level structures on elliptic curves, and the relation to the $\sigma$--orientation / the corresponding section of the $\Theta^3$--sheaf------
+
+
+
+
+
 
 
 
@@ -545,3 +605,7 @@ Section 3.7 of Matt's thesis also seems to deal with the context question: he gi
 \todo{This is Nat's claim. Check back with him about how this is visible.}The rational story: start with a sheaf on the isogenies pile.  Tensor everything with $\Q$.  That turns this thing into a rational algebra under the Drinfel'd ring together with an equivariant action of $\GL_n \Q_p$.
 
 Matt's Section 4 talks about the $E_\infty$ structure on $E_n$ and compatibility with his power operations.  It's not clear how this doesn't immediately follow from the stuff he proves in Section 3, but I think I'm just running out of stream in reading this thesis.  One of the neat features of this later section is that it relies on calculations in $E_n D_\pi \OS{MU}{2*}$, which is an interesting way to mix operations coming from instability and from an $H_\infty$--structure.  This is yet another clue about what the relevant picture of a context should look like.  He often cites VIII.7 of BMMS.
+
+Mike says that Mahowald--Thompson analyzed $L_{K(n)} \Loops S^{2n+1}$ by writing down some clever finite resolution.  The resolution that they produce by hand is actually exactly what you would get if you tried to understand the mapping spectral sequence for $E_\infty(E_n^{\Loops S^{2n+1}}, E_n)$.
+
+Mike also says that a consequence of the unpublished Hopkins--Lurie ambidexterity follow-up is that the comparison map $\CatOf{Spaces}(*, Y) \to E_\infty(E_n^Y, E_n^*)$ is an equivalence if $Y$ is a finite Postnikov tower living in the range of degrees visible to Morava $E$--theory.

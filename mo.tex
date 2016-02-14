@@ -38,7 +38,7 @@ We can interpret $T$ as a functor off of the slice category over $BGL_1 S^{n-1}$
 
 \todo{You can make this section clearer by noticing that the map $J_{\R}^n$ is directly induced by a map $O(n) \to h\Aut S^{n-1}$ by the action of $O(n)$ on $\R^n$.  This makes the commutativity of the relevant diagrams clear, whereas using the Yoneda lemma does not make it clear that we can take the appropriate homotopy colimits.  --Mauro}
 Next, the spherical subbundle of a vector bundle gives a common source of spherical bundles.  Since rank $n$ vector bundles are also classified by an object $BO(n)$, this begets a map $J_{\R}^n\co BO(n) \to B \GL_1 S^{n-1}$ for each $n$.  Stable homotopy theorists are very interested in the block--inclusion maps $i^n\co BO(n) \to BO(n+1)$ and the colimit $BO = BO(\infty)$.  The suspension functor induces a map $\GL_1 S^{n-1} \to \GL_1 S^n$, and we are led to ask about the compatibility of these operations.  As a route to answering this, the block--inclusion maps are a special case of a more general direct sum map $\oplus\co BO(n) \times BO(m) \to BO(n+m)$, given by the precomposition \[BO(n) = BO(n) \times * \xrightarrow{\operatorname{id} \times \text{triv}} BO(n) \times BO(1) \xrightarrow\oplus BO(n+1).\] The spaces $B \GL_1 S^{n-1}$ enjoy a similar ``collective monoid'' structure, given by taking the fiberwise join two spherical bundles with a common base.
-\begin{lemma}
+\begin{lemma}\label{JIsMonoidal}
 The fiberwise join is represented by maps \[B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \to B\GL_1 S^{n+m-1},\] and these maps commute with the block sum maps on the $BO(n)$ family: \todo{Split the left vertical arrow into two?} \todo{Index it by $J_\mathbb{R}^n \times J_\mathbb{R}^m$, and the right vertical arrow by $J_\mathbb{R}^{n+m}$? -Danny}
 \begin{center}
 \begin{tikzcd}
@@ -61,21 +61,21 @@ We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}
 \todo{Question: You essentially defined $MO$ here by piecing together the $T(J_\mathbb{R}^n)$'s. We should mention that another way to pack all this info together is to say $MO = T(J_\mathbb{R})$ -danny}
 \todo{There should be a Theorem here saying that we recover $MO$ as defined on the first day.}
 
-The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces.  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
+The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces (from \Cref{JIsMonoidal}).  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
 \begin{center}
 \begin{tikzcd}
 BO \times BO \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
 & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
-We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}\todo{Have you already mentioned that $BO$ is not just an $H$-space, but an $H$-group?}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.} \todo{I'm confused about the commutativity of this factorization with the rest of the diagram.-danny}  We are now in a position to see the Thom isomorphism:
+We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.  \todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}\todo{Have you already mentioned that $BO$ is not just an $H$-space, but an $H$-group?}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.} \todo{I'm confused about the commutativity of this factorization with the rest of the diagram.-danny}  We are now in a position to see the Thom isomorphism:
 \begin{lemma}[Thom isomorphism, universal example] As $MO$--modules,\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}\todo{Is it furthermore clear that the cohomological version of this gives an action of $E^* X$ on $E^* T(\xi)$ by the ``Thom diagonal''?} \[MO \sm MO \simeq MO \sm \Susp^\infty_+ BO.\]
 \end{lemma}
 \begin{proof}
 Stringing together the naturality properties of the Thom functor outlined above, we can thus make the following calculation:
 \begin{align*}
 T(\mu \circ (J_{\R} \times J_{\R})) & \simeq T(\mu \circ (J_{\R} \times J_{\R}) \circ \sigma) & \text{(homotopy invariance)} \\
-& \simeq T(\mu \circ (J_{\R} \times 0)) & \text{(constructed lift)} \\
+& \simeq T(J_{\R} \times 0) & \text{(constructed lift)} \\
 & \simeq T(J_{\R}) \sm T(0) & \text{(monoidality)} \\
 & \simeq T(J_{\R}) \sm \Susp^\infty_+ BO & \text{(\Cref{TrivialBundleThomExample})} \\
 T(J_{\R}) \sm T(J_{\R}) & \simeq T(J_{\R}) \sm \Susp^\infty_+ BO & \text{(monoidality)} \\
@@ -86,23 +86,38 @@ MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. & \text{(definition of $MO$)} & \ph
 \noindent From here, the general version of Thom's theorem follows quickly:
 
 \begin{theorem}[Thom isomorphism]
-Let $\xi\co X \to BO$ classify a vector bundle and let $\phi: MO \to E$ be a map of ring spectra. Then there is an equivalence of $E$--modules \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
+Let $\xi\co X \to BO$ classify a vector bundle and let $\phi\co MO \to E$ be a map of ring spectra. Then there is an equivalence of $E$--modules \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
 \end{theorem}
+
 \begin{proof}[Modifications to above proof]
-To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma\co BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  This gives an equivalence $MO \sm T(\xi) \simeq MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram
+\todo{Added a little clarification, and gave what I think is a correct proof of the E case.  -Krishanu}
+To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma\co BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  Follow the same proof as before with the diagram
 \begin{center}
 \begin{tikzcd}
-E \sm T(\xi) \arrow[densely dotted]{r}{\simeq} \arrow{d}{\eta_{MO} \sm \id \sm \id} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm \id \sm \id} \\
-MO \sm E \sm T(\xi) \arrow{r}{\simeq} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id} & MO \sm E \sm \Susp^\infty_+ X \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id} \\
-E \sm T(\xi) \arrow{r} & E \sm \Susp^\infty_+ X.
+BO \times X \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrrd} & BO \times X \arrow{r}{\simeq, \xi}& BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
+& & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
-The middle equivalence comes from the previous Thom isomorphism, smashed through with $E$.  The bottom arrow exists by applying the action map to both sides.  Reusing the bottom arrow at the top arrow and using the unitality of the monoid $E$ shows the map to be an equivalence. \todo{I'm a little confused here. Once we have the equivalence $MO \wedge T(\xi) \simeq MO \wedge \Sigma_+^\infty X$, why can't be apply $(\varphi, id)$ to this equivalence to obtain $E \wedge T(\xi) \simeq E \wedge \Sigma_+^\infty X$? -danny}\todo{The ``unitality'' shows that the vertical compositions are the identity, and then the top map is a retract of an equivalence, right?  (If we want to use a retraction property, do we need to show that the grid diagram commutes...?  Maybe we can check a weak equivalence condition instead by pushing around homotopy elements...)}
+This gives an equivalence $\theta_{MO}\co MO \sm T(\xi) \rightarrow MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram
+\begin{center}
+\begin{tikzcd}
+E \sm T(\xi)  \arrow{d}{\eta_{MO} \sm \id \sm \id=f} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm \id \sm \id} \\
+MO \sm E \sm T(\xi) \arrow{r}{\theta_{MO} \sm E} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id=g} & MO \sm E \sm \Susp^\infty_+ X\arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id=h} \\
+E \sm T(\xi) \arrow{r}{\theta_E} & E \sm \Susp^\infty_+ X
+\end{tikzcd}
+\end{center}
+The bottom arrow $\theta_E$ exists by applying the action map to both sides and pushing the map $\theta_{MO} \sm E$ down.  Since $\theta_{MO}$ is an equivalence, it has an inverse $\alpha_{MO}$.  Therefore, the middle map has inverse $\alpha_{MO} \sm E$, and we can similarly push this down to a map $\alpha_E$, which we now want to show is the inverse to $\theta_E$.  From here it is a simple diagram chase: we have renamed three of the maps in the diagram to $f$, $g$, and $h$ for brevity.  Noting that $g \circ f$ is the identity map because of the unit axiom, we conclude
+\begin{align*}
+g\circ f &\simeq g \circ (\alpha_{MO}\sm E) \circ (\theta_{MO} \sm E) \circ f& \\
+& \simeq \alpha_E \circ h \circ (\theta_{MO}\sm E) \circ f & \text{(action map)}\\
+& \simeq \alpha_E \circ \theta_E \circ g \circ f & \text{(action map)}\\
+&\simeq \alpha_E \circ \theta_E. & \qedhere
+\end{align*}
 \end{proof}
 \todo{At least hint that there's a converse to this Theorem, to be explored later.}
 
 \begin{example}
-We'll close out today by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L - 1 \downarrow \RP^n) = \RP^{n+1}$.\todo{Is there a disuspension here?-danny}  By killing all the homotopy elements in positive degrees, we can also see that the map $MO \to H\F_2$ is a ring map\todo{This requires some justification, like $MO$ being connective .}, so that we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
+We'll close out today by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  By killing all the homotopy elements in positive degrees, we can also see that the map $MO \to H\F_2$ is a ring map\todo{This requires some justification, like $MO$ being connective .}, so that we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
 \begin{align*}
 \pi_* (H\F_2 \sm T(\L - 1)) & \cong \pi_* (H\F_2 \sm T(0)) & \text{(Thom isomorphism)} \\
 \pi_* (H\F_2 \sm \Susp^{-1} \Susp^\infty \RP^{n+1}) & \cong \pi_* (H\F_2 \sm \Susp^\infty_+ \RP^n) & \text{(\Cref{RPnThomExample})} \\
@@ -134,7 +149,7 @@ Set $R_1 = \F_2[x]$.  Then \[(\Spec R_1)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x], 
 \begin{align*}
 \mathbb A^1 & := \Spec \F_2[x], & \mathbb A^{1, (n)} & := \Spec \F_2[x] / (x^{n+1}).
 \end{align*}
-The symbol ``$\mathbb A^1$'' is pronounced ``the affine line'' --- reasonable, since the value $\mathbb A^1(T)$ is, indeed, a single $T$'s worth of points.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $n${\th} order (nilpotent) neighborhood of the origin in the affine line''\todo{except it is actually of order $n+1$. Mmm...}.
+The symbol ``$\mathbb A^1$'' is pronounced ``the affine line'' --- reasonable, since the value $\mathbb A^1(T)$ is, indeed, a single $T$'s worth of points.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $(n+1)${\st} order (nilpotent) neighborhood of the origin in the affine line''.
 \end{example}
 
 We can also express in this language another common object arising from algebraic topology: the Hopf algebra, which appears when taking the mod--$2$ cohomology of an $H$--group.  In addition to the usual cohomology, the extra pieces of data are those induced by the $H$--group multiplication, unit, and inversion maps, which on cohomology beget a diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
@@ -200,13 +215,19 @@ Additionally, the colimit of the sets $\colim_{n \to \infty} \mathbb A^{1,(n)}(T
 An \textit{affine formal scheme} is an ind-system of finite\todo{How are finite schemes characterized in the functor of points perspective?} affine schemes.  \todo{Several people had questions about the utility of this. Does it just add certain colimits to the category of \emph{finite} affine schemes?}  The morphisms between such schemes are computed by \[\CatOf{FormalSchemes}(\{X_\alpha\}, \{Y_\beta\}) = \lim_\beta \colim_\alpha \CatOf{Schemes}(X_\alpha, Y_\beta).\]\todo{Question: can we reverse the order of taking lim and colim here?-danny}
 \end{definition}
 
+% I might be the only person who cares, but there are two issues with this definition: first off one needs that the morphisms to be infintesimal thickenings.  Secondly, usually one allows the schemes to be finite type over $\mathbb{F}_2$ and not just finite.  Obviously if all the formal schemes that will come up in this class are in $\mathrm{Art}(\mathbb{F}_2)$ then the second objection is moot.  EK
+
 \begin{example}\label{FormalGaExample}
-The individual schemes $\mathbb A^{1, (n)}$ do not support group structures.  After all, the sum of two elements which are nilpotent of order $n$ can only be guaranteed to be nilpotent of order $2n$. \todo{There is a minor indexing problem here. The elements corresponding to $A^{1, (n)}$ are actually nilpotent of order $n+1$} It follows that the entire ind-system $\{\mathbb A^{1, (n)}\} =: \A^1$ supports a group structure, even though none of its constituent pieces do.  We call such an object a \textit{formal group scheme}, and this particular formal group scheme we denote by $\G_a$.
+The individual schemes $\mathbb A^{1, (n)}$ do not support group structures.  After all, the sum of two elements which are nilpotent of order $n+1$ can only be guaranteed to be nilpotent of order $2n+1$.  It follows that the entire ind-system $\{\mathbb A^{1, (n)}\} =: \A^1$ supports a group structure, even though none of its constituent pieces do.  We call such an object a \textit{formal group scheme}, and this particular formal group scheme we denote by $\G_a$.
 \end{example}
 
 \begin{example}
-Similarly, one can define the scheme $\Gm[n]$ of elements of unipotent order $n$: \[\Gm[n] = \Spec \frac{\F_2[x,y]}{(xy - 1, x^n - 1)} \subseteq \Gm.\]  These \emph{are} all group schemes, but there is a second filtration along the lines of the one considered above: \[\Gm^{(n)} = \Spec \frac{\F_2[x,y]}{(xy - 1, (x - 1)^n)}.\]  These schemes are only occasionally group schemes.  The reader is invited\todo{Never invite the reader to do anything.}\todo{Does this just follow that there is a common cofinal subsystem, i.e., when $n$ is a power of 2?}  to check that there is an isomorphism $\{\Gm[n]\} \cong \{\Gm^{(n)}\}$ of formal schemes over $\F_2$, and that the induced formal group scheme structure on the right-hand side cannot be written level-wise --- rather, it involves the entire ind-scheme.\todo{Someone was interested in the relationship of this to the punctured formal scheme $\F_p(\!(q)\!)$.}
+Similarly, one can define the scheme $\Gm[n]$ of elements of unipotent order $n$: \[\Gm[n] = \Spec \frac{\F_2[x,y]}{(xy - 1, x^n - 1)} \subseteq \Gm.\]  These \emph{are} all group schemes, but there is a second filtration along the lines of the one considered above: \[\Gm^{(n)} = \Spec \frac{\F_2[x,y]}{(xy - 1, (x - 1)^n)}.\]  These schemes are only occasionally group schemes --- specifically, $\Gm^{(2^n)}$ is a group scheme, in which case $\Gm^{(2^n)} \cong \Gm[2^n]$ over $\F_2$.  This gives an ind-equivalence between these two subsystems, but $\{\Gm[2^n]\}$ is \emph{not} cofinal in $\{\Gm[n]\}$, and the equivalence does not extend across the larger system.\todo{Mauro was interested in the relationship of this to the punctured formal scheme $\F_p(\!(q)\!)$.}
 \end{example}
+
+\todo{The reader invitation is as far as I can tell is either incoherent or impossible due to the condition that the maps making up formal schemes need to be infinitesimal thickenings.  I think that correcting it goes as follows: requiring the inverse system to be of infintesimal thickenings means that the only $m$ such that $\mathbb{G}_m[m]$ is an infinitesimal thickening of the identity are the $m$ of the form $p^n$ which makes the result ``obvious'' in some sense.  EK}
+
+\todo{The notion of the punctured disk is also wonky in the category of formal schemes.  In particular, one has that $\mathrm{Spf}(\mathbb{F}_2[[t]])$ has only one point in the underlying topological space.  This is part of why formal schemes aren't just schemes where the structure sheaf is of topological rings instead of rings: the points correspond to open ideals.  The ``correct'' category to take generic fibers of formal schemes is adic spaces, but that is not a discussion that is worth going into.  EK}
 
 Let's now consider the example that we closed with last time, where we calculated $H\F_2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  This is such a useful thing to do that we will give it a notation all of its own:
 
@@ -291,7 +312,7 @@ There is at least a map $\F_2[\xi_1, \xi_2, \ldots] \to \mathcal A_*$ given by t
 We are now in a position to uncover the desired map $\alpha^*$ desired earlier.  Suppose that we were interested in re-telling Milnor's story with $H\F_2P$ in place of $H\F_2$.  The dual Steenrod algebra is defined topologically by \[\mathcal A_* := \pi_*(H\F_2 \sm H\F_2),\] which we replace by \[\mathcal AP_0 := \pi_0 (H\F_2 P \sm H\F_2 P) = H\F_2P_0(H\F_2 P) = \mathcal A_*[\xi_0^\pm].\]
 \todo{I think it's a good idea to at least mention that $\xi_0$ keeps track of the grading, as you explained in class.  Also, I see from the wedge axiom that $H\F_2 P_0(H\F_2 P) \cong \prod_j \mathcal A_*$, but how do you get the multiplicative structure of $\xi_0$?}
 
-\begin{lemma}[{\cite[Formula 3.4, Remark 3.14]{GoerssQCohOnMfg}}]
+\begin{lemma}[{\cite[Formula 3.4, Remark 3.14]{GoerssQCohOnMfg}}]\todo{Include a proof of this. It doesn't seem obvious --- Danny and I spent a while talking about it and couldn't get all our algebra straight.  It has something to do with trading the invertible element across the smash product in $H\F_2P \sm H\F_2P \sm_{H\F_2P} H\F_2P \sm X$, and also with multiplicativity of the action: $\psi(v x) = \psi(v) \psi(x)$ with $v$ the homogenizing generator, or something.}
 Projecting to the quotient Hopf algebra $\mathcal AP_0 \to \F_2[\xi_0^\pm]$ gives exactly the coaction map $\alpha^*$. \qed
 \end{lemma}
 
@@ -320,6 +341,7 @@ As group schemes, we have thus calculated \[\RP^\infty_{H\F_2} \cong \G_a.\]
 \end{example}
 
 \begin{example}
+\todo{We could be clearer about the \emph{two} things that are happening here.  First, we are comparing informal schemes to formal schemes (or polynomials to power series).  Second, we are comparing external Hom--objects to internal Hom--objects (or sets of power series over $\F_2$ to schemes of power series over $\F_2$--algebras).}
 Additionally, this convention comports with our analysis of $\Spec \mathcal AP_0$.  Note that the following morphism sets are very different:
 \begin{align*}
 \CatOf{GroupSchemes}_{/\F_2}(\mathbb G_a, \mathbb G_a) & \cong \CatOf{HopfAlgebras}_{\F_2/}(\F_2[x], \F_2[x]) \\
@@ -440,7 +462,7 @@ Given $A$--comodules $M$ and $N$, their cotensor product is defined by the coequ
 Given a map $f \co A \to B$ of Hopf $k$--algebras, the induced adjunction $f^* \dashv f_*$ is given at the level of comodules by
 \begin{center}
 \begin{tikzcd}
-\CatOf{QCoh}_{(\Spec k, \Spec A)} \arrow[shift left=0.2em]{r}{f^*} \arrow[-,double]{d} & \CatOf{QCoh}_{(\Spec k, \Spec B)} \arrow[shift left=0.2em]{l}{f_*} \arrow[-,double]{d} \\
+\text{``}\CatOf{QCoh}_{(\Spec k, \Spec A)}\text{''} \arrow[shift left=0.2em]{r}{f^*} \arrow[-,double]{d} & \text{``}\CatOf{QCoh}_{(\Spec k, \Spec B)}\text{''} \arrow[shift left=0.2em]{l}{f_*} \arrow[-,double]{d} \\
 \CatOf{Comodules}_A \arrow[shift left=0.2em]{r}{M \mapsto M} & \CatOf{Comodules}_B \arrow[shift left=0.2em]{l}{N \cotensor_B A \mapsfrom N}.
 \qed
 \end{tikzcd}
@@ -453,7 +475,7 @@ The formula for $f_* N$ is what one would guess from the formula for pushforward
 
 \noindent As an example application, cotensoring gives rise to a concise description of what it means to be a comodule map:
 
-\begin{lemma}[{\cite[A1.1.6b]{RavenelGreenBook}}]
+\begin{lemma}[{\cite[Lemma A1.1.6b]{RavenelGreenBook}}]
 Let $M$ and $N$ be $A$--comodules with $M$ projective as a $k$--module.  Then there is an equivalence \[\CatOf{Comodules}_A(M, N) = \CatOf{Modules}_k(M, k) \cotensor_A N. \qed\]
 \end{lemma}
 
@@ -483,7 +505,7 @@ Let's contextualize this somewhat.  Given a finite group $G$, we can form a comm
 \end{example}
 
 \begin{example}\label{HF2HomologyIsValuedInAutGaEquivarModules}
-In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut_1(\G_a)$, which is defined by the kernel sequence \[1 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 1.\]  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ is thought of as ``the derived fixed points'' of ``$G = \InternalAut_1(\G_a)$'' on the ``$G$--module'' $H\F_{2*} X$.
+In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut_1(\G_a)$, which is defined by the kernel sequence \[1 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 1.\]  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ is thought of as ``the derived fixed points'' of ``$G = \InternalAut_1(\G_a)$'' on the ``$G$--module'' $H\F_{2*} X$.\todo{Say the word ``strict'' here.}
 \end{example}
 
 \begin{example}
@@ -592,7 +614,7 @@ At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pic
 Our goal today is to use the results of the previous lectures to make a calculation of $\pi_* MO$, the unoriented bordism ring.  The Adams spectral sequence converging to this has signature \[H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{H\F_2P_0(MO)}) \Rightarrow \pi_* MO,\] and so we see that we need to understand $H\F_2P_0(MO)$, together with its comodule structure over the dual Steenrod algebra.
 
 Our first step toward this is the following calculation:
-\begin{lemma}
+\begin{lemma}\todo{Why do you state this Lemma?  What's below isn't exactly a Corollary, I don't feel, without saying a lot more about how the diagonal on cohomology behaves (and then knowing something about Cartier duality or coalgebraic formal schemes).}
 $H\F_2P^0 BO(n) \cong \F_2 \llbracket w_1, \ldots, w_n \rrbracket$.
 \end{lemma}
 \begin{proof}
@@ -608,10 +630,11 @@ H\F_2P_0(BO(1)) \arrow{r} \arrow{ru} & H\F_2P_0(BO). \qed
 \end{tikzcd}
 \end{center}
 \end{corollary}
+\todo{$H\mathbb{F}_2^*(BO(n))\rightarrow H\mathbb{F}_2^*(BO(1)^{\times n})$ lands in the W-invariants, where W is the Weyl group of $BO(1)^{\times n}$ in $BO(n)$ (this is true because the normalizer $N=N_{BO(n)}(BO(1)^{\times n})$ acts on both by conjugation, and it acts trivially on the left term while on the right term it quotients to an action of the Weyl group).  You can easily check that $N$ is generated by the permutation matrices and $BO(1)^{\times n}$, so the Weyl group is $\Sigma_n$, and it acts by permuting the factors of $BO(1)$.  The invariants in cohomology under $\Sigma_n$ are the symmetric polynomials, and these are generated by the elementary symmetric polynomials.  Take the limit in $n$, and there you have it.  Now we just need to know, as you say, that the map on cohomology is injective...}
 \noindent We will defer the proof of this until \Cref{ComplexBordismChapter}, since it requires knowing that \[H\F_2P^0(BO(k)) \to H\F_2P^0(BO(1)^{\times k})\] is injective, which we will revisit later anyhow.\oweproof{$H_* BO$ is a symmetric algebra on $H_* BO(1)$}
 
 With this in hand, however, we can uncover the ring structure on $H\F_2P_0(MO)$:
-\begin{corollary}\label{HF2MOisFree}
+\begin{corollary}\label{HF2MOisFree}\todo{There's some confusion in these propositions about whether we're taking the symmetric algebra on the reduced homology module or what.  This really matters: it has something to do with the difference between any old $H\F_2P^0(MO(1))$ class and one which factors the ring spectrum unit.}
 There is also a triangle
 \begin{center}
 \begin{tikzcd}
@@ -653,10 +676,10 @@ Given a ring map $MO \to H\F_2P$, we can restrict it along the inclusion $MO(1) 
 \end{proof}
 
 \begin{corollary}
-There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes \[\Spec H\F_2P_0 MO \cong \Coord_1(\RP^\infty_{H\F_2P}),\] where the latter is the scheme of coordinate functions on $\RP^\infty_{H\F_2P} \to \A^1$ which restrict to the canonical identification of tangent spaces $\RP^1_{H\F_2P} = \A^{1,(1)}$.
+There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes \[\Spec H\F_2P_0(MO) \cong \Coord_1(\RP^\infty_{H\F_2P}),\] where the latter is the scheme of coordinate functions on $\RP^\infty_{H\F_2P} \to \A^1$ which restrict to the canonical identification of tangent spaces $\RP^1_{H\F_2P} = \A^{1,(1)}$.\todo{Here's the unitality assumption again.}\todo{I don't really see what argument is being made about $\Aut \G_a$--equivariance.  I don't think that the topological map is surjective...?}
 \end{corollary}
 \begin{proof}
-The method of the previous proof is to exhibit a isomorphism between these schemes.  To learn that this isomorphism is equivariant for $\InternalAut(\G_a)$, you need only know that the image of the map $BO(1) \to BO$ on mod--$2$ homology generates $H\F_2P_0(BO)$ as an algebra.\todo{This is clumsily stated.}
+The method of the previous proof is to exhibit a isomorphism between these schemes.  To learn that this isomorphism is equivariant for $\InternalAut(\G_a)$, you need only know that the image of the map $MO(1) \to MO$ on mod--$2$ homology generates $H\F_2P_0(MO)$ as an algebra.\todo{This is clumsily stated.}
 \end{proof}
 
 We are now ready to analyze the group cohomology of $\InternalAut(\G_a)$ with coefficients in the comodule $H\F_2P_0(MO)$.
@@ -691,7 +714,7 @@ This is pretty remarkable: some big statement about manifold geometry came down 
 $MO$ splits as a wedge of shifts of $H\F_2$.
 \end{lemma}
 \begin{proof}
-Referring to \Cref{HurewiczImageOnZeroLine}, we have a $\pi_*$--injection $MO \to H\F_2 \sm MO$.  Pick an $\F_2$--basis $\{v_\alpha\}_\alpha$ for $\pi_* MO$ and extend it to a $\F_2$--basis $\{v_\alpha\}_\alpha \cup \{w_\beta\}_\beta$ for $H\F_2 \sm MO$.  Altogether, this larger basis can be represented as a single map \[\bigvee_\alpha \Susp^{m_\alpha} \S \vee \bigvee_\beta \Susp^{n_\beta} \S \xrightarrow{\bigvee_\alpha v_\alpha \vee \bigvee_\beta w_\beta} H\F_2 \sm MO.\]  Smashing through with $H\F_2$ gives an equivalence \[\bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \xrightarrow\simeq H\F_2 \sm MO.\]  The composite map \[MO \to H\F_2 \sm MO \xleftarrow\simeq \bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \to \bigvee_\alpha \Susp^{m_\alpha} H\F_2\] is a weak equivalence.
+Referring to \Cref{HurewiczImageOnZeroLine}, we have a $\pi_*$--injection $MO \to H\F_2 \sm MO$.  Pick an $\F_2$--basis $\{v_\alpha\}_\alpha$ for $\pi_* MO$ and extend it to a $\F_2$--basis $\{v_\alpha\}_\alpha \cup \{w_\beta\}_\beta$ for $\pi_* H\F_2 \sm MO$.  Altogether, this larger basis can be represented as a single map \[\bigvee_\alpha \Susp^{m_\alpha} \S \vee \bigvee_\beta \Susp^{n_\beta} \S \xrightarrow{\bigvee_\alpha v_\alpha \vee \bigvee_\beta w_\beta} H\F_2 \sm MO.\]  Smashing through with $H\F_2$ gives an equivalence \[\bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \xrightarrow\simeq H\F_2 \sm MO.\]  The composite map \[MO \to H\F_2 \sm MO \xleftarrow\simeq \bigvee_\alpha \Susp^{m_\alpha} H\F_2 \vee \bigvee_\beta \Susp^{n_\beta} H\F_2 \to \bigvee_\alpha \Susp^{m_\alpha} H\F_2\] is a weak equivalence.
 \end{proof}
 
 \begin{remark}
