@@ -504,7 +504,7 @@ There is such an alternative proof, due to Quillen, that bypasses the Adams spec
 
 The description of the first class of operations follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned last time that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]  Two lectures ago, we learned that the stable divisor scheme has a universal property: it is the free formal group on the formal curve $\CP^\infty_E$.  Another avatar of this same fact is a description of the \emph{homology ring}, using the maps \[E_* BU(n) \otimes E_* BU(m) \to E_* BU(n+m)\] to induce a multiplicative structure on $E_* BU$:
 \begin{corollary}
-Let $E$ be a complex-orientable cohomology theory. Then: \[E_* BU \cong \Sym_{E_*} \widetilde E_* \CP^\infty.\]  A specific complex orientation of $E$ begets \[E_* \CP^\infty \cong E_*\{\beta_0, \beta_1, \ldots, \beta_n, \ldots\}\] and hence \[E_* BU \cong \Sym_{E_*} E_*\{\beta_1, \beta_2, \ldots\} = E_*[b_1, b_2, \ldots]. \qed\]
+Let $E$ be a complex-orientable cohomology theory. Then: \[E_* BU \cong \Sym_{E_*} \widetilde E_* \CP^\infty.\] \todo{What is this a corollary of?  Have you proven this?}  A specific complex orientation of $E$ begets \[E_* \CP^\infty \cong E_*\{\beta_0, \beta_1, \ldots, \beta_n, \ldots\}\] and hence \[E_* BU \cong \Sym_{E_*} E_*\{\beta_1, \beta_2, \ldots\} = E_*[b_1, b_2, \ldots]. \qed\]
 \end{corollary} \oweproof{Free formal schemes agree with symmetric Hopf algebras on comodules}
 
 Thomifying these ``$\oplus$'' maps gives maps \[E_* MU(n) \otimes E_* MU(m) \to E_* MU(n+m),\] and the naturality of the $E$--Thom isomorphism produces an additional corollary:
@@ -514,10 +514,11 @@ The Thom isomorphism $E_* BU \cong E_* MU$ respects both the $E_*$--module struc
 
 \todo{A corollary of the splitting principle is supposed to be that a Thom isomorphism for $\CP^\infty$ begets Thom isomorphisms for everything, and hence a ring spectrum map $MU \to E$.  We should produce that corollary now.  This is Lemma II.4.6 in Adams's blue book.}
 
-\noindent This compact description of $E_* MU$ as an algebra will be useful to us later, but right now we are interested in $E^* MU$ and especially in $MU^* MU$.  The former is \emph{not} a ring\todo{Does this totally prohibit us from giving a formal group re-exposition of Quillen's proof?  I wonder...}, and although the latter is a ring its multiplication is exceedingly complicated.  Instead, we will content ourselves with an $E_*$--module basis:
+\noindent This compact description of $E_* MU$ as an algebra will be useful to us later, but right now we are interested in $E^* MU$ and especially in $MU^* MU$.  The former is \emph{not} a ring\todo{Does this totally prohibit us from giving a formal group re-exposition of Quillen's proof?  I wonder...} \todo{Why is it not a ring?  Isn't $E$ a ring spectrum?}, and although the latter is a ring its multiplication is exceedingly complicated.  Instead, we will content ourselves with an $E_*$--module basis:
 \begin{definition}
-Let $\alpha = (\alpha_1, \ldots, \alpha_n, \ldots)$ denote a multi-index where every entry is nonnegative and almost every entry is zero, and let $c_\alpha$ denote the corresponding monomial \[c_\alpha = \prod_{j=1}^\infty c_j^{\alpha_j}.\]  Additionally, we let $s_\alpha \in E^* MU$ denote the image of $c_\alpha$ under the Thom isomorphism.  It is called the \textit{$\alpha${\th} Landweber--Novikov operation} (from $MU$ to $E$).
+Let $\alpha = (\alpha_1, \ldots, \alpha_n, \ldots)$ denote a multi-index where every entry is nonnegative and almost every entry is zero, and let $c_\alpha$ denote the corresponding monomial \[c_\alpha = \prod_{j=1}^\infty c_j^{\alpha_j}.\]  Additionally, we let $s_\alpha \in E^* MU$ denote the image of $c_\alpha$ under the duality isomorphism.  It is called the \textit{$\alpha${\th} Landweber--Novikov operation} (from $MU$ to $E$).
 \end{definition}
+\todo{Why is this duality isomorphism an isomorphism?  You must be using corollary 2.4.3 somehow, but I can't see the argument.  Do we already know $E^* MU$?  Also, some of the grading is bugging me, but I guess all these issues go away because everything is in degree 0 by periodification?}
 
 \begin{remark}\citeme{I.5.1 in Adams's blue book}
 Let $E = MU$.  The Landweber--Novikov operations are the \emph{stable} operations acting on $MU$--cohomology, analogous to the Steenrod operations we started the semester talking about.  They satisfy the following properties:
@@ -526,8 +527,8 @@ Let $E = MU$.  The Landweber--Novikov operations are the \emph{stable} operation
 \item $s_\alpha$ is natural: $s_\alpha(f^* x) = f^*(s_\alpha x)$.
 \item $s_\alpha$ is stable: $s_\alpha(\sigma x) = \sigma(s_\alpha x)$.
 \item $s_\alpha$ is additive: $s_\alpha(x + y) = s_\alpha(x) + s_\alpha(y)$.
-\item $s_\alpha$ satisfies a Cartan formula.  Define \[s_{\t}(x) = \sum_\alpha s_\alpha(x) \cdot t_1^{\alpha_1} t_2^{\alpha_2} \cdots t_n^{\alpha_n} \cdots =: \sum_{\alpha} s_\alpha(x) \t^\alpha\] for an infinite sequence of indeterminates $t_1$, $t_2$, \ldots.  Then: \[s_{\t}(x y) = s_{\t}(x) \cdot s_{\t}(y).\]
-\item Let $\xi\co X \to BU(n)$ classify a vector bundle and let $\phi$ denote the Thom isomorphism \[\phi\co MU^* X \to MU^* T(\xi).\]  Then the Chern classes of $\xi$ are related to the Landweber--Novikov operations on the Thom spectrum by the formula \[\sum_\alpha \phi c_\alpha(\xi) \t^\alpha = \sum_\alpha s_\alpha \phi(1) \t^\alpha.\]
+\item $s_\alpha$ satisfies a Cartan formula.  Define \[s_{\t}(x) := \sum_{\alpha} s_\alpha(x) \t^\alpha := \sum_\alpha s_\alpha(x) \cdot t_1^{\alpha_1} t_2^{\alpha_2} \cdots t_n^{\alpha_n} \cdots\] for an infinite sequence of indeterminates $t_1$, $t_2$, \ldots.  Then: \[s_{\t}(x y) = s_{\t}(x) \cdot s_{\t}(y).\]
+\item Let $\xi\co X \to BU(n)$ classify a vector bundle and let $\phi$ denote the Thom isomorphism \[\phi\co MU^* X \to MU^* T(\xi).\]  Then the Chern classes of $\xi$ are related to the Landweber--Novikov operations on the Thom spectrum by the formula \[\sum_\alpha \phi c_\alpha(\xi) \t^\alpha = \sum_\alpha s_\alpha \phi(1) \t^\alpha.\] \todo{I don't understand where everything is landing.  What is $1$ on the right hand side?  It seems $s_\alpha \phi(1) \in E^* T(\xi)$, but $c_\alpha(\xi) \in E^* X$, so how do I apply $\phi$ to get\ldots Wait, nvm.  The $\phi$ on the left is not the $\phi$ in the display above, but rather the $E$-Thom isomorphism $E^* X \to E^* T(\xi)$.  Maybe you can decorate the $\phi$ to distinguish them?} 
 \end{itemize}
 \end{remark}
 
@@ -545,7 +546,7 @@ through a complex vector bundle $E$ on $X$ such that $i$ is an embedding and its
 \end{definition}
 \begin{lemma}
 For $\dim E \gg 0$, this equivalence class is unique, if it exists. \qed
-\end{lemma}
+\end{lemma} \todo{I think you can at least give a heuristic argument here.  You haven't spelled out the precise definition above, but if I 'm not mistaken this just boils down to the fact that if the rank of $E$ is large relative to the dimension of $Y$ (say at least twice as big), then any two embeddings are isotopic.}
 \begin{definition}
 Two complex-oriented maps $f_0\co Y_0 \to X$ and $f_1\co Y_1 \to X$ are called \textit{cobordant} when there is a complex-oriented map $W \to X \times \R$ and elements $b_0, b_1 \in \R$ such that
 \begin{center}
@@ -565,11 +566,11 @@ For a manifold $X$, $MU^{-q}(X)$ is canonically isomorphic to the cobordism clas
 This model has a variety of nice features.  For instance, its two variances are visible from the construction: a map $g\co X' \to X$ induces a map $g^*\co MU^* X \to MU^* X'$ by selecting a class $f\co Y \to X$, perturbing $g$ so that it is transverse to $f$, and taking the pullback
 \begin{center}
 \begin{tikzcd}
-Y \times_X X' \arrow{r} \arrow{d} & Y \arrow{d} \\
-X' \arrow{r} & X.
+Y \times_X X' \arrow{r} \arrow{d} & Y \arrow{d}{f} \\
+X' \arrow{r}{g} & X.
 \end{tikzcd}
 \end{center}
-But, also, if $g$ is additionally proper and complex-orientable, then it induces a map \[g_*\co MU^q X' \to MU^{q-d} X,\] where $d$ is the dimension of $g$.  This is simply by postcomposition: a representative $f'\co Y' \to X'$ begets a new representative $g_* f' = g \circ f'$.  This construction goes by various names: the \textit{Gysin map}, the \textit{complex-oriented pushforward}, the \textit{shriek map}, \ldots.
+But, also, if $g$ is additionally proper and complex-orientable, then it induces a wrong way map \[g_*\co MU^{-q} X' \to MU^{-q-d} X,\] where $d$ is the dimension of $g$.  This is simply by postcomposition: a representative $f'\co Y' \to X'$ begets a new representative $g_* f' = g \circ f'$.  This construction goes by various names: the \textit{Gysin map}, the \textit{complex-oriented pushforward}, the \textit{shriek map}, \ldots.
 \end{remark}
 
 While we're here, let's note that these push and pull maps are related:
@@ -581,13 +582,13 @@ Y \times_X Z \arrow{r}{g'} \arrow{d}{f'} & Z \arrow{d}{f} \\
 Y \arrow{r}{g} & X,
 \end{tikzcd}
 \end{center}
-where $g$ is transversal to $f$, $f$ is proper and complex-oriented, and $f'$ is endowed with the pull-back of the complex orientation of $f$. Then \[g^* f_* = f'_* (g')^*\co h(Z) \to h(Y). \qed\]
+where $g$ is transversal to $f$, $f$ is proper and complex-oriented, and $f'$ is endowed with the pull-back of the complex orientation of $f$. Then \[g^* f_* = f'_* (g')^*\co MU^{-q}(Z) \to MU^{-q-d}(Y). \qed\]
 \end{lemma}
 
 
 We are now in a position to describe our power operations.
 \begin{definition}\label{DefnPowerOperationForMU}
-Consider a class in $U^{-2q}(X)$ represented by a proper complex-oriented map $f \co Y \to X$.  Its $n$--fold Cartesian product determines a class $f^{\times n} \co Y^{\times n} \to X^{\times n}$, and taking the homotopy quotient by a group $G$ acting on $\{1, \ldots, n\}$ gives a class \[Y^{\times n} \to X^{\times n} \to EG \times_G X^{\times n}\] and hence an \textit{external power operation} \[P^{\mathrm{ext}} \co MU^{-2q}(X) \to MU^{-2qn}(EG \times_G X^{\times n}).\]  Pulling back along the diagonal $\Delta: X \to X^{\times n}$ gives the the \textit{internal power operation} \[P \co MU^{-2q}(X) \to MU^{-2qn}(BG \times X).\]  Its action on the class represented by a proper complex-oriented even-dimensional map $f: Z \to X$ can also be written as \[P(f_* 1) = \Delta^* f^{\times n}_{hG}{}_* 1.\]
+Consider a class in $MU^{-2q}(X)$ represented by a proper complex-oriented map $f \co Y \to X$.  Its $n$--fold Cartesian product determines a class $f^{\times n} \co Y^{\times n} \to X^{\times n}$, and taking the homotopy quotient by a group $G$ acting transitively on $\{1, \ldots, n\}$ gives a class \[Y^{\times n} \to X^{\times n} \to EG \times_G X^{\times n}\] and hence an \textit{external power operation} \[P^{\mathrm{ext}} \co MU^{-2q}(X) \to MU^{-2qn}(EG \times_G X^{\times n}).\]  Pulling back along the diagonal $\Delta: X \to X^{\times n}$ gives the the \textit{internal power operation} \[P \co MU^{-2q}(X) \to MU^{-2qn}(BG \times X).\]  Its action on the class represented by a proper complex-oriented even-dimensional map $f: Z \to X$ can also be written as \[P(f_* 1) = \Delta^* f^{\times n}_{hG}{}_* 1.\] \todo{I think Jay pointed out this after class, but the two $1$'s on either side mean slightly different things.  Also, by $1$ do you mean the unit element in the ring $MU^* Z$?  It took me a while to realize that $MU^* Z$ was a ring\ldots}
 \end{definition}
 
 \begin{remark}
