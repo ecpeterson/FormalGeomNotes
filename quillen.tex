@@ -70,7 +70,7 @@ A pointed map $\A^n \to \A^m$ is identical to an $m$--tuple of $n$--variate powe
 In some sense, \Cref{MapsOfFVarsArePowerSeries} is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology are frequently expressed in terms of power series rings, and with this Lemma we are provided geometric interpretations for such statements.
 \end{remark}
 
-\Cref{MapsOfFVarsArePowerSeries} shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.  In particular, this allows local theorems from analytic differential geometry to be imported, including a version of the inverse function theorem, which we will now work towards.
+\Cref{MapsOfFVarsArePowerSeries} shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.  In particular, this allows local theorems from analytic differential geometry to be imported, including a version of the inverse function theorem, which we will now work towards.\todo{Work an example first of $\A^1$, rather than an abstract formal variety.}
 
 \begin{definition}
 Let $V$ be a formal variety and let $I_V = \A^1(V)$ be the ideal of functions vanishing at the origin.  Then, we define the \textit{cotangent space of $V$} at the origin by \[T^* V = I_V / I_V^2.\]  We also define the tangent space by the subset of pointed maps $TV \subseteq V(R[\eps] / \eps^2)$.
@@ -177,10 +177,11 @@ The module $\Omega^1_{R/k}$ is universal for derivations into $R$--modules: \[\C
 
 These definitions are interesting in this level of generality, but suppose now that $k$ is a $\Q$--algebra and that $R = k\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $k$.  What's special about this rational curve case is that differentiation gives an isomorphism between $\Omega^1_{R/k}$ and the ideal $(x)$ of functions vanishing at the origin, i.e., the ideal sheaf selecting the closed subscheme $\Spec k \to \Spf R$.  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]
 
-Taking a cue from classical Lie theory, we attempt to define exponential and logarithm functions for a given formal group law $F$.  \todo{We should show here that the submodule of invariant $1$--forms is equivalent to the module of tangent vectors.}This is typically accomplished by studying left--invariant differentials: a $1$--form $f(x) dx$ is said to be left--invariant under $F$ when \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $y = 0$, we deduce the condition \[f(0) = f(x) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0}.\]  If $R$ is a $\Q$--algebra, then setting the boundary condition $f(0) = 1$ and integrating against $x$ yields \[\log_F(x) = \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0} \right)^{-1} dx.\]  To see that the series $\log_F$ has the claimed homomorphism property, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x},\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $\log_F(y)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  In all, this argument bundles into the following coordinate-free theorem:
+Taking a cue from classical Lie theory, we attempt to define exponential and logarithm functions for a given formal group law $F$.  \todo{We should show here that the submodule of invariant $1$--forms is equivalent to the module of tangent vectors.}This is typically accomplished by studying left--invariant differentials: a $1$--form $f(x) dx$ is said to be left--invariant under $F$\todo{The condition $\omega = T_y^* \omega$ looks more reasonable.}\todo{Also define the \emph{sheaf} of invariant differentials, since you use that in a couple of days.} when \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $x = 0$, we deduce the condition \[f(0) = f(x) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0}.\]  If $R$ is a $\Q$--algebra, then setting the boundary condition $f(0) = 1$ and integrating against $x$ yields \[\log_F(x) = \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0} \right)^{-1} dx.\]  To see that the series $\log_F$ has the claimed homomorphism property, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x},\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $\log_F(y)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  In all, this argument bundles into the following coordinate-free theorem:
 \begin{theorem}\label{RationalFGLsHaveLogarithms}\todo{This feels like a bit of a jump.  ``$\otimes$'', for instance?}
 There is a unique isomorphism \[\G \xrightarrow{\log} \operatorname{Lie} \G \otimes \G_a. \qed\]
 \end{theorem}
+\todo{It would also be good to put the example of the standard logarithm for $\G_m$ here.}
 
 
 
@@ -237,7 +238,7 @@ Note that there is a canonical isomorphism $C \to \Div_1^+ C$.  Iterating the ab
 C^{\times n}_{\Sigma_n} \arrow[densely dotted]{r}{\cong} & \Div_n^+ C.
 \end{tikzcd}
 \end{center}
-\begin{lemma}
+\begin{lemma}\todo{Make a point that the other arrow is not surjective.}
 The object $C^{\times n}_{\Sigma_n}$ exists, it factors the iterated addition map, and the dotted arrow is an isomorphism. 
 \end{lemma}
 \begin{proof}
@@ -344,7 +345,7 @@ One of the main utilities of this definition is that it only uses the \emph{prop
 \end{remark}
 
 The following example connects this topic with that of \Cref{FormalVarietiesLecture}:
-\begin{example}
+\begin{example}\todo{Make this clearer: point out that the cofiber definition of the Thom space helps you make the first identification (that's what the ``zero section'' refers to), and then point out that $\zeta^*(M) = M / \sheaf I(0) \cdot M$ helps you over the last hump.}
 If $\L$ denotes the canonical line bundle over $\CP^\infty$, then the zero section identifies $E^0 (\CP^\infty)^{\L}$ with the augmentation ideal in $E^0 \CP^\infty$, and so we have an isomorphism $\ThomSheaf{\L} \cong \sheaf I(0)$.  Then, consider the map $\eps: * \to \CP^\infty$, which classifies a line bundle that Thomifies to $\CP^1 \to \CP^\infty$.  Using naturality, we see \[\widetilde{\pi_2 E} \cong \ThomSheaf{* \to \CP^\infty} \cong 0^* \sheaf I(0) \cong \omega_{\G_E},\] where $\G_E = \CP^\infty_E$ is the formal group associated to $E$--theory and $\omega_{\G_E}$ is its sheaf of invariant differentials\footnote{The identification of this with the sheaf of invariant differentials is something of a choice.  Certainly it is naturally isomorphic to $T_0^* \CP^\infty_E$, and this in turn is naturally isomorphic to $\omega_{\G_E}$, but deciding which of these two to write is a decision to be borne out as ``correct''.}.  More generally, if $k \eps$ is the trivial bundle of dimension $k$ over a point, then $\ThomSheaf{k \eps} \cong \omega_{\G_E}^{\otimes k}$.  If $f \co E \to F$ is an $E$--algebra (e.g., $F = E^{X_+}$), then this gives an interpretation of $\pi_{2k} F$ as $f_E^* \omega_{\G_E}^{\otimes k}$.
 \end{example}
 
@@ -374,7 +375,7 @@ Note that the map between these two last fibers is surjective on $E$--cohomology
 
 In coordinate-free language, we have the following Corollary:
 \begin{corollary}[{\Cref{CohomologyOfProjectivization} redux}]
-Take $E$ to be \emph{complex-orientable}.  The map \[\P(\xi)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes, and the structure map $\P(\xi)_E \to X_E$ is free and finite of rank $n$.  It follows that $\P(\xi)_E$ is a divisor on $\CP^\infty_E$. \qed
+Take $E$ to be \emph{complex-orientable}.  The map \[\P(\xi)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes, and the structure map $\P(\xi)_E \to X_E$ is free and finite of rank $n$.  It follows that $\P(\xi)_E$ is a divisor on $\CP^\infty_E$ (considered over $X_E$). \qed \todo{Be more careful about this ``over $X_E$'' thing. Maybe just emphasize that having a Chern polynomial with coefficients in $E^* X$ really forces you to take this perspective to make things typecheck.}
 \end{corollary}
 
 The next major theorems concerning projectivization are the following:
@@ -434,7 +435,7 @@ The map $Y_E \xrightarrow{f_\xi} X_E$ pulls $\P(\xi)_E$ back to give \[Y_E \time
 
 \noindent This says that the splitting principle is a topological enhancement of the claim that a divisor can be base-chnaged along a finite flat map where it splits as a sum of points.  The other theorems from yesterday are also easily matched up with topological counterparts:
 
-\begin{corollary}
+\begin{corollary}\todo{Draw a table comparing the different notions of vector bundles (stable vs unstable, rank $n$ vs virtual rank $n$) to the different notions of Weil divisors.}
 There are natural isomorphisms $BU_E \cong \Div_0 \CP^\infty_E$ and $(BU \times \Z)_E \cong \Div \CP^\infty_E$. Additionally, $(BU \times \Z)_E$ is the free formal group on the curve $\CP^\infty_E$. \qed
 \end{corollary}
 
