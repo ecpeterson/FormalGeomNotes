@@ -526,6 +526,8 @@ Let $E = MU$.  The Landweber--Novikov operations are the \emph{stable} operation
 
 We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not (\textit{a priori}) expect them to be additive operations, so they are quite distinct from the Landweber--Novikov operations.  Power operations arise from ``$E_\infty$'' structures on ring spectra\footnote{Or, by some accounts, ``$H_\infty$'' structures.}, but most such structures arise in nature from geometric models of cohomology theories.  To produce them for complex cobordism, we will use a particular model, alluded to in \Cref{IntroductionSection}.
 
+\todo[inline]{It is very annoying that you tend to switch $f$, $i$, and $j$; $X$, $Y$, and $Z$; what is attached to what; and what is drawn in what direction.  You'd do well to standardize this.}
+
 \begin{definition}
 Let $f: Y \to X$ be a map of manifolds.  A \textit{complex-orientation on the map $f$} is the data of a factorization
 \begin{center}
@@ -604,7 +606,7 @@ The chain model for ordinary homology is actually rigid enough to define power o
 
 
 
-\section{Quillen's theorem}
+\section{An incidence relation among operations}
 
 \todo{Danny pointed out that this is a little confused about fixed points versus orbits and homotopy vs genuine.  Make sure this is straightened out.}
 \todo{It would be nice if all the Cartesian diagrams in this section were typeset with the little pullback corners.}
@@ -626,7 +628,7 @@ W \arrow{r}{j'} \arrow{d}{i'} & Z \arrow{d}{i} \\
 Y \arrow{r}{j} & X.
 \end{tikzcd}
 \end{center}
-The \textit{excess bundle} of the intersection, $F$, is defined by the exact sequence
+The \textit{excess bundle} of the intersection, $F$, is defined by the exact sequence\todo{We had to stare at this in class to decide that it was reasonable.}
 \begin{center}
 \begin{tikzcd}
 & & (i')^* TY \arrow{rd} \\
@@ -639,8 +641,10 @@ The \textit{excess bundle} of the intersection, $F$, is defined by the exact seq
 $Y$ and $Z$ intersect transversally exactly when $F = 0$.
 \end{remark}
 
-\begin{lemma}[{\cite[Propositin 3.3]{Quillen}}]\label{CleanIntersectionFormula}
-Suppose that $\nu_{i'}$, $\nu_i$, and $F$ are endowed with complex structures compatible with this exact sequence. For $z \in MU^*(Z)$, \[j^* i_* z = i'_*(e(F) \cdot (j')^* z)\] in $MU^{*+a}(Y, Y \setminus W)$, where $a = \dim \nu_i$. \qed \todo{The proof of this is easy, but not very relevant to formal geometry. Let's skip it and give a reference.}
+The proof of the following Lemma is fairly easy, but not especially useful to us, so we omit it.
+
+\begin{lemma}[{\cite[Proposition 3.3]{Quillen}}]\label{CleanIntersectionFormula}
+Suppose that $\nu_{i'}$, $\nu_i$, and $F$ are endowed with complex structures compatible with this exact sequence. For $z \in MU^*(Z)$, \[j^* i_* z = i'_*(e(F) \cdot (j')^* z)\] in $MU^{*+a}(Y, Y \setminus W)$, where $a = \dim \nu_i$. \qed
 \end{lemma}
 
 Now let $G$ be a finite group and let $i\co Z \to X$ be an embedding of $G$--manifolds. Then the $G$--fixed submanifold $X^G$ and $Z$ intersect cleanly in the diagram
@@ -668,7 +672,7 @@ We can take $m$ large enough that the complex-orientation on $f$ can be represen
 \mu((m \eps)^{\times k}) & = \rho \otimes m \eps.
 \end{align*}
 Since $G$ acts transitively, $\Delta: X \to X^{\times k}$ represents the inclusion of the $G$--fixed points.  Packaging all this into \Cref{ProperCOIntersectionFormula} gives \[e(\rho \otimes m\epsilon) \cdot \Delta^* f^{\times k}_{hG}{}_*(1) = f_*(e(\rho \otimes \nu_i) \cdot r_{W \to Z^{\times k}}^*(1)).\]
-We then investigate each part separately:
+We then investigate each part separately:\todo{The claim about $\nu_i = m \eps + \nu_f$ is a little mysterious. We had to stare at it too before it became believable.}
 \begin{align*}
 e(\rho \otimes m\eps) & = e(\rho^{\oplus m}) = e(\rho)^m, &
 \Delta^* f^{\times k}_{hG} {}_*(1) & = P(f_* 1), \\
@@ -679,7 +683,7 @@ from which the claim follows.
 \end{proof}
 
 The utility of this theorem comes from our ability to compute just a little bit about the Euler classes involved in its statement.
-\begin{corollary}\citeme{Quillen Prop 3.17}
+\begin{corollary}[{\cite[Proposition 3.17]{Quillen}}]\label{QuillensKeyRelation}
 \todo{Should we use $a_\alpha(v)$ as the notation?} \todo{In previous sections, you've been using $\xi$ to denote arbitrary vector bundles, not $E$.}Specialize to $G = C_k$, and let $\eta$ denote the line bundle on $BG$ owing to the inclusion $C_k \subseteq U(1)$.  Set $e(\eta) = v$ and $e(\rho) = w$.  Then, the Steenrod operation and Landweber operations are related by the formula \[w^{r+q} P x = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha s_\alpha(x)\] for $x \in MU^{-2q}(X)$ and $r$ is any integer sufficiently large with respect to $\dim X$ and $q$, where $a_j(T)$ are power series with coefficients in the subring $C$ generated by the tautological formal group law on $MU^*(*)$.
 \end{corollary}
 \begin{proof}
@@ -688,7 +692,7 @@ The bundle $\rho$ splits as $\bigoplus_{i=1}^{k-1} \eta^{\otimes i}$.  Then, if 
 e(\rho \otimes \L) & = e \left( \bigoplus_{i=1}^{k-1} \eta^i \otimes \L \right) = \prod_{i=1}^{k-1} e(\eta^i \otimes \L) \\
 & = \prod_{i=1}^{k-1} F([i]_F(v), e(\L)) = w + \sum_{j=1}^\infty a_j(v) e(\L)^j,
 \end{align*}
-where \[w = e(\rho) = (k-1)! v^{k-1} + \sum_{j \ge k} b_j v^j\] for $b_j \in C$.  In general, the splitting principle shows that $e(\rho \otimes E)$ has \[e(\rho \otimes E) = \sum_{|\alpha| \le r} w^{r-|\alpha|} a(v)^\alpha c_\alpha(E).\]  Setting $E = m \eps + \nu_f$, we calculate $r = \dim(m \eps + \nu_f) = m - q$.  Inserting this into \Cref{PowerOpAndEulerClasses} then gives
+where \todo{You could justify this part. The point is to look at the product of all the factor summands which don't involve $e(\L)$ at all.}\[w = e(\rho) = (k-1)! v^{k-1} + \sum_{j \ge k} b_j v^j\] for $b_j \in C$.  In general, the splitting principle shows that $e(\rho \otimes E)$ has \[e(\rho \otimes E) = \sum_{|\alpha| \le r} w^{r-|\alpha|} a(v)^\alpha c_\alpha(E).\]  Setting $E = m \eps + \nu_f$, we calculate $r = \dim(m \eps + \nu_f) = m - q$.  Inserting this into \Cref{PowerOpAndEulerClasses} then gives
 \begin{align*}
 w^m P(f_* 1) & = f_* \left( \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha c_\alpha(m \eps + \nu_f) \right) \\
 w^{r+q} P(f_* 1) & = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha f_* c_\alpha(m \eps + \nu_f) \\
@@ -697,16 +701,22 @@ w^{r+q} P(f_* 1) & = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha f_* c_\a
 \todo{Check that this last line is right. Can you pull Gysin maps past Euler classes?  What happened to $m \eps$? --- are you using the definition of Landweber--Novikov operations for $\nu_i$ instead of $\nu_f$?  Why?}
 \end{proof}
 
-With this tool in hand, we can deduce Quillen's major structural theorem about $MU_*$.
+This formula is quite remarkable --- it says that a certain power operation defined for $MU$ is, in fact, additive and stable!  This is certainly not the case in general, and I'm not aware of an \textit{a priori} reason to expect this to have happened all along.  Tomorrow, we will use it to power an induction to say something about the coefficient ring $MU_*$.
+
+
+
+\section{Quillen's theorem}
+
+With \Cref{QuillensKeyRelation} in hand, we deduce Quillen's major structural theorem about $MU_*$.
 \begin{theorem}\citeme{Quillen Theorem 5.1}
-If $X$ is the homotopy type of a finite complex, then
+Again write $C$ for the subring of $MU_*$ generated by the coefficients of the formal group law associated to the identity complex--orientation.  If $X$ has the homotopy type of a finite complex, then
 \begin{align*}
 MU^*(X) & = C \cdot \sum_{q \ge 0} MU^q(X), \\
 \widetilde{MU}^*(X) & = C \cdot \sum_{q > 0} MU^q(X).
 \end{align*}
 \end{theorem}
 \begin{proof}
-We can focus on \[\widetilde{MU}^{2*}(X) = C \cdot \sum_{q > 0} MU^{2q}(X) =: R^{2*},\] since $MU^{2*+1}(*) = 0$ and $\widetilde{MU}^{2*+1}(X)$ can be handled by suspending $X$ once, and then the unreduced case follows directly.  We will show this by inducting on the value of ``$*$'': suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $n \gg 0$, we have \[w^{n+q} P x = \sum_{|\alpha| \le n} w^{n - |\alpha|} a(v)^\alpha s_\alpha x.\]  Recall that $w$ is a power series in $v$ with coefficients in $C$ and leading term $(p-1)! v^{p-1}$, so that $v^{p-1} = w \cdot \theta(v)$ for some invertible series $\theta$ with coefficients in $C$.  Since $s_\alpha$ lowers degree, we have $s_\alpha x \in R$ by the inductive hypothesis, so we may write \[v^m(w^qPx - x) = \psi_x(v)\] with $\psi_x(T) \in R_{(p)}\llbracket T \rrbracket$.
+We can focus on the claim \[\widetilde{MU}^{2*}(X) \stackrel{?}{=} C \cdot \sum_{q > 0} MU^{2q}(X) =: R^{2*},\] since $MU^{2*+1}(*) = 0$ and $\widetilde{MU}^{2*+1}(X)$ can be handled by suspending $X$ once, and then the unreduced case follows directly.  We will show this by working $p$--locally and inducting on the value of ``$*$''.  Suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $n \gg 0$, we have \[w^{n+q} P x = \sum_{|\alpha| \le n} w^{n - |\alpha|} a(v)^\alpha s_\alpha x.\]  Recall that $w$ is a power series in $v$ with coefficients in $C$ and leading term $(p-1)! v^{p-1}$, so that $v^{p-1} = w \cdot \theta(v)$ for some invertible series $\theta$ with coefficients in $C$.  Since $s_\alpha$ lowers degree, we have $s_\alpha x \in R$ by the inductive hypothesis, so we may write \[v^m(w^qPx - x) = \psi_x(v)\] with $\psi_x(T) \in R_{(p)}\llbracket T \rrbracket$.
 
 Suppose $m \ge 1$ is the least integer for which we can write such an equation --- we will show $m = 1$ in a moment.  Applying the inclusion $i\co X \to X \times B\Z/p$ to this equation sets $v = 0$ and yields $\psi(0) = 0$, hence $\psi_x(T) = T \omega_x(T)$ and \[v (v^{m-1}(w^qPx - x) - \omega_x(v)) = 0.\]  Since $v$ annihilates this equation, we can use the Gysin sequence associated to the spherical bundle \[S^1 \to B\Z/p \to \CP^\infty\] to produce a class $y \in \widetilde{MU}^{2(m-1)-2q}(X)$ with \[v^{m-1}(w^q P x - x) = \psi_1(x) + y \<p\>(v).\]  If $m > 1$, then $y \in R$ for degree reasons and hence the right-hand side gives an equation contradicting our minimality hypothesis.  So, $m = 1$, and the outer factor of $v^{m-1}$ is not present in the last expression.  Restricting along $i$ again, we obtain the equation \[\left. \begin{array}{rr} -x & \text{if $q > 0$} \\ x^p - x & \text{if $q = 0$} \end{array} \right\} = \psi_1(0) + py.\]
 
@@ -717,7 +727,12 @@ In the first case, where $q > 0$, it follows that $MU^{-2q}(X) \subseteq R^{-2q}
 The coefficients of the formal group law span $MU_*$. \qed
 \end{corollary}
 
-This is motivation enough for us to investigate the moduli of formal groups.  We will soon strengthen \Cref{QuillenSurjective} to show that this map is an isomorphism.
+
+
+\textbf{Now show that this map is injective.  Finally, show that $\pi_*(MU \sm MU)$ carries the universal formal group law isomorphism.}
+
+
+
 
 \todo{I moved the logarithms discussion into \Cref{FormalVarietiesLecture}, so we could now prove this strengthening too...}
 
@@ -741,7 +756,13 @@ This is motivation enough for us to investigate the moduli of formal groups.  We
 
 
 
-\subsection*{Run off}
+
+
+
+
+
+
+% \subsection*{Run off}
 
 
 
@@ -750,27 +771,27 @@ This is motivation enough for us to investigate the moduli of formal groups.  We
 
 
 
-% divisors and line bundles on $1$--dimensional objects?
+% % divisors and line bundles on $1$--dimensional objects?
 
-poincare duality for manifolds with oriented tangent bundle
+% poincare duality for manifolds with oriented tangent bundle
 
-wrong-way maps: $\zeta^* \zeta_* 1$ gives the Euler class of the bundle
+% wrong-way maps: $\zeta^* \zeta_* 1$ gives the Euler class of the bundle
 
-Explicit Thom isomorphism map for universal cohomology: $\xi: X \to BU(n)$ Thomifies to $T(\xi) \to MU(n) \to MU$, representing a class $g \in MU^* T(\xi)$, and this gives a map
-\begin{align*}
-MU^*(X) & \to MU^* T(\xi) & \cong MU^*(E, E_0)\\
-x & \mapsto & g \smile p^*(x),
-\end{align*}
-where $p: E \to X$ is the projection and $E_0$ is the image of the zero section.
+% Explicit Thom isomorphism map for universal cohomology: $\xi: X \to BU(n)$ Thomifies to $T(\xi) \to MU(n) \to MU$, representing a class $g \in MU^* T(\xi)$, and this gives a map
+% \begin{align*}
+% MU^*(X) & \to MU^* T(\xi) & \cong MU^*(E, E_0)\\
+% x & \mapsto & g \smile p^*(x),
+% \end{align*}
+% where $p: E \to X$ is the projection and $E_0$ is the image of the zero section.
 
-The wrong--way maps come from conjugating by Poincar\'e duality: \[E^* X \cong E_{d_X-*} X \to E_{d_X-*} Y \cong E^*{*-d_X+d_Y} Y.\]  Poincar\'e duality comes from asserting that the stable normal bundle is oriented for the theory, and then Atiyah duality says \[D(X_+) \simeq \Susp^{-n} T(\nu) [\simeq T(\nu - n\eps) \simeq T(-\tau)]. \]
+% The wrong--way maps come from conjugating by Poincar\'e duality: \[E^* X \cong E_{d_X-*} X \to E_{d_X-*} Y \cong E^*{*-d_X+d_Y} Y.\]  Poincar\'e duality comes from asserting that the stable normal bundle is oriented for the theory, and then Atiyah duality says \[D(X_+) \simeq \Susp^{-n} T(\nu) [\simeq T(\nu - n\eps) \simeq T(-\tau)]. \]
 
-------
+% ------
 
-Q: Once you know that $MU$ has the universal formal group law on it, does the description of $MU_* MU$ follow immediately from evenness?  Probably?\todo{No, it follows from \emph{freeness}, and this should go into the operations/model section.}
+% Q: Once you know that $MU$ has the universal formal group law on it, does the description of $MU_* MU$ follow immediately from evenness?  Probably?\todo{No, it follows from \emph{freeness}, and this should go into the operations/model section.}
 
------
+% -----
 
-Need to talk about Gysin pushforwards in complex bordism and in ordinary cohomology.  Compare these with the theory of Thom isomorphism in general.  They're equivalent, right?  A complex orientation makes proper maps induce shriek maps, and shriek maps can be used to deduce what Chern classes are by push-pull: if $\zeta: X \to E$ is the zero section of a complex bundle $\xi$, then $e(\xi) = i^* i_*(1)$ I think.
+% Need to talk about Gysin pushforwards in complex bordism and in ordinary cohomology.  Compare these with the theory of Thom isomorphism in general.  They're equivalent, right?  A complex orientation makes proper maps induce shriek maps, and shriek maps can be used to deduce what Chern classes are by push-pull: if $\zeta: X \to E$ is the zero section of a complex bundle $\xi$, then $e(\xi) = i^* i_*(1)$ I think.
 
 
