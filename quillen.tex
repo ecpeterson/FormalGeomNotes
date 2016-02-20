@@ -742,19 +742,59 @@ This proof actually also goes through from $MO$ as well.  In that case, it's eve
 \end{enumerate}
 \end{remark}
 
+We now have a foothold on $\pi_* MU$, and this alone is enough to move us to study $\moduli{fgl}$, the moduli scheme of formal group laws.  However, while we're here, it's possible for us to prove the rest of Quillen's theorem, if we get just slightly ahead of ourselves and assume one algebraic fact.  The place to start is with the following topological observation about mixing complex--orientations:
 
+\begin{lemma}[{\cite[Lemma 6.3 and Corollary 6.5]{AdamsBlueBook}}]\label{OrientationsOnEAndMU}
+Let $\phi\co MU \to E$ be complex--oriented and consider the two orientations
+\begin{align*}
+\S \sm MU & \xrightarrow{\eta_E \sm 1} E \sm MU, &
+MU \sm \S & \xrightarrow{\phi \sm \eta_{MU}} E \sm MU.
+\end{align*}
+The two induced coordinates $x^E$ and $x^{MU}$ on $\CP^\infty_{E \sm MU}$ are related by the formulas
+\begin{align*}
+x^{MU} & = \sum_{j=0}^\infty b_j^E (x^E)^j = g(x^E), &
+g^{-1}(x^{MU} +_{MU} y^{MU}) & = g^{-1}(x^E) +_E g^{-1}(y^E).
+\end{align*}
+where $E_* MU \cong E_*[b_1, b_2, \ldots]$.
+\end{lemma}
+\begin{proof}
+The second formula is a direct consequence of the first.  The first formula comes from taking the module generators $\beta_{j+1} \in E_{2(j+1)} \CP^\infty = E_{2j} MU(1)$ and pushing them forward to get the algebra generators $b_j \in E_{2j} MU$.  Then, the triangle
+\begin{center}
+\begin{tikzcd}
+{[\CP^\infty, MU]} \arrow{rr} \arrow{rd} & & {[\CP^\infty, E \sm MU]} \arrow{ld}{\cong} \\
+& \CatOf{Modules}_{E_*}(E_* \CP^\infty, E_* MU)
+\end{tikzcd}
+\end{center}
+allows us to pair $x^{MU}$ with $(x^E)^{j}$ to determine the coefficients of the series.
+\end{proof}
 
+\begin{corollary}[{\cite[Corollary 6.6]{AdamsBlueBook}}]
+In particular, for the orientation $MU \to H\Z$ we have \[x_1 +_{MU} x_2 = \exp^H(\log^H(x_1) + \log^H(x_2)),\] where $\exp^H(x) = \sum_{j=0}^\infty b_j x^{j+1}$. \qed
+\end{corollary}
 
+However, one also notes that $H\Z_* MU = \Z[b_1, b_2, \ldots]$ carries the universal example of a formal group law with a logarithm --- this observation is independent of any description of $MU_*$, which we still do not fully understand.  It turns out that this brings us one algebraic fact away from understanding $MU_*$:
 
+\begin{theorem}[{To be proven as \Cref{LazardsTheorem}}]\label{DummyLazardsThm}
+There is a ring $\sheaf O_{\moduli{fgl}}$ carrying the universal formal group law, and it is free: it is a polynomial ring over $\Z$ in countably many generators. \qed
+\end{theorem}
 
-\textbf{Now show that this map is injective.  Finally, show that $\pi_*(MU \sm MU)$ carries the universal formal group law isomorphism.}
+\begin{corollary}\label{QuillensTheorem}
+The map $\sheaf O_{\moduli{fgl}} \to MU_*$ is an isomorphism.
+\end{corollary}
+\begin{proof}
+We proved in \Cref{QuillenSurjective} that this map is surjective.  We also proved in \Cref{RationalFGLsHaveLogarithms} that every rational formal group law has a logarithm, i.e., the long composite \[\sheaf O_{\moduli{fgl}} \otimes \Q \to MU_* \otimes \Q \xrightarrow{\cong} (H\Z_* MU) \otimes \Q\] is an isomorphism.  Using \Cref{DummyLazardsThm}, it follows that the map is also injective, hence an isomorphism.
+\end{proof}
 
+\begin{corollary}
+The ring $\pi_*(MU \sm MU)$ carries the universal example of two isomorphic formal group laws.
+\end{corollary}
+\begin{proof}
+Combine \Cref{OrientationsOnEAndMU} and \Cref{QuillensTheorem}.
+\end{proof}
 
 
 
 \todo[inline]{There's buzz about a ``Frobenius map'' for structured rings going around these days. I guess the point is that an $E_2$--algebra structure is enough to get a multiplicative map $E^0 X \to E^0 X \otimes E^0 BC_p$. This isn't additive, so it can't come from an infinite loop map, but it becomes additive when passing to the Tate construction: $E^X \to (E^X)^{tC_p}$, using the fact that the genuine $C_p$ fixed points of $E^{X^{\times p}}$ is $E^X$, and the square relating genuine, homotopy, and geometric fixed points.  Mike has been claiming that these results of Quillen's can be interpreted in this way, but I'm not sure what the interpretation is.  He says it has something to do with inverting the Euler class and the part of Quillen's argument that involves walking down the multiples of Euler classes on both sides of the equation.}
-
-\todo{Section II.6 of Adams's blue book talks about $\pi_* E \sm MU$.}
 
 
 
