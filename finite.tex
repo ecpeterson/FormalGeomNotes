@@ -44,7 +44,7 @@ Let $f\co R \to S$ be a map of rings as above.  An $S$--module $N$ equipped with
 \end{definition}
 
 \begin{remark}\label{CanonicalCoring}
-There are other ways to view this data.  For example, later on we will revisit it from the categorical perspective of \textit{comonads}.  However, there is another perspective which we have already encountered earlier on: that of the \textit{canonical coring}.  Associated to the map $f\co R \to S$, we can form the ring $S \otimes_R S$, which supports a map \[B \otimes_A B \simeq B \otimes_A A \otimes_A B \to B \otimes_A B \otimes_A B \simeq (B \otimes_A B) \otimes_B (B \otimes_A B).\]  One can check that descent data on a $B$--module is the same as the data of a coaction against $B \otimes_A B$.  As a first step, notice the similarity of function signatures: \[N \xrightarrow{\psi} N \otimes_B (B \otimes_A B) \simeq N \otimes_A B.\]
+There are other ways to view this data.  For example, later on we will revisit it from the categorical perspective of \textit{comonads}.  However, there is another perspective which we have already encountered earlier on: that of the \textit{canonical coalgebra} or \textit{Amitsur complex}.  Associated to the map $f\co R \to S$, we can form the ring $S \otimes_R S$, which supports a map \[S \otimes_R S \simeq S \otimes_R R \otimes_R S \to S \otimes_R S \otimes_R S \simeq (S \otimes_R S) \otimes_S (S \otimes_R S).\]  One can check that descent data on a $S$--module is the same as the data of a coaction against $S \otimes_R S$.  As a first step, notice the similarity of function signatures: \[N \xrightarrow{\psi} N \otimes_S (S \otimes_R S) \simeq N \otimes_R S.\]
 \end{remark}
 
 The following theorem is the usual culmination of an initial investigation into descent:
@@ -92,7 +92,12 @@ If $X$ is Noetherian, then $k^*$ is flat as a functor of sheaves, $j^*$ is conse
 The usual theorem about faithfully flat descent then follows by using the hypotheses on $i$ to deduce that, e.g., if $i^*$ and $j^*$ are both conservative, then so must $k^*$ be.
 \end{remark}
 
-We now transfer what we've learned to the situation of homotopical algebra.  Recalling that spectra are equivalent to $\S$--modules, $\S$ the usual sphere spectrum, then any other ring spectrum comes equipped with a unit map $\eta: \S \to E$ and hence push and pull functors $\eta_*$ and $\eta^*$.  Correspondingly, to any spectrum $X$ we can define the following cosimplicial spectrum:
+We now transfer what we've learned to the situation of homotopical algebra.  Recalling that spectra are equivalent to $\S$--modules, $\S$ the usual sphere spectrum, then any other ring spectrum comes equipped with a unit map $\eta: \S \to E$ and hence push and pull functors
+\begin{align*}
+\eta_*\co M & \mapsto M, &
+\eta^*\co X & \mapsto E \sm X.
+\end{align*}
+Correspondingly, to any spectrum $X$ we can define the following cosimplicial spectrum:
 \begin{definition}
 Let $\sheaf D_E(X)$ be the cosimplicial spectrum determined by the formula
 \[\mathcal{D}_E(X) := \left\{
@@ -107,7 +112,7 @@ It is called \textit{the descent object for $X$ from $E$ to $\S$}.
 \end{definition}
 It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
 \begin{lemma}
-When $E$ is an $A_\infty$--ring spectrum, the descent object $X^\wedge_E$ can be naturally considered cosimplicial object in the $\infty$--category of spectra. \qed \todo{I don't intend to prove this, but maybe we could say some mealy words about why it's true. At worst, we could give reference to the relevant part of Higher Algebra.}
+When $E$ is an $A_\infty$--ring spectrum, the descent object $\sheaf D_E(X)$ can be naturally considered cosimplicial object in the $\infty$--category of spectra. \qed \todo{I don't intend to prove this, but maybe we could say some mealy words about why it's true. At worst, we could give reference to the relevant part of Higher Algebra.}
 \end{lemma}
 \begin{definition}
 Let $E$ be an $A_\infty$--ring spectrum.  Then $X^\wedge_E := \Tot \sheaf D_E(X)$ is called the \textit{$E$--nilpotent completion of $X$}.  The spectral sequence resulting from the coskeletal filtration is called the \textit{$E$--Adams spectral sequence} (for $X$).
@@ -165,7 +170,7 @@ Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $
 \end{definition}
 
 \begin{remark}
-The main utility of this is that it obviates us from working through the homological algebra of sheaves over simplicial schemes.  Instead, since {\FH} causes $\context{E}$ to become $1$--truncated, we can refer to \Cref{CanonicalCoring} and simply refer back to the homological algebra of comodules.  In light of the discussion in \Cref{HopfAlgebrasFromFiniteGroups,HF2HomologyIsValuedInAutGaEquivarModules}, we also see an interpretation of these groupoid-valued simplicial schemes: they are valued in sheaves equipped with an action by $\Spec E_* E$, which acts also on the base $\Spec E_*$.  To denote this homotopical quotient, we will write \[\Spec E_* \mmod \Spec E_* E.\]
+The main utility of this is that it obviates us from working through the homological algebra of sheaves over simplicial schemes.  Instead, since {\FH} causes $\context{E}$ to become $1$--truncated, we can refer to \Cref{CanonicalCoring} and simply refer back to the homological algebra of comodules.  In light of the discussion in \Cref{HopfAlgebrasFromFiniteGroups,HF2HomologyIsValuedInAutGaEquivarModules}, we also see an interpretation of these groupoid-valued simplicial schemes: they are valued in sheaves equipped with an action by $\Spec E_* E$, which acts also on the base $\Spec E_*$.  To denote this ``homotopical quotient'', we will write \[\Spec E_* \mmod \Spec E_* E.\]
 \end{remark}
 
 \begin{remark}\todo{Is this right?  I think so...}
@@ -176,8 +181,8 @@ There is a notion of quasicoherent sheaf directly over $\sheaf D_E$ and an inter
 Most of the homology theories we will discuss have this property.  For an easy example, $H\F_2$ certainly has this property: there is only one possible algebraic map $\F_2 \to \mathcal A_*$, so {\FH} is necessarily satisfied.  This grants us access to a description of the context for $H\F_2$: \[\context{H\F_2} = \Spec F_2 \mmod \InternalAut{\G_a}.\]
 \end{example}
 
-\begin{example}\todo{Explain what $\moduli{ps}$ is.}\todo{Spell this out some.}
-The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd}.\]  
+\begin{example}
+The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  It is isomorphic to the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.
 \end{example}
 
 
@@ -188,7 +193,6 @@ The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU
 
 talk about how equivalence of groupoids induces equivalence of sheaf categories.  also, a deeper natural equivalence: stackification and locality.
 
-\todo{I suspect you'll have time to move the ``upcoming program'' sketch scheduled for the beginning of the next lecture into the end of this one.  I think that's better narration anyhow.}
 \todo{Jon thinks that this picture can be instructively recast in terms of the cotangent complex.  I'm not sure how, but it's something to keep in mind for later.}
 
 
