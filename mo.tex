@@ -517,85 +517,87 @@ Consider the degenerate case $X = H\F_2$.  Then $H\F_{2*}(H\F_2) = \mathcal A_*$
 At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pictured through a range in \Cref{HF2ASSFigure}.\todo{Label elements?  Identify some groups?}
 \begin{figure}[b]
 \begin{center}
-\begin{tikzpicture}[scale=0.75]
-% the axes
-\draw [<->] (0,9.5) |- (0,0) |- (17.5,0);
-% the grid
-\draw[black!50] (0,0) grid (17,9);
+\begin{sseqdata}[
+    execute at begin node=$,execute at end node=$,
+    degree={-1}{#1},
+    classes={circle,fill,inner sep=0.3ex},
+    class labels={above left=0.2em, black},
+    edge labels=description,
+]{adamsSS}
 
-% the groups
-\foreach \y in {0,...,9}
-    {\node (one\y) at (0,\y) {$\bullet$};};
-\node at (1,1) {$\bullet$};
-\node at (2,2) {$\bullet$};
-\node at (3,3) {$\bullet$};
-\node at (3,1) {$\bullet$};
-\node at (3,2) {$\bullet$};
-\node at (6,2) {$\bullet$};
-\node at (7,1) {$\bullet$};
-\node at (7,2) {$\bullet$};
-\node at (7,3) {$\bullet$};
-\node at (7,4) {$\bullet$};
-\node at (8,2) {$\bullet$};
-\node at (8,3) {$\bullet$};
-\node at (9,3) {$\bullet$};
-\node at (9,4) {$\bullet$};
-\node at (9,5) {$\bullet$};
-\node at (10,6) {$\bullet$};
-\node at (11,5) {$\bullet$};
-\node at (11,6) {$\bullet$};
-\node at (11,7) {$\bullet$};
-\node at (14,2) {$\bullet$};
-\node at (14,3) {$\bullet$};
-\node at (14,4) {$\bullet$};
-\node at (14,5) {$\bullet$};
-\node at (14,6) {$\bullet$};
-\node at (15,1) {$\bullet$};
-\node at (15,2) {$\bullet$};
-\node at (15,3) {$\bullet$};
-\node at (15,4) {$\bullet$};
-\node at (15,5) {$\bullet$};
-\node at (15,6) {$\bullet$};
-\node at (15,7) {$\bullet$};
-\node at (15,8) {$\bullet$};
-\node at (16,2) {$\bullet$};
-\node at (16,6) {$\bullet$};
-\node at (16,7) {$\bullet$};
-\node at (17,3) {$\bullet$};
-\node at (17,4) {$\bullet$};
-\node at (17,5) {$\bullet$};
-\node at (17,6) {$\bullet$};
-\node at (17,7) {$\bullet$};
-\node at (17,8) {$\bullet$};
-\node at (17,9) {$\bullet$};
+\gdef\tower[#1]#2{
+    \begin{scope}[#1]
+    \place(0,0)
+    \foreach \y in {2,...,#2} {
+        \place(0, \y-1)
+        \structline(0, \y-2, -1)(0, \y-1, -1)
+    }
+    \end{scope}
+}
 
-% multiplicative structure
+\gdef\etaclass(#1,#2){
+    \place(#1,#2)
+    \structline(#1-1,#2-1,-1)(#1,#2,-1)
+}
 
-\path (0,0) edge[thick] (0,9)
-      (0,0) edge[thick] (3,3)
-      (3,1) edge[thick] (3,3)
-      (7,1) edge[thick] (7,4)
-      (7,1) edge[thick] (9,3)
-      (8,3) edge[thick] (9,4)
-      (9,5) edge[thick] (11,7)
-      (11,5) edge[thick] (11,7)
-      (14,2) edge[thick] (14,3)
-      (14,4) edge[thick] (14,6)
-      (15,1) edge[thick] (15,8)
-      (15,1) edge[thick] (17,3)
-      (16,6) edge[thick] (17,7)
-      (16,7) edge[thick] (17,8)
-      (17,4) edge[thick] (17,7);
+\place(0,0)
 
-% differentials
+% h0 tower
+\foreach \y in {1,...,12} {
+    \place(0,\y)
+    \structline(0,\y-1)(0,\y)
+}
 
-\path (15,1) edge[-stealth] (14,3)
-      (15,2) edge[-stealth] (14,5)
-      (15,3) edge[-stealth] (14,6)
-      (17,4) edge[-stealth] (16,6);
-\end{tikzpicture}
+% multiples of eta
+\place["\eta"](1,1) \structline(0,0)(1,1)
+\place["\eta^2"](2,2) \structline(1,1)(2,2)
+\place["\eta^3"](3,3) \structline(2,2)(3,3)
+
+% divisibilities of nu
+\place(3,2) \structline(3,2)(3,3)
+\place(3,1) \structline(3,1)(3,2)
+
+\place(6,2)
+
+\tower[xshift=7,yshift=1]{4}
+
+\etaclass(8,2)
+\place(8,3)
+
+\etaclass(9,3)
+\etaclass(9,4)
+\place(9,5)
+
+\etaclass(10,6)
+\etaclass(11,7)
+\place(11,6) \structline(11,6)(11,7)
+\place(11,5) \structline(11,5)(11,6)
+
+\tower[xshift=14,yshift=2]{2}
+\tower[xshift=14,yshift=4]{3}
+\tower[xshift=15,yshift=1]{8}
+
+\etaclass(16,2)
+\etaclass(17,3)
+
+\place(16,6)
+\place(16,7)
+
+\tower[xshift=17,yshift=4]{3}
+\etaclass(17,7) \structline(17,7)(17,6)
+\etaclass(17,8)
+\place(17,9)
+
+\d2(15,1)
+\d3(15,2)
+\d3(15,3)
+\d2(17,4)
+
+\end{sseqdata}
+
+\printpage[name=adamsSS,page=0,struct lines=blue,struct line labels={text=black}]
 \end{center}
-\caption{A small piece of the $H\F_2$-Adams spectral sequence for the sphere, beginning at the second page.  Lines denote multiplication by $2$ and by $\eta$, thin arrows denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
+\caption{A small piece of the $H\F_2$-Adams spectral sequence for the sphere, beginning at the second page.  North and north-east lines denote multiplication by $2$ and by $\eta$, north-west lines denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
 \end{figure}
 \end{example}
 
