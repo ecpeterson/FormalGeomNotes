@@ -170,78 +170,61 @@ This embedding of $E_\Lambda$ as an intersection of quadratic hypersurfaces in $
 
 The $\theta$--functions version of the story has two main successes.  One is that there is a version of this story for an arbitrary abelian variety.  It turns out that all abelian varieties are projective\citeme{Milne's abelian varieties, Theorem 7.1}, and the theorem sitting at the heart of this claim is
 \begin{corollary}[Theorem of the cube]\label{Theta3IsTrivial}\citeme{Milne's Abelian Varieties chapter, Corollary 6.4 and Theorem 7.1}
-Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the projection onto the $i${\th} factor, and let $p_{ij} = p_i +_A p_j$, $p_{ijk} = p_i +_A p_j +_A p_k$.  Then for any invertible sheaf $\L$ on $A$, the sheaf \[\Theta^3(\L) := \frac{p_{123}^* \L \otimes p_1^* \L \otimes p_2^* \L \otimes p_3^* \L}{p_{12}^* \L \otimes p_{23}^* \L \otimes p_{31}^* \L} = \bigotimes_{I \subseteq \{1, 2, 3\}} (p_I^* \L)^{(-1)^{|I| - 1}}\] on $A \times A \times A$ is trivial.  If $\L$ is rigid, then $\Theta^3(\L)$ is canonically trivialized. \qed
+Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the projection onto the $i${\th} factor, and let $p_{ij} = p_i +_A p_j$, $p_{ijk} = p_i +_A p_j +_A p_k$.  Then for any invertible sheaf $\L$ on $A$, the sheaf \[\Theta^3(\L) := \frac{p_{123}^* \L \otimes p_1^* \L \otimes p_2^* \L \otimes p_3^* \L}{p_{12}^* \L \otimes p_{23}^* \L \otimes p_{31}^* \L} = \bigotimes_{I \subseteq \{1, 2, 3\}} (p_I^* \L)^{(-1)^{|I| - 1}}\] on $A \times A \times A$ is trivial.  If $\L$ is rigid, then $\Theta^3(\L)$ is canonically trivialized by a section $s(A; \L)$. \qed
 \end{corollary}
 \noindent However, the proof of projectivity arising from this method rests on choosing an ample line bundle on $A$ and using some generating global sections to embed into $\P(\L^{\oplus n})$.  Mumford showed that a choice of ``$\theta$--structure'' on $A$, which is only slightly more data given in terms of Heisenberg representations\todo{I think.}, gives a canonical identification of $\P(\L^{\oplus n})$ with a \emph{fixed} projective space.  Separately, Breen\citeme{Breen} showed that if $\L$ is a line bundle on $A$ with a chosen trivialization of $\Theta^3 \L$ and $\pi\co A' \to A$ is an epimorphism that trivializes $\L$, then one can also associate to this a theory of $\theta$--functions.
 
 
 
 
-An important piece of both of these stories is the $e_n$--pairing associated to such a bundle.
+\todo{I wish I knew how to motivate this.}\citeme{AS Prop 3.3, Lemma 3.7}An important piece of both of these stories is the $e_n$--pairing associated to such a bundle.  Given a section $u$ of $\Theta^3(\sheaf O_C)$, we define \[e_n(g, h) = \prod_{j=1}^{n-1} \frac{u(g, jg, h)}{u(g, jh, h)}.\]  It is immediate that $e_n(g, g) = 1$ and $e_n(g, h) = e_n(h, g)^{-1}$, and properties of $u$ further show that
+\begin{align*}
+e_n(g_1 +_{\G} g_2, h) & = e_n(g_1, h) e_n(g_2, h) \frac{u(ng_1, ng_2, h)}{u(g_1, g_2, nh)}, \\
+e_n(g, h_1 +_{\G} h_2) & = e_n(g, h_1) e_n(g, h_2) \frac{u(ng, h_1, h_2)}{u(g, nh_1, nh_2)}.
+\end{align*}
+In particular, when $e_n$ is restricted to $C[n]$, this map becomes biexponential.  In the case of an elliptic curve, this lines up with more traditional definitions --- for instance, using the isogeny $n: C \to C$.  In the case of a \emph{complex} elliptic curve $\C / (1, \tau)$, this degenerates further to the assignment \[\left( \frac{a}{n}, \frac{b}{n} \tau \right) \mapsto \exp\left(-2\pi i \frac{ab}{n}\right).\]
 
 
 
 \citeme{This part of the story is cribbed from AHS Section 2.6}
-The other success of the $\theta$--functions story is that it gives access to a small piece of the compactified moduli of elliptic curves, $\overline{\moduli{ell}}$, called the Tate curve.  In this parametrized setting, define $D'$ to be the punctured complex disk, and set \[C'_{\mathrm{an}} = \C^\times \times D' / (u, q) \sim (qu, q).\]  The fiber of $C'$ over a particular point $q \in D'$ is the curve $\C^\times / q^{\Z}$ considered above, and $\theta$ determines a holomorphic function on the total space $\C^\times \times D'$.  The Weierstrass embeddings discussed above give an embedding of $C'_{\mathrm{an}}$ into $D' \times \CP^2$ described by \[y^2 + xy = x^3 - 5 \alpha_3 x + -\frac{5 \alpha_3 + 7 \alpha_5}{12}\] for certain functions $\alpha_3$ and $\alpha_5$ of $q$.  At $q = 0$, these curve collapses to the twisted cubic \[y^2 + xy = x^3,\] and over the whole open unit disc $D$ we call this extended family $C_{\mathrm{an}}$.
+The other success of the $\theta$--functions story is that it gives access to a small piece of the compactified moduli of elliptic curves, $\overline{\moduli{ell}}$, called the Tate curve.  In this parametrized setting, define $D'$ to be the punctured complex disk, and set \[C'_{\mathrm{an}} = \C^\times \times D' / (u, q) \sim (qu, q).\]  The fiber of $C'$ over a particular point $q \in D'$ is the curve $\C^\times / q^{\Z}$ considered above, and $\theta$ determines a holomorphic function on the total space $\C^\times \times D'$.  The Weierstrass embeddings discussed above give an embedding of $C'_{\mathrm{an}}$ into $D' \times \CP^2$ described by \[wy^2 + wxy = x^3 - 5 \alpha_3 w^2 x + -\frac{5 \alpha_3 + 7 \alpha_5}{12}w^3\] for certain functions $\alpha_3$ and $\alpha_5$ of $q$.  At $q = 0$, these curve collapses to the twisted cubic \[wy^2 + wxy = x^3,\] and over the whole open unit disc $D$ we call this extended family $C_{\mathrm{an}}$.
 
-Now let $A \subseteq \Z\ps{q}$ by the subring of power series which converge absolutely on the open unit disk; then the coefficients of the Weierstrass cubic lie in $A$, so it determines a generalized elliptic curve $C$ over $\Spec A$, and $C_{an}$ is the curve given by base-change from $A$ to the ring of holomorphic functions on $D$.  The Tate curve $C_{\Tate}$ is defined to be the generalized elliptic curve over the intermediate object $D_{\Tate} = \Spec \Z\ps{q}$ as base-changed from $A$.
+Now let $A \subseteq \Z\ps{q}$ by the subring of power series which converge absolutely on the open unit disk.  It turns out that the coefficients of the Weierstrass cubic (i.e., $5\alpha_3$ and $\frac{1}{12}(5\alpha_3+7\alpha_5)$) lie in $A$, so it determines a generalized elliptic curve $C$ over $\Spec A$, and $C_{\mathrm{an}}$ is the curve given by base-change from $A$ to the ring of holomorphic functions on $D$.  The Tate curve $C_{\Tate}$ is defined to be the ``generalized elliptic curve'' over the intermediate object $D_{\Tate} = \Spec \Z\ps{q}$ as base-changed from $A$.  ``Generalized'' here means that the fiber over $q = 0$ is \emph{not} an elliptic curve --- but on its smooth locus it still carries the structure of a group scheme, and so one can still make sense of the associated formal group.
 
-
-
-
--------
-
-
-
-Here's what AHS has to say about things (in Section 2.6):
-
-However, they claim it's easy to check that $\delta^3 \tilde\theta(u, q)$ does descend to a rigid trivialization of $\Theta^3(\sheaf I(0))$, so gives the unique cubical structure on $C'_{an}$.
-
-The invariant differential is $dx / (2y + x) = du / u$, and the cubical structure is given by the unique extension of $\delta^3 \tilde\theta(u, q)$.
-
-Since meromorphic sections of $\Theta^3 \sheaf I(0)$ on $C^3$ inject into such over $C_{an}^3$, the (transcendental) equation $s(C_{an}^3) = \delta^3 \tilde\theta(u, q)$ nonetheless determines the cubical structure on $\sheaf I(0)$ over $C$ and hence over $C_{\Tate}$ as well.
-
-Finally, we turn to the associated formal groups.  First, the quotient map \[\C^\times \times D' = \Gm \times D' \to C_{an}'\] is a local analytic isomorphism, so it restricts to an isomorphism \[\G_m \times D' \to \widehat C_{an}'\] and extends across the origin to an isomorphism \[\G_m \times D \to \widehat C_{an}.\]  Additionally, even though $\tilde\theta$ does not descend to $C_{an}$, it does descend to $\widehat C_{an}$ --- and there it gives a coordinate.  Hence, $s(\widehat C_{an}) = \delta^3 \tilde\theta(u, q)$, where $\tilde\theta$ is treated directly as a coordinate on $\widehat C_{an}$.
-
-Lastly, we compare the three coordinates we have available on $\widehat C_{an}'$:
+There are three natural coordinates available to us on $\widehat C_{\mathrm{an}}'$:
 \begin{align*}
 t & = x/y, &
-\tilde\theta(u, q) & = \tilde\theta(t), &
+\theta^{1/2,1/2}_q(u) & = \theta(t), &
 1 - u & = 1 - u(t).
 \end{align*}
-Of these, only $t$ gives an algebraic coordinate on $C_{an}'$ (and in fact on $C_{an}$).  As power series in $t$,
+Of these, only $t$ gives an algebraic coordinate on $C_{\mathrm{an}}'$ (and in fact on $C_{\mathrm{an}}$).  The others expand as power series in $t$ to
 \begin{align*}
-\tilde\theta(t) & = t + O(t^2), &
+\theta(t) & = t + O(t^2), &
 1 - u(t) & = t + O(t^2).
 \end{align*}
-The coefficients of the powers of $t$ in these series are holomorphic functions on the punctured disk $D'$.  In fact, they extend to $D$ and have integer coefficients (which you see by working over the completion of $\Z[u^pm]\ps{q}$ at $(1 - u)$).  Thus $\tilde\theta(t)$ and $u(t)$ actually lie in $A\ps{t}$, so give functions on $\widehat C$ and $\widehat C_{\Tate}$.  It's supposed to follow, finally, that $s(\widehat C/A) \in C^3(\widehat C; \sheaf I(0))$ is $\delta^3 \tilde\theta(t)$, using all the definitions above.
+The coefficients of the powers of $t$ in these series are holomorphic functions on the punctured disk $D'$.  In fact, they extend to $D$ and have integer coefficients\todo{... which you see by working over the completion of $\Z[u^pm]\ps{q}$ at $(1 - u)$}.  Thus $\theta(t)$ and $u(t)$ actually lie in $A\ps{t}$, so give functions on $\widehat C$ and $\widehat C_{\Tate}$.
+
+Now, although $\theta^{1/2,1/2}_q$ does not give a section of $\sheaf I(0)$ on $C^3_{\mathrm{an}}$, it does descend to trivialize $\Theta^3 \sheaf I(0)$.  Then, since meromorphic sections of $\Theta^3 \sheaf I(0)$ on $C^3$ inject into such over $C_{an}^3$, the (transcendental) equation $s(C_{an}^3) = \delta^3 \theta^{1/2,1/2}_q(u)$ nonetheless determines the cubical structure on $\sheaf I(0)$ over $C$ and hence over $C_{\Tate}$ and $\widehat C_{\Tate}$ as well --- it can be expressed by $\delta^3 \theta(t)$.  It follows, finally, that the cubical structure extended over the compactification $D$ is also $\delta^3 \theta(t)$, since this function extends to $D$.\todo{Also, the invariant differential is $dx/(2y+x) = du/u$?}
 
 
+% \begin{theorem}\citeme{Strip out the easy parts of Milne's Theorem 7.1}
+% Every elliptic curve is projective.
+% \end{theorem}
+% \begin{proof}
+% First, assume that the ground field $k$ is algebraically closed.  We aim to construct a very ample linear system, meaning that it separates points (for every pair $a, b$ of distinct closed points on the variety, there is a $D$ in the system with $a \in D$ but $b \not\in D$) and it separates tangent vectors (for every closed point $a$ and tangent vector $t$ at $a$, there is a $D$ in the system with $a \in D$ but $t \not\in T_a D$).  Consider just the condition that a linear system separates the origin point from all other closed points in $A$; the case of a curve is too low-dimensional for this is to be interesting, as we can pick our linear system to consist of only the point divisor $D = \{0\}$.  If $a$ and $b$ are any two points in $A(k)$, then one can always find a third point $c$ so that $D_a + D_c + D_{-c-a}$ misses $b$ --- that is, the duplicated and translated system of divisors separates $a$ from $b$.  The theorem of the cube shows that $D_a + D_c + D_{-c-a} = 3D$, regardless of $a$ and $c$, so we take $3D$ as the basic unit of our system of divisors.  Finally, looking around II.7.8.2 of Hartshorne\todo{Expand this out.} shows that this gives rise to the appropriate projective embedding.
 
+% Finally, one can show that the projectivity of $A_{\bar k}$ entails the projectivity of $A_k$.\todo{Expand me?}
+% \end{proof}
 
+% Corollary 7.2 of Milne's chapter is that every abelian variety has a \emph{symmetric} ample invertible sheaf.  (Remarks after that say that any ample sheaf becomes very ample after cubing it. That's really what the theorem of the cube's use in the above proof is saying.)
 
+% The theorem of the cube: $\Theta^3 \L$ is canonically trivial for any rigidified line bundle $\L$ on an abelian scheme $A$.  You can find this in Olsson Thm 2.2.  Or, Akhil Mathew has notes from an algebraic geometry class ( https://math.berkeley.edu/{\textasciitilde}amathew/232b.pdf ) where lectures 3--5 address the theorem of the cube.
 
--------
+% ------
 
-\begin{theorem}\citeme{Strip out the easy parts of Milne's Theorem 7.1}
-Every elliptic curve is projective.
-\end{theorem}
-\begin{proof}
-First, assume that the ground field $k$ is algebraically closed.  We aim to construct a very ample linear system, meaning that it separates points (for every pair $a, b$ of distinct closed points on the variety, there is a $D$ in the system with $a \in D$ but $b \not\in D$) and it separates tangent vectors (for every closed point $a$ and tangent vector $t$ at $a$, there is a $D$ in the system with $a \in D$ but $t \not\in T_a D$).  Consider just the condition that a linear system separates the origin point from all other closed points in $A$; the case of a curve is too low-dimensional for this is to be interesting, as we can pick our linear system to consist of only the point divisor $D = \{0\}$.  If $a$ and $b$ are any two points in $A(k)$, then one can always find a third point $c$ so that $D_a + D_c + D_{-c-a}$ misses $b$ --- that is, the duplicated and translated system of divisors separates $a$ from $b$.  The theorem of the cube shows that $D_a + D_c + D_{-c-a} = 3D$, regardless of $a$ and $c$, so we take $3D$ as the basic unit of our system of divisors.  Finally, looking around II.7.8.2 of Hartshorne\todo{Expand this out.} shows that this gives rise to the appropriate projective embedding.
+% Take $S = \Spec \bar k$, let $E/S$ be an elliptic curve, and let $\L = \sheaf O_E(ne)$ for an integer $n \ge 1$.  Then for a point $a \in E(\bar k)$ \[t_a^* \L \otimes \L^{-1} \simeq \sheaf O_E(n(-a) -n(e))\] which is trivial if and only if $na = e$, hence $K_{(E, \L)} \cong E[n]$.  The $\Theta$--group $\sheaf G_{(E, \L)}$ consists of the set of points $(a, f)$ where $a \in E[n]$ and $f \in \bar k(E)$ is a function with $\div(f) = n(-a) - n(e)$.  There is a natural antisymmetric pairing, called the Weil pairing, coming from the central extension \[1 \to \Gm \to \sheaf G_{(E, \L)} \to E[n] \to 1.\]
 
-Finally, one can show that the projectivity of $A_{\bar k}$ entails the projectivity of $A_k$.\todo{Expand me?}
-\end{proof}
-
-Corollary 7.2 of Milne's chapter is that every abelian variety has a \emph{symmetric} ample invertible sheaf.  (Remarks after that say that any ample sheaf becomes very ample after cubing it. That's really what the theorem of the cube's use in the above proof is saying.)
-
-
-The theorem of the cube: $\Theta^3 \L$ is canonically trivial for any rigidified line bundle $\L$ on an abelian scheme $A$.  You can find this in Olsson Thm 2.2.  Or, Akhil Mathew has notes from an algebraic geometry class ( https://math.berkeley.edu/{\textasciitilde}amathew/232b.pdf ) where lectures 3--5 address the theorem of the cube.
-
-------
-
-Take $S = \Spec \bar k$, let $E/S$ be an elliptic curve, and let $\L = \sheaf O_E(ne)$ for an integer $n \ge 1$.  Then for a point $a \in E(\bar k)$ \[t_a^* \L \otimes \L^{-1} \simeq \sheaf O_E(n(-a) -n(e))\] which is trivial if and only if $na = e$, hence $K_{(E, \L)} \cong E[n]$.  The $\Theta$--group $\sheaf G_{(E, \L)}$ consists of the set of points $(a, f)$ where $a \in E[n]$ and $f \in \bar k(E)$ is a function with $\div(f) = n(-a) - n(e)$.  There is a natural antisymmetric pairing, called the Weil pairing, coming from the central extension \[1 \to \Gm \to \sheaf G_{(E, \L)} \to E[n] \to 1.\]
-
-(See Olsson 3.5, 3.11.  You can also see Mumford's \textit{Abelian varieties} p.\ 222.)
+% (See Olsson 3.5, 3.11.  You can also see Mumford's \textit{Abelian varieties} p.\ 222.)
 
 
 
