@@ -27,17 +27,18 @@ Today we will make good on our promise, made during our investigation of the uno
 Our answer to this question will come out of considering Grothendieck's framework of descent.  Classically, descent concerns itself with a map $f\co R \to S$ of a rings and an $S$--module $N$, and it asks questions like:
 \begin{itemize}
 \item When is there an $R$--module $M$ such that $N \cong M \otimes_R S = f^* M$?
-\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of preimages of $N$ along $f_*$?
+\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of preimages of $N$ along $f^*$?
 \item What conditions can be placed on $f$ so that the category of descent data for any given module is always contractible, called \textit{effectivity}?
 \end{itemize}
 
-The essential structure of these answers is easy to guess if we proceed by example, using the few tools available to us.  Suppose that we begin instead with an $R$--module $M$ and we set $N = M \otimes_R S$.  By tensoring up, we have two $R$--algebra maps $S \to S \otimes_R S$, given by including along either factor, and we can further tensor $N$ up to $N \otimes_R S$ or $S \otimes_R N$.  Since $N$ came from the $R$--module $M$, these are canonically isomorphic: \[((f \otimes 1) \circ f)^* M \cong ((1 \otimes f) \circ f)^* M.\]  Repeating this process produces more isomorphisms which compose according to the triangle\todo{I haven't expressed where this triangle comes from very well.}
+The essential structure of these answers is easy to guess if we proceed by example, using the few tools available to us.  Suppose that we begin instead with an $R$--module $M$ and we set $N = M \otimes_R S$.  By tensoring up, we have two $R$--algebra maps $S \to S \otimes_R S$, given by including along either factor, and we can further tensor $N$ up to $N \otimes_R S$ or $S \otimes_R N$.  Since $N$ came from the $R$--module $M$, these are canonically isomorphic: \[\phi\co ((f \otimes 1) \circ f)^* M \cong ((1 \otimes f) \circ f)^* M.\]  Repeating this process produces more isomorphisms which compose according to the triangle
 \begin{center}
 \begin{tikzcd}
-N \otimes_R S \otimes_R S \arrow{rr}{\simeq} \arrow{rd}{\simeq} & & S \otimes_R S \otimes_R N \\
-& S \otimes_R N \otimes_R S \arrow{ru}{\simeq}.
+N \otimes_R S \otimes_R S \arrow{rr}{\phi_{13}, \simeq} \arrow{rd}{\phi_{12}, \simeq} & & S \otimes_R S \otimes_R N \\
+& S \otimes_R N \otimes_R S \arrow{ru}{\phi_{23}, \simeq},
 \end{tikzcd}
 \end{center}
+where $\phi_{ij}$ denotes applying $\phi$ to the $i${\th} and $j${\th} coordinates.
 
 \begin{definition}
 Let $f\co R \to S$ be a map of rings as above.  An $S$--module $N$ equipped with an isomorphism $S \otimes_R N \cong N \otimes_R S$ of $S \otimes_R S$--modules which causes the above triangle to commute is called a \textit{descent datum} for the map $f$.
