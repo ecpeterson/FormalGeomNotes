@@ -184,12 +184,11 @@ This homotopical perspective is quite useful --- for instance, a map of groupoid
 Most of the homology theories we will discuss have this property.  For an easy example, $H\F_2P$ certainly has this property: there is only one possible algebraic map $\F_2 \to \mathcal A_*$, so {\FH} is necessarily satisfied.  This grants us access to a description of the context for $H\F_2$: \[\context{H\F_2P} = \Spec F_2 \mmod \InternalAut{\G_a}.\]
 \end{example}
 
-\begin{example}
+\begin{example}\label{ContextOfMUPExample}
 The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  It is isomorphic to the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.
 \end{example}
 
 \todo{Say what open, closed, flat maps of simplicial schemes are?}
-\todo{Mention stackification and locality.}
 \todo{Jon thinks that this picture can be instructively recast in terms of the cotangent complex.  I'm not sure how, but it's something to keep in mind for later.}
 
 
@@ -199,9 +198,9 @@ The context for $MUP$ is considerably more complicated, but Quillen's theorem ca
 
 \section{The structure of $\moduli{fgl}$}\label{StructureOfMfgl}
 
-Our first goal for today is to outline a program for the rest of this Case Study.  Yesterday, we developed a rich target for $E$--homology: sheaves over an algebro-geometric object $\context{E}$.  Furthermore, we have promised a strengthening of Quillen's theorem, \Cref{QuillenSurjective}, which would result in an identification $\context{MU} \simeq \moduli{fg}$, where $\moduli{fg}$ is the ``moduli of formal groups''.  Our initial goal for today is to outline a program by which we can leverage this to study $MU$.  Abstractly, one can hope to study any sheaf, including $\context{MU}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\context{MU}$, so that we can determine where to even look for those stalks.
+Our first goal for today is to outline a program for the rest of this Case Study.  Yesterday, we developed a rich target for $E$--homology: sheaves over an algebro-geometric object $\context{E}$.  Furthermore, we have explored in \Cref{ContextOfMUPExample} an identification $\context{MUP} \simeq \moduli{fg}$, where $\moduli{fg}$ is the ``moduli of formal groups''.  Our initial goal for today is to outline a program by which we can leverage this to study $MUP$.  Abstractly, one can hope to study any sheaf, including $\context{MUP}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\context{MUP}$, so that we can determine where to even look for those stalks.
 
-With this in mind, given a map \[\Spec R \xrightarrow{f} \moduli{fg},\] life would be easiest if the $R$--module determined by $f^* \context{MU}(X)$ were itself the value of a homology theory $R_*(X) = MU_* X \otimes_{MU_*} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
+With this in mind, given a map \[\Spec R \xrightarrow{f} \moduli{fg},\] life would be easiest if the $R$--module determined by $f^* \context{MUP}(X)$ were itself the value of a homology theory $R_0(X) = MUP_0 X \otimes_{MUP_0} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
 
 \begin{theorem}[Landweber]
 For any diagram
@@ -211,12 +210,12 @@ For any diagram
 & \moduli{fg} \arrow[-,double]{r} \arrow[leftarrow]{lu}{\mathrm{flat}} & \context{MU}
 \end{tikzcd}
 \end{center}
-such that the diagonal arrow is flat, the functor \[R_*(X) := MU_*(X) \otimes_{MU_*} R\] determines a homology theory. 
+such that the diagonal arrow is flat, the functor \[R_0(X) := MUP_0(X) \otimes_{MUP_0} R\] is a homology theory. 
 \end{theorem}
 
 \noindent In the course of proving this theorem, Landweber devised a method to recognize flat maps.  Recall that a map $f$ is flat exactly when for any closed substack $i\co A \to \moduli{fg}$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \mathcal I \to f^* \mathcal O_{\moduli{fg}} \to f^* i_* \mathcal O_A \to 0.\]  Landweber classified the closed substacks of $\moduli{fg}$, thereby giving a method to check maps for flatness.
 
-This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a closed substack (and so, in particular, a closed point $\Gamma$) is flat only in highly degenerate cases.  We saw in \Cref{AlgebraicCompletionSituation} that this can be repaired: the inclusion of the formal completion of a closed substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each closed point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the closed points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called $E_\Gamma$.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover a \emph{homology theory} $K_\Gamma$ which plays the role of computing the stalk of $\context{MU}(X)$ at $\Gamma$.\todo{Incidentally, this program has no content when applied to $\context{H\F_2}$, as $\Spec \F_2$ is simply too small.}
+This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a closed substack (and so, in particular, a closed point $\Gamma$) is flat only in highly degenerate cases.  We saw in \Cref{AlgebraicCompletionSituation} that this can be repaired: the inclusion of the formal completion of a closed substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each closed point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the closed points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called $E_\Gamma$.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover a \emph{homology theory} $K_\Gamma$ which plays the role of computing the stalk of $\context{MUP}(X)$ at $\Gamma$.\todo{Incidentally, this program has no content when applied to $\context{H\F_2}$, as $\Spec \F_2$ is simply too small.}
 
 We have thus assembled a task list:
 \begin{itemize}
