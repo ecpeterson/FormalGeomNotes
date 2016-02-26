@@ -74,7 +74,7 @@ A pointed map $\A^n \to \A^m$ is identical to an $m$--tuple of $n$--variate powe
 In some sense, \Cref{MapsOfFVarsArePowerSeries} is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology are frequently expressed in terms of power series rings, and with this Lemma we are provided geometric interpretations for such statements.
 \end{remark}
 
-\Cref{MapsOfFVarsArePowerSeries} shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.  In particular, this allows local theorems from analytic differential geometry to be imported, including a version of the inverse function theorem, which we will now work towards.
+\Cref{MapsOfFVarsArePowerSeries} shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.  In particular, this allows local theorems from analytic differential geometry to be imported, including a version of the inverse function theorem, which we will now work towards.\todo{Work an example first of $\A^1$, rather than an abstract formal variety.}
 
 \begin{definition}
 Let $V$ be a formal variety and let $I_V = \A^1(V)$ \todo{Strictly speaking, I don't think this notation has been introduced.} be the ideal of functions vanishing at the origin.  Then, we define the \textit{cotangent space of $V$} at the origin by \[T^* V = I_V / I_V^2.\]
@@ -181,10 +181,11 @@ The module $\Omega^1_{R/k}$ is universal for derivations into $R$--modules: \[\C
 
 These definitions are interesting in this level of generality, but suppose now that $k$ is a $\Q$--algebra and that $R = k\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $k$.  What's special about this rational curve case is that differentiation gives an isomorphism between $\Omega^1_{R/k}$ and the ideal $(x)$ of functions vanishing at the origin, i.e., the ideal sheaf selecting the closed subscheme $\Spec k \to \Spf R$.  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]
 
-Taking a cue from classical Lie theory, we attempt to define exponential and logarithm functions for a given formal group law $F$.  \todo{We should show here that the submodule of invariant $1$--forms is equivalent to the module of tangent vectors.}This is typically accomplished by studying left--invariant differentials: a $1$--form $f(x) dx$ is said to be left--invariant under $F$ when \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $y = 0$, we deduce the condition \[f(0) = f(x) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0}.\]  If $R$ is a $\Q$--algebra, then setting the boundary condition $f(0) = 1$ and integrating against $x$ yields \[\log_F(x) = \int f(x) \, dx = \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0} \right)^{-1} dx.\]  To see that the series $\log_F$ has the claimed homomorphism property\todo{While the notation $\log$ is suggestive, I don't think you claimed anything yet at this point.}, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x},\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $\log_F(y)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  In all, this argument bundles into the following coordinate-free theorem:
+Taking a cue from classical Lie theory, we attempt to define exponential and logarithm functions for a given formal group law $F$.  \todo{We should show here that the submodule of invariant $1$--forms is equivalent to the module of tangent vectors.}This is typically accomplished by studying left--invariant differentials: a $1$--form $f(x) dx$ is said to be left--invariant under $F$\todo{The condition $\omega = T_y^* \omega$ looks more reasonable.}\todo{Also define the \emph{sheaf} of invariant differentials, since you use that in a couple of days.} when \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $x = 0$, we deduce the condition \[f(0) = f(y) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{x=0}.\]  If $R$ is a $\Q$--algebra, then setting the boundary condition $f(0) = 1$ and integrating against $y$ yields \[\log_F(y) = \int f(y) \, dy = \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{x=0} \right)^{-1} dy.\]  To see that the series $\log_F$ has the claimed homomorphism property\todo{While the notation $\log$ is suggestive, I don't think you claimed anything yet at this point.}, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} dx = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x} dx,\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $y = 0$ shows that the constant is $\log_F(x)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  In all, this argument bundles into the following coordinate-free theorem:
 \begin{theorem}\label{RationalFGLsHaveLogarithms}\todo{This feels like a bit of a jump.  ``$\otimes$'', for instance?}
 There is a unique isomorphism \[\G \xrightarrow{\log} \operatorname{Lie} \G \otimes \G_a. \qed\] \todo{First you have  map $\G \otimes (\Omega^1)^F \to \G_a$, and then you move $(\Omega^1)^F$ to the right, changing it to $\operatorname{Lie} \G$.}
 \end{theorem}
+\todo{It would also be good to put the example of the standard logarithm for $\G_m$ here.}
 
 
 
@@ -212,7 +213,7 @@ An \textit{effective Weil divisor} $D$ on $C$ is a closed $S$--subscheme of $C$ 
 \end{definition}
 \todo{Is there a distinction between free and locally free?  I guess not because everything is affine.}
 
-Consider the case of interest to us, where we have selected a coordinate $x$ on $C$.  In that case, there are isomorphisms $S = \Spec E_*$ and $C \cong \Spf E^*\ps{x}$, so that a divisor $D$ must be of the form $D \cong \Spf E^*\ps{x} / f$ for some $f$ not a zero-divisor.  We see then that $\sheaf I_D$ corresponds to the principal ideal $E^*\ps{x} \cdot f \cong E^*\ps{x}$, and $D$ is a divisor exactly when $E^*\ps{x} / f$ is a flat $E^*$--module.\todo{Is this last condition easy to unpack?  I'd hope it means something about monicity.} \todo{How do you even show that $f$ can be chosen to be a polynomial, and not just a power series?  Weierstrass?}
+Consider the case of interest to us, where we have selected a coordinate $x$ on $C$.  In that case, there are isomorphisms $S = \Spec E_*$ and $C \cong \Spf E^*\ps{x}$, so that a divisor $D$ must be of the form $D \cong \Spf E^*\ps{x} / f$ for some $f$ not a zero-divisor.  We see then that $\sheaf I_D$ corresponds to the principal ideal $E^*\ps{x} \cdot f \cong E^*\ps{x}$, and $D$ is a divisor exactly when $E^*\ps{x} / f$ is a flat $E^*$--module.\todo{Is this last condition easy to unpack?  I'd hope it means something about monicity.  Maybe see Lemma 17.1 of FPFP?} \todo{How do you even show that $f$ can be chosen to be a polynomial, and not just a power series?  Weierstrass?}
  
 Before considering their connection to line bundles, we will study the concept of a divisor in isolation.
 
@@ -220,7 +221,7 @@ Before considering their connection to line bundles, we will study the concept o
 The scheme of such effective Weil divisors of rank $n$ exists: $\Div_n^+ C$.  It is a formal variety of dimension $n$.  In fact, a coordinate $x$ on $C$ determines an isomorphism $\Div_n^+ C \cong \A^n$.\todo{I wonder if it's possible to frame this argument with \Cref{DetectingFormalVarieties}.  The proof given here is Prop 5.2 of FSFG.}
 \end{lemma}
 \begin{proof}
-Begin with the definition \[\Div_n^+(C)(R) = \left\{(a, D) \middle| \begin{array}{c} a: \Spec R \to S, \\ \text{$D$ is an effective divisor on $C \times_S \Spec R$} \end{array} \right\}.\]  To show that it is a formal variety, we pick a coordinate $x$ on $C$ and consider a point $(a, D) \in \Div_n^+(C)(R)$.  In this case, $C \times \Spec R$ is presented as \[C \times_X \Spec R = \Spf R\llbracket x \rrbracket\] and hence $D$ can be presented as the closed subscheme \[D = \Spf R\llbracket x \rrbracket / (x^n - g(x)), \quad g(x) = \sum_{j=0}^{n-1} a_j(D) x^j.\]  One checks that $a_j(D)$ is a nilpotent element of $R$ for all $j$\todo{This statement has real content! If $a_j(D)$ were not nilpotent, then Weierstrass factorization would strip off a smaller monic polynomial.  But, we haven't talked about Weierstrass preparation yet... and we were intending to leave it for much later.  Maybe we should have done this today.}, and hence determines a map $\Spec R \to \A^n$.  Conversely, given such a map, we can form the polynomial $g(x)$ and hence the divisor $D$.
+Begin with the definition \[\Div_n^+(C)(R) = \left\{(a, D) \middle| \begin{array}{c} a: \Spec R \to S, \\ \text{$D$ is an effective divisor on $C \times_S \Spec R$} \end{array} \right\}.\]  To show that it is a formal variety, we pick a coordinate $x$ on $C$ and consider a point $(a, D) \in \Div_n^+(C)(R)$.  In this case, $C \times \Spec R$ is presented as \[C \times_X \Spec R = \Spf R\llbracket x \rrbracket\] and hence $D$ can be presented as the closed subscheme \[D = \Spf R\llbracket x \rrbracket / (x^n - g(x)), \quad g(x) = \sum_{j=0}^{n-1} a_j(D) x^j.\]  One checks that $a_j(D)$ is a nilpotent element of $R$ for all $j$\todo{This statement has real content! If $a_j(D)$ were not nilpotent, then Weierstrass factorization would strip off a smaller monic polynomial.  But, we haven't talked about Weierstrass preparation yet... and we were intending to leave it for much later.  Maybe we should have done this today.}\todo{Actually, Jeremy and Jun Hou point out that Weierstrass preparation requires hypotheses on the ground scheme (like: it's $\Spf$ of a complete and local ring) that aren't necessarily satisfied here.  So, what geometric thing do we \emph{really} mean?}, and hence determines a map $\Spec R \to \A^n$.  Conversely, given such a map, we can form the polynomial $g(x)$ and hence the divisor $D$.
 \end{proof}
 
 This proof lays bare the moral value of this scheme: it parametrizes collections of points on $C$ which arise as zero loci of polynomials.  It's well-known how basic operations on polynomials affect their zero loci, and these operations are also reflected on the level of divisor schemes.  For instance, there is a unioning map:
@@ -242,7 +243,7 @@ Note that there is a canonical isomorphism $C \to \Div_1^+ C$.  Iterating the ab
 C^{\times n}_{\Sigma_n} \arrow[densely dotted]{r}{\cong} & \Div_n^+ C.
 \end{tikzcd}
 \end{center}
-\begin{lemma}
+\begin{lemma}\todo{Make a point that the other arrow is not surjective.}
 The object $C^{\times n}_{\Sigma_n}$ exists, it factors the iterated addition map, and the dotted arrow is an isomorphism. 
 \end{lemma}
 \begin{proof}
@@ -348,9 +349,8 @@ If $f \co X \to Y$ is a map and $V$ is a virtual bundle over $Y$, then there is 
 One of the main utilities of this definition is that it only uses the \emph{property} that $E$ is complex-orientable, and it begets only the \emph{property} that $\ThomSheaf{V}$ is a line bundle.
 \end{remark}
 
-<<<<<<< HEAD
 The following example connects this topic with that of \Cref{FormalVarietiesLecture}:
-\begin{example} \todo{In class you wrote $\L - 1$ instead of $\L$ almost everywhere in this example.} 
+\begin{example}\todo{Make this clearer: point out that the cofiber definition of the Thom space helps you make the first identification (that's what the ``zero section'' refers to), and then point out that $\zeta^*(M) = M / \sheaf I(0) \cdot M$ helps you over the last hump.}\todo{In class you wrote $\L - 1$ instead of $\L$ almost everywhere in this example.} 
 If $\L$ denotes the canonical line bundle over $\CP^\infty$, then the zero section identifies $E^0 (\CP^\infty)^{\L}$ \footnote{What does this notation mean?  I would guess it's something like maps $\L \to E^0(\CP^\infty)$, but this doesn't seem to make sense.}with the augmentation ideal in $E^0 \CP^\infty$, and so we have an isomorphism $\ThomSheaf{\L} \cong \sheaf I(0)$.  Then, consider the map $\eps: * \to \CP^\infty$, which classifies a line bundle that Thomifies to $\CP^1 \to \CP^\infty$.  Using naturality, we see \todo{I think you should mention that the tilde means the sheaf associated to the module.  Also, in class you wrote $\pi_{-2} E$ instead of $\pi_2 E$}\[\widetilde{\pi_2 E} \cong \ThomSheaf{* \to \CP^\infty} \cong 0^* \sheaf I(0) \cong \omega_{\G_E},\] where $\G_E = \CP^\infty_E$ is the formal group associated to $E$--theory and $\omega_{\G_E}$ is its sheaf of invariant differentials\footnote{The identification of this with the sheaf of invariant differentials is something of a choice.  Certainly it is naturally isomorphic to $T_0^* \CP^\infty_E$, and this in turn is naturally isomorphic to $\omega_{\G_E}$, but deciding which of these two to write is a decision to be borne out as ``correct''.}.  More generally, if $k \eps$ \todo{It might be confusing using $\eps$ for two different things in the same paragraph.} is the trivial bundle of dimension $k$ over a point, then $\ThomSheaf{k \eps} \cong \omega_{\G_E}^{\otimes k}$.  If $f \co E \to F$ is an $E$--algebra (e.g., $F = E^{X_+}$), then this gives an interpretation of $\pi_{2k} F$ as $f_E^* \omega_{\G_E}^{\otimes k}$.
 \end{example}
 
@@ -380,7 +380,7 @@ Note that the map between these two last fibers is surjective on $E$--cohomology
 
 In coordinate-free language, we have the following Corollary:
 \begin{corollary}[{\Cref{CohomologyOfProjectivization} redux}]
-Take $E$ to be \emph{complex-orientable}.  The map \[\P(\xi)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes, and the structure map $\P(\xi)_E \to X_E$ is free and finite of rank $n$.  It follows that $\P(\xi)_E$ is a divisor on $\CP^\infty_E$. \qed
+Take $E$ to be \emph{complex-orientable}.  The map \[\P(\xi)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes, and the structure map $\P(\xi)_E \to X_E$ is free and finite of rank $n$.  It follows that $\P(\xi)_E$ is a divisor on $\CP^\infty_E$ (considered over $X_E$). \qed \todo{Be more careful about this ``over $X_E$'' thing. Maybe just emphasize that having a Chern polynomial with coefficients in $E^* X$ really forces you to take this perspective to make things typecheck.}
 \end{corollary}
 
 The next major theorems concerning projectivization are the following:
@@ -411,13 +411,13 @@ The equation $c_j(f_\xi^* \xi) = \xi^*(\sigma_j)$ can be checked in $E^* Y_\xi$.
 
 We now see that not only does $\P(\xi)_E$ produce a point of $\Div_n^+(\G_E)$, but actually the scheme $\Div_n^+(\G_E)$ itself appears internally to topology:
 
-\begin{corollary}
+\begin{corollary}\label{IdentificationOfBUnWithDivn}
 For a complex orientable cohomology theory $E$, there is an isomorphism \[BU(n)_E \cong \Div_n^+ \CP^\infty_E,\] so that maps $\xi\co X \to BU(n)$ are transported to divisors $\P(\xi)_E \subseteq \CP^\infty_E \times X_E$.  Selecting a particular complex orientation of $E$ begets two isomorphisms
 \begin{align*}
 BU(n)_E & \cong \A^n, &
 \Div_n^+ \CP^\infty_E & \cong \A^n,
 \end{align*}
-and these are compatible with the centered isomorphism above. \qed
+and these are compatible with the centered isomorphism above.\footnote{Something to take away from this Theorem is the \emph{faithfulness} of this interpretation of the $E$--cohomology of vector bundles.  That this map is an isomorphism means that $\Div_n^+$ captures everything that $E$--cohomology can see.  There's nothing left in the theory of characteristic classes that is left untouched.} \qed
 \end{corollary}
 
 What's most remarkable about the description in this theorem is its coherence with topological facts we know about $BU(n)$.  The theorem follows from the projectivization construction, but there are natural operations on both sides of the isomorphism that continue to match up.  For instance, the Whitney sum map $BU(n) \times BU(m) \to BU(n+m)$ has the following behavior:
@@ -440,7 +440,7 @@ The map $Y_E \xrightarrow{f_\xi} X_E$ pulls $\P(\xi)_E$ back to give \[Y_E \time
 
 \noindent This says that the splitting principle is a topological enhancement of the claim that a divisor can be base-chnaged along a finite flat map where it splits as a sum of points.  The other theorems from yesterday are also easily matched up with topological counterparts:
 
-\begin{corollary}
+\begin{corollary}\todo{Draw a table comparing the different notions of vector bundles (stable vs unstable, rank $n$ vs virtual rank $n$) to the different notions of Weil divisors.}
 There are natural isomorphisms $BU_E \cong \Div_0 \CP^\infty_E$ and $(BU \times \Z)_E \cong \Div \CP^\infty_E$. Additionally, $(BU \times \Z)_E$ is the free formal group on the curve $\CP^\infty_E$. \qed
 \end{corollary}
 
@@ -467,7 +467,7 @@ Let $\zeta: X_E \to X_E \times \CP^\infty_E$ denote the pointing of the formal c
 In terms of a complex-oriented $E$ and \Cref{CohomologyOfProjectivization}, the effect of pulling back along the zero section is to set $t = 0$, which collapses the Chern polynomial to just the top class $c_n(\xi)$.  This element, called \textit{the Euler class of $\xi$}, provides the $E^* X$--module generator of $E^* T(\xi)$ --- or, equivalently, the trivializing section of $\ThomSheaf{\xi}$.
 \end{remark}
 
-\begin{theorem}
+\begin{theorem}\label{ComplexOrientationsInTermsOfTrivs}
 A trivialization $t\co \ThomSheaf{\L - 1} \cong \sheaf O_{\CP^\infty_E}$ of the Thom sheaf associated to the canonical bundle induces a ring map $MU \to E$.
 \end{theorem}
 \begin{proof}
@@ -496,11 +496,11 @@ There is an isomorphism
 \[H\F_pP_0 H\F_pP \cong \F_p[\xi_0^\pm, \xi_1, \xi_2, \ldots] \otimes \Lambda[\tau_0, \tau_1, \ldots]\]
 with $|\xi_j| = 2p^j-2$ and $|\tau_j| = 2p^j - 1$. \qed
 \end{theorem}
-\noindent Because we are no longer working in characteristic $2$ and because there are odd--dimensional classes in this algebra, we see that the dual mod--$p$ Steenrod algebra is \emph{graded-commutative}.  This is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild, and for now we will simply avoid these methods and find another approach.
+\noindent There are odd--dimension classes in this algebra, and because we are no longer working in characteristic $2$ we see that the dual mod--$p$ Steenrod algebra is \emph{graded-commutative}.  This is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild, and for now we will simply avoid these methods and find another approach.
 
 There is such an alternative proof, due to Quillen, that bypasses the Adams spectral sequence.  This approach has some deficiencies of its own: it requires studying the algebra of operations $MU^* MU$, which we do not expect to be at all commutative, and it requires studying \textit{power operations}, which are in general very technical creatures.  However, we will eventually want to talk about power operations anyway, and because this is the road less traveled we will elect to take it.  Our job today is to define these two kinds of cohomology operations, as well as revisit the model of complex cobordism Quillen uses.
 
-The description of the first class of operations follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned last time that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]  Two lectures ago, we learned that the stable divisor scheme has a universal property: it is the free formal group on the formal curve $\CP^\infty_E$.  Another avatar of this same fact is a description of the \emph{homology ring}, using the maps \[E_* BU(n) \otimes E_* BU(m) \to E_* BU(n+m)\] to induce a multiplicative structure on $E_* BU$:
+The description of the first class of operations follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]  Two lectures ago, we learned that the stable divisor scheme has a universal property: it is the free formal group on the formal curve $\CP^\infty_E$.  Another avatar of this same fact is a description of the \emph{homology ring}, using the maps \[E_* BU(n) \otimes E_* BU(m) \to E_* BU(n+m)\] to induce a multiplicative structure on $E_* BU$:
 \begin{corollary}
 Let $E$ be a complex-orientable cohomology theory. Then: \[E_* BU \cong \Sym_{E_*} \widetilde E_* \CP^\infty.\]  A specific complex orientation of $E$ begets \[E_* \CP^\infty \cong E_*\{\beta_0, \beta_1, \ldots, \beta_n, \ldots\}\] and hence \[E_* BU \cong \Sym_{E_*} E_*\{\beta_1, \beta_2, \ldots\} = E_*[b_1, b_2, \ldots]. \qed\]
 \end{corollary} \oweproof{Free formal schemes agree with symmetric Hopf algebras on comodules}
@@ -514,7 +514,7 @@ The Thom isomorphism $E_* BU \cong E_* MU$ respects both the $E_*$--module struc
 
 \noindent This compact description of $E_* MU$ as an algebra will be useful to us later, but right now we are interested in $E^* MU$ and especially in $MU^* MU$.  The former is \emph{not} a ring\todo{Does this totally prohibit us from giving a formal group re-exposition of Quillen's proof?  I wonder...}, and although the latter is a ring its multiplication is exceedingly complicated.  Instead, we will content ourselves with an $E_*$--module basis:
 \begin{definition}
-Let $\alpha = (\alpha_1, \ldots, \alpha_n, \ldots)$ denote a multi-index where every entry is nonnegative and almost every entry is zero, and let $c_\alpha$ denote the corresponding monomial \[c_\alpha = \prod_{j=1}^\infty c_j^{\alpha_j}.\]  Additionally, we let $s_\alpha \in E^* MU$ denote the image of $c_\alpha$ under the Thom isomorphism.  It is called the \textit{$\alpha${\th} Landweber--Novikov operation} (from $MU$ to $E$).
+Let $\alpha = (\alpha_1, \ldots, \alpha_n, \ldots)$ denote a multi-index where every entry is nonnegative and almost every entry is zero, and let $c_\alpha$ denote the corresponding monomial \[c_\alpha = \prod_{j=1}^\infty c_j^{\alpha_j}.\]  Additionally, we let $s_\alpha \in E^* MU$ denote the image of $c_\alpha$ under the duality isomorphism \[E^* MU = \CatOf{Modules}_{E_*}(E_* MU, E_*).\]  It is called the \textit{$\alpha${\th} Landweber--Novikov operation} (from $MU$ to $E$).
 \end{definition}
 
 \begin{remark}\citeme{I.5.1 in Adams's blue book}
@@ -529,7 +529,9 @@ Let $E = MU$.  The Landweber--Novikov operations are the \emph{stable} operation
 \end{itemize}
 \end{remark}
 
-We now turn to the construction of the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not (\textit{a priori}) expect them to be additive operations, so they are quite distinct from the Landweber--Novikov operations produced above.  Power operations arise from ``$E_\infty$'' structures on ring spectra\footnote{Or, by some accounts, ``$H_\infty$'' structures.}, but most such structures arise in nature from geometric models of cohomology theories.  To produce them for complex cobordism, we will use a particular model, alluded to in \Cref{IntroductionSection}.
+We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not (\textit{a priori}) expect them to be additive operations, so they are quite distinct from the Landweber--Novikov operations.  Power operations arise from ``$E_\infty$'' structures on ring spectra\footnote{Or, by some accounts, ``$H_\infty$'' structures.}, but most such structures arise in nature from geometric models of cohomology theories.  To produce them for complex cobordism, we will use a particular model, alluded to in \Cref{IntroductionSection}.
+
+\todo[inline]{It is very annoying that you tend to switch $f$, $i$, and $j$; $X$, $Y$, and $Z$; what is attached to what; and what is drawn in what direction.  You'd do well to standardize this.}
 
 \begin{definition}
 Let $f: Y \to X$ be a map of manifolds.  A \textit{complex-orientation on the map $f$} is the data of a factorization
@@ -555,12 +557,12 @@ W \arrow{r} & X \times \R & W \arrow{r} & X \times \R
 become pull-back squares of complex-oriented maps of manifolds.
 \end{definition}
 
-\begin{theorem}[Thom]
-For a manifold $X$, $MU^{-q}(X)$ is canonically isomorphic to the cobordism classes of complex-oriented maps of dimension $q$. \qed
+\begin{theorem}[Thom]\citeme{This is cited as [Tho51] in Matt's thesis}
+For a manifold $X$, $MU^{-q}(X)$ is canonically isomorphic to the cobordism classes of complex-oriented maps of dimension $q$. \qed \todo{Remark that this, as expected, puts the cobordism ring into negative degrees.}
 \end{theorem}
 
 \begin{remark}
-This model has a variety of nice features.  For instance, its two variances are visible from the construction: a map $g\co X' \to X$ induces a map $g^*\co MU^* X \to MU^* X'$ by selecting a class $f\co Y \to X$, perturbing $g$ so that it is transverse to $f$, and taking the pullback
+This model has a variety of nice features.  For instance, its two variances are visible from the construction.  For a map $g\co X' \to X$, there is an induced map $g^*\co MU^* X \to MU^* X'$ given by selecting a class $f\co Y \to X$, perturbing $g$ so that it is transversal to $f$, and taking the pullback
 \begin{center}
 \begin{tikzcd}
 Y \times_X X' \arrow{r} \arrow{d} & Y \arrow{d} \\
@@ -570,7 +572,7 @@ X' \arrow{r} & X.
 But, also, if $g$ is additionally proper and complex-orientable, then it induces a map \[g_*\co MU^q X' \to MU^{q-d} X,\] where $d$ is the dimension of $g$.  This is simply by postcomposition: a representative $f'\co Y' \to X'$ begets a new representative $g_* f' = g \circ f'$.  This construction goes by various names: the \textit{Gysin map}, the \textit{complex-oriented pushforward}, the \textit{shriek map}, \ldots.
 \end{remark}
 
-While we're here, let's note that these push and pull maps are related:
+Additionally, these push and pull maps are related:
 \begin{lemma}\label{PushPullFormulaForMU}
 Consider a Cartesian square of manifolds
 \begin{center}
@@ -583,9 +585,9 @@ where $g$ is transversal to $f$, $f$ is proper and complex-oriented, and $f'$ is
 \end{lemma}
 
 
-We are now in a position to describe our power operations.
+We are now in a position to describe the power operations.
 \begin{definition}\label{DefnPowerOperationForMU}
-Consider a class in $U^{-2q}(X)$ represented by a proper complex-oriented map $f \co Y \to X$.  Its $n$--fold Cartesian product determines a class $f^{\times n} \co Y^{\times n} \to X^{\times n}$, and taking the homotopy quotient by a group $G$ acting on $\{1, \ldots, n\}$ gives a class \[Y^{\times n} \to X^{\times n} \to EG \times_G X^{\times n}\] and hence an \textit{external power operation} \[P^{\mathrm{ext}} \co MU^{-2q}(X) \to MU^{-2qn}(EG \times_G X^{\times n}).\]  Pulling back along the diagonal $\Delta: X \to X^{\times n}$ gives the the \textit{internal power operation} \[P \co MU^{-2q}(X) \to MU^{-2qn}(BG \times X).\]  Its action on the class represented by a proper complex-oriented even-dimensional map $f: Z \to X$ can also be written as \[P(f_* 1) = \Delta^* f^{\times n}_{hG}{}_* 1.\]
+Consider a class in $MU^{-2q}(X)$ represented by a proper complex-oriented map $f \co Y \to X$.  Its $n$--fold Cartesian product determines a class $f^{\times n} \co Y^{\times n} \to X^{\times n}$, and taking the homotopy quotient by a group $G$ acting on $\{1, \ldots, n\}$ gives a class \[Y^{\times n} \to X^{\times n} \to EG \times_G X^{\times n}\] and hence an \textit{external power operation} \[P^{\mathrm{ext}} \co MU^{-2q}(X) \to MU^{-2qn}(EG \times_G X^{\times n}).\]  Pulling back along the diagonal $\Delta: X \to X^{\times n}$ gives the the \textit{internal power operation} \[P \co MU^{-2q}(X) \to MU^{-2qn}(BG \times X).\]  Its action on the class represented by a proper complex-oriented even-dimensional map $f\co Z \to X$ can also be written as \[P(f_* 1) = \Delta^* f^{\times n}_{hG}{}_* 1.\]
 \end{definition}
 
 \begin{remark}
@@ -597,7 +599,7 @@ A picky reader will (rightly) point out that $BG$ is not a manifold, and so we s
 \end{remark}
 
 \begin{remark}
-The chain model for ordinary homology is actually rigid enough to define power operations there, too.  Curiously, they are all generated by the quadratic power operations (i.e., the ``squares''), and all the quadratic power operations turn out to be \emph{additive} --- that is, you just get the Steenrod squares again!  This appears to be a lucky degeneracy, but over the coming days we will exploit something similar with a very particular power operation in complex cobordism.
+The chain model for ordinary homology is actually rigid enough to define power operations there, too.  Curiously, they are all generated by the quadratic power operations (i.e., the ``squares''), and all the quadratic power operations turn out to be \emph{additive} --- that is, you just get the Steenrod squares again!  This appears to be a lucky degeneracy, but tomorrow we will exploit something very similar with a particular power operation in complex cobordism.
 \end{remark}
 
 \todo{Can we name some of the formal properties of power operations? Multiplicativity, say?}
@@ -609,7 +611,7 @@ The chain model for ordinary homology is actually rigid enough to define power o
 
 
 
-\section{Quillen's theorem}
+\section{An incidence relation among operations}
 
 \todo{Danny pointed out that this is a little confused about fixed points versus orbits and homotopy vs genuine.  Make sure this is straightened out.}
 \todo{It would be nice if all the Cartesian diagrams in this section were typeset with the little pullback corners.}
@@ -631,7 +633,7 @@ W \arrow{r}{j'} \arrow{d}{i'} & Z \arrow{d}{i} \\
 Y \arrow{r}{j} & X.
 \end{tikzcd}
 \end{center}
-The \textit{excess bundle} of the intersection, $F$, is defined by the exact sequence
+The \textit{excess bundle} of the intersection, $F$, is defined by the exact sequence\todo{We had to stare at this in class to decide that it was reasonable.}
 \begin{center}
 \begin{tikzcd}
 & & (i')^* TY \arrow{rd} \\
@@ -641,11 +643,13 @@ The \textit{excess bundle} of the intersection, $F$, is defined by the exact seq
 \end{definition}
 
 \begin{remark}
-$Y$ and $Z$ intersect transversally exactly when $F = 0$.
+The submanifolds $Y$ and $Z$ intersect transversally exactly when $F = 0$.
 \end{remark}
 
-\begin{lemma}[{\cite[Propositin 3.3]{Quillen}}]\label{CleanIntersectionFormula}
-Suppose that $\nu_{i'}$, $\nu_i$, and $F$ are endowed with complex structures compatible with this exact sequence. For $z \in MU^*(Z)$, \[j^* i_* z = i'_*(e(F) \cdot (j')^* z)\] in $MU^{*+a}(Y, Y \setminus W)$, where $a = \dim \nu_i$. \qed \todo{The proof of this is easy, but not very relevant to formal geometry. Let's skip it and give a reference.}
+The proof of the following Lemma is fairly easy, but geometric, so we omit it.
+
+\begin{lemma}[{\cite[Proposition 3.3]{Quillen}}]\label{CleanIntersectionFormula}
+Suppose that $\nu_{i'}$, $\nu_i$, and $F$ are endowed with complex structures compatible with this exact sequence. For $z \in MU^*(Z)$, \[j^* i_* z = i'_*(e(F) \cdot (j')^* z)\] in $MU^{*+a}(Y, Y \setminus W)$, where $a = \dim \nu_i$. \todo{Mention what $e(F)$ is (the Euler class of $F$, right?)} \qed
 \end{lemma}
 
 Now let $G$ be a finite group and let $i\co Z \to X$ be an embedding of $G$--manifolds. Then the $G$--fixed submanifold $X^G$ and $Z$ intersect cleanly in the diagram
@@ -663,8 +667,8 @@ Let $f\co Z \to X$ be a proper complex-oriented $G$-map, represented by a factor
 
 We are now in a position to apply \Cref{ProperCOIntersectionFormula} to our power operation square.
 
-\begin{lemma}\label{PowerOpAndEulerClasses}\citeme{Proposition 3.12 of Quillen}
-Suppose $G$ acts transitively on $\{1, \ldots, k\}$ and let $\rho$ denote the induced reduced regular $G$-representation. Suppose that $f: Z \to X$ is a proper complex-oriented map of dimension $2q$ and that $m$ is an integer larger than the dimension of $Z$, so that $m \eps + \nu_f$ is a vector bundle over $Z$, well-defined up to isomorphism, where $\eps$ is the trivial complex line bundle. Then \[e(\rho)^m P(f_* 1) = f_* e(\rho \otimes (m \eps + \nu_f)) \in MU^{2m(k-1)-2qk}(BG \times X).\]
+\begin{lemma}[{\cite[Proposition 3.12]{Quillen}}]\label{PowerOpAndEulerClasses}
+Suppose $G$ acts transitively on $\{1, \ldots, k\}$ and let $\rho$ denote the induced reduced regular $G$-representation. Suppose that $f: Z \to X$ is a proper complex-oriented map of dimension $2q$ and that $m$ is an integer larger\todo{There's no reason to use $m$, then $r$, then change $r$'s name to $n$ in Lecture 2.6.  Straighten out this terrible naming scheme.} than the dimension of $Z$, so that $m \eps + \nu_f$ is a vector bundle over $Z$, well-defined up to isomorphism\todo{Make it clearer what you mean here. You want the witness to the complex--orientability of $f$ to be homotopically independent of choice.}, where $\eps$ is the trivial complex line bundle. Then \[e(\rho)^m P(f_* 1) = f_* e(\rho \otimes (m \eps + \nu_f)) \in MU^{2m(k-1)-2qk}(BG \times X).\]
 \end{lemma}
 \begin{proof}
 We can take $m$ large enough that the complex-orientation on $f$ can be represented by a factorization \[Z \xrightarrow i m \eps \xrightarrow p X,\] and consider its $k${\th} power \[Z^{\times k} \xrightarrow{i^{\times k}} (m \eps)^{\times k} \xrightarrow{p^{\times k}} X^{\times k}.\]  We calculate the excess bundles to be
@@ -673,7 +677,7 @@ We can take $m$ large enough that the complex-orientation on $f$ can be represen
 \mu((m \eps)^{\times k}) & = \rho \otimes m \eps.
 \end{align*}
 Since $G$ acts transitively, $\Delta: X \to X^{\times k}$ represents the inclusion of the $G$--fixed points.  Packaging all this into \Cref{ProperCOIntersectionFormula} gives \[e(\rho \otimes m\epsilon) \cdot \Delta^* f^{\times k}_{hG}{}_*(1) = f_*(e(\rho \otimes \nu_i) \cdot r_{W \to Z^{\times k}}^*(1)).\]
-We then investigate each part separately:
+We then investigate each part separately:\todo{The claim about $\nu_i = m \eps + \nu_f$ is a little mysterious. We had to stare at it too before it became believable.}
 \begin{align*}
 e(\rho \otimes m\eps) & = e(\rho^{\oplus m}) = e(\rho)^m, &
 \Delta^* f^{\times k}_{hG} {}_*(1) & = P(f_* 1), \\
@@ -684,7 +688,7 @@ from which the claim follows.
 \end{proof}
 
 The utility of this theorem comes from our ability to compute just a little bit about the Euler classes involved in its statement.
-\begin{corollary}\citeme{Quillen Prop 3.17}
+\begin{corollary}[{\cite[Proposition 3.17]{Quillen}}]\label{QuillensKeyRelation}
 \todo{Should we use $a_\alpha(v)$ as the notation?} \todo{In previous sections, you've been using $\xi$ to denote arbitrary vector bundles, not $E$.}Specialize to $G = C_k$, and let $\eta$ denote the line bundle on $BG$ owing to the inclusion $C_k \subseteq U(1)$.  Set $e(\eta) = v$ and $e(\rho) = w$.  Then, the Steenrod operation and Landweber operations are related by the formula \[w^{r+q} P x = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha s_\alpha(x)\] for $x \in MU^{-2q}(X)$ and $r$ is any integer sufficiently large with respect to $\dim X$ and $q$, where $a_j(T)$ are power series with coefficients in the subring $C$ generated by the tautological formal group law on $MU^*(*)$.
 \end{corollary}
 \begin{proof}
@@ -693,7 +697,7 @@ The bundle $\rho$ splits as $\bigoplus_{i=1}^{k-1} \eta^{\otimes i}$.  Then, if 
 e(\rho \otimes \L) & = e \left( \bigoplus_{i=1}^{k-1} \eta^i \otimes \L \right) = \prod_{i=1}^{k-1} e(\eta^i \otimes \L) \\
 & = \prod_{i=1}^{k-1} F([i]_F(v), e(\L)) = w + \sum_{j=1}^\infty a_j(v) e(\L)^j,
 \end{align*}
-where \[w = e(\rho) = (k-1)! v^{k-1} + \sum_{j \ge k} b_j v^j\] for $b_j \in C$.  In general, the splitting principle shows that $e(\rho \otimes E)$ has \[e(\rho \otimes E) = \sum_{|\alpha| \le r} w^{r-|\alpha|} a(v)^\alpha c_\alpha(E).\]  Setting $E = m \eps + \nu_f$, we calculate $r = \dim(m \eps + \nu_f) = m - q$.  Inserting this into \Cref{PowerOpAndEulerClasses} then gives
+where \todo{You could justify this part. The point is to look at the product of all the factor summands which don't involve $e(\L)$ at all.}\[w = e(\rho) = (k-1)! v^{k-1} + \sum_{j \ge k} b_j v^j\] for $b_j \in C$.  In general, the splitting principle shows that $e(\rho \otimes E)$ has \[e(\rho \otimes E) = \sum_{|\alpha| \le r} w^{r-|\alpha|} a(v)^\alpha c_\alpha(E).\]  Setting $E = m \eps + \nu_f$, we calculate $r = \dim(m \eps + \nu_f) = m - q$.  Inserting this into \Cref{PowerOpAndEulerClasses} then gives
 \begin{align*}
 w^m P(f_* 1) & = f_* \left( \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha c_\alpha(m \eps + \nu_f) \right) \\
 w^{r+q} P(f_* 1) & = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha f_* c_\alpha(m \eps + \nu_f) \\
@@ -702,37 +706,101 @@ w^{r+q} P(f_* 1) & = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha f_* c_\a
 \todo{Check that this last line is right. Can you pull Gysin maps past Euler classes?  What happened to $m \eps$? --- are you using the definition of Landweber--Novikov operations for $\nu_i$ instead of $\nu_f$?  Why?}
 \end{proof}
 
-With this tool in hand, we can deduce Quillen's major structural theorem about $MU_*$.
-\begin{theorem}\citeme{Quillen Theorem 5.1}
-If $X$ is the homotopy type of a finite complex, then
+This formula is quite remarkable --- it says that a certain power operation defined for $MU$ is, in fact, additive and stable!  This is certainly not the case in general, and I'm not aware of an \textit{a priori} reason to expect this to have happened all along.  Tomorrow, we will use it to power an induction to say something about the coefficient ring $MU_*$.
+
+
+
+\section{Quillen's theorem}
+
+With \Cref{QuillensKeyRelation} in hand, we deduce Quillen's major structural theorem about $MU_*$.  We will continue to use the following notations:
+\begin{itemize}
+\item $C$ is the subring of $MU_*$ generated by the coefficients of the formal group law associated to the identity complex--orientation.
+\item $G = C_k$ acts by cyclic permutation on $\{1, \ldots, k\}$.  In particular, the action is transitive.
+\item $\rho$ is the associated regular representation, and $w = e(\rho)$ its Euler class.
+\item $\eta\co BC_k \to BU(1)$ is the associated line bundle, and $v = e(\eta)$ its Euler class.
+\end{itemize}
+
+\begin{theorem}[{\cite[Theorem 5.1]{Quillen}}]
+If $X$ has the homotopy type of a finite complex, then
 \begin{align*}
 MU^*(X) & = C \cdot \sum_{q \ge 0} MU^q(X), \\
 \widetilde{MU}^*(X) & = C \cdot \sum_{q > 0} MU^q(X).
 \end{align*}
 \end{theorem}
 \begin{proof}
-We can focus on \[\widetilde{MU}^{2*}(X) = C \cdot \sum_{q > 0} MU^{2q}(X) =: R^{2*},\] since $MU^{2*+1}(*) = 0$ and $\widetilde{MU}^{2*+1}(X)$ can be handled by suspending $X$ once, and then the unreduced case follows directly.  We will show this by inducting on the value of ``$*$'': suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $n \gg 0$, we have \[w^{n+q} P x = \sum_{|\alpha| \le n} w^{n - |\alpha|} a(v)^\alpha s_\alpha x.\]  Recall that $w$ is a power series in $v$ with coefficients in $C$ and leading term $(p-1)! v^{p-1}$, so that $v^{p-1} = w \cdot \theta(v)$ for some invertible series $\theta$ with coefficients in $C$.  Since $s_\alpha$ lowers degree, we have $s_\alpha x \in R$ by the inductive hypothesis, so we may write \[v^m(w^qPx - x) = \psi_x(v)\] with $\psi_x(T) \in R_{(p)}\llbracket T \rrbracket$.
+We can focus on the claim \[\widetilde{MU}^{2*}(X) \stackrel{?}{=} C \cdot \sum_{q > 0} MU^{2q}(X) =: R^{2*},\] since $MU^{2*+1}(*) = 0$ and $\widetilde{MU}^{2*+1}(X)$ can be handled by suspending $X$ once, and then the unreduced case follows directly.  We will show this by working $p$--locally and inducting on the value of ``$*$''.\todo{Remark on the base case: in all the negative dimensions, the claim is trivial.}  Suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $n \gg 0$, we have \[w^{n+q} P x = \sum_{|\alpha| \le n} w^{n - |\alpha|} a(v)^\alpha s_\alpha x.\]  Recall that $w$ is a power series in $v$ with coefficients in $C$ and leading term $(p-1)! v^{p-1}$, so that $v^{p-1} = w \cdot \theta(v)$ for some invertible series $\theta$ with coefficients in $C$.  Since $s_\alpha$ lowers degree, we have $s_\alpha x \in R$ by the inductive hypothesis, so we may write \[v^m(w^qPx - x) = \psi_x(v)\] with $\psi_x(T) \in R_{(p)}\llbracket T \rrbracket$.
 
-Suppose $m \ge 1$ is the least integer for which we can write such an equation --- we will show $m = 1$ in a moment.  Applying the inclusion $i\co X \to X \times B\Z/p$ to this equation sets $v = 0$ and yields $\psi(0) = 0$, hence $\psi_x(T) = T \omega_x(T)$ and \[v (v^{m-1}(w^qPx - x) - \omega_x(v)) = 0.\]  Since $v$ annihilates this equation, we can use the Gysin sequence associated to the spherical bundle \[S^1 \to B\Z/p \to \CP^\infty\] to produce a class $y \in \widetilde{MU}^{2(m-1)-2q}(X)$ with \[v^{m-1}(w^q P x - x) = \psi_1(x) + y \<p\>(v).\]  If $m > 1$, then $y \in R$ for degree reasons and hence the right-hand side gives an equation contradicting our minimality hypothesis.  So, $m = 1$, and the outer factor of $v^{m-1}$ is not present in the last expression.  Restricting along $i$ again, we obtain the equation \[\left. \begin{array}{rr} -x & \text{if $q > 0$} \\ x^p - x & \text{if $q = 0$} \end{array} \right\} = \psi_1(0) + py.\]
+Suppose $m \ge 1$ is the least integer for which we can write such an equation --- we will show $m = 1$ in a moment.  Applying the inclusion $i\co X \to X \times B\Z/p$ to this equation sets $v = 0$ and yields $\psi_x(0) = 0$, hence $\psi_x(T) = T \phi_x(T)$ and \[v (v^{m-1}(w^qPx - x) - \phi_x(v)) = 0.\]  Since $v$ annihilates this equation, we can use the Gysin sequence associated to the spherical bundle \[S^1 \to S(\eta) \to BC_p\] to produce a class $y \in \widetilde{MU}^{2(m-1)-2q}(X)$ with\todo{It's not clear (from this presentation) why $\<p\>(v)$ is involved in this sequence or where the shift by $-1$ in the dimension went.  I'm a little confused about Quillen's presentation of the total space as ``$S^\infty \times_{C_p} S^1$'', too.} \[v^{m-1}(w^q P x - x) = \phi_x(x) + y \<p\>(v).\]  If $m > 1$, then $y \in R$ for degree reasons and hence the right-hand side gives an equation contradicting our minimality hypothesis.  So, $m = 1$, and the outer factor of $v^{m-1}$ is not present in the last expression.  Restricting along $i$ again, we obtain the equation \[\left. \begin{array}{rr} -x & \text{if $q > 0$} \\ x^p - x & \text{if $q = 0$} \end{array} \right\} = \phi_x(0) + py.\]
 
-In the first case, where $q > 0$, it follows that $MU^{-2q}(X) \subseteq R^{-2q} + pMU^{-2q}(X)$, and since $MU^{-2q}(X)$ has finite order torsion, it follows that $MU^{-2q}(X) = R^{-2q}$.  In the other case, $x \mapsto x^p - x$ kills $\widetilde{MU}^0(X)/(R^0 + p\widetilde{MU}^0(X))$.  But the ideal $\widetilde{MU}^0(X)$ is nilpotent, so $x \mapsto x^p$ is a nilpotent endomorphism of $\widetilde{MU}^0(X) / p\widetilde{MU}^0(X)$.  So, it follows that $\widetilde{MU}^0(X) = R^0$, and induction proves the theorem.\todo{I feel I don't understand the algebra in this second case.}
+In the first case, where $q > 0$, it follows that $MU^{-2q}(X) \subseteq R^{-2q} + pMU^{-2q}(X)$, and since $MU^{-2q}(X)$ has finite order torsion, it follows that $MU^{-2q}(X) = R^{-2q}$.  In the other case, $x$ can be rewritten as a sum of things in $R^{0}$, things in $p MU^{0}(X)$, and things in $(MU^0)^p$.  Since the ideal $\widetilde{MU}^0(X)$ is nilpotent, it follows that $\widetilde{MU}^0(X) = R^0$, and induction proves the theorem.
 \end{proof}
 
 \begin{corollary}\label{QuillenSurjective}
 The coefficients of the formal group law span $MU_*$. \qed
 \end{corollary}
 
-This is motivation enough for us to investigate the moduli of formal groups.  We will soon strengthen \Cref{QuillenSurjective} to show that this map is an isomorphism.
+\begin{remark}
+This proof actually also goes through for $MO$ as well.  In that case, it's even easier, since the equation $2 = 0$ in $\pi_0 MO$ causes much of the algebra to collapse.  One can try to further perturb this proof in two ways:
+\begin{enumerate}
+\item One can try to replace the identity complex--orientation $MU \xrightarrow{\id} MU$ with a nontrivial complex--orientation $MU \xrightarrow{\phi} E$ which is suitably compatible with power operations.  It would be nice to understand why this doesn't give more information about $E$ than what's visible in the Hurewicz image of $\phi$.  Or, conversely, it would be nice to understand a proof of Mahowald's theorem that the free $E_2$--algebra with $p = 0$ is $H\F_p$, which this proof portends to give information about.\todo{Straighten this out.}
+\item One can also try to replace $MO$ and $MU$ with $MSp$ or $MSO$.  These, too, have presentations in terms of bordism theories and hence similar power operations to the ones we used above.  On the other hand, the Euler classes in $MSp$--theory, while simple, are not so well-behaved, because they are not controlled by a formal group law.  Characteristic classes in $MSO$--theory are not even simple.\todo{This isn't well-stated either.}
+\end{enumerate}
+\end{remark}
 
-\todo{I moved the logarithms discussion into \Cref{FormalVarietiesLecture}, so we could now prove this strengthening too...}
+We now have a foothold on $\pi_* MU$, and this alone is enough to move us to study $\moduli{fgl}$, the moduli scheme of formal group laws.  However, while we're here, it's possible for us to prove the rest of Quillen's theorem, if we get just slightly ahead of ourselves and assume one algebraic fact about $\sheaf O_{\moduli{fgl}}$.  The place to start is with the following topological observation about mixing complex--orientations:
+
+\begin{lemma}[{\cite[Lemma 6.3 and Corollary 6.5]{AdamsBlueBook}}]\label{OrientationsOnEAndMU}
+Let $\phi\co MU \to E$ be complex--oriented and consider the two orientations
+\begin{align*}
+\S \sm MU & \xrightarrow{\eta_E \sm 1} E \sm MU, &
+MU \sm \S & \xrightarrow{\phi \sm \eta_{MU}} E \sm MU.
+\end{align*}
+The two induced coordinates $x^E$ and $x^{MU}$ on $\CP^\infty_{E \sm MU}$ are related by the formulas
+\begin{align*}
+x^{MU} & = \sum_{j=0}^\infty b_j^E (x^E)^{j+1} = g(x^E), \\
+g^{-1}(x^{MU} +_{MU} y^{MU}) & = g^{-1}(x^E) +_E g^{-1}(y^E).
+\end{align*}
+where $E_* MU \cong E_*[b_1, b_2, \ldots]$.
+\end{lemma}
+\begin{proof}
+The second formula is a direct consequence of the first.  The first formula comes from taking the module generators $\beta_{j+1} \in E_{2(j+1)} \CP^\infty = E_{2j} MU(1)$ and pushing them forward to get the algebra generators $b_j \in E_{2j} MU$.  Then, the triangle
+\begin{center}
+\begin{tikzcd}
+{[\CP^\infty, MU]} \arrow{rr} \arrow{rd} & & {[\CP^\infty, E \sm MU]} \arrow{ld}{\cong} \\
+& \CatOf{Modules}_{E_*}(E_* \CP^\infty, E_* MU)
+\end{tikzcd}
+\end{center}
+allows us to pair $x^{MU}$ with $(x^E)^{j+1}$ to determine the coefficients of the series.
+\end{proof}
+
+\begin{corollary}[{\cite[Corollary 6.6]{AdamsBlueBook}}]
+In particular, for the orientation $MU \to H\Z$ we have \[x_1 +_{MU} x_2 = \exp^H(\log^H(x_1) + \log^H(x_2)),\] where $\exp^H(x) = \sum_{j=0}^\infty b_j x^{j+1}$. \qed
+\end{corollary}
+
+However, one also notes that $H\Z_* MU = \Z[b_1, b_2, \ldots]$ carries the universal example of a formal group law with a logarithm --- this observation is independent of any knowledge about $MU_*$.  It turns out that this brings us one step away from understanding $MU_*$:
+
+\begin{theorem}[{To be proven as \Cref{LazardsTheorem}}]\label{DummyLazardsThm}
+There is a ring $\sheaf O_{\moduli{fgl}}$ carrying the universal formal group law, and it is free: it is a polynomial ring over $\Z$ in countably many generators. \qed
+\end{theorem}
+
+\begin{corollary}\label{QuillensTheorem}
+The map $\sheaf O_{\moduli{fgl}} \to MU_*$ is an isomorphism.
+\end{corollary}
+\begin{proof}
+We proved in \Cref{QuillenSurjective} that this map is surjective.  We also proved in \Cref{RationalFGLsHaveLogarithms} that every rational formal group law has a logarithm, i.e., the long composite \[\sheaf O_{\moduli{fgl}} \otimes \Q \to MU_* \otimes \Q \xrightarrow{\cong} (H\Z_* MU) \otimes \Q\] is an isomorphism.  Using \Cref{DummyLazardsThm}, it follows that the map is also injective, hence an isomorphism.
+\end{proof}
+
+\begin{corollary}
+The ring $\pi_*(MU \sm MU)$ carries the universal example of two strictly isomorphic formal group laws.  Additionally, the ring $\pi_0 (MUP \sm MUP)$ carries the universal example of two isomorphic formal group laws.
+\end{corollary}
+\begin{proof}
+Combine \Cref{OrientationsOnEAndMU} and \Cref{QuillensTheorem}.
+\end{proof}
+
+
 
 \todo[inline]{There's buzz about a ``Frobenius map'' for structured rings going around these days. I guess the point is that an $E_2$--algebra structure is enough to get a multiplicative map $E^0 X \to E^0 X \otimes E^0 BC_p$. This isn't additive, so it can't come from an infinite loop map, but it becomes additive when passing to the Tate construction: $E^X \to (E^X)^{tC_p}$, using the fact that the genuine $C_p$ fixed points of $E^{X^{\times p}}$ is $E^X$, and the square relating genuine, homotopy, and geometric fixed points.  Mike has been claiming that these results of Quillen's can be interpreted in this way, but I'm not sure what the interpretation is.  He says it has something to do with inverting the Euler class and the part of Quillen's argument that involves walking down the multiples of Euler classes on both sides of the equation.}
 
-\todo{Section II.6 of Adams's blue book talks about $\pi_* E \sm MU$.}
-
-\begin{remark}
-\todo[inline]{Remark that this analysis works for $MO$ too, and it's even easier since there $2 = 0$.  On the other hand, this doesn't work for $MSp$ or $MSO$ --- why?  Conversely, there's something special about the universal example.  Every complex-oriented theory has Chern classes, and they always push forward to give cohomology operations $MU \to E$, but you can't compose those.  Also, every complex-oriented theory has certain cohomology classes representable as $f_* 1$ for a complex-oriented map of manifolds $W \to Z$, but only for $MU$ is this exhaustive. (In Matt's published thesis he cites ``Thom's theorem'', [Tho51], for this result.)}
-\end{remark}
 
 
 
@@ -746,7 +814,12 @@ This is motivation enough for us to investigate the moduli of formal groups.  We
 
 
 
-\subsection*{Run off}
+
+
+
+
+
+% \subsection*{Run off}
 
 
 
@@ -755,27 +828,27 @@ This is motivation enough for us to investigate the moduli of formal groups.  We
 
 
 
-% divisors and line bundles on $1$--dimensional objects?
+% % divisors and line bundles on $1$--dimensional objects?
 
-poincare duality for manifolds with oriented tangent bundle
+% poincare duality for manifolds with oriented tangent bundle
 
-wrong-way maps: $\zeta^* \zeta_* 1$ gives the Euler class of the bundle
+% wrong-way maps: $\zeta^* \zeta_* 1$ gives the Euler class of the bundle
 
-Explicit Thom isomorphism map for universal cohomology: $\xi: X \to BU(n)$ Thomifies to $T(\xi) \to MU(n) \to MU$, representing a class $g \in MU^* T(\xi)$, and this gives a map
-\begin{align*}
-MU^*(X) & \to MU^* T(\xi) & \cong MU^*(E, E_0)\\
-x & \mapsto & g \smile p^*(x),
-\end{align*}
-where $p: E \to X$ is the projection and $E_0$ is the image of the zero section.
+% Explicit Thom isomorphism map for universal cohomology: $\xi: X \to BU(n)$ Thomifies to $T(\xi) \to MU(n) \to MU$, representing a class $g \in MU^* T(\xi)$, and this gives a map
+% \begin{align*}
+% MU^*(X) & \to MU^* T(\xi) & \cong MU^*(E, E_0)\\
+% x & \mapsto & g \smile p^*(x),
+% \end{align*}
+% where $p: E \to X$ is the projection and $E_0$ is the image of the zero section.
 
-The wrong--way maps come from conjugating by Poincar\'e duality: \[E^* X \cong E_{d_X-*} X \to E_{d_X-*} Y \cong E^*{*-d_X+d_Y} Y.\]  Poincar\'e duality comes from asserting that the stable normal bundle is oriented for the theory, and then Atiyah duality says \[D(X_+) \simeq \Susp^{-n} T(\nu) [\simeq T(\nu - n\eps) \simeq T(-\tau)]. \]
+% The wrong--way maps come from conjugating by Poincar\'e duality: \[E^* X \cong E_{d_X-*} X \to E_{d_X-*} Y \cong E^*{*-d_X+d_Y} Y.\]  Poincar\'e duality comes from asserting that the stable normal bundle is oriented for the theory, and then Atiyah duality says \[D(X_+) \simeq \Susp^{-n} T(\nu) [\simeq T(\nu - n\eps) \simeq T(-\tau)]. \]
 
-------
+% ------
 
-Q: Once you know that $MU$ has the universal formal group law on it, does the description of $MU_* MU$ follow immediately from evenness?  Probably?\todo{No, it follows from \emph{freeness}, and this should go into the operations/model section.}
+% Q: Once you know that $MU$ has the universal formal group law on it, does the description of $MU_* MU$ follow immediately from evenness?  Probably?\todo{No, it follows from \emph{freeness}, and this should go into the operations/model section.}
 
------
+% -----
 
-Need to talk about Gysin pushforwards in complex bordism and in ordinary cohomology.  Compare these with the theory of Thom isomorphism in general.  They're equivalent, right?  A complex orientation makes proper maps induce shriek maps, and shriek maps can be used to deduce what Chern classes are by push-pull: if $\zeta: X \to E$ is the zero section of a complex bundle $\xi$, then $e(\xi) = i^* i_*(1)$ I think.
+% Need to talk about Gysin pushforwards in complex bordism and in ordinary cohomology.  Compare these with the theory of Thom isomorphism in general.  They're equivalent, right?  A complex orientation makes proper maps induce shriek maps, and shriek maps can be used to deduce what Chern classes are by push-pull: if $\zeta: X \to E$ is the zero section of a complex bundle $\xi$, then $e(\xi) = i^* i_*(1)$ I think.
 
 

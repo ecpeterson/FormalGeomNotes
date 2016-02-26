@@ -184,53 +184,70 @@ If $E$ is a spectrum with $\pi_{-1} E = 0$, then $\OS{E}{1} \simeq B\OS{E}{0}$. 
 \begin{corollary}[{\cite[Theorem 2.1]{RavenelWilsonKthyOfEMSpaces}}]
 There is a convergent spectral sequence of Hopf algebras of signature \[E^1_{*, j} = F_*(\Susp \OS{E}{0})^{\sm j} \Rightarrow F_* \OS{E}{1}.\]  In the case that $F$ has K\"unneth isomorphisms of the form \[F(\Susp \OS{E}{0})^{\sm j} \cong F(\Susp \OS{E}{0})^{\otimes j},\] the $E^2$--page is identifiable as \[E^2_{*, *} \cong \Tor^{F_* \OS{E}{0}}_{*, *}(F_*, F_*). \qed\]
 \end{corollary}
+\noindent In general, if $E$ is a connective spectrum, we get a family of spectral sequences of signature \[E^2_{*, *} \cong \Tor^{F_* \OS{E}{j}}_{*, *}(F_*, F_*) \Rightarrow F_* \OS{E}{j+1}.\]
 
 That this spectral sequence is multiplicative for the $\ast$--product is useful enough, but the situation is actually much, much better than this:
-\begin{lemma}[{\cite[Theorem 2.2]{RavenelWilsonKthyOfEMSpaces}}]\citeme{This isn't the right citation. They blame this generality on a Thomason--Wilson article.}
+\begin{lemma}[{\cite[Theorem 2.2]{RavenelWilsonKthyOfEMSpaces}}]\label{CircProductAndDifferentials}
+\citeme{This isn't the right citation. They blame this generality on a Thomason--Wilson article.}
 Denote by $E^r_{*, *}(F_* \OS{E}{j})$ the spectral sequence considered above whose $E^2$--term is constructed from $\Tor$ over $F_* \OS{E}{j}$.  There are maps \[E^r_{*, *}(F_* \OS{E}{j}) \otimes_{F_*} F_* \OS{E}{m} \to E^r_{*, *}(F_* \OS{E}{j+m})\] which agree with the map \[F_* \OS{E}{j+1} \otimes_{F_*} F_* \OS{E}{m} \xrightarrow{\circ} F_* \OS{E}{j+m+1}\] on the $E^\infty$--page and which satisfy \[d^r(x \circ y) = (d^r x) \circ y. \qed\]
 \end{lemma}
 \noindent This Lemma is obscenely useful: it means that differentials can be transported \emph{between spectral sequences} for classes which can be decomposed as $\circ$--products.  This means that the bottom spectral sequence (i.e., the case $j = 0$) exerts a large amount of control over the others --- and this spectral sequence often turns out to be very computable.
 
-We now turn to our example of $E = H\F_2$.
+We now turn to our example of $E = H\F_2$ and $F = H\F_2$.  To ground our induction, we will consider the first spectral sequence \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) \Rightarrow H\F_2{}_* B\F_2.\]  Using that $\RP^\infty$ gives a model for $B\F_2$, we use \Cref{HF2RPinftyExample} to analyze this spectral sequence: that Example states that as an $\F_2$--module, there is an isomorphism \[H\F_2{}_* B\F_2 \cong \F_2\{a_j \mid j \ge 0\}.\]  Using our further computation in \Cref{RPExampleFaulty}, we can also give a presentation of the Hopf algebra structure on $H\F_2{}_* B\F_2$: it is dual to the primitively-generated polynomial algebra on a single class, so forms a divided power algebra on a single class.  In characteristic $2$, this decomposes as \[H\F_2{}_* B\F_2 \cong \Gamma[a_\emptyset] \cong \bigotimes_{j=0}^\infty \F_2[a_{(j)}] / a_{(j)}^2,\] where we have written $a_{(j)}$ for $a_\emptyset^{[2^j]}$ in the divided power structure.
 
+\begin{corollary}
+This $\Tor$ spectral sequence collapses at the $E^2$--page.
+\end{corollary}
+\begin{proof}
+As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is presented by the truncated polynomial algebra \[H\F_2{}_*(\F_2) \cong \F_2[\F_2] = \F_2[[1] - [0]] / ([1] - [0])^{\ast 2}.\]  The $\Tor$--algebra of this is then divided power on a single class: \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) = \Gamma[a_\emptyset].\]  In order for the two computations to agree, there can therefore be no differentials in the spectral sequence.
+\end{proof}
 
-------
-
-Restricting to additive cooperations: the indecomposable quotient
-
-The homology suspension element, the relation $e \circ e = b_{(0)}$, and passing to the stabilization.  I think that the relation above is analogous to $S^1 \sm S^1 \simeq \CP^1$?
-
-\todo{Neil's MO answer about $H_* K(\Z, 3)$: http://mathoverflow.net/a/216041/1094}
-
-
-------
-
-Because $H\Z/2$ has field coefficients, it always has K\"unneth isomorphisms, and in particular we can study the Hopf ring \[A_{s, t} = (H\Z/2)_s \OS{H\Z/2}{t} = H_s(K(\Z/2, t); \F_2)\] for $E = H\Z/2$ and $F = H\Z/2$.  We compute this object in three steps.
-
-First, recall that there is a canonical isomorphism $H^*(\RP^\infty; \F_2) \cong \F_2[x]$ for $|x| = 1$.  In turn, the homology groups $H_*(\RP^\infty; \F_2)$ can be written as \[H_*(\RP^\infty; \F_2) \cong \F_2\{a_0, a_1, a_2, \ldots, a_n, \ldots\}\] for generators $a_n$ of degree $n$ with Kronecker pairing $\<x^m, a_n\> = \delta{}^m{}_n$.  For degree reasons, the diagonal on cohomology takes the form $\Delta x = x \otimes 1 + 1 \otimes x$ (cf.\ \Cref{HF2StackExample}), from which it follows that the $\ast$--algebra structure on homology takes the form of a divided power algebra on a single class: \[H_*(\RP^\infty; \F_2) \cong \Gamma[a_\emptyset] \cong \bigotimes_{j=0}^\infty \F_2[a_{(j)}] / (a_{(j)})^2.\]  Mysteriously, we have labeled the generating class ``$a_\emptyset$'' and defined $a_\emptyset^{[2^j]} =: a_{(j)}$. This notation will align with complications later in the example.
-
-Second, using the fact that $\RP^\infty \simeq K(\Z/2, 1) \simeq B\Z/2$ has a bar filtration, we study the associated bar spectral sequence, which has the signature \[E^2_{*, *} = \Tor^{H_*(\Z/2; \F_2)}_{*, *}(\F_2, \F_2) \Rightarrow H_*(K(\Z/2, 1); \F_2).\]  The homology of the discrete group $\Z/2$ can be expressed as an algebra as
-\[
-H_*(\Z/2; \F_2) \cong \left. \F_2[\underline 0, \underline 1] \middle/ \left(\begin{array}{c} \underline 0 = 1 \\ \underline 1^{\ast 2} = \underline 0\end{array}\right) \right. \cong \F_2[\underline 1 - 1] / (\underline 1 - 1)^{\ast 2} =: \F_2[a_\emptyset] / a_\emptyset^{\ast 2},
-\]
-where $\underline n$ denotes the degree--zero class representing the point $n$ in $\Z/2$ and we have additionally defined $a_\emptyset := \underline 1 - 1$.  The $\Tor$ groups of this truncated polynomial algebra form a divided power algebra~\cite{TateResolutions}: \[\Tor^{H_*(\Z/2; \F_2)}_{*, *} \cong \Gamma[a_\emptyset].\]  It follows that the bar spectral sequence collapses at $E^2 = E^\infty$, and there are no differentials.
-
-Third, we use the second step as the base of an inductive argument, powered by Ravenel and Wilson's key lemma~\cite[Theorem 2.2]{RavenelWilson}, to analyze the other bar spectral sequences: \[\Tor^{H_*(K(\Z/2, t); \F_2)}_{*, *}(\F_2; \F_2) \Rightarrow H_*(K(\Z/2, t+1); \F_2).\]  Inductively assume that the $t$\th level $A_{*, t}$ of the Hopf ring is an exterior $\ast$--algebra on classes which are $t$--fold $\circ$--products of the classes $a_{(j)}$.  It follows that the $\Tor$ groups of the bar spectral sequence computing $A_{t+1, *}$ form a divided power algebra generated by the same $t$--fold $\circ$--products.  An analogue of another Ravenel--Wilson lemma~\cite[Lemma 9.5]{RavenelWilson} gives a congruence\footnote{It's conceivable that this congruence can be repaired to an equality, since the $2$--series for $\G_a$ is so abbreviated.  I have not worked this out.} \[(a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]} \equiv a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})} \pmod{\text{decomposables}}.\]  It follows from the key lemma~\cite[Theorem 2.2]{RavenelWilson}, which lets us transport differentials from earlier bar spectral sequences to the current one by applying the $\circ$--product, that the differentials vanish:
+Now we turn to the rest of the induction:
+\begin{theorem}
+$H\F_2{}_* \OS{H\F_2}{t}$ is the exterior $\ast$--algebra on the $t$--fold $\circ$--products of the generators $a_{(j)} \in H\F_2{}_* B\F_2$.
+\end{theorem}
+\begin{proof}
+Make the inductive assumption that this is true for some fixed value of $t$.  It follows that the $\Tor$ groups of the bar spectral sequence \[\Tor^{H\F_2{}_* \OS{H\F_2}{t}}_{*, *}(\F_2, \F_2) \Rightarrow H\F_2{}_* \OS{H\F_2}{t+1}\] form a divided power algebra generated by the same $t$--fold $\circ$--products.  An analogue of another Ravenel--Wilson lemma~\cite[Lemma 9.5]{RavenelWilsonKthyOfEMSpaces} gives a congruence\todo{It's conceivable that this congruence can be repaired to an equality, since the $2$--series for $\G_a$ is so abbreviated.  I have not worked this out.} \[(a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]} \equiv a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})} \pmod{\text{decomposables}}.\]  It follows from \Cref{CircProductAndDifferentials} that the differentials vanish:
 \begin{align*}
 d((a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]}) & \equiv d(a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})}) \pmod{\text{decomposables}} \\
 & = a_{(j_1)} \circ d(a_{(j_2)} \circ \cdots \circ a_{(j_{t+1})}) = 0.
 \end{align*}
-Hence, the spectral sequence collapses and the induction holds.  It follows that \[A_{*, *} \stackrel\cong\leftarrow \bigoplus_{t=0}^\infty (H_*(\RP^\infty; \F_2))^{\wedge t},\] where $(-)^{\wedge t}$ denotes the $t$\textsuperscript{th} exterior power in the category of Hopf algebras.  The leftward direction of this isomorphism is realized by the $\circ$--product.
+Hence, the spectral sequence collapses and the induction holds.
+\end{proof}
+
+\begin{corollary}
+It follows that \[H\F_2{}_* \OS{H\F_2}{*} \stackrel\cong\leftarrow \bigoplus_{t=0}^\infty (H_*(\RP^\infty; \F_2))^{\wedge t},\] where $(-)^{\wedge t}$ denotes the $t$\textsuperscript{th} exterior power in the category of Hopf algebras.
+\end{corollary}
+\begin{proof}
+The leftward direction of this isomorphism is realized by the $\circ$--product.
+\end{proof}
+
+\begin{remark}
+Our computation of the full Hopf ring of unstable cooperations can be winnowed down to give information about particular classes of cooperations.  For instance, the \emph{additive} unstable cooperations are given by passing to the $\ast$--indecomposable quotient
+\begin{align*}
+Q_{\ast} H\F_2{}_* \OS{H\F_2}{*} & \cong \F_2\left\{a_{(I_0)} \circ \cdots \circ a_{(I_t)}\right\} \\
+& \cong \F_2[\xi_0, \xi_1, \xi_2, \ldots].
+\end{align*}
+In terms of \Cref{SteenrodAlgIdentifiedWithAutGa}, we have \[\Spec Q_{\ast} H\F_2{}_* \OS{H\F_2}{*} \cong \InternalEnd(\G_a).\]  One passes to the \emph{stable} cooperations by taking the colimit along the homology suspension element $a_{(0)} = \xi_0$.  This has the effect of adjoining a $\circ$--product inverse to $a_{(0)}$, i.e.,
+\begin{align*}
+(Q_{\ast} H\F_2{}_* \OS{H\F_2}{*})[a_{(0)}^{\circ(-1)}] & \cong \F_2[\xi_0^\pm, \xi_1, \xi_2, \ldots],
+\end{align*}
+which is exactly the ring of functions on $\InternalAut(\G_a)$ considered in \Cref{SteenrodAlgIdentifiedWithAutGa}.
+\end{remark}
+
+
+\begin{remark}[{\cite[Theorems 8.5 and 8.11]{Wilson}}]
+The odd--primary analogue of this result appears in Wilson's book.  In that situation, the bar spectral sequences do not degenerate but rather have a single family of differentials, and the result imposes a single relation on the free Hopf ring.  The end result is \[H\F_p{}_* \OS{H\F_p}{*} \cong \frac{\bigotimes_{I, J} \F_p[e_1 \circ \alpha_I \circ \beta^J, \alpha_I \circ \beta^J]}{(e_1 \circ \alpha_I \circ \beta^J)^{\ast 2} = 0, (\alpha_I \circ \beta^J)^{\ast p} = 0, e_1 \circ e_1 = \beta_1},\] where $e_1 \in (H\F_p)_1 \OS{H\F_p}{1}$ is the homology suspension element, $\alpha_{(j)} \in (H\F_p)_{2p^j} \OS{H\F_p}{1}$ are the analogues of the elements considered above, and $\beta_{(j)} \in (H\F_p)_{2p^j} \CP^\infty$ are the algebra generators of the Hopf algebra dual of the ring of functions on the formal group $\CP^\infty_{H\F_p}$ associated to $H\F_p$ by its natural complex orientation.  (In particular, the Hopf ring is \emph{free} on these Hopf algebras, subject to the single interesting relation $e_1 \circ e_1 = \beta_{(0)}$.)\todo{I think this relation is supposed to be analogous to $S^1 \sm S^1 \simeq S^2 = \CP^1$.}
+\end{remark}
+
+
+------
+
+\todo{Neil's MO answer about $H_* K(\Z, 3)$: http://mathoverflow.net/a/216041/1094}
 
 \begin{definition}
 We spell out some of the Hopf algebra constructions named above.  For a cocommutative $R$--coalgebra $C$, we define its free commutative and cocommutative Hopf $R$--algebra~\cite{Takeuchi} to have underlying algebra \[\frac{\operatorname{SymmetricAlgebra} \left(C \otimes_R (\chi C)\right)}{\left( \begin{array}{c} c \otimes \chi c = 1 \end{array} \right)}\] with diagonal \[\Delta(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \Delta c_1 \otimes \cdots \otimes \Delta c_k \otimes \chi (\Delta c'_1) \otimes \cdots \otimes \chi(\Delta c'_{k'})\] and antipode \[\chi(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \chi c_1 \otimes \cdots \otimes \chi c_k \otimes c'_1 \otimes \cdots \otimes c'_{k'}.\]  Then, given a Hopf $R$--algebra $A$, we define the free Hopf ring~\cite[Definition 4.2, Proposition 2.16]{HuntonTurner} to be \[\left. \bigoplus_{k=0}^\infty A^{\wedge_R k} \middle/ \left(x \wedge y = \sum_i (x'_i \ast y') \wedge (x''_i \ast y'') \middle| \begin{array}{c} y = y' \ast y'', \\ \Delta x = \sum_i x'_i \otimes x''_i \end{array} \right) \right.\] with $\circ$--product given by the natural maps $A^{\wedge_R n} \otimes_R A^{\wedge_R m} \to A^{\wedge_R (n+m)}$.
 \end{definition}
-
-\begin{remark}
-The odd--primary analogue of this result appears in Wilson's book~\cite[Theorem 8.5]{Wilson}.  In that situation, the bar spectral sequences do not degenerate but rather have a single family of differentials, and the result imposes a single relation on the free Hopf ring.
-\end{remark}
-
-\todo[inline]{Pass to the additive unstable cooperations and note that you recover the \emph{monoid of endomorphisms} of $\G_a$.  In algebraic terms, this looks like the dual Steenrod algebra where $\xi_0$ has not been inverted.}
 
 
 
@@ -267,12 +284,9 @@ b(s) +_{[G]} b(t) & = \bigast_{i, j} [a_{ij}^G] \circ \left( \sum_k b_k s^k \rig
 \end{align*}
 \end{definition}
 
-\begin{lemma}
-There is a natural map $E_*^R \OS{G}{*} \to E_* \OS{G}{*}$ for complex-orientable ring spectra $E$ and $G$.
+\begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}}]
+For complex-orientable ring spectra $E$ and $G$, there is a natural map $E_*^R \OS{G}{*} \to E_* \OS{G}{*}$. \qed
 \end{lemma}
-\begin{proof}
-\citeme{Theorem 3.8 of RW, an easy pullback argument}
-\end{proof}
 
 \begin{theorem}
 The coalgebraic formal scheme $\Sch Q^* E_*^R \OS{G}{*}$ gives a model \[\Sch Q^* E_*^R \OS{G}{*} \cong \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_G).\]
@@ -285,7 +299,7 @@ The coalgebraic formal scheme $\Sch Q^* E_*^R \OS{G}{*}$ gives a model \[\Sch Q^
 \citeme{Pages 266--270 of Ravenel--Wilson, especially the bottom of 268.}
 
 We begin by calculating $H\F_{p*} \OS{BP}{2*}$.  One might think that this is a first guess at an accomplishable task, but we will quickly show that it is, in a certain sense, the universal example of this calculation.  We will show the following theorem:
-\begin{theorem}\label{HFpBPCooperationsTheorem}
+\begin{theorem}[{\cite[Theorem 4.2]{RavenelWilsonHopfRingForMU}}]\label{HFpBPCooperationsTheorem}
 The natural homomorphism \[H\F_{p*}^R \OS{BP}{2*} \to H\F_{p*} \OS{BP}{2*}\] is an isomorphism.  In particular, $H\F_{p*} \OS{BP}{2*}$ is even--concentrated.
 \end{theorem}
 \noindent We will prove this by a fairly elaborate counting argument, and as such our first move will be to produce an upper bound for the size of the source Hopf ring.  To abbreviate notation, we will write $H$ for $H\F_p$ for the remainder of the lecture.
@@ -303,23 +317,23 @@ By construction, $H_0^R \OS{BP}{2*}$ is the Hopf ring-ring $\F_p[BP^*]$.  Calcul
 It follows that a $\Z_{(p)}$--basis of $BP^*$ gives an $\F_p$--basis of $Q^* \F_p[BP^*]$ under the map $x \mapsto [x] - [0]$.  Finally, since \[([x] - [0]) \circ ([y] - [0]) = ([xy] - [0]),\] we see that the image of the polynomial generators $v_n$ freely generate the $\circ$--product structure, proving the lemma.
 \end{proof}
 
-Directly from the definition of $H_*^R \OS{MU}{2*}$, we now know that $Q^* H_*^R \OS{MU}{2*}$ is generated by $[v_n] - [0_{-|v_n|}]$ for $n \ge 1$ and $b_j$, $j \ge 0$.  In fact, it suffices to consider $b_{p^i} = b_{(i)}$, $i \ge 0$.\citeme{Lemma 4.14 of Ravenel Wilson}
+Directly from the definition of $H_*^R \OS{BP}{2*}$, we now know that $Q^* H_*^R \OS{BP}{2*}$ is generated by $[v_n] - [0_{-|v_n|}]$ for $n \ge 1$ and $b_j$, $j \ge 0$.  In fact, it suffices to consider $b_{p^i} = b_{(i)}$ for $i \ge 0$\citeme{Lemma 4.14 of Ravenel Wilson}, and these elements are subject to an important relation:
 
-\textbf{Insert this somehow. Probably it belongs back in an earlier discussion:}
-\begin{lemma}
-In $Q^* H_* \OS{BP}{2} / I^{\circ 2} \circ Q^* H_* \OS{BP}{2}$, for any $n$ we have \[\sum_{i=1}^n [v_i] \circ b_{(n-i)}^{\circ p^i} = 0.\]
+\begin{lemma}[{\cite[Lemma 3.14]{RavenelWilsonHopfRingForMU}}]
+In $Q^* H_* \OS{BP}{2} / I^{\circ 2} \circ Q^* H_* \OS{BP}{2}$, for any $n$ we have \[\sum_{i=1}^n [v_i] \circ b_{(n-i)}^{\circ p^i} = 0. \qed\]
 \end{lemma}
-\begin{proof}
-\citeme{Lemma 3.14 of Ravenel Wilson}
-\end{proof}
 
 \begin{corollary}
 Let $r_n$, the $n${\th} relation, denote the same sum taken in $Q^* H_*^R \OS{BP}{2*}$ instead.  Then $r_n$ is in the ideal generated by $I^{\circ 2}$. \qed \todo{Ravenel and Wilson are working with $\OS{MU}{2*}$ here, so they also include $[x_{2i}]$ for $i \ne p^j - 1$.  I don't think we need to.}
 \end{corollary}
 
-\begin{lemma}\citeme{Lemma 4.15.b of Ravenel Wilson. Very tedious.}
-The sequence $(r_1, r_2, \ldots)$ is regular in the polynomial algebra \[A = \F_p[[x_{2i}], b_{(j)} \mid i > 0, j \ge 0]. \qed\] 
+Ravenel and Wilson show the following well-behavedness result about these relators, by a fairly tedious argument:
+
+\begin{lemma}[{\cite[Lemma 4.15.b]{RavenelWilsonHopfRingForMU}}]
+The sequence $(r_1, r_2, \ldots)$ is regular in the polynomial algebra \[A = \F_p[[x_{2i}], b_{(j)} \mid i > 0, j \ge 0]. \qed\]
 \end{lemma}
+
+\noindent However, this is exactly what we need to approach our induction.
 
 \begin{lemma}
 Set
@@ -334,8 +348,8 @@ We have seen that $c_{i,j}$ is bounded by the $\F_p$--dimension of $\F_p[[v_n], 
 \end{proof}
 
 This completes the estimation portion of the argument.  We now turn to showing that this estimation is \emph{sharp} and that the natural map is \emph{onto}, and hence an isomorphism, using the bar spectral sequence.  Recalling that the bar spectral sequence converges to a the homology of the \emph{connective} delooping, let $\OS{BP}{2*}'$ denote the connected component of $\OS{BP}{2*}$ containing $[0_{2*}]$.  We will then demonstrate the following theorem inductively:
-\begin{theorem}\label{HFpBPCooperationsInduction}
-Take $k$ to be the induction index.
+\begin{theorem}[{\cite[Induction 4.18]{RavenelWilsonHopfRingForMU}}]\label{HFpBPCooperationsInduction}
+Take $k$ to be the induction index.\footnote{Note that in the conditions below we are using $k$ to bound the topological degree of the homology groups, whereas yesterday we used the induction index to bound the degree of the infinite loopspace.}
 \begin{enumerate}
 \item $Q^* H_{\le 2(k-1)} \OS{BP}{2j}'$ is generated by $\circ$--products of the $[v_n]$ and $b_{(j)}$.
 \item $H_{\le 2(k-1)} \OS{BP}{2*}'$ is isomorphic to a polynomial algebra in this range.
@@ -351,27 +365,24 @@ Recall that we are considering the natural map \[H_*^R \OS{BP}{2*} \to H_* \OS{B
 \begin{proof}[{Proof of \Cref{HFpBPCooperationsInduction}}]
 The infinite loopspaces in $\OS{BP}{2*}$ are related by $\Loops^2 \OS{BP}{2(*+1)}' = \OS{BP}{2*}$, so we will use two bar spectral sequences to extract information about $\OS{BP}{2(*+1)}'$ from $\OS{BP}{2*}$.  Since we have assumed that $H_{\le 2(k-1)} \OS{BP}{2*}$ is polynomial in the indicated range, we know that in the first spectral sequence \[E^2_{*, *} = \Tor^{H_* \OS{BP}{2*}}_{*, *}(\F_p, \F_p) \Rightarrow H_* \OS{BP}{2*+1}\] the $E^2$--page is, in the same range, exterior on generators in $\Tor$--degree $1$ and topological degree one higher than the generators in the polynomial algebra.  Since differentials lower $\Tor$--degree, the spectral sequence is multiplicative, and there are no classes on the $0$--line, it collapses in the range $[0, 2k-1]$.  Additionally, since all the classes are in odd topological degree, there are no algebra extension problems, and we conclude that $H_* \OS{BP}{2(k-1)+1}$ is indeed exterior up through degree $(2k-1)$.
 
-We now consider the second bar spectral sequence \[E^2_{*, *} = \Tor^{H_* \OS{BP}{2*+1}}_{*, *}(\F_p, \F_p) \Rightarrow H_* \OS{BP}{2(*+1)}.\]  The $\Tor$ algebra of an exterior algebra is divided power on a class of topological dimension one higher.  Since these classes are now all in even degrees, the spectral sequence collapses in the range $[0, 2k]$.  Additionally, these primitive classes are related to the original generating classes by double suspension, i.e., by circling with $b_{(0)}$.  This shows the first inductive claim on the primitive classes through degree $2k$, and we must work to show that this is enough.\todo{This isn't done: see the bottom of page 269 in Ravenel--Wilson.  It's an easy argument: the differences between $\gamma_{p^i}(x)$ and the classes captured thus far all lie in lower filtration.}
+We now consider the second bar spectral sequence \[E^2_{*, *} = \Tor^{H_* \OS{BP}{2*+1}}_{*, *}(\F_p, \F_p) \Rightarrow H_* \OS{BP}{2(*+1)}.\]  The $\Tor$ algebra of an exterior algebra is divided power on a class of topological dimension one higher.  Since these classes are now all in even degrees, the spectral sequence collapses in the range $[0, 2k]$.  Additionally, these primitive classes are related to the original generating classes by double suspension, i.e., by circling with $b_{(0)}$.  This shows the first inductive claim on the \emph{primitive classes} through degree $2k$, and we must argue further to deduce our generation result for $x^{[p^j]}$ of degree $2k$ with $j > 0$.  By inductive assumption, we can write \[x = [y] \circ b_{(0)}^{\circ I_0} \circ b_{(1)}^{\circ I_1} \circ \cdots,\] and one may as well consider the element \[z := [y] \circ b_{(j)}^{\circ I_0} \circ b_{(j+1)}^{\circ I_1} \circ \cdots.\]  This element isn't $x^{[p^j]}$ on the nose, but the diagonal of $z - x^{[p^j]}$ lies in lower filtration degree, so we are again done.
 
-\todo{Then, the top of page 270 shows claims 2 and 3.  The point is that we have already established surjectivity, so we can now use our size bounds.  The algebra is too big if there are any leftover indecomposables, so everything is decomposable in terms of the generators we've found, and we're furthermore exactly of the right size to be polynomial.}
+The remaining thing to do is to use the size bounds: the only way that the map \[H_*^R \OS{BP}{2*} \to H_* \OS{BP}{2*}\] could be surjective is if there were multiplicative extensions in the spectral sequence joining $x^{[p]}$ to $x^p$ --- and then we are exactly the right size to be a polynomial algebra.
 \end{proof}
 
-\todo{This argument is distinct from the argument on the next day, which induces on $j$ rather than on $i$.  That's worth making a point of.}
+Having accomplished this, we reduce the general computation to it:
 
-------
-
-\subsection*{Now walk down to any complex-orientable $E$}
-
-The main theorem: The Ravenel--Wilson calculation of $E_* \OS{MU}{*}$ for complex orientable $E$
-
-This follows from: Since $H\Z_* \OS{MU}{2*}$ is $\Z$--free and even, $MU_* \OS{MU}{2*}$ is $MU_*$--free and even.  It follows that since the free Hopf ring map to $H\Z_* \OS{MU}{2*}$ is an isomorphism, so is the one tensored up to $MU_*$.
-
-This follows from: Calculation of $H\Z_* \OS{MU}{2*}$: no torsion, since $H\F_{p*} \OS{MU}{2*}$ is even, and since the free map is an isomorphism for all primes it's an isomorphism integrally
-
-This follows from: Since $MU_{(p)}$ splits multiplicatively as a wedge of $BP$s, it suffices to show the freeness and evenness of $H\F_{p*} \OS{BP}{2*}$.
-
-
-
+\begin{corollary}[{\cite[Corollary 4.7]{RavenelWilsonHopfRingForMU}}]
+For a complex-orientable cohomology theory $E$, the natural maps
+\begin{align*}
+E_*^R \OS{MU}{2*} & \to E_* \OS{MU}{2*}, \\
+E_*^R \OS{BP}{2*} & \to E_* \OS{BP}{2*}
+\end{align*}
+are isomorphisms of Hopf rings.
+\end{corollary}
+\begin{proof}
+First, because $MU_{(p)}$ splits multiplicatively as a wedge of $BP$s, we deduce from \Cref{HFpBPCooperationsTheorem} the case of $E = H\F_p$.  Since $H\F_p{}_* \OS{BP}{2*}$ is even, it follows that $H\Z_{(p)}{}_* \OS{BP}{2*}$ is torsion--free on a lift of a basis, and similarly (working across primes) $H\Z_* \OS{MU}{2*}$ is torsion--free on a simultaneous lift of basis.  Next, using torsion--freeness, we conclude from an Atiyah--Hirzebruch spectral sequence that $MU_* \OS{MU}{2*}$ and $BP_* \OS{BP}{2*}$ are even and torsion--free themselves, and moreover that the maps corresponding of Hopf rings are isomorphisms.  Lastly, using naturality of Atiyah--Hirzebruch spectral sequences, given a complex--orientation $MU \to E$ we deduce that the spectral sequence \[E_* \otimes H_*(\OS{MU}{2*}; \Z) \cong E_* \otimes_{MU_*} MU_* \OS{MU}{2*} \Rightarrow E_* \OS{MU}{2*}\] collapses, and similarly for the case of $BP$.  The theorem follows.
+\end{proof}
 
 
 

@@ -5,11 +5,11 @@
 
 \todo{Write an introduction for me.}
 
+\todo{still need to talk about closed and open subschemes, their basic properties}
+
+\todo{Do you need to come to grips with ind-coherent sheaves?}
 
 
-still need to talk about closed and open subschemes, their basic properties
-
-\todo[inline]{Make sure you come to grips with ind-coherent sheaves!}
 
 
 \section{The context of a spectrum}\label{StableContextLecture}
@@ -27,24 +27,25 @@ Today we will make good on our promise, made during our investigation of the uno
 Our answer to this question will come out of considering Grothendieck's framework of descent.  Classically, descent concerns itself with a map $f\co R \to S$ of a rings and an $S$--module $N$, and it asks questions like:
 \begin{itemize}
 \item When is there an $R$--module $M$ such that $N \cong M \otimes_R S = f^* M$?
-\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of preimages of $N$ along $f_*$?
+\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of preimages of $N$ along $f^*$?
 \item What conditions can be placed on $f$ so that the category of descent data for any given module is always contractible, called \textit{effectivity}?
 \end{itemize}
 
-The essential structure of these answers is easy to guess if we proceed by example, using the few tools available to us.  Suppose that we begin instead with an $R$--module $M$ and we set $N = M \otimes_R S$.  By tensoring up, we have two $R$--algebra maps $S \to S \otimes_R S$, given by including along either factor, and we can further tensor $N$ up to $N \otimes_R S$ or $S \otimes_R N$.  Since $N$ came from the $R$--module $M$, these are canonically isomorphic: \[((f \otimes 1) \circ f)^* M \cong ((1 \otimes f) \circ f)^* M.\]  Repeating this process produces more isomorphisms which compose according to the triangle\todo{I haven't expressed where this triangle comes from very well.}
+The essential structure of these answers is easy to guess if we proceed by example, using the few tools available to us.  Suppose that we begin instead with an $R$--module $M$ and we set $N = M \otimes_R S$.  By tensoring up, we have two $R$--algebra maps $S \to S \otimes_R S$, given by including along either factor, and we can further tensor $N$ up to $N \otimes_R S$ or $S \otimes_R N$.  Since $N$ came from the $R$--module $M$, these are canonically isomorphic: \[\phi\co ((f \otimes 1) \circ f)^* M \cong ((1 \otimes f) \circ f)^* M.\]  Repeating this process produces more isomorphisms which compose according to the triangle
 \begin{center}
 \begin{tikzcd}
-N \otimes_R S \otimes_R S \arrow{rr}{\simeq} \arrow{rd}{\simeq} & & S \otimes_R S \otimes_R N \\
-& S \otimes_R N \otimes_R S \arrow{ru}{\simeq}.
+N \otimes_R S \otimes_R S \arrow["\phi_{13}", "\simeq"']{rr} \arrow["\phi_{12}", "\simeq"']{rd} & & S \otimes_R S \otimes_R N \\
+& S \otimes_R N \otimes_R S \arrow["\phi_{23}"', "\simeq"]{ru},
 \end{tikzcd}
 \end{center}
+where $\phi_{ij}$ denotes applying $\phi$ to the $i${\th} and $j${\th} coordinates.\citeme{Allen said he knew a good reference for this descent picture}
 
 \begin{definition}
 Let $f\co R \to S$ be a map of rings as above.  An $S$--module $N$ equipped with an isomorphism $S \otimes_R N \cong N \otimes_R S$ of $S \otimes_R S$--modules which causes the above triangle to commute is called a \textit{descent datum} for the map $f$.
 \end{definition}
 
 \begin{remark}\label{CanonicalCoring}
-There are other ways to view this data.  For example, later on we will revisit it from the categorical perspective of \textit{comonads}.  However, there is another perspective which we have already encountered earlier on: that of the \textit{canonical coring}.  Associated to the map $f\co R \to S$, we can form the ring $S \otimes_R S$, which supports a map \[B \otimes_A B \simeq B \otimes_A A \otimes_A B \to B \otimes_A B \otimes_A B \simeq (B \otimes_A B) \otimes_B (B \otimes_A B).\]  One can check that descent data on a $B$--module is the same as the data of a coaction against $B \otimes_A B$.  As a first step, notice the similarity of function signatures: \[N \xrightarrow{\psi} N \otimes_B (B \otimes_A B) \simeq N \otimes_A B.\]
+There are other ways to view this data.  For example, later on we will revisit it from the categorical perspective of \textit{comonads}.  However, there is another perspective which we have already encountered earlier on: that of the \textit{canonical coalgebra} or \textit{Amitsur complex}.  Associated to the map $f\co R \to S$, we can form the ring $S \otimes_R S$, which supports a map \[S \otimes_R S \simeq S \otimes_R R \otimes_R S \to S \otimes_R S \otimes_R S \simeq (S \otimes_R S) \otimes_S (S \otimes_R S).\]  One can check that descent data on a $S$--module is the same as the data of a coaction against $S \otimes_R S$.  As a first step, notice the similarity of function signatures: \[N \xrightarrow{\psi} N \otimes_S (S \otimes_R S) \simeq N \otimes_R S.\]
 \end{remark}
 
 The following theorem is the usual culmination of an initial investigation into descent:
@@ -77,7 +78,7 @@ Without passing to the derived category, there is an equivalence of categories b
 \end{lemma}
 
 The real utility of this framework is that it pulls apart the question of descent into two distinct pieces, summarized in the following theorem:
-\begin{theorem}
+\begin{theorem}\label{AlgebraicCompletionSituation}
 Let $i\co A \to X$ be a closed subscheme, and consider the formal completion
 \begin{center}
 \begin{tikzcd}
@@ -92,7 +93,12 @@ If $X$ is Noetherian, then $k^*$ is flat as a functor of sheaves, $j^*$ is conse
 The usual theorem about faithfully flat descent then follows by using the hypotheses on $i$ to deduce that, e.g., if $i^*$ and $j^*$ are both conservative, then so must $k^*$ be.
 \end{remark}
 
-We now transfer what we've learned to the situation of homotopical algebra.  Recalling that spectra are equivalent to $\S$--modules, $\S$ the usual sphere spectrum, then any other ring spectrum comes equipped with a unit map $\eta: \S \to E$ and hence push and pull functors $\eta_*$ and $\eta^*$.  Correspondingly, to any spectrum $X$ we can define the following cosimplicial spectrum:
+We now transfer what we've learned to the situation of homotopical algebra.  Recalling that spectra are equivalent to $\S$--modules, $\S$ the usual sphere spectrum, then any other ring spectrum comes equipped with a unit map $\eta: \S \to E$ and hence push and pull functors
+\begin{align*}
+\eta_*\co M & \mapsto M, &
+\eta^*\co X & \mapsto E \sm X.
+\end{align*}
+Correspondingly, to any spectrum $X$ we can define the following cosimplicial spectrum:
 \begin{definition}
 Let $\sheaf D_E(X)$ be the cosimplicial spectrum determined by the formula
 \[\mathcal{D}_E(X) := \left\{
@@ -107,7 +113,7 @@ It is called \textit{the descent object for $X$ from $E$ to $\S$}.
 \end{definition}
 It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
 \begin{lemma}
-When $E$ is an $A_\infty$--ring spectrum, the descent object $X^\wedge_E$ can be naturally considered cosimplicial object in the $\infty$--category of spectra. \qed \todo{I don't intend to prove this, but maybe we could say some mealy words about why it's true. At worst, we could give reference to the relevant part of Higher Algebra.}
+When $E$ is an $A_\infty$--ring spectrum, the descent object $\sheaf D_E(X)$ can be naturally considered as a cosimplicial object in the $\infty$--category of spectra. \qed \todo{I don't intend to prove this, but maybe we could say some mealy words about why it's true. At worst, we could give reference to the relevant part of Higher Algebra.}
 \end{lemma}
 \begin{definition}
 Let $E$ be an $A_\infty$--ring spectrum.  Then $X^\wedge_E := \Tot \sheaf D_E(X)$ is called the \textit{$E$--nilpotent completion of $X$}.  The spectral sequence resulting from the coskeletal filtration is called the \textit{$E$--Adams spectral sequence} (for $X$).
@@ -149,9 +155,9 @@ For a ring spectrum $E$ satisfying {\CH} and input spectrum $X$, we define the f
 \begin{align*}
 \Gamma \context{E}(X) & := \left\{
 \begin{tikzcd}[ampersand replacement=\&]
-\pi_* \left( \begin{array}{c} E \\ \sm \\ X \end{array} \right) \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} \&
-\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \&
-\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \&
+\pi_* \left( \begin{array}{c} E \\ \sm \\ X \end{array} \right) \arrow[leftarrow]{r} \arrow[shift left=(\baselineskip)]{r} \arrow[shift right=(\baselineskip)]{r} \&
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=(\baselineskip)]{r} \arrow[shift right=(2*\baselineskip)]{r} \arrow[leftarrow, shift right=(\baselineskip)]{r} \arrow{r} \&
+\pi_* \left( \begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \right) \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} \arrow[shift right=(3*\baselineskip)]{r} \&
 \cdots
 \end{tikzcd}
 \right\},
@@ -165,26 +171,24 @@ Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $
 \end{definition}
 
 \begin{remark}
-The main utility of this is that it obviates us from working through the homological algebra of sheaves over simplicial schemes.  Instead, since {\FH} causes $\context{E}$ to become $1$--truncated, we can refer to \Cref{CanonicalCoring} and simply refer back to the homological algebra of comodules.  In light of the discussion in \Cref{HopfAlgebrasFromFiniteGroups,HF2HomologyIsValuedInAutGaEquivarModules}, we also see an interpretation of these groupoid-valued simplicial schemes: they are valued in sheaves equipped with an action by $\Spec E_* E$, which acts also on the base $\Spec E_*$.  To denote this homotopical quotient, we will write \[\Spec E_* \mmod \Spec E_* E.\]
+The main utility of this is that it obviates us from working through the homological algebra of sheaves over simplicial schemes.  Instead, since {\FH} causes $\context{E}$ to become $1$--truncated, we can refer to \Cref{CanonicalCoring} and simply refer back to the homological algebra of comodules.  In light of the discussion in \Cref{HopfAlgebrasFromFiniteGroups,HF2HomologyIsValuedInAutGaEquivarModules}, we also see an interpretation of these groupoid--valued simplicial schemes: they are valued in sets equipped with an action by $\Spec E_* E$, which acts also on the base $\Spec E_*$.  To denote this ``homotopical quotient'' or ``action groupoid'', we will write \[\Spec E_* \mmod \Spec E_* E.\]  Such affine groupoid--valued schemes are themselves quite tangible: their rings of functions form \textit{Hopf algebroids}, and Cartesian quasicoherent sheaves on the groupoid scheme correspond to comodules for the Hopf algebroid.\citeme{A lot of this could use citation.  Most of it is in Ravenel's appendix or Hovey's paper.}
 \end{remark}
 
-\begin{remark}\todo{Is this right?  I think so...}
-There is a notion of quasicoherent sheaf directly over $\sheaf D_E$ and an interpretation of Cartesian sheaves in that setting.  A different view on {\FH} is that it causes the functor $\pi_*$ to preserve Cartesianness.
+\begin{remark}
+This homotopical perspective is quite useful --- for instance, a map of groupoid--schemes which induces on points a natural weak equivalence of groupoids also induces an equivalence of comodule categories.  In fact, the \emph{derived} comodule category depends only upon the stack associated to the groupoid--scheme, which allows still more contexts to be identified.  We won't need this observation in what's to come, though, and it introduces substantial technical distractions.\todo{Is there an instance where stacky equivalence (rather than natural groupoid equivalence) is relevant for algebraic topologists?  Or, really, anyone?}\todo{Could also explain the difference: levelwise sheaves of $0$--types vs sheaves of $\infty$--types.}
 \end{remark}
+
+\todo{I think there is a notion of quasicoherent sheaf directly over $\sheaf D_E$ and an interpretation of Cartesian sheaves in that setting.  I think that a different view on {\FH} is that it causes the functor $\pi_*$ to preserve Cartesianness.}
 
 \begin{example}
-Most of the homology theories we will discuss have this property.  For an easy example, $H\F_2$ certainly has this property: there is only one possible algebraic map $\F_2 \to \mathcal A_*$, so {\FH} is necessarily satisfied.  This grants us access to a description of the context for $H\F_2$: \[\context{H\F_2} = \Spec F_2 \mmod \InternalAut{\G_a}.\]
+Most of the homology theories we will discuss have this property.  For an easy example, $H\F_2P$ certainly has this property: there is only one possible algebraic map $\F_2 \to \mathcal A_*$, so {\FH} is necessarily satisfied.  This grants us access to a description of the context for $H\F_2$: \[\context{H\F_2P} = \Spec F_2 \mmod \InternalAut{\G_a}.\]
 \end{example}
 
+\begin{example}\label{ContextOfMUPExample}
+The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  It is isomorphic to the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.
+\end{example}
 
-----------
-
-
-(Basic properties of simplicial schemes: flat and closed maps?)
-
-talk about how equivalence of groupoids induces equivalence of sheaf categories.  also, a deeper natural equivalence: stackification and locality.
-
-\todo{I suspect you'll have time to move the ``upcoming program'' sketch scheduled for the beginning of the next lecture into the end of this one.  I think that's better narration anyhow.}
+\todo{Say what open, closed, flat maps of simplicial schemes are?}
 \todo{Jon thinks that this picture can be instructively recast in terms of the cotangent complex.  I'm not sure how, but it's something to keep in mind for later.}
 
 
@@ -192,26 +196,26 @@ talk about how equivalence of groupoids induces equivalence of sheaf categories.
 
 
 
-\section{The structure of $\moduli{fgl}$}\label{StructureOfMfgl}
+\section{Stalkwise analysis and chromatic homotopy theory}\label{StructureOfMfgl}
 
-Our first goal for today is to outline a program for the rest of this Case Study.  Yesterday, we developed a rich target for $E$--homology: sheaves over an algebro-geometric object $\context{E}$.  Furthermore, we have promised a strengthening of Quillen's theorem, \Cref{QuillenSurjective}, which would result in an identification $\context{MU} \simeq \moduli{fg}$, where $\moduli{fg}$ is the ``moduli of formal groups''.  Our initial goal for today is to outline a program by which we can leverage this to study $MU$.  Abstractly, one can hope to study any sheaf, including $\context{MU}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\context{MU}$, so that we can determine where to even look for those stalks.
+Our first goal for today is to outline a program for the rest of this Case Study.  Yesterday, we developed a rich target for $E$--homology: sheaves over an algebro-geometric object $\context{E}$.  Furthermore, we have explored in \Cref{ContextOfMUPExample} an identification $\context{MUP} \simeq \moduli{fg}$, where $\moduli{fg}$ is the ``moduli of formal groups''.  Our initial goal for today is to outline a program by which we can leverage this to study $MUP$.  Abstractly, one can hope to study any sheaf, including $\context{MUP}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\context{MUP}$, so that we can determine where to even look for those stalks.
 
-With this in mind, given a map \[\Spec R \xrightarrow{f} \moduli{fg},\] life would be easiest if the $R$--module determined by $f^* \context{MU}(X)$ were itself the value of a homology theory $R_*(X) = MU_* X \otimes_{MU_*} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
-
-\begin{theorem}[Landweber]
-For any diagram
+With this in mind, given a map $f$ in the diagram
 \begin{center}
 \begin{tikzcd}
-\Spec R \arrow{r}{i} & \moduli{fgl} \arrow[-,double]{r} \arrow{d} & \context{MU}[0] \arrow{d} \arrow[-,double]{r} & \Spec MU_* \\
-& \moduli{fg} \arrow[-,double]{r} \arrow[leftarrow]{lu}{\mathrm{flat}} & \context{MU}
+\Spec R \arrow{r}{f} & \moduli{fgl} \arrow[-,double]{r} \arrow{d} & \context{MU}[0] \arrow{d} \arrow[-,double]{r} & \Spec MUP_0 \\
+& \moduli{fg} \arrow[-,double]{r} \arrow[leftarrow]{lu} & \context{MU},
 \end{tikzcd}
 \end{center}
-such that the diagonal arrow is flat, the functor \[R_*(X) := MU_*(X) \otimes_{MU_*} R\] determines a homology theory. 
+life would be easiest if the $R$--module determined by $f^* \context{MUP}(X)$ were itself the value of a homology theory $R_0(X) = MUP_0 X \otimes_{MUP_0} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
+
+\begin{theorem}[Landweber]
+Given such a diagram where the diagonal arrow is flat, the functor \[R_0(X) := MUP_0(X) \otimes_{MUP_0} R\] is a homology theory. 
 \end{theorem}
 
-\noindent In the course of proving this theorem, Landweber devised a method to recognize flat maps.  Recall that a map $f$ is flat exactly when for any closed substack $i: A \to \moduli{fg}$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \mathcal I \to f^* \mathcal O_{\moduli{fg}} \to f^* i_* \mathcal O_A \to 0.\]  Landweber classified the closed substacks of $\moduli{fg}$, thereby giving a method to check maps for flatness.
+\noindent In the course of proving this theorem, Landweber devised a method to recognize flat maps.  Recall that a map $f$ is flat exactly when for any closed substack $i\co A \to \moduli{fg}$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \mathcal I \to f^* \mathcal O_{\moduli{fg}} \to f^* i_* \mathcal O_A \to 0.\]  Landweber classified the closed substacks of $\moduli{fg}$, thereby giving a method to check maps for flatness.
 
-This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a closed substack (and so, in particular, a closed point $\Gamma$) is flat only in highly degenerate cases.  This can be repaired: the inclusion of the formal completion of a closed substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each closed point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the closed points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called $E_\Gamma$.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover a \emph{homology theory} $K_\Gamma$ which plays the role of computing the stalk of $\context{MU}(X)$ at $\Gamma$.\todo{Incidentally, this program has no content when applied to $\context{H\F_2}$, as $\Spec \F_2$ is simply too small.}
+This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a closed substack (and so, in particular, a closed point $\Gamma$) is flat only in highly degenerate cases.  We saw in \Cref{AlgebraicCompletionSituation} that this can be repaired: the inclusion of the formal completion of a closed substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each closed point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the closed points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called $E_\Gamma$.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover a \emph{homology theory} $K_\Gamma$ which plays the role of computing the stalk of $\context{MUP}(X)$ at $\Gamma$.\footnote{Incidentally, this program has no content when applied to $\context{H\F_2}$, as $\Spec \F_2$ is simply too small.}
 
 We have thus assembled a task list:
 \begin{itemize}
@@ -219,9 +223,7 @@ We have thus assembled a task list:
 \item Describe the geometric points of $\moduli{fg}$.
 \item Analyze their infinitesimal deformation spaces.
 \end{itemize}
-This will occupy us for the next two lectures.  Today, we will embark on this analysis by studying the scheme $\moduli{fgl}$ which naturally covers the stack $\moduli{fg}$.
-
-\todo[inline]{The rest of this lecture is written with respect to logical order rather than with respect to narrative order. The narrative could use a lot of beefing up.}
+This will occupy us for the next few lectures.  Today, we will embark on this analysis by studying the scheme $\moduli{fgl}$ which naturally covers the stack $\moduli{fg}$.
 
 \begin{definition}
 There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying all bivariate power series:
@@ -233,45 +235,45 @@ Then, set $\moduli{fgl}$ to be the closed subscheme selected by the formal group
 \end{definition}
 
 This presentation of $\moduli{fgl}$ as a subscheme appears to be extremely complicated in that its ideal is generated by many hard-to-describe elements, but $\moduli{fgl}$ itself is actually not complicated at all.  We will prove the following theorem:
-\begin{theorem}\label{LazardsTheorem}\citeme{Lazard}
+\begin{theorem}[{\cite[Th\'eor\`eme II]{Lazard}}]\label{LazardsTheorem}
 There is a noncanonical isomorphism \[\sheaf{O}_{\moduli{fgl}} \cong \Z[t_n \mid 1 \le n < \infty]. \qed\]
 \end{theorem}
 
 The most important consequence of this is \emph{smoothness}:
-\begin{corollary}
+\begin{corollary}\label{MfglIsSmooth}
 Given a formal group law $\phi$ over a ring $R$ and a surjective ring map $f\co S \to R$, there exists a formal group law $\widetilde \phi$ over $S$ with \[\phi = f^* \widetilde \phi. \qed\]
 \end{corollary}
 
-\begin{definition}
-In order to prove \Cref{LazardsTheorem}, we will study a sequence of intermediate rings where the series $+_\phi$ is only determined modulo $(x, y)^{n+1}$, i.e., through degree $n$.  Such a series satisfying the analogues of the formal group law axioms is called a \textit{formal $n$--bud}.  The ring of functions on the scheme parametrizing formal $n$--buds is written $L_n$, and the colimit of these rings is $L_\infty = \sheaf{O}_{\moduli{fgl}}$.
-\end{definition}
-
 \begin{remark}
-One might hope that the filtration above has an immediate geometric realization.  After all, one can consider the $n${\th} order formal neighborhood $\A^{1, (n)}$ of \Cref{FiniteOrderAffineSpaceDefn}.  The appropriate analogue of \Cref{MapsOfFVarsArePowerSeries} shows that a map $\A^{1, (n)} \times \A^{1, (n)} \to \A^{1, (n)}$ is represented by a bivariate power series, \emph{modulo the ideal $(x^{n+1}, y^{n+1})$}.  This ideal is distinct from $(x, y)^{n+1}$, and so the source scheme of a formal $n$--bud is not the square of $\A^{1, (n)}$, and a formal $n$--bud does \emph{not} determine a group object on some finite scheme.  This is actually a good thing: there are structure theorems preventing many of these intermediate group structures on finite schemes from existing.\citeme{Akhil is who reminded me of this, back in Berkeley.}
+One might hope that the filtration above has an immediate geometric realization.  After all, one can consider the $n${\th} order formal neighborhood $\A^{1, (n)}$ of \Cref{FiniteOrderAffineSpaceDefn}.  The appropriate analogue of \Cref{MapsOfFVarsArePowerSeries} shows that a map \[\A^{1, (n)} \times \A^{1, (n)} \to \A^{1, (n)}\] is represented by a bivariate power series, \emph{modulo the ideal $(x^{n+1}, y^{n+1})$}.  This ideal is distinct from $(x, y)^{n+1}$, and so the source scheme of a formal $n$--bud is not the square of $\A^{1, (n)}$, and a formal $n$--bud does \emph{not} determine a group object on some finite scheme.  This is actually a good thing: there are structure theorems preventing many of these intermediate group structures on finite schemes from existing.\citeme{Akhil is who reminded me of this, back in Berkeley.}
 \end{remark}
 
-In addition to the Corollary above, we can deduce the following:
+\todo{There's some hidden text here about $n$--buds, but I don't think we ever care about it.}
+% In addition to the Corollary above, we can deduce the following:
 
-\begin{corollary}[{cf. \Cref{LazardsTheorem}}]\citeme{Lazard??}
-There are elements $t_n \in L$, $0 < n < \infty$, such that
-\begin{align*}
-L_r & \cong \Z[t_1, t_2, \ldots, t_r], &
-L_\infty & \cong \Z[t_1, t_2, \ldots, t_r, \ldots],
-\end{align*}
-and such that $L_r \to L_{r+1}$ is the evident inclusion. \qed
-\end{corollary}
+% \begin{corollary}[{cf. \Cref{LazardsTheorem}}]\citeme{Lazard??}
+% There are elements $t_n \in L$, $0 < n < \infty$, such that
+% \begin{align*}
+% L_r & \cong \Z[t_1, t_2, \ldots, t_r], &
+% L_\infty & \cong \Z[t_1, t_2, \ldots, t_r, \ldots],
+% \end{align*}
+% and such that $L_r \to L_{r+1}$ is the evident inclusion. \qed
+% \end{corollary}
 
-\begin{corollary}
-Given an $r$--bud over $R$, there exists an $(r+1)$--bud extending it. \qed
-\end{corollary}
+% \begin{corollary}[{\cite[Th\'eor\`eme III]{Lazard}}]
+% Given an $r$--bud over $R$, there exists an $(r+1)$--bud extending it. \qed
+% \end{corollary}
 
 \begin{proof}[{Proof of \Cref{LazardsTheorem}}]
-Let $U = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting an exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $U$ by the formula \[x +_U y = \exp(\log(x) + \log(y)),\] classified by a map $u: L_\infty \to U$.  Modulo decomposables, this map can be computed as \[u(a_{i(n-i)}) = \binom{n}{i} b_{n-1} \pmod{I^2}.\]  Equivalently stated, writing $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$, the map $Qu$ on degree $2n$ has image the subgroup generated by $d_{n+1} b_n$.  Using the splitting of $Qu$ from \Cref{Symmetric2CocycleLemma}.4 below, we use the freeness of $U$ to \emph{choose} an algebra splitting \[U \xrightarrow{v} L_\infty \xrightarrow{u} U.\]  The map $v$ is an isomorphism because $uv$ is injective and because we have checked that $v$ is surjective on indecomposables.\todo{Why do the intermediate rings matter? It must matter just in the tail of this proof.}
+Let $U = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting a ``strict'' exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $U$ by the formula \[x +_U y = \exp(\log(x) + \log(y)),\] classified by a map $u\co L_\infty \to U$.  Modulo decomposables, this map can be computed as \[u(a_{i(n-i)}) = \binom{n}{i} b_{n-1} \pmod{\text{decomposables}}.\]  Writing $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$, the map $Qu$ on degree $2n$ has image the subgroup generated by $d_{n+1} b_n$.  We write $T_{2n}$ for this subgroup.  Using the splitting of $Qu$ from \Cref{Symmetric2CocycleLemma}.4 below, we use the freeness of $U$ to \emph{choose} an algebra splitting \[U \xrightarrow{v} L_\infty \xrightarrow{u} U.\]  The map $v$ is an isomorphism because $uv$ is injective and because we have checked that $v$ is surjective on indecomposables.\todo{Do the intermediate rings matter here?}
 \end{proof}
 
+\begin{definition}
+In order to prove the missing \Cref{Symmetric2CocycleLemma}, it will be useful to study the series $+_\phi$ ``up to degree $n$'', i.e., modulo $(x, y)^{n+1}$.  Such a truncated series satisfying the analogues of the formal group law axioms is called a \textit{formal $n$--bud}.  Additionally, a \textit{symmetric $2$--cocycle} is a symmetric polynomial $f(x, y)$ satisfying the equation \[f(x, y) - f(t + x, y) + f(t, x + y) - f(t, x) = 0.\]
+\end{definition}
 
 \begin{lemma}[Symmetric $2$--cocycle lemma]\label{Symmetric2CocycleLemma}
-A \textit{symmetric $2$--cocycle} is a symmetric polynomial $f(x, y)$ satisfying the equation \[f(x, y) - f(t + x, y) + f(t, x + y) - f(t, x) = 0.\]  The following are equivalent and true:
+The following are equivalent and true:
 \begin{enumerate}
 \item Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n).\]
 \item For $F$ is an $r$--bud, the set of $(r+1)$--buds extending $F$ form a torsor under addition for $R_{2n-2} \otimes c_r$.
@@ -279,14 +281,19 @@ A \textit{symmetric $2$--cocycle} is a symmetric polynomial $f(x, y)$ satisfying
 \item There is a canonical splitting $T_{2n} \to (QL)_{2n}$.
 \end{enumerate}
 \end{lemma}
-\begin{proof}[Notes on proof]\todo{Actually prove these reductions?}
-Verifying that the claims are equivalent to one another is straightforward.  Claim (1) is the version that actually gets proved, by considering the homological algebra of formal groups.
+\begin{proof}[Equivalences]\renewcommand{\qedsymbol}{}
+Verifying that Claims 1 and 2 are equivalent is a matter of writing out the purported $(r+1)$--buds and taking their difference.  To see that Claim 2 is equivalent to Claim 3, follow the chain \[\CatOf{Groups}((QL)_{2n}, A) \cong \CatOf{Rings}(\Z \oplus (QL)_{2n}, \Z \oplus \Susp^{2n} A) \cong \CatOf{Rings}(L, \Z \oplus \Susp^{2n} A).\]  This shows that such a homomorphism of groups determines an extension of the $n$--bud $\G_a$ to an $(n+1)$--bud, which takes the form of a $2$--cocycle with coefficients in $A$, and hence factors through $T_{2n}$.  Finally, Claim 4 is the universal case of Claim 3.
 \end{proof}
 
-\todo{Separate this into a calculation of $\Ext(\G_a, \G_a)$ and the separate symmetric $2$--cocycle lemma.}
+We will prove Claim 1 tomorrow.
 
-\begin{proof}[Proof of the symmetric cocycle lemma]\todo{Rework this.}\citeme{This follows Chapter 3 of COCTALOS.}
-It suffices to show the lemma over a finitely generated ring.  In fact, the Lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, so the structure theorem for finitely generated abelian groups reduces to the cases of $\Z$ and $\Z/p^r$.  If $A \subseteq B$ and the Lemma is true for $B$, it's true for $A$, so we can further reduce the $\Z$ case to $\Q$.\todo{Rephrase this in terms of localizations.}  We can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive, Bockstein-style argument.  Hence, we can now freely assume that our ground object is a prime field.
+
+
+
+\section{The structure of $\moduli{fg}$ I: Points}
+
+\begin{proof}[{Proof of Claim 1 from \Cref{Symmetric2CocycleLemma}}]\citeme{This follows Chapter 3 of COCTALOS.}
+It suffices to show the Lemma over a finitely generated ring.  In fact, the Lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, so the structure theorem for finitely generated abelian groups reduces to the cases of $\Z$ and $\Z/p^r$.  If $A \subseteq B$ and the Lemma is true for $B$, it's true for $A$, so we can further reduce the $\Z$ case to $\Q$.\todo{Rephrase this in terms of localizations.}  We can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive, Bockstein-style argument.  Hence, we can now freely assume that our ground object is a prime field.
 
 For a formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usual way:
 \[B\G := \left\{
@@ -297,38 +304,19 @@ For a formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usu
 \cdots
 \end{tikzcd}
 \right\}.\]
-By applying the functor $\InternalHom{FormalGroups}(-, \G_a)(k)$, we get a cosimplicial abelian group, hence a cochain complex, of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} the things we've been calling $2$--cocycles.  In this case, the first observation is that $d^1(x^k) = d_k c_k$.  Secondly, one may also check that this complex computes $\Cotor_{\sheaf O_{\G}^*}(k, k)$, which we're now going to compute using a more efficient complex.
+By applying the functor $\InternalHom{FormalGroups}(-, \G_a)(k)$, we get a cosimplicial abelian group, hence a cochain complex, of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} the things we've been calling $2$--cocycles\footnote{They aren't obligated to be symmetric, though.}, so we are interested in computing $H^2$.  The first observation in this direction is that $d^1(x^k) = d_k c_k$.  Secondly, one may check that this complex also computes \[\Cotor_{\sheaf O_{\G}^*}(k, k) \cong \Ext_{\sheaf O_{\G}^*}(k, k),\] which we're now going to compute using a more efficient complex.
 
 \begin{itemize}
-\item[$\Q$:] In the homological version of this case, you use the resolution \[0 \to \Q[t] \xrightarrow{\cdot t} \Q[t] \to \Q \to 0,\] from which this follows: \[H^* \InternalHom{FormalGroups}(B\G_a, \G_a)(\Q) = \begin{cases} \Q & \text{when $* = 0$}, \\ \Q & \text{when $* = 1$}, \\ 0 & \text{otherwise}, \end{cases}\] from which this case follows.  This means that every $2$--cocycle is a coboundary, symmetric or not.
-\item[$\F_p$:] Again, switch to the homological setting, so that we're working with $\Ext$ over a free divided power algebra over $\F_p$.  Such an algebra splits as a tensor of truncated polynomial algebras, and again computing a minimal free resolution results in the calculation \[H^* \InternalHom{FormalGroups}(B\G_a, \G_a)(\F_p) = \Lambda[\alpha_k \mid k \ge 0] \otimes \F_p[\beta_k \mid k \ge 0],\] with $\alpha_k \in \Ext^1$ and $\beta_k \in \Ext^2$.  In fact, $\alpha_k$ is represented by $x^{p^k}$ and $\beta_k$ is represented by $c_{p^k}(x, y)$, and in the case $p = 2$ the exceptional class $\alpha_{k-1}^2$ is represented by $C_{2^k}(x, y)$.\todo{I'm not sure how to do any of these calculations! Ha.}  Since we have representatives for the surviving homology classes and we know where the bounding class lives, it follows that $c_n(x, y)$ and $x^{p^a} y^{p^b}$ give a basis for \emph{all} of the $2$--cocycles.  It's easy to select the symmetric ones, and it agrees with the prediction of the statement of the Lemma. \qedhere
+\item[$\Q$:] There is a resolution \[0 \to \Q[t] \xrightarrow{\cdot t} \Q[t] \to \Q \to 0,\] from which this follows: \[H^* \InternalHom{FormalGroups}(B\G_a, \G_a)(\Q) = \begin{cases} \Q & \text{when $* = 0$}, \\ \Q & \text{when $* = 1$}, \\ 0 & \text{otherwise}. \end{cases}\] This means that every $2$--cocycle is a coboundary, symmetric or not.
+\item[$\F_p$:] Again, we switch to working with $\Ext$ over a free divided power algebra.  Such an algebra splits as a tensor of truncated polynomial algebras, and again computing a minimal free resolution results in the calculation \[H^* \InternalHom{FormalGroups}(B\G_a, \G_a)(\F_p) = \Lambda[\alpha_k \mid k \ge 0] \otimes \F_p[\beta_k \mid k \ge 0],\] with $\alpha_k \in \Ext^1$ and $\beta_k \in \Ext^2$.  In fact, $\alpha_k$ is represented by $x^{p^k}$ and $\beta_k$ is represented by $c_{p^k}(x, y)$, and in the case $p = 2$ the exceptional class $\alpha_{k-1}^2$ is represented by $C_{2^k}(x, y)$.\todo{I'm not sure how to do any of these calculations! Ha.}  Since we have representatives for the surviving homology classes and we know where the bounding class lives, it follows that $c_n(x, y)$ and $x^{p^a} y^{p^b}$ give a basis for \emph{all} of the $2$--cocycles.  It's easy to select the symmetric ones, and it agrees with the prediction of the statement of the Lemma.
 \end{itemize}
+This finally concludes the proof of \Cref{LazardsTheorem}.
 \end{proof}
 
-This finally concludes the proof of \Cref{LazardsTheorem}.  We now deduce an important topological consequence:
-\begin{corollary}
-The map $\delta\co L_\infty \to MU_*$ is an isomorphism.
-\end{corollary}
-\begin{proof}
-Consider the diagram\todo{You haven't justified why the arcing arrow is named $u$.  This comes out of understanding the flip action, and it should also yield a proof of the Corollary below.}
-\begin{center}
-\begin{tikzcd}
-U \arrow{r}{v} & L_\infty \arrow{r}{\delta} \arrow[bend left]{rrr}{u} & MU_* \arrow{r}{1 \sm \eta_{H\Z}} & MU_* H\Z \arrow[-,double]{r} & U.
-\end{tikzcd}
-\end{center}
-In \Cref{QuillenSurjective}, we previously showed that $\delta$ was surjective.  To see that $\delta$ is also injective, notice that the first map is an isomorphism and the long composite is injective.
-\end{proof}
+\todo[inline]{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I think we should phrase things in those terms.}
+\todo[inline]{Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
 
-------
-
-\begin{corollary}\todo{Explain what $\moduli{ps}$ is.}
-The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd}.\]  
-\end{corollary}
-\begin{proof}
-\todo{Prove me.}
-\end{proof}
-
-\todo[inline]{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I think we should phrase things in those terms.  Also also, Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
+\textbf{Put in a proof of the classification of geometric points.}
 
 
 
@@ -336,9 +324,7 @@ The context for $MU$ is isomorphic to the moduli of formal groups: \[\context{MU
 
 
 
-\section{The structure of $\moduli{fg}$ I: Large scales}
-
-\todo{Should sections have subsections?  Does that help organize the TOC?}
+\section{The structure of $\moduli{fg}$ II: Large scales}
 
 Having described the structure of $\moduli{fgl}$, we turn to understanding the quotient stack $\moduli{fg}$.  Earlier, we proved the following theorem:
 
@@ -482,7 +468,7 @@ It's worth pointing out how strange this is. In Euclidean geometry, open subspac
 
 
 
-\section{The structure of $\moduli{fg}$ II: Small scales}
+\section{The structure of $\moduli{fg}$ III: Small scales}
 
 
 \textbf{Now analyze the deformation spaces}
@@ -595,7 +581,9 @@ A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, 
 Point out that it's most important to understand $K(d)$ for each $d$, not $K_\Gamma$ for every $\Gamma$.
 
 \begin{remark}
-Morava $K$--theory at the even prime is not commutative.\todo{cf.\ Section 5.2 of KLW.}
+Morava $K$--theory at the even prime is not commutative.
+
+\todo[inline]{cf.\ Section 5.2 of KLW.  Or, at $p = 2$ there is a derivation $Q: K \to \Susp K$ with $ab - ba = u Q(a) Q(b)$, so $K^0 X$ is commutative whenever $K^1 X = 0$ (cf.\ Theorem 2.13 of Strickland's \textit{Products on $MU$--modules}).}
 \end{remark}
 
 
@@ -605,6 +593,8 @@ Morava $K$--theory at the even prime is not commutative.\todo{cf.\ Section 5.2 o
 
 
 \section{Nilpotence and periodicity}
+
+\todo{I think it makes sense to break the following lecture into two days.}
 
 Having constructed these ``stalk'' homology theories, I want to show that you can actually perform stalkwise analyses of the sheaves coming from bordism theory.  Our example case is a famous theorem: the solution of Ravenel's nilpotence conjectures by Devinatz, Hopkins, and Smith.  Their theorem concerns spectra which ``detect nilpotence'' in the following sense:
 
@@ -698,6 +688,14 @@ BP_* M_{|v_d| i_d}(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{v} \
 \end{center}
 These maps are guaranteed by very careful study of Adams spectral sequences.
 \end{proof}
+
+
+
+
+
+
+
+\section{The spectrum of the stable category}
 
 As part of a broad attempt to analyze a geometric object through its modules, Paul Balmer has demonstrated the following theorem:
 

@@ -52,7 +52,7 @@ B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \arrow{r} & B\GL_1 S^{n+m-1}.
 \begin{corollary}
 There is a map of $H$--spaces $J_{\R}\co BO \to B\GL_1 \S$ called the \textit{stable $J$--homomorphism}. \qed
 \end{corollary}
-\noindent Finally, we can ask about the compatibility of $T$ with all of this:\todo{The right place to address dimension is here.  $T$, as defined above, does not extend to a functor off of the system $\{BhAut(S^{n-1})\}$ unless you reduce each Thom complex by the appropriate dimension shift.}
+\noindent Finally, we can ask about the compatibility of $T$ with all of this:\todo{The right place to address dimension is here.  $T$, as defined above, does not extend to a functor off of the system $\{BhAut(S^{n-1})\}$ unless you reduce each Thom complex by the appropriate dimension shift.  So, you should define a stable Thom spectrum functor.}
 \begin{lemma}\label{ThomSpacesAreMonoidal}
 $T$ is monoidal: it carries external fiberwise joins to smash products of Thom spaces. \qed
 \end{lemma}
@@ -116,7 +116,7 @@ g\circ f &\simeq g \circ (\alpha_{MO}\sm E) \circ (\theta_{MO} \sm E) \circ f& \
 \end{proof}
 \todo{At least hint that there's a converse to this Theorem, to be explored later.}
 
-\begin{example}
+\begin{example}\label{HF2RPinftyExample}
 We'll close out today by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  By killing all the homotopy elements in positive degrees, we can also see that the map $MO \to H\F_2$ is a ring map\todo{This requires some justification, like $MO$ being connective .}, so that we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
 \begin{align*}
 \pi_* (H\F_2 \sm T(\L - 1)) & \cong \pi_* (H\F_2 \sm T(0)) & \text{(Thom isomorphism)} \\
@@ -172,7 +172,7 @@ The functor $\mathbb A^1$ introduced above is naturally valued in groups: since 
 \mathbb G_a & \xrightarrow{\chi} \mathbb G_a & -x & \mapsfrom x, \\
 \Spec \F_2 & \xrightarrow{\eta} \mathbb G_a & 0 & \mapsfrom x.
 \end{align*}
-\todo{I think you explained this differently in class, so I wanted to work out how to use the Yoneda lemma to deduce these.  The idea is that we want a map, e.g., $\mu \in \mathrm{Nat}(\mathbb A^1 \times \mathbb A^1, \mathbb A^1)$.  The functors involved are corepresented, so this is just $\mathrm{Nat}(h^{\mathbb{F}_2[x_1,x_2]},h^{\mathbb{F}_2[x]})$.  The Yoneda lemma says that this is the same as an algebra map $\mathbb{F}_2[x] \rightarrow \mathbb{F}_2[x_1,x_2]$, which is obtained by evaluating the natural transformation at the identity of $\mathbb{F}_2[x_1,x_2]$.  The identity map of $\mathbb{F}_2[x_1,x_2]$ corresponds to the pair of elements $x_1, x_2$ in $\mathbb{F}_2[x_1,x_2]$, which gets sent to $x_1 + x_2$.  So the algebra homomorphism we want sends $x$ to $x_1 + x_2$.} 
+\todo{I think you explained this differently in class, so I wanted to work out how to use the Yoneda lemma to deduce these.  The idea is that we want a map, e.g., $\mu \in \mathrm{Nat}(\mathbb A^1 \times \mathbb A^1, \mathbb A^1)$.  The functors involved are corepresented, so this is just $\mathrm{Nat}(h^{\mathbb{F}_2[x_1,x_2]},h^{\mathbb{F}_2[x]})$.  The Yoneda lemma says that this is the same as an algebra map $\mathbb{F}_2[x] \rightarrow \mathbb{F}_2[x_1,x_2]$, which is obtained by evaluating the natural transformation at the identity of $\mathbb{F}_2[x_1,x_2]$.  The identity map of $\mathbb{F}_2[x_1,x_2]$ corresponds to the pair of elements $x_1, x_2$ in $\mathbb{F}_2[x_1,x_2]$, which gets sent to $x_1 + x_2$.  So the algebra homomorphism we want sends $x$ to $x_1 + x_2$.}
 \end{example}
 
 \begin{remark}
@@ -289,6 +289,7 @@ A $\mathbb G_m$--action on $\Spec R$ is equivalent data to a coaction map \[\alp
 
 This notion from algebraic geometry is somewhat different from what we are used to in algebraic topology, as it is designed to deal with things like polynomial rings (where the difference of two polynomials can lie in lower degree), but in classical algebraic topology we only ever encounter sums of terms with homogeneous degree.  We can modify our perspective very slightly to arrive at the algebraic geometers': replace $H\F_2$ by the periodified spectrum \[H\F_2P = \bigvee_{j=-\infty}^\infty \Susp^j H\F_2.\]  This spectrum has the property that $H\F_2P^0(X)$ is isomorphic to $H\F_2^*(X)$ as ungraded rings, but now we can make sense of the sum of two classes which used to live in different $H\F_2$--degrees.  At this point we can manually craft the desired coaction map $\alpha^*$ so that we are in the situation of \Cref{GradedAndGmEquivAgree}, but we will shortly find that algebraic topology gifts us with it on its own.
 
+\todo{You can do a better job of describing where the Steenrod coaction comes from, rather than resting on duality.  For instance, you could at least justify \emph{why the Steenrod algebra is a Hopf algebra}.  Already, that's kind of unclear.}
 Our route to finding this internally occurring $\alpha^*$ is by turning to the next supplementary structure: the action of the Steenrod algebra.  Naively approached, this does not fit into the framework we've been sketching so far: the Steenrod algebra is a \emph{noncommutative} algebra, and so the action map \[\mathcal A^* \otimes H\F_2^* X \to H\F_2^* X\] will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, since the Cartan formula expressing the diagonal on $\mathcal A^*$ is evidently symmetric: \[\Sq^n(x y) = \sum_{i+j=n} \Sq^i(x) \Sq^j(y).\]  \todo{Reminder for jhfung: $\mathcal A^*$ is a Hopf algebra with comultiplication $\Sq^n \mapsto \sum_{i + j = n} \Sq^i \otimes \Sq^j$, so $\mathcal{A}_*$ is also a Hopf algebra.}  Second, if $X$ is a \emph{finite} complex, then tinkering with Spanier--Whitehead duality\todo{I see that if $X$ is a finite complex, it has a Spanier--Whitehead dual, but I don't see how to use this.  Is $\lambda^*$ not just the composition $H\mathbb{F}_2^* X = \mathbb{F}_2 \otimes H\mathbb{F}_2^* X \to H\mathbb{F}_2^* X \otimes \mathcal A^* \otimes \mathcal A_* \xrightarrow{\lambda \otimes 1} H\mathbb{F}_2^* X \otimes \mathcal{A}_*$?} gives rise to a coaction map \[\lambda^*: H\F_2^* X \to H\F_2^* X \otimes \mathcal A_*,\] which we will then re-interpret as an action map \[\alpha: \Spec \mathcal A_* \times X_{H\F_2} \to X_{H\F_2}.\]  Milnor works out the Hopf algebra structure of $\mathcal A_*$, by defining elements $\xi_j \in \mathcal A_*$ dual to $\Sq^{2^{j-1}} \cdots \Sq^{2^0} \in \mathcal A^*$.  Taking $X = \RP^n$ and $x \in H\F_2^1(\RP^n)$ the generator, then since $\Sq^{2^{j-1}} \cdots \Sq^{2^0} x = x^{2^j}$ he deduces the formula \[\lambda^*(x) = \sum_{j=0}^{\lfloor \log_2 n \rfloor} x^{2^j} \otimes \xi_j.\]  Notice that we can take the limit $n \to \infty$ to get a well-defined infinite sum, provided we permit ourselves to make sense of such a thing.  He then makes the following calculation, stable in $n$:
 \begin{align*}
 (\lambda^* \otimes \id) \circ \lambda^*(x) & = (\id \otimes \Delta) \circ \lambda^*(x) & \text{(coassociativity)} \\
@@ -320,7 +321,7 @@ Projecting to the quotient Hopf algebra $\mathcal AP_0 \to \F_2[\xi_0^\pm]$ give
 
 To study the rest of $\mathcal AP_0$ in terms of algebraic geometry, we need only identify what the series $\lambda^*(x)$ embodies.  Note that this necessarily involves some creativity, and the only justification we can supply will be moral, borne out over time, as our narrative encompasses more and more phenomena.  With that caveat in mind, here is one such description.  Recall the map induced by the $H$--space multiplication \[H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \leftarrow H\F_2^* \RP^\infty.\]  Taking a colimit over finite complexes, we produce an coaction of $\mathcal A_*$, and since the map above comes from a map of spaces, it is equivariant for the coaction.  Since the action on the left is diagonal, we deduce the formula \[\lambda^*(x_1 + x_2) = \lambda^*(x_1) + \lambda^*(x_2).\]
 
-\begin{lemma}
+\begin{lemma}\label{SteenrodAlgIdentifiedWithAutGa}
 The series $\lambda^*(x) = \sum_{j=0}^\infty x^{2^j} \otimes \xi_j$ is the universal example of a series satisfying $\lambda^*(x_1 + x_2) = \lambda^*(x_1) + \lambda^*(x_2)$.  The set $(\Spec \mathcal AP_0)(T)$ is identified with the set of power series $f$ with coefficients in the $\F_2$--algebra $T$ satisfying \[f(x_1 + x_2) = f(x_1) + f(x_2). \qed\]
 \end{lemma}
 \todo{Can you explain this more?  In which sense is $\lambda^*(x)$ universal?  How do I get from the first statement to the second?}
@@ -520,88 +521,13 @@ Consider the degenerate case $X = H\F_2$.  Then $H\F_{2*}(H\F_2) = \mathcal A_*$
 
 \begin{example}
 At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pictured through a range in \Cref{HF2ASSFigure}.\todo{Label elements?  Identify some groups?}
+\begin{landscape}
 \begin{figure}[b]
-\begin{center}
-\begin{tikzpicture}[scale=0.75]
-% the axes
-\draw [<->] (0,9.5) |- (0,0) |- (17.5,0);
-% the grid
-\draw[black!50] (0,0) grid (17,9);
+\input{sseqpages/ass.tex}
 
-% the groups
-\foreach \y in {0,...,9}
-    {\node (one\y) at (0,\y) {$\bullet$};};
-\node at (1,1) {$\bullet$};
-\node at (2,2) {$\bullet$};
-\node at (3,3) {$\bullet$};
-\node at (3,1) {$\bullet$};
-\node at (3,2) {$\bullet$};
-\node at (6,2) {$\bullet$};
-\node at (7,1) {$\bullet$};
-\node at (7,2) {$\bullet$};
-\node at (7,3) {$\bullet$};
-\node at (7,4) {$\bullet$};
-\node at (8,2) {$\bullet$};
-\node at (8,3) {$\bullet$};
-\node at (9,3) {$\bullet$};
-\node at (9,4) {$\bullet$};
-\node at (9,5) {$\bullet$};
-\node at (10,6) {$\bullet$};
-\node at (11,5) {$\bullet$};
-\node at (11,6) {$\bullet$};
-\node at (11,7) {$\bullet$};
-\node at (14,2) {$\bullet$};
-\node at (14,3) {$\bullet$};
-\node at (14,4) {$\bullet$};
-\node at (14,5) {$\bullet$};
-\node at (14,6) {$\bullet$};
-\node at (15,1) {$\bullet$};
-\node at (15,2) {$\bullet$};
-\node at (15,3) {$\bullet$};
-\node at (15,4) {$\bullet$};
-\node at (15,5) {$\bullet$};
-\node at (15,6) {$\bullet$};
-\node at (15,7) {$\bullet$};
-\node at (15,8) {$\bullet$};
-\node at (16,2) {$\bullet$};
-\node at (16,6) {$\bullet$};
-\node at (16,7) {$\bullet$};
-\node at (17,3) {$\bullet$};
-\node at (17,4) {$\bullet$};
-\node at (17,5) {$\bullet$};
-\node at (17,6) {$\bullet$};
-\node at (17,7) {$\bullet$};
-\node at (17,8) {$\bullet$};
-\node at (17,9) {$\bullet$};
-
-% multiplicative structure
-
-\path (0,0) edge[thick] (0,9)
-      (0,0) edge[thick] (3,3)
-      (3,1) edge[thick] (3,3)
-      (7,1) edge[thick] (7,4)
-      (7,1) edge[thick] (9,3)
-      (8,3) edge[thick] (9,4)
-      (9,5) edge[thick] (11,7)
-      (11,5) edge[thick] (11,7)
-      (14,2) edge[thick] (14,3)
-      (14,4) edge[thick] (14,6)
-      (15,1) edge[thick] (15,8)
-      (15,1) edge[thick] (17,3)
-      (16,6) edge[thick] (17,7)
-      (16,7) edge[thick] (17,8)
-      (17,4) edge[thick] (17,7);
-
-% differentials
-
-\path (15,1) edge[-stealth] (14,3)
-      (15,2) edge[-stealth] (14,5)
-      (15,3) edge[-stealth] (14,6)
-      (17,4) edge[-stealth] (16,6);
-\end{tikzpicture}
-\end{center}
-\caption{A small piece of the $H\F_2$-Adams spectral sequence for the sphere, beginning at the second page.  Lines denote multiplication by $2$ and by $\eta$, thin arrows denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
+\caption{A small piece of the $H\F_2$-Adams spectral sequence for the sphere, beginning at the second page.  North and north-east lines denote multiplication by $2$ and by $\eta$, north-west lines denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
 \end{figure}
+\end{landscape}
 \end{example}
 
 \todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?  I think this is a duality effect: working with the Steenrod algebra versus its dual.}
