@@ -22,17 +22,19 @@ The associated Thom spectrum is written ``$MU$'' and called \textit{complex bord
 \end{definition}
 
 \begin{theorem}\label{ThomIsomOverC}\citeme{Give a reference from Lecture 1.1}
-For a complex vector bundle $\xi$ on a space $X$ and a complex-oriented ring spectrum $E$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X. \qed\]
+For a complex vector bundle $\xi$ on a space $X$ and a complex-oriented\todo{I don't remember discussing orientations in the last chapter (probably because it's not needed), but maybe you can say something about where the complex orientation is used in this theorem?} ring spectrum $E$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X. \qed\]
 \end{theorem}
 
 \begin{corollary}\label{CPinftyNiceCalculation}\citeme{Give a reference from Lecture 1.1}
 In particular, for a complex-oriented ring spectrum $E$ it follows that $E^* \CP^\infty$ is isomorphic to a one--dimensional power series ring. \qed
 \end{corollary}
+\todo{Maybe I'm confused about grading issues, but I thought $E^* \C P^\infty$ was a polynomial ring and $EP^0 \C P^\infty$ is the power series ring?}
+\todo{Also, this is a nice argument.  Usually this computation proceeds through the AHSS.  Can this method be adapted to spaces other than $\C P^\infty$?}
 
 In light of these results, it seems prudent to develop some of the theory of formal schemes and formal varieties outside of the context of $\F_2$--algebras.
 
 \begin{definition}\todo{Erick has been complaining about this definition for a while, and I think he's right. His suggestion is for each scheme to be a nilpotent thickening over its reduction, which is of finite type (over whatever base).  I kept compulsively writing ``Artinian'', but he pointed out that $\Z[x] / x^n$ is \emph{not} Artinian, and so this can't be the right assumption.  I'm not sure why I was so stuck on this word... am I forgetting some important case?}
-Fix a scheme $S$.  A formal $S$--scheme $X = \{X_\alpha\}_\alpha$ is an ind-system of Artinian $S$--schemes $X_\alpha$.
+Fix a scheme $S$.  A formal $S$--scheme $X = \{X_\alpha\}_\alpha$ is an ind-system of Artinian $S$--schemes $X_\alpha$.\todo{Why Artinian? Also, you used to say finite instead of Artinian, so maybe you can standardize the terminology across chapters.} $S$--schemes $X_\alpha$.
 \end{definition}
 
 \begin{remark}
@@ -41,7 +43,7 @@ In the case $S = \Spec k$ for a field $k$, ``Artinian'' means that $\sheaf{O}_{X
 
 These ind-systems arise when studying completions of rings.  To address the geometric situation, we first owe ourselves a definition of a closed subscheme:
 \begin{definition}\label{DefnCompletion}
-Let $X$ be an affine formal scheme, and pick a chart $\Spec R \to X$.  A subscheme $Y \subseteq X$ is called \textit{closed} when it has the form
+Let $X$ be an affine formal scheme\todo{I'm guessing this means isomorphic to the constant ind-system $\{\Spec R\}$?}, and pick a chart $\Spec R \to X$.  A subscheme $Y \subseteq X$ is called \textit{closed} when it has the form
 \begin{center}
 \begin{tikzcd}
 Y \arrow{r} \arrow[-,double,densely dotted]{d} & X \arrow[-,double]{d} \\
@@ -49,17 +51,19 @@ Y \arrow{r} \arrow[-,double,densely dotted]{d} & X \arrow[-,double]{d} \\
 \end{tikzcd}
 \end{center}
 \end{definition}
+\todo{I don't understand your decorations for the vertical arrows.  Shouldn't they be arrows?  And why is the left one densely dotted?}
 
 There's a complementary notion of an open subscheme, which we will continue to avoid for now.  These definitions are both best stated in a coordinate--free way, but the open subscheme version really \emph{requires} it, so we will postpone it until later.\oweproof{Definition of open scheme}\oweproof{Definition of closed subscheme without chart}  For now, we will proceed with the geometry:
 
 \begin{definition}
 Consider such a closed subscheme $Y$ of an affine $S$--scheme $X$, modeled by a map $\Spec R/I \to \Spec R$.  We define the \textit{$n${\th} order neighborhood of $Y$ in $X$} to be the scheme $\Spec R/I^{n+1}$.  The \textit{formal neighborhood of $Y$ in $X$} is then the ind-system \[X^\wedge_Y := \left\{ \Spec R/I \to \Spec R/I^2 \to \Spec R/I^3 \to \cdots \right\}.\]\todo{When is this system one of Artinian schemes?  The condition we came to in class was that $I$ is its own radical and $R$ is Noetherian.  I'm very mildly uncomfortable with this condition on $I$.}
 \end{definition}
+\todo{I thought in class you said that $\sqrt{I}$ is maximal instead of $I$ is radical?}
 
 \noindent So, formal schemes arise naturally when studying the local geometry of $X$ near a subscheme $Y$.  An exceedingly common situation is for $X$ to be a variety and $Y$ to be a smooth point, so that $X^\wedge_Y$ looks like ``a small piece of affine space''.  We pin this important case down with a definition:
 
 \begin{definition}
-In the case that $S = \Spec R$ is affine, formal affine $n$--space over $S$ is defined by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  A \textit{formal affine variety} is a formal scheme $V$ which is (noncanonically) isomorphic to $\A^n$ for some $n$.  The two maps in an isomorphism pair \[V \to \A^n, \quad V \leftarrow \A^n\] are called a \textit{coordinate (system)} and a \textit{parameter (system)} respectively.
+In the case that $S = \Spec R$ is affine, formal affine $n$--space over $S$ is defined by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  \todo{I have very little intuition for $\Spf R$.  Could you define this more precisely, especially as an ind-system from the functors of points perspective?} A \textit{formal affine variety} is a formal scheme $V$ which is (noncanonically) isomorphic to $\A^n$ for some $n$.  The two maps in an isomorphism pair \[V \to \A^n, \quad V \leftarrow \A^n\] are called a \textit{coordinate (system)} and a \textit{parameter (system)} respectively.
 \end{definition}
 
 \begin{lemma}\label{MapsOfFVarsArePowerSeries}
@@ -73,7 +77,7 @@ In some sense, \Cref{MapsOfFVarsArePowerSeries} is a full explanation for why an
 \Cref{MapsOfFVarsArePowerSeries} shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.  In particular, this allows local theorems from analytic differential geometry to be imported, including a version of the inverse function theorem, which we will now work towards.\todo{Work an example first of $\A^1$, rather than an abstract formal variety.}
 
 \begin{definition}
-Let $V$ be a formal variety and let $I_V = \A^1(V)$ be the ideal of functions vanishing at the origin.  Then, we define the \textit{cotangent space of $V$} at the origin by \[T^* V = I_V / I_V^2.\]  We also define the tangent space by the subset of pointed maps $TV \subseteq V(R[\eps] / \eps^2)$.
+Let $V$ be a formal variety and let $I_V = \A^1(V)$ \todo{Strictly speaking, I don't think this notation has been introduced.} be the ideal of functions vanishing at the origin.  Then, we define the \textit{cotangent space of $V$} at the origin by \[T^* V = I_V / I_V^2.\]
 \end{definition}
 
 \begin{lemma}
@@ -94,14 +98,14 @@ hence a point in $\CatOf{Modules}_R(T^* V, R)$.  This assignment is visibly bije
 A map $f\co V \to W$ of finite--dimensional formal varieties is an isomorphism if and only if the induced map $Tf\co TV \to TW$ is an isomorphism of $R$--modules.
 \end{theorem}
 \begin{proof}
-First, reduce to the case where $V \cong \A^n$ and $W \cong \A^n$ have the same dimension, and select charts for both.  Then, $Tf$ is a matrix of dimension $n \times n$.  If $Tf$ fails to be invertible, we are done, and if it is invertible, we replace $f$ by $f \circ (Tf)^{-1}$ so that $Tf$ is the identity matrix.
+First, reduce to the case where $V \cong \A^n$ and $W \cong \A^n$ have the same dimension \todo{I don't know how you are defining $\Spf$, but there may be something to show here, since you're not actually ``reducing'' to the case but showing that it `is'' the case.}, and select charts for both.  Then, $Tf$ is a matrix of dimension $n \times n$.  If $Tf$ fails to be invertible, we are done, and if it is invertible, we replace $f$ by $f \circ (Tf)^{-1}$ so that $Tf$ is the identity matrix.
 
-We now construct the inverse function by induction on degree.  Set $g^{(1)}$ to be the identity function, so that $f$ and $g^{(1)}$ are mutual inverses when restricted to the first-order neighborhood.  So, suppose that $g^{(r-1)}$ has been constructed, and consider its interaction with $f$ on the $r${\th} order neighborhood: \[g_i^{(r-1)}(f(x)) = x_i + \sum_{|J| = r} c_J x_1^{J_1} \cdots x_n^{J_n} + o(r+1). \]  By adding in the correction term \[g_i^{(r)} = g_i^{(r-1)} - \sum_{|J| = R} c_J x_1^{J_1} \cdots x_n^{J_n},\] we have $g_i^{(r)}(f(x)) = x_i + o(r)$.
+We now construct the inverse function by induction on degree.  Set $g^{(1)}$ to be the identity function, so that $f$ and $g^{(1)}$ are mutual inverses when restricted to the first-order neighborhood.  So, suppose that $g^{(r-1)}$ has been constructed, and consider its interaction with $f$ on the $r${\th} order neighborhood: \[g_i^{(r-1)}(f(x)) = x_i + \sum_{|J| = r} c_J x_1^{J_1} \cdots x_n^{J_n} + o(r+1). \]  By adding in the correction term \[g_i^{(r)} = g_i^{(r-1)} - \sum_{|J| = r} c_J x_1^{J_1} \cdots x_n^{J_n},\] we have $g_i^{(r)}(f(x)) = x_i + o(r)$.
 \end{proof}
 
 We now return to our motivating example of $\CP^\infty_E$ for $E$ a complex-oriented cohomology theory, where we saw that the complex-orientation determines an isomorphism $\CP^\infty_E \cong \A^1$.  However, the object ``$E^* \CP^\infty$'' is something that exists independent of the orientation map $MU \to E$, and we now have the language to tease apart this situation:
 \begin{lemma}
-A cohomology theory $E$ is \textit{complex orientable} (i.e., it is able to receive a ring map from $MU$) precisely when $\CP^\infty_E$ is a formal curve.  A choice of map $MU \to E$ determines a coordinate $\CP^\infty_E \cong \A^1$. \qed
+A cohomology theory $E$ is \textit{complex orientable} (i.e., it is able to receive a ring map from $MU$) precisely when $\CP^\infty_E$ is a formal curve\todo{Is this just a formal variety of dimension 1?}.  A choice of map $MU \to E$ determines a coordinate $\CP^\infty_E \cong \A^1$. \qed
 \end{lemma}
 
 As we saw in the first case study, $\CP^\infty_E$ has more structure than just a formal scheme: it also carries the structure of a group.  We close today with some remarks about such objects.
@@ -132,7 +136,7 @@ Let $\G$ be a formal group.  In the presence of a coordinate $\phi \co \G \cong 
 \begin{tikzcd}
 \G \times \G \arrow{r} \arrow[-,double]{d} & \G \arrow[-,double]{d} \\
 \A^n \times \A^n \arrow{r} & \A^n,
-\end{tikzcd}
+\end{tikzcd} \todo{Again, the vertical arrows should be arrows, not equal signs?}
 \end{center}
 and hence a $n$-tuple of $(2n)$-variate power series ``$+_\phi$'', satisfying
 \begin{align*}
@@ -157,7 +161,7 @@ c(\L_1 \otimes \L_2) & = 1 - [\L_1 \otimes \L_2] = 1 - [\L_1] [\L_2] \\
 & = (1 - [\L_1]) + (1 - [\L_2]) - (1 - [\L_1])(1 - [\L_2]) \\
 & = c(\L_1) + c(\L_2) - c(\L_1) c(\L_2).
 \end{align*}
-In this coordinate on $\CP^\infty_{KU}$, the group law is then $x +_! y = x + y - xy$.
+In this coordinate on $\CP^\infty_{KU}$, the group law is then $x +_! y = x + y - xy$. \todo{Why is the notation $+_!$?}
 \end{example}
 
 We will close today by showing that the rational theory of formal groups is highly degenerate, similar to the rational theory of spectra.
@@ -177,9 +181,9 @@ The module $\Omega^1_{R/k}$ is universal for derivations into $R$--modules: \[\C
 
 These definitions are interesting in this level of generality, but suppose now that $k$ is a $\Q$--algebra and that $R = k\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $k$.  What's special about this rational curve case is that differentiation gives an isomorphism between $\Omega^1_{R/k}$ and the ideal $(x)$ of functions vanishing at the origin, i.e., the ideal sheaf selecting the closed subscheme $\Spec k \to \Spf R$.  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]
 
-Taking a cue from classical Lie theory, we attempt to define exponential and logarithm functions for a given formal group law $F$.  \todo{We should show here that the submodule of invariant $1$--forms is equivalent to the module of tangent vectors.}This is typically accomplished by studying left--invariant differentials: a $1$--form $f(x) dx$ is said to be left--invariant under $F$\todo{The condition $\omega = T_y^* \omega$ looks more reasonable.}\todo{Also define the \emph{sheaf} of invariant differentials, since you use that in a couple of days.} when \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $x = 0$, we deduce the condition \[f(0) = f(x) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0}.\]  If $R$ is a $\Q$--algebra, then setting the boundary condition $f(0) = 1$ and integrating against $x$ yields \[\log_F(x) = \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{y=0} \right)^{-1} dx.\]  To see that the series $\log_F$ has the claimed homomorphism property, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x},\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $\log_F(y)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  In all, this argument bundles into the following coordinate-free theorem:
+Taking a cue from classical Lie theory, we attempt to define exponential and logarithm functions for a given formal group law $F$.  \todo{We should show here that the submodule of invariant $1$--forms is equivalent to the module of tangent vectors.}This is typically accomplished by studying left--invariant differentials: a $1$--form $f(x) dx$ is said to be left--invariant under $F$\todo{The condition $\omega = T_y^* \omega$ looks more reasonable.}\todo{Also define the \emph{sheaf} of invariant differentials, since you use that in a couple of days.} when \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $x = 0$, we deduce the condition \[f(0) = f(y) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{x=0}.\]  If $R$ is a $\Q$--algebra, then setting the boundary condition $f(0) = 1$ and integrating against $y$ yields \[\log_F(y) = \int f(y) \, dy = \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{x=0} \right)^{-1} dy.\]  To see that the series $\log_F$ has the claimed homomorphism property\todo{While the notation $\log$ is suggestive, I don't think you claimed anything yet at this point.}, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} dx = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x} dx,\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $y = 0$ shows that the constant is $\log_F(x)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  In all, this argument bundles into the following coordinate-free theorem:
 \begin{theorem}\label{RationalFGLsHaveLogarithms}\todo{This feels like a bit of a jump.  ``$\otimes$'', for instance?}
-There is a unique isomorphism \[\G \xrightarrow{\log} \operatorname{Lie} \G \otimes \G_a. \qed\]
+There is a unique isomorphism \[\G \xrightarrow{\log} \operatorname{Lie} \G \otimes \G_a. \qed\] \todo{First you have  map $\G \otimes (\Omega^1)^F \to \G_a$, and then you move $(\Omega^1)^F$ to the right, changing it to $\operatorname{Lie} \G$.}
 \end{theorem}
 \todo{It would also be good to put the example of the standard logarithm for $\G_m$ here.}
 
@@ -205,11 +209,12 @@ Recalling also the perspective on modules as quasicoherent sheaves from \Cref{Ho
 Recall that yesterday we defined what it meant for a subscheme to be closed.  The notion of a divisor on a formal curve is a particular sort of closed subscheme:
 
 \begin{definition}\citeme{Def 2.33 of AHS preprint}
-An \textit{effective Weil divisor} $D$ on $C$ is a closed $X$--subscheme of $C$ whose structure map $D \to S$ is flat and whose ideal sheaf $\sheaf I_D$ is free of rank $1$ as an $\sheaf{O}_X$--module.  We say that the \textit{rank} of $D$ is $n$ when its ring of functions $\sheaf O_D$ is free of rank $n$ over $\sheaf O_S$.
+An \textit{effective Weil divisor} $D$ on $C$ is a closed $S$--subscheme of $C$ whose structure map $D \to S$ is flat and whose ideal sheaf $\sheaf I_D$ is free of rank $1$ as an $\sheaf{O}_S$--module.  We say that the \textit{rank} of $D$ is $n$ when its ring of functions $\sheaf O_D$ is free of rank $n$ over $\sheaf O_S$.
 \end{definition}
+\todo{Is there a distinction between free and locally free?  I guess not because everything is affine.}
 
-Consider the case of interest to us, where we have selected a coordinate $x$ on $C$.  In that case, there are isomorphisms $S = \Spec E_*$ and $C \cong \Spf E^*\ps{x}$, so that a divisor $D$ must be of the form $D \cong \Spf E^*\ps{x} / f$ for some $f$ not a zero-divisor.  We see then that $\sheaf I_D$ corresponds to the principal ideal $E^*\ps{x} \cdot f \cong E^*\ps{x}$, and $D$ is a divisor exactly when $E^*\ps{x} / f$ is a flat $E^*$--module.\todo{Is this last condition easy to unpack?  I'd hope it means something about monicity.  Maybe see Lemma 17.1 of FPFP?}
-
+Consider the case of interest to us, where we have selected a coordinate $x$ on $C$.  In that case, there are isomorphisms $S = \Spec E_*$ and $C \cong \Spf E^*\ps{x}$, so that a divisor $D$ must be of the form $D \cong \Spf E^*\ps{x} / f$ for some $f$ not a zero-divisor.  We see then that $\sheaf I_D$ corresponds to the principal ideal $E^*\ps{x} \cdot f \cong E^*\ps{x}$, and $D$ is a divisor exactly when $E^*\ps{x} / f$ is a flat $E^*$--module.\todo{Is this last condition easy to unpack?  I'd hope it means something about monicity.  Maybe see Lemma 17.1 of FPFP?} \todo{How do you even show that $f$ can be chosen to be a polynomial, and not just a power series?  Weierstrass?}
+ 
 Before considering their connection to line bundles, we will study the concept of a divisor in isolation.
 
 \begin{lemma}
@@ -228,7 +233,7 @@ There is a map
 \end{align*}
 \end{lemma}
 \begin{remark}\label{DescriptionOfSqCupMapOnPolynomials}
-On the level of the polynomials $g_n$, $g_m$, and $g_{n+m}$, this map is given by\todo{Make it clear that this product still has nilpotent non-leading coefficients.} \[(g_n, g_m) \mapsto x^{n+m} - (x^n - g_n(x)) \cdot (x^m - g_m(x)) =: g_{n+m}(x).\]
+On the level of the polynomials $g_n$, $g_m$, and $g_{n+m}$, this map is given by \[(g_n, g_m) \mapsto x^{n+m} - (x^n - g_n(x)) \cdot (x^m - g_m(x)) =: g_{n+m}(x).\] \todo{What was wrong with $g_{n+m} := g_n g_m$ from class?  The current $g_{n+m}$ has degree $<n+m$\ldots}
 \end{remark}
 
 Note that there is a canonical isomorphism $C \to \Div_1^+ C$.  Iterating the above addition map gives the vertical map in the following triangle:
@@ -312,7 +317,7 @@ The ring of meromorphic functions on $C$, $\sheaf{M}_C$, is obtained by invertin
 A particular meromorphic function spans a $1$--dimensional $\sheaf O_C$--submodule sheaf of $\sheaf M_C$, and hence it determines a line bundle.  Conversely, a line bundle is determined by local gluing data, which is exactly the data of a meromorphic function.  However, it is clear that there is some overdeterminacy in this first operation: scaling a meromorphic function by a nowhere vanishing entire function will not modify the submodule sheaf.  This suggests the following operation: to a meromorphic function $f$, we assign the difference of its zero locus and its infinite locus, considered as a divisor.  This determines a map \[\sheaf M_C^\times \to (\Div C)(S).\]
 
 \begin{definition}
-We then augment this to a scheme $\operatorname{Mer}(C, \mathbb G_m)$ of meromorphic functions on $C$ by \[\operatorname{Mer}(C, \mathbb G_m)(R) := \left\{ (u, f) \middle| \begin{array}{c} u: \Spec R \to S, \\ f \in \sheaf{M}^\times_{C \times \Spec R} \end{array} \right\}.\]
+We then augment this to a scheme $\operatorname{Mer}(C, \mathbb G_m)$ of meromorphic functions on $C$ by \[\operatorname{Mer}(C, \mathbb G_m)(R) := \left\{ (u, f) \middle| \begin{array}{c} u: \Spec R \to S, \\ f \in \sheaf{M}^\times_{C \times_S \Spec R} \end{array} \right\}.\]
 \end{definition}
 
 \begin{theorem}\citeme{This is Prop 5.26 in FSFG.}
@@ -345,8 +350,8 @@ One of the main utilities of this definition is that it only uses the \emph{prop
 \end{remark}
 
 The following example connects this topic with that of \Cref{FormalVarietiesLecture}:
-\begin{example}\todo{Make this clearer: point out that the cofiber definition of the Thom space helps you make the first identification (that's what the ``zero section'' refers to), and then point out that $\zeta^*(M) = M / \sheaf I(0) \cdot M$ helps you over the last hump.}
-If $\L$ denotes the canonical line bundle over $\CP^\infty$, then the zero section identifies $E^0 (\CP^\infty)^{\L}$ with the augmentation ideal in $E^0 \CP^\infty$, and so we have an isomorphism $\ThomSheaf{\L} \cong \sheaf I(0)$.  Then, consider the map $\eps: * \to \CP^\infty$, which classifies a line bundle that Thomifies to $\CP^1 \to \CP^\infty$.  Using naturality, we see \[\widetilde{\pi_2 E} \cong \ThomSheaf{* \to \CP^\infty} \cong 0^* \sheaf I(0) \cong \omega_{\G_E},\] where $\G_E = \CP^\infty_E$ is the formal group associated to $E$--theory and $\omega_{\G_E}$ is its sheaf of invariant differentials\footnote{The identification of this with the sheaf of invariant differentials is something of a choice.  Certainly it is naturally isomorphic to $T_0^* \CP^\infty_E$, and this in turn is naturally isomorphic to $\omega_{\G_E}$, but deciding which of these two to write is a decision to be borne out as ``correct''.}.  More generally, if $k \eps$ is the trivial bundle of dimension $k$ over a point, then $\ThomSheaf{k \eps} \cong \omega_{\G_E}^{\otimes k}$.  If $f \co E \to F$ is an $E$--algebra (e.g., $F = E^{X_+}$), then this gives an interpretation of $\pi_{2k} F$ as $f_E^* \omega_{\G_E}^{\otimes k}$.
+\begin{example}\todo{Make this clearer: point out that the cofiber definition of the Thom space helps you make the first identification (that's what the ``zero section'' refers to), and then point out that $\zeta^*(M) = M / \sheaf I(0) \cdot M$ helps you over the last hump.}\todo{In class you wrote $\L - 1$ instead of $\L$ almost everywhere in this example.} 
+If $\L$ denotes the canonical line bundle over $\CP^\infty$, then the zero section identifies $E^0 (\CP^\infty)^{\L}$ \footnote{What does this notation mean?  I would guess it's something like maps $\L \to E^0(\CP^\infty)$, but this doesn't seem to make sense.}with the augmentation ideal in $E^0 \CP^\infty$, and so we have an isomorphism $\ThomSheaf{\L} \cong \sheaf I(0)$.  Then, consider the map $\eps: * \to \CP^\infty$, which classifies a line bundle that Thomifies to $\CP^1 \to \CP^\infty$.  Using naturality, we see \todo{I think you should mention that the tilde means the sheaf associated to the module.  Also, in class you wrote $\pi_{-2} E$ instead of $\pi_2 E$}\[\widetilde{\pi_2 E} \cong \ThomSheaf{* \to \CP^\infty} \cong 0^* \sheaf I(0) \cong \omega_{\G_E},\] where $\G_E = \CP^\infty_E$ is the formal group associated to $E$--theory and $\omega_{\G_E}$ is its sheaf of invariant differentials\footnote{The identification of this with the sheaf of invariant differentials is something of a choice.  Certainly it is naturally isomorphic to $T_0^* \CP^\infty_E$, and this in turn is naturally isomorphic to $\omega_{\G_E}$, but deciding which of these two to write is a decision to be borne out as ``correct''.}.  More generally, if $k \eps$ \todo{It might be confusing using $\eps$ for two different things in the same paragraph.} is the trivial bundle of dimension $k$ over a point, then $\ThomSheaf{k \eps} \cong \omega_{\G_E}^{\otimes k}$.  If $f \co E \to F$ is an $E$--algebra (e.g., $F = E^{X_+}$), then this gives an interpretation of $\pi_{2k} F$ as $f_E^* \omega_{\G_E}^{\otimes k}$.
 \end{example}
 
 Aside from this example, though, this construction on its own does not allow for the ready manipulation of line bundles.  However, our discussion yesterday centered on an equivalent presentation of line bundles on a formal curve: their corresponding divisors.  Following that cue, we now seek out a topological construction on vector bundles $V \to X$ which produces finite schemes over $X_E$.  A quick browse through the literature will lead one to the following:
@@ -391,7 +396,7 @@ Associated to any $n$--dimensional complex vector bundle $\xi$ over a base $X$, 
 This last Corollary is extremely important.  Its essential contents is to say that any question about characteristic classes can be checked for sums of line bundles.  Specifically, because of the injectivity of $i_\xi^*$, any relationship among the characteristic classes deduced in $E^* Y_\xi$ must already be true in the ring $E^* X$.  The following theorem is a consequence of this principle:
 
 \begin{theorem}\todo{Proposition 8.31 in FSFG shows that the isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$ is independent of coordinate. Read it.}
-Again take $E$ to be complex-oriented.  The coset fibration \[U(n-1) \to U(n) \to S^{2n-1}\] deloops to a spherical fibration \[S^{2n-1} \to BU(n-1) \to BU(n).\]  The associated Serre spectral sequence \[E_2^{*, *} = H^*(BU(n); E^* S^{2n-1}) \Rightarrow E^* BU(n-1)\] degenerates at $E_{2n}$ and induces an isomorphism \[E^* BU(n) \cong E^* \llbracket \sigma_1, \ldots, \sigma_n\rrbracket.\]  Now, let $\xi\co X \to BU(n)$ classify a vector bundle $\xi$.  Then the coefficient $c_j$ in the polynomial $c(\xi)$ is selected by $\sigma_j$: \[c_j(\xi) = \xi^*(\sigma_j).\]
+Again take $E$ to be complex-oriented.  The coset fibration \[U(n-1) \to U(n) \to S^{2n-1}\] deloops to a spherical fibration \[S^{2n-1} \to BU(n-1) \to BU(n).\]  The associated Serre spectral sequence \[E_2^{*, *} = H^*(BU(n); E^* S^{2n-1}) \Rightarrow E^* BU(n-1)\] degenerates at $E_{2n}$ and induces an isomorphism \[E^* BU(n) \cong E^* \llbracket \sigma_1, \ldots, \sigma_n\rrbracket.\] \todo{Shouldn't this be a polynomial ring instead of a power series ring?  Or are you considering the periodified version $EP^0 BU(n)$?} Now, let $\xi\co X \to BU(n)$ classify a vector bundle $\xi$.  Then the coefficient $c_j$ in the polynomial $c(\xi)$ is selected by $\sigma_j$: \[c_j(\xi) = \xi^*(\sigma_j).\]
 \end{theorem}
 \begin{proof}[Proof sketch]
 The first part is a standard calculation.  To prove the relation between the Chern classes and the $\sigma_j$, the splitting principle states that we can factor complete the map $\xi\co X \to BU(n)$ to a square
@@ -447,7 +452,7 @@ BU(n)_E \times BU(m)_E \arrow{r}{\otimes} \arrow[-,double]{d} & BU(nm)_E \arrow[
 \Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \arrow{r}{\cdot} & \Div_{nm}^+ \CP^\infty_E,
 \end{tikzcd}
 \end{center}
-where the bottom map acts by \[(D_1, D_2 \subseteq \CP^\infty_E \times X_E) \mapsto (D_1 \times D_2 \subseteq \CP^\infty_E \times \CP^\infty_E \xrightarrow{\mu} \CP^\infty_E).\]
+where the bottom map acts by \[(D_1, D_2 \subseteq \CP^\infty_E \times X_E) \mapsto (D_1 \times D_2 \subseteq \CP^\infty_E \times \CP^\infty_E \xrightarrow{\mu} \CP^\infty_E),\] and $\mu$ is the map induced by the $H$-space multiplication $\CP^\infty \times \CP^\infty \to \CP^\infty$.
 \end{corollary}
 \begin{proof}
 By the splitting principle, it is enough to check this on sums of line bundles.  A sum of line bundles corresponds to a totally decomposed divisor, and on a pair of such divisors $\bigsqcup_{i=1}^n [a_i]$ and $\bigsqcup_{j=1}^m [b_j]$, the map acts by \[\left(\bigsqcup_{i=1}^n [a_i] \right) \left( \bigsqcup_{j=1}^m [b_j] \right) = \bigsqcup_{i, j} [\mu_{\CP^\infty_E}(a_i, b_j)]. \qedhere\]
