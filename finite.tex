@@ -175,7 +175,7 @@ The main utility of this is that it obviates us from working through the homolog
 \end{remark}
 
 \begin{remark}
-This homotopical perspective is quite useful --- for instance, a map of groupoid--schemes which induces on points a natural weak equivalence of groupoids also induces an equivalence of comodule categories.  In fact, the \emph{derived} comodule category depends only upon the stack associated to the groupoid--scheme, which allows still more contexts to be identified.  We won't need this observation in what's to come, though, and it introduces substantial technical distractions.\todo{Is there an instance where stacky equivalence (rather than natural groupoid equivalence) is relevant for algebraic topologists?  Or, really, anyone?}\todo{Could also explain the difference: levelwise sheaves of $0$--types vs sheaves of $\infty$--types.}
+This homotopical perspective is quite useful --- for instance, a map of groupoid--schemes which induces on points a natural weak equivalence of groupoids also induces an equivalence of comodule categories.  In fact, the \emph{derived} comodule category depends only upon the stack associated to the groupoid--scheme, which allows still more contexts to be identified.  We won't need this observation in what's to come, though, and it introduces substantial technical distractions.  \textbf{However, we \emph{may} got sloppy and say ``stack'' from time to time.}\todo{Is there an instance where stacky equivalence (rather than natural groupoid equivalence) is relevant for algebraic topologists?  Or, really, anyone?}\todo{Could also explain the difference: levelwise sheaves of $0$--types vs sheaves of $\infty$--types.}
 \end{remark}
 
 \todo{I think there is a notion of quasicoherent sheaf directly over $\sheaf D_E$ and an interpretation of Cartesian sheaves in that setting.  I think that a different view on {\FH} is that it causes the functor $\pi_*$ to preserve Cartesianness.}
@@ -290,9 +290,15 @@ We will prove Claim 1 tomorrow.
 
 
 
-\section{The structure of $\moduli{fg}$ I: Points}
+\section{The structure of $\moduli{fg}$ I: Distance from $\G_a$}
 
-\begin{proof}[{Proof of Claim 1 from \Cref{Symmetric2CocycleLemma}}]\citeme{This follows Chapter 3 of COCTALOS.}
+We begin by finishing up our proof of Lazard's theorem (and, specifically, the Symmetric $2$--cocycle Lemma).
+
+\begin{lemma}[{Claim 1 of \Cref{Symmetric2CocycleLemma}}]
+Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n).\]
+\end{lemma}
+
+\begin{proof}\citeme{This follows Chapter 3 of COCTALOS.}
 It suffices to show the Lemma over a finitely generated ring.  In fact, the Lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, so the structure theorem for finitely generated abelian groups reduces to the cases of $\Z$ and $\Z/p^r$.  If $A \subseteq B$ and the Lemma is true for $B$, it's true for $A$, so we can further reduce the $\Z$ case to $\Q$.\todo{Rephrase this in terms of localizations.}  We can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive, Bockstein-style argument.  Hence, we can now freely assume that our ground object is a prime field.
 
 For a formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usual way:
@@ -313,18 +319,8 @@ By applying the functor $\InternalHom{FormalGroups}(-, \G_a)(k)$, we get a cosim
 This finally concludes the proof of \Cref{LazardsTheorem}.
 \end{proof}
 
-\todo[inline]{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I think we should phrase things in those terms.}
+\todo{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I wonder if we should phrase things in those terms.}
 \todo[inline]{Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
-
-\textbf{Put in a proof of the classification of geometric points.}
-
-
-
-
-
-
-
-\section{The structure of $\moduli{fg}$ II: Large scales}
 
 Having described the structure of $\moduli{fgl}$, we turn to understanding the quotient stack $\moduli{fg}$.  Earlier, we proved the following theorem:
 
@@ -340,7 +336,7 @@ We would like to have a similar classification of the closed points in positive 
 Let $+_\phi$ be a formal group law.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $n$--bud determined by $+_\phi$.  The \textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
 \end{definition}
 
-In fact, we will show that this definition is well-behaved, in the following sense:
+We will show that this definition is well-behaved, in the following sense:
 \begin{lemma}\label{FGLHeightIsAnInteger}
 Over a field of positive characteristic, the $p$--height of a formal group law is always an integer.  (That is, $n = p^d$ for some natural number $d$.)
 \end{lemma}
@@ -353,7 +349,7 @@ The height of a formal group law is an isomorphism invariant, i.e., it descends 
 The series $\ell$ is a partial logarithm for the formal group law $\phi$, i.e., an isomorphism between the formal group defined by $\phi$ and the additive group.  Since isomorphisms compose, this statement follows.
 \end{proof}
 
-With this in mind, we look for a more standard form for formal group laws.  In light of our goal Lemma, the most obvious standard form is as follows:
+With this in mind, we look for a more standard form for formal group laws, where \Cref{FGLHeightIsAnInteger} will hopefully be obvious.  In light of our goal, the most obvious standard form is as follows:
 \begin{definition}
 Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that $+_\phi$ has a \textit{$p$--typical logarithm} in the case that its logarithm has the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
 \end{definition}
@@ -362,8 +358,14 @@ Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that $+_
 Every formal group law $+_\phi$ with a logarithm $\log_\phi$ is naturally isomorphic to one whose logarithm is $p$--typical, called the $p$--typification of $+_\phi$.
 \end{lemma}
 \begin{proof}
-\todo[inline]{The slickest proof is to extend the base ring by a bunch of unramified roots of unity, use those to write down an isomorphism that obviously gets rid of the non-power-of-$p$ terms in the logarithm, then note that the formula for the isomorphism is Galois invariant and so descends to the original ring.}
-\todo{Build Quillen's idempotent. Maybe lift it to $L_p MU$?}
+Let $\G$ denote the formal group associated to $+_\phi$, and consider the coordinate $g_0\co \G \cong \A^1$ it inherits, so that \[\log_\phi = \log \circ g_0 = \sum_{n=1}^\infty a_n x^n.\]  Our goal is to perturb this coordinate to a new coordinate $g$ which has the property that it couples with the logarithm \[\A^1 \xrightarrow{g} \G \xrightarrow{\log} \G_a\] to give a power series expansion \[\log(g(x)) = \sum_{n=0}^\infty a_{p^n} x^{p^n}.\]  To do this, we introduce four operators on \emph{curves}:
+\begin{itemize}
+\item Given $r \in R$, we can define a \textit{homothety} by rescaling 
+\item For $\ell \in \Z$, we can define a shift operator (or \textit{Verschiebung}) by \[\log(V_\ell g(x)) = \log(g(x^\ell)) = \sum_{n=1}^\infty a_n x^{n \ell}.\]
+\item Given an $\ell \in \Z_{(p)}$, we define the \textit{$\ell$--series} by \[\log([\ell](g(x))) = \ell \log(g(x)) = \sum_{n=1}^\infty \ell a_n x^n.\]
+\item For $\ell \in \Z$, we can define a \textit{Frobenius operator} by \[\log(F_\ell g(x)) = \log\left(\sum_{j=1}^\ell{}_{\G} g(\zeta_\ell^j x^{1/\ell}) \right) = \sum_{n=1}^\infty \ell a_{n \ell} x^n,\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$).  But, by pulling the logarithm through and noting \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$.
+\end{itemize}
+Stringing these together, for $p \nmid \ell$ we have \[\log([1/\ell] V_\ell F_\ell g(x)) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell}.\]  Hence, we can consider the curve $g -_{\G} \sum_{p \nmid \ell} [1/\ell] V_\ell F_\ell g$, which is another coordinate on the same formal group $\G$, but with a $p$--typical logarithm.
 \end{proof}
 
 Of course, not every formal group law supports a logarithm --- after all, this is the point of ``height''.  There are two ways around this: one is to pick a surjection $S \to R$ from a torsion-free ring $S$, \emph{choose} a lift of the formal group law to $S$, then pass to $S \otimes \Q$ and study how much of the resulting logarithm descends to $R$.  However, it is not clear that this procedure is independent of choice.  We therefore pursue an alternative approach: an intermediate definition that applies to all formal group laws and which specializes to the one above in the presence of a logarithm.  To do this, we consider what computations are made easier with this sort of formula for a logarithm, and we arrive at the following:
@@ -420,6 +422,12 @@ There is an inclusion of groupoid--valued sheaves from $p$--typical formal group
 \begin{proof}[{Proof of \Cref{FGLHeightIsAnInteger}}]
 Replace the formal group law by its $p$--typification.  \todo{Finish this.}
 \end{proof}
+
+
+
+
+
+\section{The structure of $\moduli{fg}$: Large scales}
 
 We're now in a position to 
 \begin{theorem}\citeme{Lazard Theorem IV on p.\ 270}
