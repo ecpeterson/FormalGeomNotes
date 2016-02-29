@@ -64,7 +64,7 @@ We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}
 The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces (from \Cref{JIsMonoidal}).  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
 \begin{center}
 \begin{tikzcd}
-BO \times BO \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
+BO \times BO \rar["\sigma",equiv'] \arrow[bend right]{rrd} & BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
 & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
@@ -94,7 +94,7 @@ Let $\xi\co X \to BO$ classify a vector bundle and let $\phi\co MO \to E$ be a m
 To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma\co BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  Follow the same proof as before with the diagram
 \begin{center}
 \begin{tikzcd}
-BO \times X \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrrd} & BO \times X \arrow{r}{\simeq, \xi}& BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
+BO \times X \rar["\sigma", equiv'] \arrow[bend right]{rrrd} & BO \times X \rar["\xi",equiv']& BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
 & & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
@@ -253,7 +253,7 @@ Recall that $\RP^\infty$ is an $H$--space in two equivalent ways:
 In either case, this induces a Hopf algebra diagonal \[H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \xleftarrow\Delta H\F_2^* \RP^\infty\] which we would like to analyze.  This map is determined by where it sends the class $x$, and because it must respect gradings it must be of the form $\Delta x = ax_1 + bx_2$ for some constants $a, b \in \F_2$.  Furthermore, because it belongs to a Hopf algebra structure, it must satisfy the unitality axiom
 \begin{center}
 \begin{tikzcd}
-H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\begin{array}{c} \epsilon \otimes \id \\ \id \otimes \epsilon \end{array}} \arrow[leftarrow, bend right]{rr}{\id} & H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\Delta} & H\F_2^* \RP^\infty.
+H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\begin{pmatrix} \epsilon \otimes \id \\ \id \otimes \epsilon \end{pmatrix}} & H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\Delta} &\arrow[ll,bend left=15,"\id"]  H\F_2^* \RP^\infty.
 \end{tikzcd}
 \end{center}
 and hence it takes the form \[\Delta(x) = x_1 + x_2.\]  Noticing that this is exactly the diagonal map in \Cref{InformalAdditiveGroupExample}, we tentatively identify ``$\RP^\infty_{H\F_2}$'' with the additive group.  This is extremely suggestive but does not take into account the fact that $\RP^\infty$ is an infinite complex, so we haven't allowed ourselves to write ``$\RP^\infty_{H\F_2}$'' just yet.  In light of the above discussion, we have left a very particular point open: it's not clear if we should use the name ``$\mathbb G_a$'' or ``$\G_a$''.  We will straighten this out tomorrow.
@@ -293,9 +293,9 @@ A $\mathbb G_m$--action on $\Spec R$ is equivalent data to a coaction map \[\alp
 This notion from algebraic geometry is somewhat different from what we are used to in algebraic topology, as it is designed to deal with things like polynomial rings (where the difference of two polynomials can lie in lower degree), but in classical algebraic topology we only ever encounter sums of terms with homogeneous degree.  We can modify our perspective very slightly to arrive at the algebraic geometers': replace $H\F_2$ by the periodified spectrum \[H\F_2P = \bigvee_{j=-\infty}^\infty \Susp^j H\F_2.\]  This spectrum has the property that $H\F_2P^0(X)$ is isomorphic to $H\F_2^*(X)$ as ungraded rings, but now we can make sense of the sum of two classes which used to live in different $H\F_2$--degrees.  At this point we can manually craft the desired coaction map $\alpha^*$ so that we are in the situation of \Cref{GradedAndGmEquivAgree}, but we will shortly find that algebraic topology gifts us with it on its own.
 
 \todo{You can do a better job of describing where the Steenrod coaction comes from, rather than resting on duality.  For instance, you could at least justify \emph{why the Steenrod algebra is a Hopf algebra}.  Already, that's kind of unclear.}
-Our route to finding this internally occurring $\alpha^*$ is by turning to the next supplementary structure: the action of the Steenrod algebra.  Naively approached, this does not fit into the framework we've been sketching so far: the Steenrod algebra is a \emph{noncommutative} algebra, and so the action map \[\mathcal A^* \otimes H\F_2^* X \to H\F_2^* X\] will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, since the Cartan formula expressing the diagonal on $\mathcal A^*$ is evidently symmetric: \[\Sq^n(x y) = \sum_{i+j=n} \Sq^i(x) \Sq^j(y).\]  
+Our route to finding this internally occurring $\alpha^*$ is by turning to the next supplementary structure: the action of the Steenrod algebra.  Naively approached, this does not fit into the framework we've been sketching so far: the Steenrod algebra is a \emph{noncommutative} algebra, and so the action map \[\mathcal A^* \otimes H\F_2^* X \to H\F_2^* X\] will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, since the Cartan formula expressing the diagonal on $\mathcal A^*$ is evidently symmetric: \[\Sq^n(x y) = \sum_{i+j=n} \Sq^i(x) \Sq^j(y).\]
 \todo{Reminder for jhfung: $\mathcal A^*$ is a Hopf algebra with comultiplication $\Sq^n \mapsto \sum_{i + j = n} \Sq^i \otimes \Sq^j$, so $\mathcal{A}_*$ is also a Hopf algebra.}  Second, if $X$ is a \emph{finite} complex, then tinkering with Spanier--Whitehead duality
-\todo{I see that if $X$ is a finite complex, it has a Spanier--Whitehead dual, but I don't see how to use this.  Is $\lambda^*$ not just the composition $H\mathbb{F}_2^* X = \mathbb{F}_2 \otimes H\mathbb{F}_2^* X \to H\mathbb{F}_2^* X \otimes \mathcal A^* \otimes \mathcal A_* \xrightarrow{\lambda \otimes 1} H\mathbb{F}_2^* X \otimes \mathcal{A}_*$?} 
+\todo{I see that if $X$ is a finite complex, it has a Spanier--Whitehead dual, but I don't see how to use this.  Is $\lambda^*$ not just the composition $H\mathbb{F}_2^* X = \mathbb{F}_2 \otimes H\mathbb{F}_2^* X \to H\mathbb{F}_2^* X \otimes \mathcal A^* \otimes \mathcal A_* \xrightarrow{\lambda \otimes 1} H\mathbb{F}_2^* X \otimes \mathcal{A}_*$?}
 \todo{I think the point is you're using a duality-type thing for $\mathcal A_*$ and $\mathcal A^*$.  Unfortunately, infinite dimensional vector spaces are not dualizable, so strictly what you've written doesn't quite work (for example, $\mathcal A^*\otimes \mathcal A_*$ doesn't receive a map from $\mathbb{F}_2$).  However, on finite complexes, you only get a finite dimensional part of the Steenrod algebra acting non-trivially, so you can do the duality thing. AY}
 gives rise to a coaction map \[\lambda^*: H\F_2^* X \to H\F_2^* X \otimes \mathcal A_*,\] which we will then re-interpret as an action map \[\alpha: \Spec \mathcal A_* \times X_{H\F_2} \to X_{H\F_2}.\]  Milnor works out the Hopf algebra structure of $\mathcal A_*$, by defining elements $\xi_j \in \mathcal A_*$ dual to $\Sq^{2^{j-1}} \cdots \Sq^{2^0} \in \mathcal A^*$.  Taking $X = \RP^n$ and $x \in H\F_2^1(\RP^n)$ the generator, then since $\Sq^{2^{j-1}} \cdots \Sq^{2^0} x = x^{2^j}$ he deduces the formula \[\lambda^*(x) = \sum_{j=0}^{\lfloor \log_2 n \rfloor} x^{2^j} \otimes \xi_j.\]  Notice that we can take the limit $n \to \infty$ to get a well-defined infinite sum, provided we permit ourselves to make sense of such a thing.  He then makes the following calculation, stable in $n$:
 \begin{align*}
@@ -445,7 +445,7 @@ Satisfied that ``$\Ext$'' at least makes sense, we're free to chase more concept
 A presheaf (of modules) over a scheme $X$ is an assignment of maps $\sheaf F\co X(T) \to \CatOf{Modules}_T$, functorially in $T$. \todo{Straighten this out, using fibered categories?}\todo{Mention how the usual definition of a sheaf of $\sheaf O_X$--modules gives rise to such a thing: global sections over $\Spec T$.}  Such a presheaf is said to be \textit{quasicoherent} when a map $\Spec S \to \Spec T \to X$ induces a natural isomorphism $\sheaf F(T) \otimes_T S \cong \sheaf F(S)$.
 \end{definition}
 \todo{There is a todo here that I can't get to compile.  See the source.}
-%\todo{I'm confused about this definition.  First, when you wrote $\sheaf F(T)$ (resp.\ $\sheaf F(S)$), you really meant $\sheaf F(t)$ (resp.\ $\sheaf F(s)$) where $t$ (resp.\ $s$) is a map $\Spec T \to X$ (resp.\ $\Spec S \to X$), right?  Second, I thought that functoriality of $\sheaf F$ meant that given a map $u: T \to S$ of rings over $X$, we have $\sheaf_T (\bullet) \otimes_T S = \sheaf S(u \circ \bullet)$, i.e., all presheaves are quasicoherent.  What am I missing here?  Third, only \emph{affine} schemes have been defined so far, but here it seems that we are assuming an arbitrary scheme here.} 
+%\todo{I'm confused about this definition.  First, when you wrote $\sheaf F(T)$ (resp.\ $\sheaf F(S)$), you really meant $\sheaf F(t)$ (resp.\ $\sheaf F(s)$) where $t$ (resp.\ $s$) is a map $\Spec T \to X$ (resp.\ $\Spec S \to X$), right?  Second, I thought that functoriality of $\sheaf F$ meant that given a map $u: T \to S$ of rings over $X$, we have $\sheaf_T (\bullet) \otimes_T S = \sheaf S(u \circ \bullet)$, i.e., all presheaves are quasicoherent.  What am I missing here?  Third, only \emph{affine} schemes have been defined so far, but here it seems that we are assuming an arbitrary scheme here.}
 
 \begin{lemma}\citeme{Surely this is in Neil's FSFG somewhere}
 An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec R$ by the rule $(\Spec T \to \Spec R) \mapsto M \otimes_R T$.  Conversely, every quasicoherent sheaf over an affine scheme arises in this way.  \qed
@@ -564,7 +564,7 @@ The orthogonal groups sit in coset fibration sequences \[O(n-1) \to O(n) \to S^{
 There is a triangle
 \begin{center}
 \begin{tikzcd}
-& \Sym H\F_2P_0(BO(1)) \arrow{d}{\simeq} \\
+& \Sym H\F_2P_0(BO(1)) \arrow{d}{equiv} \\
 H\F_2P_0(BO(1)) \arrow{r} \arrow{ru} & H\F_2P_0(BO). \qed
 \end{tikzcd}
 \end{center}
@@ -577,7 +577,7 @@ With this in hand, however, we can uncover the ring structure on $H\F_2P_0(MO)$:
 There is also a triangle
 \begin{center}
 \begin{tikzcd}
-& \Sym H\F_2P_0(MO(1)) \arrow{d}{\simeq} \\
+& \Sym H\F_2P_0(MO(1)) \arrow{d}{equiv} \\
 H\F_2P_0(MO(1)) \arrow{r} \arrow{ru} & H\F_2P_0(MO).
 \end{tikzcd}
 \end{center}
@@ -592,8 +592,8 @@ We now seek to understand the scheme $\Spec H\F_2P_0(MO)$, and in particular its
 The following square commutes:
 \begin{center}
 \begin{tikzcd}
-\CatOf{Modules}_{\F_2}(H\F_2P_0(MO), \F_2) & \CatOf{Spectra}(MO, H\F_2P) \arrow{l}{\simeq} \\
-\CatOf{Algebras}_{\F_2/}(H\F_2P_0(MO), \F_2) \arrow[hookrightarrow]{u} & \CatOf{RingSpectra}(MO, H\F_2P) \arrow{l}{\simeq} \arrow[hookrightarrow]{u}.
+\CatOf{Modules}_{\F_2}(H\F_2P_0(MO), \F_2) & \CatOf{Spectra}(MO, H\F_2P) \arrow{l}{equiv} \\
+\CatOf{Algebras}_{\F_2/}(H\F_2P_0(MO), \F_2) \arrow[hookrightarrow]{u} & \CatOf{RingSpectra}(MO, H\F_2P) \arrow{l}{equiv} \arrow[hookrightarrow]{u}.
 \end{tikzcd}
 \end{center}
 \end{lemma}
