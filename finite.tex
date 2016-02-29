@@ -518,10 +518,7 @@ It's worth pointing out how strange all of this is. In Euclidean geometry, open 
 
 \section{The structure of $\moduli{fg}$ III: Small scales}
 
-
-\textbf{Now analyze the deformation spaces}
-
-We now turn to the deformation theory of formal groups, which is about the appearance of formal groups in families.
+We now turn to the deformation theory of formal groups, which is about the appearance of formal groups in families.  Specifically, following \Cref{StructureOfMfgl} we will be interested in infinitesimal deformations of formal groups over fields of positive characteristic.
 
 \begin{definition}
 Given a formal group $\Gamma$ classified by a map $\Spec k \to \moduli{fg}$, then a \textit{deformation of $\Gamma$ to a scheme $X$} is a factorization \[\Spec k \to X \to \moduli{fg}.\]  If $X$ is a nilpotent thickening of $\Spec k$ (or an ind-system of such), then the deformation is said to be \textit{infinitesimal}.
@@ -541,7 +538,7 @@ Consider the case of an infinitesimal parameter space $X = \A^1$.  A map $\A^1 \
 
 The analysis of $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate, but we follow a more structured approach written down by Lazarev.\citeme{Cite both of these}
 \begin{definition}\todo{Can this be phrased geometrically?}
-Let $+_\phi$ be a formal group law. The deformation complex $\widehat C^*(\phi)$ is defined by \[R \to R\ps{x_1} \to R\ps{x_1, x_2} \to R\ps{x_1, x_2, x_3} \to \cdots\] with differential
+Let $+_\phi$ be a formal group law over $R$, and let $M$ be an $R$--module. The deformation complex $\widehat C^*(\phi; M)$ is defined by \[M \to M\ps{x_1} \to M\ps{x_1, x_2} \to M\ps{x_1, x_2, x_3} \to \cdots\] with differential
 \begin{align*}
 (df)(x_1, \ldots, x_{n+1}) & = \phi_1\left(\sum_{i=1}^n {}_\phi x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
 & \quad + \sum (-1)^i f(x_1, \ldots, x_i +_\phi x_{i+1}, \ldots, x_{n+1}) \\
@@ -549,46 +546,66 @@ Let $+_\phi$ be a formal group law. The deformation complex $\widehat C^*(\phi)$
 \end{align*}
 where we have written
 \begin{align*}
-\phi_1(x, y) & = \frac{\partial x +_\phi y}{\partial x}, &
-\phi_2(x, y) & = \frac{\partial x +_\phi y}{\partial y}.
+\phi_1(x, y) & = \frac{\partial(x +_\phi y)}{\partial x}, &
+\phi_2(x, y) & = \frac{\partial(x +_\phi y)}{\partial y}.
 \end{align*}
 \end{definition}
 
 This complex tracks the data of infinitesimal deformations.  For instance, consider a deformed automorphism $f$ of $+_\phi$, expressed as \[f(x) = f_0(x) + h f_1(x) + h^2 f_2(x) + \cdots,\] and satisfying \[f(x +_\phi y) = f(x) +_\phi f(y).\]  Applying $\left.\frac{\partial}{\partial h}\right|_{h=0}$ to this equality gives \[f_1(x +_\phi y) = \phi_1(x, y)f_1(x) + \phi_2(x, y)f_1(y)\] and thus $f_1$ is a $1$--cocycle in the deformation complex.  A similar sequence of observations culminates in the following theorem:
 \begin{theorem}[{\cite[p.\ 1320]{Lazarev}}]
-Let $+_\phi$ be a formal group law over a ring $R$ and let $R[h]/h^2 \to R$ be the square--zero extension with kernel $(h)$.
+Let $+_\phi$ be a formal group law over a ring $R$ and let $S \to R$ be a square--zero extension with kernel $M$.
 \begin{enumerate}
-\item Automorphisms of $+_\phi$ over $R[h]/h^2$ correspond to elements in $\widehat Z^1(\phi)$.
-\item Extensions of $+_\phi$ to $R[h]/h^2$ correspond to elements in $\widehat Z^2(\phi)$.
-\item Two such extensions are isomorphic as formal group laws over $R[h]/h^2$ if their cocycles differ by an element in $\widehat B^2(\phi)$. \qed
+\item Automorphisms of $+_\phi$ over $S$ correspond to elements in $\widehat Z^1(\phi; M)$.
+\item Extensions of $+_\phi$ to $S$ correspond to elements in $\widehat Z^2(\phi; M)$.
+\item Two such extensions are isomorphic as formal group laws over $S$ if their cocycles differ by an element in $\widehat B^2(\phi; M)$. \qed
 \end{enumerate}
 \end{theorem}
 
 So, this complex contains all the information we're interested in.  Miraculously, we actually already studied the main input to computing this complex yesterday:
 
 \begin{lemma}[{\cite[p.\ 1320]{Lazarev}}]
-This is quasi-isomorphic to the usual bar complex by the map
-\[f \mapsto \phi_1\left(0, \sum_{i=1}^n{}_\phi x_i \right)^{-1} f(x_1, \ldots, x_n). \qed\]
+This is quasi-isomorphic to the usual bar complex:
+\begin{align*}
+\widehat C^*(\phi; M) & \to \CatOf{FormalSchemes}(B\G_\phi, M \otimes \G_a) \\
+f & \mapsto \phi_1\left(0, \sum_{i=1}^n{}_\phi x_i \right)^{-1} f(x_1, \ldots, x_n). \qed
+\end{align*}
 \end{lemma}
 
 Of course, yesterday we computed the specific case of $\G = \G_a$.  However, by filtering the multiplication on $\G$ by degree, we can use this specific calculation to get up to the general one.
 
-\begin{lemma}
-Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then, $H^2(\G; M \otimes \G_a)$ is a free $k$--vector space of dimension $(d - 1)$.
+\begin{lemma}[Hopkins]\label{CalculationOfLTTangentSpace}
+Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then the group $H^2(\G; M \otimes \G_a)$ classifying isomorphism classes of deformations is a free $k$--vector space of dimension $(d - 1)$.
 \end{lemma}
 \begin{proof}
-Select a coordinate on $\G$ of the form \[x +_\phi y = x + y + (\mathrm{unit}) c_{p^d} + \cdots.\]  Then, filter $\G$ by degree and consider the resulting spectral sequence of signature \[H^*(\G_a; M \otimes \G_a) \Rightarrow H^*(\G; M \otimes \G_a).\]  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest visible degree.  For example: \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are at least $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed permanent cocycles.  To do this, we need only show that they are realized by deformations, which Lubin and Tate accomplish in \Cref{LubinTateRealizationLemma}.
+Using $p$--typification, we select a coordinate on $\G$ of the form \[x +_\phi y = x + y + (\mathrm{unit}) c_{p^d} + \cdots.\]  Then, filter $\G$ by degree and consider the resulting spectral sequence of signature \[H^*(\G_a; M \otimes \G_a) \cong M \otimes (\Lambda_k[\alpha_j \mid j \ge 0] \otimes k[\beta_j \mid j \ge 0]) \Rightarrow H^*(\G; M \otimes \G_a).\]  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest visible degree.  In order to compute  \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed permanent cocycles.  To do this, we need only show that they are realized by deformations, which Lubin and Tate accomplish in \Cref{LubinTateRealizationLemma}.
 \end{proof}
 \begin{lemma}[{\cite[Proposition 1.1]{LubinTate}}]\label{LubinTateRealizationLemma}
 Let $W$ be a local ring with residue field $k$, and let $\phi$ be a group law of height $d$ on $k$.  There is a group law $\tilde\phi$ over $W\ps{u_1, \ldots, u_{d-1}}$ restricting to $\phi$ on $k$ such that \[x +_{\tilde \phi} y \equiv x + y + u_j c_{p^j}(x, y) \pmod{u_1, \ldots, u_{j-1}, (x, y)^{p^j+1}}. \qed\]
 \end{lemma}
 
+Picking $W = \W_p(k)$ to be the ring of Witt vectors, \Cref{LubinTateRealizationLemma} produces the universal example of a deformation of a group law $\phi$ to $\tilde \phi$.
+
+\begin{theorem}
+Let $\Spf R$ be an infinitesimal deformation of its residue field $\Spec k$.  For each lift of $\phi$ to $\psi$ over $\Spf R$, there is a unique homomorphism \[\alpha \in \CatOf{FormalSchemes}(\Spf R, \Spf \W_p(k)\ps{u_1, \ldots, u_{d-1}})\] with $\alpha^* \tilde \phi$ uniquely strictly isomorphic to $\psi$.
+\end{theorem}
+\begin{proof}
+We will prove this inductively on the neighborhoods of $\Spec k = \Spec R / I$ in $\Spf R$.  Suppose that we have demonstrated the Theorem for $\psi_{r-1} = R / I^{r-1} \otimes \psi$, so that there is a map $\alpha_{r-1}\co \W_p(k)\ps{u_1, \ldots, u_{d-1}} \to R/I^{r-1}$ and a strict isomorphism $g_{r-1}\co \psi_{r-1} \to \alpha_{r-1}^* \tilde \phi$.  The exact sequence \[0 \to I^{r-1} / I^r \to R/I^r \to R/I^{r-1} \to 0\] exhibits $R/I^r$ as a square--zero extension of $R/I^{r-1}$ by $M = I^{r-1} / I^r$.\todo{My source material wants $R$ to be Noetherian so that $M$ is finite dimensional.  This is important?}
+
+Let $\beta$ be \emph{any} lift of $\alpha_{r-1}$ and $h$ be \emph{any} lift of $g_{r-1}$ to $R/I^r$, and let $A$ and $B$ be the induced group laws
+\begin{align*}
+x +_A y & = \beta^* \tilde \phi, &
+x +_B y & = h\left( h^{-1}(x) +_{\psi_r} h^{-1}(y) \right).
+\end{align*}
+Since these both deform the group law $\psi_{r-1}$, by \Cref{CalculationOfLTTangentSpace} there exist $m_j \in M$ and $f(x) \in M\ps{x}$ satisfying \[(x +_B y) - (x +_A y) = (df)(x, y) + \sum_{j=1}^{d-1} m_j v_j(x, y),\] where $v_j(x, y)$ is the $2$--cocycle associated to the cohomology $2$--class $\beta_j$.  The following definitions complete the induction:
+\begin{align*}
+g_r(x) & = h(x) - f(x), &
+\alpha_r(u_j) & = \beta(u_j) + m_j. \qedhere
+\end{align*}
+\end{proof}
 
 
 
 
-
-\textbf{Now build the universal object and check its universal property.  The construction is done in 7.4.3 and the universal property is done in 7.5 of the crystals notes.}
 
 Show that the action of the stabilizer group lifts to an action on Lubin--Tate space
 
