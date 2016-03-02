@@ -446,7 +446,7 @@ To show injectivity, we must show that every $p$--typical formal group law $\phi
 g(x^{p^d}) & \equiv [p]_\phi(g(x)) & \pmod{x^{p^{d+k} + 1}} \\
 \sum_{j=1}^\infty b_j x^{jp^d} & \equiv \sum_{j=1}^\infty b_j^{p^d} x^{jp^d} + \sum_{j=1}^\infty a b_j^{p^{d+k}} x^{jp^{d+k}} & \pmod{x^{p^{d+k} + 1}}.
 \end{align*}
-For $g$ to be a coordinate transformation, we must have $b_j = 1$, which in the critical degree $x^{p^{d+k}}$ forces the relation \[b_{p^k} = b_{p^k}^{p^d} + a.\]  Since $\bar k$ is algebraically closed, this relation is solvable, and the coordinate can be perturbed so that the term $x^{p^{d+k}}$ does not appear in the $p$--series.  By inducting on $d$, we conclude that every formal group law over $\bar k$ is isomorphic to some standard Honda formal group law.
+For $g$ to be a coordinate transformation, we must have $b_1 = 1$, which in the critical degree $x^{p^{d+k}}$ forces the relation \[b_{p^k} = b_{p^k}^{p^d} + a.\]  Since $\bar k$ is algebraically closed, this relation is solvable, and the coordinate can be perturbed so that the term $x^{p^{d+k}}$ does not appear in the $p$--series.  If we set the earlier terms in the series to be $0$, then we can induct on $d$.
 \end{proof}
 
 \begin{remark}\citeme{Remark 11.2 in Neil's FG class notes}
@@ -456,25 +456,27 @@ From this, it follows that the ``coarse moduli of formal groups'' --- i.e., the 
 We now turn to the closed substacks of $\moduli{fg}$, which also admit a reasonable presentation in terms of height.
 
 \begin{lemma}[{\cite[Theorem 4.6]{Wilson}}]
-Recall that the moduli scheme of $p$--typical formal group laws is presented as \[\moduli{fgl}^{\ptyp} = \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots].\]  Suppose $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$ is a coordinate transformation which conjugates the universal group law on to a second $p$--typical group law with coefficients $\eta_R(v_j)$.  Modulo $p$, there is the relation:
+Recall that the moduli scheme of $p$--typical formal group laws is presented as \[\moduli{fgl}^{\ptyp} = \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots].\]  Suppose $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$ is the universal coordinate transformation, which we can use to conjugate the universal group law ``$+_L$'' to a second $p$--typical group law ``$+_R$'', whose $p$--series has the form \[[p]_R(x) = \sum_{d=0}^\infty {}_R \eta_R(v_d) x^{p^d}.\]  Modulo $p$, there is the relation:
 \[\sum_{\substack{i \ge 0 \\ j > 0}}{}_L t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}_L v_i t_j^{p^i} \pmod p.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
-Work modulo $p$, one can Freshman's Dream the Lemma to death.
+Work modulo $p$, one can Freshman's Dream the identity $[p]_L(g(x)) = g([p]_R(x))$ to death.
 \end{proof}
 
 \begin{corollary}[{\cite[Lemmas 4.7-8]{Wilson}}]
-Write $I_n$ for the ideal $I_n = (p, v_1, \ldots, v_{n-1})$.  Then \[\eta_R(v_n) \equiv v_n \pmod{I_n}.\]  It follows that the ideal $I_n$ is invariant. \qed
+Write $I_d$ for the ideal $I_d = (p, v_1, \ldots, v_{d-1})$.  Then \[\eta_R(v_d) \equiv v_d \pmod{I_d}.\]  It follows that the ideals $I_d$ are invariant for all $d$. \qed
 \end{corollary}
 
+\noindent What is \emph{much} harder to prove is the following:
+
 \begin{theorem}[{\cite[Theorem 4.9]{Wilson}}]
-If $I$ is an invariant prime ideal, then $I = I_n$ for some $n$.
+If $I$ is an invariant prime ideal, then $I = I_d$ for some $d$.
 \end{theorem}
 \begin{proof}[Proof sketch]
-Inductively assume that $I_n \subseteq I$.  If this is not an equality, we want to show that $I_{n+1} \subseteq I$ is forced.  Take $y \in I \setminus I_n$; if we could show \[\eta_R(y) = a v_n^j t^K + \cdots,\] we could proceed by primality to show that $v_n \in I$ and hence $I_{n+1} \subseteq I$.  This is possible, but requires serious bookkeeping.
+Inductively assume that $I_d \subseteq I$.  If this is not an equality, we want to show that $I_{d+1} \subseteq I$ is forced.  Take $y \in I \setminus I_d$; if we could show \[\eta_R(y) = a v_d^j t^K + \cdots,\] we could proceed by primality to show that $v_d \in I$ and hence $I_{d+1} \subseteq I$.  This is possible (and, indeed, this is how the proof goes), but it requires serious bookkeeping.
 \end{proof}
 
-The equivalent statement in terms of stacks is as follows:
+The equivalent statement in terms of stacks is:
 
 \begin{theorem}[Landweber]\label{LandwebersClassificationOfClosedSubstacks}\citeme{Landweber must have a paper?}
 The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $\sheaf O_{\moduli{fgl}^{\ptyp}} / (p, v_1, \ldots, v_{d-1})$. \qed
@@ -483,8 +485,8 @@ The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension
 \begin{remark}
 The complementary open substack of dimension $d$ is harder to describe.  From first principles, we can say only that it is the locus where the coordinate functions $p$, $v_1$, \ldots, $v_d$ do not \emph{all simultaneously vanish}.  It turns out that:
 \begin{enumerate}
-\item On a cover, at least one of these coordinates can be taken to be invertible.\todo{This actually uses the flat topology on the affine site, and hence may really use stackiness instead of levelwise schemeiness.  This is a problem, since you just told your students that stackiness won't come up...}
-\item Once one of them is invertible, a coordinate change on the formal group law can be used to make $v_d$ (and perhaps others in the list) invertible.  Hence, we can use $v_d^{-1} \sheaf O_{\moduli{fg}^{\ptyp}}$ as a coordinate chart.
+\item On a cover, at least one of these coordinates can be taken to be invertible.\todo{This actually uses the Zariski topology on the affine site, and hence may really use stackiness instead of levelwise schemeiness.  This is a problem, since you just told your students that stackiness won't come up...}
+\item Once one of them is invertible, a coordinate change on the formal group law can be used to make $v_d$ (and perhaps others in the list) invertible.  Hence, we can use $v_d^{-1} \sheaf O_{\moduli{fg}^{\ptyp}}$ as a coordinate chart.\todo{Hood wanted to know: What, exactly, is required here?}
 \item Over a further base extension and a further coordinate change, the higher coefficients $v_{d+k}$ can be taken to be zero.  Hence, we can also use $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$ as a coordinate chart.
 \end{enumerate}
 \end{remark}
