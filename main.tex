@@ -16,6 +16,24 @@
 \usepackage[T1]{fontenc}
 
 \usepackage{tikz-cd}
+\makeatletter
+\tikzcdset{
+    iso/.style="\cong"{#1},
+    iso'/.style="\cong"{/utils/exec=\isop@which,#1},
+    equiv/.style="\simeq"{#1},
+    equiv'/.style="\simeq"{/utils/exec=\isop@which,#1}
+}
+
+\def\isop@getrow#1-#2-#3\@nil{#2}
+\def\isop@which{
+    \ifnum\@xp\isop@getrow\tikzcd@ar@start\@nil=\@xp\isop@getrow\tikzcd@ar@target\@nil\relax
+        \pgfkeysalso{yscale=-1}
+    \else
+        \pgfkeysalso{'}
+    \fi
+}
+\makeatother
+
 
 \usepackage[textsize=tiny]{todonotes}
 \usepackage{pdflscape}
@@ -134,6 +152,7 @@
 \newcommand{\GL}{\mathit{GL}}
 \newcommand{\perf}{\mathrm{perf}}
 \newcommand{\gpd}{\mathrm{gpd}}
+\newcommand{\ptyp}{p\text{-}\mathrm{typ}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\ThomSheaf}[1]{\mathbb{L}(#1)}
 \newcommand{\FGps}{\mathrm{FGps}}
