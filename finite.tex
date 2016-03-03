@@ -110,7 +110,7 @@ Let $\sheaf D_E(X)$ be the cosimplicial spectrum determined by the formula
 \cdots
 \end{tikzcd}
 \right\}.\]
-\todo{The arrows are/were aligned incorrectly.} 
+
 It is called \textit{the descent object for $X$ from $E$ to $\S$}.
 \end{definition}
 It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
@@ -148,7 +148,7 @@ Suppose that $E$ is a ring spectrum satisfying {\CH}.  We define a simplicial sc
 \end{tikzcd}
 \right\}.
 \end{align*}
-\todo{The arrows are/were aligned incorrectly.} 
+
 \end{definition}
 
 The context is the wellspring of the algebraic category $\CatOf C$ dreamed of in the introduction to this lecture.
@@ -340,12 +340,12 @@ This is a rephrasing of \Cref{RationalFGLsHaveLogarithms} in the language of sta
 
 We would like to have a similar classification of the closed points in positive characteristic.  We proved the theorem above by solving a certain differential equation, which necessitated integrating a power series.  Integration is what we expect to fail in positive characteristic.  The following definition tracks \emph{where} it fails:
 \begin{definition}
-Let $+_\phi$ be a formal group law.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $n$--bud determined by $+_\phi$.  The \textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
+Let $+_\phi$ be a formal group law.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\todo{Should that be a $n+1$?}\] i.e., $\ell$ is a logarithm for the $n$--bud determined by $+_\phi$.  The \textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
 \end{definition}
 
 We will show that this definition is well-behaved, in the following sense:
 \begin{lemma}\label{FGLHeightIsAnInteger}
-Over a field of positive characteristic, the $p$--height of a formal group law is always an integer.  (That is, $n = p^d$ for some natural number $d$.)
+Over a field of positive characteristic $p$, the $p$--height of a formal group law is always an integer.  (That is, $n = p^d$ for some natural number $d$.)
 \end{lemma}
 \noindent We will have to develop some machinery to get there.  First, notice that this definition of height really depends on the formal group rather than the formal group law.
 
@@ -372,7 +372,7 @@ Let $\G$ denote the formal group associated to $+_\phi$, and consider its inheri
 \item Given an $\ell \in \Z_{(p)}$, we define the \textit{$\ell$--series} by \[\log([\ell](g(x))) = \ell \log(g(x)) = \sum_{n=1}^\infty \ell a_n x^n.\]
 \item For $\ell \in \Z$, we can define a \textit{Frobenius operator} by \[\log(F_\ell g(x)) = \log\left(\sum_{j=1}^\ell{}_{\G} g(\zeta_\ell^j x^{1/\ell}) \right) = \sum_{n=1}^\infty \ell a_{n \ell} x^n,\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$).  But, by pulling the logarithm through and noting \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$.\footnote{The definition of Frobenius comes from applying the Verschiebung to the character group (or ``Cartier dual'') of $\G$.}
 \end{itemize}
-Stringing these together, for $p \nmid \ell$ we have \[\log([1/\ell] V_\ell F_\ell g(x)) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell}.\]  Hence, we can consider the curve $g -_{\G} \sum_{p \nmid \ell} [1/\ell] V_\ell F_\ell g$, which is another coordinate on the same formal group $\G$, but with a $p$--typical logarithm.
+Stringing these together, for $p \nmid \ell$ we have \[\log([1/\ell] V_\ell F_\ell g(x)) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell}.\]  Hence, we can consider the curve $g -_{\G} \sum_{p \nmid \ell} [1/\ell] V_\ell F_\ell g$\todo{The sum is taken over all $\ell \in \mathbb{Z}$ not a multiple of $p$, using the formal group addition, right?  In that case, aren't you subtracting too much?  If $n$ is not a power of $p$, then the logarithm of this expression is $a_n$ times $1 -$ the number of factors of $n$ coprime to $p$.  Also, why is this still an isomorphism?} \todo{Some of these $g$s should be $g_0$s.}, which is another coordinate on the same formal group $\G$, but with a $p$--typical logarithm.
 \end{proof}
 
 Of course, not every formal group law supports a logarithm --- after all, this is the point of ``height''.  There are two ways around this: one is to pick a surjection $S \to R$ from a torsion-free ring $S$, \emph{choose} a lift of the formal group law to $S$, then pass to $S \otimes \Q$ and study how much of the resulting logarithm descends to $R$.  However, it is not clear that this procedure is independent of choice.  We therefore pursue an alternative approach: an intermediate definition that applies to all formal group laws and which specializes to the one above in the presence of a logarithm.  To do this, we consider what computations are made easier with this sort of formula for a logarithm, and we arrive at the following:
@@ -407,7 +407,7 @@ A formal group law is itself said to be \textit{$p$--typical} when its $p$--seri
 Every formal group law is naturally isomorphic to a $p$--typical one.
 \end{corollary}
 \begin{proof}
-The procedure applied to the formal group law $+_\phi$ in the proof of \Cref{EveryLogHaspTypification} applies equally well to an arbitrary formal group law, even without a logarithm --- it just wasn't clear what was being gained.  Now, it is clear: we are gaining the conclusion of this Corollary.
+The procedure applied to the formal group law $+_\phi$ in the proof of \Cref{EveryLogHaspTypification} applies equally well to an arbitrary formal group law, even without a logarithm --- it just wasn't clear what was being gained.  Now, it is clear\todo{I'm still not sure about this.  Lemma 3.3.7 doesn't say anything about $p$-series, and the previous two lemmas use the existence of a logarithm rather substantially.}: we are gaining the conclusion of this Corollary.
 \end{proof}
 
 \begin{remark}\label{EveryPSeriesArises}
@@ -435,12 +435,12 @@ Replace the formal group law by its $p$--typification.  Based on \Cref{RecoverLo
 With the notion of ``height'' firmly in hand, we are now in a position to classify the geometric points of $\moduli{fg}$.
 
 \begin{theorem}[{\cite[Th\'eor\`eme IV]{Lazard}}]\label{FGpsOverAlgClosedFields}
-Let $\bar k$ be an algebraically closed field of positive characteristic.  There is a bijection between maps \[\Gamma: \Spec \bar k \to \moduli{fg}\] and numbers $1 \le d \le \infty$ given by $\Gamma \mapsto \height(\Gamma)$.
+Let $\bar k$ be an algebraically closed field of positive characteristic $p$.  There is a bijection between maps \[\Gamma: \Spec \bar k \to \moduli{fg}\] and numbers $1 \le d \le \infty$ given by $\Gamma \mapsto \height(\Gamma)$. \todo{You haven't used the notation $\height(\Gamma)$ before.}
 \end{theorem}
 \begin{proof}
 The easy part of the proof is surjectivity: recalling \Cref{EveryPSeriesArises}, take the $p$--typical formal group law over $\F_p$ determined by the $p$--series $[p]_{\phi_d}(x) = x^{p^d}$, sometimes called the \textit{Honda formal group law}.
 
-To show injectivity, we must show that every $p$--typical formal group law $\phi$ over $\bar k$ is isomorphic to the appropriate Honda group law.  Suppose that the $p$--series for $\phi$ begins \[[p]_\phi(x) = x^{p^d} + a x^{p^{d+k}} + \cdots.\]  Then, we will construct a coordinate transformation $g(x) = \sum_{j=1}^\infty b_j x^j$ satisfying
+To show injectivity, we must show that every $p$--typical formal group law $\phi$ over $\bar k$ is isomorphic to the appropriate Honda group law.  Suppose that the $p$--series for $\phi$ begins \[[p]_\phi(x) = x^{p^d} + a x^{p^{d+k}} + \cdots. \todo{These $+$s should be $+_\phi$?}\]  Then, we will construct a coordinate transformation $g(x) = \sum_{j=1}^\infty b_j x^j$ satisfying
 \begin{align*}
 g(x^{p^d}) & \equiv [p]_\phi(g(x)) & \pmod{x^{p^{d+k} + 1}} \\
 \sum_{j=1}^\infty b_j x^{jp^d} & \equiv \sum_{j=1}^\infty b_j^{p^d} x^{jp^d} + \sum_{j=1}^\infty a b_j^{p^{d+k}} x^{jp^{d+k}} & \pmod{x^{p^{d+k} + 1}}.
@@ -455,7 +455,7 @@ From this, it follows that the ``coarse moduli of formal groups'' --- i.e., the 
 We now turn to the closed substacks of $\moduli{fg}$, which also admit a reasonable presentation in terms of height.
 
 \begin{lemma}[{\cite[Theorem 4.6]{Wilson}}]
-Recall that the moduli scheme of $p$--typical formal group laws is presented as \[\moduli{fgl}^{\ptyp} = \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots].\]  Suppose $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$ is the universal coordinate transformation, which we can use to conjugate the universal group law ``$+_L$'' to a second $p$--typical group law ``$+_R$'', whose $p$--series has the form \[[p]_R(x) = \sum_{d=0}^\infty {}_R \eta_R(v_d) x^{p^d}.\]  Modulo $p$, there is the relation:
+Recall that the moduli scheme of $p$--typical formal group laws is presented as \[\moduli{fgl}^{\ptyp} = \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots].\]  Suppose $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$ is the universal $p$-typical coordinate transformation, which we can use to conjugate the universal group law\todo{What is this universal group law?  Is it the one with $p$-series $px + v_1 x^p + \cdots$?} ``$+_L$'' to a second $p$--typical group law ``$+_R$'', whose $p$--series has the form \[[p]_R(x) = \sum_{d=0}^\infty {}_R \eta_R(v_d) x^{p^d}.\todo{What is $\eta_R$? Why does the coefficient of $x^{p^d}$ depend only on $v_d$?}\]  Modulo $p$, there is the relation:
 \[\sum_{\substack{i \ge 0 \\ j > 0}}{}_L t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}_L v_i t_j^{p^i} \pmod p.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
@@ -463,7 +463,7 @@ Work modulo $p$, one can Freshman's Dream the identity $[p]_L(g(x)) = g([p]_R(x)
 \end{proof}
 
 \begin{corollary}[{\cite[Lemmas 4.7-8]{Wilson}}]
-Write $I_d$ for the ideal $I_d = (p, v_1, \ldots, v_{d-1})$.  Then \[\eta_R(v_d) \equiv v_d \pmod{I_d}.\]  It follows that the ideals $I_d$ are invariant for all $d$. \qed
+Write $I_d$ for the ideal $I_d = (p, v_1, \ldots, v_{d-1})$.  Then \[\eta_R(v_d) \equiv v_d \pmod{I_d}.\]  It follows that the ideals $I_d$ are invariant \todo{Under $\eta_R$?} for all $d$. \qed
 \end{corollary}
 
 \noindent What is \emph{much} harder to prove is the following:
@@ -472,7 +472,7 @@ Write $I_d$ for the ideal $I_d = (p, v_1, \ldots, v_{d-1})$.  Then \[\eta_R(v_d)
 If $I$ is an invariant prime ideal, then $I = I_d$ for some $d$.
 \end{theorem}
 \begin{proof}[Proof sketch]
-Inductively assume that $I_d \subseteq I$.  If this is not an equality, we want to show that $I_{d+1} \subseteq I$ is forced.  Take $y \in I \setminus I_d$; if we could show \[\eta_R(y) = a v_d^j t^K + \cdots,\] we could proceed by primality to show that $v_d \in I$ and hence $I_{d+1} \subseteq I$.  This is possible (and, indeed, this is how the proof goes), but it requires serious bookkeeping.
+Inductively assume that $I_d \subseteq I$.  \todo{How does the base case go?} If this is not an equality, we want to show that $I_{d+1} \subseteq I$ is forced.  Take $y \in I \setminus I_d$; if we could show \[\eta_R(y) = a v_d^j t^K + \cdots, \todo{I can't extrapolate this series just from one term, but I'm guessing the rest obviously lives in $I_d$?  Also, what is $a$ and $t$ and why can't they be in $I$ instead of $v_d$?}\] we could proceed by primality to show that $v_d \in I$ and hence $I_{d+1} \subseteq I$.  This is possible (and, indeed, this is how the proof goes), but it requires serious bookkeeping.
 \end{proof}
 
 The equivalent statement in terms of stacks is:
@@ -495,7 +495,7 @@ We can now rephrase \Cref{LandwebersStackyTheorem} in terms of algebraic conditi
 Let $M$ be a module for \[\sheaf O_{\moduli{fg}^{\ptyp}} \cong \Z_{(p)}[v_1, \ldots, v_d, \ldots].\]  When $(p, v_1, \ldots, v_d, \ldots)$ forms an infinite regular sequence on $M$, then \[X \mapsto M \otimes_{\sheaf O_{\moduli{fg}^{\ptyp}}} MU_0(X)\] determines a homology theory \emph{on finite spectra $X$}.  Moreover, if for some $d \gg 0$ we have $M / I_d = 0$, then the same formula determines a homology theory \emph{on all spectra $X$}.
 \end{theorem}
 \begin{proof}
-This is a direct consequence of the classification of closed substacks of $\moduli{fg}{}_{,(p)}$ in \Cref{LandwebersClassificationOfClosedSubstacks}.  Specifically, $M$ determines a flat quasicoherent sheaf on $\moduli{fg}{}_{,(p)}$ when $\Tor_1(M, N) = 0$ for any other comodule $N$.  Using the classification of closed substacks and the regularity condition, one can iteratively use the short exact sequences \[0 \to M / I_d \xrightarrow{\cdot v_d} M / I_d \to M / I_{d+1} \to 0\] to trade this condition for the list of conditions
+This is a direct consequence of the classification of closed substacks of $\moduli{fg}{}_{,(p)}$ in \Cref{LandwebersClassificationOfClosedSubstacks}.  Specifically, $M$ determines a flat quasicoherent sheaf on $\moduli{fg}{}_{,(p)}$ when $\Tor_1(M, N) = 0$ for any other comodule $N$ \todo{Why comodule and not module?  Can you even take $\Tor$ of a module with a comodule?}.  Using the classification of closed substacks and the regularity condition, one can iteratively use the short exact sequences \[0 \to M / I_d \xrightarrow{\cdot v_d} M / I_d \to M / I_{d+1} \to 0\] to trade this condition for the list of conditions
 \begin{itemize}
 \item $\Tor_1(p^{-1} M, N) = 0$.
 \item $\Tor_2(v_1^{-1} M / p, N) = 0$.
@@ -503,7 +503,7 @@ This is a direct consequence of the classification of closed substacks of $\modu
 \item $\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0$.
 \item $\Tor_{d+1}(M / I_d, N) = 0$.
 \end{itemize}
-for any $d$.  If $N$ is coherent, as in the case $N = MU_*(X)$ for a finite spectrum $X$\todo{Is this true? There's some going-around / extension-problem stuff that I've never understood, and it's gotten me in trouble before.}, then this final condition is satisfied automatically for $d \gg 0$.  (Alternatively, we can assume that $M$ eventually satisfies this condition on its own.)  By observing the length of the Koszul resolution associated to the cover $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$, one finally sees that \[\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0\] is satisfied for \emph{any} quasicoherent sheaf.
+for any $d$.  \todo{Can you explain this more?  How is the classification of closed substacks used?  Where are these conditions coming from?}If $N$ is coherent, as in the case $N = MU_*(X)$ for a finite spectrum $X$\todo{Is this true? There's some going-around / extension-problem stuff that I've never understood, and it's gotten me in trouble before.}, then this final condition is satisfied automatically for $d \gg 0$.  (Alternatively, we can assume that $M$ eventually satisfies this condition on its own.)  By observing the length of the Koszul resolution associated to the cover $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$, one finally sees that \[\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0\] is satisfied for \emph{any} quasicoherent sheaf.
 \end{proof}
 
 \begin{remark}
