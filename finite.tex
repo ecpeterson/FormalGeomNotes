@@ -178,7 +178,7 @@ The main utility of this is that it obviates us from working through the homolog
 \end{remark}
 
 \begin{remark}
-This homotopical perspective is quite useful --- for instance, a map of groupoid--schemes which induces on points a natural weak equivalence of groupoids also induces an equivalence of comodule categories.  In fact, the \emph{derived} comodule category depends only upon the stack associated to the groupoid--scheme, which allows still more contexts to be identified.  We won't need this observation in what's to come, though, and it introduces substantial technical distractions.\todo{Is there an instance where stacky equivalence (rather than natural groupoid equivalence) is relevant for algebraic topologists?  Or, really, anyone?}\todo{Could also explain the difference: levelwise sheaves of $0$--types vs sheaves of $\infty$--types.}
+This homotopical perspective is quite useful --- for instance, a map of groupoid--schemes which induces on points a natural weak equivalence of groupoids also induces an equivalence of comodule categories.  In fact, the \emph{derived} comodule category depends only upon the stack associated to the groupoid--scheme, which allows still more contexts to be identified.  We won't need this observation in what's to come, though, and it introduces substantial technical distractions.  \textbf{However, we \emph{may} got sloppy and say ``stack'' from time to time.}\todo{Is there an instance where stacky equivalence (rather than natural groupoid equivalence) is relevant for algebraic topologists?  Or, really, anyone?}\todo{Could also explain the difference: levelwise sheaves of $0$--types vs sheaves of $\infty$--types.}
 \end{remark}
 
 \todo{I think there is a notion of quasicoherent sheaf directly over $\sheaf D_E$ and an interpretation of Cartesian sheaves in that setting.  I think that a different view on {\FH} is that it causes the functor $\pi_*$ to preserve Cartesianness.}
@@ -190,6 +190,10 @@ Most of the homology theories we will discuss have this property.  For an easy e
 \begin{example}\label{ContextOfMUPExample}
 The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  It is isomorphic to the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.
 \end{example}
+
+\begin{remark}\citeme{Mike's Talbot talk, which is in the TMF volume.}
+If $E$ is a complex-oriented ring spectrum, then the simplicial sheaf $\context{MU}(E)$ has an extra degeneracy, cause the $MU$--based Adams spectral sequence for $E$ to degenerate.  In this sense, the ``stackiness'' of $\context{MU}(E)$ is a measure of the failure of $E$ to be orientable.
+\end{remark}
 
 \todo{Say what open, closed, flat maps of simplicial schemes are?}
 \todo{Jon thinks that this picture can be instructively recast in terms of the cotangent complex.  I'm not sure how, but it's something to keep in mind for later.}
@@ -203,7 +207,7 @@ The context for $MUP$ is considerably more complicated, but Quillen's theorem ca
 
 Our first goal for today is to outline a program for the rest of this Case Study.  Yesterday, we developed a rich target for $E$--homology: sheaves over an algebro-geometric object $\context{E}$.  Furthermore, we have explored in \Cref{ContextOfMUPExample} an identification $\context{MUP} \simeq \moduli{fg}$, where $\moduli{fg}$ is the ``moduli of formal groups''.  Our initial goal for today is to outline a program by which we can leverage this to study $MUP$.  Abstractly, one can hope to study any sheaf, including $\context{MUP}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\context{MUP}$, so that we can determine where to even look for those stalks.
 
-With this in mind, given a map $f$ in the diagram
+With this in mind, given a map $f$ in the diagram\todo{The bottom of COCTALOS page 68 has a better interpretation of what picking a formal group law has to do with anything, I think.}
 \begin{center}
 \begin{tikzcd}
 \Spec R \arrow{r}{f} & \moduli{fgl} \arrow[-,double]{r} \arrow{d} & \context{MU}[0] \arrow{d} \arrow[-,double]{r} & \Spec MUP_0 \\
@@ -212,7 +216,7 @@ With this in mind, given a map $f$ in the diagram
 \end{center}
 life would be easiest if the $R$--module determined by $f^* \context{MUP}(X)$ were itself the value of a homology theory $R_0(X) = MUP_0 X \otimes_{MUP_0} R$.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when $f$ is \textit{flat}.  In that case, this gives the following theorem:
 
-\begin{theorem}[Landweber]
+\begin{theorem}[Landweber]\label{LandwebersStackyTheorem}
 Given such a diagram where the diagonal arrow is flat, the functor \[R_0(X) := MUP_0(X) \otimes_{MUP_0} R\] is a homology theory. 
 \end{theorem}
 
@@ -275,11 +279,11 @@ Let $U = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting
 In order to prove the missing \Cref{Symmetric2CocycleLemma}, it will be useful to study the series $+_\phi$ ``up to degree $n$'', i.e., modulo $(x, y)^{n+1}$.  Such a truncated series satisfying the analogues of the formal group law axioms is called a \textit{formal $n$--bud}.  Additionally, a \textit{symmetric $2$--cocycle} is a symmetric polynomial $f(x, y)$ satisfying the equation \[f(x, y) - f(t + x, y) + f(t, x + y) - f(t, x) = 0.\]
 \end{definition}
 
-\begin{lemma}[Symmetric $2$--cocycle lemma]\label{Symmetric2CocycleLemma}
-The following are equivalent and true:
+\begin{lemma}[Symmetric $2$--cocycle lemma (Part 1)]\label{Symmetric2CocycleLemma}
+The following are equivalent:
 \begin{enumerate}
 \item Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n).\]
-\item For $F$ is an $r$--bud, the set of $(r+1)$--buds extending $F$ form a torsor under addition for $R_{2n-2} \otimes c_r$.
+\item For $F$ is an $r$--bud, the set of $(r+1)$--buds extending $F$ form a torsor under addition for $R_{2n-2} \otimes c_r$.\todo{Things suddenly become graded here --- and you really make use of this.  Explain yourself.}
 \item Any homomorphism $(QL)_{2n} \to A$ factors through the map $(QL)_{2n} \to T_{2n}$.
 \item There is a canonical splitting $T_{2n} \to (QL)_{2n}$.
 \end{enumerate}
@@ -293,9 +297,15 @@ We will prove Claim 1 tomorrow.
 
 
 
-\section{The structure of $\moduli{fg}$ I: Points}
+\section{The structure of $\moduli{fg}$ I: Distance from $\G_a$}
 
-\begin{proof}[{Proof of Claim 1 from \Cref{Symmetric2CocycleLemma}}]\citeme{This follows Chapter 3 of COCTALOS.}
+We begin by finishing up our proof of Lazard's theorem (and, specifically, the Symmetric $2$--cocycle Lemma).
+
+\begin{lemma}[{Symmetric $2$--cocycle lemma (Part 2): Claim 1 of \Cref{Symmetric2CocycleLemma}}]
+Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n).\]
+\end{lemma}
+
+\begin{proof}\citeme{This follows Chapter 3 of COCTALOS.}
 It suffices to show the Lemma over a finitely generated ring.  In fact, the Lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, so the structure theorem for finitely generated abelian groups reduces to the cases of $\Z$ and $\Z/p^r$.  If $A \subseteq B$ and the Lemma is true for $B$, it's true for $A$, so we can further reduce the $\Z$ case to $\Q$.\todo{Rephrase this in terms of localizations.}  We can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive, Bockstein-style argument.  Hence, we can now freely assume that our ground object is a prime field.
 
 For a formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usual way:
@@ -316,18 +326,8 @@ By applying the functor $\InternalHom{FormalGroups}(-, \G_a)(k)$, we get a cosim
 This finally concludes the proof of \Cref{LazardsTheorem}.
 \end{proof}
 
-\todo[inline]{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I think we should phrase things in those terms.}
+\todo{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I wonder if we should phrase things in those terms.}
 \todo[inline]{Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
-
-\textbf{Put in a proof of the classification of geometric points.}
-
-
-
-
-
-
-
-\section{The structure of $\moduli{fg}$ II: Large scales}
 
 Having described the structure of $\moduli{fgl}$, we turn to understanding the quotient stack $\moduli{fg}$.  Earlier, we proved the following theorem:
 
@@ -343,7 +343,7 @@ We would like to have a similar classification of the closed points in positive 
 Let $+_\phi$ be a formal group law.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $n$--bud determined by $+_\phi$.  The \textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
 \end{definition}
 
-In fact, we will show that this definition is well-behaved, in the following sense:
+We will show that this definition is well-behaved, in the following sense:
 \begin{lemma}\label{FGLHeightIsAnInteger}
 Over a field of positive characteristic, the $p$--height of a formal group law is always an integer.  (That is, $n = p^d$ for some natural number $d$.)
 \end{lemma}
@@ -356,7 +356,7 @@ The height of a formal group law is an isomorphism invariant, i.e., it descends 
 The series $\ell$ is a partial logarithm for the formal group law $\phi$, i.e., an isomorphism between the formal group defined by $\phi$ and the additive group.  Since isomorphisms compose, this statement follows.
 \end{proof}
 
-With this in mind, we look for a more standard form for formal group laws.  In light of our goal Lemma, the most obvious standard form is as follows:
+With this in mind, we look for a more standard form for formal group laws, where \Cref{FGLHeightIsAnInteger} will hopefully be obvious.  In light of our goal, the most obvious standard form is as follows:
 \begin{definition}
 Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that $+_\phi$ has a \textit{$p$--typical logarithm} in the case that its logarithm has the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
 \end{definition}
@@ -365,8 +365,14 @@ Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that $+_
 Every formal group law $+_\phi$ with a logarithm $\log_\phi$ is naturally isomorphic to one whose logarithm is $p$--typical, called the $p$--typification of $+_\phi$.
 \end{lemma}
 \begin{proof}
-\todo[inline]{The slickest proof is to extend the base ring by a bunch of unramified roots of unity, use those to write down an isomorphism that obviously gets rid of the non-power-of-$p$ terms in the logarithm, then note that the formula for the isomorphism is Galois invariant and so descends to the original ring.}
-\todo{Build Quillen's idempotent. Maybe lift it to $L_p MU$?}
+Let $\G$ denote the formal group associated to $+_\phi$, and consider its inherited coordinate \[g_0\co \A^1 \xrightarrow{\cong} \G,\] so that \[\log_\phi = \log \circ g_0 = \sum_{n=1}^\infty a_n x^n.\]  Our goal is to perturb this coordinate to a new coordinate $g$ which has the property that it couples with the logarithm \[\A^1 \xrightarrow{g} \G \xrightarrow{\log} \G_a\] to give a power series expansion \[\log(g(x)) = \sum_{n=0}^\infty a_{p^n} x^{p^n}.\]  To do this, we introduce four operators on \emph{curves}:
+\begin{itemize}
+\item Given $r \in R$, we can define a \textit{homothety} by rescaling the coordinate by $r$: \[\log(g(rx)) = \sum_{n=1}^\infty (a_n r^n) x^n.\]
+\item For $\ell \in \Z$, we can define a shift operator (or \textit{Verschiebung}) by \[\log(V_\ell g(x)) = \log(g(x^\ell)) = \sum_{n=1}^\infty a_n x^{n \ell}.\]
+\item Given an $\ell \in \Z_{(p)}$, we define the \textit{$\ell$--series} by \[\log([\ell](g(x))) = \ell \log(g(x)) = \sum_{n=1}^\infty \ell a_n x^n.\]
+\item For $\ell \in \Z$, we can define a \textit{Frobenius operator} by \[\log(F_\ell g(x)) = \log\left(\sum_{j=1}^\ell{}_{\G} g(\zeta_\ell^j x^{1/\ell}) \right) = \sum_{n=1}^\infty \ell a_{n \ell} x^n,\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$).  But, by pulling the logarithm through and noting \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$.\footnote{The definition of Frobenius comes from applying the Verschiebung to the character group (or ``Cartier dual'') of $\G$.}
+\end{itemize}
+Stringing these together, for $p \nmid \ell$ we have \[\log([1/\ell] V_\ell F_\ell g(x)) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell}.\]  Hence, we can consider the curve $g -_{\G} \sum_{p \nmid \ell} [1/\ell] V_\ell F_\ell g$, which is another coordinate on the same formal group $\G$, but with a $p$--typical logarithm.
 \end{proof}
 
 Of course, not every formal group law supports a logarithm --- after all, this is the point of ``height''.  There are two ways around this: one is to pick a surjection $S \to R$ from a torsion-free ring $S$, \emph{choose} a lift of the formal group law to $S$, then pass to $S \otimes \Q$ and study how much of the resulting logarithm descends to $R$.  However, it is not clear that this procedure is independent of choice.  We therefore pursue an alternative approach: an intermediate definition that applies to all formal group laws and which specializes to the one above in the presence of a logarithm.  To do this, we consider what computations are made easier with this sort of formula for a logarithm, and we arrive at the following:
@@ -393,18 +399,6 @@ p \log_\phi(x) & = \log_\phi (px) + \log_\phi(v_1 x^p) + \log_\phi(v_2 x^{p^2}) 
 \end{align*}
 \end{proof}
 
-\begin{remark}
-In fact, the rational logarithm coefficients can be recursively recovered from the coefficients $v_d$, using a similar manipulation:
-\begin{align*}
-p \log_\phi(x) & = \log_\phi\left([p]_\phi(x)\right) \\
-p \sum_{n=0}^\infty m_n x^{p^n} & = \log_\phi \left(\sum_{d=0}^\infty{}_\phi v_d x^{p^d} \right) = \sum_{d=0}^\infty \log_\phi\left(v_d x^{p^d}\right) \\
-\sum_{n=0}^\infty p m_n x^{p^n} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_j v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_k v_{n-k}^{p^k} \right) x^{p^n},
-\end{align*}
-implicitly taking $m_0 = 1$ and $v_0 = p$.
-\end{remark}
-
-\todo{Did you make it clear what the $v_n$ have to do with height?}
-
 \begin{definition}
 A formal group law is itself said to be \textit{$p$--typical} when its $p$--series has the above form.  (In particular, the logarithm of a $p$--typical formal group law is a $p$--typical logarithm.)
 \end{definition}
@@ -416,52 +410,112 @@ Every formal group law is naturally isomorphic to a $p$--typical one.
 The procedure applied to the formal group law $+_\phi$ in the proof of \Cref{EveryLogHaspTypification} applies equally well to an arbitrary formal group law, even without a logarithm --- it just wasn't clear what was being gained.  Now, it is clear: we are gaining the conclusion of this Corollary.
 \end{proof}
 
-\begin{remark}
-There is an inclusion of groupoid--valued sheaves from $p$--typical formal group laws with isomorphisms to all formal group laws with isomorphisms.  \Cref{EveryFGLIsPTypical} can be viewed as presenting this inclusion as a deformation retraction, and in particular the inclusion is a natural \emph{equivalence} of groupoids.  It follows\needproof{Equivalence of groupoids is a reasonable notion in stacks} that these both present the same stack: $\moduli{fg}$.\todo{This isn't stated very well.}
+\begin{remark}\label{EveryPSeriesArises}
+There is an inclusion of groupoid--valued sheaves from $p$--typical formal group laws with isomorphisms to all formal group laws with isomorphisms.  \Cref{EveryFGLIsPTypical} can be viewed as presenting this inclusion as a deformation retraction, and in particular the inclusion is a natural \emph{equivalence} of groupoids.  It follows that these both present the same stack: $\moduli{fg}$.  In fact\todo{I don't think we've shown this?  For what it's worth, the statements around Lemma 11.9 and Application 13.10 of COCTALOS prove it.}, the moduli of $p$--typical formal group laws is isomorphic to $\Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$ --- every possible $p$--series is realized by a unique $p$--typical formal group law.
+\end{remark}
+
+\begin{remark}\label{RecoverLogarithmRemark}
+In fact, the rational logarithm coefficients can be recursively recovered from the coefficients $v_d$, using a similar manipulation:
+\begin{align*}
+p \log_\phi(x) & = \log_\phi\left([p]_\phi(x)\right) \\
+p \sum_{n=0}^\infty m_n x^{p^n} & = \log_\phi \left(\sum_{d=0}^\infty{}_\phi v_d x^{p^d} \right) = \sum_{d=0}^\infty \log_\phi\left(v_d x^{p^d}\right) \\
+\sum_{n=0}^\infty p m_n x^{p^n} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_j v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_k v_{n-k}^{p^k} \right) x^{p^n},
+\end{align*}
+implicitly taking $m_0 = 1$ and $v_0 = p$.
 \end{remark}
 
 \begin{proof}[{Proof of \Cref{FGLHeightIsAnInteger}}]
-Replace the formal group law by its $p$--typification.  \todo{Finish this.}
+Replace the formal group law by its $p$--typification.  Based on \Cref{RecoverLogarithmRemark}, we see that the height of a $p$--typical formal group law over a field of characteristic $p$ is coincides with the appearance of the first nonzero coefficient in its $p$--series.
 \end{proof}
 
-We're now in a position to 
-\begin{theorem}\citeme{Lazard Theorem IV on p.\ 270}
-Let $k$ be an algebraically closed field of positive characteristic.  There is a bijection between maps \[\Gamma: \Spec k \to \moduli{fg}\] and numbers $1 \le d \le \infty$ given by $\Gamma \mapsto \height(\Gamma)$.
+\todo{You could be clearer about the varying assumptions on the ground rings in these different theorems.  Some need to work over $k$, others work over any $\Z_{(p)}$--algebra.}
+
+
+
+
+
+
+
+
+
+\section{The structure of $\moduli{fg}$ II: Large scales}
+
+With the notion of ``height'' firmly in hand, we are now in a position to classify the geometric points of $\moduli{fg}$.
+
+\begin{theorem}[{\cite[Th\'eor\`eme IV]{Lazard}}]\label{FGpsOverAlgClosedFields}
+Let $\bar k$ be an algebraically closed field of positive characteristic.  There is a bijection between maps \[\Gamma: \Spec \bar k \to \moduli{fg}\] and numbers $1 \le d \le \infty$ given by $\Gamma \mapsto \height(\Gamma)$.
 \end{theorem}
 \begin{proof}
-The easy part of the proof is surjectivity: take the $p$--typical formal group law over $\F_p$ determined by the $p$--series $[p]_{\phi_d}(x) = x^{p^d}$, sometimes called the \textit{Honda formal group law}.
+The easy part of the proof is surjectivity: recalling \Cref{EveryPSeriesArises}, take the $p$--typical formal group law over $\F_p$ determined by the $p$--series $[p]_{\phi_d}(x) = x^{p^d}$, sometimes called the \textit{Honda formal group law}.
 
-To show injectivity, we must show that every formal group law over $\bar k$ is isomorphic to the appropriate Honda group law. \todo{Produce such an isomorphism.}
+To show injectivity, we must show that every $p$--typical formal group law $\phi$ over $\bar k$ is isomorphic to the appropriate Honda group law.  Suppose that the $p$--series for $\phi$ begins \[[p]_\phi(x) = x^{p^d} + a x^{p^{d+k}} + \cdots.\]  Then, we will construct a coordinate transformation $g(x) = \sum_{j=1}^\infty b_j x^j$ satisfying
+\begin{align*}
+g(x^{p^d}) & \equiv [p]_\phi(g(x)) & \pmod{x^{p^{d+k} + 1}} \\
+\sum_{j=1}^\infty b_j x^{jp^d} & \equiv \sum_{j=1}^\infty b_j^{p^d} x^{jp^d} + \sum_{j=1}^\infty a b_j^{p^{d+k}} x^{jp^{d+k}} & \pmod{x^{p^{d+k} + 1}}.
+\end{align*}
+For $g$ to be a coordinate transformation, we must have $b_1 = 1$, which in the critical degree $x^{p^{d+k}}$ forces the relation \[b_{p^k} = b_{p^k}^{p^d} + a.\]  Since $\bar k$ is algebraically closed, this relation is solvable, and the coordinate can be perturbed so that the term $x^{p^{d+k}}$ does not appear in the $p$--series.  If we set the earlier terms in the series to be $0$, then we can induct on $d$.
 \end{proof}
 
-\todo[inline]{Here's a remark, 11.2 in Neil's FG class notes: the functor to iso classes of formal groups (i.e., the course moduli) is definitely not a scheme, since it's infinite on $\F_p$, so it's infinite on $\Z$, yet it's a singleton on $\Q$. If it were representable by a scheme, the value on $\Z$ would inject to the value on $\Q$.}
+\begin{remark}\citeme{Remark 11.2 in Neil's FG class notes}
+From this, it follows that the ``coarse moduli of formal groups'' --- i.e., the functor from rings to isomorphism classes of formal groups over that ring --- is not representable by a scheme.  The infinitely many isomorphism classes over $\Spec \F_p$ produce infinitely many over $\Spec \Z$ as well.  On the other hand, there is a single $\Q$--valued point of the coarse moduli, whereas the $\Z$--points of a representable functor would inject into its $\Q$--points.
+\end{remark}
 
+We now turn to the closed substacks of $\moduli{fg}$, which also admit a reasonable presentation in terms of height.
 
-\textbf{Now analyze the open and closed substacks.}
-
-\begin{lemma}\citeme{Wilson's primer, Theorem 4.6}
-\[\sum_{\substack{i \ge 0 \\ j > 0}}{}^F t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}^F v_i t_j^{p^i} \pmod p.\]
+\begin{lemma}[{\cite[Theorem 4.6]{Wilson}}]
+Recall that the moduli scheme of $p$--typical formal group laws is presented as \[\moduli{fgl}^{\ptyp} = \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots].\]  Suppose $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$ is the universal coordinate transformation, which we can use to conjugate the universal group law ``$+_L$'' to a second $p$--typical group law ``$+_R$'', whose $p$--series has the form \[[p]_R(x) = \sum_{d=0}^\infty {}_R \eta_R(v_d) x^{p^d}.\]  Modulo $p$, there is the relation:
+\[\sum_{\substack{i \ge 0 \\ j > 0}}{}_L t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}_L v_i t_j^{p^i} \pmod p.\]
 \end{lemma}
+\begin{proof}[Proof sketch]
+Work modulo $p$, one can Freshman's Dream the identity $[p]_L(g(x)) = g([p]_R(x))$ to death.
+\end{proof}
 
-\begin{corollary}\citeme{Lemmas 4.7-8 of Wilson's primer}
-The ideal $I_n = (p, v_1, \ldots, v_{n-1}) \subseteq BP_*$ is invariant.  Also, $\eta_R(v_n) \equiv v_n \pmod{I_n}$.
+\begin{corollary}[{\cite[Lemmas 4.7-8]{Wilson}}]
+Write $I_d$ for the ideal $I_d = (p, v_1, \ldots, v_{d-1})$.  Then \[\eta_R(v_d) \equiv v_d \pmod{I_d}.\]  It follows that the ideals $I_d$ are invariant for all $d$. \qed
 \end{corollary}
 
-\begin{theorem}\citeme{Theorem 4.9 of Wilson's primer}
-If $I$ is an invariant prime ideal, then $I = I_n$ for some $n$.
+\noindent What is \emph{much} harder to prove is the following:
+
+\begin{theorem}[{\cite[Theorem 4.9]{Wilson}}]
+If $I$ is an invariant prime ideal, then $I = I_d$ for some $d$.
 \end{theorem}
 \begin{proof}[Proof sketch]
-Inductively assume that $I_n \subseteq I$.  If this is not an equality, we want to show that $I_{n+1} \subseteq I$ is forced.  Take $y \in I \setminus I_n$; if we could show \[\eta_R(y) = a v_n^j t^K + \cdots,\] we could proceed by primality to show that $v_n \in I$ and hence $I_{n+1} \subseteq I$.  This is possible, but requires serious bookkeeping.
+Inductively assume that $I_d \subseteq I$.  If this is not an equality, we want to show that $I_{d+1} \subseteq I$ is forced.  Take $y \in I \setminus I_d$; if we could show \[\eta_R(y) = a v_d^j t^K + \cdots,\] we could proceed by primality to show that $v_d \in I$ and hence $I_{d+1} \subseteq I$.  This is possible (and, indeed, this is how the proof goes), but it requires serious bookkeeping.
 \end{proof}
 
-\textbf{Here's an omnibus theorem:}
+The equivalent statement in terms of stacks is:
 
-\begin{theorem}[Landweber, part 2: classification of closed substacks]
-Let $BP_*$ be the ring classifying formal group laws with $p$--typical logarithms.  It has the form $BP_* \cong \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$, where $v_d \equiv p \ell_d \pmod{\text{decomposables}}$.  The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $BP_* / (p, v_1, \ldots, v_{d-1})$, and its complementary open substack of dimension $d$ is selected by either of $v_d^{-1} BP_*$ or $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$. \qed
+\begin{theorem}[Landweber]\label{LandwebersClassificationOfClosedSubstacks}\citeme{Landweber must have a paper?}
+The unique closed substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $\sheaf O_{\moduli{fgl}^{\ptyp}} / (p, v_1, \ldots, v_{d-1})$. \qed
 \end{theorem}
 
 \begin{remark}
-It's worth pointing out how strange this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.  Here, proper open substacks of every dimension appear, and every nonempty closed substack is $\infty$--dimensional (albeit of positive codimension).
+The complementary open substack of dimension $d$ is harder to describe.  From first principles, we can say only that it is the locus where the coordinate functions $p$, $v_1$, \ldots, $v_d$ do not \emph{all simultaneously vanish}.  It turns out that:
+\begin{enumerate}
+\item On a cover, at least one of these coordinates can be taken to be invertible.\todo{This actually uses the Zariski topology on the affine site, and hence may really use stackiness instead of levelwise schemeiness.  This is a problem, since you just told your students that stackiness won't come up...}
+\item Once one of them is invertible, a coordinate change on the formal group law can be used to make $v_d$ (and perhaps others in the list) invertible.  Hence, we can use $v_d^{-1} \sheaf O_{\moduli{fg}^{\ptyp}}$ as a coordinate chart.\todo{Hood wanted to know: What, exactly, is required here?}
+\item Over a further base extension and a further coordinate change, the higher coefficients $v_{d+k}$ can be taken to be zero.  Hence, we can also use $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$ as a coordinate chart.
+\end{enumerate}
+\end{remark}
+
+We can now rephrase \Cref{LandwebersStackyTheorem} in terms of algebraic conditions.
+\begin{theorem}[{Landweber, cf.\ \Cref{LandwebersStackyTheorem}, see also \cite[Theorem 21.4 and Proposition 21.5]{HopkinsCOCTALOS}}]\citeme{Find Landweber's original paper}
+Let $M$ be a module for \[\sheaf O_{\moduli{fg}^{\ptyp}} \cong \Z_{(p)}[v_1, \ldots, v_d, \ldots].\]  When $(p, v_1, \ldots, v_d, \ldots)$ forms an infinite regular sequence on $M$, then \[X \mapsto M \otimes_{\sheaf O_{\moduli{fg}^{\ptyp}}} MU_0(X)\] determines a homology theory \emph{on finite spectra $X$}.  Moreover, if for some $d \gg 0$ we have $M / I_d = 0$, then the same formula determines a homology theory \emph{on all spectra $X$}.
+\end{theorem}
+\begin{proof}
+This is a direct consequence of the classification of closed substacks of $\moduli{fg}{}_{,(p)}$ in \Cref{LandwebersClassificationOfClosedSubstacks}.  Specifically, $M$ determines a flat quasicoherent sheaf on $\moduli{fg}{}_{,(p)}$ when $\Tor_1(M, N) = 0$ for any other comodule $N$.  Using the classification of closed substacks and the regularity condition, one can iteratively use the short exact sequences \[0 \to M / I_d \xrightarrow{\cdot v_d} M / I_d \to M / I_{d+1} \to 0\] to trade this condition for the list of conditions
+\begin{itemize}
+\item $\Tor_1(p^{-1} M, N) = 0$.
+\item $\Tor_2(v_1^{-1} M / p, N) = 0$.
+\item \ldots
+\item $\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0$.
+\item $\Tor_{d+1}(M / I_d, N) = 0$.
+\end{itemize}
+for any $d$.  If $N$ is coherent, as in the case $N = MU_*(X)$ for a finite spectrum $X$\todo{Is this true? There's some going-around / extension-problem stuff that I've never understood, and it's gotten me in trouble before.}, then this final condition is satisfied automatically for $d \gg 0$.  (Alternatively, we can assume that $M$ eventually satisfies this condition on its own.)  By observing the length of the Koszul resolution associated to the cover $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$, one finally sees that \[\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0\] is satisfied for \emph{any} quasicoherent sheaf.
+\end{proof}
+
+\begin{remark}
+It's worth pointing out how strange all of this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.  Here, proper open substacks of every dimension appear, and every nonempty closed substack is $\infty$--dimensional (albeit of positive codimension).
 \end{remark}
 
 
@@ -473,10 +527,7 @@ It's worth pointing out how strange this is. In Euclidean geometry, open subspac
 
 \section{The structure of $\moduli{fg}$ III: Small scales}
 
-
-\textbf{Now analyze the deformation spaces}
-
-We now turn to the deformation theory of formal groups, which is about the appearance of formal groups in families.
+We now turn to the deformation theory of formal groups, which is about the appearance of formal groups in families.  Specifically, following \Cref{StructureOfMfgl} we will be interested in infinitesimal deformations of formal groups over fields of positive characteristic.
 
 \begin{definition}
 Given a formal group $\Gamma$ classified by a map $\Spec k \to \moduli{fg}$, then a \textit{deformation of $\Gamma$ to a scheme $X$} is a factorization \[\Spec k \to X \to \moduli{fg}.\]  If $X$ is a nilpotent thickening of $\Spec k$ (or an ind-system of such), then the deformation is said to be \textit{infinitesimal}.
@@ -495,72 +546,74 @@ Consider the case of an infinitesimal parameter space $X = \A^1$.  A map $\A^1 \
 \end{example}
 
 The analysis of $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate, but we follow a more structured approach written down by Lazarev.\citeme{Cite both of these}
-\begin{definition}\todo{Phrase this geometrically?  Can you?}
-Let $+_\phi$ be a formal group law. The deformation complex $\widehat C^*(\phi)$ is defined by \[R \to R\ps{x_1} \to R\ps{x_1, x_2} \to R\ps{x_1, x_2, x_3} \to \cdots\] with differential
+\begin{definition}\todo{Can this be phrased geometrically?}
+Let $+_\phi$ be a formal group law over $R$, and let $M$ be an $R$--module. The deformation complex $\widehat C^*(\phi; M)$ is defined by \[M \to M\ps{x_1} \to M\ps{x_1, x_2} \to M\ps{x_1, x_2, x_3} \to \cdots\] with differential
 \begin{align*}
 (df)(x_1, \ldots, x_{n+1}) & = \phi_1\left(\sum_{i=1}^n {}_\phi x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
 & \quad + \sum (-1)^i f(x_1, \ldots, x_i +_\phi x_{i+1}, \ldots, x_{n+1}) \\
-& \quad (-1)^{n+1} \left( \phi_2\left(x_1, \sum_{i=2}^{n+1} {}_\phi x_i \right) \cdot f(x_2, \ldots, x_{n+1}) \right),
+& \quad + (-1)^{n+1} \left( \phi_2\left(x_1, \sum_{i=2}^{n+1} {}_\phi x_i \right) \cdot f(x_2, \ldots, x_{n+1}) \right),
 \end{align*}
 where we have written
 \begin{align*}
-\phi_1(x, y) & = \frac{\partial x +_\phi y}{\partial x}, &
-\phi_2(x, y) & = \frac{\partial x +_\phi y}{\partial y}.
+\phi_1(x, y) & = \frac{\partial(x +_\phi y)}{\partial x}, &
+\phi_2(x, y) & = \frac{\partial(x +_\phi y)}{\partial y}.
 \end{align*}
 \end{definition}
 
 This complex tracks the data of infinitesimal deformations.  For instance, consider a deformed automorphism $f$ of $+_\phi$, expressed as \[f(x) = f_0(x) + h f_1(x) + h^2 f_2(x) + \cdots,\] and satisfying \[f(x +_\phi y) = f(x) +_\phi f(y).\]  Applying $\left.\frac{\partial}{\partial h}\right|_{h=0}$ to this equality gives \[f_1(x +_\phi y) = \phi_1(x, y)f_1(x) + \phi_2(x, y)f_1(y)\] and thus $f_1$ is a $1$--cocycle in the deformation complex.  A similar sequence of observations culminates in the following theorem:
-\begin{theorem}\citeme{Definitely blame this on Lazarev}
+\begin{theorem}[{\cite[p.\ 1320]{Lazarev}}]
 Let $+_\phi$ be a formal group law over a ring $R$ and let $S \to R$ be a square--zero extension with kernel $M$.
 \begin{enumerate}
-\item Automorphisms of $+_\phi$ over $S$ give elements in $\widehat Z^1(\phi)$.
-\item Two automorphisms are equivalent if...?
-\item Extensions of $+_\phi$ to $S$ give elements in $\widehat Z^2(\phi)$.
-\item Two such extensions are isomorphic over $S$ if their cocycles are bounded by an element in $\widehat B^2(\phi)$. \qed
+\item Automorphisms of $+_\phi$ over $S$ correspond to elements in $\widehat Z^1(\phi; M)$.
+\item Extensions of $+_\phi$ to $S$ correspond to elements in $\widehat Z^2(\phi; M)$.
+\item Two such extensions are isomorphic as formal group laws over $S$ if their cocycles differ by an element in $\widehat B^2(\phi; M)$. \qed
 \end{enumerate}
-\todo{Summarize all the facts about the deformation complex here.}
 \end{theorem}
 
 So, this complex contains all the information we're interested in.  Miraculously, we actually already studied the main input to computing this complex yesterday:
 
-\begin{lemma}
-This is quasi-isomorphic to the usual bar complex.
-\end{lemma}
-\begin{proof}\todo{Actually write this.}
-The usual bar complex receives a map defined by \[f \mapsto \check{f}(x_1, \ldots, x_n) = F_1\left( 0, \sum_{i=1}^n {}F x_i \right)^{-1} f(x_1, \ldots, x_n),\] and this is the quasi-isomorphism.
-
-You'll probably want to know the formulas
+\begin{lemma}[{\cite[p.\ 1320]{Lazarev}}]
+This is quasi-isomorphic to the usual bar complex:
 \begin{align*}
-F_1(x, y) & = F_1(0, x)^{-1} F_1(0, F(x, y)), \\
-F_2(x, y) & = F_2(y, 0)^{-1} F_2(F(x, y), 0) = F_1(0, y)^{-1} F_1(0, F(x, y)).
+\widehat C^*(\phi; M) & \to \CatOf{FormalSchemes}(B\G_\phi, M \otimes \G_a) \\
+f & \mapsto \phi_1\left(0, \sum_{i=1}^n{}_\phi x_i \right)^{-1} f(x_1, \ldots, x_n). \qed
+\end{align*}
+\end{lemma}
+
+Of course, yesterday we computed the specific case of $\G = \G_a$.  However, by filtering the multiplication on $\G$ by degree, we can use this specific calculation to get up to the general one.
+
+\begin{lemma}[Hopkins]\label{CalculationOfLTTangentSpace}
+Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then the group $H^2(\G; M \otimes \G_a)$ classifying isomorphism classes of deformations is a free $k$--vector space of dimension $(d - 1)$.
+\end{lemma}
+\begin{proof}
+Using $p$--typification, we select a coordinate on $\G$ of the form \[x +_\phi y = x + y + (\mathrm{unit}) c_{p^d} + \cdots.\]  Then, filter $\G$ by degree and consider the resulting spectral sequence of signature \[H^*(\G_a; M \otimes \G_a) \cong M \otimes (\Lambda_k[\alpha_j \mid j \ge 0] \otimes k[\beta_j \mid j \ge 0]) \Rightarrow H^*(\G; M \otimes \G_a).\]  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest visible degree.  In order to compute  \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed permanent cocycles.  To do this, we need only show that they are realized by deformations, which Lubin and Tate accomplish in \Cref{LubinTateRealizationLemma}.
+\end{proof}
+\begin{lemma}[{\cite[Proposition 1.1]{LubinTate}}]\label{LubinTateRealizationLemma}
+Let $W$ be a local ring with residue field $k$, and let $\phi$ be a group law of height $d$ on $k$.  There is a group law $\tilde\phi$ over $W\ps{u_1, \ldots, u_{d-1}}$ restricting to $\phi$ on $k$ such that \[x +_{\tilde \phi} y \equiv x + y + u_j c_{p^j}(x, y) \pmod{u_1, \ldots, u_{j-1}, (x, y)^{p^j+1}}. \qed\]
+\end{lemma}
+
+Picking $W = \W_p(k)$ to be the ring of Witt vectors, \Cref{LubinTateRealizationLemma} produces the universal example of a deformation of a group law $\phi$ to $\tilde \phi$.
+
+\begin{theorem}\citeme{You got this from 7.5.1 of the Crystals notes.}
+Let $\Spf R$ be an infinitesimal deformation of its residue field $\Spec k$.  For each lift of $\phi$ to $\psi$ over $\Spf R$, there is a unique homomorphism \[\alpha \in \CatOf{FormalSchemes}(\Spf R, \Spf \W_p(k)\ps{u_1, \ldots, u_{d-1}})\] with $\alpha^* \tilde \phi$ uniquely strictly isomorphic to $\psi$.
+\end{theorem}
+\begin{proof}
+We will prove this inductively on the neighborhoods of $\Spec k = \Spec R / I$ in $\Spf R$.  Suppose that we have demonstrated the Theorem for $\psi_{r-1} = R / I^{r-1} \otimes \psi$, so that there is a map $\alpha_{r-1}\co \W_p(k)\ps{u_1, \ldots, u_{d-1}} \to R/I^{r-1}$ and a strict isomorphism $g_{r-1}\co \psi_{r-1} \to \alpha_{r-1}^* \tilde \phi$.  The exact sequence \[0 \to I^{r-1} / I^r \to R/I^r \to R/I^{r-1} \to 0\] exhibits $R/I^r$ as a square--zero extension of $R/I^{r-1}$ by $M = I^{r-1} / I^r$.\todo{My source material wants $R$ to be Noetherian so that $M$ is finite dimensional.  This is important?}
+
+Let $\beta$ be \emph{any} lift of $\alpha_{r-1}$ and $h$ be \emph{any} lift of $g_{r-1}$ to $R/I^r$, and let $A$ and $B$ be the induced group laws
+\begin{align*}
+x +_A y & = \beta^* \tilde \phi, &
+x +_B y & = h\left( h^{-1}(x) +_{\psi_r} h^{-1}(y) \right).
+\end{align*}
+Since these both deform the group law $\psi_{r-1}$, by \Cref{CalculationOfLTTangentSpace} there exist $m_j \in M$ and $f(x) \in M\ps{x}$ satisfying \[(x +_B y) - (x +_A y) = (df)(x, y) + \sum_{j=1}^{d-1} m_j v_j(x, y),\] where $v_j(x, y)$ is the $2$--cocycle associated to the cohomology $2$--class $\beta_j$.  The following definitions complete the induction:
+\begin{align*}
+g_r(x) & = h(x) - f(x), &
+\alpha_r(u_j) & = \beta(u_j) + m_j. \qedhere
 \end{align*}
 \end{proof}
 
-\begin{lemma}
-Let $\G$ be a formal group of finite height $\height(\G) = d$ over a field $k$.  Then, $H^2(\G; M \otimes \G_a)$ is a free $k$--vector space of dimension $(d - 1)$.
-\end{lemma}
-\begin{proof}
-Filter $\G$ by degree and consider the resulting spectral sequence.  Its input is $H^*(\G_a; M \otimes \G_a)$, which we computed yesterday.  To compute the differentials, one computes \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are at least $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed cocycles.\todo{This follows from Corollary 7.4.4 in the crystals notes.  Finish this.}
-\end{proof}
-
-\textbf{Now build the universal object and check its universal property.  The construction is done in 7.4.3 and the universal property is done in 7.5 of the crystals notes.}
-
-
-
-Show that the action of the stabilizer group lifts to an action on Lubin--Tate space
-
-Lubin--Tate deformation theory
-
-
-
 \citeme{Neil's FG notes in the first half of section 18 talk about additive extensions and their relation to infinitesimal deformations.  In the second half, he (more or less) talks about the de Rham crystal and shows that $\Ext_{\mathrm{rigid}}(G, \G_a) \cong \operatorname{Prim}(H^1_{dR}(G/X))$ in 18.37.}
-
-
-
-
-
-
-\todo[inline]{I still have some confusion about the formal similarity between deforming formal group laws over square-zero extensions of the base and deforming formal $n$--buds over the finite order nilpotent neighborhoods of a point.  This would be a good place to sort that out.}
+\todo{I still have some confusion about the formal similarity between deforming formal group laws over square-zero extensions of the base and deforming formal $n$--buds over the finite order nilpotent neighborhoods of a point.  This would be a good place to sort that out.}
 
 ----
 
@@ -568,25 +621,20 @@ The nice picture I drew for Catherine
 
 -----
 
-We have now arrived at the conclusion of our program from \Cref{StructureOfMfgl} for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open substacks of $\moduli{fg}$, and we have analyzed its closed points as well as their deformation neighborhoods.  We make the following definitions:
+We have now arrived at the conclusion of our program from \Cref{StructureOfMfgl} for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open substacks of $\moduli{fg}$, and we have analyzed its closed points as well as their deformation neighborhoods.
+\begin{definition}
+We define the following ``chromatic'' homology theories:
 \begin{itemize}
-\item Recall that the moduli of $p$--typical group laws is affine, presented by the scheme $\Spec BP_*$, $BP_* := \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$.  Since the inclusion of $p$--typical group laws into all group laws induces an equivalence of stacks, it follows that this formula determines a homology theory, called \textit{Brown--Peterson homology}: \[BP_*(X) := MU_*(X) \otimes)_{MU_*} BP_*.\]
-\item A chart for the open substack $\moduli{fg}^{\le d}$ in terms of $\moduli{fg}{}_{,(p)} \cong \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$ is $\Spec \Z_{(p)}[v_1, v_2, \ldots, v_d^\pm]$.  It follows that there is a homology theory $E(d)_*(X)$, called \textit{the $d${\th} Johnson--Wilson homology}, defined by \[E(d)_*(X) := BP_*(X) \otimes_{BP_*} E(d)_*.\]
-\item Similarly, for a formal group $\Gamma$ of height $d < \infty$, there is a chart $\Spf \Z_p\ps{u_1, \ldots, u_{d-1}}$ for its deformation neighborhood.  Correspondingly, there is a homology theory $E_\Gamma{}_*$, called \textit{the Morava $E$--theory for $\Gamma$}, determined by \textbf{Actually, this one is complicated: you want to tensor down to every formal neighborhood, but there may be infinite divisibility data to keep track of and shuffle around.  I should think this through more carefully.}
-\item Finally, since $(p, u_1, \ldots, u_{d-1})$ forms a regular sequence on $E_\Gamma{}_*$, we can form the regular quotient $K_\Gamma$ in the homotopy category.  This determines a spectrum, and hence determines a homology theory called \textit{the Morava $K$--theory for $\Gamma$}.
+\item Recall that the moduli of $p$--typical group laws is affine, presented by the scheme $\Spec BP_*$, $BP_* := \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$.  Since the inclusion of $p$--typical group laws into all group laws induces an equivalence of stacks, it follows that this formula determines a homology theory on finite spectra, called \textit{Brown--Peterson homology}: \[BP_*(X) := MU_*(X) \otimes_{MU_*} BP_*.\]
+\item A chart for the open substack $\moduli{fg}^{\le d}$ in terms of $\moduli{fgl}^{\ptyp} \cong \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$ is $\Spec \Z_{(p)}[v_1, v_2, \ldots, v_d^\pm]$.  It follows that there is a homology theory $E(d)$, called \textit{the $d${\th} Johnson--Wilson homology}, defined on all spectra by \[E(d)_*(X) := BP_*(X) \otimes_{BP_*} E(d)_*.\]
+\item Similarly, for a formal group $\Gamma$ of height $d < \infty$, there is a chart $\Spf \Z_p\ps{u_1, \ldots, u_{d-1}}$ for its deformation neighborhood.  Correspondingly, there is a homology theory $E_\Gamma{}_*$, called \textit{the (discontinuous) Morava $E$--theory for $\Gamma$}, determined by \[E_\Gamma{}_*(X) := BP_*(X) \otimes_{BP_*} \Z_p\ps{u_1, \ldots, u_{d-1}}.\]
+\item Since $(p, u_1, \ldots, u_{d-1})$ forms a regular sequence on $E_\Gamma{}_*$, we can form the regular quotient $K_\Gamma$ in the homotopy category.  This determines a spectrum, and hence determines a homology theory called \textit{the Morava $K$--theory for $\Gamma$}.  In the case where $\Gamma$ comes from the Honda $p$--typical formal group law (of height $d$), this spectrum is often written as $K(d)$.  By \Cref{FGpsOverAlgClosedFields}, it often suffices to consider just these spectra to make statements about all $K_\Gamma$.
+\item More delicately, there is a version of Morava $E$--theory which takes into account the formal topology on $(\moduli{fg})^\wedge_\Gamma$.  It is defined by the pro-system $\{E_\Gamma(X) / u^I\}$, where $I$ ranges over multi-indices and the quotient is taken in the ``homotopical sense'', i.e., $u_j$--torsion elements contribute to the odd-degree homotopy of the quotient.
 \end{itemize}
+\end{definition}
 
-Landweber's flatness criterion
-
-A $BP_*$--module $M$ gives a flat sheaf on $\moduli{fg}$ exactly when $(p, v_1, v_2, \ldots, v_{d-1}, \ldots)$ is a regular sequence $M$ too.  (In particular, $BP_*$ is itself such a module, and so gives rise to a homology theory $BP$ with $\context{BP} \simeq \moduli{fg} \times \Spec \Z_{(p)}$.)
-
-
-Point out that it's most important to understand $K(d)$ for each $d$, not $K_\Gamma$ for every $\Gamma$.
-
-\begin{remark}
-Morava $K$--theory at the even prime is not commutative.
-
-\todo[inline]{cf.\ Section 5.2 of KLW.  Or, at $p = 2$ there is a derivation $Q: K \to \Susp K$ with $ab - ba = u Q(a) Q(b)$, so $K^0 X$ is commutative whenever $K^1 X = 0$ (cf.\ Theorem 2.13 of Strickland's \textit{Products on $MU$--modules}).}
+\begin{remark}[{\cite[Section 5.2]{KLW}, \cite[Theorem 2.13]{StricklandProductsOnModules}}]
+Morava $K$--theory at the even prime is not commutative.  Instead, there is a derivation $Q_d: K(d) \to \Susp K(d)$ satisfying \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, $K^0 X$ is a commutative ring whenever $K^1 X = 0$.
 \end{remark}
 
 
@@ -596,8 +644,6 @@ Morava $K$--theory at the even prime is not commutative.
 
 
 \section{Nilpotence and periodicity}
-
-\todo{I think it makes sense to break the following lecture into two days.}
 
 Having constructed these ``stalk'' homology theories, I want to show that you can actually perform stalkwise analyses of the sheaves coming from bordism theory.  Our example case is a famous theorem: the solution of Ravenel's nilpotence conjectures by Devinatz, Hopkins, and Smith.  Their theorem concerns spectra which ``detect nilpotence'' in the following sense:
 
@@ -765,6 +811,8 @@ The homotopy limit of the tower \[\cdots \to L_d F \to L_{d-1} F \to \cdots \to 
 The coskeletal filtration of $\mathcal D_E(F)$ gives a spectral sequence converging to the homotopy of its totalization, $F^\wedge_E$.  When $F$ is finite and $E$ models either of the cases above, this spectral sequence converges to $\pi_* L_E F$.  Furthermore, there is a line bundle $\omega$ on $\context{E}$ such that\footnote{The identification of the $E_2$--page as computing stack cohomology is the first place where we really mean to employ the full technology of stacks in this talk.  Everywhere else, we have been essentially content to speak of simplicial presheaves.} \[E_2^{*, *} = H^*_{\mathrm{stack}}(\context{E}; \context{E}(F) \otimes \omega^{\otimes *}) \Rightarrow \pi_* L_E F.\]
 \end{theorem}
 
+\todo{Show that the action of the stabilizer group lifts to an action on Lubin--Tate space.  This is relevant for what you're about to write.}
+
 The utility of this theorem is in the identification with stack cohomology.  In the case $E = E_{\Gamma_d}$, recall that $\context{E_{\Gamma_d}}[0]$ is a smooth infinitesimal thickening of the spectrum of a field, so that \[\context{E_{\Gamma_d}} = \left( \moduli{fg} \right)^\wedge_{\Gamma_d} \simeq \widehat{\mathbb A}^{d-1}_{\mathbb W(k)} \mmod \underline{\operatorname{Aut}}(\Gamma_d)\] as in the first example of $E = H\F_2$ on the first day.  But, in this specific case, there is an identification of stack cohomology with group cohomology: \[H^*_{\mathrm{stack}}(* \mmod \underline{G}; \mathcal M) = H^*_{\mathrm{group}}(G; M).\]  Another theorem from the arithmetic geometry literature gives \[\operatorname{Aut}(\Gamma_d) \cong \left( \mathbb{W}(k)\langle S \rangle \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right)^\times,\] and so we have reduced the computation of all of the stable homotopy groups of spheres to a very difficult problem in profinite group cohomology --- but one which is arithmetically founded, so that arithmetic geometry might continue to lend a hand. \oweproof{Form of the stabilizer group}
 
 \begin{example}[Adams]
@@ -777,6 +825,8 @@ In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on
 
 \oldsection*{Stuff that might belong in this chapter}
 
-Mention that complex orientations cause $\context{MU}(E)$ to degenerate, so that stackiness of $\context{MU}(E)$ is a measure of the failure of orientability.  Mention also Wood's cofiber sequence?  Talk about Hopkins's stacky pullback theorem from his Talbot lecture?  I think we can only do this \emph{after} Quillen's theorem has been proven, though it only really fits conceptually into the lecture on contexts.
+Talk about Hopkins's stacky pullback theorem from his Talbot lecture?  I think we can only do this \emph{after} Quillen's theorem has been proven, though it only really fits conceptually into the lecture on contexts.
 
-Achim's nice proof of Hopf invariant 1?  The $E(1)$ version?  Ravenel's very odd proof of the Kervaire problem?
+
+
+
