@@ -27,7 +27,7 @@ Today we will make good on our promise, made during our investigation of the uno
 Our answer to this question will come out of considering Grothendieck's framework of descent.  Classically, descent concerns itself with a map $f\co R \to S$ of a rings and an $S$--module $N$, and it asks questions like:
 \begin{itemize}
 \item When is there an $R$--module $M$ such that $N \cong M \otimes_R S = f^* M$?
-\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of preimages of $N$ along $f^*$?
+\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of $R$--modules under the map $f^*$? 
 \item What conditions can be placed on $f$ so that the category of descent data for any given module is always contractible, called \textit{effectivity}?
 \end{itemize}
 
@@ -53,7 +53,7 @@ The following theorem is the usual culmination of an initial investigation into 
 If $f\co R \to S$ is faithfully flat, then there is an equivalence of $R$--modules and $S$--modules equipped with descent data.
 \end{theorem}
 \begin{proof}[Jumping off point]
-The basic observation is that $0 \to R \to S \to S \otimes_R S$ is an exact sequence of $A$--modules.  This makes much of the homological algebra involved work out.
+The basic observation is that $0 \to R \to S \to S \otimes_R S$ is an exact sequence of $R$--modules.  This makes much of the homological algebra involved work out.
 \end{proof}
 
 In our situation, this hypothesis will essentially never be satisfied, so we will pursue a less dramatic statement of the properties of descent.  To see what kind of theorem one might expect, consider the example of $f\co \Z \to \F_p$, which is neither faithful nor flat.  Then, consider the following list of problems (and their partial solutions):
@@ -74,7 +74,7 @@ This is meant to look like the \v{C}ech nerve for the ``cover'' $\Spec \F_p \to 
 \end{itemize}
 
 \begin{lemma}\citeme{Hovey's \textit{Morita theory for Hopf algebroids and presheaves of groupoids}.}
-Without passing to the derived category, there is an equivalence of categories between Cartesian quasicoherent sheaves on the descent object and quasicoherent sheaves equipped with descent data. \qed
+Without passing to the derived category, there is an equivalence of categories between Cartesian quasicoherent sheaves on the descent object and quasicoherent sheaves equipped with descent data. \todo{you haven't mentioned quasi. coh. sheaves equipped with descent data.  But I take it that it's obvious from the previous paragraphs that it's the same thing as modules equipped with descent data? A concrete definition about quasi-coherent sheaves equipped with descent data would be nice here - d.s.}\qed
 \end{lemma}
 
 The real utility of this framework is that it pulls apart the question of descent into two distinct pieces, summarized in the following theorem:
@@ -111,13 +111,14 @@ Let $\sheaf D_E(X)$ be the cosimplicial spectrum determined by the formula
 \right\}.\]
 It is called \textit{the descent object for $X$ from $E$ to $\S$}.
 \end{definition}
-It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
+
 \begin{lemma}
 When $E$ is an $A_\infty$--ring spectrum, the descent object $\sheaf D_E(X)$ can be naturally considered as a cosimplicial object in the $\infty$--category of spectra. \qed \todo{I don't intend to prove this, but maybe we could say some mealy words about why it's true. At worst, we could give reference to the relevant part of Higher Algebra.}
 \end{lemma}
 \begin{definition}
 Let $E$ be an $A_\infty$--ring spectrum.  Then $X^\wedge_E := \Tot \sheaf D_E(X)$ is called the \textit{$E$--nilpotent completion of $X$}.  The spectral sequence resulting from the coskeletal filtration is called the \textit{$E$--Adams spectral sequence} (for $X$).
 \end{definition}
+It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
 
 In general, it's quite rare that the $E$--nilpotent completion of a spectrum $X$ recovers $X$, but in the nice cases we typically work in, it has been known to happen.  In particular, there is the following theorem:
 \begin{lemma}\citeme{Ravenel's \textit{Localizations w/r/t ...} paper}
@@ -173,6 +174,8 @@ Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $
 \begin{remark}\label{FHGivesComodules}
 The main utility of this is that it obviates us from working through the homological algebra of sheaves over simplicial schemes.  Instead, since {\FH} causes $\context{E}$ to become $1$--truncated, we can refer to \Cref{CanonicalCoring} and simply refer back to the homological algebra of comodules.  In light of the discussion in \Cref{HopfAlgebrasFromFiniteGroups,HF2HomologyIsValuedInAutGaEquivarModules}, we also see an interpretation of these groupoid--valued simplicial schemes: they are valued in sets equipped with an action by $\Spec E_* E$, which acts also on the base $\Spec E_*$.  To denote this ``homotopical quotient'' or ``action groupoid'', we will write \[\Spec E_* \mmod \Spec E_* E.\]  Such affine groupoid--valued schemes are themselves quite tangible: their rings of functions form \textit{Hopf algebroids}, and Cartesian quasicoherent sheaves on the groupoid scheme correspond to comodules for the Hopf algebroid.\citeme{A lot of this could use citation.  Most of it is in Ravenel's appendix or Hovey's paper.}
 \end{remark}
+
+\todo{I'm still hazy over these two remarks.  I understand what they are trying to say but I'm feeling hazy on the details.  You should explain it to me sometime - d.s.}
 
 \begin{remark}
 This homotopical perspective is quite useful --- for instance, a map of groupoid--schemes which induces on points a natural weak equivalence of groupoids also induces an equivalence of comodule categories.  In fact, the \emph{derived} comodule category depends only upon the stack associated to the groupoid--scheme, which allows still more contexts to be identified.  We won't need this observation in what's to come, though, and it introduces substantial technical distractions.  \textbf{However, we \emph{may} got sloppy and say ``stack'' from time to time.}\todo{Is there an instance where stacky equivalence (rather than natural groupoid equivalence) is relevant for algebraic topologists?  Or, really, anyone?}\todo{Could also explain the difference: levelwise sheaves of $0$--types vs sheaves of $\infty$--types.}
