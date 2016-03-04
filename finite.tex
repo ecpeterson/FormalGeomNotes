@@ -539,13 +539,23 @@ The study of all possible infinitesimal deformations of a particular map $\Spec 
 Let $\Spec k \to Y$ be any map, and let $\Spec k \to X \to Y$ be a factorization through a nilpotent thickening $X$ of $\Spec k$.  Then there is a natural further factorization \[\Spec k \to X \dashrightarrow Y^\wedge_X \to Y. \qed\]
 \end{lemma}
 
-\noindent The spirit of the Lemma, then, is that the study of infinitesimal deformations of $\Gamma: \Spec k \to \moduli{fg}$ is equivalent to the study of $(\moduli{fg})^\wedge_\Gamma$ itself.  So, this fits into our program of analyzing the structure of $\moduli{fg}$.
+\noindent The spirit of the Lemma, then, is that the study of infinitesimal deformations of $\Gamma\co \Spec k \to \moduli{fg}$ is equivalent to the study of $(\moduli{fg})^\wedge_\Gamma$ itself.  So, this fits into our program of analyzing the (local) structure of $\moduli{fg}$.
 
 \begin{example}
-Consider the case of an infinitesimal parameter space $X = \A^1$.  A map $\A^1 \to \moduli{fg}$ then is presented by a map $\A^1 \to \moduli{fgl}$, which corresponds to a ``family'' of formal group laws $+_{\phi_h}$ of the form \[x +_{\phi_h} y = (x +_\phi y) + h(x +_{\phi(1)} y) + h^2(x +_{\phi(2)} y) + \cdots\] for some series $+_{\phi(n)}$.  In particular, $+_{\phi(0)}$ is a formal group law over $k$.
+It's also helpful to expand what an infinitesimal deformation is in our case of interest.  Set $Y = \moduli{fg}$, and fix a map $\Gamma\co \Spec k \to \moduli{fg}$ classifying a formal group $\Gamma$ over $\Spec k$.  Let $S$ be a local ring with maximal ideal $\m$ so that $S$ is a nilpotent thickening of $S / \m$.  A deformation of $\Gamma$ to $S$ is the data of a formal group $\G$ over $\Spec S$, an identification $i\co \Spec k \to \Spec S/\m$, and a choice of an isomorphism $f$ fitting together into the following diagram:
+\begin{center}
+\begin{tikzcd}
+\Gamma \arrow{rd} \arrow["f", "\simeq"']{r} & i^* j^* \G \arrow{rr} \arrow{d} & & \G \arrow{d} \\
+& \Spec k \arrow{r}{i} & \Spec S/\m \arrow{r}{j} & \Spec S.
+\end{tikzcd}
+\end{center}
 \end{example}
 
-The analysis of $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate, but we follow a more structured approach written down by Lazarev.\citeme{Cite both of these}
+\begin{example}
+Consider the case of an infinitesimal parameter space $X = \A^1$.  A map $\A^1 \to \moduli{fg}$ can be presented by a map $\A^1 \to \moduli{fgl}$, which corresponds to a ``family'' of formal group laws $+_{\phi_h}$ of the form \[x +_{\phi_h} y = (x +_\phi y) + h(x +_{\phi(1)} y) + h^2(x +_{\phi(2)} y) + \cdots\] for some series $+_{\phi(n)}$.  In particular, $+_{\phi(0)}$ is a formal group law over $k$.
+\end{example}
+
+The analysis of $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate, but we first follow a more structured approach written down by Lazarev.\citeme{Cite both of these}
 \begin{definition}\todo{Can this be phrased geometrically?}
 Let $+_\phi$ be a formal group law over $R$, and let $M$ be an $R$--module. The deformation complex $\widehat C^*(\phi; M)$ is defined by \[M \to M\ps{x_1} \to M\ps{x_1, x_2} \to M\ps{x_1, x_2, x_3} \to \cdots\] with differential
 \begin{align*}
@@ -564,7 +574,7 @@ This complex tracks the data of infinitesimal deformations.  For instance, consi
 \begin{theorem}[{\cite[p.\ 1320]{Lazarev}}]
 Let $+_\phi$ be a formal group law over a ring $R$ and let $S \to R$ be a square--zero extension with kernel $M$.
 \begin{enumerate}
-\item Automorphisms of $+_\phi$ over $S$ correspond to elements in $\widehat Z^1(\phi; M)$.
+\item Automorphisms of $+_\phi$ over $S$ covering the identity on $R$ correspond to elements in $\widehat Z^1(\phi; M)$.
 \item Extensions of $+_\phi$ to $S$ correspond to elements in $\widehat Z^2(\phi; M)$.
 \item Two such extensions are isomorphic as formal group laws over $S$ if their cocycles differ by an element in $\widehat B^2(\phi; M)$. \qed
 \end{enumerate}
@@ -582,10 +592,10 @@ f & \mapsto \phi_1\left(0, \sum_{i=1}^n{}_\phi x_i \right)^{-1} f(x_1, \ldots, x
 
 Of course, yesterday we computed the specific case of $\G = \G_a$.  However, by filtering the multiplication on $\G$ by degree, we can use this specific calculation to get up to the general one.
 
-\begin{lemma}[Hopkins]\label{CalculationOfLTTangentSpace}
-Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then the group $H^2(\G; M \otimes \G_a)$ classifying isomorphism classes of deformations is a free $k$--vector space of dimension $(d - 1)$.
+\begin{lemma}\label{CalculationOfLTTangentSpace}
+Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then the group $H^2(\G; M \otimes \G_a)$ classifying isomorphism classes of deformations is a free $k$--vector space of dimension $(d - 1)$.\todo{$d$ or $(d-1)$?  There's $\beta_0$ through $\beta_{d-1}$...}
 \end{lemma}
-\begin{proof}
+\begin{proof}[Proof (after Hopkins)]
 Using $p$--typification, we select a coordinate on $\G$ of the form \[x +_\phi y = x + y + (\mathrm{unit}) c_{p^d} + \cdots.\]  Then, filter $\G$ by degree and consider the resulting spectral sequence of signature \[H^*(\G_a; M \otimes \G_a) \cong M \otimes (\Lambda_k[\alpha_j \mid j \ge 0] \otimes k[\beta_j \mid j \ge 0]) \Rightarrow H^*(\G; M \otimes \G_a).\]  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest visible degree.  In order to compute  \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed permanent cocycles.  To do this, we need only show that they are realized by deformations, which Lubin and Tate accomplish in \Cref{LubinTateRealizationLemma}.
 \end{proof}
 \begin{lemma}[{\cite[Proposition 1.1]{LubinTate}}]\label{LubinTateRealizationLemma}
@@ -594,7 +604,7 @@ Let $W$ be a local ring with residue field $k$, and let $\phi$ be a group law of
 
 Picking $W = \W_p(k)$ to be the ring of Witt vectors, \Cref{LubinTateRealizationLemma} produces the universal example of a deformation of a group law $\phi$ to $\tilde \phi$.
 
-\begin{theorem}\citeme{You got this from 7.5.1 of the Crystals notes.}
+\begin{theorem}\label{LubinTateDeformationSpace}\citeme{You got this from 7.5.1 of the Crystals notes.}
 Let $\Spf R$ be an infinitesimal deformation of its residue field $\Spec k$.  For each lift of $\phi$ to $\psi$ over $\Spf R$, there is a unique homomorphism \[\alpha \in \CatOf{FormalSchemes}(\Spf R, \Spf \W_p(k)\ps{u_1, \ldots, u_{d-1}})\] with $\alpha^* \tilde \phi$ uniquely strictly isomorphic to $\psi$.
 \end{theorem}
 \begin{proof}
@@ -612,14 +622,32 @@ g_r(x) & = h(x) - f(x), &
 \end{align*}
 \end{proof}
 
+\begin{remark}
+Our calculation $H^1(\G_\phi; M \otimes \G_a)$ also shows that there are \emph{no} automorphisms of the formal group $\Gamma$ over the special fiber which induce automorphisms of the universal deformation.  Specifically, \emph{any} deformation of a nontrivial automorphism of $\Gamma$ acts nontrivially on Lubin--Tate space by permuting the deformations living over the various fibers.  A consequence of this observation is that the deformation space produced in \Cref{LubinTateDeformationSpace} is a \emph{formal scheme}, carrying only the previously-known inertial group of $\Aut \Gamma$ at the special fiber, rather than a full-on stack.
+\end{remark}
+
+\begin{remark}
+We also see that our analysis fails wildly for the case $\Gamma = \G_a$.  The differential calculation in \Cref{CalculationOfLTTangentSpace} are meant to give us an upper bound on the dimensions of $H^1(\Gamma; \G_a)$ and $H^2(\Gamma; \G_a)$, but this family of differentials is zero in the additive case.  Accordingly, both of these vector spaces are infinite dimensional --- the infinitesimal 
+\end{remark}
+
 \citeme{Neil's FG notes in the first half of section 18 talk about additive extensions and their relation to infinitesimal deformations.  In the second half, he (more or less) talks about the de Rham crystal and shows that $\Ext_{\mathrm{rigid}}(G, \G_a) \cong \operatorname{Prim}(H^1_{dR}(G/X))$ in 18.37.}
 \todo{I still have some confusion about the formal similarity between deforming formal group laws over square-zero extensions of the base and deforming formal $n$--buds over the finite order nilpotent neighborhoods of a point.  This would be a good place to sort that out.}
 
-----
+Having accomplished all our major goals, we close our algebraic analysis of $\moduli{fg}$ with a diagram summarizing our results.
+\begin{landscape}
+\begin{figure}[b]
+PICTURE GOES HERE.
+\end{figure}
+\end{landscape}
 
-The nice picture I drew for Catherine
 
------
+
+
+
+
+
+
+\section{Nilpotence and periodicity}
 
 We have now arrived at the conclusion of our program from \Cref{StructureOfMfgl} for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open substacks of $\moduli{fg}$, and we have analyzed its closed points as well as their deformation neighborhoods.
 \begin{definition}
@@ -636,14 +664,6 @@ We define the following ``chromatic'' homology theories:
 \begin{remark}[{\cite[Section 5.2]{KLW}, \cite[Theorem 2.13]{StricklandProductsOnModules}}]
 Morava $K$--theory at the even prime is not commutative.  Instead, there is a derivation $Q_d: K(d) \to \Susp K(d)$ satisfying \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, $K^0 X$ is a commutative ring whenever $K^1 X = 0$.
 \end{remark}
-
-
-
-
-
-
-
-\section{Nilpotence and periodicity}
 
 Having constructed these ``stalk'' homology theories, I want to show that you can actually perform stalkwise analyses of the sheaves coming from bordism theory.  Our example case is a famous theorem: the solution of Ravenel's nilpotence conjectures by Devinatz, Hopkins, and Smith.  Their theorem concerns spectra which ``detect nilpotence'' in the following sense:
 
