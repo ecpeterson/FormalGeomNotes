@@ -25,9 +25,13 @@
 }
 
 \def\isop@getrow#1-#2-#3\@nil{#2}
+\def\isop@getcolumn#1-#2-#3\@nil{#3}
 \def\isop@which{
     \ifnum\@xp\isop@getrow\tikzcd@ar@start\@nil=\@xp\isop@getrow\tikzcd@ar@target\@nil\relax
         \pgfkeysalso{yscale=-1}
+        \ifnum\@xp\isop@getcolumn\tikzcd@ar@start\@nil>\@xp\isop@getcolumn\tikzcd@ar@target\@nil\relax
+            \pgfkeysalso{'}
+        \fi
     \else
         \pgfkeysalso{'}
     \fi
