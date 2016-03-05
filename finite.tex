@@ -552,7 +552,7 @@ where we have written
 \end{align*}
 \end{definition}
 
-This complex tracks the data of infinitesimal deformations.  For instance, consider a deformed automorphism $f$ of $+_\phi$, expressed as \[f(x) = f_0(x) + h f_1(x) + h^2 f_2(x) + \cdots,\] and satisfying \[f(x +_\phi y) = f(x) +_\phi f(y).\]  Applying $\left.\frac{\partial}{\partial h}\right|_{h=0}$ to this equality gives \[f_1(x +_\phi y) = \phi_1(x, y)f_1(x) + \phi_2(x, y)f_1(y)\] and thus $f_1$ is a $1$--cocycle in the deformation complex.  A similar sequence of observations culminates in the following theorem:
+This complex tracks the data of infinitesimal deformations.  For instance, consider a deformed automorphism $f$ of $+_\phi$, expressed as \[f(x) = f_0(x) + h f_1(x) + h^2 f_2(x) + \cdots,\] and satisfying \[f(x +_\phi y) = f(x) +_\phi f(y).\]  Applying $\left.\frac{\partial}{\partial h}\right|_{h=0}$ to this equality gives \[f_1(x +_\phi y) = \phi_1(x, y)f_1(x) + \phi_2(x, y)f_1(y)\]\todo{Why is this $\phi_1(x,y)$ and not $\phi_1(f_0(x),f_0(y))$? Is it the point that $f(x) \equiv x$ mod $h$?} and thus $f_1$ is a $1$--cocycle in the deformation complex.  A similar sequence of observations culminates in the following theorem:
 \begin{theorem}[{\cite[p.\ 1320]{Lazarev}}]
 Let $+_\phi$ be a formal group law over a ring $R$ and let $S \to R$ be a square--zero extension with kernel $M$.
 \begin{enumerate}
@@ -570,6 +570,7 @@ This is quasi-isomorphic to the usual bar complex:
 \widehat C^*(\phi; M) & \to \CatOf{FormalSchemes}(B\G_\phi, M \otimes \G_a) \\
 f & \mapsto \phi_1\left(0, \sum_{i=1}^n{}_\phi x_i \right)^{-1} f(x_1, \ldots, x_n). \qed
 \end{align*}
+\todo{What is $\G_\phi$?  Also, you stop using $\G_\phi$ below.}
 \end{lemma}
 
 Of course, yesterday we computed the specific case of $\G = \G_a$.  However, by filtering the multiplication on $\G$ by degree, we can use this specific calculation to get up to the general one.
@@ -578,10 +579,10 @@ Of course, yesterday we computed the specific case of $\G = \G_a$.  However, by 
 Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then the group $H^2(\G; M \otimes \G_a)$ classifying isomorphism classes of deformations is a free $k$--vector space of dimension $(d - 1)$.
 \end{lemma}
 \begin{proof}
-Using $p$--typification, we select a coordinate on $\G$ of the form \[x +_\phi y = x + y + (\mathrm{unit}) c_{p^d} + \cdots.\]  Then, filter $\G$ by degree and consider the resulting spectral sequence of signature \[H^*(\G_a; M \otimes \G_a) \cong M \otimes (\Lambda_k[\alpha_j \mid j \ge 0] \otimes k[\beta_j \mid j \ge 0]) \Rightarrow H^*(\G; M \otimes \G_a).\]  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest visible degree.  In order to compute  \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed permanent cocycles.  To do this, we need only show that they are realized by deformations, which Lubin and Tate accomplish in \Cref{LubinTateRealizationLemma}.
+Using $p$--typification, we select a coordinate on $\G$ of the form \[x +_\phi y = x + y + (\mathrm{unit}) c_{p^d} + \cdots.\]  Then, filter $\G$ by degree and consider the resulting spectral sequence of signature \[H^*(\G_a; M \otimes \G_a) \cong M \otimes (\Lambda_k[\alpha_j \mid j \ge 0] \otimes k[\beta_j \mid j \ge 0]) \Rightarrow H^*(\G; M \otimes \G_a).\]  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest visible degree.  In order to compute \todo{This ``sentence'' is missing a few words.  Also, maybe you should remind us what $\alpha_j$ and $\beta_j$ are in terms of $x$ and $y$.} \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed permanent cocycles.  To do this, we need only show that they are realized by deformations, which Lubin and Tate accomplish in \Cref{LubinTateRealizationLemma}.
 \end{proof}
 \begin{lemma}[{\cite[Proposition 1.1]{LubinTate}}]\label{LubinTateRealizationLemma}
-Let $W$ be a local ring with residue field $k$, and let $\phi$ be a group law of height $d$ on $k$.  There is a group law $\tilde\phi$ over $W\ps{u_1, \ldots, u_{d-1}}$ restricting to $\phi$ on $k$ such that \[x +_{\tilde \phi} y \equiv x + y + u_j c_{p^j}(x, y) \pmod{u_1, \ldots, u_{j-1}, (x, y)^{p^j+1}}. \qed\]
+Let $W$ be a local ring with residue field $k$, and let $\phi$ be a group law of height $d$ on $k$.  There is a group law $\tilde\phi$ over $W\ps{u_1, \ldots, u_{d-1}}$ restricting to $\phi$ on $k$ such that for some $j \geq 1$, \[x +_{\tilde \phi} y \equiv x + y + u_j c_{p^j}(x, y) \pmod{u_1, \ldots, u_{j-1}, (x, y)^{p^j+1}}. \qed\]
 \end{lemma}
 
 Picking $W = \W_p(k)$ to be the ring of Witt vectors, \Cref{LubinTateRealizationLemma} produces the universal example of a deformation of a group law $\phi$ to $\tilde \phi$.
