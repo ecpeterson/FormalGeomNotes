@@ -20,16 +20,17 @@ Starting today, after our extended interludes on chromatic homotopy theory and c
 \item Because $E_0 MU$ is a free $E_0$--module, ring spectrum maps $MUP \to E$ biject with $E_0$--algebra maps $E_0 MUP \to E_0$.  This, too, can be phrased algebro-geometrically: these are elements of $(\Spec E_0 MUP)(E_0)$.\todo{AHS blame this on an Atiyah--Hirzebruch spectral sequence, but I'm still not sure I believe this.}
 \end{itemize}
 We can summarize our main result about these as follows:
-\begin{theorem}\label{BUZTriumvirate}\citeme{Put in cross references}
+\begin{theorem}[{\cite[Example 2.53]{AHSTheoremOfTheCube}}]\label{BUZTriumvirate}\citeme{Put in cross references}
 The functor \[(\Spec T \xrightarrow{u} \Spec E_0) \mapsto \left\{ \text{trivializations of $u^* \ThomSheaf{\L}$ over $u^* \CP^\infty_E$} \right\}\] is isomorphic to the affine scheme $\Spec E_0 MUP$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MUP \to E$. \qed
 \end{theorem}
 
 An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $\L - 1$, and it again is easiest expressed by an extension of the splitting principle.  Specifically, given finite complex $X$ and a rank $0$ virtual vector bundle over it classified by a map \[\tilde V \co X \to BU,\] there exists an integer $n$ so that $\tilde V = V - n \cdot 1$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ also gives an \emph{internal splitting} of $\tilde V$ as \[\tilde V = V - n \cdot 1 = \bigoplus_{i=1}^n (\L_i - 1),\] where each bundle $\L_i - 1$ naturally has the structure of a rank $0$ virtual vector bundle, and the sum is taken internally to $BU$.  This begets the following extension of the previous result:
-\begin{theorem}\label{BUTriumvirate}\citeme{Put in cross references}
+\begin{theorem}[{\cite[Example 2.54]{AHSTheoremOfTheCube}}]\label{BUTriumvirate}\citeme{Put in cross references}
 The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \text{trivializations of $u^* \ThomSheaf{\L - 1}$ over $u^* \CP^\infty_E$} \right\}\] is isomorphic to the affine scheme $\Spec E_0 MU$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MU \to E$. \qed
+\todo{Identify this bundle $\ThomSheaf{\L - 1}$ as $\omega \otimes \sheaf I(0)^{-1}$, we can think of sections as elements of $E^0 T(\L - 1 \to \CP^\infty)$ which restrict to the identity under the inclusion \[S^0 \to P^{\L-1}.\]}
 \end{theorem}
 
-\todo{Identify the restriction orientation $MU \to MUP \to E$.}
+\todo{Identify the restriction orientation $MU \to MUP \to E$.  Make absolutely clear that a section $f$ is sent to the normalized object $f'(0) / f$.}
 
 The special unitary group $SU$ is explicit enough that orientations with source $MSU$ can be fully understood along similar lines.  Our jumping off point for that story will be, again, an extension of the splitting principle.
 \begin{lemma}\label{SplittingPrincipleForBSU}
@@ -41,7 +42,7 @@ Begin by using \Cref{OriginalSplittingPrinciple} on $V$ to get an equality of $B
 \tilde{\tilde V} + (\L_1 - 1)(\L_2 - 1) & = V' + \L_1 + \L_2 + (\L_1 - 1)(\L_2 - 1) - n \cdot 1 \\
 & = V' + \L_1\L_2 - (n-1) \cdot 1.
 \end{align*}
-By thinking of $(\L_j - 1)$ as an element of $kU^2(Y) = \CatOf{Spaces}(Y, BU)$, we see that $(\L_1 - 1)(\L_2 - 1)$ has the natural structure of a $BSU$--bundle and hence so does the sum on the left-hand side.  The right-hand side is the rank $0$ virtualization of a rank $(n-1)$ vector bundle, hence succumbs to induction.  Finally, because $SU(1)$ is the trivial group, there are no nontrivial complex line bundles with structure group $SU(1)$, grounding the induction.
+By thinking of $(\L_j - 1)$ as an element of $kU^2(Y) = \CatOf{Spaces}(Y, BU)$, we see that $(\L_1 - 1)(\L_2 - 1)$ has the natural structure of a $BSU$--bundle and hence so does the sum on the left-hand side\footnote{Really, we are using the Hopf ring $\circ$--product.}.  The right-hand side is the rank $0$ virtualization of a rank $(n-1)$ vector bundle, hence succumbs to induction.  Finally, because $SU(1)$ is the trivial group, there are no nontrivial complex line bundles with structure group $SU(1)$, grounding the induction.
 \end{proof}
 \begin{corollary}
 Ring spectrum maps $MSU \to E$ biject with trivializations of \[\ThomSheaf{(\L_1 - 1)(\L_2 - 1)} \downarrow (\CP^\infty)^{\times 2}_E. \qed \]
@@ -62,7 +63,7 @@ BSU_E \arrow{r} \arrow[-,double]{d} & BU_E \arrow{r}{B\det} \arrow[-,double]{d} 
 \SDiv_0 \CP^\infty_E \arrow{r} & \Div_0 \CP^\infty_E \arrow{r}{\mathrm{sum}} & \CP^\infty_E,
 \end{tikzcd}
 \end{center}
-where the scheme ``$\SDiv_0 \CP^\infty$'' of ``special divisors'' consists of those divisors which vanish under the summation map.
+where the scheme ``$\SDiv_0 \CP^\infty$'' of ``special divisors'' consists of those divisors which vanish under the summation map.  However, where the comparison map $BU(1)_E \to BU_E$ has a universal property --- it presents $BU_E$ as the universal formal group on the pointed curve $BU(1)_E$ --- the description of $BSU_E$ as a scheme of special divisors does not bear much immediate resemblance to a free object on the special divisor $([a] - [0])([b] - [0])$ classified by \[(\CP^\infty)^{\times 2}_E \xrightarrow{(\L_1 - 1)(\L_2 - 1)_E} BSU_E \to BU_E = \Div_0 \CP^\infty_E.\]  We will spend the rest of the day straightening this point out.
 
 
 
@@ -73,14 +74,15 @@ where the scheme ``$\SDiv_0 \CP^\infty$'' of ``special divisors'' consists of th
 
 
 
+Build the free object $C_2 \G$.  (This may involve coalgebraic formal schemes... how else can you build the free object?)
 
-Describe $BSU_E$ in terms of $\SDiv_0 \G$
+Note that the Cartier dual object $C^2(\G, \Gm)$ is much easier to build: given a coordinate on $\G$, this has an obvious affine presentation.
 
-Produce an isomorphism $C_2 \G \to \SDiv_0 \G$
+Produce an isomorphism $C_2 \G \to \SDiv_0 \G$.
 
-Introduce coalgebraic formal schemes and deduce that $BSU_E \cong C_2 \G$ in good cases
+Identify the Thom sheaf of the universal bundle on $BSU$ as $C^2(\G; \sheaf I(0))$, together with its $C^2(\G, \Gm)$--torsor structure, and note that this automatically promotes the classifying map $MSU^E \to C^2(\G; \sheaf I(0))$ to an isomorphism. 
 
-Identify the restriction orientation $MSU \to MU \to E$
+Identify the restriction orientation $MSU \to MU \xrightarrow{s} E$ as $\delta(s_E)$
 
 \todo[inline]{Is it possible to give an example of a complex-oriented theory which receives an $MSU$ orientation which \emph{does not} factor the complex orientation but \emph{does} (\emph{must}, really) factor the unit?  Even if one can find an example of this, I think it will be somewhat artificial: the sequence of group schemes \[0 \to BSU_E \to BU_E \to BU(1)_E \to 0\] is short exact, \emph{and} it has a splitting on the level of formal schemes.  The splitting is what gives you the isomorphism on points $BSU_E(T) \times BU(1)_E(T) \cong BU_E(T)$.  On the other hand, because the splitting \emph{isn't} a map of formal groups, it doesn't survive to the Cartier dual short exact sequence \[0 \from BSU^E \from BU^E \from BU(1)^E \from 0,\] so this will come down to exhibiting a test ring $T = E_*$ for which $BU^E(T) \to BSU^E(T)$, despite being induced by an fppf-surjective map of sheaves, is not surjective on sections over $T$.  Of course, this comes down concretely to solving for a preimage under the map \[1 - g(x) \mapsto \frac{1 - g(x +_{\G} y)}{(1 - g(x))(1 - g(y))},\] which is more plodding but might offer insight into what sort of ring (and thus orientation) you're looking for.}
 
@@ -105,12 +107,6 @@ T(V \to (\CP^\infty)^k) \arrow{r}{\Delta} \arrow{d} & T(V \to (\CP^\infty)^k) \s
 MU\<2k\> \arrow{r}{\Delta} & MU\<2k\> \sm BU\<2k\>_+.
 \end{tikzcd}
 \end{center}
-
-\citeme{Example 2.53 of published AHS} Maps of ring spectra $MUP \to E$ are in bijective correspondence with global trivializations of the sheaf $\sheaf I(0)$, i.e., with generators $x$ of the augmentation ideal $E^0 \CP^\infty \to E^0(*)$.
-
-\todo[inline]{This seems like a bit of an edge case.  All the argumentation with $V$ seems to rest on that tensor product being nonempty.  What's really meant here?}
-
-\citeme{Example 2.54 of published AHS}  Maps of ring spectra $MU \to E$ are in bijection correspondence with rigid sections of $\omega \otimes \sheaf I(0)^{-1}$, or equivalently with rigid sections of $\omega^{-1} \otimes \sheaf I(0)$, which we can think of as elements of $E^0 T(\L - 1 \to \CP^\infty)$, and the \emph{rigid}\todo{I don't really understand this either.  Where is rigidity coming from?} ones are the ones which restrict to the identity under the inclusion \[S^0 \to P^{\L-1}.\]
 
 
 
