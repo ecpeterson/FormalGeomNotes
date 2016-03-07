@@ -27,7 +27,7 @@ Today we will make good on our promise, made during our investigation of the uno
 Our answer to this question will come out of considering Grothendieck's framework of descent.  Classically, descent concerns itself with a map $f\co R \to S$ of a rings and an $S$--module $N$, and it asks questions like:
 \begin{itemize}
 \item When is there an $R$--module $M$ such that $N \cong M \otimes_R S = f^* M$?
-\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of preimages of $N$ along $f^*$?
+\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of $R$--modules under the map $f^*$? 
 \item What conditions can be placed on $f$ so that the category of descent data for any given module is always contractible, called \textit{effectivity}?
 \end{itemize}
 
@@ -53,7 +53,7 @@ The following theorem is the usual culmination of an initial investigation into 
 If $f\co R \to S$ is faithfully flat, then there is an equivalence of $R$--modules and $S$--modules equipped with descent data.
 \end{theorem}
 \begin{proof}[Jumping off point]
-The basic observation is that $0 \to R \to S \to S \otimes_R S$ is an exact sequence of $A$--modules.  This makes much of the homological algebra involved work out.
+The basic observation is that $0 \to R \to S \to S \otimes_R S$ is an exact sequence of $R$--modules.  This makes much of the homological algebra involved work out.
 \end{proof}
 
 In our situation, this hypothesis will essentially never be satisfied, so we will pursue a less dramatic statement of the properties of descent.  To see what kind of theorem one might expect, consider the example of $f\co \Z \to \F_p$, which is neither faithful nor flat.  Then, consider the following list of problems (and their partial solutions):
@@ -74,7 +74,7 @@ This is meant to look like the \v{C}ech nerve for the ``cover'' $\Spec \F_p \to 
 \end{itemize}
 
 \begin{lemma}\citeme{Hovey's \textit{Morita theory for Hopf algebroids and presheaves of groupoids}.}
-Without passing to the derived category, there is an equivalence of categories between Cartesian quasicoherent sheaves on the descent object and quasicoherent sheaves equipped with descent data. \qed
+Without passing to the derived category, there is an equivalence of categories between Cartesian quasicoherent sheaves on the descent object and quasicoherent sheaves equipped with descent data. \todo{you haven't mentioned quasi. coh. sheaves equipped with descent data.  But I take it that it's obvious from the previous paragraphs that it's the same thing as modules equipped with descent data? A concrete definition about quasi-coherent sheaves equipped with descent data would be nice here - d.s.}\qed
 \end{lemma}
 
 The real utility of this framework is that it pulls apart the question of descent into two distinct pieces, summarized in the following theorem:
@@ -113,13 +113,14 @@ Let $\sheaf D_E(X)$ be the cosimplicial spectrum determined by the formula
 
 It is called \textit{the descent object for $X$ from $E$ to $\S$}.
 \end{definition}
-It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
+
 \begin{lemma}
 When $E$ is an $A_\infty$--ring spectrum, the descent object $\sheaf D_E(X)$ can be naturally considered as a cosimplicial object in the $\infty$--category of spectra. \qed \todo{I don't intend to prove this, but maybe we could say some mealy words about why it's true. At worst, we could give reference to the relevant part of Higher Algebra.}
 \end{lemma}
 \begin{definition}
 Let $E$ be an $A_\infty$--ring spectrum.  Then $X^\wedge_E := \Tot \sheaf D_E(X)$ is called the \textit{$E$--nilpotent completion of $X$}.  The spectral sequence resulting from the coskeletal filtration is called the \textit{$E$--Adams spectral sequence} (for $X$).
 \end{definition}
+It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
 
 In general, it's quite rare that the $E$--nilpotent completion of a spectrum $X$ recovers $X$, but in the nice cases we typically work in, it has been known to happen.  In particular, there is the following theorem:
 \begin{lemma}\citeme{Ravenel's \textit{Localizations w/r/t ...} paper}
@@ -173,9 +174,11 @@ There is also a common hypothesis on $E$ that brings us back into the world of c
 Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is a flat map of $E_*$--modules.\footnote{The essential point of this is that it causes $E_* E \otimes_{E_*} E_* X$ to become a homology theory and $E_* E \otimes_{E_*} E_* X \to (E \sm E)_* X$ to become an isomorphism on a point.  Alternatively, this can be viewed as a degeneration condition on the K\"unneth spectral sequence for $E_* (E \sm E)$.}
 \end{definition}
 
-\begin{remark}
+\begin{remark}\label{FHGivesComodules}
 The main utility of this is that it obviates us from working through the homological algebra of sheaves over simplicial schemes.  Instead, since {\FH} causes $\context{E}$ to become $1$--truncated, we can refer to \Cref{CanonicalCoring} and simply refer back to the homological algebra of comodules.  In light of the discussion in \Cref{HopfAlgebrasFromFiniteGroups,HF2HomologyIsValuedInAutGaEquivarModules}, we also see an interpretation of these groupoid--valued simplicial schemes: they are valued in sets equipped with an action by $\Spec E_* E$, which acts also on the base $\Spec E_*$.  To denote this ``homotopical quotient'' or ``action groupoid'', we will write \[\Spec E_* \mmod \Spec E_* E.\]  Such affine groupoid--valued schemes are themselves quite tangible: their rings of functions form \textit{Hopf algebroids}, and Cartesian quasicoherent sheaves on the groupoid scheme correspond to comodules for the Hopf algebroid.\citeme{A lot of this could use citation.  Most of it is in Ravenel's appendix or Hovey's paper.}
 \end{remark}
+
+\todo{I'm still hazy over these two remarks.  I understand what they are trying to say but I'm feeling hazy on the details.  You should explain it to me sometime - d.s.}
 
 \begin{remark}
 This homotopical perspective is quite useful --- for instance, a map of groupoid--schemes which induces on points a natural weak equivalence of groupoids also induces an equivalence of comodule categories.  In fact, the \emph{derived} comodule category depends only upon the stack associated to the groupoid--scheme, which allows still more contexts to be identified.  We won't need this observation in what's to come, though, and it introduces substantial technical distractions.  \textbf{However, we \emph{may} got sloppy and say ``stack'' from time to time.}\todo{Is there an instance where stacky equivalence (rather than natural groupoid equivalence) is relevant for algebraic topologists?  Or, really, anyone?}\todo{Could also explain the difference: levelwise sheaves of $0$--types vs sheaves of $\infty$--types.}
@@ -531,13 +534,23 @@ The study of all possible infinitesimal deformations of a particular map $\Spec 
 Let $\Spec k \to Y$ be any map, and let $\Spec k \to X \to Y$ be a factorization through a nilpotent thickening $X$ of $\Spec k$.  Then there is a natural further factorization \[\Spec k \to X \dashrightarrow Y^\wedge_X \to Y. \qed\]
 \end{lemma}
 
-\noindent The spirit of the Lemma, then, is that the study of infinitesimal deformations of $\Gamma: \Spec k \to \moduli{fg}$ is equivalent to the study of $(\moduli{fg})^\wedge_\Gamma$ itself.  So, this fits into our program of analyzing the structure of $\moduli{fg}$.
+\noindent The spirit of the Lemma, then, is that the study of infinitesimal deformations of $\Gamma\co \Spec k \to \moduli{fg}$ is equivalent to the study of $(\moduli{fg})^\wedge_\Gamma$ itself.  So, this fits into our program of analyzing the (local) structure of $\moduli{fg}$.
 
 \begin{example}
-Consider the case of an infinitesimal parameter space $X = \A^1$.  A map $\A^1 \to \moduli{fg}$ then is presented by a map $\A^1 \to \moduli{fgl}$, which corresponds to a ``family'' of formal group laws $+_{\phi_h}$ of the form \[x +_{\phi_h} y = (x +_\phi y) + h(x +_{\phi(1)} y) + h^2(x +_{\phi(2)} y) + \cdots\] for some series $+_{\phi(n)}$.  In particular, $+_{\phi(0)}$ is a formal group law over $k$.
+It's also helpful to expand what an infinitesimal deformation is in our case of interest.  Set $Y = \moduli{fg}$, and fix a map $\Gamma\co \Spec k \to \moduli{fg}$ classifying a formal group $\Gamma$ over $\Spec k$.  Let $S$ be a local ring with maximal ideal $\m$ so that $S$ is a nilpotent thickening of $S / \m$.  A deformation of $\Gamma$ to $S$ is the data of a formal group $\G$ over $\Spec S$, an identification $i\co \Spec k \to \Spec S/\m$, and a choice of an isomorphism $f$ fitting together into the following diagram:
+\begin{center}
+\begin{tikzcd}
+\Gamma \arrow{rd} \arrow["f", "\simeq"']{r} & i^* j^* \G \arrow{rr} \arrow{d} & & \G \arrow{d} \\
+& \Spec k \arrow{r}{i} & \Spec S/\m \arrow{r}{j} & \Spec S.
+\end{tikzcd}
+\end{center}
 \end{example}
 
-The analysis of $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate, but we follow a more structured approach written down by Lazarev.\citeme{Cite both of these}
+\begin{example}
+Consider the case of an infinitesimal parameter space $X = \A^1$.  A map $\A^1 \to \moduli{fg}$ can be presented by a map $\A^1 \to \moduli{fgl}$, which corresponds to a ``family'' of formal group laws $+_{\phi_h}$ of the form \[x +_{\phi_h} y = (x +_\phi y) + h(x +_{\phi(1)} y) + h^2(x +_{\phi(2)} y) + \cdots\] for some series $+_{\phi(n)}$.  In particular, $+_{\phi(0)}$ is a formal group law over $k$.
+\end{example}
+
+The analysis of $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate, but we first follow a more structured approach written down by Lazarev.\citeme{Cite both of these}
 \begin{definition}\todo{Can this be phrased geometrically?}
 Let $+_\phi$ be a formal group law over $R$, and let $M$ be an $R$--module. The deformation complex $\widehat C^*(\phi; M)$ is defined by \[M \to M\ps{x_1} \to M\ps{x_1, x_2} \to M\ps{x_1, x_2, x_3} \to \cdots\] with differential
 \begin{align*}
@@ -556,7 +569,7 @@ This complex tracks the data of infinitesimal deformations.  For instance, consi
 \begin{theorem}[{\cite[p.\ 1320]{Lazarev}}]
 Let $+_\phi$ be a formal group law over a ring $R$ and let $S \to R$ be a square--zero extension with kernel $M$.
 \begin{enumerate}
-\item Automorphisms of $+_\phi$ over $S$ correspond to elements in $\widehat Z^1(\phi; M)$.
+\item Automorphisms of $+_\phi$ over $S$ covering the identity on $R$ correspond to elements in $\widehat Z^1(\phi; M)$.
 \item Extensions of $+_\phi$ to $S$ correspond to elements in $\widehat Z^2(\phi; M)$.
 \item Two such extensions are isomorphic as formal group laws over $S$ if their cocycles differ by an element in $\widehat B^2(\phi; M)$. \qed
 \end{enumerate}
@@ -575,11 +588,11 @@ f & \mapsto \phi_1\left(0, \sum_{i=1}^n{}_\phi x_i \right)^{-1} f(x_1, \ldots, x
 
 Of course, yesterday we computed the specific case of $\G = \G_a$.  However, by filtering the multiplication on $\G$ by degree, we can use this specific calculation to get up to the general one.
 
-\begin{lemma}[Hopkins]\label{CalculationOfLTTangentSpace}
-Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then the group $H^2(\G; M \otimes \G_a)$ classifying isomorphism classes of deformations is a free $k$--vector space of dimension $(d - 1)$.
+\begin{lemma}\label{CalculationOfLTTangentSpace}
+Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then the group $H^2(\G; M \otimes \G_a)$ classifying isomorphism classes of deformations is a free $k$--vector space of dimension $(d - 1)$.\todo{$d$ or $(d-1)$?  There's $\beta_0$ through $\beta_{d-1}$...}
 \end{lemma}
-\begin{proof}
-Using $p$--typification, we select a coordinate on $\G$ of the form \[x +_\phi y = x + y + (\mathrm{unit}) c_{p^d} + \cdots.\]  Then, filter $\G$ by degree and consider the resulting spectral sequence of signature \[H^*(\G_a; M \otimes \G_a) \cong M \otimes (\Lambda_k[\alpha_j \mid j \ge 0] \otimes k[\beta_j \mid j \ge 0]) \Rightarrow H^*(\G; M \otimes \G_a).\]  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest visible degree.  In order to compute \todo{This ``sentence'' is missing a few words.  Also, maybe you should remind us what $\alpha_j$ and $\beta_j$ are in terms of $x$ and $y$.} \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  So, we see that there are $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed permanent cocycles.  To do this, we need only show that they are realized by deformations, which Lubin and Tate accomplish in \Cref{LubinTateRealizationLemma}.
+\begin{proof}[Proof (after Hopkins)]
+Using $p$--typification, we select a coordinate on $\G$ of the form \[x +_\phi y = x + y + (\mathrm{unit}) c_{p^d} + \cdots.\]  Then, filter $\G$ by degree and consider the resulting spectral sequence of signature \[H^*(\G_a; M \otimes \G_a) \cong M \otimes (\Lambda_k[\alpha_j \mid j \ge 0] \otimes k[\beta_j \mid j \ge 0]) \Rightarrow H^*(\G; M \otimes \G_a).\]  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest visible degree.  In order to compute  \[(x +_\phi y)^{p^r} - (x^{p^r} + y^{p^r}) = (\text{unit}) \cdot c_{p^{d + r}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^r} = c_{p^{r+d}}$.  \todo{This last ``sentence'' is missing a few words.  Also, maybe you should remind us what $\alpha_j$ and $\beta_j$ are in terms of $x$ and $y$.} So, we see that there are $d - 1$ things at the bottom of the spectral sequence which are not coboundaries, and we need to check that they are indeed permanent cocycles.  To do this, we need only show that they are realized by deformations, which Lubin and Tate accomplish in \Cref{LubinTateRealizationLemma}.
 \end{proof}
 \begin{lemma}[{\cite[Proposition 1.1]{LubinTate}}]\label{LubinTateRealizationLemma}
 Let $W$ be a local ring with residue field $k$, and let $\phi$ be a group law of height $d$ on $k$.  There is a group law $\tilde\phi$ over $W\ps{u_1, \ldots, u_{d-1}}$ restricting to $\phi$ on $k$ such that for some $j \geq 1$, \[x +_{\tilde \phi} y \equiv x + y + u_j c_{p^j}(x, y) \pmod{u_1, \ldots, u_{j-1}, (x, y)^{p^j+1}}. \qed\]
@@ -587,7 +600,7 @@ Let $W$ be a local ring with residue field $k$, and let $\phi$ be a group law of
 
 Picking $W = \W_p(k)$ to be the ring of Witt vectors, \Cref{LubinTateRealizationLemma} produces the universal example of a deformation of a group law $\phi$ to $\tilde \phi$.
 
-\begin{theorem}\citeme{You got this from 7.5.1 of the Crystals notes.}
+\begin{theorem}\label{LubinTateDeformationSpace}\citeme{You got this from 7.5.1 of the Crystals notes.}
 Let $\Spf R$ be an infinitesimal deformation of its residue field $\Spec k$.  For each lift of $\phi$ to $\psi$ over $\Spf R$, there is a unique homomorphism \[\alpha \in \CatOf{FormalSchemes}(\Spf R, \Spf \W_p(k)\ps{u_1, \ldots, u_{d-1}})\] with $\alpha^* \tilde \phi$ uniquely strictly isomorphic to $\psi$.
 \end{theorem}
 \begin{proof}
@@ -605,14 +618,32 @@ g_r(x) & = h(x) - f(x), &
 \end{align*}
 \end{proof}
 
+\begin{remark}
+Our calculation $H^1(\G_\phi; M \otimes \G_a)$ also shows that there are \emph{no} automorphisms of the formal group $\Gamma$ over the special fiber which induce automorphisms of the universal deformation.  Specifically, \emph{any} deformation of a nontrivial automorphism of $\Gamma$ acts nontrivially on Lubin--Tate space by permuting the deformations living over the various fibers.  A consequence of this observation is that the deformation space produced in \Cref{LubinTateDeformationSpace} is a \emph{formal scheme}, carrying only the previously-known inertial group of $\Aut \Gamma$ at the special fiber, rather than a full-on stack.
+\end{remark}
+
+\begin{remark}
+We also see that our analysis fails wildly for the case $\Gamma = \G_a$.  The differential calculation in \Cref{CalculationOfLTTangentSpace} are meant to give us an upper bound on the dimensions of $H^1(\Gamma; \G_a)$ and $H^2(\Gamma; \G_a)$, but this family of differentials is zero in the additive case.  Accordingly, both of these vector spaces are infinite dimensional --- the infinitesimal 
+\end{remark}
+
 \citeme{Neil's FG notes in the first half of section 18 talk about additive extensions and their relation to infinitesimal deformations.  In the second half, he (more or less) talks about the de Rham crystal and shows that $\Ext_{\mathrm{rigid}}(G, \G_a) \cong \operatorname{Prim}(H^1_{dR}(G/X))$ in 18.37.}
 \todo{I still have some confusion about the formal similarity between deforming formal group laws over square-zero extensions of the base and deforming formal $n$--buds over the finite order nilpotent neighborhoods of a point.  This would be a good place to sort that out.}
 
-----
+Having accomplished all our major goals, we close our algebraic analysis of $\moduli{fg}$ with a diagram summarizing our results.
+\begin{landscape}
+\begin{figure}[b]
+PICTURE GOES HERE.
+\end{figure}
+\end{landscape}
 
-The nice picture I drew for Catherine
 
------
+
+
+
+
+
+
+\section{Nilpotence and periodicity}
 
 We have now arrived at the conclusion of our program from \Cref{StructureOfMfgl} for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open substacks of $\moduli{fg}$, and we have analyzed its closed points as well as their deformation neighborhoods.
 \begin{definition}
@@ -629,14 +660,6 @@ We define the following ``chromatic'' homology theories:
 \begin{remark}[{\cite[Section 5.2]{KLW}, \cite[Theorem 2.13]{StricklandProductsOnModules}}]
 Morava $K$--theory at the even prime is not commutative.  Instead, there is a derivation $Q_d: K(d) \to \Susp K(d)$ satisfying \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, $K^0 X$ is a commutative ring whenever $K^1 X = 0$.
 \end{remark}
-
-
-
-
-
-
-
-\section{Nilpotence and periodicity}
 
 Having constructed these ``stalk'' homology theories, I want to show that you can actually perform stalkwise analyses of the sheaves coming from bordism theory.  Our example case is a famous theorem: the solution of Ravenel's nilpotence conjectures by Devinatz, Hopkins, and Smith.  Their theorem concerns spectra which ``detect nilpotence'' in the following sense:
 
@@ -769,7 +792,7 @@ Nonetheless, taking that as granted, we can use Bousfield's theory of homologica
 Let $R_*$ denote the homology theory associated to a flat map $j: \Spec R \to \moduli{fg}$ by Landweber's theorem.  There is then a diagram\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak--equivalences.}
 \begin{center}
 \begin{tikzcd}[column sep=2.2cm,row sep=2cm]
-\CatOf{Spectra}_R \arrow[red]{r}{R_* \quad \mathrm{conservative}} \arrow[leftarrow, shift left=0.20cm, red]{d}{L_R} & \CatOf{QCoh}(\Spec R) \arrow[shift left=0.20cm, red, leftarrow]{d}{j^*} \\
+\CatOf{Spectra}_R \arrow["R_*", "\mathrm{conservative}"', red]{r} \arrow[leftarrow, shift left=0.20cm, red]{d}{L_R} & \CatOf{QCoh}(\Spec R) \arrow[shift left=0.20cm, red, leftarrow]{d}{j^*} \\
 \CatOf{Spectra} \arrow[leftarrow,shift left=0.20cm, "\dashv"']{u}{i} \arrow[red]{ru}{R_*} \arrow[red]{r}{MU_*} & \CatOf{QCoh}(\context{MU}), \arrow[leftarrow, shift left=0.20cm, "\dashv"']{u}{j_*}
 \end{tikzcd}
 \end{center}

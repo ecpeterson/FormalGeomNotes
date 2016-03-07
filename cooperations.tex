@@ -9,10 +9,10 @@
 
 \section{Unstable contexts}
 
-Today we will take the framework of contexts discussed in \Cref{StableContextLecture} and augmnet it in two important (and very distinct) ways.  First, we will assume that $X$ is a \emph{space} rather than a spectrum, and try to encode the extra structure appearing on $E_* X$ from this assumption.  Toward that end, recall that the levels of $\context{E}(X)$ are defined by repeatedly smashing $X$ with $E$, and that we had arrived at this by considering descent for the adjunction
+Today we will take the framework of contexts discussed in \Cref{StableContextLecture} and augment it in two important (and very distinct) ways.  First, we will assume that $X$ is a \emph{space} rather than a spectrum, and try to encode the extra structure appearing on $E_* X$ from this assumption.  Toward that end, recall that the levels of $\context{E}(X)$ are defined by repeatedly smashing $X$ with $E$, and that we had arrived at this by considering descent for the adjunction
 \begin{center}
 \begin{tikzcd}
-\CatOf{Spectra} \arrow[-,double]{r} & \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} & \CatOf{Modules}_E \arrow[shift left=0.4em]{l}
+\CatOf{Spectra} = \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} & \CatOf{Modules}_E \arrow[shift left=0.4em]{l}
 \end{tikzcd}
 \end{center}
 induced by the algebra map $\S \to E$.  Given a spectrum $X$, our framework was set up to give the best possible approximation $X^\wedge_E$ within $E$--module spectra.
@@ -47,53 +47,26 @@ Consider the descent cosimplicial object
 Its totalization gives the \textit{unstable $E$--completion of $X$}.
 \end{definition}
 
-Under suitable hypotheses, we can extract from this an unstable analog of $\context{E}$:
-\begin{definition}
-Suppose that $\sheaf{UM}_E(S^{2*})$ is level-wise even-concentrated for each value of $*$.  Then, we define the \textit{unstable context of $E$} to be the following graded simplicial scheme:\todo{I don't think this is satisfied even in the case of ordinary homology.  I think you're obligated to just say ``well, up to odd information...''}
-\[\Ucontext{E}^n := \left\{
-\begin{tikzcd}
-\Spec \pi_* \left( \begin{array}{c} E \\ \circ \\ S^{2n} \end{array} \right) \arrow[shift left=\baselineskip]{r}{\mu} \arrow[leftarrow, shift left=(2*\baselineskip)]{r}{\eta_L} \arrow[leftarrow]{r}{\eta_R} &
-\Spec \pi_* \left( \begin{array}{c} E \\ \circ \\ E \\ \circ \\ S^{2n} \end{array} \right) \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r}{\Delta} \arrow{r} \arrow[shift right=\baselineskip]{r} &
-\cdots
-\end{tikzcd}
-\right\}.\]
-as well as a quasicoherent sheaf over it associated to $X$:\todo{I don't think that it's correct to drag the suspension through this object.}
+Under suitable hypotheses, we can extract from this an unstable analog of $\context{E}$.  Recall that our goal in \Cref{StableContextLecture} was to associate to $E_* X$ a quasi-coherent sheaf over $\context{E}$, a fixed object, dependent on $E$ but independent of $X$.  In the presence of further hypotheses called ``{\FH}'', we saw in \Cref{FHGivesComodules} that this same data could be expressed as an $E_* E$--comodule structure on $E_* X$.  In particular, {\FH} caused the marked map in \[E_* X \xrightarrow{\eta_R} E_*(E \sm X) \xleftarrow{\star} E_* E \otimes_{E_*} E_* X\] to become invertible.
+
+In the present setting, consider the analogous composite
 \begin{align*}
-\Ucontext{E}^n(X) & := \left(\pi_* \sheaf{UD}_E(\Susp^{2n} X)\right){\widetilde{}} \\
-& = \left\{
-\begin{tikzcd}[ampersand replacement=\&]
-\pi_* \left( \begin{array}{c} E \\ \circ \\ \Susp^{2n} X \end{array} \right)\widetilde{} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow{r} \&
-\pi_* \left( \begin{array}{c} E \\ \circ \\ E \\ \circ \\ \Susp^{2n} X \end{array} \right)\widetilde{} \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \&
-\pi_* \left( \begin{array}{c} E \\ \circ \\ E \\ \circ \\ E \\ \circ \\ \Susp^{2n} X \end{array} \right)\widetilde{} \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} \&
-\cdots
-\end{tikzcd}
-\right\}.
+\pi_m E(X) & \xrightarrow{\eta_R} \pi_m E(E(X)) \\
+& \xleftarrow{\mu \circ 1} \pi_m E(E(E(X))) \\
+& \xleftarrow{\mathrm{compose}} \pi_m E(E(S^n)) \times \pi_n E(X).
 \end{align*}
+
+\begin{definition}
+The \textit{unstable context of $E$} is the collection of cosimplicial abelian groups $\pi_* \sheaf{UD}_E(S^n)$.  In the case $n = 0$, this is a cosimplicial ring, and in the case $n \ne 0$ the $0$--simplices merely form a module over $\pi_* \sheaf{UD}_E(S^0)[0]$.\todo{Sort out exactly what structure lives here.}
 \end{definition}
 
-While straightforward, these new definitions demand various investigations of new accompanying objects.
+\begin{remark}
+In the case that $E$ has K\"unneth isomorphisms, the ``backwards'' maps above become invertible, which is a kind of unstable analogue of the condition {\FH}.  This is the situation in which most of the classical work on this topic was done.\citeme{BCM, BJW, ...}
+\end{remark}
 
+\todo[inline]{I \emph{don't} really understand what sort of algebraic structure this gives us.  It would be nice to have an unstable scheme-theoretic analogue of the stable context, so that the homology of spaces gave us ``quasi-coherent sheaves'' over this unstable object (and, in good cases, the unstable Adams spectral sequence had its $E_2$--page computed by some homological algebra over this object; see BCM Section 6).}
 
-
-Convergence of the unstable Adams spectral sequence (cf.\ BCM Section 3)
-
-Identification of its $E_2$--term (cf.\ BCM Section 6 and the formula $E_2^{s, t}(X; R) \cong \Ext^s_{\CatOf{M}(G)}(A[t]; R_* X)$.)
-
-Definition of a Hopf ring
-
-An {\FH}--type condition.  The difference between all unstable operations and additive unstable operations (and, in particular, flatness is only satisfied in the latter case).
-
-
-
-Mixed Hopf rings and non-disjoint covers by multiple ring spectra
-
-
-------------
-
-
-
-
-Hopf rings: algebraic and topological
+Ignoring for the moment what the correct scheme-theoretic analogue of this might be, we will press onward and record the algebraic objects appearing in the presence of the unstable analogue of {\FH}.
 
 \begin{definition}\todo{Can this definition be made without specifying the grading as such and instead using a $\G_m$--action?}
 A Hopf ring $A_{*, *}$ over a graded ring $R_*$ is itself a graded ring object in the category $\CatOf{Coalgebras}_{R_*}$, sometimes called an $R_*$--coalgebraic graded ring object.  It has the following structure maps:
@@ -108,8 +81,6 @@ A Hopf ring $A_{*, *}$ over a graded ring $R_*$ is itself a graded ring object i
 \eta_\circ & \co R_* \to A_{*, 0} & \text{(null element for ring multiplication)}.
 \end{align*}
 These are required to satisfy various commutative diagrams. The least obvious is displayed in \Cref{DistributivityDiagram}, encoding the distributivity of $\circ$--``multiplication'' over $\ast$--``addition''.
-\end{definition}
-
 \begin{figure}
 \begin{center}
 \begin{tikzcd}
@@ -122,51 +93,55 @@ A_{s, t} \otimes_{R_*} (A_{s', t'} \otimes_{R_*} A_{s'', t'}) \arrow{r}{1 \otime
 \end{center}
 \caption{The distributivity axiom for $\ast$ over $\circ$ in a Hopf algebra.}\label{DistributivityDiagram}
 \end{figure}
+\end{definition}
 
-The context of additive unstable cooperations: make the module of $\ast$--indecomposables $QE_* \Susp^{-*} \OS{E}{*}$ into an algebra using the $\circ$--product, noting that it descends to a map \[QE_* \Susp^{-n} \OS{E}{n} \otimes QE_* \Susp^{-m} \OS{E}{m} \to QE_* \Susp^{-(n+m)} \OS{E}{n+m}.\]  The cooperations that survive to the $\ast$--indecomposables are exactly the additive ones.
+\begin{remark}\label{HopfRingFromOneRingSpectrum}
+A ring spectrum $E$ with K\"unneth isomorphisms \[E_*(\OS{E}{m} \times \OS{E}{n}) \cong E_*(\OS{E}{m}) \otimes_{E_*} E_*(\OS{E}{n})\] gives rise to a Hopf ring $E_* \OS{E}{n} = \pi_* \sheaf{UD}_E(S^n)[1]$.  For a space $X$, the homology groups $E_* X$ form a comodule for this Hopf ring.
+\end{remark}
 
-Unbalanced unstable cooperations and Morita functors: I feel that given an unstable $E^*$--comodule $M$, one can produce an unstable $F^*$--comodule by a tensoring operation: $M \otimes_? F_* \OS{E}{*}$ (or something?).  If $M$ is actually $M = E^* X$ for a space $X$, then there should be a comparison map \[F^* X \to E^* X \otimes_? F_* \OS{E}{*}.\]  This will rarely be an isomorphism, but it should fit into the sheaf-over-a-simplicial-scheme picture as something like a face map.
+One can modify this story in a number of minor ways.
 
-Comparison with past scholia on ``piles''?
+\begin{remark}
+One can restrict to the \emph{additive} unstable cooperations by passing to the quotient $Q^\ast E_* \OS{E}{*}$.  These corepresent the morphisms in a cocategory object in $\CatOf{Rings}$ (using the $\circ$--product for multiplication, which descends to $\ast$--indecomposables).  The ring $E_*$ corepresents the objects in this cocategory object.\todo{A lot of the homological algebra of unstable comodules exists only after passing to this quotient.  Maybe explain why.}
+\end{remark}
 
+\begin{remark}
+The procedure in \Cref{HopfRingFromOneRingSpectrum} can be generalized to the case of \emph{two} ring spectra, $E$ and $F$, equipped with K\"unneth isomorphisms \[E_*(\OS{F}{m} \times \OS{F}{n}) \cong E_*(\OS{F}{m}) \otimes_{E_*} E_*(\OS{F}{n}).\]  Again, the bigraded object $E_* \OS{F}{*}$ forms a Hopf ring.  These ``mixed cooperations'' appear as part of the cooperations for the ring spectrum $E \vee F$ --- or, from the perspective of spectral shemes, for the joint cover $\{\S \to E, \S \to F\}$.  The role of the mixed cooperations in this setting is to prevent the $(E \vee F)$--based unstable Adams spectral sequence from double-counting homotopy elements visible to both the unstable $E$-- and $F$--completions.\todo{I feel that this can be used to take an unstable comodule for $E$--theory and produce from it an unstable comodule for $F$--theory (up to a wrong-way map).  Martin Bendersky thought this was strange, but I don't think it's so odd, and I would like to understand how to straighten it out.}
+\end{remark}
+
+\todo{Does ``Cartesian'' mean anything in this setting?}
 \citeme{Bendersky Curtis Miller's~\cite{BCM} \textit{The unstable Adams spectral sequence for generalized homology}}
-\citeme{Boardman Johnson Wilson's \textit{Unstable operations in generalized cohomology}}
-
-Goerss mentions inverting the suspension element as being the same as stabilizing. This is a nice picture. Cf.\ Example 10.5 of Goerss's \textit{Hopf rings, Dieudonn\'e modules, and $E_* \Loops^2 S^3$}.
-
-Lukas's main suggestion was to consider how the shriek functors were computed in excellent cases, so that maybe the push-pull formula could be directly interpreted on the level of spectra.  I think this is a good thing to think about.  Maybe it will tell us how ``handed'' Hopf rings appear in isolation, without their chirally dual mate.
-
-Talk about how $\S \to E$ is being treated like a cover. If you have two covers, you can take their joint cover $\S \to E \vee F$, whose $1$--simplices pick up a mixed term: \[(E \vee F) \sm (E \vee F) \simeq E^{\sm 2} \vee F^{\sm 2} \vee (E \sm F)^{\vee 2}.\]  This mixed term prevents double-counting, and it makes it sort of reasonable that it should involve isomorphisms between mixed formal group types.  (This mixed cooperations perspective might have to wait until the chapter on unstable contexts.)
-
-Does the adjective ``Cartesian'' make sense here?  Is it still the case that the topological object is always ``Cartesian'', and $\pi_*$ preserves Cartesianness in the presence of loads of flatness hypotheses on $E_* \OS{E}{*}$?
+\citeme{Boardman Johnson Wilson's~\cite{BJW} \textit{Unstable operations in generalized cohomology}}
 
 
-I think the relevant base-change diagram to consider is something like
-\begin{center}
-\begin{tikzcd}[column sep=2.2cm,row sep=2cm]
-\CatOf{Algebras}_E \arrow{r}{\eta_F} \arrow[leftarrow, shift left=0.20cm]{d}{\eta_E} & \text{$F \circ E$ algebras} \arrow{d} \\
-\CatOf{Spaces} \arrow[leftarrow,shift left=0.20cm]{u} \arrow[shift left=0.20cm]{r}{\eta_F} \arrow[leftarrow, shift right=0.20cm]{r} & \CatOf{Algebras}_F.
-\end{tikzcd}
-\end{center}
-A space $X$ gets pushed around this diagram like: up to $E \circ X$, over to $F \circ E \circ X$, down to $F \circ E \circ X$, where it receives a natural map \[F \circ X \to F \circ E \circ X.\]  In the case $E = F$, this is the interesting unit map, i.e., the coaction map.  Probably $\pi_* F \circ E \circ X$ is also the recipient of some map connected to the unstable version of \FH.
 
---------
 
-I think that the unstable descent object along $E \vee F$ receives a map from a ``split descent object'', along the following lines.  Consider the $1$--simplices in $\sheaf{UD}_{E \vee F}(X)$:
-\begin{align*}
-(F \vee E) \circ (F \vee E) \circ X & \simeq F \circ (F \vee E) \circ X \times E \circ (F \vee E) \circ X \\
-& \simeq F \circ (F \circ X \times E \circ X) \times E \circ (F \circ X \times E \circ X) \\
-& \from (F \circ F \circ X \times F \circ E \circ X) \times (E \circ F \circ X \times E \circ E \circ X),
-\end{align*}
-where the last map is a K\"unneth-type map...?  (Actually, I'm not so sure about this now. I thought that having K\"unneth isomorphisms would mean that there would be an equivalence $E \circ (X \times Y) \simeq E \circ X \times E \circ Y$, but now I'm skeptical.  I think there's a map leftward of sets, but this isn't big enough: the Cartesian product of groups is (often) much smaller than the tensor product.)
 
-Anyway, if there were some splitting like this, the next step would be to check if setting $E = F$ has mechanisms in it to prevent double-counting.  (As a side question: is it clear that the unstable $E$--completion is equivalent to the unstable $E \vee E$--completion?)
+%I think we should be able to see what the relevant ``flatness'' hypothesis should be from here, and then even in the case $E = H\F_p$ I think it should be visibly unreasonable to expect this map to be sufficiently surjective so that passing to the associated map off of the tensor product induces an isomorphism.  Instead, we really do have to pass to the additive cooperations.  (I also think it should be visible what the $E_*$--action on the two sides should be.  On the left, it should come from the usual scaling.  On the right, it should come from acting by the Hopf ring elements ``$[e]$'' in Steve's notation (cf.\ Section 4.3).)
 
-Probably a lot of my questions would be cleared up by actually trying to write down where the unstable coaction map comes from.  Good grief.
 
-------
 
-I think the ``algebraic'' part (or ``wrong-way'' part, anyway) of the coaction map comes from the map \[\{S^m \to E(E(S^n))\} \times \{S^n \to E(X)\} \xrightarrow{\mathrm{compose}} \{S^m \to E(E(E(X))) \xrightarrow{\mathrm{collapse latter factors}} E(E(X))\}.\]  I think we should be able to see what the relevant ``flatness'' hypothesis should be from here, and then even in the case $E = H\F_p$ I think it should be visibly unreasonable to expect this map to be sufficiently surjective so that passing to the associated map off of the tensor product induces an isomorphism.  Instead, we really do have to pass to the additive cooperations.  (I also think it should be visible what the $E_*$--action on the two sides should be.  On the left, it should come from the usual scaling.  On the right, it should come from acting by the Hopf ring elements ``$[e]$'' in Steve's notation (cf.\ Section 4.3).)
+
+% I think the relevant base-change diagram to consider is something like
+% \begin{center}
+% \begin{tikzcd}[column sep=2.2cm,row sep=2cm]
+% \CatOf{Algebras}_E \arrow{r}{\eta_F} \arrow[leftarrow, shift left=0.20cm]{d}{\eta_E} & \text{$F \circ E$ algebras} \arrow{d} \\
+% \CatOf{Spaces} \arrow[leftarrow,shift left=0.20cm]{u} \arrow[shift left=0.20cm]{r}{\eta_F} \arrow[leftarrow, shift right=0.20cm]{r} & \CatOf{Algebras}_F.
+% \end{tikzcd}
+% \end{center}
+% A space $X$ gets pushed around this diagram like: up to $E \circ X$, over to $F \circ E \circ X$, down to $F \circ E \circ X$, where it receives a natural map \[F \circ X \to F \circ E \circ X.\]  In the case $E = F$, this is the interesting unit map, i.e., the coaction map.  Probably $\pi_* F \circ E \circ X$ is also the recipient of some map connected to the unstable version of \FH.
+
+
+
+
+% I think that the unstable descent object along $E \vee F$ receives a map from a ``split descent object'', along the following lines.  Consider the $1$--simplices in $\sheaf{UD}_{E \vee F}(X)$:
+% \begin{align*}
+% (F \vee E) \circ (F \vee E) \circ X & \simeq F \circ (F \vee E) \circ X \times E \circ (F \vee E) \circ X \\
+% & \simeq F \circ (F \circ X \times E \circ X) \times E \circ (F \circ X \times E \circ X) \\
+% & \from (F \circ F \circ X \times F \circ E \circ X) \times (E \circ F \circ X \times E \circ E \circ X),
+% \end{align*}
+% where the last map is a K\"unneth-type map...?  (Actually, I'm not so sure about this now. I thought that having K\"unneth isomorphisms would mean that there would be an equivalence $E \circ (X \times Y) \simeq E \circ X \times E \circ Y$, but now I'm skeptical.  I think there's a map leftward of sets, but this isn't big enough: the Cartesian product of groups is (often) much smaller than the tensor product.)
+
 
 
 
@@ -459,8 +434,15 @@ Suppose we have an exact sequence of Hopf $k$--algebras \[k \to A' \to A \xright
 If $A$ is a connected $p$--divisible Hopf $k$--algebra, then \[k \to A[p^j] \to A \xrightarrow{p^j} A \to k\] is such an exact sequence.  Hence, $\Ext^* A$ is isomorphic to the symmetric algebra on $\Ext^1 A[p^j]$.  \qed
 \end{corollary}
 
+\citeme{Proof of 2.4.11 from Hopkins--Lurie} Set $A = K(n)_0 G$.  The $E_2$--page of the relevant Eilenberg--Moore spectral sequence is given by \[\Ext_A^* \otimes K_\Gamma^* \Rightarrow K_\Gamma^* BG.\]  Since $\Spf A^\vee$ is $p$--divisible, we have an exact sequence of Hopf algebras \[k \to A[p] \to A \xrightarrow{[p]} A \to k.\]  It's supposed to follow that \[\dim_k \Ext^1_{A[p]} = \binom{n}{m-1} - \binom{n-1}{m-1} = \binom{n-1}{m},\] using $\height(A) = \binom{n}{m-1}$, $\dim(A) = \binom{n-1}{m-1}$, and $\dim_k \Ext^1_A = \dim DM(A) / F \cdot DM(A)$ (cf.\ Remark 2.2.4).  It follows from the Example above that the $E_2$--page of this spectral sequence is a polynomial $k$--algebra on $\binom{n-1}{m-1}$ generators, concentrated in even degrees, so that the spectral sequence collapses.  In turn, it follows that $K(n)^0 BG$ is a power series algebra on as many generators.
 
-\todo[inline]{The point is supposed to be that there are no differentials in the limiting $j \to \infty$ case of the above spectral sequences.  So, all that's left is to check that the pairing gives the right isomorphism, which is an exercise in counting dimensions.  This is Prop 2.4.11 in Hopkins--Lurie.}
+\citeme{Proof of 2.4.12 from Hopkins--Lurie} Now we have to identify the Hopf algebra structure on this (as an alternating power).
+
+\todo[inline]{\textbf{Maybe the right thing to do here is to postpone the proof of 2.4.12 until tomorrow, when we introduce Dieudonn\'e theory?  It looks pretty heavy, and it's definitely Dieudonn\'e-y.}}
+
+
+
+
 
 
 
