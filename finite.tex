@@ -761,7 +761,7 @@ We define the following ``chromatic'' homology theories:
 \end{itemize}
 \end{definition}
 
-\begin{remark}[{\cite[Section 5.2]{KLW}, \cite[Theorem 2.13]{StricklandProductsOnModules}}]
+\begin{remark}[{\cite[Section 5.2]{KLW}, \cite[Theorem 2.13]{StricklandProductsOnModules}}]  \todo{Ravenel's Localization W/R/T, Corollaries 2.14 and 2.16, is another reference for this.  He, in turn, cites Yosimura's \textit{Universal coefficient sequences for cohomology theories of CW-spectra}.}
 Morava $K$--theory at the even prime is not commutative.  Instead, there is a derivation $Q_d: K(d) \to \Susp K(d)$ satisfying \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, $K(d)^* X$ is a commutative ring whenever $K(d)^1 X = 0$.
 \end{remark}
 
@@ -794,7 +794,7 @@ Complex cobordism $MU$ detects nilpotence. \qed
 
 They also show that the $MU$ is the universal object which detects nilpotence, in the sense that any other ring spectrum can have this property checked stalkwise on $\context{MU}$:
 
-\begin{corollary}[Hopkins--Smith]\citeme{Hopkins--Smith}
+\begin{corollary}[{\cite[Theorem 3]{HopkinsSmith}}]\label{LocalNilpotenceDetection}
 A ring spectrum $E$ detects nilpotence if and only if for all $0 \le d \le \infty$ and for all primes $p$, $K(d)_* E \ne 0$.
 \end{corollary}
 \begin{proof}
@@ -843,20 +843,35 @@ A subcategory of the category of a triangulated category (e.g., $p$--local finit
 \item The category $\CatOf{C}_d$ of $p$--local finite spectra which are $K(d-1)$--acyclic.  (For instance, if $d = 1$, the condition of $K(0)$--acyclicity is that the spectrum have purely torsion homotopy groups.)  These are called ``finite spectra of type at least $d$''.
 \item The category $\CatOf{D}_d$ of $p$--local finite spectra $F$ which have a self-map $v: \Susp^N F \to F$, $N \gg 0$, inducing multiplication by a unit in $K(d)$--homology.  These are called ``$v_d$--self--maps''.
 \end{itemize}
+
+Ravenel shows the following useful result interrelating the $\CatOf C_d$:
+\begin{lemma}[{\cite[Theorem 2.11]{RavenelLocalizationWRTPeriodic}}]\label{CdCategoriesNest}
+For $X$ a finite complex, there is a bound \[\dim K(d-2)_* X \le \dim K(d-1)_* X.\]  In particular, there is an inclusion $\CatOf C_{d-1} \subseteq \CatOf C_d$. \qed
+\end{lemma}
+
 Hopkins and Smith show the following classification theorem:
 
-\begin{theorem}[Hopkins--Smith]\citeme{Hopkins--Smith}
-Any thick subcategory $\CatOf C$ of $p$--local finite spectra must be $\CatOf C_d$ for some $d$.
+\begin{theorem}[{\cite[Theorem 7]{HopkinsSmith}}]
+Any thick subcategory $\CatOf C$ of $p$--local finite spectra must be $\CatOf C_d$ for some finite $d$.
 \end{theorem}
 \begin{proof}
-\todo{I'm not totally convinced of this reduction.}It is sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.
-Let $Y \in \CatOf C_d$ be any other spectrum of type at least $d$.  Consider the endomorphism ring spectrum $R = F(X, X)$ and the fiber sequence of its unit map: \[F \xrightarrow{f} \to \S \xrightarrow{\eta} R.\]  The action of $f$ under $K(n)$--homology is an isomorphism exactly when $X$ is $K(n)$--acyclic, and because the $K(n)$--acyclicity of $X$ implies the $K(n)$--acyclicity of $Y$, it follows that $1 \sm f\co Y \sm F \to Y \sm \S$ is always null on $K(n)$--homology for all $n$.  By a small variant of the local nilpotence detection theorem, it follows that \[Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j}\] is null for $j \gg 0$, and hence that \[\operatorname{cofib}\left( Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j} \right) \simeq Y \sm \operatorname{cofib} f^{\sm j} \simeq Y \vee (Y \sm \Susp F^{\sm j}),\] so that $Y$ is a retract.  However, consider the following smash version of the octahedral axiom: the factorization \[F \sm F^{\sm (j-1)} \xrightarrow{f \sm 1} \S \sm F^{\sm (j-1)} \xrightarrow{1 \sm f^{\sm (j-1)}} \S \sm \S^{\sm (j-1)}\] begets a cofiber sequence \[F \sm \operatorname{cofib} f^{\sm (j-1)} \to \operatorname{cofib} f^{\sm j} \to \operatorname{cofib} f \sm \S^{\sm (j-1)}.\]
-Using $\operatorname{cofib}(f) = X \sm DX \in \CatOf C$, one can inductively show that $\operatorname{cofib}(f^{\sm j})$, hence $Y \sm \operatorname{cofib}(f^{\sm j})$, and hence $Y$ all belong to $\CatOf C$ as well.
+Since $\CatOf C_d$ are nested by \Cref{CdCategoriesNest} and they form an exhaustive filtration, it is thus sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.  Write $R$ for the endomorphism ring spectrum $R = F(X, X)$, and write $F$ for the fiber of its unit map: \[F \xrightarrow{f} \S \xrightarrow{\eta} R.\]  Finally, let $Y$ be \emph{any} finite spectrum of type at most $d$.
+
+Now consider applying $K(n)$--homology (for \emph{arbitrary} $n$) to the map \[1 \sm f\co Y \sm F \to Y \sm \S.\]  The induced map is always zero:
+\begin{itemize}
+\item In the case that $K(n)_* X$ is nonzero, then $K(n)_* \eta_R$ is injective and $K(n)_* f$ is zero.
+\item In the case that $K(n)_* X$ is zero, then $n \le d$ and, because of the bound on type, $K(n)_* Y$ is zero as well.
+\end{itemize}
+By a small variant of local nilpotence detection (\Cref{LocalNilpotenceDetection}, \cite[Corollary 2.5]{HopkinsSmith}), it follows for $j \gg 0$ that \[Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j}\] is null-homotopic.  Hence, one can calculate the cofiber to be \[\operatorname{cofib}\left( Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j} \right) \simeq Y \sm \operatorname{cofib} f^{\sm j} \simeq Y \vee (Y \sm \Susp F^{\sm j}),\] so that $Y$ is a retract of this cofiber.
+
+We now work to show that this smash product lies in the thick subcategory $\CatOf C$ of interest.  First, note that $X \sm Z$ lies in $\CatOf C$ for any finite complex $Z$, since $Z$ can be expressed as a finite gluing diagram of spheres and smashing this through with $X$ expresses $X \sm Z$ as the iterated cofiber of maps with source and target in $\CatOf C$.  Next, consider the following smash version of the octahedral axiom: the factorization \[F \sm F^{\sm (j-1)} \xrightarrow{f \sm 1} \S \sm F^{\sm (j-1)} \xrightarrow{1 \sm f^{\sm (j-1)}} \S \sm \S^{\sm (j-1)}\] begets a cofiber sequence \[F \sm \operatorname{cofib} f^{\sm (j-1)} \to \operatorname{cofib} f^{\sm j} \to \operatorname{cofib} f \sm \S^{\sm (j-1)}.\]
+
+Now turn an eye toward induction.  Noting that $\operatorname{cofib}(f) = R = X \sm DX$ lies in $\CatOf C$, we can use the $2$-out-of-$3$ property on the octahedral sequence to see that $\operatorname{cofib}(f^{\sm j})$ lies in $\CatOf C$.  It follows that $Y \sm \operatorname{cofib}(f^{\sm j})$ also lies in $\CatOf C$, and using the retraction $Y$ belongs to $\CatOf C$ as well.
 \end{proof}
 
-They also show the following considerably harder theorem:
+As an application of this classification, they also show the following considerably harder theorem:
 
-\begin{theorem}[Hopkins--Smith]\citeme{Hopkins--Smith}
+\begin{theorem}[{\cite[Theorem 9]{HopkinsSmith}}]
 A $p$--local finite spectrum is $K(d-1)$--acyclic exactly when it admits a $v_d$--self--map.
 \end{theorem}
 \begin{proof}[Executive summary of proof]
@@ -874,7 +889,7 @@ These maps are guaranteed by very careful study of Adams spectral sequences.
 We ran into the asymptotic condition $I \gg 0$ yesterday, when we asserted that there is no root of the $2$--local $v_1$--self--map $v\co M_8(2) \to M_0(2)$.
 \end{remark}
 
-As part of a broad attempt to analyze a geometric object through its modules, Paul Balmer has demonstrated the following theorem:
+There is a second interesting application of these ideas, investigated by Paul Balmer as part of a broad attempt to analyze a geometric object through its modules.
 
 \begin{definition}\citeme{Reference Balmer's SSS paper throughout this tail}
 Given a triangulated $\otimes$--category $\CatOf C$, define a thick subcategory $\CatOf C' \subseteq \CatOf C$ to be\ldots
