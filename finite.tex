@@ -208,7 +208,7 @@ It is called \textit{the descent object for $X$ from $E$ to $\S$}.
 \begin{lemma}
 When $E$ is an $A_\infty$--ring spectrum, the descent object $\sheaf D_E(X)$ can be naturally considered as a cosimplicial object in the $\infty$--category of spectra. \qed \todo{I don't intend to prove this, but maybe we could say some mealy words about why it's true. At worst, we could give reference to the relevant part of Higher Algebra.}
 \end{lemma}
-\begin{definition}
+\begin{definition}\label{DefnOfNilpCompletionAndASS}
 Let $E$ be an $A_\infty$--ring spectrum.  Then $X^\wedge_E := \Tot \sheaf D_E(X)$ is called the \textit{$E$--nilpotent completion of $X$}.  The spectral sequence resulting from the coskeletal filtration is called the \textit{$E$--Adams spectral sequence} (for $X$).
 \end{definition}
 It is not always the case that $X^\wedge_E$ can be lifted from a cosimplicial object in the homotopy category to a sufficiently structured cosimplicial object that we could take its totalization or homotopy colimit.
@@ -723,7 +723,7 @@ g_r(x) & = h(x) - f(x), &
 \end{align*}
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{ActionBySnLiftsToLTn}
 Our calculation $H^1(\G_\phi; M \otimes \G_a)$ also shows that there are \emph{no} automorphisms of the formal group $\Gamma$ over the special fiber which induce automorphisms of the universal deformation.  Specifically, \emph{any} deformation of a nontrivial automorphism of $\Gamma$ acts nontrivially on Lubin--Tate space by permuting the deformations living over the various fibers.  A consequence of this observation is that the deformation space produced in \Cref{LubinTateDeformationSpace} is a \emph{formal scheme}, carrying only the previously-known inertial group of $\Aut \Gamma$ at the special fiber, rather than a full-on stack.
 \end{remark}
 
@@ -928,26 +928,26 @@ Balmer's construction is remarkably successful at describing the most salient fe
 %\footnote{We will address this in our situation, but in general this is an open question: given a ring spectrum $R$, how can one recognize these local categories of spectra in terms of $R$, without reference to auxiliary spectra like $MU$?  Or, just as importantly: what makes $MU$ a special $\S$--algebra?}
 Nonetheless, taking that as granted, we can use Bousfield's theory of homological localization to access ``local'' categories of spectra of the sort that a sheaf of local rings would supply us with.
 
-\begin{theorem}[Bousfield]\citeme{Bousfield, or maybe Margolis's book}
-Let $R_*$ denote the homology theory associated by Landweber's theorem to a flat map $j\co \Spec R \to \moduli{fg}$.  There is then a diagram
+\begin{theorem}[{\cite{Bousfield}, \cite[Theorem 7.7]{Margolis}}]
+Let $R_*$ denote the homology theory associated by Landweber's \Cref{LandwebersStackyTheorem} to a flat map $j\co \Spec R \to \moduli{fg}$.  There is then a diagram
 \begin{center}
 \begin{tikzcd}[column sep=2.2cm,row sep=2cm]
 \CatOf{Spectra}_R \arrow["R_*", "\mathrm{conservative}"', red]{r} \arrow[leftarrow, shift left=0.20cm, red]{d}{L_R} & \CatOf{QCoh}(\Spec R) \arrow[shift left=0.20cm, red, leftarrow]{d}{j^*} \\
 \CatOf{Spectra} \arrow[leftarrow,shift left=0.20cm, "\dashv"']{u}{i} \arrow[red]{ru}{R_*} \arrow[red]{r}{MU_*} & \CatOf{QCoh}(\context{MU}), \arrow[leftarrow, shift left=0.20cm, "\dashv"']{u}{j_*}
 \end{tikzcd}
 \end{center}
-such that $i$ is left-adjoint to $L_R$, $j^*$ is left-adjoint to $j_*$, $i$ and $j_*$ are inclusions of full subcategories, the red composites are all equal, and $R_*$ is conservative on $\CatOf{Spectra}_R$.\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak--equivalences.} \qed
+such that $i$ is fully faithful, $i$ is left-adjoint to $L_R$, $j^*$ is left-adjoint to $j_*$, $i$ and $j_*$ are inclusions of full subcategories, the red composites are all equal, and $R_*$ is conservative on $\CatOf{Spectra}_R$.\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak--equivalences.} \qed
 \end{theorem}
 
 In the case when $R$ models the inclusion of the deformation space around the point $\Gamma_d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{\widehat L_d} \CatOf{Spectra}_{\Gamma_d}.\]  In the case when $R$ models the inclusion of the open complement of the unique closed substack of codimension $d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{L_d} \CatOf{Spectra}_d = \CatOf{Spectra}_{\moduli{fg}^{\le d}}.\]  We have set up our situation so that the following properties of these localizations either have easy proofs or are intuitive from the algebraic analogue of $j^* \vdash j_*$:
 \begin{enumerate}
-\item There is an equivalence \[L_d X \simeq (L_d \S) \sm X,\] analogous to $j^* M \simeq R \otimes M$ in the algebraic setting.  Because $\widehat L_d$ is associated to the inclusion of a formal scheme (i.e., an ind-finite scheme), it has the formula \[\widehat L_d X \simeq \lim_I \left( M_0(v^I) \sm L_d X \right)\] analogous to $j^* M \simeq \lim_j (R/I^j \otimes M)$ in the complete algebraic setting.\citeme{Ravenel (and Hopkins)}\todo{Also mention that there are results about thinking of this thing as a pro-spectrum rather than a spectrum?  For instance, there's the Davis--Lawson result on $\{M_0(v^I)\}$ forming an $E_\infty$--ring in the pro-category.}
+\item There is an equivalence \[L_d X \simeq (L_d \S) \sm X,\] analogous to $j^* M \simeq R \otimes M$ in the algebraic setting~\cite[Theorem 7.5.6]{RavenelOrangeBook}.  Because $\widehat L_d$ is associated to the inclusion of a formal scheme (i.e., an ind-finite scheme), it has the formula \[\widehat L_d X \simeq \lim_I \left( M_0(v^I) \sm L_d X \right)\] analogous to $j^* M \simeq \lim_j (R/I^j \otimes M)$ in the complete algebraic setting~\cite[Proof of Lemma 2.3]{HoveyCSC}.\citeme{Ravenel (and Hopkins)}\todo{Also mention that there are results about thinking of this thing as a pro-spectrum rather than a spectrum?  For instance, there's the Davis--Lawson result on $\{M_0(v^I)\}$ forming an $E_\infty$--ring in the pro-category.}
 \item Because the open substack of dimension $d$ properly contains both the open substack of dimension $(d-1)$ and the infinitesimal deformation neighborhood of the closed point of height $d$, there are natural factorizations
 \begin{align*}
 \operatorname{id} \to L_d \to L_{d-1}, & & \operatorname{id} \to L_d \to \widehat L_d.
 \end{align*}
 In particular, $L_d X = 0$ implies both $L_{d-1} X = 0$ and $\widehat L_d X = 0$.
-\item The inclusion of the open substack of dimension $d-1$ into the one of dimension $d$ has relatively closed complement the point of height $d$.  Algebraically, this gives a gluing square (or Mayer-Vietoris square), and this is reflected in homotopy theory by a homotopy pullback square (the chromatic fracture square):\todo{Write in a proof for this.}
+\item The inclusion of the open substack of dimension $d-1$ into the one of dimension $d$ has relatively closed complement the point of height $d$.  Algebraically, this gives a gluing square (or Mayer-Vietoris square), and this is reflected in homotopy theory by a homotopy pullback square (or chromatic fracture square): \todo{This deserves a proof or a reference. (I spent a moment looking, and I can't actually find a nice ``old'' reference for chromatic fracture squares in the literature...)}
 \begin{center}
 \begin{tikzcd}
 L_d \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \widehat L_d \arrow{d} \\
@@ -956,20 +956,42 @@ L_{d-1} \arrow{r} & L_{d-1} \widehat L_d.
 \end{center}
 \end{enumerate}
 
+\begin{remark}
+More generally, whenever $L_B L_A = 0$, there is a fracture square
+\begin{center}
+\begin{tikzcd}
+L_{A \vee B} \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & L_B \arrow{d} \\
+L_A \arrow{r} & L_A L_B.
+\end{tikzcd}
+\end{center}
+So, this last fact follows from $L_d \simeq L_{K(0) \vee \cdots \vee K(d)}$ and $L_{K(d)} L_{K(d-1)} = 0$.  Similarly, there is an ``arithmetic fracture square''
+\begin{center}
+\begin{tikzcd}
+X \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \prod_p X^\wedge_p \arrow{d} \\
+X_{\Q} \arrow{r} & \left( \prod_p X^\wedge_p \right)_{\Q},
+\end{tikzcd}
+\end{center}
+which is a topological instantiation of the ad\`elic decomposition of a $\Z$--module.
+\end{remark}
+
 There are also considerably more complicated facts known about these functors:
-\begin{theorem}[Hopkins--Ravenel]
+\begin{theorem}[{\cite[Theorem 7.5.7]{RavenelOrangeBook}}]
 The homotopy limit of the tower \[\cdots \to L_d F \to L_{d-1} F \to \cdots \to L_1 F \to L_0 F\] recovers the $p$--local homotopy type of any finite spectrum $F$.\footnote{Spectra satisfying this limit property are said to be \textit{chromatically complete}, which is closely related to being \textit{harmonic}, i.e., being local with respect to $\bigvee_{d=0}^\infty K(d)$.  (I believe this a joke about ``music of the spheres''.)  It is known that nice Thom spectra are harmonic (so, in particular, every suspension and finite spectrum), that every finite spectrum is chromatically complete, and that there exist some harmonic spectra which are not chromatically complete.}
 \end{theorem}
 
 \noindent This suggests a productive method for analyzing the homotopy groups of spheres: study the homotopy groups of each $L_d \S$ and perform the reassembly process encoded by this inverse limit.  Using the fracture square, one sees that it is also profitable to consider the homotopy groups of $\widehat L_d \S$.  In fact, the spectral version of $\context{E}(F)$ considered on the first day furnishes us with a tool by which we can approach this:
 
-\begin{theorem}[Bousfield, et al.]
+\begin{theorem}[{\Cref{Pi2AndInvariantDiffls,DefnOfNilpCompletionAndASS,FHGivesComodules}}]
 The $E_\Gamma$--based Adams spectral sequence for the sphere converges strongly to $\pi_* \widehat L_d \S$.  Writing $\omega$ for the line bundle on $\context{E_\Gamma}$ of invariant differentials, we have \[E_2^{*, *} = H^*_{\mathrm{stack}}(\context{E_\Gamma}; \omega^{\otimes *}) \Rightarrow \pi_* \widehat L_d \S. \qed\]
 \end{theorem}
 
 \todo{Show that the action of the stabilizer group lifts to an action on Lubin--Tate space.  This is relevant for what you're about to write.}
 
-The utility of this theorem is in the identification with stack cohomology.  Recalling the discussion in \Cref{HopfAlgebrasFromFiniteGroups} and \Cref{HF2HomologyIsValuedInAutGaEquivarModules}, as well as \[\context{E_{\Gamma_d}} = \left( \moduli{fg} \right)^\wedge_{\Gamma_d} \simeq \widehat{\mathbb A}^{d-1}_{\mathbb W(k)} \mmod \InternalAut(\Gamma_d),\] we become interested in the action of $\InternalAut(\Gamma_d)$ on $LT_d$.   Another theorem from the arithmetic geometry literature gives \[\operatorname{Aut}(\Gamma_d) \cong \left( \mathbb{W}(k)\langle S \rangle \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right)^\times,\] and so we have reduced the computation of all of the stable homotopy groups of spheres to a very difficult problem in profinite group cohomology --- but one which is arithmetically founded, so that arithmetic geometry might continue to lend a hand. \oweproof{Form of the stabilizer group}
+The utility of this theorem is in the identification with stack cohomology.  Recalling the discussion in \Cref{HopfAlgebrasFromFiniteGroups,HF2HomologyIsValuedInAutGaEquivarModules}, as well as the identification \[\context{E_{\Gamma_d}} = \left( \moduli{fg} \right)^\wedge_{\Gamma_d} \simeq \widehat{\mathbb A}^{d-1}_{\mathbb W(k)} \mmod \InternalAut(\Gamma_d)\] in \Cref{ActionBySnLiftsToLTn}, we become interested in the action of $\Aut \Gamma_d$ on $LT_d$.  We will deduce the following description of $\Aut \Gamma_d$ later on:
+\begin{theorem}[{\Cref{FormOfStabilizerGroup}}]
+For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$ of positive characteristic $p$, we compute \[\Aut \Gamma_d \cong \left. \W_p(k) \<S\> \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right.,\] where $\phi$ denotes a lift of the Frobenius from $k$ to $\W_p(k)$. \qed
+\end{theorem}
+\noindent As a matter of emphasis, this Theorem does not give a description of the \emph{representation} of $\Aut \Gamma_d$, which is very complicated.  Nonetheless, we have reduced the computation of all of the stable homotopy groups of spheres to an arithmetically--founded problem in profinite group cohomology, so that arithmetic geometry might lend a hand.
 
 \begin{example}[Adams]
 In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on $\pi_* E_1 = \Z_p[u^\pm]$ by $\gamma \cdot u^n \mapsto \gamma^n u^n$.  At odd primes $p$ (so that $p$ is coprime to the torsion part of $\Z_p^\times$), one computes \[H^s(\operatorname{Aut}(\Gamma_1); \pi_* E_1) = \begin{cases}\Z_p & \text{when $s = 0$}, \\ \bigoplus_{j = 2(p-1)k} \Z_p\{u^j\} / (pk u^j) & \text{when $s = 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  This, in turn, gives the calculation \[\pi_t \widehat L_1 \S^0 = \begin{cases} \Z_p & \text{when $t = 0$}, \\ \Z_p / (pk) & \text{when $t = t|v_1| - 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  These groups are familiar to homotopy theorists: the $J$--homomorphism $J: BU \to BF$ described on the first day selects exactly these elements (for nonnegative $t$).
@@ -977,9 +999,6 @@ In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on
 
 
 
-
-
-\oldsection*{Stuff that might belong in this chapter}
 
 
 
