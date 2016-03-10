@@ -828,7 +828,7 @@ This is interesting in its own right, because field spectra are exactly those sp
 We're now well-situated to address Ravenel's question about finite spectra and periodic self-maps.  The solution to this problem passes through some now-standard machinery for triangulated $\otimes$--categories.
 
 \begin{definition}
-A subcategory of the category of a triangulated category (e.g., $p$--local finite spectra) is \textit{thick} if\ldots\todo{Do triangulated categories come with weak equivalences?}
+A subcategory of the category of a triangulated category (e.g., $p$--local finite spectra) is \textit{thick} if\ldots\todo{Do triangulated categories come with weak equivalences?} \todo{Lurie's definition (lecture 26) doesn't talk about weak equivalences.}
 \begin{itemize}
 \item \ldots it is closed under weak equivalences.
 \item \ldots it is closed under retracts.
@@ -853,18 +853,18 @@ Hopkins and Smith show the following classification theorem:
 Any thick subcategory $\CatOf C$ of $p$--local finite spectra must be $\CatOf C_d$ for some finite $d$.
 \end{theorem}
 \begin{proof}
-Since $\CatOf C_d$ are nested by \Cref{CdCategoriesNest} and they form an exhaustive filtration, it is thus sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.  Write $R$ for the endomorphism ring spectrum $R = F(X, X)$, and write $F$ for the fiber of its unit map: \[F \xrightarrow{f} \S \xrightarrow{\eta} R.\]  Finally, let $Y$ be \emph{any} finite spectrum of type at least $d$.
+Since $\CatOf C_d$ are nested by \Cref{CdCategoriesNest} and they form an exhaustive filtration\todo{Why do you not need $\CatOf C_\infty$ for this?}, it is thus sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.  Write $R$ for the endomorphism ring spectrum $R = F(X, X)$, and write $F$ for the fiber of its unit map: \[F \xrightarrow{f} \S \xrightarrow{\eta_R} R.\]  Finally, let $Y$ be \emph{any} finite spectrum of type at least $d$.
 
 Now consider applying $K(n)$--homology (for \emph{arbitrary} $n$) to the map \[1 \sm f\co Y \sm F \to Y \sm \S.\]  The induced map is always zero:
 \begin{itemize}
-\item In the case that $K(n)_* X$ is nonzero, then $K(n)_* \eta_R$ is injective and $K(n)_* f$ is zero.
-\item In the case that $K(n)_* X$ is zero, then $n \le d$ and, because of the bound on type, $K(n)_* Y$ is zero as well.\todo{Do we need $X$ to be exactly of type $d$ to make this conclusion?}
+\item In the case that $K(n)_* X$ is nonzero, then $K(n)_* \eta_R$ is injective\todo{Recall, $K(n)_* \mathbb{S}$ has rank 1.} and $K(n)_* f$ is zero.
+\item In the case that $K(n)_* X$ is zero, then $n \le d$\todo{In class you eventually decided on $n < d$.} and, because of the bound on type, $K(n)_* Y$ is zero as well.\todo{Do we need $X$ to be exactly of type $d$ to make this conclusion?}
 \end{itemize}
 By a small variant of local nilpotence detection (\Cref{LocalNilpotenceDetection}, \cite[Corollary 2.5]{HopkinsSmith}), it follows for $j \gg 0$ that \[Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j}\] is null-homotopic.  Hence, one can calculate the cofiber to be \[\operatorname{cofib}\left( Y \sm F^{\sm j} \xrightarrow{1 \sm f^{\sm j}} Y \sm \S^{\sm j} \right) \simeq Y \sm \operatorname{cofib} f^{\sm j} \simeq Y \vee (Y \sm \Susp F^{\sm j}),\] so that $Y$ is a retract of this cofiber.
 
 We now work to show that this smash product lies in the thick subcategory $\CatOf C$ of interest.  First, note that $X \sm Z$ lies in $\CatOf C$ for any finite complex $Z$, since $Z$ can be expressed as a finite gluing diagram of spheres and smashing this through with $X$ expresses $X \sm Z$ as the iterated cofiber of maps with source and target in $\CatOf C$.  Next, consider the following smash version of the octahedral axiom: the factorization \[F \sm F^{\sm (j-1)} \xrightarrow{f \sm 1} \S \sm F^{\sm (j-1)} \xrightarrow{1 \sm f^{\sm (j-1)}} \S \sm \S^{\sm (j-1)}\] begets a cofiber sequence\todo{Is this sequence backwards? (Note that it doesn't matter: you can just write the factorization in the other order...)} \[F \sm \operatorname{cofib} f^{\sm (j-1)} \to \operatorname{cofib} f^{\sm j} \to \operatorname{cofib} f \sm \S^{\sm (j-1)}.\]
 
-Now turn an eye toward induction.  Noting that $\operatorname{cofib}(f) = R = X \sm DX$ lies in $\CatOf C$, we can use the $2$-out-of-$3$ property on the octahedral sequence to see that $\operatorname{cofib}(f^{\sm j})$ lies in $\CatOf C$.  It follows that $Y \sm \operatorname{cofib}(f^{\sm j})$ also lies in $\CatOf C$, and using the retraction $Y$ belongs to $\CatOf C$ as well.
+Now turn an eye toward induction.  Noting that $\operatorname{cofib}(f) = R = X \sm DX$ \todo{Recall, $f$ is the fiber of the $\eta_R$.} lies in $\CatOf C$, we can use the $2$-out-of-$3$ property on the octahedral sequence to see that $\operatorname{cofib}(f^{\sm j})$ lies in $\CatOf C$.  It follows that $Y \sm \operatorname{cofib}(f^{\sm j})$ also lies in $\CatOf C$, and using the retraction $Y$ belongs to $\CatOf C$ as well.
 \end{proof}
 
 As an application of this classification, they also show the following considerably harder theorem:
@@ -879,7 +879,7 @@ Given the classification of thick subcategories, if a property is closed under t
 BP_* M_{|v_d| i_d}(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{v} \arrow[-,double]{d} & BP_* M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow[-,double]{d} \\
 \Susp^{|v_d| i_d} BP_* / (p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{- \cdot v_d^{i_d}} & BP_* / (p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}).
 \end{tikzcd}
-\end{center}
+\end{center} \todo{You wrote $BPP_0$ yesterday.}
 These maps are guaranteed by very careful study of Adams spectral sequences.
 \end{proof}
 
