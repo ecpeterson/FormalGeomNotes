@@ -941,6 +941,7 @@ Let $R_*$ denote the homology theory associated by Landweber's \Cref{LandwebersS
 such that $i$ is fully faithful, $i$ is left-adjoint to $L_R$, $j^*$ is left-adjoint to $j_*$, $i$ and $j_*$ are inclusions of full subcategories, the red composites are all equal, and $R_*$ is conservative on $\CatOf{Spectra}_R$.\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak--equivalences.} \qed
 \end{theorem}
 
+\todo{Jay was rightfully fussy about the difference between, e.g., the open submoduli and its affine cover.  Write this more carefully.}
 In the case when $R$ models the inclusion of the deformation space around the point $\Gamma_d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{\widehat L_d} \CatOf{Spectra}_{\Gamma_d}.\]  In the case when $R$ models the inclusion of the open complement of the unique closed substack of codimension $d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{L_d} \CatOf{Spectra}_d = \CatOf{Spectra}_{\moduli{fg}^{\le d}}.\]  We have set up our situation so that the following properties of these localizations either have easy proofs or are intuitive from the algebraic analogue of $j^* \vdash j_*$:
 \begin{enumerate}
 \item There is an equivalence \[L_d X \simeq (L_d \S) \sm X,\] analogous to $j^* M \simeq R \otimes M$ in the algebraic setting~\cite[Theorem 7.5.6]{RavenelOrangeBook}.  Because $\widehat L_d$ is associated to the inclusion of a formal scheme (i.e., an ind-finite scheme), it has the formula \[\widehat L_d X \simeq \lim_I \left( M_0(v^I) \sm L_d X \right)\] analogous to $j^* M \simeq \lim_j (R/I^j \otimes M)$ in the complete algebraic setting~\cite[Proof of Lemma 2.3]{HoveyCSC}.\citeme{Ravenel (and Hopkins)}\todo{Also mention that there are results about thinking of this thing as a pro-spectrum rather than a spectrum?  For instance, there's the Davis--Lawson result on $\{M_0(v^I)\}$ forming an $E_\infty$--ring in the pro-category.}
@@ -948,7 +949,7 @@ In the case when $R$ models the inclusion of the deformation space around the po
 \begin{align*}
 \operatorname{id} \to L_d \to L_{d-1}, & & \operatorname{id} \to L_d \to \widehat L_d.
 \end{align*}
-In particular, $L_d X = 0$ implies both $L_{d-1} X = 0$ and $\widehat L_d X = 0$.
+In particular, $L_d X = 0$ implies both $L_{d-1} X = 0$ and $\widehat L_d X = 0$.\todo{Also, idempotence?}
 \item The inclusion of the open substack of dimension $d-1$ into the one of dimension $d$ has relatively closed complement the point of height $d$.  Algebraically, this gives a gluing square (or Mayer-Vietoris square), and this is reflected in homotopy theory by a homotopy pullback square (or chromatic fracture square): \todo{This deserves a proof or a reference. (I spent a moment looking, and I can't actually find a nice ``old'' reference for chromatic fracture squares in the literature...)}
 \begin{center}
 \begin{tikzcd}
@@ -981,9 +982,43 @@ There are also considerably more complicated facts known about these functors:
 The homotopy limit of the tower \[\cdots \to L_d F \to L_{d-1} F \to \cdots \to L_1 F \to L_0 F\] recovers the $p$--local homotopy type of any finite spectrum $F$.\footnote{Spectra satisfying this limit property are said to be \textit{chromatically complete}, which is closely related to being \textit{harmonic}, i.e., being local with respect to $\bigvee_{d=0}^\infty K(d)$.  (I believe this a joke about ``music of the spheres''.)  It is known that nice Thom spectra are harmonic (so, in particular, every suspension and finite spectrum), that every finite spectrum is chromatically complete, and that there exist some harmonic spectra which are not chromatically complete.}
 \end{theorem}
 
-\noindent This suggests a productive method for analyzing the homotopy groups of spheres: study the homotopy groups of each $L_d \S$ and perform the reassembly process encoded by this inverse limit.  Using the fracture square, one sees that it is also profitable to consider the homotopy groups of $\widehat L_d \S$.  In fact, the spectral version of $\context{E}(F)$ considered on the first day furnishes us with a tool by which we can approach this:
+\noindent This suggests a productive method for analyzing the homotopy groups of spheres: study the homotopy groups of each $L_d \S$ and perform the reassembly process encoded by this inverse limit.  Writing $M_d$ for the fiber in the sequence \[M_d \to L_d \to L_{d-1},\] the ``geometric chromatic spectral sequence'' associated to this tower takes the form \[\pi_* M_* \S \Rightarrow \pi_* \S_{(p)}.\]  So, $M_d$ means the difference between the assembled layers $L_d$ and $L_{d-1}$ --- but this was also the heuristic job of $\widehat L_d$ above.  It turns out that these are interrelated by the following two theorems:
+\begin{theorem}\citeme{Gross--Hopkins?}
+There is a pair of natural equivalences
+\begin{align*}
+\widehat L_d M_d & \simeq \widehat L_d, &
+M_d \widehat L_d & \simeq M_d.
+\qed
+\end{align*}
+\end{theorem}
 
-\begin{theorem}[{\Cref{Pi2AndInvariantDiffls,DefnOfNilpCompletionAndASS,FHGivesComodules}}]
+\begin{theorem}\citeme{I forget who this is due to}
+\todo{Referring to ``1.'' is clumsy.  Make the previous things into Lemmas or something, rather than a bulleted list.}
+Analogous to ``1.'' above, there is a natural equivalence \[M_d X \simeq \colim_I \left( M^0(v^I) \sm L_d X \right),\] where $M^0(v^I)$ denotes a generalized Moore spectrum with \emph{top} cell in dimension $0$.
+\end{theorem}
+
+\begin{remark}
+It is possible to draw the chromatic fracture square and the definition of $M_d$ in the same diagram:
+\begin{center}
+\begin{tikzcd}
+M_d X \arrow{d} \arrow[-,double]{r} & M_d X \arrow{d} \\
+L_d X \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \widehat L_d X \arrow{d} \\
+L_{d-1} X \arrow{r} & L_{d-1} \widehat L_d X.
+\end{tikzcd}
+\end{center}
+From this, we see that there is a fiber sequence \[M_d X \to \widehat L_d X \to L_{d-1} \widehat L_d X.\]  The case $d = 1$ gives the prototypical example of the difference between these two presentations of the ``exact height $d$ data'', where the sequence becomes: \[\colim_j (M^0(p^j) \sm L_1 X) \to \lim_j (M_0(p^j) \sm L_1 X) \to \left( \lim_j (M_0(p^j) \sm L_1 X) \right)_{\Q}.\]  If, for instance, $\pi_0 L_1 X = \Z_{(p)}$, then the long exact sequence of homotopy groups associated to this fiber sequence gives
+\begin{center}
+\begin{tikzcd}
+\pi_0 \widehat L_1 X \arrow{r} \arrow[-,double]{d} & \pi_0 L_0 \widehat L_1 X \arrow{r} \arrow[-,double]{d} & \pi_{-1} M_1 X \arrow[-,double]{d} \\
+\Z^\wedge_p \arrow{r} & \Q_p \arrow{r} & \Z/p^\infty.
+\end{tikzcd}
+\end{center}
+This is a model for what happens generally: the $v_j$--torsion--free groups get converted to infinitely $v_j$--divisible groups, with some dimension shifts.  (\emph{Exactly} what happens is often hard to work out, and I'm not aware of a totally general statement.)
+\end{remark}
+
+In any case, one sees that it is also profitable to consider the homotopy groups of $\widehat L_d \S$.  The spectral version $\sheaf D_{\S \to E}(F)$ of $\context{E}(F)$ considered on the first day furnishes us with a tool by which we can approach this:
+
+\begin{theorem}[{\Cref{Pi2AndInvariantDiffls}, \Cref{DefnOfNilpCompletionAndASS}, and \Cref{FHGivesComodules}}]
 The $E_\Gamma$--based Adams spectral sequence for the sphere converges strongly to $\pi_* \widehat L_d \S$.  Writing $\omega$ for the line bundle on $\context{E_\Gamma}$ of invariant differentials, we have \[E_2^{*, *} = H^*_{\mathrm{stack}}(\context{E_\Gamma}; \omega^{\otimes *}) \Rightarrow \pi_* \widehat L_d \S. \qed\]
 \end{theorem}
 
@@ -996,7 +1031,7 @@ For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$
 \noindent As a matter of emphasis, this Theorem does not give a description of the \emph{representation} of $\Aut \Gamma_d$, which is very complicated.  Nonetheless, we have reduced the computation of all of the stable homotopy groups of spheres to an arithmetically--founded problem in profinite group cohomology, so that arithmetic geometry might lend a hand.
 
 \begin{example}[Adams]
-In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on $\pi_* E_1 = \Z_p[u^\pm]$ by $\gamma \cdot u^n \mapsto \gamma^n u^n$.  At odd primes $p$ (so that $p$ is coprime to the torsion part of $\Z_p^\times$), one computes \[H^s(\operatorname{Aut}(\Gamma_1); \pi_* E_1) = \begin{cases}\Z_p & \text{when $s = 0$}, \\ \bigoplus_{j = 2(p-1)k} \Z_p\{u^j\} / (pk u^j) & \text{when $s = 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  This, in turn, gives the calculation \[\pi_t \widehat L_1 \S^0 = \begin{cases} \Z_p & \text{when $t = 0$}, \\ \Z_p / (pk) & \text{when $t = t|v_1| - 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  These groups are familiar to homotopy theorists: the $J$--homomorphism $J: BU \to BF$ described on the first day selects exactly these elements (for nonnegative $t$).
+In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on $\pi_* E_1 = \Z_p[u^\pm]$ by $\gamma \cdot u^n \mapsto \gamma^n u^n$.  At odd primes $p$ (so that $p$ is coprime to the torsion part of $\Z_p^\times$), one computes \[H^s(\operatorname{Aut}(\Gamma_1); \pi_* E_1) = \begin{cases}\Z_p & \text{when $s = 0$}, \\ \bigoplus_{j = 2(p-1)k} \Z_p\{u^j\} / (pk u^j) & \text{when $s = 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  This, in turn, gives the calculation \[\pi_t \widehat L_1 \S^0 = \begin{cases} \Z_p & \text{when $t = 0$}, \\ \Z_p / (pk) & \text{when $t = t|v_1| - 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  These groups are familiar to homotopy theorists: the $J$--homomorphism $J: BU \to BF$ described on the first day selects exactly these elements (for nonnegative $t$).  \todo[inline]{It is a good exercise to work out what this calculation means in terms of the rest of the fracture square and for $M_1 \S$.}
 \end{example}
 
 
