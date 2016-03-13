@@ -12,17 +12,58 @@
 
 \section{Coalgebraic formal schemes}
 
-Coalgebras over a field are ind-finite
+\begin{definition}
+The scheme associated to a coalgebra $C$ over a field $k$ is defined by the formula \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps u = 1 \end{array} \right\}.\]
+\end{definition}
 
-Coalgebras with an ind-finiteness property are called ``good'', the formal schemes they model are called ``coalgebraic''
+\begin{lemma}
+If $A$ is a $k$--algebra that is finite--dimensional as a $k$--module, then $\Spec A \cong \Sch A^*$. \qed
+\end{lemma}
 
-Diagrams of coalgebras with good colimits beget colimit diagrams of coalgebraic formal schemes
+\begin{lemma}\label{kCoalgebrasAreIndFinite}
+For $C$ a coalgebra over a field $k$, any finite--dimensional $k$--linear subspace of $C$ can be finitely enlarged to a subcoalgebra of $C$.  Accordingly, taking the colimit gives a canonical equivalence \[\Ind(\CatOf{Coalgebras}_k^{\mathrm{fin}}) \xrightarrow{\simeq} \CatOf{Coalgebras}_k. \qed\]
+\end{lemma}
 
-Use this to construct the various stable divisor schemes and verify the freeness assertions about them
+This is supposed to indicate that coalgebras \emph{want} to model formal schemes.
+
+\begin{corollary}\label{CoalgsAndFSchsAgreeOverk}
+For $C$ a coalgebra over a field $k$ expressed as a colimit $C = \colim_k C_k$ of finite subcoalgebras, there is an equivalence \[\Sch C \cong \{\Spec C_k^*\}_k.\]  This induces an equivalence of categories \[\CatOf{Coalgebras}_k \cong \CatOf{FormalSchemes}_{\Spec k}. \qed\]
+\end{corollary}
+
+This covariant algebraic model for formal schemes is very useful.  \todo{Do you also need to compare the (Cartesian) monoidal structures?}  For instance, this equivalence makes the following calculation trivial:
+\begin{lemma}
+Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal group on the pointed formal scheme $\Sch k \to \Sch C$ is given by \todo{Describe the diagonal map on this guy.} \[F(\Sch k \to \Sch C) = \Sch \Sym_k M. \qed\]
+\end{lemma}
+
+It is unfortunate, then, that when working over an object more general than a field \Cref{kCoalgebrasAreIndFinite} fails.  Nonetheless, it is possible to bake into the definitions the machinery needed to get an analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
+
+\begin{definition}
+Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$ of $C$ is said to be a \textit{good basis} when any finite subcollection of $\{x_j\}$ can be finitely enlarged to a subcollection that spans a subcoalgebra.  The coalgebra $C$ is itself said to be \textit{good} when it admits a good basis.  A formal scheme $X$ is said to be \textit{coalgebraic} when it is isomorphic to $\Sch C$ for a good coalgebra $C$.
+\end{definition}
+
+\begin{theorem}[{\cite[Proposition 4.64]{StricklandFSFG}}]
+Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram is a good algebra.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is also a colimit diagram. \qed
+\end{theorem}
+
+\begin{corollary}
+For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists. \qed
+\end{corollary}
+
+
+Prop 6.4 (of Section 6.1 of FSFG): The coproduct $\coprod_{n \ge 0} X^{\times n}_{\Sigma_n}$ models the free formal monoid
+
+Section 6.2 of FSFG: Free formal groups and how the free pointed monoid on a formal curve is automatically group-complete
 
 
 
-Maybe build the ring $C_*(\G)$
+
+
+
+Use this to construct the various stable divisor schemes and verify the freeness assertions about them (i.e., compare with the homology of $BU$)
+
+
+
+Maybe build the ring $C_*(\G)$?  Or at least indicate that it's possible?
 
 
 
