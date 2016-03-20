@@ -366,10 +366,238 @@ are isomorphisms of Hopf rings.
 First, because $MU_{(p)}$ splits multiplicatively as a wedge of $BP$s, we deduce from \Cref{HFpBPCooperationsTheorem} the case of $E = H\F_p$.  Since $H\F_p{}_* \OS{BP}{2*}$ is even, it follows that $H\Z_{(p)}{}_* \OS{BP}{2*}$ is torsion--free on a lift of a basis, and similarly (working across primes) $H\Z_* \OS{MU}{2*}$ is torsion--free on a simultaneous lift of basis.  Next, using torsion--freeness, we conclude from an Atiyah--Hirzebruch spectral sequence that $MU_* \OS{MU}{2*}$ and $BP_* \OS{BP}{2*}$ are even and torsion--free themselves, and moreover that the maps corresponding of Hopf rings are isomorphisms.  Lastly, using naturality of Atiyah--Hirzebruch spectral sequences, given a complex--orientation $MU \to E$ we deduce that the spectral sequence \[E_* \otimes H_*(\OS{MU}{2*}; \Z) \cong E_* \otimes_{MU_*} MU_* \OS{MU}{2*} \Rightarrow E_* \OS{MU}{2*}\] collapses, and similarly for the case of $BP$.  The theorem follows.
 \end{proof}
 
-This is an impressively broad theorem: the loopspaces $\OS{MU}{2*}$ are quite complicated, and that any general statement can be made about them is remarkable.  However, \Cref{UnstableCoopnsForHF2AndGa} indicates that this Corollary does not cover all possible cases that the comparison map in \Cref{ComparisonMapInCOUnstableCoopns} becomes an isomorphism.  In the remainder of the Case Study, we will investigate two other classes of $E$ and $G$ where this holds.
+This is an impressively broad theorem: the loopspaces $\OS{MU}{2*}$ are quite complicated, and that any general statement can be made about them is remarkable.  That this fact follows from a calculation in $H\F_p$--homology and some niceness observations is meant to showcase the density of $\G_a$ inside of $\moduli{fg}$.  However, \Cref{UnstableCoopnsForHF2AndGa} indicates that this Corollary does not cover all possible cases that the comparison map in \Cref{ComparisonMapInCOUnstableCoopns} becomes an isomorphism.  In the remainder of the Case Study, we will investigate two other classes of $E$ and $G$ where this holds.
 
 
 
+
+
+
+
+
+\section{Dieudonn\'e modules}
+
+Our goal today is strictly algebraic: we have seen that the category of finite dimension Hopf algebras over a ground field $k$ is an abelian category.  This means that it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \textit{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, starting with three different presentations of the subject.
+
+\citeme{Weinstein's geometry of Lubin--Tate spaces notes}
+Start with a formal line $V$ over a ground ring $k$, let $\G$ denote $V$ equipped with a group structure, and let $\Omega^1_{V/k}$ be the module of K\"ahler differentials on $V$.  We have previously been interested in the \textit{invariant differentials} $\omega_{\G} \subseteq \Omega^1_{V/k}$ on $V$.  In the case that $k$ was a $\Q$--algebra, we saw that all differentials can be integrated and hence we gain access to a logarithm for $\G$.  On the other hand, if $k$ has positive characteristic $p$ then there's an obstruction to integrating terms with exponents of the form $-1 \pmod p$, which led us to the notion of $p$--height explored in \Cref{MfgI:Height}.
+
+A different thing we can do is notice that $\Omega^1_{V/k}$ forms the first level of the algebraic de Rham complex $\Omega^*_{V/k}$.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that $\mu^* - \pi_1^* - \pi_2^*$ is zero \emph{at the chain level}.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the algebraic de Rham complex.  This condition begets a sub--$k$--module $D(\G/k)$ of $H^1_{dR}(\G/k)$ which are cohomologically translation invariant.
+
+\begin{example}
+Let $A$ be a $\Z$--flat ring, and set $K = A \otimes \Q$, so that $A \to K$ is an injection.  Let $x$ be a coordinate on a formal group $\G$ over $A$.  There is then a diagram of exact rows
+\begin{center}
+\begin{tikzcd}
+0 \arrow{r} & x A\ps{x} \arrow{r} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{x} \right\} \arrow{r}{d} & H^1_{dR}(\G/A) \arrow{r} & 0 \\
+0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[-,double]{u} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{X}, \delta f \in A\ps{x,y} \right\} \arrow{u} \arrow{r}{d} & D(\G/A) \arrow{r} \arrow{u} & 0,
+\end{tikzcd}
+\end{center}
+where $\delta[\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
+\end{example}
+
+% \begin{lemma}
+% In the case that $\G$ is $p$--divisible, there is an exact sequence \[0 \to \omega_{\G} \to D(\G/A) \to \operatorname{Lie} \G^\vee \to 0.\]
+% \end{lemma}
+
+% \begin{remark}
+% Let $A$ be a complex abelian variety, in which case there is a classical Hodge decomposition \[0 \to H^0(A; \Omega^1) \to H^1_{dR}(A; \C) \to H^1(A; \sheaf O_A) \to 0.\]  The first term agrees with invariant differentials, and the second term agrees with $\operatorname{Lie} A^\vee$.
+% \end{remark}
+
+The flatness condition in the Example above is important to getting the calculation to work out right, and of course it is not satisfied when working over our field $k$ of positive characteristic $p$.  However, de Rham cohomology has the following remarkable lifting property (which we have specialized to $H^1_{dR}$):
+
+\begin{theorem}
+Let $A$ be a $\Z_{(p)}$--flat ring, let $f_1(x), f_2(x) \in A\ps{x}$ be power series without constant term (i.e., pointed maps of formal lines).  If $f_1 \equiv f_2 \pmod{pA}$, then for any differential $\omega \in A\ps{x} dx$ the difference $f_1^*(\omega) - f_2^*(\omega)$ is exact.
+\end{theorem}
+\begin{proof}
+Write $\omega = dg$ for $g \in K\ps{x}$, and write $f_2 = f_1 + p\Delta$.  Then
+\begin{align*}
+\int \left( f_2^* \omega - f_1^* \omega \right) & = g(f_2) - g(f_1) = g(f_1 + p\Delta) - g(f_1) \\
+& = \sum_{n = 1}^\infty \frac{(p\Delta)^n}{n!} g^{(n)}(f_1).
+\end{align*}
+Since $g' = \omega$ is $A$--integral, so is $g^{(n)}$ for all $n$, and $p^n/n!$ is $A$--integral as well.
+\end{proof}
+
+\begin{corollary}[{$H^1_{dR}$ is ``crystalline''}]\label{H1dRIsCrystalline}
+If $f_1, f_2\co V \to V'$ are maps of pointed formal varieties which agree mod $p$, then they induce the same map on $H^1_{dR}$. \qed
+\end{corollary}
+
+Several remarkable lifting lemmas follow from \Cref{H1dRIsCrystalline}.  For instance, any map $f\co \G' \to \G$ of pointed varieties which is a group homomorphism mod $p$ restricts to give a map $f^*\co D(\G/A) \to D(\G'/A)$.  Additionally, if $f_1$, $f_2$, and $f_3$ are three such maps of pointed varieties with $f_3 \equiv f_1 + f_2 \pmod{p}$ in $\CatOf{FormalGroups}(\G'/p, \G/p)$, then $f_3^* = f_1^* + f_2^*$ as maps $D(\G/A) \to D(\G'/A)$.  In the case that $k$ is a \emph{perfect} field, the universality of $A = \W_p(k)$ among infinitesimal deformations of $k$ emboldens us to make the following definition\footnote{In a more careful exposition, one might assign to each potential thickening and lift a ``Dieudonne module'', and then work to show that they all arise as base-changes of this universal one.}\todo{Maybe cite a reference that does this?}:
+
+\begin{definition}
+Let $k$ be a perfect field of characteristic $p > 0$, and let $\G_0$ be a $p$--divisible group over $k$ of finite height $d$.\todo{Does this actually fail for $\G_0 = \G_a$?}  Then, choose a lift $\G$ of $\G_0$ to $\W_p(k)$, and define the \textit{(contravariant) Dieudonn\'e module} of $\G_0$ by $M(\G_0) := D(\G / W(k))$.
+\end{definition}
+
+\begin{remark}
+This is independent of choice of lift up to coherent isomorphism.  Given any other lift $\G'$ of $\G_0$ to $\W_p(k)$, we can find \emph{some} power series --- not necessarily a group homomorphism --- covering the identity on $\G_0$.  \Cref{H1dRIsCrystalline} then shows that this map induces an isomorphism between the two potential definitions of $M(\G_0)$.
+\end{remark}
+
+Finally, note that the module $M(\G_0)$ carries some natural operations:
+\begin{itemize}
+\item Homothety: $M(\G_0)$ is naturally a $\W_p(k)$--module.
+\item Frobenius: The map $x \mapsto x^p$ is a group homomorphism mod $p$, so by \Cref{H1dRIsCrystalline} induces a $\phi$--semilinear map $F\co M(\G_0) \to M(\G_0)$, i.e., one satisfies $F(\alpha v) = \alpha^\phi F(v)$, where $\phi$ is a lift of the Frobenius on $k$ to $\W_p(k)$.
+\item Verschiebung: The Verschiebung map is given by the mysterious formula\todo{Is this a non-mysterious formula?} \[V\co \sum_{n=1}^\infty a_n x^n \mapsto p \sum_{n=1}^\infty a_{pn}^{\phi^{-1}} x^n.\] It satisfies anti-semilinearity, $aV(v) = V(a^\phi v)$, and also $FV = p$.
+\end{itemize}
+With this, we come to the main theorem of this section:
+
+\begin{theorem}
+The functor $M$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$, called \textit{Dieudonn\'e modules}. \qed \todo{Add in words about being uniform and reduced?}
+\end{theorem}
+
+\begin{remark}
+Several invariants of the formal group associated to a Dieudonn\'e module can be read off from the functor $M$.  For example, the $\W_p(k)$--rank of $M$ is equal to the $p$--height of $\G_0$.  Additionally, the quotient $M / FM$ is canonically isomorphic to the cotangent space $T_0^* \G_0 \cong \omega_{\G_0}$.  However, the subspace of $M$ spanned by $\omega_{\G}$ is \emph{sensitive to choice of lift}, unlike the rest of this construction.  This observation is the wellspring of the Gross--Hopkins period map.
+\end{remark}
+
+We now turn to alternative presentations of the Dieudonn\'e module functor, which have their own advantages and disadvantages.  Let $\G$ again be a formal Lie group over a field $k$ of positive characteristic $p$, and consider Cartier's \textit{functor of curves} \[C\G = \CatOf{FormalSchemes}(\A^1, \G).\]  This is, again, a kind of relaxing of familiar data from Lie theory: rather than studying exponential curves, $C\G$ tracks all possible curves.  In \Cref{MfgI:Height}, we considered three kinds of operations on a given curve $\gamma\co \A^1 \to \G$:
+\begin{itemize}
+\item Homothety: given a scalar $a \in A$, we define $[a] \cdot \gamma(t) = \gamma(at)$.
+\item Verschiebung: given an integer $n \ge 1$, we define $V_n \gamma(t) = \gamma(t^n)$.
+\item Arithmetic: given two curves $\gamma_1$ and $\gamma_2$, we can use the group law on $\G$ to define $\gamma_1 +_{\G} \gamma_2$.  Moreover, given $\ell \in \Z$, the $\ell$--fold sum in $\G$ gives an operator \[\ell \cdot \gamma = \overset{\text{$\ell$ times}}{\overbrace{\gamma +_{\G} \cdots +_{\G} \gamma}}.\]  This extends to an action by $\ell \in \W_p(k)$.
+\item Frobenius: given an integer $n \ge 1$, we define \[F_n \gamma(t) = \sum_{i=1}^n{}_{\G} \gamma(\zeta_n t^{1/n}),\] where $\zeta_{n}$ is an $n${\th} root of unity.  (This formula is invariant under permuting the root of unity chosen, so determines a curve defined over the original ground ring.)
+\end{itemize}
+
+\begin{definition}
+A curve $\gamma$ on a formal group is $p$--typical when $F_n \gamma = 0$ for $n \ne p^j$.  Write $D_p\G \subseteq C\G$ for the subset of $p$--typical curves.  In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D_p \G$, and there is a natural section $C\G \to D_p \G$ called $p$--typification, given by the same formula as in \Cref{EveryLogHaspTypification}.
+\end{definition}
+
+\begin{remark}
+Precomposing with a coordinate $\A^1 \cong \G$ allows us to think of a logarithm $\log\co \G \to \G_a$ as a curve on $\G_a$.  The definition of $p$--typicality given in \Cref{DefnpTypicalLog} coincides with the one given here.
+\end{remark}
+
+Surprisingly, this construction captures the same data as the previous one.
+
+\begin{theorem}
+The functor $D_p$ determines a \emph{covariant} equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$.  In fact, $D_p(\G) \cong M(\G/k)^*$. \qed \todo{Add in words about being uniform and reduced?}
+\end{theorem}
+
+
+
+
+
+Define $S(n)$ to be the free Hopf algebra on a single generator in degree $n$, so that at odd primes $S(2n+1) = \Lambda[x]$ and $S(2n) = P[x]$ (and at $p = 2$ all the $S(n)$ are polynomial algebras).  Schoeller proves that there's a projective cover $H(n) \to S(n)$.  Most of the time this map is the identity, except in the two cases: $p = 2$ and $n = 2^m k$ for $k$ odd and $m > 0$, or $p > 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$.  In these exceptional cases, $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the ``Witt vector diagonal''.
+
+the projective generators
+
+$\CatOf{HopfAlgebras}^{> 0}_{\F_p/}$
+
+Classification of finite Hopf algebras over $\F_p$ with $\Gm$--action
+
+The $H(n)$ form a series of projective \emph{generators} of the category.  So, we can give a Tannakian description of the category as modules over the ``endomorphism ring'' $\mathsf{Hom}(H(*), H(*))$, which is calculable.  You end up seeing the same data as a covariant Dieudonn\'e module, which is cool, and generally given a Hopf algebra $H$ you can build a graded Dieudonn\'e module functor by \[D_n(H) = \CatOf{HopfAlgebras}_{/\F_p}(H(n), H).\]
+
+---
+
+We have only described a framework for encoding Hopf algebras so far.  We also want to incorporate Hopf rings into our discussion, since we are coming off of the study of unstable cooperations.  Hunton and Turner were among the first to consider ``bilinear'' constructions on Hopf algebras in the abstract, and a similar study of bilinearity on the level of Dieudonn\'e modules is due to Goerss and to Buchstaber--Lazarev.  Our definitions are motivated by the following observation:
+
+\begin{lemma}\citeme{Lemma 7.6 of Goerss's bilinear paper, Lemma 7.1.c of Ravenel--Wilson}
+The pairing \[\circ \co D(K_\Gamma \OS{H\Z/p^j}{k_1}) \times D(K_\Gamma \OS{H\Z/p^j}{k_2}) \to D(K_\Gamma \OS{H\Z/p^j}{k_1 + k_2})\] is bilinear in $\W(k)$ and satisfies
+\begin{align*}
+V(x \circ y) & = Vx \circ Vy, &
+Fx \circ y & = F(x \circ Vy), &
+x \circ Fy & = F(Vx \circ y). \qed
+\end{align*}
+\end{lemma}
+
+\begin{definition}
+The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+\end{definition}
+
+\begin{theorem}\citeme{Theorem 7.7 of Goerss's bilinear paper}
+The natural map \[D(M) \boxtimes D(N) \to D(M \boxtimes N)\] is an isomorphism. \qed
+\end{theorem}
+
+Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.\todo{It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.  I guess a related question is: what's the relationship between $Q^\ast$ and the free Dieudonn\'e algebra functor?  Do they commute?  Almost certainly not...}
+
+
+You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
+
+
+As a running example, you should rephrase a bunch of the results from the previous lecture (on $K(d)_* \OS{Hk}*$) in terms of Dieudonn\'e modules.
+
+\begin{remark}
+\todo[inline]{There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power group scheme without passing through Dieudonn\'e modules.  It should at least be mentioned.}
+\end{remark}
+
+
+Definition of the inverse functor to the Dieudonn\'e module functor?  I think this appears in the formal groups notes.
+
+
+\begin{corollary}\label{FormOfStabilizerGroup}
+For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$ of positive characteristic $p$, we compute \[\Aut \Gamma_d \cong \left. \W_p(k) \<S\> \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right..\]
+\end{corollary}
+An easy Corollary of the structure of the Dieudonn\'e ring is the endomorphism ring of the Honda formal group.
+
+
+You could also try to give the Devinatz--Hopkins formula for the stabilizer action.  It's entirely a matter of different presentations of the Dieudonn\'e module... although it may require you to understand Dieudonn\'e crystals, which you are \emph{not} up for.
+
+
+
+
+
+
+\todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
+\todo{Weinstein's Section 1 also ends with a discussion of the Dieudonn\'e functor extended to the crystalline site.  This is necessary to get access to the period map.}
+\todo[inline]{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...}
+
+
+
+
+
+
+
+\section{Brown--Gitler spectra}
+
+Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B_n$ such that \[B_{n*}(X) = D_n H_* \Loops^\infty X.\]
+
+
+
+
+\citeme{Lemma 2.8}Consider a fiber sequence of spectra \[X \xrightarrow i Y \xrightarrow q Z\] with associated fiber sequence of infinite loopspaces \[\Loops^\infty X \xrightarrow{\Loops^\infty i} \Loops^\infty Y \xrightarrow{\Loops^\infty q} \Loops^\infty Z.\]  We may assume that $Y$ and $Z$ are $0$--connected, as this won't affect the value of $D_n \circ H_*$.  We then consider the Postnikov tower of $Y$ relative to $Z$
+\begin{center}
+\begin{tikzcd}
+\cdots \arrow{r} & Y_{s+1} \arrow{r}{q_s} & Y_s \arrow{d}{k_s} \arrow{r} & \cdots \arrow{r} & Y_1 \arrow{d}{k_1} \arrow{r}{q_0} & Z \arrow{d}{k_0} \\
+& & \Susp^{s+1} HG_s & & \Susp^2 HG_1 & \Susp HG_0
+\end{tikzcd}
+\end{center}
+as well as the associated fibrations \[X_s \xrightarrow{i_s} Y_s \to Z\] which assemble into the Postnikov tower for $X$
+\begin{center}
+\begin{tikzcd}
+\cdots \arrow{r} & X_{s+1} \arrow{r}{r_s} & X_s \arrow{d}{l_s} \arrow{r} & \cdots \arrow{r} & X_1 \cong HG_0 \arrow{d} \\
+& & \Susp^{s+1} HG_s & & \Susp^2 HG_1.
+\end{tikzcd}
+\end{center}
+
+For $f\co A \to B$ a map of spectra, we write $f_\sharp = D_n \Loops^\infty f_*$.  Our goal is to prove exactness, so for $y \in D_n H_* \Loops^\infty Y$ with $q_\sharp(y) = 0$ we must produce $x \in D_n H_* \Loops^\infty X$ with $i_\sharp(x) = y$.  Define $y_s \in D_n H_* \Loops^\infty Y_s$ by projection, and we will produce $x_s \in D_n H_* \Loops^\infty X_s$ with $(i_s)_\sharp(x_s) = y_s$, $(r_s)_\sharp x_{s+1} = x_s$.  Then, since $D_n H_* K(G_s, s) = 0$ for $s \gg 0$, the result will follow from
+\begin{center}
+\begin{tikzcd}
+D_n H_* \Loops^\infty X \arrow{r}{i_\sharp} \arrow[-,double]{d} & D_n H_* \Loops^\infty Y \arrow[-,double]{d} \\
+\lim_s D_n H_* \Loops^\infty X_s \arrow{r} & \lim_s D_n H_* \Loops^\infty Y_s.
+\end{tikzcd}
+\end{center}
+We have thus reduced to studying the effect of the sharp construction on a fibration involving an Eilenberg--Mac Lane spectrum.
+
+\todo{These two Lemmas involve a lot of fussing around with the Eilenberg--Moore spectral sequence.}
+\begin{lemma}\citeme{Lemma 2.5}
+Given a fibration sequence \[\Susp^m HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp^{m+1} HG\] with $m \ge 1$ and $n \ne \pm 1 \pmod{2p}$, then the sequence of abelian groups \[D_n H_* \Loops^\infty \Susp^m HG \xrightarrow{i_\sharp} D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp^{m+1} HG\] is exact. \qed
+\end{lemma}
+
+\begin{lemma}\citeme{Lemma 2.6, corollary of Lemma 2.7}
+Let \[HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp HG\] be a fibration sequence where $k_* \pi_1 Y \to G$ is onto.  If $n \not\equiv \pm 1 \pmod{2p}$, then the sequence of abelian groups \[0 \to D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp HG\] is exact. \qed
+\end{lemma}
+
+Note that this latter Lemma means $y_1 = 0$, since $\pi_0 Y = 0$, so we can set $x_1 = 0$.  Inductively, suppose that $x_s$ has been chosen.  Since \[(l_s)_\sharp x_s = (k_s)_\sharp (i_s)_\sharp x_s = (k_s)_\sharp y_s = 0\] there exists, by the earlier Lemma, a $z \in D_n H_* \Loops^\infty X_{s+1}$ with $(r_s)_\sharp z = x_s$.  Since \[(q_s)_\sharp(y_{s+1} - (i_{s+1})_\sharp z) = y_s - (i_s)_\sharp (r_s)_\sharp z = 0\] the earlier Lemma again shows there exists $w \in D_n H_* \Loops^\infty \Susp^s HG_s$ with \[(f_{s+1})_\sharp w = y_{s+1} - (i_{s+1})_\sharp z.\]  We set $x_{s+1} = z + (g_{s+1})_\sharp w$, and one can check that this works.
+
+
+
+
+Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
+
+
+
+Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$.  The main point is that this can be interchanged with $E_* B_*$ for the Brown--Gitler spectra $B$, and then also $B_*$ assemble into the stable homotopy type of $\Loops^2 S^3$.
+
+
+
+
+\todo[inline]{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.}
 
 
 
@@ -476,203 +704,6 @@ Also mention the base--change type formula: as an abelian group, a positive char
 
 
 Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Postnikov towers and so on?
-
-
-
-
-
-
-
-
-\section{Dieudonn\'e modules}
-
-Our goal today is strictly algebraic: we have seen that the category of finite dimension Hopf algebras over a ground field $k$ is an abelian category.  This means that it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \emph{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, starting with three different presentations of the subject.
-
----
-
-\citeme{Weinstein's geometry of Lubin--Tate spaces notes}
-
-For a formal variety $V$ over the ground ring $k$, let $\Omega^1_{V/k}$ be its module of K\"ahler differentials and let $\Omega^*_{V/k}$ be the algebraic de Rham complex.  If $k$ is a $\Q$--algebra, then higher cohomology vanishes since exact forms can be integrated, but if $k$ has positive characteristic then there's an obstruction to integrating things with exponents of the form $-1 \pmod p$.  Now put a group structure $\G$ on the formal variety.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that $\mu^* - \pi_1^* - \pi_2^*$ is zero (at the chain level).  If we weaken this to requesting that that difference be \emph{exact}, we arrive at the sub--$A$--module $D(\G/A)$ of $H^1_{dR}(\G/A)$ which are cohomologically translation invariant.
-
-\begin{lemma}
-Take $A$ to be $\Z$--flat and set $K = A \otimes \Q$.  Let $x$ be a coordinate on $\G$.  We then have a diagram of exact rows
-\begin{center}
-\begin{tikzcd}
-0 \arrow{r} & x A\ps{x} \arrow{r} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{x} \right\} \arrow{r}{d} & H^1_{dR}(\G/A) \arrow{r} & 0 \\
-0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[-,double]{u} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{X}, \partial f \in A\ps{x,y} \right\} \arrow{u} \arrow{r}{d} & D(\G/A) \arrow{r} \arrow{u} & 0,
-\end{tikzcd}
-\end{center}
-where $\partial[\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
-\end{lemma}
-
-\begin{lemma}
-In the case that $\G$ is $p$--divisible, there is an exact sequence \[0 \to \omega_{\G} \to D(\G/A) \to \operatorname{Lie} \G^\vee \to 0.\]
-\end{lemma}
-
-\begin{remark}
-Let $A$ be a complex abelian variety, in which case there is a classical Hodge decomposition \[0 \to H^0(A; \Omega^1) \to H^1_{dR}(A; \C) \to H^1(A; \sheaf O_A) \to 0.\]  The first term agrees with invariant differentials, and the second term agrees with $\operatorname{Lie} A^\vee$.
-\end{remark}
-
-\begin{theorem}
-Let $A$ be a $\Z_p$--flat ring, let $f_1(x), f_2(x) \in A\ps{x}$ without constant term, and let $\omega \in A\ps{x} dx$ be a differential.  If $f_1 \equiv f_2 \pmod{pA}$, then $f_1^*(\omega) - f_2^*(\omega)$ is exact. \qed \todo{This is a really easy Poincar\'e Lemma type thing.}\todo{Categorically: if $f_1, f_2: V \to V'$ are maps of pointed formal varieties which agree mod $p$, then they induce the same map on $H^1_{dR}$.}
-\end{theorem}
-
-\begin{corollary}
-Let $f: \G' \to \G$ be a map of pointed varieties which, mod $p$, is a group homomorphism.  Then $f^*$ maps $D(\G/A)$ into $D(\G'/A)$.  Additionally, if $f_3 = \equiv f_1 + f_2 \pmod{p}$ in $\InternalHom{FormalGroups}(\G'/p, \G/p)$ then $f_3^* = f_1^* + f_2^*$ as maps $D(\G/A) \to D(\G'/A)$.  \qed
-\end{corollary}
-
-\begin{definition}
-Let $k$ be a perfect field of characteristic $p > 0$, and let $\G_0$ be a $p$--divisible group over $k$ of finite height $d$.  Then, choose a lift $\G$ of $\G_0$ to $W(k)$, and define the \textit{(contravariant) Dieudonn\'e module} of $\G_0$ by $M(\G_0) := D(\G / W(k))$.
-\end{definition}
-
-This is independent of choice of lift.  (Pick a map just of formal varieties which restricts to the identity on $\G_0$, then use crystallineness.)  This is another statement of what it means for $M$ (or $H^1_{dR}$) to be \textit{crystalline}.
-
-The Frobenius map $x \mapsto x^p$ is a group homomorphism mod $p$, so induces a $\sigma$--linear map $F\co M(\G_0) \to M(\G_0)$.  This means $F(\alpha v) = \sigma(\alpha) F(v)$.  The Verschiebung map is given by the formula \[\sum_{n=1}^\infty a_n x^n \mapsto p \sum_{n=1}^\infty a_{pn}^{\sigma^{-1}} x^n,\] and it satisfies $FV = p$.
-
-\todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
-\todo{Weinstein's Section 1 also ends with a discussion of the Dieudonn\'e functor extended to the crystalline site.  This is necessary to get access to the period map.}
-
----
-
-Let $\G$ be a formal Lie group and consider Cartier's \textit{functor of curves} $C\G = \InternalHom{FormalSchemes}(\A^1, \G)$.  We can imagine three kinds of operations on a curve $\gamma: \A^1 \to \G$:
-\begin{itemize}
-\item Homothety: given a scalar $a \in A$, we define $[a] \cdot \gamma(t) = \gamma(at)$.
-\item Verschiebung: given an integer $n \ge 1$, we define $V_n \gamma(t) = \gamma(t^n)$.
-\item Frobenius: given an integer $n \ge 1$, we define \[F_n \gamma(t) = \sum_{i=1}^n{}_{\G} \gamma(\zeta_n t^{1/n}),\] where $\zeta_{n}$ is an $n${\th} root of unity.  This formula is invariant under permuting the root of unity chosen, so gives a series lying in the original ground ring.
-\end{itemize}
-
-Fixing a prime $p$, we can define what it means for a curve to be $p$--typical: $\gamma$ is $p$--typical when $F_n \gamma = 0$ for $n \ne p^j$.  This is an algebraic condition, and so we write $D \subseteq C$ for the functor of $p$--typical curves, a subscheme of all curves.  In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D\G$, and there is a natural section $C\G \to D\G$ called $p$--typification.
-
-\begin{remark}
-This actually agrees with $p$--typicality as discussed earlier in the semester: a logarithm $\G \to \G_a$ is said to be $p$--typical when, considered as a curve on $\G_a$, it satisfies the definition of $p$--typicality above.  The $p$--typification construction given there is a specialization of a natural one for all curves on a formal group.
-\end{remark}
-
-The (covariant) Dieudonn\'e module associated to a $p$--local formal group $\G$ is $D\G$.  It carries a residual action of the homotheties, $V_p$, and $F_p$.
-
-\todo[inline]{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...}
-
----
-
-Cartier duality: There is a duality on commutative and cocommutative finite--dimensional Hopf algebras, given by taking the linear dual.  There is also a duality on Dieudonn\'e modules, also given by taking the linear dual.  These also relate the two kind of Dieudonn\'e functors described above.
-
----
-
-Define $S(n)$ to be the free Hopf algebra on a single generator in degree $n$, so that at odd primes $S(2n+1) = \Lambda[x]$ and $S(2n) = P[x]$ (and at $p = 2$ all the $S(n)$ are polynomial algebras).  Schoeller proves that there's a projective cover $H(n) \to S(n)$.  Most of the time this map is the identity, except in the two cases: $p = 2$ and $n = 2^m k$ for $k$ odd and $m > 0$, or $p > 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$.  In these exceptional cases, $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the ``Witt vector diagonal''.
-
-the projective generators
-
-$\CatOf{HopfAlgebras}^{> 0}_{\F_p/}$
-
-Classification of finite Hopf algebras over $\F_p$ with $\Gm$--action
-
-The $H(n)$ form a series of projective \emph{generators} of the category.  So, we can give a Tannakian description of the category as modules over the ``endomorphism ring'' $\mathsf{Hom}(H(*), H(*))$, which is calculable.  You end up seeing the same data as a covariant Dieudonn\'e module, which is cool, and generally given a Hopf algebra $H$ you can build a graded Dieudonn\'e module functor by \[D_n(H) = \CatOf{HopfAlgebras}_{/\F_p}(H(n), H).\]
-
----
-
-We have only described a framework for encoding Hopf algebras so far.  We also want to incorporate Hopf rings into our discussion, since we are coming off of the study of unstable cooperations.  Hunton and Turner were among the first to consider ``bilinear'' constructions on Hopf algebras in the abstract, and a similar study of bilinearity on the level of Dieudonn\'e modules is due to Goerss and to Buchstaber--Lazarev.  Our definitions are motivated by the following observation:
-
-\begin{lemma}\citeme{Lemma 7.6 of Goerss's bilinear paper, Lemma 7.1.c of Ravenel--Wilson}
-The pairing \[\circ \co D(K_\Gamma \OS{H\Z/p^j}{k_1}) \times D(K_\Gamma \OS{H\Z/p^j}{k_2}) \to D(K_\Gamma \OS{H\Z/p^j}{k_1 + k_2})\] is bilinear in $\W(k)$ and satisfies
-\begin{align*}
-V(x \circ y) & = Vx \circ Vy, &
-Fx \circ y & = F(x \circ Vy), &
-x \circ Fy & = F(Vx \circ y). \qed
-\end{align*}
-\end{lemma}
-
-\begin{definition}
-The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
-\end{definition}
-
-\begin{theorem}\citeme{Theorem 7.7 of Goerss's bilinear paper}
-The natural map \[D(M) \boxtimes D(N) \to D(M \boxtimes N)\] is an isomorphism. \qed
-\end{theorem}
-
-Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.\todo{It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.  I guess a related question is: what's the relationship between $Q^\ast$ and the free Dieudonn\'e algebra functor?  Do they commute?  Almost certainly not...}
-
-
-You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
-
-
-As a running example, you should rephrase a bunch of the results from the previous lecture (on $K(d)_* \OS{Hk}*$) in terms of Dieudonn\'e modules.
-
-\begin{remark}
-\todo[inline]{There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power group scheme without passing through Dieudonn\'e modules.  It should at least be mentioned.}
-\end{remark}
-
-
-Definition of the inverse functor to the Dieudonn\'e module functor?  I think this appears in the formal groups notes.
-
-
-\begin{corollary}\label{FormOfStabilizerGroup}
-For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$ of positive characteristic $p$, we compute \[\Aut \Gamma_d \cong \left. \W_p(k) \<S\> \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right..\]
-\end{corollary}
-An easy Corollary of the structure of the Dieudonn\'e ring is the endomorphism ring of the Honda formal group.
-
-
-You could also try to give the Devinatz--Hopkins formula for the stabilizer action.  It's entirely a matter of different presentations of the Dieudonn\'e module... although it may require you to understand Dieudonn\'e crystals, which you are \emph{not} up for.
-
-
-
-
-
-
-
-\section{Brown--Gitler spectra}
-
-Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B_n$ such that \[B_{n*}(X) = D_n H_* \Loops^\infty X.\]
-
-
-
-
-\citeme{Lemma 2.8}Consider a fiber sequence of spectra \[X \xrightarrow i Y \xrightarrow q Z\] with associated fiber sequence of infinite loopspaces \[\Loops^\infty X \xrightarrow{\Loops^\infty i} \Loops^\infty Y \xrightarrow{\Loops^\infty q} \Loops^\infty Z.\]  We may assume that $Y$ and $Z$ are $0$--connected, as this won't affect the value of $D_n \circ H_*$.  We then consider the Postnikov tower of $Y$ relative to $Z$
-\begin{center}
-\begin{tikzcd}
-\cdots \arrow{r} & Y_{s+1} \arrow{r}{q_s} & Y_s \arrow{d}{k_s} \arrow{r} & \cdots \arrow{r} & Y_1 \arrow{d}{k_1} \arrow{r}{q_0} & Z \arrow{d}{k_0} \\
-& & \Susp^{s+1} HG_s & & \Susp^2 HG_1 & \Susp HG_0
-\end{tikzcd}
-\end{center}
-as well as the associated fibrations \[X_s \xrightarrow{i_s} Y_s \to Z\] which assemble into the Postnikov tower for $X$
-\begin{center}
-\begin{tikzcd}
-\cdots \arrow{r} & X_{s+1} \arrow{r}{r_s} & X_s \arrow{d}{l_s} \arrow{r} & \cdots \arrow{r} & X_1 \cong HG_0 \arrow{d} \\
-& & \Susp^{s+1} HG_s & & \Susp^2 HG_1.
-\end{tikzcd}
-\end{center}
-
-For $f\co A \to B$ a map of spectra, we write $f_\sharp = D_n \Loops^\infty f_*$.  Our goal is to prove exactness, so for $y \in D_n H_* \Loops^\infty Y$ with $q_\sharp(y) = 0$ we must produce $x \in D_n H_* \Loops^\infty X$ with $i_\sharp(x) = y$.  Define $y_s \in D_n H_* \Loops^\infty Y_s$ by projection, and we will produce $x_s \in D_n H_* \Loops^\infty X_s$ with $(i_s)_\sharp(x_s) = y_s$, $(r_s)_\sharp x_{s+1} = x_s$.  Then, since $D_n H_* K(G_s, s) = 0$ for $s \gg 0$, the result will follow from
-\begin{center}
-\begin{tikzcd}
-D_n H_* \Loops^\infty X \arrow{r}{i_\sharp} \arrow[-,double]{d} & D_n H_* \Loops^\infty Y \arrow[-,double]{d} \\
-\lim_s D_n H_* \Loops^\infty X_s \arrow{r} & \lim_s D_n H_* \Loops^\infty Y_s.
-\end{tikzcd}
-\end{center}
-We have thus reduced to studying the effect of the sharp construction on a fibration involving an Eilenberg--Mac Lane spectrum.
-
-\todo{These two Lemmas involve a lot of fussing around with the Eilenberg--Moore spectral sequence.}
-\begin{lemma}\citeme{Lemma 2.5}
-Given a fibration sequence \[\Susp^m HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp^{m+1} HG\] with $m \ge 1$ and $n \ne \pm 1 \pmod{2p}$, then the sequence of abelian groups \[D_n H_* \Loops^\infty \Susp^m HG \xrightarrow{i_\sharp} D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp^{m+1} HG\] is exact. \qed
-\end{lemma}
-
-\begin{lemma}\citeme{Lemma 2.6, corollary of Lemma 2.7}
-Let \[HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp HG\] be a fibration sequence where $k_* \pi_1 Y \to G$ is onto.  If $n \not\equiv \pm 1 \pmod{2p}$, then the sequence of abelian groups \[0 \to D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp HG\] is exact. \qed
-\end{lemma}
-
-Note that this latter Lemma means $y_1 = 0$, since $\pi_0 Y = 0$, so we can set $x_1 = 0$.  Inductively, suppose that $x_s$ has been chosen.  Since \[(l_s)_\sharp x_s = (k_s)_\sharp (i_s)_\sharp x_s = (k_s)_\sharp y_s = 0\] there exists, by the earlier Lemma, a $z \in D_n H_* \Loops^\infty X_{s+1}$ with $(r_s)_\sharp z = x_s$.  Since \[(q_s)_\sharp(y_{s+1} - (i_{s+1})_\sharp z) = y_s - (i_s)_\sharp (r_s)_\sharp z = 0\] the earlier Lemma again shows there exists $w \in D_n H_* \Loops^\infty \Susp^s HG_s$ with \[(f_{s+1})_\sharp w = y_{s+1} - (i_{s+1})_\sharp z.\]  We set $x_{s+1} = z + (g_{s+1})_\sharp w$, and one can check that this works.
-
-
-
-
-Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
-
-
-
-Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$.  The main point is that this can be interchanged with $E_* B_*$ for the Brown--Gitler spectra $B$, and then also $B_*$ assemble into the stable homotopy type of $\Loops^2 S^3$.
-
-
-
-
-\todo[inline]{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.}
 
 
 
