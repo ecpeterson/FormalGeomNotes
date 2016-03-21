@@ -519,7 +519,62 @@ Write $D_n(H)$ for the $n${\th} graded part of the equivalence: \[D_n(H) = \CatO
 
 \section{Brown--Gitler spectra}
 
-Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B_n$ such that \[B_{n*}(X) = D_n H_* \Loops^\infty X.\]
+Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B(n)$ such that \[B(n)_n(X) = D_n H_* \Loops^\infty X.\]
+
+
+\begin{lemma}[{\cite[Lemma 3.2]{GLM}}]
+For $k < 0$, $\pi_k B(n) = 0$.
+\end{lemma}
+\begin{proof}
+First, rearrange:
+\begin{align*}
+\pi_k B(n) & = B_n S^{n-k} = D_n H_* \Loops^\infty \Susp^\infty S^{n-k}.
+\end{align*}
+Since $k < 0$, $n$ is below the connectivity of $\Loops^\infty \Susp^\infty S^{n-k}$.
+\end{proof}
+
+
+\begin{definition}[{\cite[Lemma 2.3]{GLM}}]
+There is an adjunction \todo{Put in an adjunction dash.}
+\begin{center}
+\begin{tikzcd}
+\CatOf{HopfAlgebras}^{>0, fin}_{k/} \arrow[shift left=0.3em, "Q"]{r} & V{\mhyphen}\CatOf{Modules} \arrow[shift left=0.3em, "U"]{l},
+\end{tikzcd}
+\end{center}
+where $V{\mhyphen}\CatOf{Modules}$ is the category of graded $\F_p$--modules with a Verschiebung operator $V$ and $Q$ is the indecomposables functor.
+\end{definition}
+
+\begin{lemma}[{\cite[Lemma 2.4]{GLM}}]
+$D_n U(M) = M_n$. \qed
+\end{lemma}
+
+\begin{lemma}[{\cite[Lemma 3.3]{GLM}}]
+There is a natural onto map $B(n)_n X \to H_n X$.
+\end{lemma}
+\begin{proof}
+Suppose at first that $X$ is a spectrum with counit map $\sigma\co \Susp^\infty \Loops^\infty X \to X$.  Then there is a factorization
+\begin{center}
+\begin{tikzcd}
+H_* \Loops^\infty X \arrow{d} \arrow["H_*\sigma"]{r} & H_* X \\
+Q H_* \Loops^\infty X \arrow[densely dotted,"(3)"]{r} & \Loops^\infty H_* X \arrow["(1)"]{u},
+\end{tikzcd}
+\end{center}
+since $H_* \Loops^\infty X$ is already an unstable module and $\Loops^\infty H_* X$ has no multiplicative structure.  This factored map is adjoint to a map \[H_* \Loops^\infty X \to U \Loops^\infty H_* X\] to which we can apply $D_n$:
+\begin{center}
+\begin{tikzcd}
+D_n H_* \Loops^\infty X \arrow[-,double]{d} \arrow["(4)"]{r} & D_n U \Loops^\infty H_* X \arrow[-,double]{d} \\
+B(n)_n X & {[\Loops^\infty H_* X]_n} \arrow["(2)","{\text{incl.}}"']{r} & H_n X.
+\end{tikzcd}
+\end{center}
+If $X = \Susp^\infty Z$ is itself a suspension spectrum, then (1) and (2) become equalities (by unstability of $H_* \Susp^\infty Z$), and (3) and (4) become onto (by generation and by exactness respectively).
+\end{proof}
+
+\begin{definition}[{\cite[Example 3.6]{GLM}}]
+Let $G(n)$ be the free unstable $\mathcal A$--module on one generator of degree $n$, so that \[\CatOf{UnstableModules}_{\mathcal A_*}(G(n), M) = M_n.\]  This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if $p = 2$}. \end{cases}\]  The Spanier--Whitehead dual of this right-module is the left-module \[\Susp^n D G(n) = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if $p = 2$}. \end{cases}\]
+\end{definition}
+
+
+
 
 
 
