@@ -15,7 +15,7 @@ Today we will take the framework of contexts discussed in \Cref{StableContextLec
 \CatOf{Spectra} = \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} & \CatOf{Modules}_E \arrow[shift left=0.4em]{l}
 \end{tikzcd}
 \end{center}
-induced by the algebra map $\S \to E$.  Given a spectrum $X$, our framework was set up to give the best possible approximation $X^\wedge_E$ within $E$--module spectra.
+induced by the algebra map $\S \to E$.  Given a spectrum $X$, our framework was set up to give its best possible approximation $X^\wedge_E$ within $E$--module spectra.
 
 We will extend this to spaces by sewing this adjunction together with another:
 \begin{center}
@@ -23,7 +23,7 @@ We will extend this to spaces by sewing this adjunction together with another:
 \CatOf{Spaces} \arrow[shift left=0.4em]{r}{\Susp^\infty} & \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} \arrow[shift left=0.4em]{l}{\Loops^\infty} & \CatOf{Modules}_E \arrow[shift left=0.4em]{l} .
 \end{tikzcd}
 \end{center}
-We will write $E(-)$ for the induced monad\todo{You avoided talking about \emph{monadic} descent in the previous lectures, and instead you were vague about it. Maybe you have to spell that out now.} on $\CatOf{Spaces}$, given by the formula \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X) = \Loops^\infty (E \sm \Susp^\infty X),\] where $\OS{E}{*}$ are the constituent spaces in the $\Omega$--spectrum of $E$.  This space has the property that $\pi_* E(X) = \widetilde E_* X$ (in nonnegative dimensions).  The monadic structure comes from the two evident natural transformations:
+We will write $E(-)$ for the induced monad \todo{You avoided talking about \emph{monadic} descent in the previous lectures, and instead you were vague about it. Maybe you have to spell that out now.}on $\CatOf{Spaces}$, given by the formula \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X) = \Loops^\infty (E \sm \Susp^\infty X),\] where $\OS{E}{*}$ are the constituent spaces in the $\Omega$--spectrum of $E$.  This space has the property that $\pi_* E(X) = \widetilde E_* X$ (in nonnegative dimensions).  The monadic structure comes from the two evident natural transformations:
 \begin{align*}
 \eta \co X & \simeq S^0 \sm X \\
 & \to \OS{E}{0} \sm X \\
@@ -197,7 +197,7 @@ It follows that \[H\F_2{}_* \OS{H\F_2}{*} \stackrel\cong\leftarrow \bigoplus_{t=
 The leftward direction of this isomorphism is realized by the $\circ$--product.
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{UnstableCoopnsForHF2AndGa}
 Our computation of the full Hopf ring of unstable cooperations can be winnowed down to give information about particular classes of cooperations.  For instance, the \emph{additive} unstable cooperations are given by passing to the $\ast$--indecomposable quotient
 \begin{align*}
 Q_{\ast} H\F_2{}_* \OS{H\F_2}{*} & \cong \F_2\left\{a_{(I_0)} \circ \cdots \circ a_{(I_t)}\right\} \\
@@ -220,64 +220,59 @@ The odd--primary analogue of this result appears in Wilson's book.  In that situ
 
 \todo{Neil's MO answer about $H_* K(\Z, 3)$: http://mathoverflow.net/a/216041/1094}
 
+%\begin{definition}
+%We spell out some of the Hopf algebra constructions named above.  For a cocommutative $R$--coalgebra $C$, we define its free commutative and cocommutative Hopf $R$--algebra~\cite{Takeuchi} to have underlying algebra \[\frac{\operatorname{SymmetricAlgebra} \left(C \otimes_R (\chi C)\right)}{\left( \begin{array}{c} c \otimes \chi c = 1 \end{array} \right)}\] with diagonal \[\Delta(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \Delta c_1 \otimes \cdots \otimes \Delta c_k \otimes \chi (\Delta c'_1) \otimes \cdots \otimes \chi(\Delta c'_{k'})\] and antipode \[\chi(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \chi c_1 \otimes \cdots \otimes \chi c_k \otimes c'_1 \otimes \cdots \otimes c'_{k'}.\]  Then, given a Hopf $R$--algebra $A$, we define the free Hopf ring~\cite[Definition 4.2, Proposition 2.16]{HuntonTurner} to be \[\left. \bigoplus_{k=0}^\infty A^{\wedge_R k} \middle/ \left(x \wedge y = \sum_i (x'_i \ast y') \wedge (x''_i \ast y'') \middle| \begin{array}{c} y = y' \ast y'', \\ \Delta x = \sum_i x'_i \otimes x''_i \end{array} \right) \right.\] with $\circ$--product given by the natural maps $A^{\wedge_R n} \otimes_R A^{\wedge_R m} \to A^{\wedge_R (n+m)}$.
+%\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+\section{Complex-orientable cooperations I}
+
+One of our goals for this Case Study is to study the mixed unstable cooperations $E_* \OS{G}{2*}$ for complex-orientable cohomology theories $E$ and $G$.  In order to formulate what will become our main result, we will need to begin with some definitions.
+
 \begin{definition}
-We spell out some of the Hopf algebra constructions named above.  For a cocommutative $R$--coalgebra $C$, we define its free commutative and cocommutative Hopf $R$--algebra~\cite{Takeuchi} to have underlying algebra \[\frac{\operatorname{SymmetricAlgebra} \left(C \otimes_R (\chi C)\right)}{\left( \begin{array}{c} c \otimes \chi c = 1 \end{array} \right)}\] with diagonal \[\Delta(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \Delta c_1 \otimes \cdots \otimes \Delta c_k \otimes \chi (\Delta c'_1) \otimes \cdots \otimes \chi(\Delta c'_{k'})\] and antipode \[\chi(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \chi c_1 \otimes \cdots \otimes \chi c_k \otimes c'_1 \otimes \cdots \otimes c'_{k'}.\]  Then, given a Hopf $R$--algebra $A$, we define the free Hopf ring~\cite[Definition 4.2, Proposition 2.16]{HuntonTurner} to be \[\left. \bigoplus_{k=0}^\infty A^{\wedge_R k} \middle/ \left(x \wedge y = \sum_i (x'_i \ast y') \wedge (x''_i \ast y'') \middle| \begin{array}{c} y = y' \ast y'', \\ \Delta x = \sum_i x'_i \otimes x''_i \end{array} \right) \right.\] with $\circ$--product given by the natural maps $A^{\wedge_R n} \otimes_R A^{\wedge_R m} \to A^{\wedge_R (n+m)}$.
-\end{definition}
-
-
-
-
-
-
-
-
-
-
-
-\section{Complex-orientable cooperations}
-
-Our goal for today is to study the mixed unstable cooperations $E_* \OS{MU}{2*}$ for a complex-orientable cohomology theory $E$.
-
-----
-
-\needproof{Coalgebraic formal schemes}
-
 Let $R$ and $S$ be graded rings.  We can form a Hopf ring over $R$ by forming the ``ring--ring'' $R[S]$: as an $R$--module, this is free and generated by symbols $[s]$ for $s \in S$.  The two Hopf ring products $\ast$ and $\circ$ are determined by the formulas
 \begin{align*}
 [s] \ast [s'] & = [s + s'], &
 [s] \circ [s'] & = [s \cdot s'],
 \end{align*}
 and distributivity over $\circ$ over $\ast$ is enforced by an $R$--module quotient.
+\end{definition}
 
-Given an $R$--coalgebra $C$, we can form the free commutative Hopf algebra on $C$ by taking its associated symmetric algebra.  This is a degenerate case of a free Hopf ring construction: taking $S$ to be an auxiliary ring, we can form a free Hopf ring under $R[S]$ spanned by $R[S]$ and free $\ast$-- and $\circ$--products of elements of $C$.
+\begin{definition}
+Additionally, given an $R$--coalgebra $C$, we can form the free commutative Hopf algebra on $C$ by taking its associated symmetric algebra.  This is a degenerate case of a free Hopf ring construction: taking $S$ to be an auxiliary ring, we can form a free Hopf ring under $R[S]$ spanned by $R[S]$ and free $\ast$-- and $\circ$--products of elements of $C$.
+\end{definition}
 
+\todo{There is probably a natural map to the scheme of homomorphisms that doesn't require picking a coordinate.}
 \begin{definition}\todo{I don't like the upper-$R$ notation.  Having a scheme theoretic description of this object should let us pick a better name.}
-Let $E_*^R \OS{G}{*}$ be the quotient of the free Hopf ring under $E_*[G^*]$ generated by $C = E_* \CP^\infty$ by the relation \[b(s) +_{[G]} b(t) = b(s +_E t),\] where $b(s) = \sum_i b_i x^i$ and hence
+Let $E_*^R \OS{G}{*}$ be the free Hopf ring under $E_*[G^*]$ generated by $C = E_* \CP^\infty$ together with the relation \[b(s) +_{[G]} b(t) = b(s +_E t),\] where $b(s) = \sum_i b_i x^i$ and hence
 \begin{align*}
 b(s +_E t) & = \sum_n b_n \left(\sum_{i, j} a_{ij}^E s^i t^j \right)^n, \\
 b(s) +_{[G]} b(t) & = \bigast_{i, j} [a_{ij}^G] \circ \left( \sum_k b_k s^k \right)^{\circ i} \circ \left( \sum_\ell b_\ell t^\ell \right)^{\circ j}.
 \end{align*}
+The scheme $\Spec Q^* E_*^R \OS{G}{*}$ models \[\Spec Q^* E_*^R \OS{G}{*} \cong \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_G).\]
 \end{definition}
 
-\begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}}]
+\begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}}]\label{ComparisonMapInCOUnstableCoopns}
 For complex-orientable ring spectra $E$ and $G$, there is a natural map $E_*^R \OS{G}{*} \to E_* \OS{G}{*}$. \qed
 \end{lemma}
 
-\begin{theorem}
-The coalgebraic formal scheme $\Sch Q^* E_*^R \OS{G}{*}$ gives a model \[\Sch Q^* E_*^R \OS{G}{*} \cong \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_G).\]
-\end{theorem}
-\begin{proof}
-\todo{I don't know how to prove this. I assume it's true, though.}
-\end{proof}
+\noindent We will show that for many such $E$ and $G$ this map is an isomorphism, and hence the unstable cooperations are captured by homomorphisms of formal groups.
 
-----
 \citeme{Pages 266--270 of Ravenel--Wilson, especially the bottom of 268.}
-
-We begin by calculating $H\F_{p*} \OS{BP}{2*}$.  One might think that this is a first guess at an accomplishable task, but we will quickly show that it is, in a certain sense, the universal example of this calculation.  We will show the following theorem:
+To begin, we will investigate the more modest setting of $E = H\F_p$ and $G = BP$ by calculating $H\F_{p*} \OS{BP}{2*}$.  One might think that this is merely a first guess at a task that seems accomplishable, but we will quickly show that it plays the role of a universal example of this calculation.  We will show the following theorem:
 \begin{theorem}[{\cite[Theorem 4.2]{RavenelWilsonHopfRingForMU}}]\label{HFpBPCooperationsTheorem}
-The natural homomorphism \[H\F_{p*}^R \OS{BP}{2*} \to H\F_{p*} \OS{BP}{2*}\] is an isomorphism.  In particular, $H\F_{p*} \OS{BP}{2*}$ is even--concentrated.
+The natural homomorphism \[H\F_{p*}^R \OS{BP}{2*} \to H\F_{p*} \OS{BP}{2*}\] is an isomorphism.  (In particular, $H\F_{p*} \OS{BP}{2*}$ is even--concentrated.)
 \end{theorem}
-\noindent We will prove this by a fairly elaborate counting argument, and as such our first move will be to produce an upper bound for the size of the source Hopf ring.  To abbreviate notation, we will write $H$ for $H\F_p$ for the remainder of the lecture.
+\noindent This is proved by a fairly elaborate counting argument, and as such our first move will be to produce an upper bound for the size of the source Hopf ring.  To abbreviate notation, we will write $H$ for $H\F_p$ for the remainder of the lecture.
 
 \begin{lemma}
 As a $\circ$--algebra, \[Q^* H_0^R \OS{BP}{2*} \cong \F_p[[v_n] - [0_{-|v_n|}] \mid n \ge 1],\] where $0_{-|v_n|}$ denotes the null element of $BP^{|v_n|}(*)$.
@@ -289,13 +284,13 @@ By construction, $H_0^R \OS{BP}{2*}$ is the Hopf ring-ring $\F_p[BP^*]$.  Calcul
 & = [x + y] - [x] - [y] + [0] \\
 & = ([x + y] - [0]) - ([x] - [0]) - ([y] - [0]).
 \end{align*}
-It follows that a $\Z_{(p)}$--basis of $BP^*$ gives an $\F_p$--basis of $Q^* \F_p[BP^*]$ under the map $x \mapsto [x] - [0]$.  Finally, since \[([x] - [0]) \circ ([y] - [0]) = ([xy] - [0]),\] we see that the image of the polynomial generators $v_n$ freely generate the $\circ$--product structure, proving the lemma.
+It follows that a $\Z_{(p)}$--basis of $BP^*$ gives an $\F_p$--basis of $Q^* \F_p[BP^*]$ under the map $x \mapsto [x] - [0]$.  Finally, since \[([x] - [0]) \circ ([y] - [0]) = ([xy] - [0]),\] we see that the image of the polynomial generators $v_n$ freely generate the $\circ$--product structure, proving the Lemma.
 \end{proof}
 
 Directly from the definition of $H_*^R \OS{BP}{2*}$, we now know that $Q^* H_*^R \OS{BP}{2*}$ is generated by $[v_n] - [0_{-|v_n|}]$ for $n \ge 1$ and $b_j$, $j \ge 0$.  In fact, it suffices to consider $b_{p^i} = b_{(i)}$ for $i \ge 0$\citeme{Lemma 4.14 of Ravenel Wilson}, and these elements are subject to an important relation:
 
 \begin{lemma}[{\cite[Lemma 3.14]{RavenelWilsonHopfRingForMU}}]
-In $Q^* H_* \OS{BP}{2} / I^{\circ 2} \circ Q^* H_* \OS{BP}{2}$, for any $n$ we have \[\sum_{i=1}^n [v_i] \circ b_{(n-i)}^{\circ p^i} = 0. \qed\]
+Write $I = ([p], [v_1], [v_2], \ldots)$, and consider $Q^\circ Q^* H_* \OS{BP}{2} / I^{\circ 2} \circ Q^* H_* \OS{BP}{2}$.  In this quotient, for any $n$ we have \[\sum_{i=1}^n [v_i] \circ b_{(n-i)}^{\circ p^i} \equiv 0. \qed\]
 \end{lemma}
 
 \begin{corollary}
@@ -319,12 +314,24 @@ d_{i,j} & = \dim_{\F_p} \F_p[[v_n], b_{(0)}]_{i,j}.
 Then $c_{i,j} \le d_{i,j}$ and $d_{i,j} = d_{i+2,j+1}$.
 \end{lemma}
 \begin{proof}
-We have seen that $c_{i,j}$ is bounded by the $\F_p$--dimension of $\F_p[[v_n], b_{(j)}]_{i,j}$ modulo the ideal $(r_1, r_2, \ldots)$.  But, since this ideal is regular and $|r_j| = |b_{(j)}|$, this is the same count as $d_{i,j}$.  The other relation among the $d_{i,j}$ follows from multiplication by $b_{(0)}$, with $|b_{(0)}| = (2, 1)$.\todo{We also need that one of the bidegrees of $[v_n]$ is zero, right?}
+We have seen that $c_{i,j}$ is bounded by the $\F_p$--dimension of $\F_p[[v_n], b_{(d)} \mid d \ge 0]_{i,j}$ modulo the ideal $(r_1, r_2, \ldots)$.  But, since this ideal is regular and $|r_j| = |b_{(j)}|$, this is the same count as $d_{i,j}$.  The other relation among the $d_{i,j}$ follows from multiplication by $b_{(0)}$, with $|b_{(0)}| = (2, 1)$.\todo{We also need that one of the bidegrees of $[v_n]$ is zero, right?}
 \end{proof}
 
-This completes the estimation portion of the argument.  We now turn to showing that this estimation is \emph{sharp} and that the natural map is \emph{onto}, and hence an isomorphism, using the bar spectral sequence.  Recalling that the bar spectral sequence converges to a the homology of the \emph{connective} delooping, let $\OS{BP}{2*}'$ denote the connected component of $\OS{BP}{2*}$ containing $[0_{2*}]$.  We will then demonstrate the following theorem inductively:
+Next time, we will use this estimate to give a proof of \Cref{HFpBPCooperationsTheorem}.
+
+
+
+\section{Complex-orientable cooperations II}\label{COableCoopnsII}
+
+We are embroiled in the proof of the following Theorem:
+
+\begin{theorem}[{\Cref{HFpBPCooperationsTheorem}}]
+The natural homomorphism \[H\F_{p*}^R \OS{BP}{2*} \to H\F_{p*} \OS{BP}{2*}\] is an isomorphism.  (In particular, $H\F_{p*} \OS{BP}{2*}$ is even--concentrated.)
+\end{theorem}
+
+Yesterday we gave an estimate for the size of the source Hopf ring.  We now turn to showing that this estimate is \emph{sharp} and that the natural map is \emph{onto}, and hence an isomorphism, using the bar spectral sequence.  Recalling that the bar spectral sequence converges to a the homology of the \emph{connective} delooping, let $\OS{BP}{2*}'$ denote the connected component of $\OS{BP}{2*}$ containing $[0_{2*}]$.  We will then demonstrate the following theorem inductively:
 \begin{theorem}[{\cite[Induction 4.18]{RavenelWilsonHopfRingForMU}}]\label{HFpBPCooperationsInduction}
-Take $k$ to be the induction index.\footnote{Note that in the conditions below we are using $k$ to bound the topological degree of the homology groups, whereas yesterday we used the induction index to bound the degree of the infinite loopspace.}
+Take $k$ to be the induction index.
 \begin{enumerate}
 \item $Q^* H_{\le 2(k-1)} \OS{BP}{2j}'$ is generated by $\circ$--products of the $[v_n]$ and $b_{(j)}$.
 \item $H_{\le 2(k-1)} \OS{BP}{2*}'$ is isomorphic to a polynomial algebra in this range.
@@ -332,7 +339,7 @@ Take $k$ to be the induction index.\footnote{Note that in the conditions below w
 \end{enumerate}
 \end{theorem}
 
-Before addressing the theorem, we show that this finishes our calculation:
+\noindent Before addressing the theorem, we show that this finishes our calculation:
 \begin{proof}[{Proof of \Cref{HFpBPCooperationsTheorem}, assuming \Cref{HFpBPCooperationsInduction} for all $k$}]
 Recall that we are considering the natural map \[H_*^R \OS{BP}{2*} \to H_* \OS{BP}{2*}.\]  The first part of \Cref{HFpBPCooperationsInduction} shows that this map is a surjection.  The third part of \Cref{HFpBPCooperationsInduction} together with our counting estimate shows that the induced map \[Q^* H_*^R \OS{BP}{2*} \to Q^* H_* \OS{BP}{2*}\] is an isomorphism.  Finally, the second part of \Cref{HFpBPCooperationsInduction} says that the original map, before passing to $\ast$--indecomposables, must be an isomorphism as well.
 \end{proof}
@@ -342,7 +349,7 @@ The infinite loopspaces in $\OS{BP}{2*}$ are related by $\Loops^2 \OS{BP}{2(*+1)
 
 We now consider the second bar spectral sequence \[E^2_{*, *} = \Tor^{H_* \OS{BP}{2*+1}}_{*, *}(\F_p, \F_p) \Rightarrow H_* \OS{BP}{2(*+1)}.\]  The $\Tor$ algebra of an exterior algebra is divided power on a class of topological dimension one higher.  Since these classes are now all in even degrees, the spectral sequence collapses in the range $[0, 2k]$.  Additionally, these primitive classes are related to the original generating classes by double suspension, i.e., by circling with $b_{(0)}$.  This shows the first inductive claim on the \emph{primitive classes} through degree $2k$, and we must argue further to deduce our generation result for $x^{[p^j]}$ of degree $2k$ with $j > 0$.  By inductive assumption, we can write \[x = [y] \circ b_{(0)}^{\circ I_0} \circ b_{(1)}^{\circ I_1} \circ \cdots,\] and one may as well consider the element \[z := [y] \circ b_{(j)}^{\circ I_0} \circ b_{(j+1)}^{\circ I_1} \circ \cdots.\]  This element isn't $x^{[p^j]}$ on the nose, but the diagonal of $z - x^{[p^j]}$ lies in lower filtration degree, so we are again done.
 
-The remaining thing to do is to use the size bounds: the only way that the map \[H_*^R \OS{BP}{2*} \to H_* \OS{BP}{2*}\] could be surjective is if there were multiplicative extensions in the spectral sequence joining $x^{[p]}$ to $x^p$ --- and then we are exactly the right size to be a polynomial algebra.
+The remaining thing to do is to use the size bounds: the only way that the map \[H_*^R \OS{BP}{2*} \to H_* \OS{BP}{2*}\] could be surjective is if there were multiplicative extensions in the spectral sequence joining $x^{[p]}$ to $x^p$ --- and then we are exactly the right size to be a polynomial algebra.\todo{This last clause could be phrased more convincingly.  Say why being the right size is enough to conclude that it is, in fact, polynomial.}
 \end{proof}
 
 Having accomplished this, we reduce the general computation to it:
@@ -350,7 +357,7 @@ Having accomplished this, we reduce the general computation to it:
 \begin{corollary}[{\cite[Corollary 4.7]{RavenelWilsonHopfRingForMU}}]
 For a complex-orientable cohomology theory $E$, the natural maps
 \begin{align*}
-E_*^R \OS{MU}{2*} & \to E_* \OS{MU}{2*}, \\
+E_*^R \OS{MU}{2*} & \to E_* \OS{MU}{2*}, &
 E_*^R \OS{BP}{2*} & \to E_* \OS{BP}{2*}
 \end{align*}
 are isomorphisms of Hopf rings.
@@ -359,112 +366,7 @@ are isomorphisms of Hopf rings.
 First, because $MU_{(p)}$ splits multiplicatively as a wedge of $BP$s, we deduce from \Cref{HFpBPCooperationsTheorem} the case of $E = H\F_p$.  Since $H\F_p{}_* \OS{BP}{2*}$ is even, it follows that $H\Z_{(p)}{}_* \OS{BP}{2*}$ is torsion--free on a lift of a basis, and similarly (working across primes) $H\Z_* \OS{MU}{2*}$ is torsion--free on a simultaneous lift of basis.  Next, using torsion--freeness, we conclude from an Atiyah--Hirzebruch spectral sequence that $MU_* \OS{MU}{2*}$ and $BP_* \OS{BP}{2*}$ are even and torsion--free themselves, and moreover that the maps corresponding of Hopf rings are isomorphisms.  Lastly, using naturality of Atiyah--Hirzebruch spectral sequences, given a complex--orientation $MU \to E$ we deduce that the spectral sequence \[E_* \otimes H_*(\OS{MU}{2*}; \Z) \cong E_* \otimes_{MU_*} MU_* \OS{MU}{2*} \Rightarrow E_* \OS{MU}{2*}\] collapses, and similarly for the case of $BP$.  The theorem follows.
 \end{proof}
 
-
-
-
-
-
-
-
-
-
-
-\section{Cooperations between theories at geometric points}
-
-\todo{This isn't a good title. You specifically mean from the additive point to a finite height point.}
-
-Throughout today, we will write $K$ for a Morava $K$--theory $K_\Gamma$ (which, if you like, you can take to be $K(d)$) and $A$ for a finitely generated abelian group, and $H$ for the associated Eilenberg--Mac Lane spectrum.  Our goal is to study the unstable mixed cooperations $K_* \OS{H}{*}$.  Of course, this fits into our broader program of understanding various forms of unstable cooperations, especially if we were to pursue a ``stalkwise analysis'' of the sort in \Cref{ChapterFiniteSpectra}.  However, this calculation is especially interesting because of the appearance of the Eilenberg--Mac Lane spaces $\OS{H}{*}$ in other settings.  For instance, if we want to analyze the $K$--homology of a Postnikov tower (as we will in \Cref{ChapterSigmaOrientation}), we will naturally encounter pieces of $K_* \OS{H}{*}$, and we would be wise to have a firm handle on these objects.  It is another tribute to the power of structure that the successful way to approach this computation is not one-at-a-time, as one coming from the Postnikov perspective might attempt, but all-at-once, as suggested by the unstable cooperations picture.
-
-Our calculation will eventually turn into an induction, so we will pursue a simple example first: the $K$--theory of just the classifying space $BA$, rather than a general Eilenberg--Mac Lane space.  Since $K$--theory has K\"unneth isomorphisms and $B(A_1 \times A_2) \simeq BA_1 \times BA_2$, it suffices to do the computation just for $A = C_{p^j}$.
-
-\begin{theorem}\citeme{Theorem 5.7 of RW, or Prop 2.4.4 of HL}
-There is an isomorphism \[BS^1[p^j]_K \cong BS^1_K[p^j].\]
-\end{theorem}
-\begin{proof}
-Consider the diagram of spherical fibrations:\todo{Put in a pullback corner here.}
-\begin{center}
-\begin{tikzcd}
-S^1 \arrow{r} \arrow[-,double]{d} & B(S^1[p^j]) \arrow{r} \arrow{d} & BS^1 \arrow{d}{p^j} \\
-S^1 \arrow{r} & ES^1 \arrow{r} & BS^1.
-\end{tikzcd}
-\end{center}
-The induced long exact sequence (known as the Gysin sequence, or as the couple in the Serre spectral sequence for the first fibration) takes the form
-\begin{center}
-\begin{tikzcd}
-& K_* BS^1 \arrow{rd}{- \frown [p^j](x)} \\
-K_*(BS^1[p^j]) \arrow{ru} & & K_* BS^1 \arrow{ll}{\partial}
-\end{tikzcd}
-\end{center}
-where $x$ is a coordinate on $BS^1_K$.  Because $BS^1_K$ is of finite height, the right diagonal map is surjective.  It follows that $\partial = 0$, and so this gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[B(S^1[p^j])_K \to BS^1_K \xrightarrow{p^j} BS^1_K. \qedhere\]
-\end{proof}
-
-There are a couple of approaches to the rest of this calculation, i.e., $K_* \OS{H}{q}$ for $q > 1$.  The original, due to Ravenel and Wilson, is to complete the calculation for the smallest abelian group $C_p$ and then induct upward toward more complicated groups like $C_{p^j}$ and $C_{p^\infty}$.  More recently, there is also a preprint of Hopkins and Lurie that begins with $A = C_{p^\infty}$ and then works downward.  We will do the \emph{easy} parts of both calculations, to give a feel for their relative strengths and deficiencies.
-
-The Ravenel--Wilson version of the calculation proceeds much along the same lines as \Cref{UnstableSteenrodCoops}.  We will study the bar spectral sequences \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}\] for different indices $q$ and use the $\circ$--product to push differentials around among them.  We begin by rephrasing the calculation above in terms of the case $q = 0$.\citeme{Theorem 8.1 of RW}  In that setting, the ground algebra is given by \[K_* \OS{H\Z/p^j}{0} = K_*[[1]] / \<[1]^{p^j} - 1\> = K_*[[1] - [0]] / \<[1] - [0]\>^{p^j}.\]  Then, the $\Tor$--algebra for the truncated polynomial algebra $K_*[a_\emptyset] / a_\emptyset^{p^j}$ is given by the formula \[\Tor^{K_*[a_\emptyset] / a_\emptyset^{p^j}}_{*, *}(K_*, K_*) = \Lambda[\sigma a_\emptyset] \otimes \Gamma[\phi a_\emptyset],\] the combination of an exterior algebra and a divided power algebra.  We know which classes are supposed to survive this spectral sequence, and hence we know where the differentials must be:
-\begin{align*}
-d(\phi a_\emptyset)^{[p^{dj}]} & = \sigma a_\emptyset, \\
-\Rightarrow d(\phi a_\emptyset)^{[i + p^{dj}]} & = \sigma a_\emptyset \cdot (\phi a_\emptyset)^{[i]}.
-\end{align*}
-After this differential the spectral sequence collapses, but there are some multiplicative extensions to sort out when $j > 1$.  Of course, these are all determined by already knowing the multiplicative structure on $K_* \OS{H\Z/p^j}{1}$.
-
-We now turn to the general finite case:
-\begin{theorem}\citeme{Theorems 9.2 and 11.1 of RW}
-Using the $\circ$--product, \[K_* \OS{H\Z/p^j}{q} = \Alt^q \OS{H\Z/p^j}{1}.\]
-\end{theorem}
-\begin{proof}[Proof sketch]
-The inductive step turns out to be extremely index-rich, so I won't be so explicit or complete, but I'll point out the major landmarks.  It will be useful to use the shorthand $a_{(i)} = a_\emptyset^{[p^i]}$, where $(i)$ is thought of as a multi-index with one entry.
-
-We proceed by induction, assuming that $K_* \OS{H\Z/p^j}{q} = \Alt^q \OS{H\Z/p^j}{1}$ for a fixed $q$.  Computing the algebraic homology of $K_* \OS{H\Z/p^j}{q}$ yields a tensor of divided power and exterior classes, a pair for each algebra generator of $K_* \OS{H\Z/p^j}{q}$.  There is then a wonderful rewriting formula:\citeme{Ravenel Wilson, somewhere} \[(\phi a_{(i_1, \ldots, i_q)})^{[p^j]} \equiv  (\phi a_{(i_1, \ldots, i_{q-1})})^{[p^j]} \circ a_{(i_q + j)} \mod *\text{--decomposables}.\]  Since every class can be so decomposed, all the differentials and extensions are determined by the previous spectral sequence.  In particular, classes are hit by differentials exactly when $i_q + j$ is large enough.  It follows that the inductive assumption that $K_* \OS{H\Z/p^j}{q+1}$ is an exterior power holds, and the class $(\phi a_{(i_1, \ldots, i_q)})^{[p^j]}$ represents $a_{(j, i_1 + j, \ldots, i_q + j)}$.\todo{Indicate exactly where the intertwining between different values of $j$ happens.}
-\end{proof}
-
-\todo{Mike has said something about the pairing $C_{p^j} \times C_{p^j}^* \to \Q/\Z$ not being functorial in $j$ (so as to pass to the direct limit) which gave me pause.  I should make sure I'm not messing something up here.}
-
-The case $j = 1$ of this proof is messy enough, and the case of a general $j$ requires interrelating the cases using the restriction map $C_{p^j} \to C_{p^{j+1}}$ and the projection map $C_{p^{j+1}} \to C_{p^j}$.  Then, these tools are revisited to give a computation in the limiting case $A = C_{p^\infty}$, where there's a $p$--adic equivalence $HC_{p^\infty} \simeq\widehat{{}_p} \Susp H\Z$.\citeme{Theorem 12.4 of RW}  The calculation in this setting is the most interesting one of all --- after all, it contains the case $BS^1_K$, which is of special interest to us.  Remarkable, it is easier to access directly than passing through all of this intermediate work.  To begin, we need the following algebraic calculation:
-
-\begin{theorem}\citeme{Theorem 2.2.10 of Hopkins--Lurie}\todo{Use the same cohomology notation you have been using for the cohomology of formal groups on previous days.}
-Suppose we have an exact sequence of Hopf $k$--algebras \[k \to A' \to A \xrightarrow{u} A'' \to k\] such that $A$ is connected and $F$--divisible, $A'$ is finite--dimensional, and the map $u$ factors through the relative Frobenius ${A''}^{(p)} \to A''$.  Write $\partial: \Ext^1 A' \to \Ext^2 A''$ for the going--around map.  The following are true:
-\begin{itemize}
-\item The Hopf algebra $A''$ is connected and $F$--divisible.
-\item The map $\partial$ induces an isomorphism \[\Sym^* \Ext^1 A' \to \Ext^* A''.\]
-\item Let $y_1, \ldots, y_n$ form a basis for $\Ext^1 A'$.  Then $\Ext^* A'$ is freely generated by the elements $y_*$ as a module over $\Ext^* A$. \qed
-\end{itemize}
-\end{theorem}
-
-\begin{corollary}\citeme{Example 2.2.12 of Hopkins--Lurie}
-If $A$ is a connected $p$--divisible Hopf $k$--algebra, then \[k \to A[p^j] \to A \xrightarrow{p^j} A \to k\] is such an exact sequence.  Hence, $\Ext^* A$ is isomorphic to the symmetric algebra on $\Ext^1 A[p^j]$.  \qed
-\end{corollary}
-
-\citeme{Proof of 2.4.11 from Hopkins--Lurie} Set $A = K(n)_0 G$.  The $E_2$--page of the relevant Eilenberg--Moore spectral sequence is given by \[\Ext_A^* \otimes K_\Gamma^* \Rightarrow K_\Gamma^* BG.\]  Since $\Spf A^\vee$ is $p$--divisible, we have an exact sequence of Hopf algebras \[k \to A[p] \to A \xrightarrow{[p]} A \to k.\]  It's supposed to follow that \[\dim_k \Ext^1_{A[p]} = \binom{n}{m-1} - \binom{n-1}{m-1} = \binom{n-1}{m},\] using $\height(A) = \binom{n}{m-1}$, $\dim(A) = \binom{n-1}{m-1}$, and $\dim_k \Ext^1_A = \dim DM(A) / F \cdot DM(A)$ (cf.\ Remark 2.2.4).  It follows from the Example above that the $E_2$--page of this spectral sequence is a polynomial $k$--algebra on $\binom{n-1}{m-1}$ generators, concentrated in even degrees, so that the spectral sequence collapses.  In turn, it follows that $K(n)^0 BG$ is a power series algebra on as many generators.
-
-\citeme{Proof of 2.4.12 from Hopkins--Lurie} Now we have to identify the Hopf algebra structure on this (as an alternating power).
-
-\todo[inline]{\textbf{Maybe the right thing to do here is to postpone the proof of 2.4.12 until tomorrow, when we introduce Dieudonn\'e theory?  It looks pretty heavy, and it's definitely Dieudonn\'e-y.}}
-
-
-
-
-
-
-
-
-
-\begin{remark}
-You'll notice that in $K_* \OS{H}{q+1}$ if we let the $q$--index tend to $\infty$, we get the $K$--homology of a point.  This is another way to see that the stable cooperations $K_* H$ vanish, meaning that the \emph{only} information present comes from unstable cooperations.\todo{We could even provide a quick proof of the stable calculation?  Cf.\ http://mathoverflow.net/questions/220952/localization-at-the-johnson-wilson-spectrum-and-rationalization, http://mathoverflow.net/a/99211/1094 .}
-\end{remark}
-
-\begin{remark}
-Since everything in sight is even, you also get a calculation of the $E$--theory for free.  In fact, as Hopf algebras, \[E_\Gamma \OS{H(\Q/\Z)}{q} \simeq \Alt^q E_\Gamma \OS{H(\Q/\Z)}{1}.\]
-\end{remark}
-
-\begin{remark}
-Also mention the base--change type formula: as an abelian group, a positive characteristic field $k$ splits as a wedge of $C_p$s, so \[K_* \OS{Hk}{*} = K_* \OS{H\F_p}{*} \otimes_{\F_p} k.\]
-\end{remark}
-
-
-
-
-
-Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Postnikov towers and so on?
+This is an impressively broad theorem: the loopspaces $\OS{MU}{2*}$ are quite complicated, and that any general statement can be made about them is remarkable.  That this fact follows from a calculation in $H\F_p$--homology and some niceness observations is meant to showcase the density of $\G_a$ inside of $\moduli{fg}$.  However, \Cref{UnstableCoopnsForHF2AndGa} indicates that this Corollary does not cover all possible cases that the comparison map in \Cref{ComparisonMapInCOUnstableCoopns} becomes an isomorphism.  In the remainder of the Case Study, we will investigate two other classes of $E$ and $G$ where this holds.
 
 
 
@@ -475,131 +377,139 @@ Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on fini
 
 \section{Dieudonn\'e modules}
 
-Our goal today is strictly algebraic: we have seen that the category of finite dimension Hopf algebras over a ground field $k$ is an abelian category.  This means that it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \emph{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, starting with three different presentations of the subject.
-
----
+Our goal today is strictly algebraic: we have seen that the category of finite dimension Hopf algebras over a ground field $k$ is an abelian category.  This means that it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \textit{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, starting with three different presentations of the subject.\footnote{Emphasis on ``\emph{some of the results}''.  Dieudonn\'e theory is an enormous subject with many interesting results both internal and connected to arithmetic geometry.}
 
 \citeme{Weinstein's geometry of Lubin--Tate spaces notes}
+Start with a formal line $V$ over a ground ring $k$, let $\G$ denote $V$ equipped with a group structure, and let $\Omega^1_{V/k}$ be the module of K\"ahler differentials on $V$.  We have previously been interested in the \textit{invariant differentials} $\omega_{\G} \subseteq \Omega^1_{V/k}$ on $V$.  In the case that $k$ was a $\Q$--algebra, we saw that all differentials can be integrated and hence we gain access to a logarithm for $\G$.  On the other hand, if $k$ has positive characteristic $p$ then there's an obstruction to integrating terms with exponents of the form $-1 \pmod p$, which led us to the notion of $p$--height explored in \Cref{MfgI:Height}.
 
-For a formal variety $V$ over the ground ring $k$, let $\Omega^1_{V/k}$ be its module of K\"ahler differentials and let $\Omega^*_{V/k}$ be the algebraic de Rham complex.  If $k$ is a $\Q$--algebra, then higher cohomology vanishes since exact forms can be integrated, but if $k$ has positive characteristic then there's an obstruction to integrating things with exponents of the form $-1 \pmod p$.  Now put a group structure $\G$ on the formal variety.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that $\mu^* - \pi_1^* - \pi_2^*$ is zero (at the chain level).  If we weaken this to requesting that that difference be \emph{exact}, we arrive at the sub--$A$--module $D(\G/A)$ of $H^1_{dR}(\G/A)$ which are cohomologically translation invariant.
+A different thing we can do is notice that $\Omega^1_{V/k}$ forms the first level of the algebraic de Rham complex $\Omega^*_{V/k}$.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that $\mu^* - \pi_1^* - \pi_2^*$ is zero \emph{at the chain level}.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the algebraic de Rham complex.  This condition begets a sub--$k$--module $D(\G/k)$ of $H^1_{dR}(\G/k)$ which are cohomologically translation invariant.
 
-\begin{lemma}
-Take $A$ to be $\Z$--flat and set $K = A \otimes \Q$.  Let $x$ be a coordinate on $\G$.  We then have a diagram of exact rows
+\todo{You switch to talking about $A$ rather than $k$ here, without talking about what happens to your relative K\"ahler differentials.  Be sure to explain why the ``integrality'' in the following Theorem is good for anything.}
+\begin{example}
+Let $A$ be a $\Z$--flat ring, and set $K = A \otimes \Q$, so that $A \to K$ is an injection.  Let $x$ be a coordinate on a formal group $\G$ over $A$.  There is then a diagram of exact rows
 \begin{center}
 \begin{tikzcd}
 0 \arrow{r} & x A\ps{x} \arrow{r} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{x} \right\} \arrow{r}{d} & H^1_{dR}(\G/A) \arrow{r} & 0 \\
-0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[-,double]{u} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{X}, \partial f \in A\ps{x,y} \right\} \arrow{u} \arrow{r}{d} & D(\G/A) \arrow{r} \arrow{u} & 0,
+0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[-,double]{u} & \left\{ f \in x K\ps{x} \middle| df \in A\ps{X}, \delta f \in A\ps{x,y} \right\} \arrow{u} \arrow{r}{d} & D(\G/A) \arrow{r} \arrow{u} & 0,
 \end{tikzcd}
 \end{center}
-where $\partial[\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
-\end{lemma}
+where $\delta[\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
+\end{example}
 
-\begin{lemma}
-In the case that $\G$ is $p$--divisible, there is an exact sequence \[0 \to \omega_{\G} \to D(\G/A) \to \operatorname{Lie} \G^\vee \to 0.\]
-\end{lemma}
+% \begin{lemma}
+% In the case that $\G$ is $p$--divisible, there is an exact sequence \[0 \to \omega_{\G} \to D(\G/A) \to \operatorname{Lie} \G^\vee \to 0.\]
+% \end{lemma}
 
-\begin{remark}
-Let $A$ be a complex abelian variety, in which case there is a classical Hodge decomposition \[0 \to H^0(A; \Omega^1) \to H^1_{dR}(A; \C) \to H^1(A; \sheaf O_A) \to 0.\]  The first term agrees with invariant differentials, and the second term agrees with $\operatorname{Lie} A^\vee$.
-\end{remark}
+% \begin{remark}
+% Let $A$ be a complex abelian variety, in which case there is a classical Hodge decomposition \[0 \to H^0(A; \Omega^1) \to H^1_{dR}(A; \C) \to H^1(A; \sheaf O_A) \to 0.\]  The first term agrees with invariant differentials, and the second term agrees with $\operatorname{Lie} A^\vee$.
+% \end{remark}
+
+The flatness condition in the Example above is important to getting the calculation to work out right, and of course it is not satisfied when working over our field $k$ of positive characteristic $p$.  However, de Rham cohomology has the following remarkable lifting property (which we have specialized to $H^1_{dR}$):
 
 \begin{theorem}
-Let $A$ be a $\Z_p$--flat ring, let $f_1(x), f_2(x) \in A\ps{x}$ without constant term, and let $\omega \in A\ps{x} dx$ be a differential.  If $f_1 \equiv f_2 \pmod{pA}$, then $f_1^*(\omega) - f_2^*(\omega)$ is exact. \qed \todo{This is a really easy Poincar\'e Lemma type thing.}\todo{Categorically: if $f_1, f_2: V \to V'$ are maps of pointed formal varieties which agree mod $p$, then they induce the same map on $H^1_{dR}$.}
+Let $A$ be a $\Z_{(p)}$--flat ring, let $f_1(x), f_2(x) \in A\ps{x}$ be power series without constant term (i.e., pointed maps of formal lines).  If $f_1 \equiv f_2 \pmod{pA}$, then for any differential $\omega \in A\ps{x} dx$ the difference $f_1^*(\omega) - f_2^*(\omega)$ is exact.
 \end{theorem}
+\begin{proof}
+Write $\omega = dg$ for $g \in K\ps{x}$, and write $f_2 = f_1 + p\Delta$.  Then
+\begin{align*}
+\int \left( f_2^* \omega - f_1^* \omega \right) & = g(f_2) - g(f_1) = g(f_1 + p\Delta) - g(f_1) \\
+& = \sum_{n = 1}^\infty \frac{(p\Delta)^n}{n!} g^{(n)}(f_1).
+\end{align*}
+Since $g' = \omega$ is $A$--integral, so is $g^{(n)}$ for all $n$, and $p^n/n!$ is $A$--integral as well.
+\end{proof}
 
-\begin{corollary}
-Let $f: \G' \to \G$ be a map of pointed varieties which, mod $p$, is a group homomorphism.  Then $f^*$ maps $D(\G/A)$ into $D(\G'/A)$.  Additionally, if $f_3 = \equiv f_1 + f_2 \pmod{p}$ in $\InternalHom{FormalGroups}(\G'/p, \G/p)$ then $f_3^* = f_1^* + f_2^*$ as maps $D(\G/A) \to D(\G'/A)$.  \qed
+\begin{corollary}[{$H^1_{dR}$ is ``crystalline''}]\label{H1dRIsCrystalline}
+If $f_1, f_2\co V \to V'$ are maps of pointed formal varieties which agree mod $p$, then they induce the same map on $H^1_{dR}$. \qed
 \end{corollary}
 
+Several remarkable lifting lemmas follow from \Cref{H1dRIsCrystalline}.  For instance, any map $f\co \G' \to \G$ of pointed varieties which is a group homomorphism mod $p$ restricts to give a map $f^*\co D(\G/A) \to D(\G'/A)$.  Additionally, if $f_1$, $f_2$, and $f_3$ are three such maps of pointed varieties with $f_3 \equiv f_1 + f_2 \pmod{p}$ in $\CatOf{FormalGroups}(\G'/p, \G/p)$, then $f_3^* = f_1^* + f_2^*$ as maps $D(\G/A) \to D(\G'/A)$.  In the case that $k$ is a \emph{perfect} field, the universality of $A = \W_p(k)$ among infinitesimal deformations of $k$ emboldens us to make the following definition\footnote{In a more careful exposition, one might assign to each potential thickening and lift a ``Dieudonne module'', and then work to show that they all arise as base-changes of this universal one.}\todo{Maybe cite a reference that does this?}:
+
 \begin{definition}
-Let $k$ be a perfect field of characteristic $p > 0$, and let $\G_0$ be a $p$--divisible group over $k$ of finite height $d$.  Then, choose a lift $\G$ of $\G_0$ to $W(k)$, and define the \textit{(contravariant) Dieudonn\'e module} of $\G_0$ by $M(\G_0) := D(\G / W(k))$.
+Let $k$ be a perfect field of characteristic $p > 0$, and let $\G_0$ be a $p$--divisible group over $k$ of finite height $d$.\todo{Does this actually fail for $\G_0 = \G_a$?}  Then, choose a lift $\G$ of $\G_0$ to $\W_p(k)$, and define the \textit{(contravariant) Dieudonn\'e module} of $\G_0$ by $M(\G_0) := D(\G / W(k))$.
 \end{definition}
 
-This is independent of choice of lift.  (Pick a map just of formal varieties which restricts to the identity on $\G_0$, then use crystallineness.)  This is another statement of what it means for $M$ (or $H^1_{dR}$) to be \textit{crystalline}.
+\begin{remark}
+This is independent of choice of lift up to coherent isomorphism.  Given any other lift $\G'$ of $\G_0$ to $\W_p(k)$, we can find \emph{some} power series --- not necessarily a group homomorphism --- covering the identity on $\G_0$.  \Cref{H1dRIsCrystalline} then shows that this map induces an isomorphism between the two potential definitions of $M(\G_0)$.
+\end{remark}
 
-The Frobenius map $x \mapsto x^p$ is a group homomorphism mod $p$, so induces a $\sigma$--linear map $F\co M(\G_0) \to M(\G_0)$.  This means $F(\alpha v) = \sigma(\alpha) F(v)$.  The Verschiebung map is given by the formula \[\sum_{n=1}^\infty a_n x^n \mapsto p \sum_{n=1}^\infty a_{pn}^{\sigma^{-1}} x^n,\] and it satisfies $FV = p$.
+Finally, note that the module $M(\G_0)$ carries some natural operations:
+\begin{itemize}
+\item Arithmetic: $M(\G_0)$ is naturally a $\W_p(k)$--module.
+\item Frobenius: The map $x \mapsto x^p$ is a group homomorphism mod $p$, so by \Cref{H1dRIsCrystalline} induces a $\phi$--semilinear map $F\co M(\G_0) \to M(\G_0)$, i.e., one satisfies $F(\alpha v) = \alpha^\phi F(v)$, where $\phi$ is a lift of the Frobenius on $k$ to $\W_p(k)$.
+\item Verschiebung: The Verschiebung map is given by the mysterious formula\todo{Is this a non-mysterious formula?} \[V\co \sum_{n=1}^\infty a_n x^n \mapsto p \sum_{n=1}^\infty a_{pn}^{\phi^{-1}} x^n.\] It satisfies anti-semilinearity, $aV(v) = V(a^\phi v)$, and also $FV = p$.
+\end{itemize}
+With this, we come to the main theorem of this section:
 
-\todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
-\todo{Weinstein's Section 1 also ends with a discussion of the Dieudonn\'e functor extended to the crystalline site.  This is necessary to get access to the period map.}
+\begin{theorem}
+The functor $M$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$, called \textit{Dieudonn\'e modules}. \qed \todo{Add in words about being uniform and reduced?}
+\end{theorem}
 
----
+\begin{remark}
+Several invariants of the formal group associated to a Dieudonn\'e module can be read off from the functor $M$.  For example, the $\W_p(k)$--rank of $M$ is equal to the $p$--height of $\G_0$.  Additionally, the quotient $M / FM$ is canonically isomorphic to the cotangent space $T_0^* \G_0 \cong \omega_{\G_0}$.  However, the subspace of $M$ spanned by $\omega_{\G}$ is \emph{sensitive to choice of lift}, unlike the rest of this construction.  This observation is the wellspring of the Gross--Hopkins period map.
+\end{remark}
 
-Let $\G$ be a formal Lie group and consider Cartier's \textit{functor of curves} $C\G = \InternalHom{FormalSchemes}(\A^1, \G)$.  We can imagine three kinds of operations on a curve $\gamma: \A^1 \to \G$:
+\begin{corollary}\label{FormOfStabilizerGroup}
+For $\Gamma_d$ the Honda formal group law of height $d$ over $\F_{p^d}$, we compute \[\Aut \Gamma_d \cong \left. \W_p(k) \<F\> \middle/ \left( \begin{array}{c} Fw = w^\phi F, \\ F^d = p \end{array} \right) \right.^\times.\]
+\end{corollary}
+\begin{proof}
+The Dieudonn\'e module associated to $\Gamma_d$ satisfies $F^d = p$, and hence $M(\Gamma_d/k)$ is presented as a \emph{quotient} of the ring of operators on Dieudonn\'e modules.  The endomorphism ring of such a module is canonically isomorphic to the module itself.
+\end{proof}
+
+We now turn to alternative presentations of the Dieudonn\'e module functor, which have their own advantages and disadvantages.  Let $\G$ again be a formal Lie group over a field $k$ of positive characteristic $p$, and consider Cartier's \textit{functor of curves} \[C\G = \CatOf{FormalSchemes}(\A^1, \G).\]  This is, again, a kind of relaxing of familiar data from Lie theory: rather than studying exponential curves, $C\G$ tracks all possible curves.  In \Cref{MfgI:Height}, we considered three kinds of operations on a given curve $\gamma\co \A^1 \to \G$:
 \begin{itemize}
 \item Homothety: given a scalar $a \in A$, we define $[a] \cdot \gamma(t) = \gamma(at)$.
 \item Verschiebung: given an integer $n \ge 1$, we define $V_n \gamma(t) = \gamma(t^n)$.
-\item Frobenius: given an integer $n \ge 1$, we define \[F_n \gamma(t) = \sum_{i=1}^n{}_{\G} \gamma(\zeta_n t^{1/n}),\] where $\zeta_{n}$ is an $n${\th} root of unity.  This formula is invariant under permuting the root of unity chosen, so gives a series lying in the original ground ring.
+\item Arithmetic: given two curves $\gamma_1$ and $\gamma_2$, we can use the group law on $\G$ to define $\gamma_1 +_{\G} \gamma_2$.  Moreover, given $\ell \in \Z$, the $\ell$--fold sum in $\G$ gives an operator \[\ell \cdot \gamma = \overset{\text{$\ell$ times}}{\overbrace{\gamma +_{\G} \cdots +_{\G} \gamma}}.\]  This extends to an action by $\ell \in \W_p(k)$.
+\item Frobenius: given an integer $n \ge 1$, we define \[F_n \gamma(t) = \sum_{i=1}^n{}_{\G} \gamma(\zeta_n t^{1/n}),\] where $\zeta_{n}$ is an $n${\th} root of unity.  (This formula is invariant under permuting the root of unity chosen, so determines a curve defined over the original ground ring.)
 \end{itemize}
 
-Fixing a prime $p$, we can define what it means for a curve to be $p$--typical: $\gamma$ is $p$--typical when $F_n \gamma = 0$ for $n \ne p^j$.  This is an algebraic condition, and so we write $D \subseteq C$ for the functor of $p$--typical curves, a subscheme of all curves.  In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D\G$, and there is a natural section $C\G \to D\G$ called $p$--typification.
-
-\begin{remark}
-This actually agrees with $p$--typicality as discussed earlier in the semester: a logarithm $\G \to \G_a$ is said to be $p$--typical when, considered as a curve on $\G_a$, it satisfies the definition of $p$--typicality above.  The $p$--typification construction given there is a specialization of a natural one for all curves on a formal group.
-\end{remark}
-
-The (covariant) Dieudonn\'e module associated to a $p$--local formal group $\G$ is $D\G$.  It carries a residual action of the homotheties, $V_p$, and $F_p$.
-
-\todo[inline]{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...}
-
----
-
-Cartier duality: There is a duality on commutative and cocommutative finite--dimensional Hopf algebras, given by taking the linear dual.  There is also a duality on Dieudonn\'e modules, also given by taking the linear dual.  These also relate the two kind of Dieudonn\'e functors described above.
-
----
-
-Define $S(n)$ to be the free Hopf algebra on a single generator in degree $n$, so that at odd primes $S(2n+1) = \Lambda[x]$ and $S(2n) = P[x]$ (and at $p = 2$ all the $S(n)$ are polynomial algebras).  Schoeller proves that there's a projective cover $H(n) \to S(n)$.  Most of the time this map is the identity, except in the two cases: $p = 2$ and $n = 2^m k$ for $k$ odd and $m > 0$, or $p > 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$.  In these exceptional cases, $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the ``Witt vector diagonal''.
-
-the projective generators
-
-$\CatOf{HopfAlgebras}^{> 0}_{\F_p/}$
-
-Classification of finite Hopf algebras over $\F_p$ with $\Gm$--action
-
-The $H(n)$ form a series of projective \emph{generators} of the category.  So, we can give a Tannakian description of the category as modules over the ``endomorphism ring'' $\mathsf{Hom}(H(*), H(*))$, which is calculable.  You end up seeing the same data as a covariant Dieudonn\'e module, which is cool, and generally given a Hopf algebra $H$ you can build a graded Dieudonn\'e module functor by \[D_n(H) = \CatOf{HopfAlgebras}_{/\F_p}(H(n), H).\]
-
----
-
-We have only described a framework for encoding Hopf algebras so far.  We also want to incorporate Hopf rings into our discussion, since we are coming off of the study of unstable cooperations.  Hunton and Turner were among the first to consider ``bilinear'' constructions on Hopf algebras in the abstract, and a similar study of bilinearity on the level of Dieudonn\'e modules is due to Goerss and to Buchstaber--Lazarev.  Our definitions are motivated by the following observation:
-
-\begin{lemma}\citeme{Lemma 7.6 of Goerss's bilinear paper, Lemma 7.1.c of Ravenel--Wilson}
-The pairing \[\circ \co D(K_\Gamma \OS{H\Z/p^j}{k_1}) \times D(K_\Gamma \OS{H\Z/p^j}{k_2}) \to D(K_\Gamma \OS{H\Z/p^j}{k_1 + k_2})\] is bilinear in $\W(k)$ and satisfies
-\begin{align*}
-V(x \circ y) & = Vx \circ Vy, &
-Fx \circ y & = F(x \circ Vy), &
-x \circ Fy & = F(Vx \circ y). \qed
-\end{align*}
-\end{lemma}
-
 \begin{definition}
-The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+A curve $\gamma$ on a formal group is $p$--typical when $F_n \gamma = 0$ for $n \ne p^j$.  Write $D_p\G \subseteq C\G$ for the subset of $p$--typical curves.  In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D_p \G$, and there is a natural section $C\G \to D_p \G$ called $p$--typification, given by the same formula as in \Cref{EveryLogHaspTypification}.
 \end{definition}
 
-\begin{theorem}\citeme{Theorem 7.7 of Goerss's bilinear paper}
-The natural map \[D(M) \boxtimes D(N) \to D(M \boxtimes N)\] is an isomorphism. \qed
-\end{theorem}
-
-Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.\todo{It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.  I guess a related question is: what's the relationship between $Q^\ast$ and the free Dieudonn\'e algebra functor?  Do they commute?  Almost certainly not...}
-
-
-You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
-
-
-As a running example, you should rephrase a bunch of the results from the previous lecture (on $K(d)_* \OS{Hk}*$) in terms of Dieudonn\'e modules.
-
 \begin{remark}
-\todo[inline]{There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power group scheme without passing through Dieudonn\'e modules.  It should at least be mentioned.}
+Precomposing with a coordinate $\A^1 \cong \G$ allows us to think of a logarithm $\log\co \G \to \G_a$ as a curve on $\G_a$.  The definition of $p$--typicality given in \Cref{DefnpTypicalLog} coincides with the one given here.
 \end{remark}
 
+Surprisingly, this construction captures the same data as the previous one.
 
-Definition of the inverse functor to the Dieudonn\'e module functor?  I think this appears in the formal groups notes.
+\begin{theorem}
+The functor $D_p$ determines a \emph{covariant} equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$.  In fact, $D_p(\G) \cong M(\G/k)^*$. \qed \todo{Add in words about being uniform and reduced?}
+\end{theorem}
 
+Finally, we turn to a third presentation of the Dieudonn\'e module of a formal group, using more pedestrian methods.  One can show that the category of \emph{finite--dimensional} graded connected Hopf algebras is an abelian category, and hence must admit a presentation as modules over some (perhaps noncommutative) ring.  The first step to accessing this presentation is to find a collection of projective generators for this category.
 
-\begin{corollary}\label{FormOfStabilizerGroup}
-For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$ of positive characteristic $p$, we compute \[\Aut \Gamma_d \cong \left. \W_p(k) \<S\> \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right..\]
+\begin{theorem}[{\cite{Schoeller}}]
+Let $S(n)$ denote the free graded-commutative Hopf algebra on a single generator in degree $n$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
+\begin{itemize}
+\item If either $p = 2$ and $n = 2^m k$ for $2 \nmid k$ and $m > 0$ \emph{or} $p \ne 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$, then $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the Witt vector diagonal.\todo{Put in a citation about what ``the Witt vector diagonal'' means.}
+\item Otherwise, $H(n) = S(n)$ is the identity.
+\qed
+\end{itemize}
+\end{theorem}
+
+\begin{corollary}
+It follows that the category $\CatOf{HopfAlgebras}^{> 0, fin}_{\F_p/}$ of finite--dimensional graded connected Hopf algebras is a full subcategory of modules over \[\bigoplus_n \CatOf{HopfAlgebras}^{> 0, fin}_{\F_p/}(H(n), H(n)). \qed\]
 \end{corollary}
-An easy Corollary of the structure of the Dieudonn\'e ring is the endomorphism ring of the Honda formal group.
+
+\begin{theorem}
+Write $D_n(H)$ for the $n${\th} graded part of the equivalence: \[D_n(H) = \CatOf{HopfAlgebras}_{/\F_p}(H(n), H).\]  For $\G$ a formal group of finite height, the system \[\lim_{j \to \infty} \bigoplus_n D_n\left(\sheaf O_{\G[p^j]}\right)\] is naturally equivalent to the covariant Dieudonn\'e module $D_p(\G)$. \qed
+\end{theorem}
 
 
-You could also try to give the Devinatz--Hopkins formula for the stabilizer action.  It's entirely a matter of different presentations of the Dieudonn\'e module... although it may require you to understand Dieudonn\'e crystals, which you are \emph{not} up for.
+\todo[inline]{It would be nice to tie these presentations together, at least with unjustified claims.  What curve does a cohomologically left-invariant form get sent to?  What does the appearance of the Witt scheme in the third presentation tell you about the relationship to the second presentation?}
+
+
+
+
+
+
+
+\todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
+\todo{Weinstein's Section 1 also ends with a discussion of the Dieudonn\'e functor extended to the crystalline site.  This is necessary to get access to the period map.}
+\todo{Definition of the inverse functor to the Dieudonn\'e module functor?  I think this appears in the formal groups notes.}
+\todo[inline]{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...}
+\todo{You could also try to give the Devinatz--Hopkins formula for the stabilizer action.  It's entirely a matter of different presentations of the Dieudonn\'e module... although it may require you to understand Dieudonn\'e crystals, which you are \emph{not} up for.}
 
 
 
@@ -609,7 +519,62 @@ You could also try to give the Devinatz--Hopkins formula for the stabilizer acti
 
 \section{Brown--Gitler spectra}
 
-Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B_n$ such that \[B_{n*}(X) = D_n H_* \Loops^\infty X.\]
+Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B(n)$ such that \[B(n)_n(X) = D_n H_* \Loops^\infty X.\]
+
+
+\begin{lemma}[{\cite[Lemma 3.2]{GLM}}]
+For $k < 0$, $\pi_k B(n) = 0$.
+\end{lemma}
+\begin{proof}
+First, rearrange:
+\begin{align*}
+\pi_k B(n) & = B_n S^{n-k} = D_n H_* \Loops^\infty \Susp^\infty S^{n-k}.
+\end{align*}
+Since $k < 0$, $n$ is below the connectivity of $\Loops^\infty \Susp^\infty S^{n-k}$.
+\end{proof}
+
+
+\begin{definition}[{\cite[Lemma 2.3]{GLM}}]
+There is an adjunction \todo{Put in an adjunction dash.}
+\begin{center}
+\begin{tikzcd}
+\CatOf{HopfAlgebras}^{>0, fin}_{k/} \arrow[shift left=0.3em, "Q"]{r} & V{\mhyphen}\CatOf{Modules} \arrow[shift left=0.3em, "U"]{l},
+\end{tikzcd}
+\end{center}
+where $V{\mhyphen}\CatOf{Modules}$ is the category of graded $\F_p$--modules with a Verschiebung operator $V$ and $Q$ is the indecomposables functor.
+\end{definition}
+
+\begin{lemma}[{\cite[Lemma 2.4]{GLM}}]
+$D_n U(M) = M_n$. \qed
+\end{lemma}
+
+\begin{lemma}[{\cite[Lemma 3.3]{GLM}}]
+There is a natural onto map $B(n)_n X \to H_n X$.
+\end{lemma}
+\begin{proof}
+Suppose at first that $X$ is a spectrum with counit map $\sigma\co \Susp^\infty \Loops^\infty X \to X$.  Then there is a factorization
+\begin{center}
+\begin{tikzcd}
+H_* \Loops^\infty X \arrow{d} \arrow["H_*\sigma"]{r} & H_* X \\
+Q H_* \Loops^\infty X \arrow[densely dotted,"(3)"]{r} & \Loops^\infty H_* X \arrow["(1)"]{u},
+\end{tikzcd}
+\end{center}
+since $H_* \Loops^\infty X$ is already an unstable module and $\Loops^\infty H_* X$ has no multiplicative structure.  This factored map is adjoint to a map \[H_* \Loops^\infty X \to U \Loops^\infty H_* X\] to which we can apply $D_n$:
+\begin{center}
+\begin{tikzcd}
+D_n H_* \Loops^\infty X \arrow[-,double]{d} \arrow["(4)"]{r} & D_n U \Loops^\infty H_* X \arrow[-,double]{d} \\
+B(n)_n X & {[\Loops^\infty H_* X]_n} \arrow["(2)","{\text{incl.}}"']{r} & H_n X.
+\end{tikzcd}
+\end{center}
+If $X = \Susp^\infty Z$ is itself a suspension spectrum, then (1) and (2) become equalities (by unstability of $H_* \Susp^\infty Z$), and (3) and (4) become onto (by generation and by exactness respectively).
+\end{proof}
+
+\begin{definition}[{\cite[Example 3.6]{GLM}}]
+Let $G(n)$ be the free unstable $\mathcal A$--module on one generator of degree $n$, so that \[\CatOf{UnstableModules}_{\mathcal A_*}(G(n), M) = M_n.\]  This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if $p = 2$}. \end{cases}\]  The Spanier--Whitehead dual of this right-module is the left-module \[\Susp^n D G(n) = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if $p = 2$}. \end{cases}\]
+\end{definition}
+
+
+
 
 
 
@@ -662,6 +627,144 @@ Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$.  The main point is th
 
 
 \todo[inline]{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.}
+
+
+----
+
+
+We have only described a framework for encoding Hopf algebras so far.  We also want to incorporate Hopf rings into our discussion, since we are coming off of the study of unstable cooperations.  Hunton and Turner were among the first to consider ``bilinear'' constructions on Hopf algebras in the abstract, and a similar study of bilinearity on the level of Dieudonn\'e modules is due to Goerss and to Buchstaber--Lazarev.  Our definitions are motivated by the following observation:
+
+\begin{lemma}\citeme{Lemma 7.6 of Goerss's bilinear paper, Lemma 7.1.c of Ravenel--Wilson}
+The pairing \[\circ \co D(K_\Gamma \OS{H\Z/p^j}{k_1}) \times D(K_\Gamma \OS{H\Z/p^j}{k_2}) \to D(K_\Gamma \OS{H\Z/p^j}{k_1 + k_2})\] is bilinear in $\W(k)$ and satisfies
+\begin{align*}
+V(x \circ y) & = Vx \circ Vy, &
+Fx \circ y & = F(x \circ Vy), &
+x \circ Fy & = F(Vx \circ y). \qed
+\end{align*}
+\end{lemma}
+
+\begin{definition}
+The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+\end{definition}
+
+\begin{theorem}\citeme{Theorem 7.7 of Goerss's bilinear paper}
+The natural map \[D(M) \boxtimes D(N) \to D(M \boxtimes N)\] is an isomorphism. \qed
+\end{theorem}
+
+Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.\todo{It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.  I guess a related question is: what's the relationship between $Q^\ast$ and the free Dieudonn\'e algebra functor?  Do they commute?  Almost certainly not...}
+
+
+You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
+
+
+
+
+
+
+\section{Cooperations between geometric points}
+
+\todo{This isn't a good title. You specifically mean from the additive point to a finite height point.}
+
+Throughout today, we will write $K$ for a Morava $K$--theory $K_\Gamma$ (which, if you like, you can take to be $K(d)$) and $A$ for a finitely generated abelian group, and $H$ for the associated Eilenberg--Mac Lane spectrum.  Our goal is to study the unstable mixed cooperations $K_* \OS{H}{*}$.  Of course, this fits into our broader program of understanding various forms of unstable cooperations, especially if we were to pursue a ``stalkwise analysis'' of the sort in \Cref{ChapterFiniteSpectra}.  However, this calculation is especially interesting because of the appearance of the Eilenberg--Mac Lane spaces $\OS{H}{*}$ in other settings.  For instance, if we want to analyze the $K$--homology of a Postnikov tower (as we will in \Cref{ChapterSigmaOrientation}), we will naturally encounter pieces of $K_* \OS{H}{*}$, and we would be wise to have a firm handle on these objects.  It is another tribute to the power of structure that the successful way to approach this computation is not one-at-a-time, as one coming from the Postnikov perspective might attempt, but all-at-once, as suggested by the unstable cooperations picture.
+
+Our calculation will eventually turn into an induction, so we will pursue a simple example first: the $K$--theory of just the classifying space $BA$, rather than a general Eilenberg--Mac Lane space.  Since $K$--theory has K\"unneth isomorphisms and $B(A_1 \times A_2) \simeq BA_1 \times BA_2$, it suffices to do the computation just for $A = C_{p^j}$.
+
+\begin{theorem}\citeme{Theorem 5.7 of RW, or Prop 2.4.4 of HL}
+There is an isomorphism \[BS^1[p^j]_K \cong BS^1_K[p^j].\]
+\end{theorem}
+\begin{proof}
+Consider the diagram of spherical fibrations:\todo{Put in a pullback corner here.}
+\begin{center}
+\begin{tikzcd}
+S^1 \arrow{r} \arrow[-,double]{d} & B(S^1[p^j]) \arrow{r} \arrow{d} & BS^1 \arrow{d}{p^j} \\
+S^1 \arrow{r} & ES^1 \arrow{r} & BS^1.
+\end{tikzcd}
+\end{center}
+The induced long exact sequence (known as the Gysin sequence, or as the couple in the Serre spectral sequence for the first fibration) takes the form
+\begin{center}
+\begin{tikzcd}
+& K_* BS^1 \arrow{rd}{- \frown [p^j](x)} \\
+K_*(BS^1[p^j]) \arrow{ru} & & K_* BS^1 \arrow{ll}{\partial}
+\end{tikzcd}
+\end{center}
+where $x$ is a coordinate on $BS^1_K$.  Because $BS^1_K$ is of finite height, the right diagonal map is surjective.  It follows that $\partial = 0$, and so this gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[B(S^1[p^j])_K \to BS^1_K \xrightarrow{p^j} BS^1_K. \qedhere\]
+\end{proof}
+
+There are a couple of approaches to the rest of this calculation, i.e., $K_* \OS{H}{q}$ for $q > 1$.  The original, due to Ravenel and Wilson, is to complete the calculation for the smallest abelian group $C_p$ and then induct upward toward more complicated groups like $C_{p^j}$ and $C_{p^\infty}$.  More recently, there is also a preprint of Hopkins and Lurie that begins with $A = C_{p^\infty}$ and then works downward.  We will do the \emph{easy} parts of both calculations, to give a feel for their relative strengths and deficiencies.
+
+The Ravenel--Wilson version of the calculation proceeds much along the same lines as \Cref{UnstableSteenrodCoops}.  We will study the bar spectral sequences \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}\] for different indices $q$ and use the $\circ$--product to push differentials around among them.  We begin by rephrasing the calculation above in terms of the case $q = 0$.\citeme{Theorem 8.1 of RW}  In that setting, the ground algebra is given by \[K_* \OS{H\Z/p^j}{0} = K_*[[1]] / \<[1]^{p^j} - 1\> = K_*[[1] - [0]] / \<[1] - [0]\>^{p^j}.\]  Then, the $\Tor$--algebra for the truncated polynomial algebra $K_*[a_\emptyset] / a_\emptyset^{p^j}$ is given by the formula \[\Tor^{K_*[a_\emptyset] / a_\emptyset^{p^j}}_{*, *}(K_*, K_*) = \Lambda[\sigma a_\emptyset] \otimes \Gamma[\phi a_\emptyset],\] the combination of an exterior algebra and a divided power algebra.  We know which classes are supposed to survive this spectral sequence, and hence we know where the differentials must be:
+\begin{align*}
+d(\phi a_\emptyset)^{[p^{dj}]} & = \sigma a_\emptyset, \\
+\Rightarrow d(\phi a_\emptyset)^{[i + p^{dj}]} & = \sigma a_\emptyset \cdot (\phi a_\emptyset)^{[i]}.
+\end{align*}
+After this differential the spectral sequence collapses, but there are some multiplicative extensions to sort out when $j > 1$.  Of course, these are all determined by already knowing the multiplicative structure on $K_* \OS{H\Z/p^j}{1}$.
+
+We now turn to the general finite case:
+\begin{theorem}\citeme{Theorems 9.2 and 11.1 of RW}
+Using the $\circ$--product, \[K_* \OS{H\Z/p^j}{q} = \Alt^q \OS{H\Z/p^j}{1}.\]
+\end{theorem}
+\begin{proof}[Proof sketch]
+The inductive step turns out to be extremely index-rich, so I won't be so explicit or complete, but I'll point out the major landmarks.  It will be useful to use the shorthand $a_{(i)} = a_\emptyset^{[p^i]}$, where $(i)$ is thought of as a multi-index with one entry.
+
+We proceed by induction, assuming that $K_* \OS{H\Z/p^j}{q} = \Alt^q \OS{H\Z/p^j}{1}$ for a fixed $q$.  Computing the algebraic homology of $K_* \OS{H\Z/p^j}{q}$ yields a tensor of divided power and exterior classes, a pair for each algebra generator of $K_* \OS{H\Z/p^j}{q}$.  There is then a wonderful rewriting formula:\citeme{Ravenel Wilson, somewhere} \[(\phi a_{(i_1, \ldots, i_q)})^{[p^j]} \equiv  (\phi a_{(i_1, \ldots, i_{q-1})})^{[p^j]} \circ a_{(i_q + j)} \mod *\text{--decomposables}.\]  Since every class can be so decomposed, all the differentials and extensions are determined by the previous spectral sequence.  In particular, classes are hit by differentials exactly when $i_q + j$ is large enough.  It follows that the inductive assumption that $K_* \OS{H\Z/p^j}{q+1}$ is an exterior power holds, and the class $(\phi a_{(i_1, \ldots, i_q)})^{[p^j]}$ represents $a_{(j, i_1 + j, \ldots, i_q + j)}$.\todo{Indicate exactly where the intertwining between different values of $j$ happens.}
+\end{proof}
+
+\begin{remark}
+Note that in the conditions below we are using the induction index to bound the degree of the infinite loopspace, whereas in \Cref{COableCoopnsII} we used the induction index to bound the topological degree of the homology groups.
+\end{remark}
+
+\todo{Mike has said something about the pairing $C_{p^j} \times C_{p^j}^* \to \Q/\Z$ not being functorial in $j$ (so as to pass to the direct limit) which gave me pause.  I should make sure I'm not messing something up here.}
+
+The case $j = 1$ of this proof is messy enough, and the case of a general $j$ requires interrelating the cases using the restriction map $C_{p^j} \to C_{p^{j+1}}$ and the projection map $C_{p^{j+1}} \to C_{p^j}$.  Then, these tools are revisited to give a computation in the limiting case $A = C_{p^\infty}$, where there's a $p$--adic equivalence $HC_{p^\infty} \simeq\widehat{{}_p} \Susp H\Z$.\citeme{Theorem 12.4 of RW}  The calculation in this setting is the most interesting one of all --- after all, it contains the case $BS^1_K$, which is of special interest to us.  Remarkable, it is easier to access directly than passing through all of this intermediate work.  To begin, we need the following algebraic calculation:
+
+\begin{theorem}\citeme{Theorem 2.2.10 of Hopkins--Lurie}\todo{Use the same cohomology notation you have been using for the cohomology of formal groups on previous days.}
+Suppose we have an exact sequence of Hopf $k$--algebras \[k \to A' \to A \xrightarrow{u} A'' \to k\] such that $A$ is connected and $F$--divisible, $A'$ is finite--dimensional, and the map $u$ factors through the relative Frobenius ${A''}^{(p)} \to A''$.  Write $\partial: \Ext^1 A' \to \Ext^2 A''$ for the going--around map.  The following are true:
+\begin{itemize}
+\item The Hopf algebra $A''$ is connected and $F$--divisible.
+\item The map $\partial$ induces an isomorphism \[\Sym^* \Ext^1 A' \to \Ext^* A''.\]
+\item Let $y_1, \ldots, y_n$ form a basis for $\Ext^1 A'$.  Then $\Ext^* A'$ is freely generated by the elements $y_*$ as a module over $\Ext^* A$. \qed
+\end{itemize}
+\end{theorem}
+
+\begin{corollary}\citeme{Example 2.2.12 of Hopkins--Lurie}
+If $A$ is a connected $p$--divisible Hopf $k$--algebra, then \[k \to A[p^j] \to A \xrightarrow{p^j} A \to k\] is such an exact sequence.  Hence, $\Ext^* A$ is isomorphic to the symmetric algebra on $\Ext^1 A[p^j]$.  \qed
+\end{corollary}
+
+\citeme{Proof of 2.4.11 from Hopkins--Lurie} Set $A = K(n)_0 G$.  The $E_2$--page of the relevant Eilenberg--Moore spectral sequence is given by \[\Ext_A^* \otimes K_\Gamma^* \Rightarrow K_\Gamma^* BG.\]  Since $\Spf A^\vee$ is $p$--divisible, we have an exact sequence of Hopf algebras \[k \to A[p] \to A \xrightarrow{[p]} A \to k.\]  It's supposed to follow that \[\dim_k \Ext^1_{A[p]} = \binom{n}{m-1} - \binom{n-1}{m-1} = \binom{n-1}{m},\] using $\height(A) = \binom{n}{m-1}$, $\dim(A) = \binom{n-1}{m-1}$, and $\dim_k \Ext^1_A = \dim DM(A) / F \cdot DM(A)$ (cf.\ Remark 2.2.4).  It follows from the Example above that the $E_2$--page of this spectral sequence is a polynomial $k$--algebra on $\binom{n-1}{m-1}$ generators, concentrated in even degrees, so that the spectral sequence collapses.  In turn, it follows that $K(n)^0 BG$ is a power series algebra on as many generators.
+
+\citeme{Proof of 2.4.12 from Hopkins--Lurie} Now we have to identify the Hopf algebra structure on this (as an alternating power).
+
+\todo[inline]{\textbf{Maybe the right thing to do here is to postpone the proof of 2.4.12 until tomorrow, when we introduce Dieudonn\'e theory?  It looks pretty heavy, and it's definitely Dieudonn\'e-y.}}
+
+\begin{remark}
+\todo[inline]{There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power group scheme without passing through Dieudonn\'e modules.  It should at least be mentioned.}
+\end{remark}
+
+
+
+
+
+
+
+
+
+\begin{remark}
+You'll notice that in $K_* \OS{H}{q+1}$ if we let the $q$--index tend to $\infty$, we get the $K$--homology of a point.  This is another way to see that the stable cooperations $K_* H$ vanish, meaning that the \emph{only} information present comes from unstable cooperations.\todo{We could even provide a quick proof of the stable calculation?  Cf.\ http://mathoverflow.net/questions/220952/localization-at-the-johnson-wilson-spectrum-and-rationalization, http://mathoverflow.net/a/99211/1094 .}
+\end{remark}
+
+\begin{remark}
+Since everything in sight is even, you also get a calculation of the $E$--theory for free.  In fact, as Hopf algebras, \[E_\Gamma \OS{H(\Q/\Z)}{q} \simeq \Alt^q E_\Gamma \OS{H(\Q/\Z)}{1}.\]
+\end{remark}
+
+\begin{remark}
+Also mention the base--change type formula: as an abelian group, a positive characteristic field $k$ splits as a wedge of $C_p$s, so \[K_* \OS{Hk}{*} = K_* \OS{H\F_p}{*} \otimes_{\F_p} k.\]
+\end{remark}
+
+
+
+
+
+Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Postnikov towers and so on?
 
 
 
