@@ -492,12 +492,24 @@ Let $S(n)$ denote the free graded-commutative Hopf algebra on a single generator
 It follows that the category $\CatOf{HopfAlgebras}^{> 0, fin}_{\F_p/}$ of finite--dimensional graded connected Hopf algebras is a full subcategory of modules over \[\bigoplus_n \CatOf{HopfAlgebras}^{> 0, fin}_{\F_p/}(H(n), H(n)). \qed\]
 \end{corollary}
 
+\begin{definition}
+Let $\CatOf{GradedDMods}$ denote the category of graded abelian groups $M$ satisfying
+\begin{enumerate}
+\item $M_{< 1} = 0$.
+\item If $n$ is odd, then $pM_n = 0$.
+\item If $n$ is even, taking the form $n = 2p^m k$ with $p \nmid k$ at odd primes $p$ or $n = 2^m k$ with $2 \nmid k$ at $p = 2$, then $p^{m+1} M_n = 0$.
+\item There are homomorphisms $V\co M_{pn} \to M_n$ and $F\co M_n \to M_{pn}$ (where $n$ is even if $p \ne 2$), together satisfying $FV = p = VF$.
+\end{enumerate}
+\end{definition}
+
 \begin{theorem}
-Write $D_n(H)$ for the $n${\th} graded part of the equivalence: \[D_n(H) = \CatOf{HopfAlgebras}_{/\F_p}(H(n), H).\]  For $\G$ a formal group of finite height, the system \[\lim_{j \to \infty} \bigoplus_n D_n\left(\sheaf O_{\G[p^j]}\right)\] is naturally equivalent to the covariant Dieudonn\'e module $D_p(\G)$. \qed
+The functor $D_*\co \CatOf{HopfAlgebras}^{>0, \fin}_{\F_p/} \to \CatOf{GradedDMods}$ defined by \[D_*(H) = \bigoplus_n D_n(H) = \bigoplus_n \CatOf{HopfAlgebras}^{>0, \fin}_{\F_p/}(H(n), H)\] is an exact equivalence of categories.  Moreover, $D_* H(n)$ is characterized by the equation \[\CatOf{GradedDMods}(D_* H(n), M) = M_n. \qed\]
 \end{theorem}
 
 
 \todo[inline]{It would be nice to tie these presentations together, at least with unjustified claims.  What curve does a cohomologically left-invariant form get sent to?  What does the appearance of the Witt scheme in the third presentation tell you about the relationship to the second presentation?}
+
+\todo[inline]{Work Erick's examples here?}
 
 
 
@@ -508,7 +520,7 @@ Write $D_n(H)$ for the $n${\th} graded part of the equivalence: \[D_n(H) = \CatO
 \todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
 \todo{Weinstein's Section 1 also ends with a discussion of the Dieudonn\'e functor extended to the crystalline site.  This is necessary to get access to the period map.}
 \todo{Definition of the inverse functor to the Dieudonn\'e module functor?  I think this appears in the formal groups notes.}
-\todo[inline]{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...}
+\todo{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...}
 \todo{You could also try to give the Devinatz--Hopkins formula for the stabilizer action.  It's entirely a matter of different presentations of the Dieudonn\'e module... although it may require you to understand Dieudonn\'e crystals, which you are \emph{not} up for.}
 
 
@@ -517,20 +529,32 @@ Write $D_n(H)$ for the $n${\th} graded part of the equivalence: \[D_n(H) = \CatO
 
 
 
-\section{Brown--Gitler spectra}
+\section{Ordinary cooperations for Landweber flat theories}
 
-Take $X \to Y \to Z$ to be a cofiber sequence of spectra.  Goerss's main theorem is that for $n \not\equiv \pm 1 \pmod{2p}$, there is a short exact sequence of Hopf algebras \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.\]  (This really requires the congruence condition on $n$ and some series study of fibrations of infinite loopspaces due to Moore and Smith.)  It follows from Brown representability that, subject to this congruence condition, there is a spectrum $B(n)$ such that \[B(n)_n(X) = D_n H_* \Loops^\infty X.\]
+Today we will put Dieudonn\'e modules to work for us in algebraic topology.  Writing $H = H\F_p$, the following result of Goerss, Lannes, and Morel will be central for us:
+\begin{theorem}[{\cite[Lemma 2.8]{GLM}}]
+Let $X \to Y \to Z$ be a cofiber sequence of spectra.  Then, provided $n > 1$ satisfies $n \not\equiv \pm 1 \pmod{2p}$, there is an exact sequence \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z. \qed\]
+\end{theorem}
 
+\begin{corollary}[{\cite[Theorem 2.1]{GLM}}]
+For $n > 1$ an integer satisfying $n \not\equiv \pm 1 \pmod{2p}$, there is a spectrum $B(n)$ satisfying \[B(n)_n X \cong D_n H_* \Loops^\infty X. \qed\]
+\end{corollary}
+
+\begin{remark}
+As a matter of convention, when $n \equiv \pm 1 \pmod{2p}$ we set $B(n) = B(n-1)$.
+\end{remark}
+
+\todo[inline]{Remark 2.9 has a helpful discussion of how to extend to the case $B(0)$.}
 
 \begin{lemma}[{\cite[Lemma 3.2]{GLM}}]
-For $k < 0$, $\pi_k B(n) = 0$.
+The spectrum $B(n)$ is connective and $p$--complete.
 \end{lemma}
 \begin{proof}
 First, rearrange:
 \begin{align*}
-\pi_k B(n) & = B_n S^{n-k} = D_n H_* \Loops^\infty \Susp^\infty S^{n-k}.
+\pi_k B(n) & = B(n)_n S^{n-k} = D_n H_* \Loops^\infty \Susp^\infty S^{n-k}.
 \end{align*}
-Since $k < 0$, $n$ is below the connectivity of $\Loops^\infty \Susp^\infty S^{n-k}$.
+If $k < 0$, $n$ is below the connectivity of $\Loops^\infty \Susp^\infty S^{n-k}$ and hence this vanishes.  The second assertion follows from the observation that $H\Z_* B(n)$ is an $\F_p$--vector space.  To see this, restrict to the case $n \not\equiv \pm 1 \pmod{2p}$ and calculate \[H\Z_k B(n) = B(n)_n \Susp^{n-k} H\Z = D_n H_* K(\Z, n-k) = [QH_* K(\Z, n-k)]_n. \qedhere\]
 \end{proof}
 
 
@@ -552,7 +576,7 @@ $D_n U(M) = M_n$. \qed
 There is a natural onto map $B(n)_n X \to H_n X$.
 \end{lemma}
 \begin{proof}
-Suppose at first that $X$ is a spectrum with counit map $\sigma\co \Susp^\infty \Loops^\infty X \to X$.  Then there is a factorization
+Suppose at first that $n \not\equiv \pm 1 \pmod{2p}$, and let $X$ be any \emph{spectrum} with counit map $\sigma\co \Susp^\infty \Loops^\infty X \to X$.  Then there is a factorization
 \begin{center}
 \begin{tikzcd}
 H_* \Loops^\infty X \arrow{d} \arrow["H_*\sigma"]{r} & H_* X \\
@@ -567,61 +591,67 @@ B(n)_n X & {[\Loops^\infty H_* X]_n} \arrow["(2)","{\text{incl.}}"']{r} & H_n X.
 \end{tikzcd}
 \end{center}
 If $X = \Susp^\infty Z$ is itself a suspension spectrum, then (1) and (2) become equalities (by unstability of $H_* \Susp^\infty Z$), and (3) and (4) become onto (by generation and by exactness respectively).
+
+Finally, to handle the case $n \equiv \pm 1 \pmod{2p}$, one needs to investigate separately the surjectivity of the map $B(n)_n Z \to B(n-1)_n Z \to H_n Z$.  
 \end{proof}
 
-\begin{definition}[{\cite[Example 3.6]{GLM}}]
-Let $G(n)$ be the free unstable $\mathcal A$--module on one generator of degree $n$, so that \[\CatOf{UnstableModules}_{\mathcal A_*}(G(n), M) = M_n.\]  This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if $p = 2$}. \end{cases}\]  The Spanier--Whitehead dual of this right-module is the left-module \[\Susp^n D G(n) = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if $p = 2$}. \end{cases}\]
+\begin{remark}
+\todo{Remark 11.4 in the Hopf Ring paper says that the failure of the odd primary case to be an isomorphism is measured by the suspension homomorphism operator $e$, and the kernel of the natural surjective map is exactly the kernel of multiplication by $e$.  Have a look.}
+\end{remark}
+
+\begin{definition}[{\cite[Example 3.6]{GLM}}]\label{SpanierWhiteheadDualOfGeneratingModule}
+Let $G(n)$ be the free unstable $\mathcal A$--module on one generator of degree $n$, so that \[\CatOf{UnstableModules}_{\mathcal A_*}(G(n), M) = M_n.\]  This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if $p = 2$}. \end{cases}\]  The Spanier--Whitehead dual of this right-module, $DG(n)$, is characterized by the left-module \[\Susp^n (D G(n))^* = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if $p = 2$}. \end{cases}\]
 \end{definition}
 
+\begin{theorem}[{\cite[Proof of Theorem 3.1]{GLM}}]
+There is an isomorphism \[H^* B(n) \cong \begin{cases} \mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if $p = 2$}. \end{cases}\]
+\end{theorem}
+\begin{proof}
+The unstable module $G(n)$ also enjoys a universal property in the category of stable $\mathcal A$--modules: \[\CatOf{Modules}_{\mathcal A}(G(n), M) \cong [\Loops^\infty M]_n.\]
+
+If $K = \Susp^{n-k} H\Z/p$, then \[H_k B(n) = B(n)_n \Susp^{n-k} H\Z/p = \CatOf{Modules}_{\mathcal A}(G(n), \Susp^{n-k} \mathcal A) = \CatOf{Modules}_{\F_p}(G(n)_{n-k}, \F_p).\]  (It follows that $H_* B(n)$ is finite.)  Letting $K$ be an arbitrary suspension of $H\Z/p$, the same calculation gives \[\CatOf{Modules}_{\mathcal A}(\Susp^n \F_p, \Susp^* \mathcal A \otimes H_* B(n)) \cong \CatOf{Modules}_{\mathcal A}(G(n), \Susp^* \mathcal A),\] and hence we have an identification $H_* B(n) \cong \Susp^n DG(n)$ with the Spanier--Whitehead dual.  Applying linear-algebraic duality and browsing \Cref{SpanierWhiteheadDualOfGeneratingModule} gives the Theorem.
+\end{proof}
 
 
 
 
 
-
-\citeme{Lemma 2.8}Consider a fiber sequence of spectra \[X \xrightarrow i Y \xrightarrow q Z\] with associated fiber sequence of infinite loopspaces \[\Loops^\infty X \xrightarrow{\Loops^\infty i} \Loops^\infty Y \xrightarrow{\Loops^\infty q} \Loops^\infty Z.\]  We may assume that $Y$ and $Z$ are $0$--connected, as this won't affect the value of $D_n \circ H_*$.  We then consider the Postnikov tower of $Y$ relative to $Z$
-\begin{center}
-\begin{tikzcd}
-\cdots \arrow{r} & Y_{s+1} \arrow{r}{q_s} & Y_s \arrow{d}{k_s} \arrow{r} & \cdots \arrow{r} & Y_1 \arrow{d}{k_1} \arrow{r}{q_0} & Z \arrow{d}{k_0} \\
-& & \Susp^{s+1} HG_s & & \Susp^2 HG_1 & \Susp HG_0
-\end{tikzcd}
-\end{center}
-as well as the associated fibrations \[X_s \xrightarrow{i_s} Y_s \to Z\] which assemble into the Postnikov tower for $X$
-\begin{center}
-\begin{tikzcd}
-\cdots \arrow{r} & X_{s+1} \arrow{r}{r_s} & X_s \arrow{d}{l_s} \arrow{r} & \cdots \arrow{r} & X_1 \cong HG_0 \arrow{d} \\
-& & \Susp^{s+1} HG_s & & \Susp^2 HG_1.
-\end{tikzcd}
-\end{center}
-
-For $f\co A \to B$ a map of spectra, we write $f_\sharp = D_n \Loops^\infty f_*$.  Our goal is to prove exactness, so for $y \in D_n H_* \Loops^\infty Y$ with $q_\sharp(y) = 0$ we must produce $x \in D_n H_* \Loops^\infty X$ with $i_\sharp(x) = y$.  Define $y_s \in D_n H_* \Loops^\infty Y_s$ by projection, and we will produce $x_s \in D_n H_* \Loops^\infty X_s$ with $(i_s)_\sharp(x_s) = y_s$, $(r_s)_\sharp x_{s+1} = x_s$.  Then, since $D_n H_* K(G_s, s) = 0$ for $s \gg 0$, the result will follow from
-\begin{center}
-\begin{tikzcd}
-D_n H_* \Loops^\infty X \arrow{r}{i_\sharp} \arrow[-,double]{d} & D_n H_* \Loops^\infty Y \arrow[-,double]{d} \\
-\lim_s D_n H_* \Loops^\infty X_s \arrow{r} & \lim_s D_n H_* \Loops^\infty Y_s.
-\end{tikzcd}
-\end{center}
-We have thus reduced to studying the effect of the sharp construction on a fibration involving an Eilenberg--Mac Lane spectrum.
-
-\todo{These two Lemmas involve a lot of fussing around with the Eilenberg--Moore spectral sequence.}
-\begin{lemma}\citeme{Lemma 2.5}
-Given a fibration sequence \[\Susp^m HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp^{m+1} HG\] with $m \ge 1$ and $n \ne \pm 1 \pmod{2p}$, then the sequence of abelian groups \[D_n H_* \Loops^\infty \Susp^m HG \xrightarrow{i_\sharp} D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp^{m+1} HG\] is exact. \qed
+\begin{lemma}
+\todo{Is this only good at the prime $p = 2$?}
+There are stable splittings
+\begin{align*}
+\Susp^\infty_+ \Loops^2 S^3 & \cong \begin{cases} \bigvee_{n=0}^\infty \Susp^n B(n) & \text{if $p = 2$}, \\ \bigvee_{n=0}^\infty \Susp^{2n(p-1)} B(2n) \vee \Susp^{2n(p-1) + 1} B(2n+1) & \text{if $p \ne 2$}, \end{cases} \\
+\Susp^\infty_+ ((\Loops^2 S^3)[3, \infty)) & \cong \bigvee_{n=0}^\infty \Susp^{2n(p-1)} B(2n).
+\end{align*}
 \end{lemma}
 
-\begin{lemma}\citeme{Lemma 2.6, corollary of Lemma 2.7}
-Let \[HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp HG\] be a fibration sequence where $k_* \pi_1 Y \to G$ is onto.  If $n \not\equiv \pm 1 \pmod{2p}$, then the sequence of abelian groups \[0 \to D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp HG\] is exact. \qed
+
+
+$R_0(E) = E^*[b_1, b_2, \ldots]$ a Dieudonn\'e algebra, $V b_{p^i} = b_i$ and $V|_{E^*} = \id$, $V$ multiplicative.  A choice of coordinate gives a map $R_0(E) \to D_* H_* \OS{E}{*}$.
+
+\begin{lemma}[{\cite[Proposition 10.2]{GoerssDieudonne}}]
+Over $D_* H_* E\ps{s, t}$ there is the formula $b(s) +_F b(t) = b(s + t)$. \qed
 \end{lemma}
 
-Note that this latter Lemma means $y_1 = 0$, since $\pi_0 Y = 0$, so we can set $x_1 = 0$.  Inductively, suppose that $x_s$ has been chosen.  Since \[(l_s)_\sharp x_s = (k_s)_\sharp (i_s)_\sharp x_s = (k_s)_\sharp y_s = 0\] there exists, by the earlier Lemma, a $z \in D_n H_* \Loops^\infty X_{s+1}$ with $(r_s)_\sharp z = x_s$.  Since \[(q_s)_\sharp(y_{s+1} - (i_{s+1})_\sharp z) = y_s - (i_s)_\sharp (r_s)_\sharp z = 0\] the earlier Lemma again shows there exists $w \in D_n H_* \Loops^\infty \Susp^s HG_s$ with \[(f_{s+1})_\sharp w = y_{s+1} - (i_{s+1})_\sharp z.\]  We set $x_{s+1} = z + (g_{s+1})_\sharp w$, and one can check that this works.
+This gives a map $R_0(E) / I \to D_* H_* \OS{E}{*}$ where $I$ imposes the relation in the Lemma.  The other thing that's missing is a homology suspension element, and hence a map \[(R_0(E) / I)[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\] 
+
+\begin{theorem}
+This map is an isomorphism when $E$ is Landweber flat.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+
+\todo[inline]{Compare also with the main result of {\cite{HopkinsHunton}}.}
 
 
 
 
-Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
 
 
 
-Goerss's result on $H_* \OS{E}{*}$ for Landweber flat $E$.  The main point is that this can be interchanged with $E_* B_*$ for the Brown--Gitler spectra $B$, and then also $B_*$ assemble into the stable homotopy type of $\Loops^2 S^3$.
+
 
 
 
@@ -655,6 +685,49 @@ Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings
 
 
 You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
+
+
+
+
+% \citeme{Lemma 2.8}Consider a fiber sequence of spectra \[X \xrightarrow i Y \xrightarrow q Z\] with associated fiber sequence of infinite loopspaces \[\Loops^\infty X \xrightarrow{\Loops^\infty i} \Loops^\infty Y \xrightarrow{\Loops^\infty q} \Loops^\infty Z.\]  We may assume that $Y$ and $Z$ are $0$--connected, as this won't affect the value of $D_n \circ H_*$.  We then consider the Postnikov tower of $Y$ relative to $Z$
+% \begin{center}
+% \begin{tikzcd}
+% \cdots \arrow{r} & Y_{s+1} \arrow{r}{q_s} & Y_s \arrow{d}{k_s} \arrow{r} & \cdots \arrow{r} & Y_1 \arrow{d}{k_1} \arrow{r}{q_0} & Z \arrow{d}{k_0} \\
+% & & \Susp^{s+1} HG_s & & \Susp^2 HG_1 & \Susp HG_0
+% \end{tikzcd}
+% \end{center}
+% as well as the associated fibrations \[X_s \xrightarrow{i_s} Y_s \to Z\] which assemble into the Postnikov tower for $X$
+% \begin{center}
+% \begin{tikzcd}
+% \cdots \arrow{r} & X_{s+1} \arrow{r}{r_s} & X_s \arrow{d}{l_s} \arrow{r} & \cdots \arrow{r} & X_1 \cong HG_0 \arrow{d} \\
+% & & \Susp^{s+1} HG_s & & \Susp^2 HG_1.
+% \end{tikzcd}
+% \end{center}
+
+% For $f\co A \to B$ a map of spectra, we write $f_\sharp = D_n \Loops^\infty f_*$.  Our goal is to prove exactness, so for $y \in D_n H_* \Loops^\infty Y$ with $q_\sharp(y) = 0$ we must produce $x \in D_n H_* \Loops^\infty X$ with $i_\sharp(x) = y$.  Define $y_s \in D_n H_* \Loops^\infty Y_s$ by projection, and we will produce $x_s \in D_n H_* \Loops^\infty X_s$ with $(i_s)_\sharp(x_s) = y_s$, $(r_s)_\sharp x_{s+1} = x_s$.  Then, since $D_n H_* K(G_s, s) = 0$ for $s \gg 0$, the result will follow from
+% \begin{center}
+% \begin{tikzcd}
+% D_n H_* \Loops^\infty X \arrow{r}{i_\sharp} \arrow[-,double]{d} & D_n H_* \Loops^\infty Y \arrow[-,double]{d} \\
+% \lim_s D_n H_* \Loops^\infty X_s \arrow{r} & \lim_s D_n H_* \Loops^\infty Y_s.
+% \end{tikzcd}
+% \end{center}
+% We have thus reduced to studying the effect of the sharp construction on a fibration involving an Eilenberg--Mac Lane spectrum.
+
+% \todo{These two Lemmas involve a lot of fussing around with the Eilenberg--Moore spectral sequence.}
+% \begin{lemma}\citeme{Lemma 2.5}
+% Given a fibration sequence \[\Susp^m HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp^{m+1} HG\] with $m \ge 1$ and $n \ne \pm 1 \pmod{2p}$, then the sequence of abelian groups \[D_n H_* \Loops^\infty \Susp^m HG \xrightarrow{i_\sharp} D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp^{m+1} HG\] is exact. \qed
+% \end{lemma}
+
+% \begin{lemma}\citeme{Lemma 2.6, corollary of Lemma 2.7}
+% Let \[HG \xrightarrow i X \xrightarrow q Y \xrightarrow k \Susp HG\] be a fibration sequence where $k_* \pi_1 Y \to G$ is onto.  If $n \not\equiv \pm 1 \pmod{2p}$, then the sequence of abelian groups \[0 \to D_n H_* \Loops^\infty X \xrightarrow{q_\sharp} D_n H_* \Loops^\infty Y \xrightarrow{k_\sharp} D_n H_* \Loops^\infty \Susp HG\] is exact. \qed
+% \end{lemma}
+
+% Note that this latter Lemma means $y_1 = 0$, since $\pi_0 Y = 0$, so we can set $x_1 = 0$.  Inductively, suppose that $x_s$ has been chosen.  Since \[(l_s)_\sharp x_s = (k_s)_\sharp (i_s)_\sharp x_s = (k_s)_\sharp y_s = 0\] there exists, by the earlier Lemma, a $z \in D_n H_* \Loops^\infty X_{s+1}$ with $(r_s)_\sharp z = x_s$.  Since \[(q_s)_\sharp(y_{s+1} - (i_{s+1})_\sharp z) = y_s - (i_s)_\sharp (r_s)_\sharp z = 0\] the earlier Lemma again shows there exists $w \in D_n H_* \Loops^\infty \Susp^s HG_s$ with \[(f_{s+1})_\sharp w = y_{s+1} - (i_{s+1})_\sharp z.\]  We set $x_{s+1} = z + (g_{s+1})_\sharp w$, and one can check that this works.
+
+
+
+
+% Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
 
 
 
@@ -765,6 +838,8 @@ Also mention the base--change type formula: as an abelian group, a positive char
 
 
 Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Postnikov towers and so on?
+
+\todo{I was thinking that this would give a counterexample to the idea that the additive unstable cooperations always present the functions on the scheme of homomorphisms, but this example may actually work too.  I'm not sure, but I think counting the ranks of $Q^* K(d)_* \OS{H\Z/p}{*}$ and $\InternalHom{FormalGps}(\Gamma_d, \G_a)$ (using Dieudonn\'e theory, or using Callan's tangent space trick) gives the same number...}
 
 
 
