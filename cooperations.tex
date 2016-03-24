@@ -355,7 +355,7 @@ The remaining thing to do is to use the size bounds: the only way that the map \
 
 Having accomplished this, we reduce the general computation to it:
 
-\begin{corollary}[{\cite[Corollary 4.7]{RavenelWilsonHopfRingForMU}}]
+\begin{corollary}[{\cite[Corollary 4.7]{RavenelWilsonHopfRingForMU}}]\label{HopfRingForEBP}
 For a complex-orientable cohomology theory $E$, the natural maps
 \begin{align*}
 E_*^R \OS{MU}{2*} & \to E_* \OS{MU}{2*}, &
@@ -483,7 +483,7 @@ Finally, we turn to a third presentation of the Dieudonn\'e module of a formal g
 \begin{theorem}[{\cite{Schoeller}}]
 Let $S(n)$ denote the free graded-commutative Hopf algebra on a single generator in degree $n$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
 \begin{itemize}
-\item If either $p = 2$ and $n = 2^m k$ for $2 \nmid k$ and $m > 0$ \emph{or} $p \ne 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$, then $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the Witt vector diagonal.\todo{Put in a citation about what ``the Witt vector diagonal'' means.}
+\item If either $p = 2$ and $n = 2^m k$ for $2 \nmid k$ and $m > 0$ \emph{or} $p \ne 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$, then $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the Witt vector diagonal.\todo{Put in a citation about what ``the Witt vector diagonal'' means: the elements $w_i = x_0^{p^i} + p x_1^{p^{i-1}} + \cdots + x_i$ are primitive.}
 \item Otherwise, $H(n) = S(n)$ is the identity.
 \qed
 \end{itemize}
@@ -617,8 +617,7 @@ If $K = \Susp^{n-k} H\Z/p$, then \[H_k B(n) = B(n)_n \Susp^{n-k} H\Z/p = \CatOf{
 
 
 
-\begin{lemma}
-\todo{Is this only good at the prime $p = 2$?}
+\begin{lemma}\citeme{Find a citation}
 There are stable splittings
 \begin{align*}
 \Susp^\infty_+ \Loops^2 S^3 & \cong \begin{cases} \bigvee_{n=0}^\infty \Susp^n B(n) & \text{if $p = 2$}, \\ \bigvee_{n=0}^\infty \Susp^{2n(p-1)} B(2n) \vee \Susp^{2n(p-1) + 1} B(2n+1) & \text{if $p \ne 2$}, \end{cases} \\
@@ -634,14 +633,22 @@ $R_0(E) = E^*[b_1, b_2, \ldots]$ a Dieudonn\'e algebra, $V b_{p^i} = b_i$ and $V
 Over $D_* H_* E\ps{s, t}$ there is the formula $b(s) +_F b(t) = b(s + t)$. \qed
 \end{lemma}
 
-This gives a map $R_0(E) / I \to D_* H_* \OS{E}{*}$ where $I$ imposes the relation in the Lemma.  The other thing that's missing is a homology suspension element, and hence a map \[(R_0(E) / I)[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\] 
+This gives a map $R_0(E) / I \to D_* H_* \OS{E}{*}$ where $I$ imposes the relation in the Lemma.  The other thing that's missing is a homology suspension element, and hence a map \[(R_0(E) / I)[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
 
-\begin{theorem}
-This map is an isomorphism when $E$ is Landweber flat.
+\begin{lemma}[{\cite[Proposition 11.6]{GoerssDieudonne}}]
+Let $E$ be an even ring spectrum with $E_*$ torsion-free, and suppose that $E_* B(n)$ is even for all $n$.  Then the purely algebraic version of this statement is true: writing $D_E = \{D_{2m} H_* \OS{E}{2n}\}$, the map \[D_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}\] is an isomorphism.
+\end{lemma}
+\begin{proof}
+Since $0 = E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}$ is onto, the latter group is zero, and a bar spectral sequence argument shows the same is true for $D_{2n+1} H_* \OS{E}{2k+2}$~\cite[Lemma 11.5.1]{GoerssDieudonne}.  Hence, the map \[(D_E[e] / (e^2 - b_1))_{*, 2n} \to (D_* H_* \OS{E}{*})_{*, 2n}\] is an isomorphism, and we need only show that \[e D_* H_* \OS{E}{2n} \to D_* H_* \OS{E}{2n+1}\] is an isomorphism as well.  Since $e(Fx) = F(Ve \circ x) = 0$ and $D_* / FD_*H \cong QH$, we see that $e$ kills decomposables and suspends indecomposables: \[e D_* H_* \OS{E}{2n} = \Susp QH_* \OS{E}{2n}.\]  The result then follows from the same bar spectral sequence analysis as above.
+\end{proof}
+
+\begin{theorem}[{\cite[Theorem 11.7]{GoerssDieudonne}}]
+Restricting attention to the even parts, the maps \[E_* B(2*) \to D_E \from R_E\] are isomorphisms for $E$ Landweber flat.
 \end{theorem}
 \begin{proof}
-
+In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP$.  If $E$ is Landweber flat, then the left term (and hence middle term) is determined by change-of-base from the $BP$ left term.  The right term commutes with change-of-base by definition, and the theorem follows.
 \end{proof}
+% Goerss's original proof of this didn't want to assume the Ravenel--Wilson result, which he reproves by identifying the spectra $B(n)$ as Brown--Gitler spectra and using a different (easier) computation of Ravenel's about $BP_* \Loops^2 S^3$.  Since we've already done the Ravenel--Wilson computation, we can jump straight to it.
 
 
 \todo[inline]{Compare also with the main result of {\cite{HopkinsHunton}}.}
