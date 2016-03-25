@@ -23,7 +23,7 @@ We will extend this to spaces by sewing this adjunction together with another:
 \CatOf{Spaces} \arrow[shift left=0.4em]{r}{\Susp^\infty} & \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} \arrow[shift left=0.4em]{l}{\Loops^\infty} & \CatOf{Modules}_E \arrow[shift left=0.4em]{l} .
 \end{tikzcd}
 \end{center}
-We will write $E(-)$ for the induced monad \todo{You avoided talking about \emph{monadic} descent in the previous lectures, and instead you were vague about it. Maybe you have to spell that out now.}on $\CatOf{Spaces}$, given by the formula \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X) = \Loops^\infty (E \sm \Susp^\infty X),\] where $\OS{E}{*}$ are the constituent spaces in the $\Omega$--spectrum of $E$.  This space has the property that $\pi_* E(X) = \widetilde E_* X$ (in nonnegative dimensions).  The monadic structure comes from the two evident natural transformations:
+We will write $E(-)$ for the induced monad \todo{You avoided talking about \emph{monadic} descent in the previous lectures, and instead you were vague about it. Maybe you have to spell that out now.}on $\CatOf{Spaces}$, given by the formula \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X) = \Loops^\infty (E \sm \Susp^\infty X),\] \todo{Danny didn't like the colimit definition. We also don't need it; everything can be phrased stably. Maybe remove it.} where $\OS{E}{*}$ are the constituent spaces in the $\Omega$--spectrum of $E$.  This space has the property that $\pi_* E(X) = \widetilde E_* X$ (in nonnegative dimensions).  The monadic structure comes from the two evident natural transformations:
 \begin{align*}
 \eta \co X & \simeq S^0 \sm X \\
 & \to \OS{E}{0} \sm X \\
@@ -61,7 +61,7 @@ The \textit{unstable context of $E$} is the collection of cosimplicial abelian g
 \end{definition}
 
 \begin{remark}
-In the case that $E$ has K\"unneth isomorphisms, the ``backwards'' maps above become invertible, which is a kind of unstable analogue of the condition {\FH}.  This is the situation in which most of the classical work on this topic was done.\citeme{BCM, BJW, ...}
+In the case that $E$ has K\"unneth isomorphisms, the ``backwards'' maps above become invertible, which is a kind of unstable analogue of the condition {\FH}.  This is the situation in which most of the classical work on this topic was done.\citeme{BCM, BJW, ...}\todo{Talk about how this motivates us to consider algebraically the $0$-- and $1$--simplices along, hoping that an eventual analogue of {\FH} will keep us from having to consider anything further.}
 \end{remark}
 
 \todo[inline]{I \emph{don't} really understand what sort of algebraic structure this gives us.  It would be nice to have an unstable scheme-theoretic analogue of the stable context, so that the homology of spaces gave us ``quasi-coherent sheaves'' over this unstable object (and, in good cases, the unstable Adams spectral sequence had its $E_2$--page computed by some homological algebra over this object; see BCM Section 6).}
@@ -102,7 +102,7 @@ A ring spectrum $E$ with K\"unneth isomorphisms \[E_*(\OS{E}{m} \times \OS{E}{n}
 One can modify this story in a number of minor ways.
 
 \begin{remark}
-One can restrict to the \emph{additive} unstable cooperations by passing to the quotient $Q^\ast E_* \OS{E}{*}$.  These corepresent the morphisms in a cocategory object in $\CatOf{Rings}$ (using the $\circ$--product for multiplication, which descends to $\ast$--indecomposables).  The ring $E_*$ corepresents the objects in this cocategory object.\todo{A lot of the homological algebra of unstable comodules exists only after passing to this quotient.  Try to explain why.}\todo{Explain this Remark, really. (1) Why does passing to the indecomposables project onto the additive cooperations? This should be thought of as an operation dual to restricting to the primitive unstable \emph{operations}. (2) Why a cocategory object?}\todo{Maybe put in the unstable $\subseteq$ unstable additive $\subseteq$ stable diagram? Talk about examples of these three things in, say, mod--$2$ homology?}
+One can restrict to the \emph{additive} unstable cooperations by passing to the quotient $Q^\ast E_* \OS{E}{*}$.  These corepresent the morphisms in a cocategory object in $\CatOf{Rings}$ (using the $\circ$--product for multiplication, which descends to $\ast$--indecomposables).  The ring $E_*$ corepresents the objects in this cocategory object.\todo{A lot of the homological algebra of unstable comodules exists only after passing to this quotient.  Try to explain why.}\todo{Explain this Remark, really. (1) Why does passing to the indecomposables project onto the additive cooperations? This should be thought of as an operation dual to restricting to the primitive unstable \emph{operations}. (2) Why a cocategory object?}\todo{Maybe put in the unstable $\subseteq$ unstable additive $\subseteq$ stable diagram? Talk about examples of these three things in, say, mod--$2$ homology?  Talk about homology suspension on this day, and make clear the comparison to the stable situation.}
 \end{remark}
 
 \begin{remark}
@@ -174,7 +174,7 @@ We now turn to our example of $E = H\F_2$ and $F = H\F_2$.  To ground our induct
 This $\Tor$ spectral sequence collapses at the $E^2$--page.
 \end{corollary}
 \begin{proof}
-As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is presented by the truncated polynomial algebra \[H\F_2{}_*(\F_2) \cong \F_2[\F_2] = \F_2[[1] - [0]] / ([1] - [0])^{\ast 2}.\]  The $\Tor$--algebra of this is then divided power on a single class: \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) = \Gamma[a_\emptyset].\]  In order for the two computations to agree, there can therefore be no differentials in the spectral sequence.
+As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is presented by the truncated polynomial algebra \[H\F_2{}_*(\F_2) \cong \F_2[\F_2] = \F_2[[1] - [0]] / ([1] - [0])^{\ast 2}.\]\todo{Danny found this line confusing. You explain it more elaborately in person, by carefully moving the $(-)^{\ast 2}$ around.}  The $\Tor$--algebra of this is then divided power on a single class: \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) = \Gamma[a_\emptyset].\]  In order for the two computations to agree, there can therefore be no differentials in the spectral sequence.
 \end{proof}
 
 Now we turn to the rest of the induction:
@@ -187,7 +187,7 @@ Make the inductive assumption that this is true for some fixed value of $t$.  It
 d((a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]}) & \equiv d(a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})}) \pmod{\text{decomposables}} \\
 & = a_{(j_1)} \circ d(a_{(j_2)} \circ \cdots \circ a_{(j_{t+1})}) = 0.
 \end{align*}
-Hence, the spectral sequence collapses and the induction holds.
+Hence, the spectral sequence collapses.  To see that there are no multiplicative extensions, note that the only potentially undetermined multiplications occur as $\ast$--squares of exterior classes.  However, the $\ast$--squaring map is induced by the topological map \[\OS{H\F_2}{t} \xrightarrow{\cdot 2} \OS{H\F_2}{t},\] which is already null on the level of spaces.  It follows that there are no extensions and the induction holds.
 \end{proof}
 
 \begin{corollary}
@@ -235,7 +235,9 @@ The odd--primary analogue of this result appears in Wilson's book.  In that situ
 
 
 
-\section{Complex-orientable cooperations I}
+\section{Free Hopf rings and the Ravenel--Wilson relation}
+\todo{Change this title.}
+\todo{This section is all out of order.  The free things are not described well, and they should be.  The technique used in the course of the Lemma at the end is useful earlier, for describing what happens to the various products on $R[S]$ when passing to the indecomposable quotient --- and hence what the Ravenel--Wilson relation imposes on the indecomposable quotient of the free Hopf ring.  That should be the real thrust of this section, plus a few oddities about the example case we're beginning to work toward.}
 
 One of our goals for this Case Study is to study the mixed unstable cooperations $E_* \OS{G}{2*}$ for complex-orientable cohomology theories $E$ and $G$.  In order to formulate what will become our main result, we will need to begin with some definitions.
 
@@ -253,30 +255,41 @@ Additionally, given an $R$--coalgebra $C$, we can form the free commutative Hopf
 \end{definition}
 
 \todo{There is probably a natural map to the scheme of homomorphisms that doesn't require picking a coordinate.}
-\begin{definition}\todo{I don't like the upper-$R$ notation.  Having a scheme theoretic description of this object should let us pick a better name.}
-Let $E_*^R \OS{G}{*}$ be the free Hopf ring under $E_*[G^*]$ generated by $C = E_* \CP^\infty$ together with the relation \[b(s) +_{[G]} b(t) = b(s +_E t),\] where $b(s) = \sum_i b_i x^i$ and hence
+\begin{definition}\todo{I don't like the upper-$R$ notation.  Having a scheme theoretic description of this object should let us pick a better name.  I'm also unhappy that ``mixed unstable cooperations'' is an achiral name, meaning it doesn't indicate which object is the spectrum and which is the infinite loopspace.}
+Let $E_*^R \OS{G}{*}$ be the free Hopf ring under $E_*[G^*]$ generated by $C = E_* \CP^\infty$ together with the relation\todo{Talk about where the relation comes from: you use the orienting class $\CP^\infty \to \OS{E}{2}$ and use it to build a pushforward in $F$--homology.} \[b(s) +_{[G]} b(t) = b(s +_E t),\] where $b(s) = \sum_i b_i x^i$ and hence
 \begin{align*}
 b(s +_E t) & = \sum_n b_n \left(\sum_{i, j} a_{ij}^E s^i t^j \right)^n, \\
 b(s) +_{[G]} b(t) & = \bigast_{i, j} [a_{ij}^G] \circ \left( \sum_k b_k s^k \right)^{\circ i} \circ \left( \sum_\ell b_\ell t^\ell \right)^{\circ j}.
 \end{align*}
-The scheme $\Spec Q^* E_*^R \OS{G}{*}$ models \[\Spec Q^* E_*^R \OS{G}{*} \cong \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_G).\]
+The scheme $\Spec Q^* E_*^R \OS{G}{*}$ models \[\Spec Q^* E_*^R \OS{G}{*} \cong \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_G).\]\todo{This part of the ``definition'' should be worked separately.  It requires understanding what $\ast$--indecomposables look like, moving this funny formula into the augmentation ideal, checking that $\ast$ gets converted to $+$, $\circ$ to $\cdot$, and showing that the resulting thing really looks like the scheme of formal group homomorphisms.  None of this is totally trivial; Hood, Allen, and I spent a while trying to pull it apart one afternoon.}
 \end{definition}
 
-\begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}}]\label{ComparisonMapInCOUnstableCoopns}
+\begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}, \cite[Theorem 9.7]{Wilson}}]\label{ComparisonMapInCOUnstableCoopns}
 For complex-orientable ring spectra $E$ and $G$, there is a natural map $E_*^R \OS{G}{*} \to E_* \OS{G}{*}$. \qed
 \end{lemma}
 
 \noindent We will show that for many such $E$ and $G$ this map is an isomorphism, and hence the unstable cooperations are captured by homomorphisms of formal groups.
 
 \citeme{Pages 266--270 of Ravenel--Wilson, especially the bottom of 268.}
-To begin, we will investigate the more modest setting of $E = H\F_p$ and $G = BP$ by calculating $H\F_{p*} \OS{BP}{2*}$.  One might think that this is merely a first guess at a task that seems accomplishable, but we will quickly show that it plays the role of a universal example of this calculation.  We will show the following theorem:
+To begin, we will investigate the more modest setting of $E = H\F_p$ and $G = BP$ by calculating $H\F_{p*} \OS{BP}{2*}$.  One might think that this is merely a first guess at a task that seems accomplishable, but we will quickly show that it plays the role of a universal example of this calculation.  In this case, we will show that the comparison map $H\F_p{}_*^R \OS{BP}{*} \to H\F_p{}_* \OS{BP}{2*}$ is an isomorphism.  This is proved by a fairly elaborate counting argument, and as such our first move will be to produce an upper bound for the size of the source Hopf ring.
+
+
+
+
+
+\section{Complex-orientable cooperations}\label{COableCoopnsII}
+\todo{Jeremy found a paper (Chan's \textit{A simple proof that the unstable (co-)homology of the Brown--Peterson spectrum is torsion-free}, see also Wilson's Primer's Section 10) where $H_* \OS{BP}{2*}$ is proven to be bipolynomial (and even!) without any Hopf ring rigamarole. It looks like the method of proof is not very different from the Hopf ring one, but it's much shorter... and maybe the result will fall out of the Dieudonne module calculations anyhow?  Consider it as an option after you break this lecture in two.}
+
+We are aiming for a proof of the following Theorem:
+
 \begin{theorem}[{\cite[Theorem 4.2]{RavenelWilsonHopfRingForMU}}]\label{HFpBPCooperationsTheorem}
 The natural homomorphism \[H\F_{p*}^R \OS{BP}{2*} \to H\F_{p*} \OS{BP}{2*}\] is an isomorphism.  (In particular, $H\F_{p*} \OS{BP}{2*}$ is even--concentrated.)
 \end{theorem}
-\noindent This is proved by a fairly elaborate counting argument, and as such our first move will be to produce an upper bound for the size of the source Hopf ring.  To abbreviate notation, we will write $H$ for $H\F_p$ for the remainder of the lecture.
+
+This is proved by a fairly elaborate counting argument, and as such our first move will be to produce an upper bound for the size of the source Hopf ring.  (To abbreviate notation, we will write $H$ for $H\F_p$ for the remainder of the lecture.)
 
 \begin{lemma}
-As a $\circ$--algebra, \[Q^* H_0^R \OS{BP}{2*} \cong \F_p[[v_n] - [0_{-|v_n|}] \mid n \ge 1],\] where $0_{-|v_n|}$ denotes the null element of $BP^{|v_n|}(*)$.
+As a $\circ$--algebra, \[Q^* H_0^R \OS{BP}{2*} \cong \F_p[[v_n] - [0_{-|v_n|}] \mid n \ge 1],\] where $0_{-|v_n|}$ denotes the null element of $BP^{|v_n|}(*)$.\todo{We used the augmentation sending $[s]$ to $[0] = 1$ here.}
 \end{lemma}
 \begin{proof}
 By construction, $H_0^R \OS{BP}{2*}$ is the Hopf ring-ring $\F_p[BP^*]$.  Calculating modulo $\ast$--decomposables,
@@ -290,7 +303,7 @@ It follows that a $\Z_{(p)}$--basis of $BP^*$ gives an $\F_p$--basis of $Q^* \F_
 
 Directly from the definition of $H_*^R \OS{BP}{2*}$, we now know that $Q^* H_*^R \OS{BP}{2*}$ is generated by $[v_n] - [0_{-|v_n|}]$ for $n \ge 1$ and $b_j$, $j \ge 0$.  In fact, it suffices to consider $b_{p^i} = b_{(i)}$ for $i \ge 0$\citeme{Lemma 4.14 of Ravenel Wilson}, and these elements are subject to an important relation:
 
-\begin{lemma}[{\cite[Lemma 3.14]{RavenelWilsonHopfRingForMU}}]
+\begin{lemma}[{\cite[Lemma 3.14]{RavenelWilsonHopfRingForMU}}]\todo{Look at Theorem 7.32 in the BP Primer.}
 Write $I = ([p], [v_1], [v_2], \ldots)$, and consider $Q^* H_* \OS{BP}{2} / I^{\circ 2} \circ Q^* H_* \OS{BP}{2}$.  In this quotient, for any $n$ we have \[\sum_{i=1}^n [v_i] \circ b_{(n-i)}^{\circ p^i} \equiv 0. \qed\]
 \end{lemma}
 
@@ -318,19 +331,7 @@ Then $c_{i,j} \le d_{i,j}$ and $d_{i,j} = d_{i+2,j+1}$.
 We have seen that $c_{i,j}$ is bounded by the $\F_p$--dimension of $\F_p[[v_n], b_{(d)} \mid d \ge 0]_{i,j}$ modulo the ideal $(r_1, r_2, \ldots)$.  But, since this ideal is regular and $|r_j| = |b_{(j)}|$, this is the same count as $d_{i,j}$.  The other relation among the $d_{i,j}$ follows from multiplication by $b_{(0)}$, with $|b_{(0)}| = (2, 1)$.\todo{We also need that one of the bidegrees of $[v_n]$ is zero, right?}
 \end{proof}
 
-Next time, we will use this estimate to give a proof of \Cref{HFpBPCooperationsTheorem}.
-
-
-
-\section{Complex-orientable cooperations II}\label{COableCoopnsII}
-
-We are embroiled in the proof of the following Theorem:
-
-\begin{theorem}[{\Cref{HFpBPCooperationsTheorem}}]
-The natural homomorphism \[H\F_{p*}^R \OS{BP}{2*} \to H\F_{p*} \OS{BP}{2*}\] is an isomorphism.  (In particular, $H\F_{p*} \OS{BP}{2*}$ is even--concentrated.)
-\end{theorem}
-
-Yesterday we gave an estimate for the size of the source Hopf ring.  We now turn to showing that this estimate is \emph{sharp} and that the natural map is \emph{onto}, and hence an isomorphism, using the bar spectral sequence.  Recalling that the bar spectral sequence converges to a the homology of the \emph{connective} delooping, let $\OS{BP}{2*}'$ denote the connected component of $\OS{BP}{2*}$ containing $[0_{2*}]$.  We will then demonstrate the following theorem inductively:
+We now turn to showing that this estimate is \emph{sharp} and that the natural map is \emph{onto}, and hence an isomorphism, using the bar spectral sequence.  Recalling that the bar spectral sequence converges to a the homology of the \emph{connective} delooping, let $\OS{BP}{2*}'$ denote the connected component of $\OS{BP}{2*}$ containing $[0_{2*}]$.  We will then demonstrate the following theorem inductively:
 \begin{theorem}[{\cite[Induction 4.18]{RavenelWilsonHopfRingForMU}}]\label{HFpBPCooperationsInduction}
 Take $k$ to be the induction index.
 \begin{enumerate}
@@ -355,7 +356,7 @@ The remaining thing to do is to use the size bounds: the only way that the map \
 
 Having accomplished this, we reduce the general computation to it:
 
-\begin{corollary}[{\cite[Corollary 4.7]{RavenelWilsonHopfRingForMU}}]
+\begin{corollary}[{\cite[Corollary 4.7]{RavenelWilsonHopfRingForMU}}]\label{HopfRingForEBP}
 For a complex-orientable cohomology theory $E$, the natural maps
 \begin{align*}
 E_*^R \OS{MU}{2*} & \to E_* \OS{MU}{2*}, &
@@ -483,7 +484,7 @@ Finally, we turn to a third presentation of the Dieudonn\'e module of a formal g
 \begin{theorem}[{\cite{Schoeller}}]
 Let $S(n)$ denote the free graded-commutative Hopf algebra on a single generator in degree $n$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
 \begin{itemize}
-\item If either $p = 2$ and $n = 2^m k$ for $2 \nmid k$ and $m > 0$ \emph{or} $p \ne 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$, then $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the Witt vector diagonal.\todo{Put in a citation about what ``the Witt vector diagonal'' means.}
+\item If either $p = 2$ and $n = 2^m k$ for $2 \nmid k$ and $m > 0$ \emph{or} $p \ne 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$, then $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the Witt vector diagonal.\todo{Put in a citation about what ``the Witt vector diagonal'' means: the elements $w_i = x_0^{p^i} + p x_1^{p^{i-1}} + \cdots + x_i$ are primitive.}
 \item Otherwise, $H(n) = S(n)$ is the identity.
 \qed
 \end{itemize}
@@ -617,8 +618,7 @@ If $K = \Susp^{n-k} H\Z/p$, then \[H_k B(n) = B(n)_n \Susp^{n-k} H\Z/p = \CatOf{
 
 
 
-\begin{lemma}
-\todo{Is this only good at the prime $p = 2$?}
+\begin{lemma}\citeme{Find a citation}
 There are stable splittings
 \begin{align*}
 \Susp^\infty_+ \Loops^2 S^3 & \cong \begin{cases} \bigvee_{n=0}^\infty \Susp^n B(n) & \text{if $p = 2$}, \\ \bigvee_{n=0}^\infty \Susp^{2n(p-1)} B(2n) \vee \Susp^{2n(p-1) + 1} B(2n+1) & \text{if $p \ne 2$}, \end{cases} \\
@@ -634,14 +634,22 @@ $R_0(E) = E^*[b_1, b_2, \ldots]$ a Dieudonn\'e algebra, $V b_{p^i} = b_i$ and $V
 Over $D_* H_* E\ps{s, t}$ there is the formula $b(s) +_F b(t) = b(s + t)$. \qed
 \end{lemma}
 
-This gives a map $R_0(E) / I \to D_* H_* \OS{E}{*}$ where $I$ imposes the relation in the Lemma.  The other thing that's missing is a homology suspension element, and hence a map \[(R_0(E) / I)[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\] 
+This gives a map $R_0(E) / I \to D_* H_* \OS{E}{*}$ where $I$ imposes the relation in the Lemma.  The other thing that's missing is a homology suspension element, and hence a map \[(R_0(E) / I)[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
 
-\begin{theorem}
-This map is an isomorphism when $E$ is Landweber flat.
+\begin{lemma}[{\cite[Proposition 11.6]{GoerssDieudonne}}]
+Let $E$ be an even ring spectrum with $E_*$ torsion-free, and suppose that $E_* B(n)$ is even for all $n$.  Then the purely algebraic version of this statement is true: writing $D_E = \{D_{2m} H_* \OS{E}{2n}\}$, the map \[D_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}\] is an isomorphism.
+\end{lemma}
+\begin{proof}
+Since $0 = E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}$ is onto, the latter group is zero, and a bar spectral sequence argument shows the same is true for $D_{2n+1} H_* \OS{E}{2k+2}$~\cite[Lemma 11.5.1]{GoerssDieudonne}.  Hence, the map \[(D_E[e] / (e^2 - b_1))_{*, 2n} \to (D_* H_* \OS{E}{*})_{*, 2n}\] is an isomorphism, and we need only show that \[e D_* H_* \OS{E}{2n} \to D_* H_* \OS{E}{2n+1}\] is an isomorphism as well.  Since $e(Fx) = F(Ve \circ x) = 0$ and $D_* / FD_*H \cong QH$, we see that $e$ kills decomposables and suspends indecomposables: \[e D_* H_* \OS{E}{2n} = \Susp QH_* \OS{E}{2n}.\]  The result then follows from the same bar spectral sequence analysis as above.
+\end{proof}
+
+\begin{theorem}[{\cite[Theorem 11.7]{GoerssDieudonne}}]
+Restricting attention to the even parts, the maps \[E_* B(2*) \to D_E \from R_E\] are isomorphisms for $E$ Landweber flat.
 \end{theorem}
 \begin{proof}
-
+In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP$.  If $E$ is Landweber flat, then the left term (and hence middle term) is determined by change-of-base from the $BP$ left term.  The right term commutes with change-of-base by definition, and the theorem follows.
 \end{proof}
+% Goerss's original proof of this didn't want to assume the Ravenel--Wilson result, which he reproves by identifying the spectra $B(n)$ as Brown--Gitler spectra and using a different (easier) computation of Ravenel's about $BP_* \Loops^2 S^3$.  Since we've already done the Ravenel--Wilson computation, we can jump straight to it.
 
 
 \todo[inline]{Compare also with the main result of {\cite{HopkinsHunton}}.}
