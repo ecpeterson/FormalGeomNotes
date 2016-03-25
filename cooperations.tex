@@ -23,7 +23,7 @@ We will extend this to spaces by sewing this adjunction together with another:
 \CatOf{Spaces} \arrow[shift left=0.4em]{r}{\Susp^\infty} & \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} \arrow[shift left=0.4em]{l}{\Loops^\infty} & \CatOf{Modules}_E \arrow[shift left=0.4em]{l} .
 \end{tikzcd}
 \end{center}
-We will write $E(-)$ for the induced monad \todo{You avoided talking about \emph{monadic} descent in the previous lectures, and instead you were vague about it. Maybe you have to spell that out now.}on $\CatOf{Spaces}$, given by the formula \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X) = \Loops^\infty (E \sm \Susp^\infty X),\] where $\OS{E}{*}$ are the constituent spaces in the $\Omega$--spectrum of $E$.  This space has the property that $\pi_* E(X) = \widetilde E_* X$ (in nonnegative dimensions).  The monadic structure comes from the two evident natural transformations:
+We will write $E(-)$ for the induced monad \todo{You avoided talking about \emph{monadic} descent in the previous lectures, and instead you were vague about it. Maybe you have to spell that out now.}on $\CatOf{Spaces}$, given by the formula \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X) = \Loops^\infty (E \sm \Susp^\infty X),\] \todo{Danny didn't like the colimit definition. We also don't need it; everything can be phrased stably. Maybe remove it.} where $\OS{E}{*}$ are the constituent spaces in the $\Omega$--spectrum of $E$.  This space has the property that $\pi_* E(X) = \widetilde E_* X$ (in nonnegative dimensions).  The monadic structure comes from the two evident natural transformations:
 \begin{align*}
 \eta \co X & \simeq S^0 \sm X \\
 & \to \OS{E}{0} \sm X \\
@@ -61,7 +61,7 @@ The \textit{unstable context of $E$} is the collection of cosimplicial abelian g
 \end{definition}
 
 \begin{remark}
-In the case that $E$ has K\"unneth isomorphisms, the ``backwards'' maps above become invertible, which is a kind of unstable analogue of the condition {\FH}.  This is the situation in which most of the classical work on this topic was done.\citeme{BCM, BJW, ...}
+In the case that $E$ has K\"unneth isomorphisms, the ``backwards'' maps above become invertible, which is a kind of unstable analogue of the condition {\FH}.  This is the situation in which most of the classical work on this topic was done.\citeme{BCM, BJW, ...}\todo{Talk about how this motivates us to consider algebraically the $0$-- and $1$--simplices along, hoping that an eventual analogue of {\FH} will keep us from having to consider anything further.}
 \end{remark}
 
 \todo[inline]{I \emph{don't} really understand what sort of algebraic structure this gives us.  It would be nice to have an unstable scheme-theoretic analogue of the stable context, so that the homology of spaces gave us ``quasi-coherent sheaves'' over this unstable object (and, in good cases, the unstable Adams spectral sequence had its $E_2$--page computed by some homological algebra over this object; see BCM Section 6).}
@@ -102,7 +102,7 @@ A ring spectrum $E$ with K\"unneth isomorphisms \[E_*(\OS{E}{m} \times \OS{E}{n}
 One can modify this story in a number of minor ways.
 
 \begin{remark}
-One can restrict to the \emph{additive} unstable cooperations by passing to the quotient $Q^\ast E_* \OS{E}{*}$.  These corepresent the morphisms in a cocategory object in $\CatOf{Rings}$ (using the $\circ$--product for multiplication, which descends to $\ast$--indecomposables).  The ring $E_*$ corepresents the objects in this cocategory object.\todo{A lot of the homological algebra of unstable comodules exists only after passing to this quotient.  Try to explain why.}\todo{Explain this Remark, really. (1) Why does passing to the indecomposables project onto the additive cooperations? This should be thought of as an operation dual to restricting to the primitive unstable \emph{operations}. (2) Why a cocategory object?}\todo{Maybe put in the unstable $\subseteq$ unstable additive $\subseteq$ stable diagram? Talk about examples of these three things in, say, mod--$2$ homology?}
+One can restrict to the \emph{additive} unstable cooperations by passing to the quotient $Q^\ast E_* \OS{E}{*}$.  These corepresent the morphisms in a cocategory object in $\CatOf{Rings}$ (using the $\circ$--product for multiplication, which descends to $\ast$--indecomposables).  The ring $E_*$ corepresents the objects in this cocategory object.\todo{A lot of the homological algebra of unstable comodules exists only after passing to this quotient.  Try to explain why.}\todo{Explain this Remark, really. (1) Why does passing to the indecomposables project onto the additive cooperations? This should be thought of as an operation dual to restricting to the primitive unstable \emph{operations}. (2) Why a cocategory object?}\todo{Maybe put in the unstable $\subseteq$ unstable additive $\subseteq$ stable diagram? Talk about examples of these three things in, say, mod--$2$ homology?  Talk about homology suspension on this day, and make clear the comparison to the stable situation.}
 \end{remark}
 
 \begin{remark}
@@ -174,7 +174,7 @@ We now turn to our example of $E = H\F_2$ and $F = H\F_2$.  To ground our induct
 This $\Tor$ spectral sequence collapses at the $E^2$--page.
 \end{corollary}
 \begin{proof}
-As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is presented by the truncated polynomial algebra \[H\F_2{}_*(\F_2) \cong \F_2[\F_2] = \F_2[[1] - [0]] / ([1] - [0])^{\ast 2}.\]  The $\Tor$--algebra of this is then divided power on a single class: \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) = \Gamma[a_\emptyset].\]  In order for the two computations to agree, there can therefore be no differentials in the spectral sequence.
+As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is presented by the truncated polynomial algebra \[H\F_2{}_*(\F_2) \cong \F_2[\F_2] = \F_2[[1] - [0]] / ([1] - [0])^{\ast 2}.\]\todo{Danny found this line confusing. You explain it more elaborately in person, by carefully moving the $(-)^{\ast 2}$ around.}  The $\Tor$--algebra of this is then divided power on a single class: \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) = \Gamma[a_\emptyset].\]  In order for the two computations to agree, there can therefore be no differentials in the spectral sequence.
 \end{proof}
 
 Now we turn to the rest of the induction:
