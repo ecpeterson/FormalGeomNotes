@@ -1,0 +1,22 @@
+\def\mathllap{\mathpalette\mathllapinternal}
+\def\mathrlap{\mathpalette\mathrlapinternal}
+\def\mathllapinternal#1#2{\llap{$\mathsurround=0pt#1{#2}$}}
+\def\mathrlapinternal#1#2{\rlap{$\mathsurround=0pt#1{#2}$}}
+\newtoks\sumfgl@toks
+\newbox\sumfgl@box
+\def\sumfgl{\sumfgl@toks{}\sumfgl@main}
+\def\sumfgl@main#1{\@ifnextchar_{\sumfgl@sub{#1}}{\@ifnextchar^{\sumfgl@sup{#1}}{\mathpalette\sumfgl@done{#1}}}}
+\def\sumfgl@sub#1_#2{\sumfgl@toks\expandafter{\the\sumfgl@toks_{#2}}\sumfgl@main{#1}}
+\def\sumfgl@sup#1^#2{\sumfgl@toks\expandafter{\the\sumfgl@toks^{#2}}\sumfgl@main{#1}}
+\def\sumfgl@done#1#2{
+    \bgroup
+    \setbox0=\hbox{$#1\sum\nolimits_{#2}\mskip1mu$}
+    \global\setbox\sumfgl@box=\hbox{$\mathsurround=0pt#1\mathop{\sum\nolimits_{\mathrlap{#2}}}\limits\the\sumfgl@toks$}
+    \ifdim\wd0>\wd\sumfgl@box \global\wd\sumfgl@box=\wd0 \fi
+    \egroup
+    \mathop{\box\sumfgl@box}
+}
+\def\sumF{\sumfgl{F}}
+\def\sumG{\sumfgl{G}}
+
+
