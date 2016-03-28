@@ -7,7 +7,7 @@
 
 
 
-\section{Unstable contexts}
+\section{Unstable contexts}\label{UnstableContextsSection}
 
 Today we will take the framework of contexts discussed in \Cref{StableContextLecture} and augment it in two\todo{Fix this intro. Don't name ``two'' things, for instance.} important (and very distinct) ways.  First, we will assume that $X$ is a \emph{space} rather than a spectrum, and try to encode the extra structure appearing on $E_* X$ from this assumption.  Toward that end, recall that the levels of $\context{E}(X)$ are defined by repeatedly smashing $X$ with $E$, and that we had arrived at this by considering descent for the adjunction
 \begin{center}
@@ -536,7 +536,7 @@ Surprisingly, this construction captures the same data as the previous one.
 The functor $D_p$ determines a \emph{covariant} equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$.  In fact, $D_p(\G) \cong M(\G/k)^*$. \qed \todo{Add in words about being uniform and reduced?}
 \end{theorem}
 
-Finally, we turn to a third presentation of Dieudonn\'e theory using more pedestrian methods, with the aim of developing a theory more directly adapted to algebraic topology.  One can show that the category of \emph{finite type} graded connected Hopf algebras is an abelian category, and hence must admit a presentation as modules over some (perhaps noncommutative) ring.  The first step to accessing this presentation is to find a collection of projective generators for this category.
+Finally, we turn to a third presentation of Dieudonn\'e theory using more pedestrian methods, with the aim of developing a theory more directly adapted to algebraic topology.  One can show that the category of \emph{finite--type} graded connected Hopf algebras is an abelian category, and hence must admit a presentation as modules over some (perhaps noncommutative) ring.  The first step to accessing this presentation is to find a collection of projective generators for this category.
 
 \begin{theorem}[{\cite{Schoeller}}]
 Let $S(n)$ denote the free graded-commutative Hopf algebra on a single generator in degree $n$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
@@ -548,7 +548,7 @@ Let $S(n)$ denote the free graded-commutative Hopf algebra on a single generator
 \end{theorem}
 
 \begin{corollary}
-The category $\CatOf{HopfAlgebras}^{> 0, \fin}_{\F_p/}$ of finite--dimensional graded connected Hopf algebras is a full subcategory of modules over \[\bigoplus_{n, m} \CatOf{HopfAlgebras}^{> 0, \fin}_{\F_p/}(H(n), H(m)).\] 
+The category $\CatOf{HopfAlgebras}^{> 0, \fin}_{\F_p/}$ of finite--type graded connected Hopf algebras is a full subcategory of modules over \[\bigoplus_{n, m} \CatOf{HopfAlgebras}^{> 0, \fin}_{\F_p/}(H(n), H(m)).\] 
 \end{corollary}
 
 \begin{definition}
@@ -567,6 +567,8 @@ The functor $D_*\co \CatOf{HopfAlgebras}^{>0, \fin}_{\F_p/} \to \CatOf{GradedDMo
 
 
 \todo[inline]{It would be nice to tie these presentations together, at least with unjustified claims.  What curve does a cohomologically left-invariant form get sent to?  What does the appearance of the Witt scheme in the third presentation tell you about the relationship to the second presentation?}
+
+\todo{This last presentation could use some examples too.}
 
 
 
@@ -588,20 +590,26 @@ The functor $D_*\co \CatOf{HopfAlgebras}^{>0, \fin}_{\F_p/} \to \CatOf{GradedDMo
 
 \section{Ordinary cooperations for Landweber flat theories}
 
-Today we will put Dieudonn\'e modules to work for us in algebraic topology.  Writing $H = H\F_p$, the following result of Goerss, Lannes, and Morel will be central for us:
+\begin{center}
+\textbf{Convention: We will write $H$ for $H\F_p$ for the duration of the lecture.}
+\end{center}
+
+Today we will put Dieudonn\'e modules to work for us in algebraic topology.  Our goal is to prove the following Theorem:
+\begin{theorem}
+For $F = H$ and $E$ a Landweber flat homology theory, the comparison map \[H_*^R \OS{E}{2*} \to H_* \OS{E}{2*}\] is an isomorphism of Hopf rings.
+\end{theorem}
+
+\noindent The essential observation about this is that the associated Dieudonn\'e module $D_* H_* \OS{E}{2*}$ is a \emph{stable object}, in the sense of the following result of Goerss--Lannes--Morel:
+
 \begin{theorem}[{\cite[Lemma 2.8]{GLM}}]
 Let $X \to Y \to Z$ be a cofiber sequence of spectra.  Then, provided $n > 1$ satisfies $n \not\equiv \pm 1 \pmod{2p}$, there is an exact sequence \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z. \qed\]
 \end{theorem}
 
 \begin{corollary}[{\cite[Theorem 2.1]{GLM}}]
-For $n > 1$ an integer satisfying $n \not\equiv \pm 1 \pmod{2p}$, there is a spectrum $B(n)$ satisfying \[B(n)_n X \cong D_n H_* \Loops^\infty X. \qed\]
+For $n > 1$ an integer satisfying $n \not\equiv \pm 1 \pmod{2p}$, there is a spectrum $B(n)$ satisfying \[B(n)_n X \cong D_n H_* \Loops^\infty X.\] (As convention, when $n \equiv \pm 1 \pmod{2p}$ we set $B(n) := B(n-1)$, and $B(0) := \S^0$.)  \todo{Remark 2.9 has a helpful discussion of how to extend to the case $B(0)$.} \qed
 \end{corollary}
 
-\begin{remark}
-As a matter of convention, when $n \equiv \pm 1 \pmod{2p}$ we set $B(n) = B(n-1)$.
-\end{remark}
-
-\todo[inline]{Remark 2.9 has a helpful discussion of how to extend to the case $B(0)$.}
+Before exploiting this result to compute something about unstable cooperations, we will prove a sequence of small results making these spectra somewhat more tangible.
 
 \begin{lemma}[{\cite[Lemma 3.2]{GLM}}]
 The spectrum $B(n)$ is connective and $p$--complete.
@@ -611,76 +619,97 @@ First, rearrange:
 \begin{align*}
 \pi_k B(n) & = B(n)_n S^{n-k} = D_n H_* \Loops^\infty \Susp^\infty S^{n-k}.
 \end{align*}
-If $k < 0$, $n$ is below the connectivity of $\Loops^\infty \Susp^\infty S^{n-k}$ and hence this vanishes.  The second assertion follows from the observation that $H\Z_* B(n)$ is an $\F_p$--vector space.  To see this, restrict to the case $n \not\equiv \pm 1 \pmod{2p}$ and calculate \[H\Z_k B(n) = B(n)_n \Susp^{n-k} H\Z = D_n H_* K(\Z, n-k) = [QH_* K(\Z, n-k)]_n. \qedhere\]
+If $k < 0$, $n$ is below the connectivity of $\Loops^\infty \Susp^\infty S^{n-k}$ and hence this vanishes.  The second assertion follows from the observation that $H\Z_* B(n)$ is an $\F_p$--vector space.  To see this, restrict to the case $n \not\equiv \pm 1 \pmod{2p}$ and calculate \[H\Z_k B(n) = B(n)_n \Susp^{n-k} H\Z = D_n H_* K(\Z, n-k) = [Q^* H_* K(\Z, n-k)]_n. \qedhere\]
 \end{proof}
 
-
-\begin{definition}[{\cite[Lemma 2.3]{GLM}}]
-There is an adjunction \todo{Put in an adjunction dash.}
-\begin{center}
-\begin{tikzcd}
-\CatOf{HopfAlgebras}^{>0, \fin}_{k/} \arrow[shift left=0.3em, "Q"]{r} & V{\mhyphen}\CatOf{Modules} \arrow[shift left=0.3em, "U"]{l},
-\end{tikzcd}
-\end{center}
-where $V{\mhyphen}\CatOf{Modules}$ is the category of graded $\F_p$--modules with a Verschiebung operator $V$ and $Q$ is the indecomposables functor.
-\end{definition}
-
-\begin{lemma}[{\cite[Lemma 2.4]{GLM}}]
-$D_n U(M) = M_n$. \qed
-\end{lemma}
-
-\begin{lemma}[{\cite[Lemma 3.3]{GLM}}]
-There is a natural onto map $B(n)_n X \to H_n X$.
-\end{lemma}
-\begin{proof}
-Suppose at first that $n \not\equiv \pm 1 \pmod{2p}$, and let $X$ be any \emph{spectrum} with counit map $\sigma\co \Susp^\infty \Loops^\infty X \to X$.  Then there is a factorization
-\begin{center}
-\begin{tikzcd}
-H_* \Loops^\infty X \arrow{d} \arrow["H_*\sigma"]{r} & H_* X \\
-Q H_* \Loops^\infty X \arrow[densely dotted,"(3)"]{r} & \Loops^\infty H_* X \arrow["(1)"]{u},
-\end{tikzcd}
-\end{center}
-since $H_* \Loops^\infty X$ is already an unstable module and $\Loops^\infty H_* X$ has no multiplicative structure.  This factored map is adjoint to a map \[H_* \Loops^\infty X \to U \Loops^\infty H_* X\] to which we can apply $D_n$:
-\begin{center}
-\begin{tikzcd}
-D_n H_* \Loops^\infty X \arrow[-,double]{d} \arrow["(4)"]{r} & D_n U \Loops^\infty H_* X \arrow[-,double]{d} \\
-B(n)_n X & {[\Loops^\infty H_* X]_n} \arrow["(2)","{\text{incl.}}"']{r} & H_n X.
-\end{tikzcd}
-\end{center}
-If $X = \Susp^\infty Z$ is itself a suspension spectrum, then (1) and (2) become equalities (by unstability of $H_* \Susp^\infty Z$), and (3) and (4) become onto (by generation and by exactness respectively).
-
-Finally, to handle the case $n \equiv \pm 1 \pmod{2p}$, one needs to investigate separately the surjectivity of the map $B(n)_n Z \to B(n-1)_n Z \to H_n Z$.  
-\end{proof}
-
-\begin{remark}
-\todo{Remark 11.4 in the Hopf Ring paper says that the failure of the odd primary case to be an isomorphism is measured by the suspension homomorphism operator $e$, and the kernel of the natural surjective map is exactly the kernel of multiplication by $e$.  Have a look.}
-\end{remark}
+\noindent We can use a similar trick to calculate $H^* B(n)$:
 
 \begin{definition}[{\cite[Example 3.6]{GLM}}]\label{SpanierWhiteheadDualOfGeneratingModule}
-Let $G(n)$ be the free unstable $\mathcal A$--module on one generator of degree $n$, so that \[\CatOf{UnstableModules}_{\mathcal A_*}(G(n), M) = M_n.\]  This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if $p = 2$}. \end{cases}\]  The Spanier--Whitehead dual of this right-module, $DG(n)$, is characterized by the left-module \[\Susp^n (D G(n))^* = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if $p = 2$}. \end{cases}\]
+Let $G(n)$ be the free unstable $\mathcal A$--module on one generator of degree $n$, so that\todo{We should reconcile this notation with what's used in \Cref{UnstableContextsSection} and what's been said historically.  These are specifically modules for the unstable \emph{additive} cooperations.} \[\CatOf{UnstableModules}_{\mathcal A_*}(G(n), M) = M_n.\]  This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if $p = 2$}. \end{cases}\]  The Spanier--Whitehead dual of this right-module, $DG(n)$, is characterized by the left-module\todo{Is this parenthesization right?} \[\Susp^n (D G(n))^* = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if $p = 2$}. \end{cases}\]
 \end{definition}
 
 \begin{theorem}[{\cite[Proof of Theorem 3.1]{GLM}}]
-There is an isomorphism \[H^* B(n) \cong \begin{cases} \mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if $p > 2$}, \\ \Susp^n \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if $p = 2$}. \end{cases}\]
+There is an isomorphism \todo{Be careful about $n \not\equiv \pm 1 \pmod{p}$?} \[H^* B(n) \cong \Susp^n(DG(n))^*.\]
 \end{theorem}
 \begin{proof}
-The unstable module $G(n)$ also enjoys a universal property in the category of stable $\mathcal A$--modules: \[\CatOf{Modules}_{\mathcal A}(G(n), M) \cong [\Loops^\infty M]_n.\]
+Start, as before, by computing:
+\begin{align*}
+H_k B(n) = B(n)_n \Susp^{n-k} H = D_n H_* K(\F_p, n-k).
+\end{align*}
+The unstable module $G(n)$ also enjoys a universal property in the category of stable $\mathcal A$--modules: \[\CatOf{Modules}_{\mathcal A/}(G(n), M) \cong [\Loops^\infty M]_n.\]  Hence, we can continue our computation:
+\begin{align*}
+H_k B(n) & = D_n H_* K(\F_p, n-k) \\
+& = \CatOf{Modules}_{\mathcal A/}(G(n), \Susp^{n-k} \mathcal A) \\
+& = \CatOf{Modules}_{\F_p/}(G(n)_{n-k}, \F_p).
+\end{align*}
 
-If $K = \Susp^{n-k} H\Z/p$, then \[H_k B(n) = B(n)_n \Susp^{n-k} H\Z/p = \CatOf{Modules}_{\mathcal A}(G(n), \Susp^{n-k} \mathcal A) = \CatOf{Modules}_{\F_p}(G(n)_{n-k}, \F_p).\]  (It follows that $H_* B(n)$ is finite.)  Letting $K$ be an arbitrary suspension of $H\Z/p$, the same calculation gives \[\CatOf{Modules}_{\mathcal A}(\Susp^n \F_p, \Susp^* \mathcal A \otimes H_* B(n)) \cong \CatOf{Modules}_{\mathcal A}(G(n), \Susp^* \mathcal A),\] and hence we have an identification $H_* B(n) \cong \Susp^n DG(n)$ with the Spanier--Whitehead dual.  Applying linear-algebraic duality and browsing \Cref{SpanierWhiteheadDualOfGeneratingModule} gives the Theorem.
+We learn immediately that $H_* B(n)$ is finite.  We would like to show, furthermore, that $H_* B(n)$ is the Spanier--Whitehead dual $\Susp^n DG(n)$.  It suffices to show \[\CatOf{Modules}_{\mathcal A/}(G(n), \Susp^j \mathcal A) = \CatOf{Modules}_{\mathcal A/}(\F_p, \Susp^j \mathcal A \otimes H_* B(n))\] for all values of $j$.  This follows from calculating $B(n)_n \Susp^{n+j} H$ using the same method.  Finally, linear-algebraic duality and \Cref{SpanierWhiteheadDualOfGeneratingModule} give the Theorem.
 \end{proof}
 
+Additionally, the following Lemma is almost a consequence of basic understanding of unstable modules over $\mathcal A_*$, with minor fuss at the bad indices $n \equiv \pm 1 \pmod p$:
+
+\begin{lemma}[{\cite[Lemma 3.3]{GLM}}]
+There is a natural onto map $B(n)_n X \to H_n X$. \qed
+\end{lemma}
+% \begin{proof}
+% Suppose at first that $n \not\equiv \pm 1 \pmod{2p}$, and let $X$ be any \emph{spectrum} with counit map $\sigma\co \Susp^\infty \Loops^\infty X \to X$.  Then there is a factorization
+% \begin{center}
+% \begin{tikzcd}
+% H_* \Loops^\infty X \arrow{d} \arrow["H_*\sigma"]{r} & H_* X \\
+% Q H_* \Loops^\infty X \arrow[densely dotted,"(3)"]{r} & \Loops^\infty H_* X \arrow["(1)"]{u},
+% \end{tikzcd}
+% \end{center}
+% since $H_* \Loops^\infty X$ is already an unstable module and $\Loops^\infty H_* X$ has no multiplicative structure.  This factored map is adjoint to a map \[H_* \Loops^\infty X \to U \Loops^\infty H_* X\] to which we can apply $D_n$:
+% \begin{center}
+% \begin{tikzcd}
+% D_n H_* \Loops^\infty X \arrow[-,double]{d} \arrow["(4)"]{r} & D_n U \Loops^\infty H_* X \arrow[-,double]{d} \\
+% B(n)_n X & {[\Loops^\infty H_* X]_n} \arrow["(2)","{\text{incl.}}"']{r} & H_n X.
+% \end{tikzcd}
+% \end{center}
+% If $X = \Susp^\infty Z$ is itself a suspension spectrum, then (1) and (2) become equalities (by unstability of $H_* \Susp^\infty Z$), and (3) and (4) become onto (by generation and by exactness respectively).
+
+% Finally, to handle the case $n \equiv \pm 1 \pmod{2p}$, one needs to investigate separately the surjectivity of the map $B(n)_n Z \to B(n-1)_n Z \to H_n Z$.  
+% \end{proof}
+
+
+------
+
+
+Talk about multiplicative structure and Hopf rings
 
 
 
 
-\begin{lemma}\citeme{Find a citation}
-There are stable splittings
+We have only described a framework for encoding Hopf algebras so far.  We also want to incorporate Hopf rings into our discussion, since we are coming off of the study of unstable cooperations.  Hunton and Turner were among the first to consider ``bilinear'' constructions on Hopf algebras in the abstract, and a similar study of bilinearity on the level of Dieudonn\'e modules is due to Goerss and to Buchstaber--Lazarev.  Our definitions are motivated by the following observation:
+
+\begin{lemma}\citeme{Lemma 7.6 of Goerss's bilinear paper, Lemma 7.1.c of Ravenel--Wilson}
+The pairing \[\circ \co D(K_\Gamma \OS{H\Z/p^j}{k_1}) \times D(K_\Gamma \OS{H\Z/p^j}{k_2}) \to D(K_\Gamma \OS{H\Z/p^j}{k_1 + k_2})\] is bilinear in $\W(k)$ and satisfies
 \begin{align*}
-\Susp^\infty_+ \Loops^2 S^3 & \cong \begin{cases} \bigvee_{n=0}^\infty \Susp^n B(n) & \text{if $p = 2$}, \\ \bigvee_{n=0}^\infty \Susp^{2n(p-1)} B(2n) \vee \Susp^{2n(p-1) + 1} B(2n+1) & \text{if $p \ne 2$}, \end{cases} \\
-\Susp^\infty_+ ((\Loops^2 S^3)[3, \infty)) & \cong \bigvee_{n=0}^\infty \Susp^{2n(p-1)} B(2n).
+V(x \circ y) & = Vx \circ Vy, &
+Fx \circ y & = F(x \circ Vy), &
+x \circ Fy & = F(Vx \circ y). \qed
 \end{align*}
 \end{lemma}
 
+\begin{definition}
+The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+\end{definition}
+
+\begin{theorem}\citeme{Theorem 7.7 of Goerss's bilinear paper}
+The natural map \[D(M) \boxtimes D(N) \to D(M \boxtimes N)\] is an isomorphism. \qed
+\end{theorem}
+
+Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.\todo{It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.  I guess a related question is: what's the relationship between $Q^\ast$ and the free Dieudonn\'e algebra functor?  Do they commute?  Almost certainly not...}
+
+
+You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
+
+
+------
+
+
+
+Now show that the comparison map on the level of Dieudonn\'e algebras is an isomorphism for Landweber flat $E$
 
 
 $R_0(E) = E^*[b_1, b_2, \ldots]$ a Dieudonn\'e algebra, $V b_{p^i} = b_i$ and $V|_{E^*} = \id$, $V$ multiplicative.  A choice of coordinate gives a map $R_0(E) \to D_* H_* \OS{E}{*}$.
@@ -709,6 +738,8 @@ In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP
 
 \todo[inline]{Compare also with the main result of {\cite{HopkinsHunton}}.}
 
+\todo{Remark 11.4 in the Hopf Ring paper says that the failure of the odd primary case to be an isomorphism is measured by the suspension homomorphism operator $e$, and the kernel of the natural surjective map is exactly the kernel of multiplication by $e$.  Have a look.}
+
 
 
 
@@ -722,33 +753,6 @@ In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP
 
 \todo[inline]{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.}
 
-
-----
-
-
-We have only described a framework for encoding Hopf algebras so far.  We also want to incorporate Hopf rings into our discussion, since we are coming off of the study of unstable cooperations.  Hunton and Turner were among the first to consider ``bilinear'' constructions on Hopf algebras in the abstract, and a similar study of bilinearity on the level of Dieudonn\'e modules is due to Goerss and to Buchstaber--Lazarev.  Our definitions are motivated by the following observation:
-
-\begin{lemma}\citeme{Lemma 7.6 of Goerss's bilinear paper, Lemma 7.1.c of Ravenel--Wilson}
-The pairing \[\circ \co D(K_\Gamma \OS{H\Z/p^j}{k_1}) \times D(K_\Gamma \OS{H\Z/p^j}{k_2}) \to D(K_\Gamma \OS{H\Z/p^j}{k_1 + k_2})\] is bilinear in $\W(k)$ and satisfies
-\begin{align*}
-V(x \circ y) & = Vx \circ Vy, &
-Fx \circ y & = F(x \circ Vy), &
-x \circ Fy & = F(Vx \circ y). \qed
-\end{align*}
-\end{lemma}
-
-\begin{definition}
-The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
-\end{definition}
-
-\begin{theorem}\citeme{Theorem 7.7 of Goerss's bilinear paper}
-The natural map \[D(M) \boxtimes D(N) \to D(M \boxtimes N)\] is an isomorphism. \qed
-\end{theorem}
-
-Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.\todo{It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.  I guess a related question is: what's the relationship between $Q^\ast$ and the free Dieudonn\'e algebra functor?  Do they commute?  Almost certainly not...}
-
-
-You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
 
 
 
