@@ -672,51 +672,46 @@ There is a natural onto map $B(n)_n X \to H_n X$. \qed
 % \end{proof}
 
 
-------
 
+Let's now work toward using the $B(n)$ spectra to analyze the Hopf rings arising from unstable cooperations.  We have previously computed that the comparison map \[H_*^R \OS{BP}{2*} \to H_* \OS{BP}{2*}\] is an isomorphism.  We will begin by reimagining this statement in terms of Dieudonn\'e theory.\citeme{You probably also want to cite Hunton--Turner and Buchstaber--Lazarev}
 
-Talk about multiplicative structure and Hopf rings
+To begin with, Dieudonn\'e theory as we have described it is concerned with \emph{Hopf algebras} rather than Hopf rings.  However, a Hopf ring is not much structure on top of a system of graded Hopf algebras $A_*$: it is a map \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``$\boxtimes$'' is the tensor product of Hopf algebras.  Since $D_*$ gives an equivalence of categories between graded Hopf algebras and graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of Dieudonn\'e modules.
 
+\begin{definition}
+\todo{This definition is easier than it should be in generality, because not only are you working with a \emph{field} but you're even working with $\F_p$, which has no Frobenius.}
+The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module, where $V(x \otimes y) = V(x) \otimes V(y)$.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+\end{definition}
 
-
-
-We have only described a framework for encoding Hopf algebras so far.  We also want to incorporate Hopf rings into our discussion, since we are coming off of the study of unstable cooperations.  Hunton and Turner were among the first to consider ``bilinear'' constructions on Hopf algebras in the abstract, and a similar study of bilinearity on the level of Dieudonn\'e modules is due to Goerss and to Buchstaber--Lazarev.  Our definitions are motivated by the following observation:
-
-\begin{lemma}\citeme{Lemma 7.6 of Goerss's bilinear paper, Lemma 7.1.c of Ravenel--Wilson}
-The pairing \[\circ \co D(K_\Gamma \OS{H\Z/p^j}{k_1}) \times D(K_\Gamma \OS{H\Z/p^j}{k_2}) \to D(K_\Gamma \OS{H\Z/p^j}{k_1 + k_2})\] is bilinear in $\W(k)$ and satisfies
-\begin{align*}
-V(x \circ y) & = Vx \circ Vy, &
-Fx \circ y & = F(x \circ Vy), &
-x \circ Fy & = F(Vx \circ y). \qed
-\end{align*}
+\begin{lemma}[{\cite[Theorem 7.7]{GoerssDieudonne}}]
+\todo{There's a wrinkle here: if you want to say that $D_*$ is an equivalence of symmetric monoidal categories, then there needs to be a unit object. I don't think that's the case in the setting you're in.}
+The natural map \[D_*(M) \boxtimes D_*(N) \to D_*(M \boxtimes N)\] is an isomorphism. \qed
 \end{lemma}
 
 \begin{definition}
-The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module.  We define the \textit{tensor product of Dieudonn\'e modules} by \[M \boxtimes N = \left.\W(k)[F, V] \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+For a ring $R$, a Dieudonn\'e $R$--algebra $A_*$ is a graded Dieudonn\'e module equipped with an $R$--action and an algebra product \[\circ\co A_* \boxtimes A_* \to A_*.\]
 \end{definition}
 
-\begin{theorem}\citeme{Theorem 7.7 of Goerss's bilinear paper}
-The natural map \[D(M) \boxtimes D(N) \to D(M \boxtimes N)\] is an isomorphism. \qed
-\end{theorem}
-
-Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.\todo{It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.  I guess a related question is: what's the relationship between $Q^\ast$ and the free Dieudonn\'e algebra functor?  Do they commute?  Almost certainly not...}
+\begin{definition}[{\cite[Proposition 10.2]{GoerssDieudonne}}]\todo{This citation at least says that the R--W relation holds over the topology $E_*$--Dieudonn\'e algebra.}
+For a complex-oriented homology theory $E$, we define its Dieudonn\'e $E_*$--algebra of algebraic unstable cooperations by \[R_E = \left. E_*[b_1, b_2, \ldots] \middle/ \left( \begin{array}{c} b(s+t) = b(s) +_E b(t) \end{array} \right) \right.,\] where $V$ is multiplicative, $V$ fixes $E_*$, and $V$ satisfies $Vb_{pj} = b_j$.  (This determines the behavior of $F$.\todo{How?})  This algebra comes with a natural comparison map \[R_E \to D_* H_* \OS{E}{2*}.\]
+\end{definition}
 
 
-You can write down a tensor product for Hopf algebras.  Equation 7.6 has a description of the box tensor functor for Dieudonn\'e modules.  The Dieudonn\'e module functor is monoidal for these two products.\citeme{Corollary 8.14 of Goerss's bilinear paper}
+
+
+
+
+
+
+
 
 
 ------
-
 
 
 Now show that the comparison map on the level of Dieudonn\'e algebras is an isomorphism for Landweber flat $E$
 
 
-$R_0(E) = E^*[b_1, b_2, \ldots]$ a Dieudonn\'e algebra, $V b_{p^i} = b_i$ and $V|_{E^*} = \id$, $V$ multiplicative.  A choice of coordinate gives a map $R_0(E) \to D_* H_* \OS{E}{*}$.
 
-\begin{lemma}[{\cite[Proposition 10.2]{GoerssDieudonne}}]
-Over $D_* H_* E\ps{s, t}$ there is the formula $b(s) +_F b(t) = b(s + t)$. \qed
-\end{lemma}
 
 This gives a map $R_0(E) / I \to D_* H_* \OS{E}{*}$ where $I$ imposes the relation in the Lemma.  The other thing that's missing is a homology suspension element, and hence a map \[(R_0(E) / I)[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
 
@@ -752,6 +747,8 @@ In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP
 
 
 \todo[inline]{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.}
+
+\todo{Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.  It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.}
 
 
 
