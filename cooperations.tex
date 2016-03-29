@@ -691,63 +691,37 @@ The natural map \[D_*(M) \boxtimes D_*(N) \to D_*(M \boxtimes N)\] is an isomorp
 For a ring $R$, a Dieudonn\'e $R$--algebra $A_*$ is a graded Dieudonn\'e module equipped with an $R$--action and an algebra product \[\circ\co A_* \boxtimes A_* \to A_*.\]
 \end{definition}
 
-\begin{definition}[{\cite[Proposition 10.2]{GoerssDieudonne}}]\todo{This citation at least says that the R--W relation holds over the topology $E_*$--Dieudonn\'e algebra.}
-For a complex-oriented homology theory $E$, we define its Dieudonn\'e $E_*$--algebra of algebraic unstable cooperations by \[R_E = \left. E_*[b_1, b_2, \ldots] \middle/ \left( \begin{array}{c} b(s+t) = b(s) +_E b(t) \end{array} \right) \right.,\] where $V$ is multiplicative, $V$ fixes $E_*$, and $V$ satisfies $Vb_{pj} = b_j$.  (This determines the behavior of $F$.\todo{How?})  This algebra comes with a natural comparison map \[R_E \to D_* H_* \OS{E}{2*}.\]
-\end{definition}
+\begin{example}[{\cite[Proposition 10.2]{GoerssDieudonne}}]\todo{This citation at least says that the R--W relation holds over the topology $E_*$--Dieudonn\'e algebra.}
+For a complex-oriented homology theory $E$, we define its Dieudonn\'e $E_*$--algebra of algebraic unstable cooperations by \[R_E = \left. E_*[b_1, b_2, \ldots] \middle/ \left( \begin{array}{c} b(s+t) = b(s) +_E b(t) \end{array} \right) \right.,\] where $V$ is multiplicative, $V$ fixes $E_*$, and $V$ satisfies $Vb_{pj} = b_j$.  (This determines the behavior of $F$.\todo{How?})  We also write $D_E = \{D_{2m} H_* \OS{E}{2n}\}$ for the even part of the topological Dieudonn\'e algebra, and these come with natural comparison maps \[R_E \to D_E \from D_* H_* \OS{E}{2*}.\]
+\end{example}
 
-
-
-
-
-
-
-
-
-
-
-------
-
-
-Now show that the comparison map on the level of Dieudonn\'e algebras is an isomorphism for Landweber flat $E$
-
-
-
-
-This gives a map $R_0(E) / I \to D_* H_* \OS{E}{*}$ where $I$ imposes the relation in the Lemma.  The other thing that's missing is a homology suspension element, and hence a map \[(R_0(E) / I)[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
-
-\begin{lemma}[{\cite[Proposition 11.6]{GoerssDieudonne}}]
-Let $E$ be an even ring spectrum with $E_*$ torsion-free, and suppose that $E_* B(n)$ is even for all $n$.  Then the purely algebraic version of this statement is true: writing $D_E = \{D_{2m} H_* \OS{E}{2n}\}$, the map \[D_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}\] is an isomorphism.
-\end{lemma}
-\begin{proof}
-Since $0 = E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}$ is onto, the latter group is zero, and a bar spectral sequence argument shows the same is true for $D_{2n+1} H_* \OS{E}{2k+2}$~\cite[Lemma 11.5.1]{GoerssDieudonne}.  Hence, the map \[(D_E[e] / (e^2 - b_1))_{*, 2n} \to (D_* H_* \OS{E}{*})_{*, 2n}\] is an isomorphism, and we need only show that \[e D_* H_* \OS{E}{2n} \to D_* H_* \OS{E}{2n+1}\] is an isomorphism as well.  Since $e(Fx) = F(Ve \circ x) = 0$ and $D_* / FD_*H \cong QH$, we see that $e$ kills decomposables and suspends indecomposables: \[e D_* H_* \OS{E}{2n} = \Susp QH_* \OS{E}{2n}.\]  The result then follows from the same bar spectral sequence analysis as above.
-\end{proof}
-
-\begin{theorem}[{\cite[Theorem 11.7]{GoerssDieudonne}}]
-Restricting attention to the even parts, the maps \[E_* B(2*) \to D_E \from R_E\] are isomorphisms for $E$ Landweber flat.
+\begin{theorem}[{\cite[Theorem 11.7]{GoerssDieudonne}}]\label{LandweberFlatUnstableCoopns}
+Restricting attention to the even parts, the maps \[R_E \to D_E \from D_* H_* \OS{E}{2*}\] are isomorphisms for $E$ Landweber flat.
 \end{theorem}
 \begin{proof}
-In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP$.  If $E$ is Landweber flat, then the left term (and hence middle term) is determined by change-of-base from the $BP$ left term.  The right term commutes with change-of-base by definition, and the theorem follows.
+In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP$.  However, the right--hand object can be identified via Brown--Gitler juggling: \[D_n H_* \OS{E}{2j} = B(n)_n \Susp^{2j} E = E_{2j+n} B(n).\]  If $E$ is Landweber flat, then the middle-- and right--terms are determined by change-of-base from the respective $BP$ terms by definition of flatness.  Finally, the left term commutes with change-of-base by its algebraic definition, and the theorem follows.
 \end{proof}
-% Goerss's original proof of this didn't want to assume the Ravenel--Wilson result, which he reproves by identifying the spectra $B(n)$ as Brown--Gitler spectra and using a different (easier) computation of Ravenel's about $BP_* \Loops^2 S^3$.  Since we've already done the Ravenel--Wilson computation, we can jump straight to it.
+
+\begin{remark}
+The proof of \Cref{LandweberFlatUnstableCoopns} originally given by Goerss~\cite{GoerssDieudonne} involved a lot more work, essentially because he didn't want to assume \Cref{HFpBPCooperationsTheorem} or \Cref{HopfRingForEBP}.  Instead, he used the fact that $\Susp^\infty_+ \Loops^2 S^3$ is a regrading of the ring spectrum $\bigvee_n B(n)$, together with knowledge of $BP_* \Loops^2 S^3$.  Since we already spent time with \Cref{HFpBPCooperationsTheorem}, we're not obligated to pursue this other line of thought.
+\end{remark}
+
+\begin{remark}[{\cite[Proposition 11.6]{GoerssDieudonne}}]
+The Dieudonn\'e algebra framework also makes it easy to add in the odd part after the fact.  Namely, suppose that $E$ is a torsion--free ring spectrum and suppose that $E_* B(n)$ is even for all $n$.  In this setting, we can verify the purely topological version of this statement: the map \[D_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}\] is an isomorphism.
+
+To see this, note that because $E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}$ is onto and $E_{2n-2k-1} B(2n)$ is assumed zero, the group $D_{2n} H_* \OS{E}{2k+1}$ vanishes as well.  A bar spectral sequence argument shows that $D_{2n+1} H_* \OS{E}{2k+2}$ is also empty~\cite[Lemma 11.5.1]{GoerssDieudonne}.  Hence, the map on even parts \[(D_E[e] / (e^2 - b_1))_{*, 2n} \to (D_* H_* \OS{E}{*})_{*, 2n}\] is an isomorphism, and we need only show that \[D_* H_* \OS{E}{2n} \xrightarrow{e \cdot -} D_* H_* \OS{E}{2n+1}\] is an isomorphism as well.  Since $e(Fx) = F(Ve \circ x) = 0$ and $D_* A / FD_* A \cong Q^* A$ for a Hopf algebra $A$, we see that $e$ kills decomposables and suspends indecomposables: \[e D_* H_* \OS{E}{2n} = \Susp QH_* \OS{E}{2n}.\]  This is also what happens in the bar spectral sequence, and the claim follows.  In light of \Cref{LandweberFlatUnstableCoopns}, this means that for Landweber flat $E$, the comparison isomorphism can be augmented to a further isomorphism \[R_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
+\end{remark}
 
 
-\todo[inline]{Compare also with the main result of {\cite{HopkinsHunton}}.}
 
+
+
+
+
+
+\todo{Compare also with the main result of {\cite{HopkinsHunton}}.}
 \todo{Remark 11.4 in the Hopf Ring paper says that the failure of the odd primary case to be an isomorphism is measured by the suspension homomorphism operator $e$, and the kernel of the natural surjective map is exactly the kernel of multiplication by $e$.  Have a look.}
-
-
-
-
-
-
-
-
-
-
-
-
-\todo[inline]{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.}
-
+\todo{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.  3/29: I did ask Mike, he said he didn't know. I also asked Paul, and he said this seemed unreasonable, since $kO$ isn't valued in co/commutative Hopf algebras.  This is a fair point: one would need to invent an ``analogue'' of Dieudonn\'e theory for $kO$, in the sense that some category it takes values in would have to be identified as abelian, where the category is rigid enough that it often sends fiber sequences to exact sequences in the category.}
 \todo{Goerss also talks about ``Hopf ring hom'', and how, since many of the Hopf rings appearing in algebraic topology are ``free'', Hopf ring hom off of them agrees with just Hopf algebra hom (or Dieudonne module hom) off of their generating object.  That's probably worth pointing out, since nonadditive unstable operations seem so unwieldy.  It's weird, though, because restricting to additive unstable operations means passing to $\ast$--indecomposables?  That is, the freeness of the $\circ$--product doesn't really seem to get you out of all that much trouble.}
 
 
