@@ -19,7 +19,7 @@ This document was last compiled on \today.
 
 
 \newpage
-\section*{Day 1: Quillen's theorem}
+\oldsection*{Day 1: Quillen's theorem}
 
 
 For certain ring spectra $E$, we describe a construction of a very rich algebro-geometric category in which $E$--homology is valued, called the \textit{context} for $E$.  We also give a tour of the theory of Thom spectra and announce Quillen's description of the context for the Thom spectrum of the complex $J$--homomorphism.
@@ -65,20 +65,20 @@ Now that I've subjected you to a flurry of ``co-''s, I'd like to take some of th
 \begin{definition}
 $E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis, when $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.
 \end{definition}
-\noindent In the case that $E$ satisfies \CH, we can study the simplicial scheme \[\M_E := \Spec \pi_* \mathcal D_E,\] and the cosimplicial object $\pi_* \mathcal D_E(X)$ determines a quasicoherent sheaf $\M_E(X)$ over $\M_E$.
+\noindent In the case that $E$ satisfies \CH, we can study the simplicial scheme \[\context{E} := \Spec \pi_* \mathcal D_E,\] and the cosimplicial object $\pi_* \mathcal D_E(X)$ determines a quasicoherent sheaf $\context{E}(X)$ over $\context{E}$.
 
 \begin{definition}
-The object $\M_E$ is called the \textit{context} of $E$.  The construction $\M_E(X)$ describes $E$--homology as a functor \[E_*: \CatOf{Spaces} \to \CatOf{QCoh}(\M_E).\]  If $E$ satisfies \FH, $\M_E$ takes values in groupoids.\todo{Discriminate between the usefulness of $1$--simplices in $\M_E$ vs in $\M_E(X)$. It's not like $\mathcal A_*$ acts interestingly on $\Spec \F_2$.}
+The object $\context{E}$ is called the \textit{context} of $E$.  The construction $\context{E}(X)$ describes $E$--homology as a functor \[E_*: \CatOf{Spaces} \to \CatOf{QCoh}(\context{E}).\]  If $E$ satisfies \FH, $\context{E}$ takes values in groupoids.\todo{Discriminate between the usefulness of $1$--simplices in $\context{E}$ vs in $\context{E}(X)$. It's not like $\mathcal A_*$ acts interestingly on $\Spec \F_2$.}
 \end{definition}
 
-This is a lot of fancy words for some simple cooperations, but I claim that the conceptual payoff is worth the hassle.  For instance, return to the example $E = H\F_2$, so that $\M_E[0] = \Spec \F_2$ is a point and $\M_E[1] = \Spec \mathcal A_*$ is the spectrum of the infinite polynomial algebra from before.  In order to justify the utility of this language, we should give a geometric description of $\Spec \mathcal A_*$.  Consider the generating function \[F(t) = \sum_{j=0}^\infty \xi_j x^{2^j}.\]  The composition of two such series $F'$ and $F''$ in $\mathcal A_* \otimes \mathcal A_*$ takes the form \[F'(F''(t)) = \sum_{j=0}^\infty \xi'_j \left(\sum_{k=0}^\infty \xi''_k t^{2^k} \right)^{2^j} = \sum_{n=0}^\infty \left( \sum_{j+k=n} \xi'_j (\xi''_k)^{2^j} \right) x^{2^n},\] and so power series composition exactly captures the Milnor diagonal.  The power series $F$ can be identified as the generic mod--$2$ power series satisfying the homomorphism property $F(x' + x'') = F(x') + F(x'')$, and so we identify $\Spec \mathcal A_*$ with $\underline{\operatorname{Aut}}(\G_a)$.\footnote{If this notation makes you uncomfortable, check the end of the talk for an explanation of ``formal group laws''.}  Finally, because $H\F_2$ satisfies \FH, we learn that \[\M_{H\F_2} \simeq \Spec \F_2 \mmod \underline{\operatorname{Aut}}(\G_a).\]  This last line embodies the utility of contexts: starting with this isomorphism, you can unpack that $H\F_2$--homology is valued in $\F_2$--modules with a coaction by a Hopf algebra whose formulas you can write out from memory alone.
+This is a lot of fancy words for some simple cooperations, but I claim that the conceptual payoff is worth the hassle.  For instance, return to the example $E = H\F_2$, so that $\context{E}[0] = \Spec \F_2$ is a point and $\context{E}[1] = \Spec \mathcal A_*$ is the spectrum of the infinite polynomial algebra from before.  In order to justify the utility of this language, we should give a geometric description of $\Spec \mathcal A_*$.  Consider the generating function \[F(t) = \sum_{j=0}^\infty \xi_j x^{2^j}.\]  The composition of two such series $F'$ and $F''$ in $\mathcal A_* \otimes \mathcal A_*$ takes the form \[F'(F''(t)) = \sum_{j=0}^\infty \xi'_j \left(\sum_{k=0}^\infty \xi''_k t^{2^k} \right)^{2^j} = \sum_{n=0}^\infty \left( \sum_{j+k=n} \xi'_j (\xi''_k)^{2^j} \right) x^{2^n},\] and so power series composition exactly captures the Milnor diagonal.  The power series $F$ can be identified as the generic mod--$2$ power series satisfying the homomorphism property $F(x' + x'') = F(x') + F(x'')$, and so we identify $\Spec \mathcal A_*$ with $\underline{\operatorname{Aut}}(\G_a)$.\footnote{If this notation makes you uncomfortable, check the end of the talk for an explanation of ``formal group laws''.}  Finally, because $H\F_2$ satisfies \FH, we learn that \[\context{H\F_2} \simeq \Spec \F_2 \mmod \underline{\operatorname{Aut}}(\G_a).\]  This last line embodies the utility of contexts: starting with this isomorphism, you can unpack that $H\F_2$--homology is valued in $\F_2$--modules with a coaction by a Hopf algebra whose formulas you can write out from memory alone.
 
 
 
 
 \subsection*{A general Thom isomorphism}
 
-Today's punchline theorem is about the context $\M_{T(J)}$ of a certain ring spectrum $T(J)$ coming from the theory of Thom spectra.  Once I explain the notation, some of you might recognize this as the complex bordism spectrum, but I don't think I can count on that to quickly supply us with the background we need to recognize $\M_{T(J)}$.  Instead, I'll construct $T(J)$ from scratch in a way that gives us the statements we need for free.  Additionally, this takes us through some interesting tools available to a ``modern'' homotopy theorist --- where ``modern'' primarily means ``geometrically uninclined''.
+Today's punchline theorem is about the context $\context{T(J)}$ of a certain ring spectrum $T(J)$ coming from the theory of Thom spectra.  Once I explain the notation, some of you might recognize this as the complex bordism spectrum, but I don't think I can count on that to quickly supply us with the background we need to recognize $\context{T(J)}$.  Instead, I'll construct $T(J)$ from scratch in a way that gives us the statements we need for free.  Additionally, this takes us through some interesting tools available to a ``modern'' homotopy theorist --- where ``modern'' primarily means ``geometrically uninclined''.
 
 Given an $S^n$--bundle over a space $X$ \[S^n \to E \xrightarrow\xi X\] its Thom spectrum\footnote{One might prefer the name ``reduced Thom spectrum'', because of the dimension shift in the definition.} $T(\xi)$ is the stable cofiber\todo{Draw a picture of this.}\todo{Does $T(0) \simeq \Susp^\infty_+ X$ follow from the cofiber definition? You need this for the Thom isomorphism, and it seems like it doesn't have the ${}_+$.} \[\Susp^{-n-1} \Susp^\infty_+ E \xrightarrow{\Susp^{-n-1} \Susp^\infty_+ \xi} \Susp^{-n-1} \Susp^\infty_+ X \xrightarrow{\text{cofiber}} T(\xi).\]  Though simple to define, this construction has a number of pleasant properties that indicate it's worth studying:
 \begin{enumerate}
@@ -137,19 +137,19 @@ which is determined by the image of $t$, some bivariate power series $x +_\phi y
 \item Symmetry: $x +_\phi y = y +_\phi x$.  (Tensoring is commutative.)
 \item Associativity: $(x +_\phi y) +_\phi z = x +_\phi (y +_\phi z)$.  (Tensoring is associative.)
 \end{enumerate}
-Such a power series is called a \textit{formal group law}.\footnote{All the formal group laws we'll consider will implicitly be commutative and $1$--dimensional.}  The universal such power series is represented by an affine scheme $\moduli{fgl}$, and the identity orientation of $T(J)$\todo{For the love of Christ, just call this $MU$.} gives a map $\M_{T(J)}[0] \to \moduli{fgl}$.  Moreover, $T(J) \sm T(J)$ is the universal ring spectrum with two $J$--orientations (coming from the left- and right-units) and a transposition relating them: \[T(J) \sm T(J) \xrightarrow{\text{twist}} T(J) \sm T(J).\]  It follows that the induced formal group laws $x +_{\eta_L} y$ and $x +_{\eta_R} y$ must be related by some ``formal group law isomorphism'' $f(t) \in (T(J) \sm T(J))_*\ps{t}$, i.e., a power series $f$ satisfying \[f(x +_{\eta_L} y) = f(x) +_{\eta_R} f(y).\]
+Such a power series is called a \textit{formal group law}.\footnote{All the formal group laws we'll consider will implicitly be commutative and $1$--dimensional.}  The universal such power series is represented by an affine scheme $\moduli{fgl}$, and the identity orientation of $T(J)$\todo{For the love of Christ, just call this $MU$.} gives a map $\context{T(J)}[0] \to \moduli{fgl}$.  Moreover, $T(J) \sm T(J)$ is the universal ring spectrum with two $J$--orientations (coming from the left- and right-units) and a transposition relating them: \[T(J) \sm T(J) \xrightarrow{\text{twist}} T(J) \sm T(J).\]  It follows that the induced formal group laws $x +_{\eta_L} y$ and $x +_{\eta_R} y$ must be related by some ``formal group law isomorphism'' $f(t) \in (T(J) \sm T(J))_*\ps{t}$, i.e., a power series $f$ satisfying \[f(x +_{\eta_L} y) = f(x) +_{\eta_R} f(y).\]
 
 \begin{theorem}[Quillen's theorem]
 The spectrum $T(J)$ satisfies {\FH} and \CH.  Moreover, the maps
 \begin{align*}
 \Spec T(J)_* & \to \moduli{fgl}, \\
 \Spec T(J)_* T(J) & \to \moduli{fgl} \times \moduli{ps}^{\mathrm{gpd}}, \\
-\M_{T(J)} & \to \moduli{fgl} \mmod \moduli{ps}^{\mathrm{gpd}} =: \moduli{fg}
+\context{T(J)} & \to \moduli{fgl} \mmod \moduli{ps}^{\mathrm{gpd}} =: \moduli{fg}
 \end{align*}
 described above are all equivalences.\todo{Explain what ``gpd'' refers to.}
 \end{theorem}
 
-This is a pretty powerful theorem.\footnote{This situation has a strange feature worth remarking on: the ring maps $T(J) \sm T(J) \to E$ act transitively on the set of ring maps $T(J) \to E$, i.e., the ``(decoordinatized) formal group'' associated to $E$ is determined totally by $E$.  This is very different from the algebraic case, where a given ring can support many non-isomorphic formal group laws.}  In our discussion of $T(J)$, we've been so hands off that we've had essentially no control over its behavior.  Nonetheless, this theorem puts $T(J)$ on almost even footing with $H\F_2$: just as the compact description of $\M_{H\F_2}$ given above lets you totally unpack the category in which $H\F_2$--homology is valued, Quillen's description of $\M_{T(J)}$ gives you complete access to the structure theorems governing the category in which $T(J)$--homology is valued.  We will do our best to leverage this tomorrow.
+This is a pretty powerful theorem.\footnote{This situation has a strange feature worth remarking on: the ring maps $T(J) \sm T(J) \to E$ act transitively on the set of ring maps $T(J) \to E$, i.e., the ``(decoordinatized) formal group'' associated to $E$ is determined totally by $E$.  This is very different from the algebraic case, where a given ring can support many non-isomorphic formal group laws.}  In our discussion of $T(J)$, we've been so hands off that we've had essentially no control over its behavior.  Nonetheless, this theorem puts $T(J)$ on almost even footing with $H\F_2$: just as the compact description of $\context{H\F_2}$ given above lets you totally unpack the category in which $H\F_2$--homology is valued, Quillen's description of $\context{T(J)}$ gives you complete access to the structure theorems governing the category in which $T(J)$--homology is valued.  We will do our best to leverage this tomorrow.
 
 
 
@@ -164,10 +164,10 @@ This is a pretty powerful theorem.\footnote{This situation has a strange feature
 
 
 \newpage
-\section*{Day 2: E--theory and periodic self-maps}
+\oldsection*{Day 2: E--theory and periodic self-maps}
 
 
-We outline a program for studying the functor $\M_{T(J)}(X)$ by first studying the local structure of $\moduli{fg}$.  After a brief tour of the arithmetic literature on formal group laws, we deduce the existence of certain homology theories: the Morava $E$-- and $K$--theories.  We then give examples of local-to-global methods in algebraic topology: for instance, a condition for detecting non-nilpotent self-maps.
+We outline a program for studying the functor $\context{T(J)}(X)$ by first studying the local structure of $\moduli{fg}$.  After a brief tour of the arithmetic literature on formal group laws, we deduce the existence of certain homology theories: the Morava $E$-- and $K$--theories.  We then give examples of local-to-global methods in algebraic topology: for instance, a condition for detecting non-nilpotent self-maps.
 
 
 
@@ -187,7 +187,7 @@ The deformation space of any height $d < \infty$ law $\Gamma$ over a perfect fie
 % \caption{$\moduli{fg}$}
 % \end{figure}
 
-Having stood on the shoulders of all these arithmetic geometers, we can now put our program into practice.  We have a list of the closed points $\Gamma_d$ of $\moduli{fg} \times \Spec \Z_{(p)}$, and their deformation spaces lift to $\moduli{fgl}$ as smooth formal subschemes.  It follows from Landweber's theorem that we can construct homology theories $E_{\Gamma_d}$ for each of these formal groups.  Additionally, we can find regular sequences $(p, u_1, \ldots, u_{d-1}) \in (E_{\Gamma_d})_*$, and hence we can construct the regular quotient\todo{Really emphasize the role of the regular quotient.}\footnote{We think of $K(\Gamma_d)_* X$ as being a model for the stalk of $\M_{T(J)}(X)$ at $\Gamma_d$, though if $(E_{\Gamma_d})_* X$ has torsion this may not agree with $\Gamma_d^* \M_{T(J)}(X)$.} \[K(\Gamma_d) := E_{\Gamma_d} / (p, u_1, \ldots, u_{d-1}).\]  In the case that we pick the lift of $\Gamma_d$ with $p$--series $[p](x) = x^{p^d}$, these objects are typically written $E_d$ and $K(d)$, called Morava $E$--theory and Morava $K$--theory.
+Having stood on the shoulders of all these arithmetic geometers, we can now put our program into practice.  We have a list of the closed points $\Gamma_d$ of $\moduli{fg} \times \Spec \Z_{(p)}$, and their deformation spaces lift to $\moduli{fgl}$ as smooth formal subschemes.  It follows from Landweber's theorem that we can construct homology theories $E_{\Gamma_d}$ for each of these formal groups.  Additionally, we can find regular sequences $(p, u_1, \ldots, u_{d-1}) \in (E_{\Gamma_d})_*$, and hence we can construct the regular quotient\todo{Really emphasize the role of the regular quotient.}\footnote{We think of $K(\Gamma_d)_* X$ as being a model for the stalk of $\context{T(J)}(X)$ at $\Gamma_d$, though if $(E_{\Gamma_d})_* X$ has torsion this may not agree with $\Gamma_d^* \context{T(J)}(X)$.} \[K(\Gamma_d) := E_{\Gamma_d} / (p, u_1, \ldots, u_{d-1}).\]  In the case that we pick the lift of $\Gamma_d$ with $p$--series $[p](x) = x^{p^d}$, these objects are typically written $E_d$ and $K(d)$, called Morava $E$--theory and Morava $K$--theory.
 
 
 
@@ -198,7 +198,7 @@ Having stood on the shoulders of all these arithmetic geometers, we can now put 
 
 
 
-\section*{-------------------------}
+\oldsection*{-------------------------}
 
 
 
@@ -222,36 +222,36 @@ Dieudonn\'e: Presentation of the endomorphism ring of the generic height $d$ law
 
 
 \newpage
-\section*{-----------------------------}
+\oldsection*{-----------------------------}
 
 Nat's MPIM notes
 
 (The first thing Nat says is that Vesna already introduced $tmf$ in the first two talks and that Tobi was going to introduce the chromatic program in the fifth talk.)
 
-\section*{Introduction: K--theory}
+\oldsection*{Introduction: K--theory}
     \subsection*{Quillen's theorem}
     \subsection*{The (integral) Conner--Floyd isomorphism}
     \subsection*{Total power operations in equivariant K--theory}
     \subsection*{Hopf invariant one}
 
-\section*{Morava E--theory and the LEFT}
+\oldsection*{Morava E--theory and the LEFT}
     \subsection*{Examples of formal group laws}
     \subsection*{Lubin--Tate deformation theory}
     \subsection*{Definition of E--theory using LEFT}
 
-\section*{Morava E--theory as a commutative ring spectrum}
+\oldsection*{Morava E--theory as a commutative ring spectrum}
     \subsection*{The Goerss--Hopkins--Miller theorem}
     \subsection*{Devinatz--Hopkins on fixed point spectral sequences}
     \subsection*{TMF restricted to the supersingular locus}
     \subsection*{The Goerss--Henn--Mahowald--Rezk resolution}
 
-\section*{Morava E--theory and algebraic geometry}
+\oldsection*{Morava E--theory and algebraic geometry}
     \subsection*{$\mathbb C \mathrm P^\infty_E$ as a formal scheme}
     \subsection*{$BA^*_E$ and $BU(n)_E$ as formal schemes}
     \subsection*{Strickland's theorem on finite symmetric groups}
     \subsection*{Power operations and Ando's theorem}
 
-\section*{Morava $E$--theory and representation theory}
+\oldsection*{Morava $E$--theory and representation theory}
     \subsection*{The case for equivariant and $p$--adic $K$--theory}
     \subsection*{The classical Chern character}
     \subsection*{The HKR character map}
@@ -259,7 +259,7 @@ Nat's MPIM notes
 
 \newpage
 
-\section*{Formal schemes for spaces}
+\oldsection*{Formal schemes for spaces}
 
 The main goal of this talk is to communicate a way to organize computational results from algebraic topology in your head.  If you flip back through the literature in the 70s and 80s (and we will do some of that ourselves in a moment), you'll find yourself very envious of such a system.  People back then were writing these enormous papers with enormous manipulations of enormous formulas, and there was a real industry built around having sufficient facility with, say, the formula for the right--unit for Brown--Peterson cohomology, or with being adept with multi-index bookkeeping.  This was very hard work then, and it's fairly hard work now to go back and try to understand what these topologists were up to.  Attempting to untangle any of it will imbue you with an immediate appreciation for any kind of method that will allow you to compress one of these results into a small space.
 
@@ -273,7 +273,7 @@ The prototypical example of this construction is its value on $X = \CP^\infty$ f
 \end{enumerate}
 
 
-\section*{A second example: $BU(n)_E$}
+\oldsection*{A second example: $BU(n)_E$}
 
 To a certain crowd, illustrating features of this functor as applied to $\CP^\infty$ is old hat; anytime complex orientations are mentioned, formal group laws also arise, and we really weren't exploring anything beyond that.  The thesis I want to advance is that Neil's construction continues to be useful when applied to other spaces too, and the somewhat more serious examples we'll explore are the spaces $BU(n)$.
 
@@ -343,7 +343,7 @@ From the example at the top of the hour, we know what the Chern polynomial of a 
 
 
 
-\section*{$BU[2k, \infty)$}
+\oldsection*{$BU[2k, \infty)$}
 
 Given these descriptions, it's easy to take the colimit in $n$ to get a description of $BU_E$: just as $BU$ classifies stable vector bundles of virtual rank zero, $BU_E \cong \Div_0 \CP^\infty_E$ classifies stable divisors of virtual weight zero.  Eliminating this weight condition, we also have $(BU \times \Z)_E \cong \Div \CP^\infty_E$.  These two spaces suggest a new avenue of generalization, as they are both spaces in the connective complex $K$--theory spectrum:
 \begin{align*}
@@ -429,7 +429,7 @@ In this first chapter, we introduce many of the basic players from chromatic hom
 
 \noindent We write $\CatOf{C}(X, Y)$ for the set of arrows in a locally small category $\CatOf{C}$ with source $X$ and target $Y$.
 
-\section*{Schemes and formal schemes}\label{SchemesAndFormalSchemes}
+\oldsection*{Schemes and formal schemes}\label{SchemesAndFormalSchemes}
 
 Throughout this document, we will make use of algebraic geometry and also of coalgebras and coalgebraic geometry.  Motivation for this will be made in \Cref{BasicApplicationsToTopology} and \Cref{KLocalCategory}, but it's useful first to record the basic tools involved.
 
@@ -656,7 +656,7 @@ Dually, one can define comodules for a coalgebra and the quasicoherent sheaves t
 
 
 
-\section*{Formal Lie groups}\label{FormalLieGroups}
+\oldsection*{Formal Lie groups}\label{FormalLieGroups}
 
 One of the applications of \Cref{MapsOfAffineSpaces} is the insertion of some Lie theory into algebraic geometry.  In a coordinate chart centered at the identity element of a $n$--dimensional Lie group, the multiplication law of the Lie group expands into a $n$--tuple of $(2n)$--variate power series.  Interpreting this as a morphism \[\A^{2n} \cong \A^n \times \A^n \to \A^n,\] this inspires the following defintion:
 \begin{definition}\label{DefinitionOfDimension}
@@ -891,7 +891,7 @@ Let $K$ be a local number field with residue field $k$ and let $D$ be the divisi
 
 
 
-\section*{Basic applications to topology}\label{BasicApplicationsToTopology}
+\oldsection*{Basic applications to topology}\label{BasicApplicationsToTopology}
 
 These elements of algebraic geometry make contact with homotopy theory via cohomology functors.  For a ring spectrum $E$ and space $X$, the homotopy groups $\pi_* E = E_*$ and cohomology groups $E^* X$ both form rings, and so we can employ the language of affine algebraic geometry to study them.  For the coefficient ring, consider the following construction:
 
@@ -1123,7 +1123,7 @@ Paul Balmer has given a procedure for associating a space $\Spec \CatOf C$ to a 
 
 
 
-\section*{The $\Gamma$--local stable category}\label{KLocalCategory}
+\oldsection*{The $\Gamma$--local stable category}\label{KLocalCategory}
 
 To fully employ the arithmetic geometry attached to Morava's cohomology theories, it is common to move to the associated ``local'' category --- i.e., to declare that spectra which are $K_\Gamma$--acyclic are in fact contractible, or equivalently to declare that maps which are $K_\Gamma$--homology isomorphisms are in fact weak homotopy equivalences.  This eliminates the ``pathology'' of topological phenomena which are invisible to $K_\Gamma$, and so more tightly binds the behavior of $\CatOf{Spectra}$ to $K_\Gamma$.  For reasons to be discussed in this section, we will refer to this simply as the ``$\Gamma$--local category'' with localization functor $L_\Gamma$, suppressing the letter ``$K$''.
 
