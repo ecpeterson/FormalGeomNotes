@@ -4,201 +4,13 @@
 
 
 
-These are notes for a sequence of three lectures delivered at the University of Pittsburgh in June 2015 as part of the workshop \textit{Flavors of Cohomology}.  The goal of the lectures is to advertise a family of cohomology theories called Morava $E$--theories.  Though these spectra do not appear on the first page of any textbook in algebraic topology, they arise naturally in a few different contexts.  Our initial goal will be to show how they arise from the theory of complex-oriented spectra, which will take us on an extended tour of the role of algebraic geometry in the study of homology theories.  Secondly, we will investigate applications suggested by this construction, including the appearance of $E$--theory in the study of finite spectra and in the classification of homology theories with K\"unneth isomorphisms.  Finally, we will talk about the behavior of the $E$--local categories and their role in understanding behaviors in the finite stable category.
 
-The notes are meant to be read by a graduate student with a mild background in algebraic topology: someone with some familiarity with the stable category, with extraordinary cohomology theories, and with simplicial methods.  We also expect some comfortability with basic constructions in algebraic geometry, but by and large we will only encounter the most polite affine schemes and we won't manipulate them in any serious way.
 
-This document was last compiled on \today.
 
 
 
 
-
-
-
-
-
-\newpage
-\section*{Day 1: Quillen's theorem}
-
-
-For certain ring spectra $E$, we describe a construction of a very rich algebro-geometric category in which $E$--homology is valued, called the \textit{context} for $E$.  We also give a tour of the theory of Thom spectra and announce Quillen's description of the context for the Thom spectrum of the complex $J$--homomorphism.
-
-
-
-\subsection*{Homology cooperations and their structure}
-
-Let's get right to the task advertised in the abstract: for a ring spectrum $E$, we're looking to use algebraic geometry to capture as much of the structure of the output of $E_*$ and $E^*$.  Consider first the case $E = H\F_2$ of ordinary mod--$2$ cohomology, where $H\F_2^*$ is naturally valued in modules for the ``Steenrod algebra'': \[\mathcal A^* \otimes H\F_2^*(X) \to H\F_2^*(X).\]  This action is very useful, but $\mathcal A^*$ has the unfortunate feature of being a highly \emph{noncommutative} ring, which makes it a clumsy object from the perspective of algebraic geometry.  However, the Steenrod algebra is actually a Hopf algebra, and its linear dual $\mathcal A_*$ is \emph{commutative} and it \emph{coacts} on homology: \[(H\F_2)_* X \to (H\F_2)_* X \otimes \mathcal A_*.\]  A theorem of Milnor gives a concise description of this dual Hopf algebra:
-\begin{theorem}[Milnor]
-There is an isomorphism of rings \[\mathcal A_* \cong \F_2[\xi_1, \xi_2, \ldots, \xi_n, \ldots]\] with diagonal \[\Delta \xi_n = \sum_{j=0}^n \xi_j \otimes \xi_{n-j}^{2^j}.\]
-\end{theorem}
-\noindent This is a very reasonable commutative ring, so that we might hope to leverage algebraic geometry, and $\Delta$ is expressed by a very reasonable formula, so we might also hope to express arguments with it slickly.
-
-Stable homotopy theorists are also interested in many other ring spectra $E$, but to generalize this story away from $H\F_2$ we will need to more carefully identify its cast of characters by names internal to topology.  After all, taking $E_*$--linear duals is unlikely to be well--behaved in general.  The dual Steenrod algebra arises as the homotopy of $H\F_2 \sm H\F_2$ and the diagonal map has the signature
-\begin{center}
-\begin{tikzcd}
-\mathcal A_* \arrow{r}{\Delta} & \mathcal A_* \otimes_{\F_2} \mathcal A_* \\
-\pi_* (H\F_2 \sm H\F_2) \arrow{r} \arrow[-,double]{u} & \pi_* (H\F_2 \sm H\F_2 \sm H\F_2) \arrow[-,double]{u}.
-\end{tikzcd}
-\end{center}
-Together with the ring structure and a healthy obsession with simplicial objects, this is clue enough as to what we should be investigating for general $E$:
-\[\mathcal{D}_E(X) := \left\{
-\begin{tikzcd}
-\begin{array}{c} E \\ \sm \\ X \end{array} \arrow[leftarrow, shift left=\baselineskip]{r}{\mu} \arrow[shift left=(2*\baselineskip)]{r}{\eta_L} \arrow{r}{\eta_R} &
-\begin{array}{c} E \\ \sm \\ E \\ \sm \\ X \end{array} \arrow[shift left=(3*\baselineskip)]{r} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r}{\Delta} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} &
-\begin{array}{c} E \\ \sm \\ E \\ \sm \\ E \\ \sm \\ X \end{array} \arrow[shift left=(4*\baselineskip)]{r} \arrow[leftarrow, shift left=(3*\baselineskip)]{r} \arrow[shift left=(2*\baselineskip)]{r} \arrow[leftarrow, shift left=\baselineskip]{r} \arrow{r} \arrow[leftarrow, shift right=\baselineskip]{r} \arrow[shift right=(2*\baselineskip)]{r} &
-\cdots
-\end{tikzcd}
-\right\}.\]
-The leftward arrows come from $E$--multiplication and the rightward arrows come from the unit $\S \to E$.\footnote{Incidentally, this cosimplicial ring spectrum has a name: the descent coring for the map $\S \to H\F_2$.  In terms of descent theory, if the map $\S \to E$ is ``of effective descent'', meaning the homotopy limit of this diagram exists and agrees with $\S \sm X$, then the coskeletal spectral sequence gives a way to compute the homotopy of $X$, starting from its homology.  This is the \textit{$E$--Adams spectral sequence}.}
-
-This object is interesting because of its layers.  The homotopy of the $0$\textsuperscript{th}\, level recovers the homology groups $E_* X$.  The maps $\eta_L$ and $\eta_R$ from the $0$\textsuperscript{th}\, level to the $1$\textsuperscript{st}\, level give maps \[E_* X \xrightarrow{E_* \eta_L, E_* \eta_R} (E \sm E)_* X \xleftarrow{\bigstar} E_* E \otimes_{E_*} E_* X,\] but in general $\bigstar$ will not be an isomorphism, inhibiting our discovery of a ``coaction map''.  In good cases, however, this can be repaired:
-
-\begin{definition}
-Take $E_* E$ to be an $E_*$--module using the left-unit map.  We will say that $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is a flat map of $E_*$--modules.\todo{Explain {\FH} in terms of a Kunneth spectral sequence.}
-\end{definition}
-
-\noindent If $E$ satisfies \FH, then $\bigstar$ becomes an isomorphism!  In fact, iterating this gives an isomorphism \[\pi_* \mathcal D_E(X)[j] = \pi_* (E^{\sm (j + 1)} \sm X) \xleftarrow{\bigstar} (E_* E)^{\otimes_{E_*} j} \otimes_{E_*} E_* X \cong \pi_* \mathcal D_E[1]^{\otimes_{\pi_* \mathcal D_E[0]} j} \otimes_{\pi_* \mathcal D_E[0]} \pi_* \mathcal D_E(X)[0],\] i.e., the cosimplicial ring $\pi_* \mathcal D_E$ is $1$--truncated and the module $\pi_* \mathcal D_E(X)$ is determined by its $0$\textsuperscript{th}\, level.\footnote{We should further emphasize that even when $X = \S$ for a general $E$ the left- and right-units $E_* \to E_* E$ may differ, making \FH\, have real content.  In the case of $E = H\F_2$, this was not the case, simply because there can't be many maps $\F_2 \to \mathcal A_*$ (and so $H\F_2$ automatically satisfies \FH).  For more complicated rings than $\F_2$, all sorts of behavior can arise.}
-
-Now that I've subjected you to a flurry of ``co-''s, I'd like to take some of them back by finally appealing to algebraic geometry.
-
-\begin{definition}
-$E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis, when $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.
-\end{definition}
-\noindent In the case that $E$ satisfies \CH, we can study the simplicial scheme \[\M_E := \Spec \pi_* \mathcal D_E,\] and the cosimplicial object $\pi_* \mathcal D_E(X)$ determines a quasicoherent sheaf $\M_E(X)$ over $\M_E$.
-
-\begin{definition}
-The object $\M_E$ is called the \textit{context} of $E$.  The construction $\M_E(X)$ describes $E$--homology as a functor \[E_*: \CatOf{Spaces} \to \CatOf{QCoh}(\M_E).\]  If $E$ satisfies \FH, $\M_E$ takes values in groupoids.\todo{Discriminate between the usefulness of $1$--simplices in $\M_E$ vs in $\M_E(X)$. It's not like $\mathcal A_*$ acts interestingly on $\Spec \F_2$.}
-\end{definition}
-
-This is a lot of fancy words for some simple cooperations, but I claim that the conceptual payoff is worth the hassle.  For instance, return to the example $E = H\F_2$, so that $\M_E[0] = \Spec \F_2$ is a point and $\M_E[1] = \Spec \mathcal A_*$ is the spectrum of the infinite polynomial algebra from before.  In order to justify the utility of this language, we should give a geometric description of $\Spec \mathcal A_*$.  Consider the generating function \[F(t) = \sum_{j=0}^\infty \xi_j x^{2^j}.\]  The composition of two such series $F'$ and $F''$ in $\mathcal A_* \otimes \mathcal A_*$ takes the form \[F'(F''(t)) = \sum_{j=0}^\infty \xi'_j \left(\sum_{k=0}^\infty \xi''_k t^{2^k} \right)^{2^j} = \sum_{n=0}^\infty \left( \sum_{j+k=n} \xi'_j (\xi''_k)^{2^j} \right) x^{2^n},\] and so power series composition exactly captures the Milnor diagonal.  The power series $F$ can be identified as the generic mod--$2$ power series satisfying the homomorphism property $F(x' + x'') = F(x') + F(x'')$, and so we identify $\Spec \mathcal A_*$ with $\underline{\operatorname{Aut}}(\G_a)$.\footnote{If this notation makes you uncomfortable, check the end of the talk for an explanation of ``formal group laws''.}  Finally, because $H\F_2$ satisfies \FH, we learn that \[\M_{H\F_2} \simeq \Spec \F_2 \mmod \underline{\operatorname{Aut}}(\G_a).\]  This last line embodies the utility of contexts: starting with this isomorphism, you can unpack that $H\F_2$--homology is valued in $\F_2$--modules with a coaction by a Hopf algebra whose formulas you can write out from memory alone.
-
-
-
-
-\subsection*{A general Thom isomorphism}
-
-Today's punchline theorem is about the context $\M_{T(J)}$ of a certain ring spectrum $T(J)$ coming from the theory of Thom spectra.  Once I explain the notation, some of you might recognize this as the complex bordism spectrum, but I don't think I can count on that to quickly supply us with the background we need to recognize $\M_{T(J)}$.  Instead, I'll construct $T(J)$ from scratch in a way that gives us the statements we need for free.  Additionally, this takes us through some interesting tools available to a ``modern'' homotopy theorist --- where ``modern'' primarily means ``geometrically uninclined''.
-
-Given an $S^n$--bundle over a space $X$ \[S^n \to E \xrightarrow\xi X\] its Thom spectrum\footnote{One might prefer the name ``reduced Thom spectrum'', because of the dimension shift in the definition.} $T(\xi)$ is the stable cofiber\todo{Draw a picture of this.}\todo{Does $T(0) \simeq \Susp^\infty_+ X$ follow from the cofiber definition? You need this for the Thom isomorphism, and it seems like it doesn't have the ${}_+$.} \[\Susp^{-n-1} \Susp^\infty_+ E \xrightarrow{\Susp^{-n-1} \Susp^\infty_+ \xi} \Susp^{-n-1} \Susp^\infty_+ X \xrightarrow{\text{cofiber}} T(\xi).\]  Though simple to define, this construction has a number of pleasant properties that indicate it's worth studying:
-\begin{enumerate}
-\item If $\xi$ is the trivial bundle, then $T(\xi)$ recovers the suspension spectrum $\Susp^\infty_+ X$ of $X$.  In general, then, a twisted bundle $\xi$ should be thought of as giving a \emph{twisted suspension} $T(\xi)$ of $X$.
-\item A map of spherical bundles gives rise to a map of Thom spectra, i.e., $T$ is a \emph{functor} \[T: \CatOf{SphericalBundles} \to \CatOf{Spectra}.\]  In particular, this gives rise to a definition of the Thom spectrum for a stable spherical bundle, by taking the colimit over the maps among the stages.
-\item Given a vector bundle $V$, we can restrict to the spherical subbundle of unit--length vectors $J(V)$.
-\item Finally, $J$ and $T$ are both \emph{monoidal}.  The spherical subbundle $J(V \oplus W)$ is the fiberwise join $J(V) \hat\ast J(W)$ of the individual spherical subbundles, and there is an equivalence $T(\xi \hat\ast \zeta) \simeq T(\xi) \sm T(\zeta)$.\footnote{Incidentally, naturality and monoidality mean that Thom spectra associated to group maps like $J$ have the induced structure of ring spectra.}
-\end{enumerate}
-
-We will now deduce the Thom isomorphism theorem from these properties.  The first foothold is that classifying spaces abound: stable spherical bundles are classified by a space $BF$ and stable vector bundles are classified by $BU$.  The fiberwise join and the direct sum constructions imbue $BF$ and $BU$ with the structure of $H$--spaces (in fact, $E_\infty$--spaces), compatible with the induced map \[J: BU \to BF.\]  The second foothold is that the shearing\footnote{This is closely related to a categorical definition of $G$--torsors: a $G$--set $X$ is a $G$--torsor when $(g, x) \mapsto (x, gx)$ is an equivalence.} map $\sigma$ is an equivalence for any group $G$: \[\sigma: (x, y) \mapsto (x y^{-1}, y).\]
-
-Now, we put these two things next to each other.  That $J$ respects product structures is summarized by the commutative diagram
-\begin{center}
-\begin{tikzcd}
-BU \times BU \arrow{r}{\sigma, \simeq} \arrow[bend right]{rrd} & BU \times BU \arrow[crossing over]{d}{J \times J} \arrow{r}{\mu_{BU}} \arrow{rd} & BU \arrow{d}{J} \\
-& BF \times BF \arrow[crossing over]{r}{\mu_{BF}} & BF,
-\end{tikzcd}
-\end{center}
-in which we've also drawn the shearing map $\sigma$.  The long composite takes the form \[J \circ \mu_{BU} \circ \sigma (x, y) = J \circ \mu_{BU} (x y^{-1}, y) = J(x y^{-1} y) = J(x).\]  It follows that the second coordinate plays no role, and that the Thom spectrum of the long composite agrees with the Thom spectrum of the map $0 \times J$.\footnote{This is to say that $\mu \circ (0 \times J)$ is homotopic to the long composite, but $(0 \times J)$ is \emph{not} homotopic to $(J \times J) \circ \sigma$.}  Stringing together the properties above, we get: \[T(J) \sm T(J) \simeq T(J \times J) \stackrel{\sigma}{\simeq} T(J \times 0) \simeq T(J) \sm T(0) \simeq T(J) \sm \Susp^\infty_+ BU.\]  It's then easy to extract a more general statement from the one at hand:
-\begin{theorem}[Thom, proof by Mahowald]
-If $f: G \to BF$ is a group map, $T(f) \to E$ is a ring map, and $\xi: X \to G$ classifies a spherical bundle factoring through $f$, then there is an equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
-\end{theorem}
-
-This is called ``the Thom isomorphism'', and we should take a moment to ponder its significance.  The role of the smash product in stable homotopy theory is that it's used to form homology: \[E_*(X) := \pi_*(E \sm \Susp^\infty_+ X).\]  So, this equivalence is a homotopical form of the assertion that $T(\xi)$ and $\Susp^\infty_+ X$ have the same $E$--homology.  Additionally, because we have this topological statement, we can extract a slightly stronger moral: the twisted suspension embodied by the spherical bundle $\xi$ is \emph{invisible} to the homology theory $E$.
-
-
-
-\subsection*{Statement of Quillen's theorem}
-
-We've gone far too long without giving an example.  Let $\CP^\infty \simeq BU(1)$ be the classifying space for line bundles, and using $U(1) \simeq S^1$ pass to its  circle--bundle to get
-\begin{center}
-\begin{tikzcd}
-U(1) \arrow{r} \arrow[-,double]{d} & EU(1) \arrow{r}{\mathcal L} \arrow[-,double]{d} & BU(1) \arrow[-,double]{d} \\
-S^1 \arrow{r} & * \arrow{r}{J(\mathcal L)} & \CP^\infty.
-\end{tikzcd}
-\end{center}
-Since $EU(1)$ is contractible, we see $T(J(\mathcal L)) \simeq \Susp^{-2} \Susp^\infty \CP^\infty$.  Given a $J$--oriented spectrum $\phi: T(J) \to E$, the Thom isomorphism machinery above furnishes us with isomorphisms
-\begin{align*}
-E^* \CP^\infty & \cong \tilde E^{*+2} \CP^\infty, &
-E^* \CP^n & \cong \tilde E^{*+2} \CP^{n+1}.
-\end{align*}
-Pushing the canonical class $1 \in E^0 \CP^0$ across this isomorphism, we can inductively deduce\footnote{More miraculously, a piece of vector bundle geometry called the ``splitting principle'' shows that the converse holds: if $E$ is a ring spectrum with a $x$ so that $\S \to \Susp^{-2} \Susp^\infty \CP^\infty \xrightarrow{x} E$ factors the unit map $\S \to E$, then it can be shown that $E$ has a unique $J$--orientation selecting that class.} \[E^* \CP^\infty \cong_\phi E^*\ps{x}.\]
-
-\todo{This day is strangely paced and very hodge-podge. Hm.}As a responsible homotopy theorist, I should admit that spectra are generally very nasty objects, and successfully computing some cohomology ring is actually a pretty big deal.  If we're in a situation where we can \emph{reliably} compute something, it's very important to get all we can from it.  To address this, I'm now going to take off my homotopy theorist hat and put my algebraic geometer hat back on.
-
-As the classifying space for line bundles, $BU(1)$ has a product structure induced by tensoring.  This begets a map
-\begin{center}
-\begin{tikzcd}
-E^* BU(1) \arrow{r} \arrow[-,double]{d}{\cong_\phi} & E^* BU(1) \otimes_{E^*} E^* BU(1) \arrow[-,double]{d}{\cong_\phi} \\
-E^*\ps{t} \arrow{r} & E^*\ps{x, y}
-\end{tikzcd}
-\end{center}
-which is determined by the image of $t$, some bivariate power series $x +_\phi y$.  This notation for this series is useful because it helps us remember what axioms it satisfies:
-\begin{enumerate}
-\item Unitality: $x +_\phi 0 = x$ and $0 +_\phi y = y$.  (Consider tensoring with the trivial line bundle.)
-\item Symmetry: $x +_\phi y = y +_\phi x$.  (Tensoring is commutative.)
-\item Associativity: $(x +_\phi y) +_\phi z = x +_\phi (y +_\phi z)$.  (Tensoring is associative.)
-\end{enumerate}
-Such a power series is called a \textit{formal group law}.\footnote{All the formal group laws we'll consider will implicitly be commutative and $1$--dimensional.}  The universal such power series is represented by an affine scheme $\moduli{fgl}$, and the identity orientation of $T(J)$\todo{For the love of Christ, just call this $MU$.} gives a map $\M_{T(J)}[0] \to \moduli{fgl}$.  Moreover, $T(J) \sm T(J)$ is the universal ring spectrum with two $J$--orientations (coming from the left- and right-units) and a transposition relating them: \[T(J) \sm T(J) \xrightarrow{\text{twist}} T(J) \sm T(J).\]  It follows that the induced formal group laws $x +_{\eta_L} y$ and $x +_{\eta_R} y$ must be related by some ``formal group law isomorphism'' $f(t) \in (T(J) \sm T(J))_*\ps{t}$, i.e., a power series $f$ satisfying \[f(x +_{\eta_L} y) = f(x) +_{\eta_R} f(y).\]
-
-\begin{theorem}[Quillen's theorem]
-The spectrum $T(J)$ satisfies {\FH} and \CH.  Moreover, the maps
-\begin{align*}
-\Spec T(J)_* & \to \moduli{fgl}, \\
-\Spec T(J)_* T(J) & \to \moduli{fgl} \times \moduli{ps}^{\mathrm{gpd}}, \\
-\M_{T(J)} & \to \moduli{fgl} \mmod \moduli{ps}^{\mathrm{gpd}} =: \moduli{fg}
-\end{align*}
-described above are all equivalences.\todo{Explain what ``gpd'' refers to.}
-\end{theorem}
-
-This is a pretty powerful theorem.\footnote{This situation has a strange feature worth remarking on: the ring maps $T(J) \sm T(J) \to E$ act transitively on the set of ring maps $T(J) \to E$, i.e., the ``(decoordinatized) formal group'' associated to $E$ is determined totally by $E$.  This is very different from the algebraic case, where a given ring can support many non-isomorphic formal group laws.}  In our discussion of $T(J)$, we've been so hands off that we've had essentially no control over its behavior.  Nonetheless, this theorem puts $T(J)$ on almost even footing with $H\F_2$: just as the compact description of $\M_{H\F_2}$ given above lets you totally unpack the category in which $H\F_2$--homology is valued, Quillen's description of $\M_{T(J)}$ gives you complete access to the structure theorems governing the category in which $T(J)$--homology is valued.  We will do our best to leverage this tomorrow.
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
-\section*{Day 2: E--theory and periodic self-maps}
-
-
-We outline a program for studying the functor $\M_{T(J)}(X)$ by first studying the local structure of $\moduli{fg}$.  After a brief tour of the arithmetic literature on formal group laws, we deduce the existence of certain homology theories: the Morava $E$-- and $K$--theories.  We then give examples of local-to-global methods in algebraic topology: for instance, a condition for detecting non-nilpotent self-maps.
-
-
-
-
-\begin{theorem}[Lazard, part 2: classification of closed points]
-Over an algebraically closed field of characteristic $p$, there is a unique formal group law up to isomorphism for each height.  Moreover, there is a representative $\Gamma_d$ of each isomorphism class with coefficients in $\F_p$ whose logarithm satisfies \[\log_{\Gamma_d}(x) \equiv x \pmod{x^{p^d}}.\]
-\end{theorem}
-
-\begin{theorem}[Lubin--Tate: description of deformation spaces]
-The deformation space of any height $d < \infty$ law $\Gamma$ over a perfect field $k$ of characteristic $p$ is smooth of geometric dimension $(d-1)$.  That is, it is noncanonically isomorphic to $\mathbb W(k)\ps{u_1, \ldots, u_{d-1}}$.  For $\Gamma = \Gamma_d$, the coordinates can be taken to be $v_{0 \le n < d}$.
-\end{theorem}
-
-% \begin{figure}
-% \begin{tikzpicture}
-
-% \end{tikzpicture}
-% \caption{$\moduli{fg}$}
-% \end{figure}
-
-Having stood on the shoulders of all these arithmetic geometers, we can now put our program into practice.  We have a list of the closed points $\Gamma_d$ of $\moduli{fg} \times \Spec \Z_{(p)}$, and their deformation spaces lift to $\moduli{fgl}$ as smooth formal subschemes.  It follows from Landweber's theorem that we can construct homology theories $E_{\Gamma_d}$ for each of these formal groups.  Additionally, we can find regular sequences $(p, u_1, \ldots, u_{d-1}) \in (E_{\Gamma_d})_*$, and hence we can construct the regular quotient\todo{Really emphasize the role of the regular quotient.}\footnote{We think of $K(\Gamma_d)_* X$ as being a model for the stalk of $\M_{T(J)}(X)$ at $\Gamma_d$, though if $(E_{\Gamma_d})_* X$ has torsion this may not agree with $\Gamma_d^* \M_{T(J)}(X)$.} \[K(\Gamma_d) := E_{\Gamma_d} / (p, u_1, \ldots, u_{d-1}).\]  In the case that we pick the lift of $\Gamma_d$ with $p$--series $[p](x) = x^{p^d}$, these objects are typically written $E_d$ and $K(d)$, called Morava $E$--theory and Morava $K$--theory.
-
-
-
-
-
-
-
-
-
-
-\section*{-------------------------}
+\oldsection*{-------------------------}
 
 
 
@@ -222,36 +34,36 @@ Dieudonn\'e: Presentation of the endomorphism ring of the generic height $d$ law
 
 
 \newpage
-\section*{-----------------------------}
+\oldsection*{-----------------------------}
 
 Nat's MPIM notes
 
 (The first thing Nat says is that Vesna already introduced $tmf$ in the first two talks and that Tobi was going to introduce the chromatic program in the fifth talk.)
 
-\section*{Introduction: K--theory}
+\oldsection*{Introduction: K--theory}
     \subsection*{Quillen's theorem}
     \subsection*{The (integral) Conner--Floyd isomorphism}
     \subsection*{Total power operations in equivariant K--theory}
     \subsection*{Hopf invariant one}
 
-\section*{Morava E--theory and the LEFT}
+\oldsection*{Morava E--theory and the LEFT}
     \subsection*{Examples of formal group laws}
     \subsection*{Lubin--Tate deformation theory}
     \subsection*{Definition of E--theory using LEFT}
 
-\section*{Morava E--theory as a commutative ring spectrum}
+\oldsection*{Morava E--theory as a commutative ring spectrum}
     \subsection*{The Goerss--Hopkins--Miller theorem}
     \subsection*{Devinatz--Hopkins on fixed point spectral sequences}
     \subsection*{TMF restricted to the supersingular locus}
     \subsection*{The Goerss--Henn--Mahowald--Rezk resolution}
 
-\section*{Morava E--theory and algebraic geometry}
+\oldsection*{Morava E--theory and algebraic geometry}
     \subsection*{$\mathbb C \mathrm P^\infty_E$ as a formal scheme}
     \subsection*{$BA^*_E$ and $BU(n)_E$ as formal schemes}
     \subsection*{Strickland's theorem on finite symmetric groups}
     \subsection*{Power operations and Ando's theorem}
 
-\section*{Morava $E$--theory and representation theory}
+\oldsection*{Morava $E$--theory and representation theory}
     \subsection*{The case for equivariant and $p$--adic $K$--theory}
     \subsection*{The classical Chern character}
     \subsection*{The HKR character map}
@@ -259,91 +71,11 @@ Nat's MPIM notes
 
 \newpage
 
-\section*{Formal schemes for spaces}
-
-The main goal of this talk is to communicate a way to organize computational results from algebraic topology in your head.  If you flip back through the literature in the 70s and 80s (and we will do some of that ourselves in a moment), you'll find yourself very envious of such a system.  People back then were writing these enormous papers with enormous manipulations of enormous formulas, and there was a real industry built around having sufficient facility with, say, the formula for the right--unit for Brown--Peterson cohomology, or with being adept with multi-index bookkeeping.  This was very hard work then, and it's fairly hard work now to go back and try to understand what these topologists were up to.  Attempting to untangle any of it will imbue you with an immediate appreciation for any kind of method that will allow you to compress one of these results into a small space.
-
-I don't know who first considered the following method, but I do know that the majority of its appearance in the literature is connected, directly or indirectly, to Neil Strickland.  The essential idea is to directly apply algebraic geometry to the situation: rather than associating to a space $X$ the cohomology ring $E^* X$, we go one step further and associate the scheme $\Spec E^* X$ (over $\Spec E^*$).  There's a clear caveat here: algebraic geometry interprets commutative rings, so $E^*$ and $E^* X$ had better be commutative, and the easiest way to enforce this is by restricting attention to spaces with $E^* X$ \emph{even--concentrated}.  Secondly, it turns out to be useful to remember some of the topological structure associated to the original space: the sorts of $X$ we consider in homotopy theory are all ``CW'', and the ``C'' means that they're exhausted by their compact subspaces: $X = \colim_\alpha \{X_\alpha\}_\alpha$.  The cohomology $E^* X_\alpha$ of any one of these individual spaces is a finite-dimensional $E^*$--algebra,\footnote{Actually, some care is required here, since $X_\alpha$ need not all have even--concentrated cohomology even if $X$ does. In the examples of interest, this won't be an issue --- for instance, it suffices for $H_* X$ to be even and torsion--free. I'd advise you to ignore the wrinkle for now.} and so we form a \emph{formal scheme} from the system \[X_E := \Spf E^* X := \{\Spec E^* X_\alpha\}_{\alpha}.\]
-
-The prototypical example of this construction is its value on $X = \CP^\infty$ for ordinary cohomology $E = H\F_p$.  As $X$ has a presentation as a cell complex, it's sufficient to take the subsystem of finite subcomplexes to define $X_E$.  In this case, the finite subcomplexes are $X_n = \CP^n$, with cohomology $H\F_p^* \CP^n = \F_p[x] / x^{n+1}$, and so altogether \[\CP^\infty_{H\F_p} = \A^1_{\F_p},\] where $\A^1_R = \Spf R\llbracket x \rrbracket$ is the ``formal affine line''.\footnote{For that matter, a prototypical formal scheme comes from taking the germ of a point in a Noetherian scheme.}  We can make two immediate further observations:
-
-\begin{enumerate}
-\item The condition that a cohomology theory $E$ admit an isomorphism $E^* \CP^\infty \cong E^*\llbracket x \rrbracket$ is called the \emph{complex--orientability} of $E$.  In our language, $E$ being complex orientable exactly means that $\CP^\infty_E$ is (non-canonically) isomorphic to a formal affine line.
-\item The space $\CP^\infty = BU(1)$ has a map classifying the tensor of complex line bundles: \[\CP^\infty \times \CP^\infty \xrightarrow{\otimes} \CP^\infty.\]  Just by checking degrees, one can calculate that the induced map \[\CP^\infty_{H\F_p} \times \CP^\infty_{H\F_p} \to \CP^\infty_{H\F_p}\] acts on points by $(x, y) \mapsto x + y$, and so a yet better name for $\CP^\infty_{H\F_p}$ is $\G_a$.  In general, when $E$ is complex--orientable $\CP^\infty_E$ carries the structure of a commutative $1$--dimensional smooth formal group.\footnote{The reader is invited to check $\CP^\infty_{KU} \cong \G_m$.}
-\end{enumerate}
-
-
-\section*{A second example: $BU(n)_E$}
-
-To a certain crowd, illustrating features of this functor as applied to $\CP^\infty$ is old hat; anytime complex orientations are mentioned, formal group laws also arise, and we really weren't exploring anything beyond that.  The thesis I want to advance is that Neil's construction continues to be useful when applied to other spaces too, and the somewhat more serious examples we'll explore are the spaces $BU(n)$.
-
-\subsection*{$BU(n)_E \cong \A^n$}
-
-The space $BU(n)$ classifies complex vector bundles of rank $n$; suppose that we have such a bundle $V$ over a space $X$.  Associated to $V$ we can form its fiberwise projectivization $\P(V)$, which is a $\CP^{n-1}$--bundle over $X$.  The space $\P(V)$ itself comes equipped with a canonical line bundle, and hence a map \[\P(V) \xrightarrow{p_V} X \times \CP^\infty.\]
-
-\begin{theorem}
-When $E$ is complex oriented and $E^* X$ is even, the induced map $E^* X$--module map takes the form
-\begin{center}
-\begin{tikzcd}
-E^*(X \times BU(1)) \arrow{r} \arrow[double,-]{d} & E^* \P(V) \arrow[double,-]{d} \\
-E^* X \otimes E^*\llbracket x \rrbracket \arrow{r} & E^* X \otimes E^*\llbracket x \rrbracket / \langle\text{$c_*(V)$, of degree $n$}\rangle.
-\end{tikzcd}
-\end{center}
-\end{theorem}
-
-\noindent Using this theorem, we define the \emph{Chern classes of $V$} by \[0 = x^n - c_1(V) x^{n-1} + c_2(V) x^{n-2} + \cdots + (-1)^n c_n(V).\]  This polynomial is called $c_*(V)$, the \emph{total Chern class of $V$}; it is a monic polynomial generating the ideal corresponding to the quotient ring $E^* \P(V)$.  A second basic theorem declares that these classes $c_j$ account for all of $E^* BU(n)$:
-
-\begin{theorem}
-A complex orientation of $E$ begets an isomorphism $E^* BU(n) \cong E^*\llbracket c_1, \ldots, c_n \rrbracket$.
-\end{theorem}
-
-\noindent In our language, this allows us to identify the formal scheme $BU(n)_E$ as the smooth formal scheme $BU(n)_E \cong \A^n$.
-
-
-\subsection*{$BU(n)_E \cong \Div_n^+ \CP^\infty_E$}
-
-We can do better than this.  Applying our formal scheme functor to $p_V$, the same theorem asserts that $\P(V)_E \to X_E \times \CP^\infty_E$ is a closed inclusion, i.e., an effective divisor of degree $n$ on $\CP^\infty_E$, or a $E^* X$--point of $\Div_n^+ \CP^\infty_E$.
-
-\begin{theorem}
-A complex orientation of $E$ begets an isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$.
-\end{theorem}
-
-\noindent Let's take the time to show that this is a serious description, carrying much more information that you might think. To begin, recall that iterated projectivization can be used to prove the following essential theorem:
-
-\begin{theorem}[Splitting principle]
-Suppose $V \downarrow X$ is a rank $n$ complex vector bundle on $X$.  There exists a natural space $f: Y \to X$ over $X$ for which \ldots
-\begin{enumerate}
-\item \ldots the induced map $f^*: E^* X \to E^* Y$ is an injective map of rings.
-\item \ldots the pullback bundle $f^* V$ has a canonical splitting into complex lines: \[f^* V \cong \bigoplus_{j=1}^n \L_j.\]  That is, the classifying map $X \to BU(n)$ lifts across the direct sum map \[\overset{\text{$n$ times}}{\overbrace{BU(1) \times \cdots \times BU(1)}} \xrightarrow{\oplus} BU(n).\]
-\end{enumerate}
-\end{theorem}
-
-Applying the splitting principle to $V$ and using properties of the total Chern class $c_*$, we then have
-\[
-c_*(f^* V) = x^n - f^* c_1(V) x^{n-1} + \cdots + (-1)^n f^* c_n(V) = c_*\left( \bigoplus_{j=1}^n \L_j \right) = \prod_{j=1}^n c_*(\L_j) = \prod_{j=1}^n (x - c_1(\L_j)).
-\]
-These are called the ``Chern roots'' of $c(f^* V)$, and it's now plain that the splitting principle is a topological lift of the factorization of the Chern polynomial.  The space $Y$ enlarges the cohomology ring to be sufficiently solveable so that roots exist, and then additionally the roots are realized by complex lines.  This digression is meant to provide some intuition about how the isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$ behaves: the point corresponding to a vector bundle $V$ is mapped to the divisor which, after sufficient base extension, is given by the formal sum of its Chern roots.
-
-Additionally, the spaces $BU(n)$ come with formal sum and tensor product operations:
-\begin{align*}
-BU(n) \times BU(m) & \xrightarrow{\oplus} BU(n+m), & BU(n) \times BU(m) & \xrightarrow{\otimes} BU(n \cdot m).
-\end{align*}
-The first of these is easy to account for: the total Chern class has $c_*(V \oplus W) = c_*(V) \cdot c_*(W)$, so the induced map
-\begin{center}
-\begin{tikzcd}
-BU(n) \times BU(m) \arrow{r}{\oplus} \arrow[-,double]{d} & BU(n+m) \arrow[-,double]{d} \\
-\Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \arrow[dashed]{r}{+} & \Div_{n+m}^+ \CP^\infty
-\end{tikzcd}
-\end{center}
-sends a pair of divisors to their formal sum.  The tensor product is easiest to describe through the splitting principle:
-\[
-c(V \otimes W) = c\left( \left( \bigoplus_{j=1}^n \L_j\right) \otimes \left( \bigoplus_{k=1}^m \H_k \right)\right) = \prod_{j, k} c(\L_j \otimes \H_k).
-\]
-From the example at the top of the hour, we know what the Chern polynomial of a tensor product of lines corresponds to: we're using the group structure of $\CP^\infty_E$ to build the formal sum \[\left( \sum_{j=1}^n [a_j] \right) \cdot \left( \sum_{k=1}^m [b_k]\right) = \sum_{j,k} [a_j + b_k].\]  Collectively, these isomorphisms efficiently describe a ring scheme structure on $\coprod_n \Div_n^+ \CP^\infty_E$ reflecting all of the structure on the cohomology rings $E^* BU(n)$.
+\oldsection*{Formal schemes for spaces}
 
 
 
-\section*{$BU[2k, \infty)$}
+\oldsection*{$BU[2k, \infty)$}
 
 Given these descriptions, it's easy to take the colimit in $n$ to get a description of $BU_E$: just as $BU$ classifies stable vector bundles of virtual rank zero, $BU_E \cong \Div_0 \CP^\infty_E$ classifies stable divisors of virtual weight zero.  Eliminating this weight condition, we also have $(BU \times \Z)_E \cong \Div \CP^\infty_E$.  These two spaces suggest a new avenue of generalization, as they are both spaces in the connective complex $K$--theory spectrum:
 \begin{align*}
@@ -417,6 +149,11 @@ Here are three immediate stray thoughts about these proposed spaces:
 \end{enumerate}
 
 
+
+
+
+
+
 \newpage
 
 In this first chapter, we introduce many of the basic players from chromatic homotopy theory needed for our later discussion, espousing a relentlessly algebro-geometric point of view.
@@ -429,7 +166,7 @@ In this first chapter, we introduce many of the basic players from chromatic hom
 
 \noindent We write $\CatOf{C}(X, Y)$ for the set of arrows in a locally small category $\CatOf{C}$ with source $X$ and target $Y$.
 
-\section*{Schemes and formal schemes}\label{SchemesAndFormalSchemes}
+\oldsection*{Schemes and formal schemes}\label{SchemesAndFormalSchemes}
 
 Throughout this document, we will make use of algebraic geometry and also of coalgebras and coalgebraic geometry.  Motivation for this will be made in \Cref{BasicApplicationsToTopology} and \Cref{KLocalCategory}, but it's useful first to record the basic tools involved.
 
@@ -656,7 +393,7 @@ Dually, one can define comodules for a coalgebra and the quasicoherent sheaves t
 
 
 
-\section*{Formal Lie groups}\label{FormalLieGroups}
+\oldsection*{Formal Lie groups}\label{FormalLieGroups}
 
 One of the applications of \Cref{MapsOfAffineSpaces} is the insertion of some Lie theory into algebraic geometry.  In a coordinate chart centered at the identity element of a $n$--dimensional Lie group, the multiplication law of the Lie group expands into a $n$--tuple of $(2n)$--variate power series.  Interpreting this as a morphism \[\A^{2n} \cong \A^n \times \A^n \to \A^n,\] this inspires the following defintion:
 \begin{definition}\label{DefinitionOfDimension}
@@ -891,7 +628,7 @@ Let $K$ be a local number field with residue field $k$ and let $D$ be the divisi
 
 
 
-\section*{Basic applications to topology}\label{BasicApplicationsToTopology}
+\oldsection*{Basic applications to topology}\label{BasicApplicationsToTopology}
 
 These elements of algebraic geometry make contact with homotopy theory via cohomology functors.  For a ring spectrum $E$ and space $X$, the homotopy groups $\pi_* E = E_*$ and cohomology groups $E^* X$ both form rings, and so we can employ the language of affine algebraic geometry to study them.  For the coefficient ring, consider the following construction:
 
@@ -1123,7 +860,7 @@ Paul Balmer has given a procedure for associating a space $\Spec \CatOf C$ to a 
 
 
 
-\section*{The $\Gamma$--local stable category}\label{KLocalCategory}
+\oldsection*{The $\Gamma$--local stable category}\label{KLocalCategory}
 
 To fully employ the arithmetic geometry attached to Morava's cohomology theories, it is common to move to the associated ``local'' category --- i.e., to declare that spectra which are $K_\Gamma$--acyclic are in fact contractible, or equivalently to declare that maps which are $K_\Gamma$--homology isomorphisms are in fact weak homotopy equivalences.  This eliminates the ``pathology'' of topological phenomena which are invisible to $K_\Gamma$, and so more tightly binds the behavior of $\CatOf{Spectra}$ to $K_\Gamma$.  For reasons to be discussed in this section, we will refer to this simply as the ``$\Gamma$--local category'' with localization functor $L_\Gamma$, suppressing the letter ``$K$''.
 
