@@ -422,12 +422,12 @@ This is an impressively broad theorem: the loopspaces $\OS{MU}{2*}$ are quite co
 
 \section{Dieudonn\'e modules}
 
-Our goal today is strictly algebraic.  Because the category of finite type Hopf algebras over a ground field $k$ is an abelian category, it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \textit{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, including three different presentations of the equivalence.\footnote{Emphasis on ``\emph{some of the results}''.  Dieudonn\'e theory is an enormous subject with many interesting results both internal and connected to arithmetic geometry, which we'll explore almost none of.}
+Our goal today is strictly algebraic.  Because the category of finite type commutative and cocommutative Hopf algebras over a ground field $k$ is an abelian category, it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \textit{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, including three different presentations of the equivalence.\footnote{Emphasis on ``\emph{some of the results}''.  Dieudonn\'e theory is an enormous subject with many interesting results both internal and connected to arithmetic geometry, which we'll explore almost none of.}
 
 \citeme{Weinstein's geometry of Lubin--Tate spaces notes}
 Start with a formal line $V$ over a ground ring $A$, let $\G$ denote $V$ equipped with a group structure, and let $\Omega^1_{V/k}$ be the module of K\"ahler differentials on $V$.  We have previously been interested in the \textit{invariant differentials} $\omega_{\G} \subseteq \Omega^1_{V/A}$ on $V$, back when we first discussed logarithms in \Cref{RationalFGLsHaveLogarithms}.  Such a differential gave rise to a logarithm through integration, in the case that $A$ was a $\Q$--algebra.  However, if $A$ had positive characteristic $p$ then there would be an obstruction to integrating terms with exponents of the form $-1 \pmod p$, which in turn led us to the notion of $p$--height explored in \Cref{MfgI:Height}.
 
-A slightly different twist on this set-up leads to a new story entirely.  Recall that $\Omega^1_{V/A}$ forms the first level of the \textit{algebraic de Rham complex} $\Omega^*_{V/A}$.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that the identity $\mu^* - \pi_1^* - \pi_2^* = 0$ holds \emph{at the chain level}.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the algebraic de Rham complex.  This condition begets a sub--$A$--module $D(\G/A)$ of $H^1_{dR}(\G/A)$ consisting of those $1$--forms which are cohomologically translation invariant.
+A slightly different twist on this set-up leads to a new story entirely.  Recall that $\Omega^1_{V/A}$ forms the first level of the \textit{algebraic de Rham complex} $\Omega^*_{V/A}$.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that the identity $\mu^* - \pi_1^* - \pi_2^* = 0$ \todo{What are $\mu$, $\pi_1$ and $\pi_2$?} holds \emph{at the chain level}.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the algebraic de Rham complex.  This condition begets a sub--$A$--module $D(\G/A)$ of $H^1_{dR}(\G/A)$ consisting of those $1$--forms which are cohomologically translation invariant.
 
 \begin{example}
 Let $A$ be a $\Z$--flat ring, let $\G$ be a formal group over $A$, and let $x$ be a coordinate on $\G$.  Set $K = A \otimes \Q$, so that $A \to K$ is an injection.  There is then a diagram of exact rows
@@ -437,8 +437,8 @@ Let $A$ be a $\Z$--flat ring, let $\G$ be a formal group over $A$, and let $x$ b
 0 \arrow{r} & x A\ps{x} \arrow{r} & \left\{ f \in x K\ps{x} \middle| f' \in A\ps{x} \right\} \arrow{r}{d} & H^1_{dR}(\G/A) \arrow{r} & 0 \\
 0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[-,double]{u} & \left\{ f \in x K\ps{x} \middle| \begin{array}{c}f' \in A\ps{x}, \\ \delta f \in A\ps{x,y} \end{array} \right\} \arrow{u} \arrow{r}{d} & D(\G/A) \arrow{r} \arrow{u} & 0,
 \end{tikzcd}
-\end{center}
-where $\delta$ is induced by $\delta [\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
+\end{center} \todo{This is just the definition of $H^1_{dR}$ in terms of cocycles and coboundaries, right?}
+where $\delta$ \todo{What's $\delta$?}is induced by $\delta [\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
 \end{example}
 
 % \begin{lemma}
@@ -481,7 +481,7 @@ This is independent of choice of lift up to coherent isomorphism.  Given any oth
 
 Finally, note that the module $M(\G_0)$ carries some natural operations:
 \begin{itemize}
-\item Arithmetic: $M(\G_0)$ is naturally a $\W_p(k)$--module, with the action by $\ell$ corresponding to multiplication--by--$\ell$ on $\G_0$.
+\item Arithmetic: $M(\G_0)$ is naturally a $\W_p(k)$--module, with the action by $\ell$ corresponding to multiplication--by--$\ell$ on $\G_0$. \todo{What is ``multiplication-by-$\ell$''?  Is it $\ell \bmod{p}$?}
 \item Frobenius: The map $x \mapsto x^p$ is a group homomorphism mod $p$, so by \Cref{H1dRIsCrystalline} induces a $\phi$--semilinear map $F\co M(\G_0) \to M(\G_0)$.  That is, $F(\alpha v) = \alpha^\phi F(v)$, where $\phi$ is a lift of the Frobenius on $k$ to $\W_p(k)$.
 \item Verschiebung: The Verschiebung map is given by the mysterious formula \[V\co \sum_{n=1}^\infty a_n x^n \mapsto p \sum_{n=1}^\infty a_{pn}^{\phi^{-1}} x^n.\] It satisfies anti-semilinearity, $aV(v) = V(a^\phi v)$, and also $FV = p$.
 \end{itemize}
@@ -489,7 +489,7 @@ With this, we come to the main theorem of this section:
 
 \begin{theorem}
 The functor $M$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$, called \textit{Dieudonn\'e modules}. \qed \todo{Add in words about being uniform and reduced?}
-\end{theorem}
+\end{theorem} \todo{You never define the Dieudonn\'{e} ring explicitly.  I think the statement of this theorem and some later statements (e.g., $\W_p(k)\{x\}$) can be made more clear by giving notation to the Dieudonn\'{e} ring.}
 
 \begin{remark}
 Several invariants of the formal group associated to a Dieudonn\'e module can be read off from the functor $M$.  For example, the $\W_p(k)$--rank of $M$ is equal to the $p$--height of $\G_0$.  Additionally, the quotient $M / FM$ is canonically isomorphic to the cotangent space $T_0^* \G_0 \cong \omega_{\G_0}$.
@@ -541,8 +541,8 @@ Surprisingly, this construction captures the same data as the previous one.
 \begin{theorem}
 The functor $D_p$ determines a \emph{covariant} equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$.  In fact, $D_p(\G) \cong M(\G/k)^*$. \qed \todo{Add in words about being uniform and reduced?}
 \end{theorem}
-
-Finally, we turn to a third presentation of Dieudonn\'e theory using more pedestrian methods, with the aim of developing a theory more directly adapted to algebraic topology.  One can show that the category of \emph{finite--type} graded connected Hopf algebras is an abelian category, and hence must admit a presentation as modules over some (perhaps noncommutative) ring.  The first step to accessing this presentation is to find a collection of projective generators for this category.
+\todo{Can you give more intuition about how these two presentations are related, for example from Lie theory?  Somehow (integral) curves (through a point) should correspond to the tangent space, while left-invariant forms correspond to the cotangent space.  Is ``cohomologically-invariant'' analogous to ``$p$-typification'', perhaps along the lines of the ``crystalline''-ness of $H^1_{dR}$?}  
+Finally, we turn to a third presentation of Dieudonn\'e theory using more pedestrian methods, with the aim of developing a theory more directly adapted to algebraic topology.  One can show that the category of \emph{finite--type} graded \todo{I would've thought that the important word to emphasize here is ``graded'', not ``finite-type'', since we've been assuming finite-type throughout this lecture.} connected Hopf algebras is an abelian category, and hence must admit a presentation as modules over some (perhaps noncommutative) ring.  The first step to accessing this presentation is to find a collection of projective generators for this category.
 
 \begin{theorem}[{\cite{Schoeller}}]
 Let $S(n)$ denote the free graded-commutative Hopf algebra on a single generator in degree $n$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
