@@ -180,7 +180,7 @@ As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is pr
 \end{proof}
 
 Now we turn to the rest of the induction:
-\begin{theorem}
+\begin{theorem}\label{UnstableSteenrodInduction}
 $H\F_2{}_* \OS{H\F_2}{t}$ is the exterior $\ast$--algebra on the $t$--fold $\circ$--products of the generators $a_{(j)} \in H\F_2{}_* B\F_2$.
 \end{theorem}
 \begin{proof}
@@ -788,15 +788,17 @@ To see this, note that because $E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}$ i
 
 
 
-\section{Cooperations between geometric points}
+\section{Cooperations and geometric points on $\moduli{fg}$}
 
-\todo{This isn't a good title. You specifically mean from the additive point to a finite height point.}
+Throughout today, we will write $K$ for a Morava $K$--theory $K_\Gamma$ (which, if you like, you can take to be $K(d)$) and $A$ for a finitely generated abelian group, and $H$ for the associated Eilenberg--Mac Lane spectrum.  Our goal is to study the unstable mixed cooperations $K_* \OS{H}{*}$, which we expect to be connected to formal group homomorphisms $\Gamma \to \G_a$ but which isn't covered by any of the cases studied thus far.  This calculation is interesting to us for two reasons:
+\begin{enumerate}
+\item These cooperations appear naturally when pursuing a ``fiberwise analysis'' of cooperations, or a chromatic analysis of unstable homotopy theory, along the lines of \Cref{ChapterFiniteSpectra}.
+\item The Eilenberg--Mac Lane spaces $\OS{H}{*}$ appear as the layers of Postnikov towers.  If we were to want to analyze the $K$--homology of a Postnikov tower (as we will in \Cref{ChapterSigmaOrientation}), we will naturally encounter pieces of $K_* \OS{H}{*}$, and we would be wise to have a firm handle on these objects.  It is a tribute to the perspective offered here that the successful way to approach this computation is not one-at-a-time, handicrafted for each possible Eilenberg--Mac Lane space, but rather all-at-once, as suggested by the unstable cooperations picture.
+\end{enumerate}
 
-Throughout today, we will write $K$ for a Morava $K$--theory $K_\Gamma$ (which, if you like, you can take to be $K(d)$) and $A$ for a finitely generated abelian group, and $H$ for the associated Eilenberg--Mac Lane spectrum.  Our goal is to study the unstable mixed cooperations $K_* \OS{H}{*}$.  Of course, this fits into our broader program of understanding various forms of unstable cooperations, especially if we were to pursue a ``stalkwise analysis'' of the sort in \Cref{ChapterFiniteSpectra}.  However, this calculation is especially interesting because of the appearance of the Eilenberg--Mac Lane spaces $\OS{H}{*}$ in other settings.  For instance, if we want to analyze the $K$--homology of a Postnikov tower (as we will in \Cref{ChapterSigmaOrientation}), we will naturally encounter pieces of $K_* \OS{H}{*}$, and we would be wise to have a firm handle on these objects.  It is another tribute to the power of structure that the successful way to approach this computation is not one-at-a-time, as one coming from the Postnikov perspective might attempt, but all-at-once, as suggested by the unstable cooperations picture.
+Unsurprisingly, our analysis will rest on the bar spectral sequence \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}.\]  However, because $K$--theory is naturally a $2$--periodic theory, our method in \Cref{COableCoopnsII} of inducting on homological degree and working with a triangular corner of the spectral sequence will fail.  Instead, we will induct on the Eilenberg--Mac Lane index $q$ as in \Cref{UnstableSteenrodCoops}, and as such we will begin with analyzing the base case of $q = 0$ where we are interested in manually computing $K_* BA$ for a reasonable abelian group $A$.  Since $K$--theory has K\"unneth isomorphisms and $B(A_1 \times A_2) \simeq BA_1 \times BA_2$, it suffices to do the computation just for $A = C_{p^j}$.
 
-Our calculation will eventually turn into an induction, so we will pursue a simple example first: the $K$--theory of just the classifying space $BA$, rather than a general Eilenberg--Mac Lane space.  Since $K$--theory has K\"unneth isomorphisms and $B(A_1 \times A_2) \simeq BA_1 \times BA_2$, it suffices to do the computation just for $A = C_{p^j}$.
-
-\begin{theorem}\citeme{Theorem 5.7 of RW, or Prop 2.4.4 of HL}
+\begin{theorem}[{\cite[Theorem 5.7]{RavenelWilsonKthyOfEMSpaces}, \cite[Proposition 2.4.4]{HopkinsLurie}}]\label{KtheoryConvertsTorsionToTorsion}
 There is an isomorphism \[BS^1[p^j]_K \cong BS^1_K[p^j].\]
 \end{theorem}
 \begin{proof}
@@ -810,39 +812,54 @@ S^1 \arrow{r} & ES^1 \arrow{r} & BS^1.
 The induced long exact sequence (known as the Gysin sequence, or as the couple in the Serre spectral sequence for the first fibration) takes the form
 \begin{center}
 \begin{tikzcd}
-& K_* BS^1 \arrow{rd}{- \frown [p^j](x)} \\
-K_*(BS^1[p^j]) \arrow{ru} & & K_* BS^1 \arrow{ll}{\partial}
+& K^* BS^1 \arrow[leftarrow]{rd}{- \smile [p^j](x)} \\
+K^*(BS^1[p^j]) \arrow[leftarrow]{ru} & & K^* BS^1 \arrow[leftarrow]{ll}{\partial}
 \end{tikzcd}
 \end{center}
-where $x$ is a coordinate on $BS^1_K$.  Because $BS^1_K$ is of finite height, the right diagonal map is surjective.  It follows that $\partial = 0$, and so this gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[B(S^1[p^j])_K \to BS^1_K \xrightarrow{p^j} BS^1_K. \qedhere\]
+where $x$ is a coordinate on $BS^1_K$.  Because $BS^1_K$ is of finite height, the right diagonal map is injective.  It follows that $\partial = 0$, and so this gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[B(S^1[p^j])_K \to BS^1_K \xrightarrow{p^j} BS^1_K. \qedhere\]
 \end{proof}
 
-There are a couple of approaches to the rest of this calculation, i.e., $K_* \OS{H}{q}$ for $q > 1$.  The original, due to Ravenel and Wilson, is to complete the calculation for the smallest abelian group $C_p$ and then induct upward toward more complicated groups like $C_{p^j}$ and $C_{p^\infty}$.  More recently, there is also a preprint of Hopkins and Lurie that begins with $A = C_{p^\infty}$ and then works downward.  We will do the \emph{easy} parts of both calculations, to give a feel for their relative strengths and deficiencies.
+\begin{remark}\label{KHomologyOfClassifyingSpace}
+Dually, there is also an exact sequence of Hopf algebras
+\begin{center}
+\begin{tikzcd}
+& K_* BS^1 \arrow{rd}{- \frown [p^j](x)} \\
+K_*(BS^1[p^j]) \arrow{ru} & & K_* BS^1, \arrow{ll}{\partial}
+\end{tikzcd}
+\end{center}
+where again $\partial = 0$ and hence $K_*(BS^1[p^j])$ is presented as the kernel of the map ``cap with $[p^j](x)$''.  We will revisit the duality next time.
+\end{remark}
 
-The Ravenel--Wilson version of the calculation proceeds much along the same lines as \Cref{UnstableSteenrodCoops}.  We will study the bar spectral sequences \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}\] for different indices $q$ and use the $\circ$--product to push differentials around among them.  We begin by rephrasing the calculation above in terms of the case $q = 0$.\citeme{Theorem 8.1 of RW}  In that setting, the ground algebra is given by \[K_* \OS{H\Z/p^j}{0} = K_*[[1]] / \<[1]^{p^j} - 1\> = K_*[[1] - [0]] / \<[1] - [0]\>^{p^j}.\]  Then, the $\Tor$--algebra for the truncated polynomial algebra $K_*[a_\emptyset] / a_\emptyset^{p^j}$ is given by the formula \[\Tor^{K_*[a_\emptyset] / a_\emptyset^{p^j}}_{*, *}(K_*, K_*) = \Lambda[\sigma a_\emptyset] \otimes \Gamma[\phi a_\emptyset],\] the combination of an exterior algebra and a divided power algebra.  We know which classes are supposed to survive this spectral sequence, and hence we know where the differentials must be:
+There are a couple of approaches to the rest of this calculation, i.e., $K_* \OS{H}{q}$ for $q > 1$.  The original, due to Ravenel and Wilson~\cite{RavenelWilsonKthyOfEMSpaces}, is to complete the calculation for the smallest abelian group $C_p$ and then induct upward toward more complicated groups like $C_{p^j}$ and $C_{p^\infty}$.  More recently, there is also a preprint of Hopkins and Lurie~\cite{HopkinsLurie} that begins with $A = C_{p^\infty}$ and then works downward.  We will do the \emph{easy} parts of both calculations, to give a feel for their relative strengths and deficiencies.
+
+The Ravenel--Wilson version of the calculation proceeds much along the same lines as \Cref{UnstableSteenrodCoops}.  Setting $H = H\Z/p$, we will study the bar spectral sequences \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}\] for different indices $q$ and use the $\circ$--product to push differentials around among them.  Our first move, as in \Cref{UnstableSteenrodCoops}, is to study the bar spectral sequence \[\Tor^{K_* \Z/p}_{*, *}(K_*, K_*) \Rightarrow K_* B\Z/p\] and analyze what \emph{must} happen in order to reach the conclusion of \Cref{KtheoryConvertsTorsionToTorsion}.  In the input to this spectral sequence, the ground algebra is given by\todo{Did you also use angle brackets to denote ideals in the rest of the document? Do you care to? Probably not.} \[K_* \OS{H\Z/p}{0} = K_*[[1]] / \<[1]^{p} - 1\> = K_*[[1] - [0]] / \<[1] - [0]\>^{p}.\]  The $\Tor$--algebra for this truncated polynomial algebra $K_*[a_\emptyset] / a_\emptyset^{p}$ is then given by the formula \[\Tor^{K_*[a_\emptyset] / a_\emptyset^{p}}_{*, *}(K_*, K_*) = \Lambda[\sigma a_\emptyset] \otimes \Gamma[\phi a_\emptyset],\] the combination of an exterior algebra and a divided power algebra.  We know which classes are supposed to survive this spectral sequence, and hence we know where the differentials must be:
 \begin{align*}
-d(\phi a_\emptyset)^{[p^{dj}]} & = \sigma a_\emptyset, \\
-\Rightarrow d(\phi a_\emptyset)^{[i + p^{dj}]} & = \sigma a_\emptyset \cdot (\phi a_\emptyset)^{[i]}.
+d(\phi a_\emptyset)^{[p^d]} & = \sigma a_\emptyset, \\
+\Rightarrow d(\phi a_\emptyset)^{[i + p^d]} & = \sigma a_\emptyset \cdot (\phi a_\emptyset)^{[i]}.
 \end{align*}
-After this differential the spectral sequence collapses, but there are some multiplicative extensions to sort out when $j > 1$.  Of course, these are all determined by already knowing the multiplicative structure on $K_* \OS{H\Z/p^j}{1}$.
+The spectral sequence collapses after this differential.\footnote{In the $j > 1$ version of this analysis, there are some multiplicative extensions to sort out.  Of course, these are all determined by already knowing the multiplicative structure on $K_* \OS{H\Z/p^j}{1}$.}
 
-We now turn to the general finite case:
-\begin{theorem}\citeme{Theorems 9.2 and 11.1 of RW}
-Using the $\circ$--product, \[K_* \OS{H\Z/p^j}{q} = \Alt^q \OS{H\Z/p^j}{1}.\]
+
+With the base case analysis completed, we turn to the induction on $q$:
+\begin{theorem}[{\cite[Theorem 9.2 and Theorem 11.1]{RavenelWilsonKthyOfEMSpaces}}]
+Using the $\circ$--product, \[K_* \OS{H\Z/p}{q} = \Alt^q \OS{H\Z/p}{1}.\]
 \end{theorem}
 \begin{proof}[Proof sketch]
 The inductive step turns out to be extremely index-rich, so I won't be so explicit or complete, but I'll point out the major landmarks.  It will be useful to use the shorthand $a_{(i)} = a_\emptyset^{[p^i]}$, where $(i)$ is thought of as a multi-index with one entry.
 
-We proceed by induction, assuming that $K_* \OS{H\Z/p^j}{q} = \Alt^q \OS{H\Z/p^j}{1}$ for a fixed $q$.  Computing the algebraic homology of $K_* \OS{H\Z/p^j}{q}$ yields a tensor of divided power and exterior classes, a pair for each algebra generator of $K_* \OS{H\Z/p^j}{q}$.  There is then a wonderful rewriting formula:\citeme{Ravenel Wilson, somewhere} \[(\phi a_{(i_1, \ldots, i_q)})^{[p^j]} \equiv  (\phi a_{(i_1, \ldots, i_{q-1})})^{[p^j]} \circ a_{(i_q + j)} \mod *\text{--decomposables}.\]  Since every class can be so decomposed, all the differentials and extensions are determined by the previous spectral sequence.  In particular, classes are hit by differentials exactly when $i_q + j$ is large enough.  It follows that the inductive assumption that $K_* \OS{H\Z/p^j}{q+1}$ is an exterior power holds, and the class $(\phi a_{(i_1, \ldots, i_q)})^{[p^j]}$ represents $a_{(j, i_1 + j, \ldots, i_q + j)}$.\todo{Indicate exactly where the intertwining between different values of $j$ happens.}
+We proceed by induction, assuming that $K_* \OS{H\Z/p}{q} = \Alt^q \OS{H\Z/p}{1}$ for a fixed $q$.  Computing the $\Tor$--algebra of $K_* \OS{H\Z/p^j}{q}$ again yields a tensor of divided power and exterior classes, a pair for each algebra generator of $K_* \OS{H\Z/p^j}{q}$.  In analogy to the rewriting formula used in \Cref{UnstableSteenrodInduction}, there is also a rewriting formula in this context~\cite[Lemmas 9.5-6]{RavenelWilsonKthyOfEMSpaces}\todo{Did you get this citation right? It doesn't look like I remember.}: \[(\phi a_{(i_1, \ldots, i_q)})^{[p^n]} \equiv (\phi a_{(i_1, \ldots, i_{q-1})})^{[p^n]} \circ a_{(i_q + n)} \mod *\text{--decomposables}.\]  Since every class can be so decomposed, all the differentials are determined by the previous spectral sequence.  In particular, classes are hit by differentials exactly when $i_q + n$ is large enough.  Chasing this through shows that the inductive assumption that $K_* \OS{H\Z/p}{q+1}$ is an exterior power holds, and the class $(\phi a_{(i_1, \ldots, i_q)})^{[p^n]}$ represents $a_{(n, i_1 + n, \ldots, i_q + n)}$.
 \end{proof}
 
 \begin{remark}
-Note that in the conditions below we are using the induction index to bound the degree of the infinite loopspace, whereas in \Cref{COableCoopnsII} we used the induction index to bound the topological degree of the homology groups.
+When reworking this computation for the case \[\Tor^{K_* \OS{H\Z/p^j}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H\Z/p^j}{q+1},\] the main difference is that there are various algebra extensions to keep track of.  These are controlled using the group maps
+\begin{align*}
+\Z/p^{j+1} & \to \Z/p^j, &
+\left(\frac{1}{p^j}\Z\right)/\Z & \to \left(\frac{1}{p^{j+1}} \Z\right) / \Z,
+\end{align*}
+together with knowledge of how the extensions strung together at the previous $j$--stage.  Then, these tools are revisited~\cite[Theorem 12.4]{RavenelWilsonKthyOfEMSpaces} to give a computation in the limiting case $A = C_{p^\infty}$, where there's a $p$--adic equivalence $HC_{p^\infty} \simeq\widehat{{}_p} \Susp H\Z$.\todo{Mike has said something about the pairing $C_{p^j} \times C_{p^j}^* \to \Q/\Z$ not being functorial in $j$ (so as to pass to the direct limit) which gave me pause.  I should make sure I'm not messing something up here.}  The calculation in this setting is the most interesting one of all --- after all, it contains the case $BS^1_K$, which is of special interest to us.
 \end{remark}
 
-\todo{Mike has said something about the pairing $C_{p^j} \times C_{p^j}^* \to \Q/\Z$ not being functorial in $j$ (so as to pass to the direct limit) which gave me pause.  I should make sure I'm not messing something up here.}
-
-The case $j = 1$ of this proof is messy enough, and the case of a general $j$ requires interrelating the cases using the restriction map $C_{p^j} \to C_{p^{j+1}}$ and the projection map $C_{p^{j+1}} \to C_{p^j}$.  Then, these tools are revisited to give a computation in the limiting case $A = C_{p^\infty}$, where there's a $p$--adic equivalence $HC_{p^\infty} \simeq\widehat{{}_p} \Susp H\Z$.\citeme{Theorem 12.4 of RW}  The calculation in this setting is the most interesting one of all --- after all, it contains the case $BS^1_K$, which is of special interest to us.  Remarkable, it is easier to access directly than passing through all of this intermediate work.  To begin, we need the following algebraic calculation:
+Remarkably, this maximally interesting case is easier to access directly than passing through all of this intermediate work.  To begin, we need the following algebraic calculation:
 
 \begin{theorem}\citeme{Theorem 2.2.10 of Hopkins--Lurie}\todo{Use the same cohomology notation you have been using for the cohomology of formal groups on previous days.}
 Suppose we have an exact sequence of Hopf $k$--algebras \[k \to A' \to A \xrightarrow{u} A'' \to k\] such that $A$ is connected and $F$--divisible, $A'$ is finite--dimensional, and the map $u$ factors through the relative Frobenius ${A''}^{(p)} \to A''$.  Write $\partial: \Ext^1 A' \to \Ext^2 A''$ for the going--around map.  The following are true:
