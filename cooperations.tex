@@ -714,7 +714,7 @@ For a complex-oriented homology theory $E$, we define its Dieudonn\'e $E_*$--alg
 Restricting attention to the even parts, the maps \[R_E \to D_E \from D_* H_* \OS{E}{2*}\] are isomorphisms for $E$ Landweber flat.
 \end{theorem}
 \begin{proof}
-In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP$.  However, the right--hand object can be identified via Brown--Gitler juggling: \[D_n H_* \OS{E}{2j} = B(n)_n \Susp^{2j} E = E_{2j+n} B(n).\]  If $E$ is Landweber flat, then the middle-- and right--terms are determined by change-of-base from the respective $BP$ terms by definition of flatness.  Finally, the left term commutes with change-of-base by its algebraic definition, and the theorem follows.
+In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for $E = BP$.  However, the right--hand object can be identified via Brown--Gitler juggling\todo{Is this really legal? We won't get intro trouble with odd indices and the semi-parity condition on $n$?}: \[D_n H_* \OS{E}{2j} = B(n)_n \Susp^{2j} E = E_{2j+n} B(n).\]  If $E$ is Landweber flat, then the middle-- and right--terms are determined by change-of-base from the respective $BP$ terms by definition of flatness.  Finally, the left term commutes with change-of-base by its algebraic definition, and the theorem follows.
 \end{proof}
 
 \begin{remark}
@@ -733,7 +733,7 @@ To see this, note that because $E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}$ i
 
 
 
-
+\todo{Jeremy asked whether there was a connection between Goerss's original proof and the free $E_2$--algebra with $p$ killed which we keep dancing around this semester.  I don't know, and it's a good question.}
 \todo{Compare also with the main result of {\cite{HopkinsHunton}}.}
 \todo{Remark 11.4 in the Hopf Ring paper says that the failure of the odd primary case to be an isomorphism is measured by the suspension homomorphism operator $e$, and the kernel of the natural surjective map is exactly the kernel of multiplication by $e$.  Have a look.}
 \todo{Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.  3/29: I did ask Mike, he said he didn't know. I also asked Paul, and he said this seemed unreasonable, since $kO$ isn't valued in co/commutative Hopf algebras.  This is a fair point: one would need to invent an ``analogue'' of Dieudonn\'e theory for $kO$, in the sense that some category it takes values in would have to be identified as abelian, where the category is rigid enough that it often sends fiber sequences to exact sequences in the category.}
@@ -781,7 +781,6 @@ To see this, note that because $E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}$ i
 
 
 
-% Then he shows that these recover Brown--Gitler spectra: $H^* B_n$ looks like a chunk of the mod--$p$ Steenrod algebra, up through degree dependent on $n$, and also the natural map $(B_n)_n Z \to H_n Z$ is surjective for finite CW--complexes $Z$.  The second part doesn't seem to be very hard, cf.\ Lemma 3.3.  The cohomology statement is pretty cool: computing homology instead, you get \[H_k B_n = (B_n)_k H\Z = D_n H_* \Loops^\infty K(\Z, n - k) = [Q H_* \Loops^\infty K(\Z, n-k)]_n,\] where the last equality relies on the congruence condition.
 
 
 
@@ -852,37 +851,58 @@ We proceed by induction, assuming that $K_* \OS{H\Z/p}{q} = \Alt^q \OS{H\Z/p}{1}
 
 \begin{remark}
 When reworking this computation for the case \[\Tor^{K_* \OS{H\Z/p^j}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H\Z/p^j}{q+1},\] the main difference is that there are various algebra extensions to keep track of.  These are controlled using the group maps
+\todo{These are Erick's suggestions of how to denote these group maps, so that it's clearer which is the projection and which is the inclusion. I should go back through the rest of the notes and enforce this notation elsewhere too.}
 \begin{align*}
 \Z/p^{j+1} & \to \Z/p^j, &
 \left(\frac{1}{p^j}\Z\right)/\Z & \to \left(\frac{1}{p^{j+1}} \Z\right) / \Z,
 \end{align*}
-together with knowledge of how the extensions strung together at the previous $j$--stage.  Then, these tools are revisited~\cite[Theorem 12.4]{RavenelWilsonKthyOfEMSpaces} to give a computation in the limiting case $A = C_{p^\infty}$, where there's a $p$--adic equivalence $HC_{p^\infty} \simeq\widehat{{}_p} \Susp H\Z$.\todo{Mike has said something about the pairing $C_{p^j} \times C_{p^j}^* \to \Q/\Z$ not being functorial in $j$ (so as to pass to the direct limit) which gave me pause.  I should make sure I'm not messing something up here.}  The calculation in this setting is the most interesting one of all --- after all, it contains the case $BS^1_K$, which is of special interest to us.
+together with knowledge of how the extensions strung together at the previous $j$--stage.  Then, these tools are revisited~\cite[Theorem 12.4]{RavenelWilsonKthyOfEMSpaces} to give a computation in the limiting case $A = C_{p^\infty}$, where there's a $p$--adic equivalence $HC_{p^\infty} \simeq^\wedge_p \Susp H\Z$.\todo{Mike has said something about the pairing $C_{p^j} \times C_{p^j}^* \to \Q/\Z$ not being functorial in $j$ (so as to pass to the direct limit) which gave me pause.  I should make sure I'm not messing something up here.}  The calculation in this setting is the most interesting one of all --- after all, it contains the case $BS^1_K$, which is of special interest to us.
 \end{remark}
 
-Remarkably, this maximally interesting case is easier to access directly than passing through all of this intermediate work.  To begin, we need the following algebraic calculation:
-
-\begin{theorem}\citeme{Theorem 2.2.10 of Hopkins--Lurie}\todo{Use the same cohomology notation you have been using for the cohomology of formal groups on previous days.}
-Suppose we have an exact sequence of Hopf $k$--algebras \[k \to A' \to A \xrightarrow{u} A'' \to k\] such that $A$ is connected and $F$--divisible, $A'$ is finite--dimensional, and the map $u$ factors through the relative Frobenius ${A''}^{(p)} \to A''$.  Write $\partial: \Ext^1 A' \to \Ext^2 A''$ for the going--around map.  The following are true:
-\begin{itemize}
-\item The Hopf algebra $A''$ is connected and $F$--divisible.
-\item The map $\partial$ induces an isomorphism \[\Sym^* \Ext^1 A' \to \Ext^* A''.\]
-\item Let $y_1, \ldots, y_n$ form a basis for $\Ext^1 A'$.  Then $\Ext^* A'$ is freely generated by the elements $y_*$ as a module over $\Ext^* A$. \qed
-\end{itemize}
+Remarkably, this maximally interesting case is easier to access directly than passing through all of this intermediate work, and this is the perspective of Hopkins and Lurie.  We will pursue an inductive calculation of the formal group schemes $(\OS{HC_{p^\infty}}{q})_K$ by iterating the cohomological bar spectral sequence, culminating in the following Theorem:
+\begin{theorem}
+There is an isomorphism of formal group schemes \[(\OS{HC_{p^\infty}}{q})_K \cong (\CP^\infty_K)^{\wedge q}.\]  In particular, $(\OS{HC_{p^\infty}}{q})_K$ is a ``$p$--divisible formal group'' of dimension $\binom{d-1}{q-1}$ and height $\binom{d}{q}$.
 \end{theorem}
 
-\begin{corollary}\citeme{Example 2.2.12 of Hopkins--Lurie}
-If $A$ is a connected $p$--divisible Hopf $k$--algebra, then \[k \to A[p^j] \to A \xrightarrow{p^j} A \to k\] is such an exact sequence.  Hence, $\Ext^* A$ is isomorphic to the symmetric algebra on $\Ext^1 A[p^j]$.  \qed
+\noindent Assume that this Theorem is true for a fixed value of $q$.  First, the cohomological bar spectral sequence lets us calculate just the \emph{formal scheme} structure of $(\OS{HC_{p^\infty}}{q+1})_K$, using the \emph{formal group} structure of $(\OS{HC_{p^\infty}}{q})_K$.  It has signature~(\cite{LazarevDeformations}, \cite[Example 2.3.5]{HopkinsLurie}) \[H^*((\OS{HC_{p^\infty}}{q})_K; \G_a) \otimes_{K_0} K_* \Rightarrow K^* \OS{HC_{p^\infty}}{q+1},\] and hence we moved to calculate the formal group cohomology of $(\OS{HC_{p^\infty}}{q})_K$.   The following Lemma furthers the calculations of formal group cohomology in \Cref{CohomologyOfGa} and \Cref{CalculationOfLTTangentSpace} to the situation of connected $p$--divisible groups of higher dimension:
+
+\begin{lemma}[{\cite[Theorem 2.2.10 and Example 2.2.12]{HopkinsLurie}}]
+If $\G$ is a connected $p$--divisible group over a field $k$, then $H^*(\G; \G_a)$ is isomorphic to the symmetric algebra on $H^1(\G[p^j]; \G_a)$. \qed
+\end{lemma}
+
+\begin{corollary}[{\cite[Proposition 2.4.11]{HopkinsLurie}}]
+As a formal scheme, $(\OS{HC_{p^\infty}}{q+1})_K$ is a formal variety of dimension $\binom{d-1}{q}$.
 \end{corollary}
+\begin{proof}
+By setting $\G = (\OS{HC_{p^\infty}}{q})_K$, the Lemma gives us access to the $E^2$--page of our cohomological bar spectral sequence.  We can calculate the dimension of $H^1$ to be\todo{I have tried several times to figure out where this comes from, using tools from the beginning of H--L Section 2.2, but I haven't really convinced myself.  It must have something to do with the dimension of the Dieudonn\'e module of $\G$ minus the dimension of the image of $F$ --- or something?} \[\dim_k 3H^1(\G[p]; \G_a) = \height (\OS{HC_{p^\infty}}{q})_K - \dim (\OS{HC_{p^\infty}}{q})_K = \binom{d}{q-1} - \binom{d-1}{q-1} = \binom{d-1}{q}.\]  It follows that the $E_2$--page of this spectral sequence is a polynomial $k$--algebra on $\binom{d-1}{q}$ generators, concentrated in even degrees, so that the spectral sequence collapses and $K^0 \OS{HC_{p^\infty}}{q+1}$ is a power series algebra on as many generators.
+\end{proof}
 
-\citeme{Proof of 2.4.11 from Hopkins--Lurie} Set $A = K(n)_0 G$.  The $E_2$--page of the relevant Eilenberg--Moore spectral sequence is given by \[\Ext_A^* \otimes K_\Gamma^* \Rightarrow K_\Gamma^* BG.\]  Since $\Spf A^\vee$ is $p$--divisible, we have an exact sequence of Hopf algebras \[k \to A[p] \to A \xrightarrow{[p]} A \to k.\]  It's supposed to follow that \[\dim_k \Ext^1_{A[p]} = \binom{n}{m-1} - \binom{n-1}{m-1} = \binom{n-1}{m},\] using $\height(A) = \binom{n}{m-1}$, $\dim(A) = \binom{n-1}{m-1}$, and $\dim_k \Ext^1_A = \dim DM(A) / F \cdot DM(A)$ (cf.\ Remark 2.2.4).  It follows from the Example above that the $E_2$--page of this spectral sequence is a polynomial $k$--algebra on $\binom{n-1}{m-1}$ generators, concentrated in even degrees, so that the spectral sequence collapses.  In turn, it follows that $K(n)^0 BG$ is a power series algebra on as many generators.
+In order to continue the induction, we now have to identify the group structure on $(\OS{HC_{p^\infty}}{q+1})_K$.  This is done using the theory of Dieudonn\'e modules:
 
-\citeme{Proof of 2.4.12 from Hopkins--Lurie} Now we have to identify the Hopf algebra structure on this (as an alternating power).
+\begin{theorem}[{\cite[Proposition 2.4.12]{HopkinsLurie}}]
+Let $q \ge 1$ be an integer.  Suppose that $\OS{H(\Q_p/\Z_p)}{q}$ and $\OS{HC_p}{q}$ are $K(n)$-good, that $(\OS{H(\Q_p/\Z_p)}{q})_K$ is a connected $p$--divisible group of height $\binom{d}{q}$ and dimension $\binom{d-1}{q-1}$, that the sequence of group schemes\todo{Figure out this formatting. I should be able to just set the fraction to be ``inline'' rather than displaymode, but I don't know how to do that.} \[(\OS{H(\frac{1}{p}\Z_p / \Z_p)}{q})_K \to (\OS{H(\Q_p/\Z_p)}{q})_K \to (\OS{H(\Q_p / \frac{1}{p}\Z_p)}{q})_K \to K_0\] is exact, and the map \[\theta^q\co \Q_p / \Z_p \otimes M(\CP^\infty_K)^{\wedge q} \to M((\OS{H(\Q_p/\Z_p)}{q})_K)\] is an isomorphism.  Then $\theta^{q+1}$ is an isomorphism and the formal group $\OS{H(\Q_p/\Z_p)}{q+1}$ is a connected $p$--divisible group with height $\binom{d}{q+1}$ and dimension $\binom{d-1}{q}$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+By applying the snake lemma to the diagram
+\begin{center}
+\begin{tikzcd}
+0 \arrow{r} & M^{\wedge (q+1)} \arrow{r} \arrow{d}{V} & \Q \otimes M^{\wedge (q+1)} \arrow{r} \arrow{d}{V} & \Q_p / \Z_p \otimes M^{\wedge (q+1)} \arrow{r} \arrow{d}{V} & 0 \\
+0 \arrow{r} & M^{\wedge (q+1)} \arrow{r} & \Q \otimes M^{\wedge (q+1)} \arrow{r} & \Q_p / \Z_p \otimes M^{\wedge (q+1)} \arrow{r} & 0
+\end{tikzcd}
+\end{center}
+we learn that $V$ is a surjective endomorphism of $M^{\wedge (q+1)} M \otimes \Q_p/\Z_p$ and that there is an isomorphism \[\ker(V\co \Q_p/\Z_p \otimes M^{\wedge (q+1)} \to \Q_p/\Z_p \otimes M^{\wedge (q+1)}) \cong \operatorname{coker}(V\co M^{\wedge (q+1)} \to M^{\wedge (q+1)}).\]  The right-hand side is spanned by elements $V^I x$ with $I_1 = 0$, and hence the left-hand side has $k$--vector--space dimension $\binom{d-1}{q}$.  By very carefully studying the bar spectral sequence, one can learn that $\theta^m$ induces a surjection \[\ker V|_{\Q_p / \Z_p \otimes M^{\wedge m}} \to \ker V|_{D(Y)}.\]  In fact, since these two have the same rank, $\theta^m$ is an isomorphism on these subspaces.  Since the action of $V$ is locally nilpotent, this is enough to show that $\theta^m$ is an isomorphism, without restriction to subspaces: if it failed to be an injection, we could apply $V$ enough times to get an example of a nontrivial element in $\ker V_{\Q_p / \Z_p \otimes M^{\wedge m}}$ mapping to zero, and we can manually construct preimages through successive approximation.
+\end{proof}
 
-\todo[inline]{\textbf{Maybe the right thing to do here is to postpone the proof of 2.4.12 until tomorrow, when we introduce Dieudonn\'e theory?  It looks pretty heavy, and it's definitely Dieudonn\'e-y.}}
-
-\begin{remark}
-\todo[inline]{There's also Chapter 3 of Hopkins--Lurie, which constructs an alternating power group scheme without passing through Dieudonn\'e modules.  It should at least be mentioned.}
+\begin{remark}[{\cite[Proposition 2.4.13]{HopkinsLurie}}]
+This in hand, you now have to pull apart the full $p$--divisible group to get a calculation of $(\OS{H\Z/p^j}{q})_K$.  From this perspective, this is the hardest part with the longest, most convoluted proof.
 \end{remark}
+
+\begin{remark}[{\cite[Section 3]{HopkinsLurie}}]
+\citeme{You could also cite the alternating powers guy~\cite{HedayatzadehGeneralCase,HedayatzadehFieldCase} and a source for Dieudonn\'e crystals}
+Because $K_\Gamma^* \OS{H\Z/p^j}{q}$ is even, you can hope to augment this to a calculation of $E_\Gamma^* \OS{H\Z/p^j}{q}$.  This is indeed possible, and the analogous formula is true at the level of Hopf algebras: \[(E_\Gamma)_* \OS{HC_{p^j}}{q} \cong \Alt^q (E_\Gamma)_* \OS{HC_{p^j}}{1}.\] However, the attendant algebraic geometry is quite complicated: you either need a form of Dieudonn\'e theory that functions over $\context{E_\Gamma}$ (and then attempt to drag the proof above through that setting), or you need to directly confront what ``alternating power of a $p$--divisible group'' means at the level of $p$--divisible groups (and forego all of the time-saving help afforded to you by Dieudonn\'e theory).
+\end{remark}
+
+
 
 
 
@@ -896,21 +916,15 @@ If $A$ is a connected $p$--divisible Hopf $k$--algebra, then \[k \to A[p^j] \to 
 You'll notice that in $K_* \OS{H}{q+1}$ if we let the $q$--index tend to $\infty$, we get the $K$--homology of a point.  This is another way to see that the stable cooperations $K_* H$ vanish, meaning that the \emph{only} information present comes from unstable cooperations.\todo{We could even provide a quick proof of the stable calculation?  Cf.\ http://mathoverflow.net/questions/220952/localization-at-the-johnson-wilson-spectrum-and-rationalization, http://mathoverflow.net/a/99211/1094 .}
 \end{remark}
 
-\begin{remark}
-Since everything in sight is even, you also get a calculation of the $E$--theory for free.  In fact, as Hopf algebras, \[E_\Gamma \OS{H(\Q/\Z)}{q} \simeq \Alt^q E_\Gamma \OS{H(\Q/\Z)}{1}.\]
-\end{remark}
-
-\begin{remark}
-Also mention the base--change type formula: as an abelian group, a positive characteristic field $k$ splits as a wedge of $C_p$s, so \[K_* \OS{Hk}{*} = K_* \OS{H\F_p}{*} \otimes_{\F_p} k.\]
-\end{remark}
 
 
 
 
 
-Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Postnikov towers and so on?
 
-\todo{I was thinking that this would give a counterexample to the idea that the additive unstable cooperations always present the functions on the scheme of homomorphisms, but this example may actually work too.  I'm not sure, but I think counting the ranks of $Q^* K(d)_* \OS{H\Z/p}{*}$ and $\InternalHom{FormalGps}(\Gamma_d, \G_a)$ (using Dieudonn\'e theory, or using Callan's tangent space trick) gives the same number...}
+
+\todo{Maybe talk about some consequences: the Hopkins--Ravenel--Wilson results on finite Postnikov towers and so on?}
+\todo{I was thinking that this would give a counterexample to the idea that the additive unstable cooperations always present the functions on the scheme of homomorphisms, but now I see that this example works too.  As lazy evidence, I think counting the ranks of $Q^* K(d)_* \OS{H\Z/p}{*}$ and $\InternalHom{FormalGps}(\Gamma_d, \G_a)$ (using Dieudonn\'e theory, or using Callan's tangent space trick) gives the same number.  More seriously, I think if you write out the scheme of homomorphisms, you'll see enough things degenerate (because $[-1]_{\G_a}(x) = -x$) that you do get this alternating algebra.}
 
 
 
