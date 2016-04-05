@@ -1,8 +1,10 @@
 % -*- root: main.tex -*-
 
-\usepackage{fullpage}
+% \usepackage{fullpage}
 % \usepackage{savetrees}
-\usepackage{amsmath,amssymb,amsfonts,amsthm,stmaryrd}
+% \usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
 \usepackage{hyperref}
 \usepackage[version warn]{sseqpages/sseqpages}
 %\usepackage{stmaryrd}
@@ -112,7 +114,7 @@
 \renewcommand{\t}{\mathbf t}
 \newcommand{\Gm}{\mathbb G_m}
 \newcommand{\h}{\mathfrak h}
-\newcommand{\D}{\mathbb D}
+\renewcommand{\D}{\mathbb D}
 
 \newcommand{\<}{\langle}
 \renewcommand{\>}{\rangle}
@@ -198,26 +200,31 @@
 
 \numberwithin{equation}{section}
 
-\theoremstyle{plain}
-\newtheorem{theorem}[equation]{Theorem}
-\newtheorem{proposition}[equation]{Proposition}
-\newtheorem{lemma}[equation]{Lemma}
-\newtheorem{corollary}[equation]{Corollary}
-\newtheorem{conjecture}[equation]{Conjecture}
-\theoremstyle{definition}
-\newtheorem{definition}[equation]{Definition}
-\newtheorem{construction}[equation]{Construction}
-\newtheorem{warning}[equation]{Important Warning}
-\theoremstyle{remark}
-\newtheorem{remark}[equation]{Remark}
-\newtheorem{example}[equation]{Example}
+% this is for use with amsthm
+%
+% \theoremstyle{plain}
+% \newtheorem{theorem}[equation]{Theorem}
+% \newtheorem{proposition}[equation]{Proposition}
+% \newtheorem{lemma}[equation]{Lemma}
+% \newtheorem{corollary}[equation]{Corollary}
+% \newtheorem{conjecture}[equation]{Conjecture}
+% \theoremstyle{definition}
+% \newtheorem{definition}[equation]{Definition}
+% \newtheorem{construction}[equation]{Construction}
+% \newtheorem{warning}[equation]{Important Warning}
+% \theoremstyle{remark}
+% \newtheorem{remark}[equation]{Remark}
+% \newtheorem{example}[equation]{Example}
+
+% this is for use with svmono
+\smartqed
 
 \crefname{section}{lecture}{lectures} \Crefname{section}{Lecture}{Lectures}
 \crefname{chapter}{case study}{case studies} \Crefname{chapter}{Case Study}{Case Studies}
 
 \newcounter{whichdate}
 \setcounter{whichdate}{0}
-\newcommand{\thedate}{
+\newcommand{\lecturedate}{
     \ifcase\value{whichdate}
     \or % 1
         Jan 25%
@@ -305,7 +312,7 @@
     \addtocounter{whichdate}{1}%
     \temptoks{#1}
     \edef\temp{
-        \@nx\oldsection[\rlap{\thedate:}\hskip\tocspacerlength\the\temptoks]{\thedate: \the\temptoks}%
+        \@nx\oldsection[\rlap{\lecturedate:}\hskip\tocspacerlength\the\temptoks]{\lecturedate: \the\temptoks}%
     }
     \temp
 }
