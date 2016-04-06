@@ -12,27 +12,36 @@
 
 \section{Coalgebraic formal schemes}
 
+Today we will discuss an elephant that has been lingering in our room: we began the class talking about the formal scheme associated to the \emph{cohomology} of a space, but we have since become primarily interested in a construction converting the \emph{homology} of a spectrum to a sheaf over a context.  Our goal for today is to, when possible, put these on even footing.  Our motivation for finally addressing this lingering discrepancy is more technical than aesthetic: we have previously wanted access to certain colimits of formal schemes (e.g., in \Cref{DivConstructionsAreFree}).  While such colimits are generally forbidding, similarly to colimits of manifolds, we will produce certain conditions under which they are accessible.
+
+Suppose that $E$ is a ring spectrum, and recall the usual way to produce the structure of an $E^*$--algebra on $E^* X$ for $X$ a space.  The space $X$ has a diagonal map $\Delta\co X \to X \times X$, which on $E$--cohomology induces a multiplication map \[E^* X \otimes_{E^*} E^* X \xrightarrow{\mu_E} E^*(X \times X) \xrightarrow{E^* \Delta} E^* X.\]  Dually, applying $E$--homology, we have a pair of maps \[E_* X \xrightarrow{E_* \Delta} E_*(X \times X) \xleftarrow{\text{K\"unneth}} E_* X \otimes_{E_*} E_* X.\]  In the case that the K\"unneth map is an isomorphism, the right--hand map is invertible, and the long composite induces the structure of an $E_*$--coalgebra on $E_* X$.  In the most generous case that $E$ is a field spectrum (in the sense of \Cref{FieldSpectraAreKTheories}), $E^* X$ is functorially the linear dual of $E_* X$, which motivates us to consider the following purely algebraic construction:
+
 \begin{definition}
-The scheme associated to a coalgebra $C$ over a field $k$ is defined by the formula \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps u = 1 \end{array} \right\}.\]
+Let $C$ be a coalgebra over a field $k$.  The scheme $\Sch C$ associated to $C$ is defined by \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps u = 1 \end{array} \right\}.\]
 \end{definition}
 
 \begin{lemma}
-If $A$ is a $k$--algebra that is finite--dimensional as a $k$--module, then $\Spec A \cong \Sch A^*$. \qed
+For $A$ a $k$--algebra, finite--dimensional as a $k$--module, one has $\Spec A \cong \Sch A^*$.
 \end{lemma}
+\begin{proof}[Proof sketch]
+A point in $f \in (\Sch A^*)(T) \subseteq A^* \otimes T$ gives rise to a map $f_*\co A \to T$ by the duality pairing.  The finiteness assumption is present exactly so that $A$ is its own double--dual, giving an inverse assignment.
+\end{proof}
 
-\begin{lemma}\label{kCoalgebrasAreIndFinite}
+If we drop the finiteness assumption, then a lot can go wrong.  For instance, the multiplication on our $k$--algebra $A$ gives rise only to maps \[A^* \to (A \otimes_k A)^* \from A^* \otimes_k A^*,\] which is not enough to make $A^*$ into a $k$--coalgebra.  However, if we start instead with a $k$--coalgebra $C$ of infinite dimension, the following result is very telling:
+
+\begin{lemma}\label{kCoalgebrasAreIndFinite}\citeme{Demazure's book has this somewhere in it, also see your thesis for a more modern reference}
 For $C$ a coalgebra over a field $k$, any finite--dimensional $k$--linear subspace of $C$ can be finitely enlarged to a subcoalgebra of $C$.  Accordingly, taking the colimit gives a canonical equivalence \[\Ind(\CatOf{Coalgebras}_k^{\mathrm{fin}}) \xrightarrow{\simeq} \CatOf{Coalgebras}_k. \qed\]
 \end{lemma}
 
-This is supposed to indicate that coalgebras \emph{want} to model formal schemes.
+\noindent This result allows us to leverage our duality Lemma pointwise: for an arbitrary $k$--coalgebra, we break it up into a lattice of finite $k$--coalgebras, and take their linear duals to get a reversed lattice of finite $k$--algebras.  Altogether, this indicate that $k$--coalgebras generally want to model \emph{formal schemes}.
 
 \begin{corollary}\label{CoalgsAndFSchsAgreeOverk}
-For $C$ a coalgebra over a field $k$ expressed as a colimit $C = \colim_k C_k$ of finite subcoalgebras, there is an equivalence \[\Sch C \cong \{\Spec C_k^*\}_k.\]  This induces an equivalence of categories \[\CatOf{Coalgebras}_k \cong \CatOf{FormalSchemes}_{\Spec k}. \qed\]
+For $C$ a coalgebra over a field $k$ expressed as a colimit $C = \colim_k C_k$ of finite subcoalgebras, there is an equivalence \[\Sch C \cong \{\Spec C_k^*\}_k.\]  This induces a \emph{covariant} equivalence of categories \[\CatOf{Coalgebras}_k \cong \CatOf{FormalSchemes}_{/k}. \qed\]
 \end{corollary}
 
 This covariant algebraic model for formal schemes is very useful.  \todo{Do you also need to compare the (Cartesian) monoidal structures?}  For instance, this equivalence makes the following calculation trivial:
-\begin{lemma}
-Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal group on the pointed formal scheme $\Sch k \to \Sch C$ is given by \todo{Describe the diagonal map on this guy.} \[F(\Sch k \to \Sch C) = \Sch \Sym_k M. \qed\]
+\begin{lemma}[{(cf.\ \Cref{DivConstructionsAreFree} and )}]\todo{Backreference the relevance of the $\Div$ construction to homotopy theory.}
+Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal monoid on the pointed formal scheme $\Sch k \to \Sch C$ is given by \todo{Describe the diagonal map on this guy.} \[F(\Sch k \to \Sch C) = \Sch \Sym_k M. \qed\]
 \end{lemma}
 
 It is unfortunate, then, that when working over an object more general than a field \Cref{kCoalgebrasAreIndFinite} fails.  Nonetheless, it is possible to bake into the definitions the machinery needed to get an analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
@@ -42,33 +51,35 @@ Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$
 \end{definition}
 
 \begin{theorem}[{\cite[Proposition 4.64]{StricklandFSFG}}]
-Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram is a good algebra.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is also a colimit diagram. \qed
+Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram is a good coalgebra, including the colimits point.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
 \end{theorem}
 
-\begin{corollary}
-For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists. \qed
+\begin{corollary}[{\cite[Proposition 6.4]{StricklandFSFG}}]
+For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$. \qed
 \end{corollary}
 
 
-Prop 6.4 (of Section 6.1 of FSFG): The coproduct $\coprod_{n \ge 0} X^{\times n}_{\Sigma_n}$ models the free formal monoid
+
+
+
 
 Section 6.2 of FSFG: Free formal groups and how the free pointed monoid on a formal curve is automatically group-complete
 
 
 
 
+Connect this to topology.
+
+
+
+\begin{example}
 Talk about \Cref{KHomologyOfClassifyingSpace} and the coalgebraic scheme associated to $K_*(BS^1[p^j])$.
+\end{example}
 
 
 
 
-
-
-Use this to construct the various stable divisor schemes and verify the freeness assertions about them (i.e., compare with the homology of $BU$)
-
-
-
-Cartier duality
+Cartier duality, and the second connection to topology.
 
 % Cartier duality: There is a duality on commutative and cocommutative finite--dimensional Hopf algebras, given by taking the linear dual.  There is also a duality on Dieudonn\'e modules, also given by taking the linear dual.  These also relate the two kind of Dieudonn\'e functors described above.
 
@@ -471,6 +482,10 @@ The analogues of Wu formulas in mod--$p$ cohomology are due to Shay, in \textit{
 There are also versions of the calculation due to Stong and to Singer, which deserve mention.
 
 At the end of the day, you want to be able to write down the Poincar\'e series for each of the prime fields and $BU[6, \infty)$.
+
+We could also work out the ring of functions on $C^k(\G_a; \Gm)$, $k \le 3$, so that we're in a good position to compare the two.
+
+The proof of 4.41 in the AHS preprint is really nice, showing that $C_3 \G_a$ (and hence $C_3 \G$, using an argument from Section 3) exists by studying a Verschiebung map and using Milnor--Moore.
 
 
 
