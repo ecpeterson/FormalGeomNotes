@@ -41,10 +41,10 @@ For $C$ a coalgebra over a field $k$ expressed as a colimit $C = \colim_k C_k$ o
 
 This covariant algebraic model for formal schemes is very useful.  \todo{Do you also need to compare the (Cartesian) monoidal structures?}  For instance, this equivalence makes the following calculation trivial:
 \begin{lemma}[{(cf.\ \Cref{DivConstructionsAreFree} and )}]\todo{Backreference the relevance of the $\Div$ construction to homotopy theory.}
-Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal monoid on the pointed formal scheme $\Sch k \to \Sch C$ is given by \todo{Describe the diagonal map on this guy.} \[F(\Sch k \to \Sch C) = \Sch \Sym_k M. \qed\]
+Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal monoid on the pointed formal scheme $\Sch k \to \Sch C$ is given by \todo{Describe the diagonal map on this guy.} \[F(\Sch k \to \Sch C) = \Sch \Sym^* M. \qed\]
 \end{lemma}
 
-It is unfortunate, then, that when working over an object more general than a field \Cref{kCoalgebrasAreIndFinite} fails.  Nonetheless, it is possible to bake into the definitions the machinery needed to get an analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
+It is unfortunate, then, that when working over an object more general than a field \Cref{kCoalgebrasAreIndFinite} fails.  Nonetheless, it is possible to bake into the definitions the machinery needed to get a good-enough analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
 
 \begin{definition}
 Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$ of $C$ is said to be a \textit{good basis} when any finite subcollection of $\{x_j\}$ can be finitely enlarged to a subcollection that spans a subcoalgebra.  The coalgebra $C$ is itself said to be \textit{good} when it admits a good basis.  A formal scheme $X$ is said to be \textit{coalgebraic} when it is isomorphic to $\Sch C$ for a good coalgebra $C$.
@@ -54,38 +54,65 @@ Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$
 Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram is a good coalgebra, including the colimits point.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
 \end{theorem}
 
+This Theorem gives us access to many constructions on formal schemes, provided we assume that the input is coalgebraic.  This covers many of the cases of interest to us, as every formal variety is coalgebra.  For an example of the sort of constructions that become available, one can prove the following Corollary by analyzing the symmetric power of coalgebras:
+
 \begin{corollary}[{\cite[Proposition 6.4]{StricklandFSFG}}]
-For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$. \qed
+For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$.  If $\Spec k \to X$ is a pointing, then $\colim_n \{X^{\times n}_{\Sigma_n}\}_n$ models the free formal monoid on the pointed formal scheme. \qed
 \end{corollary}
 
+In the specific case that $\Spec k \to X$ is a formal \emph{curve}, we can prove something more:
+\begin{corollary}[{\cite[Proposition 6.13]{StricklandFSFG}}]
+For $\Spec k \to X$ a pointed formal curve, the free formal monoid is automatically an abelian group. \qed
+\end{corollary}
+\begin{proof}[Proof sketch]
+The idea is that the symmetric algebra on the coalgebra associated to a formal curve admits a sufficiently nice filtration that one can iteratively solve for a Hopf algebra antipode.
+\end{proof}
 
+We now reconnect this algebraic discussion with the algebraic topology that spurred it.
 
+\begin{lemma}
+If $E$ and $X$ are such that $E_* X$ is an $E_*$--coalgebra and \[E^* X = \CatOf{Modules}_{E_*}(E_* X, E_*),\] then there is an equivalence \[\Sch E_* X \cong X_E. \qed\]
+\end{lemma}
+\begin{proof}[Proof sketch]
+The main point is that the formal topology on $X_E$ is induced by the compactly generated topology of $X$, and this same topology can also be used to write $\Sch E_* X$ as the colimit of finite $E_*$--coalgebras.
+\end{proof}
 
-
-
-Section 6.2 of FSFG: Free formal groups and how the free pointed monoid on a formal curve is automatically group-complete
-
-
-
-
-Connect this to topology.
-
-
-
-\begin{example}
-Talk about \Cref{KHomologyOfClassifyingSpace} and the coalgebraic scheme associated to $K_*(BS^1[p^j])$.
+\begin{example}[{\Cref{KtheoryConvertsTorsionToTorsion} and \Cref{KHomologyOfClassifyingSpace}}]
+For a Morava $K$--theory $K_\Gamma$ associated to a formal group $\Gamma$ of finite height, we have seen that there is an exact sequence of Hopf algebras \[K_\Gamma^0(BS^1) \xrightarrow{[p^j]} K_\Gamma^0(BS^1) \to K_\Gamma^0(BS^1[p^j]),\] presenting $(BS^1[p^j])_K$ as the $p^j$--torsion formal subscheme $BS^1_K[p^j]$.  The Hopf algebra calculation also holds in $K$--homology, where there is instead the following exact sequence \[(K_\Gamma)_0 B(S^1[p^j]) \to (K_\Gamma)_0 BS^1 \xrightarrow{(-)^{\ast p^j}} (K_\Gamma)_0 BS^1,\] presenting $(K_\Gamma)_0 B(S^1[p^j])$ as the $p^j$--order $\ast$--nilpotence in the middle Hopf algebra.  Applying $\Sch$ to this last line covariantly converts this second statement about Hopf algebras to the corresponding statement above about the associated formal schemes --- i.e., the behavior of the homology coalgebra is a direct reflection of the behavior of the formal schemes.
 \end{example}
 
+The example above also spurs us to consider an intermediate operation.  We have seen that the algebra structure of the $K$--cohomology of a space and the coalgebra structure of the $K$--homology of the same space contain equivalent data: they both give rise to the same formal scheme.  However, in the case at hand, $BS^1$ and $BS^1[p^j]$ are commutative $H$--spaces and hence give rise to \emph{commutative and cocommutative Hopf algebras} on both $K$--cohomology and $K$--homology.  Hence, in addition to considering the coalgebraic formal scheme $\Sch (K_\Gamma)_0 B(S^1[p^j])$, we can also consider the affine scheme $\Spec (K_\Gamma)_0 B(S^1[p^j])$.  This, too, should contain identical information, and this is the subject of Cartier duality.
+
+\begin{definition}[{\cite[Section 6.4]{StricklandFSFG}}]
+The \textit{Cartier dual} of a finite group scheme $G$ is defined by \[DG = \InternalHom{GroupSchemes}(G, \Gm).\]
+\end{definition}
+
+\begin{lemma}[{\cite[Proposition 6.19]{StricklandFSFG}}]
+On the level of Hopf algebras $A = \sheaf O_G$, this has the effect \[DG = \Sch A = \Spec A^*. \qed\]
+\end{lemma}
+\todo{You could stand to include a proof of this.  It's been a while since you actually proved something serious with formal schemes, and this is pretty nice.}
+
+\begin{remark}
+The effect of Cartier duality on the Dieudonn\'e module of a formal group is linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} are related by Cartier duality.
+\end{remark}
+
+\begin{remark}
+Finally, we record a trick often used by Ando, Hopkins, and Strickland that rests atop Cartier duality.  A map $f\co X \to Y$ of spaces induces a map $f_E \co X_E \to Y_E$ of formal schemes.  In the case that $Y$ is a commutative $H$--space and $Y_E$ is connected, we can construct a map according to the composite
+\begin{center}
+\begin{tikzcd}
+X_E \times \InternalHom{GroupSchemes}(Y_E, \Gm) \arrow[-,double]{d} \arrow[densely dotted]{rr} & & \A^1 \\
+X_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["f \times 1"]{r} & Y_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["\operatorname{ev}"]{r} & \G_m. \arrow{u}
+\end{tikzcd}
+\end{center}
+This is identical information to what they call \textit{the adjoint map} of $E_*$--modules \[E_* \to E_* Y \widehat\otimes_{E_*} E^* X,\] which is determined by where it sends $1 \in E_*$.  This construction converts many properties of $f$ into corresponding properties of this adjoint element.\todo{Expand on this, perhaps.}
+\end{remark}
 
 
 
-Cartier duality, and the second connection to topology.
-
-% Cartier duality: There is a duality on commutative and cocommutative finite--dimensional Hopf algebras, given by taking the linear dual.  There is also a duality on Dieudonn\'e modules, also given by taking the linear dual.  These also relate the two kind of Dieudonn\'e functors described above.
 
 
 
-Maybe build the ring $C_*(\G)$?  Or at least indicate that it's possible?
+
 
 
 
@@ -152,7 +179,7 @@ where the scheme ``$\SDiv_0 \CP^\infty$'' of ``special divisors'' consists of th
 
 
 
-Construct $C_2 \G$.
+Construct $C_2 \G$ (and the ring $C_* \G$ more generally?).
 
 
 
