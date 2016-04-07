@@ -120,26 +120,41 @@ This is identical information to what they call \textit{the adjoint map} of $E_*
 
 \section{Special divisors and $MSU$--orientations}
 
-Starting today, after our extended interludes on chromatic homotopy theory and cooperations, we are going to return to thinking about bordism orientations directly.  To start, we will recall the various perspectives adopted in \Cref{ComplexBordismChapter} when we were studying complex-orientations.
-\begin{itemize}
-\item A complex-orientation of $E$ is, definitionally, a map $MUP \to E$ of ring spectra in the homotopy category.
-\item Such a map is equivalent to specifying a multiplicative system of Thom isomorphisms for complex vector bundles.  Using the splitting principle, it suffices to consider just complex line bundles, and just the universal line bundle $\L$ over $\CP^\infty$ at that.  We can phrase what we want algebro-geometrically: a Thom isomorphism is the data of a trivialization of the Thom sheaf $\ThomSheaf{\L}$ over $\CP^\infty_E$.
-\item Because $E_0 MU$ is a free $E_0$--module, ring spectrum maps $MUP \to E$ biject with $E_0$--algebra maps $E_0 MUP \to E_0$.  This, too, can be phrased algebro-geometrically: these are elements of $(\Spec E_0 MUP)(E_0)$.\todo{AHS blame this on an Atiyah--Hirzebruch spectral sequence, but I'm still not sure I believe this.}
-\end{itemize}
-We can summarize our main result about these as follows:
+Starting today, after our extended interludes on chromatic homotopy theory and cooperations, we are going to return to thinking about bordism orientations directly.  To begin, we will recall the various perspectives adopted in \Cref{ComplexBordismChapter} when we were studying complex--orientations of ring spectra.
+\begin{enumerate}
+\item A complex--orientation of $E$ is, definitionally, a map $MUP \to E$ of ring spectra in the homotopy category.
+\item A complex--orientation of $E$ is also equivalent to a multiplicative system of Thom isomorphisms for complex vector bundles.  Such a system is determined by its value on the universal line bundle $\L$ over $\CP^\infty$.  We can also phrase this algebro-geometrically: such a Thom isomorphism is the data of a trivialization of the Thom sheaf $\ThomSheaf{\L}$ over $\CP^\infty_E$.
+\item Ring spectrum maps $MUP \to E$ induce on $E$--homology maps $E_0 MUP \to E_0$ of $E_0$--algebras.  This, too, can be phrased algebro-geometrically: these are elements of $(\Spec E_0 MUP)(E_0)$.
+\end{enumerate}
+We can summarize our main result about these perspectives as follows:
 \begin{theorem}[{\cite[Example 2.53]{AHSTheoremOfTheCube}}]\label{BUZTriumvirate}\citeme{Put in cross references}
-The functor \[(\Spec T \xrightarrow{u} \Spec E_0) \mapsto \left\{ \text{trivializations of $u^* \ThomSheaf{\L}$ over $u^* \CP^\infty_E$} \right\}\] is isomorphic to the affine scheme $\Spec E_0 MUP$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MUP \to E$. \qed
+Take $E$ to be \emph{complex--orientable}.  The functor
+\begin{align*}
+\CatOf{AffineSchemes}_{/\Spec E_0} & \to \CatOf{Sets}, \\
+(\Spec T \xrightarrow{u} \Spec E_0) & \mapsto \left\{ \text{trivializations of $u^* \ThomSheaf{\L}$ over $u^* \CP^\infty_E$} \right\}
+\end{align*}
+is isomorphic to the affine scheme $\Spec E_0 MUP$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MUP \to E$.
 \end{theorem}
+\begin{proof}[Proof summary]
+The equivalence between (1) and (2) is given by the splitting principle for complex line bundles.  The equivalence between (1) and (3) follows from calculating that $E_0 MUP$ is a free $E_0$--module.
+\end{proof}
 
-An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $\L - 1$, and it again is easiest expressed by an extension of the splitting principle.  Specifically, given finite complex $X$ and a rank $0$ virtual vector bundle over it classified by a map \[\tilde V \co X \to BU,\] there exists an integer $n$ so that $\tilde V = V - n \cdot 1$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ also gives an \emph{internal splitting} of $\tilde V$ as \[\tilde V = V - n \cdot 1 = \bigoplus_{i=1}^n (\L_i - 1),\] where each bundle $\L_i - 1$ naturally has the structure of a rank $0$ virtual vector bundle, and the sum is taken internally to $BU$.  This begets the following extension of the previous result:
+An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $\L - 1$, and it is proven in analogous way.  In particular, we will want a version of the splitting principle for virtual vector bundles of virtual rank $0$.  Given a finite complex $X$ and such a rank $0$ virtual vector bundle, write \[\tilde V \co X \to BU\] for the classifying map.  Because $X$ is a finite complex, there exists an integer $n$ so that $\tilde V = V - n \cdot 1$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ gives a of $\tilde V$ \emph{internally to $BU$} as \[\tilde V = V - n \cdot 1 = \bigoplus_{i=1}^n (\L_i - 1),\] as each bundle $\L_i - 1$ itself has the natural structure of a rank $0$ virtual vector bundle.  This begets the following analogue of the previous result:
 \begin{theorem}[{\cite[Example 2.54]{AHSTheoremOfTheCube}}]\label{BUTriumvirate}\citeme{Put in cross references}
-The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \text{trivializations of $u^* \ThomSheaf{\L - 1}$ over $u^* \CP^\infty_E$} \right\}\] is isomorphic to the affine scheme $\Spec E_0 MU$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MU \to E$. \qed
+Take $E$ to be complex--orientable.  The functor
+\begin{align*}
+\CatOf{AffineSchemes}_{/\Spec E_0} & \to \CatOf{Sets}, \\
+(\Spec T \xrightarrow{u} \Spec E_0) & \mapsto \left\{ \text{trivializations of $u^* \ThomSheaf{\L - 1}$ over $u^* \CP^\infty_E$} \right\}
+\end{align*}
+is isomorphic to the affine scheme $\Spec E_0 MU$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MU \to E$. \qed
 \todo{Identify this bundle $\ThomSheaf{\L - 1}$ as $\omega \otimes \sheaf I(0)^{-1}$, we can think of sections as elements of $E^0 T(\L - 1 \to \CP^\infty)$ which restrict to the identity under the inclusion \[S^0 \to P^{\L-1}.\]}
 \end{theorem}
 
-\todo{Identify the restriction orientation $MU \to MUP \to E$.  Make absolutely clear that a section $f$ is sent to the normalized object $f'(0) / f$.}
+\begin{remark}
+The map $BU \to BU \times \Z$ induces a map $MU \to MUP$, and hence 
+\end{remark}
 
-The special unitary group $SU$ is explicit enough that orientations with source $MSU$ can be fully understood along similar lines.  Our jumping off point for that story will be, again, an extension of the splitting principle.
+These two Thom spectra are the beginning of a larger pattern.  Their base spaces $BU \times \Z$ and $BU$ are both infinite loopspaces: they are $\OS{kU}{0}$ and $\OS{kU}{2}$ respectively, where $kU$ is the connective complex $K$--theory spectrum.  In general, the space $\OS{kU}{2k}$ is given as a connective cover: \[\OS{kU}{2k} = BU[2k, \infty),\] and so the next Thom spectrum in the sequence is $MSU$, the bordism theory of $SU$--structured manifolds.  The special unitary group $SU$ is explicit enough that these orientations can be fully understood along similar lines to what we have done so far.  Our jumping off point for that story will be, again, an extension of the splitting principle.
 \begin{lemma}\label{SplittingPrincipleForBSU}
 Let $X$ be a finite complex, and let $\tilde V\co X \to BU$ classify a virtual vector bundle of rank $0$ over $X$.  Select a factorization $\tilde{\tilde V}\co X \to BSU$ of $\tilde V$ through $BSU$.  Then, there is a space $f\co Y \to X$ over $X$ and a collection of line bundles $\sheaf H_j$ expressing a $BSU$--internal decomposition \[\tilde{\tilde V} = -\bigoplus_{j=1}^n (\sheaf H_j - 1)(\sheaf H'_j - 1).\]
 \end{lemma}
