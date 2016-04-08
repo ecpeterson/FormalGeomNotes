@@ -44,7 +44,7 @@ This covariant algebraic model for formal schemes is very useful.  \todo{Do you 
 Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal monoid on the pointed formal scheme $\Sch k \to \Sch C$ is given by \todo{Describe the diagonal map on this guy.} \[F(\Sch k \to \Sch C) = \Sch \Sym^* M. \qed\]
 \end{lemma}
 
-It is unfortunate, then, that when working over an object more general than a field \Cref{kCoalgebrasAreIndFinite} fails.  Nonetheless, it is possible to bake into the definitions the machinery needed to get a good-enough analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
+It is unfortunate, then, that when working over an object more general than a field \Cref{kCoalgebrasAreIndFinite} fails.\todo{Include (a reference to) an example.}  Nonetheless, it is possible to bake into the definitions the machinery needed to get a good-enough analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
 
 \begin{definition}
 Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$ of $C$ is said to be a \textit{good basis} when any finite subcollection of $\{x_j\}$ can be finitely enlarged to a subcollection that spans a subcoalgebra.  The coalgebra $C$ is itself said to be \textit{good} when it admits a good basis.  A formal scheme $X$ is said to be \textit{coalgebraic} when it is isomorphic to $\Sch C$ for a good coalgebra $C$.
@@ -91,6 +91,8 @@ The \textit{Cartier dual} of a finite group scheme $G$ is defined by \[DG = \Int
 On the level of Hopf algebras $A = \sheaf O_G$, this has the effect \[DG = \Sch A = \Spec A^*. \qed\]
 \end{lemma}
 \todo{You could stand to include a proof of this.  It's been a while since you actually proved something serious with formal schemes, and this is pretty nice.}
+
+\todo{You could also include mention of the motivation: $C_k \G$ is hard to exhibit, but $(C_k \G)^\vee$ is easy.  It's not clear how to do this without leaping too far ahead, though.}
 
 \begin{remark}
 The effect of Cartier duality on the Dieudonn\'e module of a formal group is linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} are related by Cartier duality.
@@ -164,11 +166,23 @@ Begin by using \Cref{OriginalSplittingPrinciple} on $V$ to get an equality of $B
 \tilde{\tilde V} + (\L_1 - 1)(\L_2 - 1) & = V' + \L_1 + \L_2 + (\L_1 - 1)(\L_2 - 1) - n \cdot 1 \\
 & = V' + \L_1\L_2 - (n-1) \cdot 1.
 \end{align*}
-By thinking of $(\L_j - 1)$ as an element of $kU^2(Y) = \CatOf{Spaces}(Y, BU)$, we see that $(\L_1 - 1)(\L_2 - 1)$ has the natural structure of a $BSU$--bundle and hence so does the sum on the left-hand side\footnote{Really, we are using the Hopf ring $\circ$--product.}.  The right-hand side is the rank $0$ virtualization of a rank $(n-1)$ vector bundle, hence succumbs to induction.  Finally, because $SU(1)$ is the trivial group, there are no nontrivial complex line bundles with structure group $SU(1)$, grounding the induction.
+By thinking of $(\L_j - 1)$ as an element of $kU^2(Y) = \CatOf{Spaces}(Y, BU)$, we see that the product element $(\L_1 - 1)(\L_2 - 1) \in kU^4(Y) = \CatOf{Spaces}(Y, BSU)$ has the natural structure of a $BSU$--bundle and hence so does the sum on the left-hand side\footnote{In the language of last section, we are making use of the Hopf ring $\circ$--product.}.  The right-hand side is the rank $0$ virtualization of a rank $(n-1)$ vector bundle, hence succumbs to induction.  Finally, because $SU(1)$ is the trivial group, there are no nontrivial complex line bundles with structure group $SU(1)$, grounding the induction.
 \end{proof}
+
 \begin{corollary}
 Ring spectrum maps $MSU \to E$ biject with trivializations of \[\ThomSheaf{(\L_1 - 1)(\L_2 - 1)} \downarrow (\CP^\infty)^{\times 2}_E. \qed \]
 \end{corollary}
+
+\begin{remark}\label{TwoCocycleConditionForBSUBundles}
+Since we used the product map \[kU^2(Y) \otimes kU^2(Y) \to kU^4(Y)\] in the course of the proof, it is also interesting to consider the product map \[kU^4(Y) \otimes kU^0(Y) \to kU^4(Y).\]  Taking one of our splitting summands $(\L_1 - 1)(\L_2 - 1)$ and acting by some line bundle $\sheaf H$ gives
+\begin{align*}
+(\L_1-1)\sheaf H(\L_2 - 1) & = (\L_1-1)(\sheaf H \L_2 - \sheaf H)
+& = (\L_1 - 1)(\sheaf H \L_2 - 1) - (\L_1 - 1)(\sheaf H - 1) \\
+(\sheaf H \L_1 - \sheaf H)(\L_2 - 1) & = \\
+(\sheaf H \L_1 - 1)(\L_2 - 1) - (\sheaf H - 1)(\L_2 - 1) & = (\L_1 - 1)(\sheaf H \L_2 - 1) - (\L_1 - 1)(\sheaf H - 1).
+\end{align*}
+This ``$kU^0$--linearity'' is sometimes called a ``$2$--cocycle condition'', in reference to the similarity with the formula in \Cref{DefinitionSymmetric2Cocycle}.
+\end{remark}
 
 If we can show that $E_0 BSU$ is free as an $E_0$--module, then this will complete the $BSU$--analogue of \Cref{BUZTriumvirate,BUTriumvirate}.  This is quite easy, following directly from the Serre spectral sequence:
 \begin{lemma}[{\cite[Lemma 6.1]{AndoStrickland}}]\label{BSUtoBUtoCPinftyIsSexseq}
@@ -185,26 +199,45 @@ BSU_E \arrow{r} \arrow[-,double]{d} & BU_E \arrow{r}{B\det} \arrow[-,double]{d} 
 \SDiv_0 \CP^\infty_E \arrow{r} & \Div_0 \CP^\infty_E \arrow{r}{\mathrm{sum}} & \CP^\infty_E,
 \end{tikzcd}
 \end{center}
-where the scheme ``$\SDiv_0 \CP^\infty$'' of ``special divisors'' consists of those divisors which vanish under the summation map.  However, where the comparison map $BU(1)_E \to BU_E$ has a universal property --- it presents $BU_E$ as the universal formal group on the pointed curve $BU(1)_E$ --- the description of $BSU_E$ as a scheme of special divisors does not bear much immediate resemblance to a free object on the special divisor $([a] - [0])([b] - [0])$ classified by \[(\CP^\infty)^{\times 2}_E \xrightarrow{(\L_1 - 1)(\L_2 - 1)_E} BSU_E \to BU_E = \Div_0 \CP^\infty_E.\]  We will spend the rest of the day straightening this point out.
+where the scheme ``$\SDiv_0 \CP^\infty$'' of ``special divisors'' consists of those divisors which vanish under the summation map.  However, where the comparison map $BU(1)_E \to BU_E$ has an identifiable universal property --- it presents $BU_E$ as the universal formal group on the pointed curve $BU(1)_E$ --- the description of $BSU_E$ as a scheme of special divisors does not bear much immediate resemblance to a free object on the special divisor $([a] - [0])([b] - [0])$ classified by \[(\CP^\infty)^{\times 2}_E \xrightarrow{(\L_1 - 1)(\L_2 - 1)_E} BSU_E \to BU_E = \Div_0 \CP^\infty_E.\]  Our final task today is to straighten this point out.
 
+\begin{definition}\label{DefinitionOfC2G}
+If it exists, let $C_2 \G$ denote the symmetric square of $\Div_0 \G$, thought of as a module over $\Div \G$.  This scheme has the property that a formal group homomorphism $\phi\co C_2 \G \to H$ is equivalent data to a symmetric function $\psi\co \G \times \G \to H$ satisfying a rigidity condition, $\psi(x, 0) = 0$, and a $2$--cocycle condition as in \Cref{TwoCocycleConditionForBSUBundles}.
+\end{definition}
 
-
-
-
-
-
-
-Construct $C_2 \G$ (and the ring $C_* \G$ more generally?).
-
-
-
+\begin{theorem}[{Ando--Hopkins--Strickland, unpublished}]\citeme{This is Prop 3.2 of the AHS preprint or Prop 2.13 of Strickland's FSKS preprint}
+The scheme $\SDiv_0 \G$ is a model for $C_2 \G$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+Consider the map
 \begin{align*}
-\phi_n \co \G^{\times n} / \Sigma_n & \to C_2(\G), \\
-\sum_{i=1}^n [a_i] & \mapsto \sum_{i=1}^n \left[\sum_{j=1}^i a_j, a_i \right].
+\G \times \G & \to \Div_0 \G, \\
+(a, b) & \mapsto ([a] - [0])([b] - [0])
 \end{align*}
+for which there is a factorization of formal schemes
+\begin{center}
+\begin{tikzcd}
+\G \times \G \arrow[densely dotted]{d} \arrow{rd} \\
+F \arrow{r}{\ker} & \Div_0 \G \arrow{r}{\sigma} & \G
+\end{tikzcd}
+\end{center}
+because \[\sigma(([a] - [0])([b] - [0])) = (a + b) - a - b + 0 = 0.\]  One can check that a homomorphism $F \to H$ pulls back to a function $\G \times \G \to H$ satisfying the properties of \Cref{DefinitionOfC2G}.  To go the other way\footnote{To get insight into how this part of the proof works, actually write out the expressions for $\tilde{\tilde{V}} = \bigoplus_{i=1}^6 \L_i - 6 \cdot 1 = \bigoplus_{i=1}^3 (\L_i - 1) \oplus \bigoplus_{j=4}^6 (\L_j - 1)$ and see what happens.}, we select a function $\psi\co \G \times \G \to H$ and mimic the construction in \Cref{SplittingPrincipleForBSU}.  Expanding the definition of $\Div_0 \G$, we are moved to consider the object $\G^{\times k}$ parametrizing weight $k$ divisors with a full set of sections\todo{You can say this better, right? Do you need the thing to have a full set of sections to define this map? Probably not...}, where we define a map
+\begin{align*}
+\G^{\times k} & \to H, \\
+(a_1, \ldots, a_k) & \mapsto -\sum_{j=2}^k \psi\left(\sum_{i=1}^{j-1} a_i, a_j \right).
+\end{align*}
+This gives a compatible system of symmetric maps and hence bundles together to give a map $\tilde\phi\co\Div_0 \G \to H$ off of the colimit.  In general, this map is not a homomorphism, but it is a homomorphism when restricted to $\phi\co F \to \Div_0 \G \to H$.  Finally, one checks that any homomorphism $F \to H$ of formal groups restricting to the zero map $\G \times \G \to H$ was already the zero map, and this gives the desired identification of $F$ with the universal property of $C_2 \G$.
+\end{proof}
 
-\citeme{Neil's FSKS note, Lemma 2.9} The map $\phi_n$ is invariant under $\Sigma_n$ and extends as $n \to \infty$.  \citeme{Lemma 2.10} It's almost a homomorphism: \[\phi_{n+m}(\underline a, \underline b) = \phi_n(\underline a) + \phi_m(\underline b) + [\sigma(a), \sigma(b)].\]  \citeme{Lemma 2.11} It's also cancellative, if you set \[\phi_{n, m}(\underline a, \underline b) = \phi_n(\underline a) - \phi_m(\underline b) - [\sigma(a), \sigma(b)] + [\sigma(b), \sigma(b)]\] so that \[\phi_{n+k,m+k}((\underline a, \underline c), (\underline b, \underline c)) = \phi_{n,m}(\underline a, \underline b).\]  This means that it extends to a \emph{map} off of $C_1(\G)$, and it becomes a homomorphism to $C_2(\G)$ when restricted to $\ker(\sigma)$.  The main claim\citeme{Proposition 2.13} is that this gives an inverse to $\delta\co C_2(\G) \to \ker(\sigma) \subseteq C_1(\G)$.
 
+
+
+
+\begin{remark}
+In the next interesting case of $\OS{kU}{6} = BU[6, \infty)$, there is not an accessible splitting principle.  This not only makes the topology harder, but it also makes proving the existence of the symmetric cube $C_3 \G$ harder, as there is no model to work from.
+\end{remark}
+
+\todo{Talk about $MSU$!  Talk about $\sheaf I(0)$ versus $\sheaf O$.  Also talk about how choosing a trivialization gives a comparison between the twisted thing and the untwisted thing.}
 
 
 
@@ -221,21 +254,12 @@ Identify the Thom sheaf of the universal bundle on $BSU$ as $C^2(\G; \sheaf I(0)
 
 Identify the restriction orientation $MSU \to MU \xrightarrow{s} E$ as $\delta(s_E)$
 
-\todo[inline]{Is it possible to give an example of a complex-oriented theory which receives an $MSU$ orientation which \emph{does not} factor the complex orientation but \emph{does} (\emph{must}, really) factor the unit?  Even if one can find an example of this, I think it will be somewhat artificial: the sequence of group schemes \[0 \to BSU_E \to BU_E \to BU(1)_E \to 0\] is short exact, \emph{and} it has a splitting on the level of formal schemes.  The splitting is what gives you the isomorphism on points $BSU_E(T) \times BU(1)_E(T) \cong BU_E(T)$.  On the other hand, because the splitting \emph{isn't} a map of formal groups, it doesn't survive to the Cartier dual short exact sequence \[0 \from BSU^E \from BU^E \from BU(1)^E \from 0,\] so this will come down to exhibiting a test ring $T = E_*$ for which $BU^E(T) \to BSU^E(T)$, despite being induced by an fppf-surjective map of sheaves, is not surjective on sections over $T$.  Of course, this comes down concretely to solving for a preimage under the map \[1 - g(x) \mapsto \frac{1 - g(x +_{\G} y)}{(1 - g(x))(1 - g(y))},\] which is more plodding but might offer insight into what sort of ring (and thus orientation) you're looking for.}
+\begin{remark}\todo[inline]{Actually work this out.}
+It should be possible to give an example of a complex-oriented theory which receives an $MSU$ orientation which \emph{does not} factor the complex orientation but \emph{does} (\emph{must}, really) factor the unit?  Even if one can find an example of this, I think it will be somewhat artificial: the sequence of group schemes \[0 \to BSU_E \to BU_E \to BU(1)_E \to 0\] is short exact, \emph{and} it has a splitting on the level of formal schemes.  The splitting is what gives you the isomorphism on points $BSU_E(T) \times BU(1)_E(T) \cong BU_E(T)$.  On the other hand, because the splitting \emph{isn't} a map of formal groups, it doesn't survive to the Cartier dual short exact sequence \[0 \from BSU^E \from BU^E \from BU(1)^E \from 0,\] so this will come down to exhibiting a test ring $T = E_*$ for which $BU^E(T) \to BSU^E(T)$, despite being induced by an fppf-surjective map of sheaves, is not surjective on sections over $T$.  Of course, this comes down concretely to solving for a preimage under the map \[1 - g(x) \mapsto \frac{1 - g(x +_{\G} y)}{(1 - g(x))(1 - g(y))},\] which is more plodding but might offer insight into what sort of ring (and thus orientation) you're looking for.
+\end{remark}
 
 
 ------
-
-
-\begin{definition}
-Let $X$ be a group object in $\CatOf{Spaces}$ or $\CatOf{Spectra}$ so that $E_* X$ is concentrated in even degrees.\todo{I'm not sure this is sufficient.  Possibly $H_* X$ needs to be even too.}  We define \[X^E := \Spec E_* X.\]  This construction is contravariantly functorial in the choice $X$.\todo{As recently pointed out on ALGTOP-L, there's not actually a category of $H$--spaces, so maybe ``functorial'' is not a good word here.}
-\end{definition}
-
-\todo[inline]{Relationship between $X^E$ and $X_E$ for a nice $H$--space $X$: linear duality and Cartier duality.}
-
-$E_* BU$ is the symmetric algebra on $E_* \CP^\infty$ and $E_* (BU \times \Z)$ is that tensored with the group ring on $\Z$, i.e., with an extra invertible generator.  A coordinate is a map $\G_E \to \A^1$ which is an isomorphism of formal varieties, but not anything special w/r/t the group structure of $\G_E$, but $\A^1$ is also isomorphic to $\G_a$, and so it induces a map $\Div \G_E \to \A^1$ off of the free object.
-
-A line bundle is a $\Gm$--torsor, btw.  If you use $\sheaf O_{\G}$ as the line bundle, all these things should degenerate to the usual ones.  And, so, if you have a trivializable bundle, a trivialization of $\L$ should induce a comparison of the $\L$--twisted thing with the untwisted thing.
 
 \citeme{This is Section 2.4.5 of the published AHS} The map $\rho_k: P^k \to BU\<2k\>$ pulls back the tautological bundle over $BU\<2k\>$ to $V$, the external tensor product of the reduced tautological bundles.  Passing to Thom spectra gives a map $s_k: (P^k)^V \to MU\<2k\>$, and since $\ThomSheaf(\L) = \sheaf I(0)$ we get $\ThomSheaf{V} = \Theta^k(\sheaf I(0))$ on $P^k_E$.  The map $s_k$ is supposed to give a section of the pullback of $\Theta^k(\sheaf I(0))$ along the projection $MU\<2k\>^E \to S_E$.  More than that, $s_k$ is a $\Theta^k$--structure, since you can check those cocycle identities on $V$ itself, and so there's a classifying map \[MU\<2k\>^E \to C^k(\CP^\infty_E; \sheaf I(0)).\]  Since we calculated $BU\<2k\>^E \cong C^k(\CP^\infty_E, \Gm)$, we know that $C^k(\CP^\infty_E; \sheaf I(0))$ is a torsor for the group scheme $BU\<2k\>^E$.  So, we just need to check that the displaymode map is a map of torsors.  (Along the way, we should be able to check that the natural map $MU\<2k+2\> \to MU\<2k\>$ induces the map $C^k(\CP^\infty_E; \sheaf I(0)) \to C^{k+1}(\CP^\infty_E; \sheaf I(0))$.)  Matt's proof of this looks kind of vacuous\citeme{Theorem 2.50 of published AHS}, but I guess a key step is looking at the $V$ situation:
 \begin{center}
@@ -709,6 +733,12 @@ If the bottom row induces a short exact sequence of Hopf algebras on $K$--homolo
 \todo{Include a remark about Section 5.2 on ``Bicommutativity''.}
 
 
+
+
+
+\begin{lemma}[{\cite[Lemma 2.1]{Yagita}}]
+Let $\Gamma$ be a formal group over $k$ of height $\height{\Gamma} = d$, and let $k_\Gamma$ be the connective cover of the Morava $K$--theory $K_\Gamma$.  In the Atiyah--Hirzebruch spectral sequence \[E_2^{*, *} = Hk^* X \otimes_k k_\Gamma^* \Rightarrow k_\Gamma^* X,\] the differentials are given by \[d_r(x) = \begin{cases} 0 & \text{if $r \le 2(p^d - 1)$}, \\ \lambda Q_d x \otimes v_d & \text{if $r = 2(p^d - 1) + 1$} \end{cases}\] where $\lambda \ne 0$ and $Q_d$ is the $d${\th} Milnor primitive. \qed
+\end{lemma}
 
 
 
