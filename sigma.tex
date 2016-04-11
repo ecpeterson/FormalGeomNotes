@@ -98,17 +98,6 @@ On the level of Hopf algebras $A = \sheaf O_G$, this has the effect \[DG = \Sch 
 The effect of Cartier duality on the Dieudonn\'e module of a formal group is linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} are related by Cartier duality.
 \end{remark}
 
-\begin{remark}
-Finally, we record a trick often used by Ando, Hopkins, and Strickland that rests atop Cartier duality.  A map $f\co X \to Y$ of spaces induces a map $f_E \co X_E \to Y_E$ of formal schemes.  In the case that $Y$ is a commutative $H$--space and $Y_E$ is connected, we can construct a map according to the composite
-\begin{center}
-\begin{tikzcd}
-X_E \times \InternalHom{GroupSchemes}(Y_E, \Gm) \arrow[-,double]{d} \arrow[densely dotted]{rr} & & \A^1 \\
-X_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["f \times 1"]{r} & Y_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["\operatorname{ev}"]{r} & \G_m. \arrow{u}
-\end{tikzcd}
-\end{center}
-This is identical information to what they call \textit{the adjoint map} of $E_*$--modules \[E_* \to E_* Y \widehat\otimes_{E_*} E^* X,\] which is determined by where it sends $1 \in E_*$.  This construction converts many properties of $f$ into corresponding properties of this adjoint element.\todo{Expand on this, perhaps.}
-\end{remark}
-
 
 
 
@@ -208,7 +197,7 @@ BSU_E \arrow{r} \arrow[-,double]{d} & BU_E \arrow{r}{B\det} \arrow[-,double]{d} 
 where the scheme ``$\SDiv_0 \CP^\infty$'' of ``special divisors'' consists of those divisors which vanish under the summation map.  However, where the comparison map $BU(1)_E \to BU_E$ has an identifiable universal property --- it presents $BU_E$ as the universal formal group on the pointed curve $BU(1)_E$ --- the description of $BSU_E$ as a scheme of special divisors does not bear much immediate resemblance to a free object on the special divisor $([a] - [0])([b] - [0])$ classified by \[(\CP^\infty)^{\times 2}_E \xrightarrow{(\L_1 - 1)(\L_2 - 1)_E} BSU_E \to BU_E = \Div_0 \CP^\infty_E.\]  It would be wise of us to straighten this out before moving on.
 
 \begin{definition}\label{DefinitionOfC2G}
-If it exists, let $C_2 \G$ denote the symmetric square of $\Div_0 \G$, thought of as a module over $\Div \G$.  This scheme has the property that a formal group homomorphism $\phi\co C_2 \G \to H$ is equivalent data to a symmetric function $\psi\co \G \times \G \to H$ satisfying a rigidity condition ($\psi(x, 0) = 0$) and a $2$--cocycle condition as in \Cref{TwoCocycleConditionForBSUBundles}.
+If it exists, let $C_2 \G$ denote the symmetric square of $\Div_0 \G$, thought of as a module over $\Div \G$.  This scheme has the property that a formal group homomorphism $\phi\co C_2 \G \to H$ is equivalent data to a symmetric function $\psi\co \G \times \G \to H$ satisfying a rigidity condition ($\psi(x, 0) = 0$)\todo{Allen wanted to know why this deserved to be called ``rigid''.} and a $2$--cocycle condition as in \Cref{TwoCocycleConditionForBSUBundles}.
 \end{definition}
 
 \begin{theorem}[{Ando--Hopkins--Strickland, unpublished}]\citeme{This is Prop 3.2 of the AHS preprint or Prop 2.13 of Strickland's FSKS preprint}
@@ -350,8 +339,10 @@ Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the proje
 
 
 
-
-\todo{I wish I knew how to motivate this.}\citeme{AS Prop 3.3, Lemma 3.7}An important piece of both of these stories is the $e_n$--pairing associated to such a bundle.  Given a section $u$ of $\Theta^3(\sheaf O_C)$, we define \[e_n(g, h) = \prod_{j=1}^{n-1} \frac{u(g, jg, h)}{u(g, jh, h)}.\]  It is immediate that $e_n(g, g) = 1$ and $e_n(g, h) = e_n(h, g)^{-1}$, and properties of $u$ further show that
+\todo{Talk about how some of these things can be re-incarnated for an arbitrary formal group $\G$.}
+\todo{I wish I knew how to motivate this.}
+\citeme{AS Prop 3.3, Lemma 3.7}
+An important piece of both of these stories is the $e_n$--pairing associated to such a bundle.  Given a section $u$ of $\Theta^3(\sheaf O_C)$, we define \[e_n(g, h) = \prod_{j=1}^{n-1} \frac{u(g, jg, h)}{u(g, jh, h)}.\]  It is immediate that $e_n(g, g) = 1$ and $e_n(g, h) = e_n(h, g)^{-1}$, and properties of $u$ further show that
 \begin{align*}
 e_n(g_1 +_{\G} g_2, h) & = e_n(g_1, h) e_n(g_2, h) \frac{u(ng_1, ng_2, h)}{u(g_1, g_2, nh)}, \\
 e_n(g, h_1 +_{\G} h_2) & = e_n(g, h_1) e_n(g, h_2) \frac{u(ng, h_1, h_2)}{u(g, nh_1, nh_2)}.
@@ -410,14 +401,9 @@ Now, although $\theta^{1/2,1/2}_q$ does not give a section of $\sheaf I(0)$ on $
 
 \section{Unstable chromatic cooperations for $kU$}
 
-Let $\Gamma$ be a formal group of finite $p$--height of a field $k$ of positive characteristic $p$, and let $E = E_\Gamma$ denote the associated Morava $E$--theory.  Our goal in this section is to get a partial description of the Hopf ring of unstable cooperations $(E_\Gamma)_* \OS{kU}{2*}$.  Our results in previous sections give a foothold into this analysis by computing \[E_0 (BU \times \Z),\; E_0 BU,\; E_0 BSU\] in terms of the affine schemes they represent.  We also saw that these results were the cornerstone for accessing descriptions of the schemes \[\Spec E_0 MUP,\; \Spec E_0 MU,\; \Spec E_0 MSU.\]  In particular, the next step is to understand $E_0 BU[6, \infty)$, and our main tool for doing this will be the Serre spectral sequence for the fibration \[\OS{H\Z}{3} \to BU[6, \infty) \to BSU.\]
+Let $\Gamma$ be a formal group of finite $p$--height of a field $k$ of positive characteristic $p$, and let $E = E_\Gamma$ denote the associated Morava $E$--theory.  Our goal in this section is to get a partial description of the Hopf ring of unstable cooperations $(E_\Gamma)_* \OS{kU}{2*}$.  Our results in previous sections give a foothold into this analysis by computing \[E_0 (BU \times \Z),\; E_0 BU,\; E_0 BSU\] in terms of the affine schemes they represent.  We also saw that these results were the cornerstone for accessing descriptions of the schemes \[\Spec E_0 MUP,\; \Spec E_0 MU,\; \Spec E_0 MSU.\]  In particular, the next step is to understand $E_0 BU[6, \infty)$, and our main tool for doing this will be the Postnikov fibration \[\OS{H\Z}{3} \to BU[6, \infty) \to BSU.\]  Our main goals are to show that $E$--theory carries this to a short exact sequence of formal groups and to analyze the behavior of the terms.
 
-
-
-
-
-
-
+We begin with the fiber:
 
 \begin{lemma}[{\cite[Lemma 4.5]{AndoStrickland}}]\label{EasyCompatibilityWithdn}
 There is a unique $\lambda \in \Z/n$ such that the following triangle commutes:
@@ -442,30 +428,45 @@ Since we have restricted to $(B\Z/p^j)^{\times 2}$, $\L_1^{p^k} = 1$ and $\L_2^{
 \end{enumerate}
 \end{proof}
 
+\noindent This Lemma was missing a nontriviality statement, which turns out to be much harder:
+
 \begin{theorem}[{\cite[Theorem 4.2, Section 5]{AndoStrickland}}]
-The value $\lambda$ can be taken to be $\pm 1$ in \Cref{EasyCompatibilityWithdn}. \qed
+The value of $\lambda$ in \Cref{EasyCompatibilityWithdn} can be taken to be $\pm 1$. \qed
 \end{theorem}
 
-\begin{corollary}[{\cite[Corollary 4.4]{AndoStrickland}}]
+We now play one of our main cards: our willingness to work with cooperations means that we can pass from the hard task of checking facts about our formal schemes to the generally easier task of checking facts about their Cartier duals.  Because the formal schemes themselves are designed to have universal properties, their Cartier duals have points which are specified by these universal properties, and we win a considerable increase in tangibility.  In order to make full use of this, we record a mechanism of translation between these perspectives:
+\begin{definition}
+A map $f\co X \to Y$ of spaces induces a map $f_E \co X_E \to Y_E$ of formal schemes.  In the case that $Y$ is a commutative $H$--space and $Y_E$ is connected, we can construct a map according to the composite
+\begin{center}
+\begin{tikzcd}
+X_E \times \InternalHom{GroupSchemes}(Y_E, \Gm) \arrow[-,double]{d} \arrow[densely dotted]{rr} & & \A^1 \\
+X_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["f \times 1"]{r} & Y_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["\operatorname{ev}"]{r} & \G_m. \arrow{u}
+\end{tikzcd}
+\end{center}
+This is called \textit{the adjoint map}, and it encodes equivalent information to the map of $E_*$--modules \[E_* \to E_* Y \widehat\otimes_{E_*} E^* X\] by considering where it sends $1 \in E_*$.  This construction converts many properties of $f$ into corresponding properties of this adjoint element --- for instance, it is natural in the source, and it converts sums to products.\todo{Expand on this, perhaps.}
+\end{definition}
+
+These ideas power the following Lemma:
+
+\begin{lemma}[{\cite[Corollary 4.4]{AndoStrickland}}]
 The following square commutes (up to sign):
 \begin{center}
 \begin{tikzcd}
-BU[6, \infty)^E \arrow{r}{\gamma^E} \arrow{d}{\Pi_3} & K(\Z, 3)^E \arrow{d}{b_*} \\
+\Spec E_0 BU[6, \infty) \arrow{r}{\Spec E_0 i} \arrow{d}{\Pi_3} & \Spec E_0 K(\Z, 3) \arrow{d}{b_*} \\
 C^3(\CP^\infty_E; \mathbb G_m) \arrow{r}{e} & \Weil(\CP^\infty_E).
 \end{tikzcd}
 \end{center}
-\end{corollary}
-\begin{proof}
-We will check compatibility on $\Weil_n(\CP^\infty_E)$ for arbitrary $n$.  (Note: the sign can't bounce with $n$ because $\CP^\infty_E$ is $p$--divisible.)  Since $\Weil_n(\CP^\infty_E)$ is a subscheme of $\InternalHom{FormalSchemes}(\CP^\infty_E[n]^{\times 2}, \Gm)$, we can push forward to checking equality here, i.e., of the two maps \[\CP^\infty_E[n]^{\times 2} \times BU[6, \infty)^E \to \Gm.\]
-
-The construction of adjoint elements from maps of spectra converts sums to products and is natural in the source spectrum.  Writing $z = \prod_{i=1}^3 (1 - \L_i) \in kU^6 (\CP^\infty)^{\times 3}$, it follows that the adjoint map $\hat z$ is given by the composite \[\hat z \co (\CP^\infty_E)^{\times 3} \times BU[6, \infty)^E \to (\CP^\infty_E)^{\times 3} \times C^3(\CP^\infty_E; \Gm) \xrightarrow{\operatorname{eval}} \Gm.\]  It follows by naturality that if $z = (1 - \L_1)(1 - \L_1^k)(1 - \L_2) \in kU^6 (\CP^\infty)^{\times 2}$, then $\hat z$ corresponds to the map \[\hat z \co (g_1, g_2, f) \mapsto f(g_1, kg_1, g_2),\] and continuing along these lines we see \[d_n(\L_1, \L_2)\hat{} \co (g_1, g_2, f) \mapsto \prod_{k=1}^{n-1} \frac{f(g_1, kg_1, g_2)}{f(g_1, kg_2, g_2)} = e_n(f)(g_0, g_1).\]
-
-That described the bottom-left arm of the square.  For the other arm, take $w = \beta \circ \mu \in H^3(B\Z/p^j)^{\times 2}$ with adjoint $\hat w \co \CP^\infty_E[p^j]^{\times 2} \times K(\Z, 3)^E \to \Gm$.  Naturality shows $\hat w \circ \gamma^E = \widehat{\gamma_* w}$, and the theorem shows $\gamma_* w = \pm d_n(\L_1, \L_2)$, hence $\widehat{\gamma_* w} = (\pm d_n(\L_1, \L_2))\hat{}$, which is adjoint to $(e_n \Pi_3)^\pm$.
-\end{proof}
-
-\begin{lemma}[{\Cref{BSUtoBUtoCPinftyIsSexseq} + Cartier duality}]
-There is a short exact sequence \[BSU^E \from BU^E \from (\CP^\infty)^E.\]
 \end{lemma}
+\begin{proof}
+\todo[inline]{This proof is unclear to the point of being broken.  How does the middle paragraph address the bottom-left arm of the square?}
+We will check compatibility on $\Weil_n(\CP^\infty_E)$ for arbitrary $n$, and so restrict from $i$ to $i \circ \lambda \beta \mu = d_n(\L_1, \L_2)$.
+% (Note: the sign can't bounce with $n$ because $\CP^\infty_E$ is $p$--divisible.)
+Since $\Weil_n(\CP^\infty_E)$ is a subscheme \[\Weil_n(\CP^\infty_E) \subseteq \InternalHom{FormalSchemes}(\CP^\infty_E[n]^{\times 2}, \Gm),\] we can push forward to checking equality here, i.e., of the two maps \[\Spec E_0 BU[6, \infty) \times_{\S_E} \CP^\infty_E[n]^{\times 2} \to \Gm.\]
+
+Writing $z = \prod_{i=1}^3 (1 - \L_i) \in kU^6 (\CP^\infty)^{\times 3}$, properties of the adjoint construction $\hat z$ show that it is given by the composite \[\hat z \co \Spec E_0 BU[6, \infty) \times_{\S_E} (\CP^\infty_E)^{\times 3} \to C^3(\CP^\infty_E; \Gm) \times_{\S_E} (\CP^\infty_E)^{\times 3} \xrightarrow{\operatorname{eval}} \Gm.\]  By specializing to $z = (1 - \L_1)(1 - \L_1^k)(1 - \L_2) \in kU^6 (\CP^\infty)^{\times 2}$, we see that $\hat z$ acts by\todo{Do I mean to be writing $k$--series here? I think I do.} \[\hat z \co (f, (g_1, g_2)) \mapsto f(g_1, [k](g_1), g_2),\] and continuing along these lines we see \[\widehat{d_n(\L_1, \L_2)} \co (f, (g_1, g_2)) \mapsto \prod_{k=1}^{n-1} \frac{f(g_1, [k](g_1), g_2)}{f(g_1, [k](g_2), g_2)} = e_n(f)(g_1, g_2).\]
+
+That described the bottom-left arm of the square.  The other way around the square is easier: take $w = \beta \circ \mu \in H^3(B\Z/p^j)^{\times 2}$ with adjoint $\hat w \co \CP^\infty_E[p^j]^{\times 2} \times K(\Z, 3)^E \to \Gm$.  Naturality shows $\hat w \circ \gamma^E = \widehat{\gamma_* w}$, and the theorem shows $\gamma_* w = \pm d_n(\L_1, \L_2)$, hence $\widehat{\gamma_* w} = (\pm d_n(\L_1, \L_2))\hat{}$, which is adjoint to $(e_n \Pi_3)^\pm$.
+\end{proof}
 
 \todo[inline]{There's a nice construction of the $\Pi_k$ maps in the AHS preprint where the ``$C_k$'' constructions are performed directly on the spectra, then applying $(-)_E$ carries those constructions to relevant constructions on group schemes, and finally Cartier duality gives the maps $\Pi_k$ of the sort described above.  This is superior to saying ``adjoint'', in my opinion, though it could be remarked that these are equivalent.}
 
