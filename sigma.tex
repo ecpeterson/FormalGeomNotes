@@ -17,14 +17,14 @@ Today we will discuss an elephant that has been lingering in our room: we began 
 Suppose that $E$ is a ring spectrum, and recall the usual way to produce the structure of an $E^*$--algebra on $E^* X$ for $X$ a space.  The space $X$ has a diagonal map $\Delta\co X \to X \times X$, which on $E$--cohomology induces a multiplication map \[E^* X \otimes_{E^*} E^* X \xrightarrow{\mu_E} E^*(X \times X) \xrightarrow{E^* \Delta} E^* X.\]  Dually, applying $E$--homology, we have a pair of maps \[E_* X \xrightarrow{E_* \Delta} E_*(X \times X) \xleftarrow{\text{K\"unneth}} E_* X \otimes_{E_*} E_* X.\]  In the case that the K\"unneth map is an isomorphism, the right--hand map is invertible, and the long composite induces the structure of an $E_*$--coalgebra on $E_* X$.  In the most generous case that $E$ is a field spectrum (in the sense of \Cref{FieldSpectraAreKTheories}), $E^* X$ is functorially the linear dual of $E_* X$, which motivates us to consider the following purely algebraic construction:
 
 \begin{definition}
-Let $C$ be a coalgebra over a field $k$.  The scheme $\Sch C$ associated to $C$ is defined by \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps u = 1 \end{array} \right\}.\]
+Let $C$ be a coalgebra over a field $k$.  The scheme $\Sch C$ associated to $C$ is defined by \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps f = 1 \end{array} \right\}.\]
 \end{definition}
 
 \begin{lemma}
 For $A$ a $k$--algebra, finite--dimensional as a $k$--module, one has $\Spec A \cong \Sch A^*$.
 \end{lemma}
 \begin{proof}[Proof sketch]
-A point in $f \in (\Sch A^*)(T) \subseteq A^* \otimes T$ gives rise to a map $f_*\co A \to T$ by the duality pairing.  The finiteness assumption is present exactly so that $A$ is its own double--dual, giving an inverse assignment.
+A point $f \in (\Sch A^*)(T) \subseteq A^* \otimes T$ gives rise to a map $f_*\co A \to T$ by the duality pairing, which is a ring homomorphism by the condition.  The finiteness assumption is present exactly so that $A$ is its own double--dual, giving an inverse assignment.
 \end{proof}
 
 If we drop the finiteness assumption, then a lot can go wrong.  For instance, the multiplication on our $k$--algebra $A$ gives rise only to maps \[A^* \to (A \otimes_k A)^* \from A^* \otimes_k A^*,\] which is not enough to make $A^*$ into a $k$--coalgebra.  However, if we start instead with a $k$--coalgebra $C$ of infinite dimension, the following result is very telling:
@@ -33,7 +33,7 @@ If we drop the finiteness assumption, then a lot can go wrong.  For instance, th
 For $C$ a coalgebra over a field $k$, any finite--dimensional $k$--linear subspace of $C$ can be finitely enlarged to a subcoalgebra of $C$.  Accordingly, taking the colimit gives a canonical equivalence \[\Ind(\CatOf{Coalgebras}_k^{\mathrm{fin}}) \xrightarrow{\simeq} \CatOf{Coalgebras}_k. \qed\]
 \end{lemma}
 
-\noindent This result allows us to leverage our duality Lemma pointwise: for an arbitrary $k$--coalgebra, we break it up into a lattice of finite $k$--coalgebras, and take their linear duals to get a reversed lattice of finite $k$--algebras.  Altogether, this indicate that $k$--coalgebras generally want to model \emph{formal schemes}.
+\noindent This result allows us to leverage our duality Lemma pointwise: for an arbitrary $k$--coalgebra, we break it up into a lattice of finite $k$--coalgebras, and take their linear duals to get a reversed lattice of finite $k$--algebras.  Altogether, this indicates that $k$--coalgebras generally want to model \emph{formal schemes}.
 
 \begin{corollary}\label{CoalgsAndFSchsAgreeOverk}
 For $C$ a coalgebra over a field $k$ expressed as a colimit $C = \colim_k C_k$ of finite subcoalgebras, there is an equivalence \[\Sch C \cong \{\Spec C_k^*\}_k.\]  This induces a \emph{covariant} equivalence of categories \[\CatOf{Coalgebras}_k \cong \CatOf{FormalSchemes}_{/k}. \qed\]
@@ -51,10 +51,10 @@ Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$
 \end{definition}
 
 \begin{theorem}[{\cite[Proposition 4.64]{StricklandFSFG}}]
-Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram is a good coalgebra, including the colimits point.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
+Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram, including the colimit point, is a good coalgebra.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
 \end{theorem}
 
-This Theorem gives us access to many constructions on formal schemes, provided we assume that the input is coalgebraic.  This covers many of the cases of interest to us, as every formal variety is coalgebra.  For an example of the sort of constructions that become available, one can prove the following Corollary by analyzing the symmetric power of coalgebras:
+This Theorem gives us access to many constructions on formal schemes, provided we assume that the input is coalgebraic.  This covers many of the cases of interest to us, as every formal variety is coalgebraic.  For an example of the sort of constructions that become available, one can prove the following Corollary by analyzing the symmetric power of coalgebras:
 
 \begin{corollary}[{\cite[Proposition 6.4]{StricklandFSFG}}]
 For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$.  If $\Spec k \to X$ is a pointing, then $\colim_n \{X^{\times n}_{\Sigma_n}\}_n$ models the free formal monoid on the pointed formal scheme. \qed
