@@ -17,7 +17,7 @@ Today we will discuss an elephant that has been lingering in our room: we began 
 Suppose that $E$ is a ring spectrum, and recall the usual way to produce the structure of an $E^*$--algebra on $E^* X$ for $X$ a space.  The space $X$ has a diagonal map $\Delta\co X \to X \times X$, which on $E$--cohomology induces a multiplication map \[E^* X \otimes_{E^*} E^* X \xrightarrow{\mu_E} E^*(X \times X) \xrightarrow{E^* \Delta} E^* X.\]  Dually, applying $E$--homology, we have a pair of maps \[E_* X \xrightarrow{E_* \Delta} E_*(X \times X) \xleftarrow{\text{K\"unneth}} E_* X \otimes_{E_*} E_* X.\]  In the case that the K\"unneth map is an isomorphism, the right--hand map is invertible, and the long composite induces the structure of an $E_*$--coalgebra on $E_* X$.  In the most generous case that $E$ is a field spectrum (in the sense of \Cref{FieldSpectraAreKTheories}), $E^* X$ is functorially the linear dual of $E_* X$, which motivates us to consider the following purely algebraic construction:
 
 \begin{definition}
-Let $C$ be a coalgebra over a field $k$.  The scheme $\Sch C$ associated to $C$ is defined by \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps u = 1 \end{array} \right\}.\]
+Let $C$ be a coalgebra over a field $k$.  The \emph{scheme $\Sch C$ associated to $C$} is defined by \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps u = 1 \end{array} \right\}.\]
 \end{definition}
 
 \begin{lemma}
@@ -54,7 +54,7 @@ Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$
 Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram is a good coalgebra, including the colimits point.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
 \end{theorem}
 
-This Theorem gives us access to many constructions on formal schemes, provided we assume that the input is coalgebraic.  This covers many of the cases of interest to us, as every formal variety is coalgebra.  For an example of the sort of constructions that become available, one can prove the following Corollary by analyzing the symmetric power of coalgebras:
+This Theorem gives us access to many constructions on formal schemes, provided we assume that the input is coalgebraic.  This covers many of the cases of interest to us, as every formal variety is coalgebra\todo{I guess you would prove this by first d\'{e}vissaging to the case of $\A^n$.  How does this work?  Then you'd just need to prove it for $\A^n$ -- Jay asked you how to do this for $\A^1$, and I think you should include the argument here.} For an example of the sort of constructions that become available, one can prove the following Corollary by analyzing the symmetric power of coalgebras:
 
 \begin{corollary}[{\cite[Proposition 6.4]{StricklandFSFG}}]
 For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$.  If $\Spec k \to X$ is a pointing, then $\colim_n \{X^{\times n}_{\Sigma_n}\}_n$ models the free formal monoid on the pointed formal scheme. \qed
@@ -94,6 +94,8 @@ On the level of Hopf algebras $A = \sheaf O_G$, this has the effect \[DG = \Sch 
 
 \todo{You could also include mention of the motivation: $C_k \G$ is hard to exhibit, but $(C_k \G)^\vee$ is easy.  It's not clear how to do this without leaping too far ahead, though.}
 
+\todo{Your definition is for finite group schemes, but then you use it for formal groups.  One way to extend the definition is by $\InternalHom{FormalGroups}(G,\G_m)$.  Another is to take the limit of the objectwise duals in the direct system defining the formal group.  Are they the same?  Perhaps you should assure the reader that nothing goes wrong?}
+
 \begin{remark}
 The effect of Cartier duality on the Dieudonn\'e module of a formal group is linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} are related by Cartier duality.
 \end{remark}
@@ -106,7 +108,7 @@ X_E \times \InternalHom{GroupSchemes}(Y_E, \Gm) \arrow[-,double]{d} \arrow[dense
 X_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["f \times 1"]{r} & Y_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["\operatorname{ev}"]{r} & \G_m. \arrow{u}
 \end{tikzcd}
 \end{center}
-This is identical information to what they call \textit{the adjoint map} of $E_*$--modules \[E_* \to E_* Y \widehat\otimes_{E_*} E^* X,\] which is determined by where it sends $1 \in E_*$.  This construction converts many properties of $f$ into corresponding properties of this adjoint element.\todo{Expand on this, perhaps.}
+This is identical information to what they call \textit{the adjoint map} of $E_*$--modules \[E_* \to E_* Y \widehat\otimes_{E_*} E^* X,\] \todo{What is $\widehat\otimes$?  How do you get the adjoint map from $f$?} which is determined by where it sends $1 \in E_*$.  This construction converts many properties of $f$ into corresponding properties of this adjoint element.\todo{Expand on this, perhaps.}
 \end{remark}
 
 
