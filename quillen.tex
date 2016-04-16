@@ -33,7 +33,7 @@ In particular, for a complex-oriented ring spectrum $E$ it follows that $E^* \CP
 
 In light of these results, it seems prudent to develop some of the theory of formal schemes and formal varieties outside of the context of $\F_2$--algebras.
 
-\begin{definition}\todo{Erick has been complaining about this definition for a while, and I think he's right. His suggestion is for each scheme to be a nilpotent thickening over its reduction, which is of finite type (over whatever base).  I kept compulsively writing ``Artinian'', but he pointed out that $\Z[x] / x^n$ is \emph{not} Artinian, and so this can't be the right assumption.  I'm not sure why I was so stuck on this word... am I forgetting some important case?}\todo{Here is a very relevant MathOverflow question, replete with stacks project reference: http://mathoverflow.net/questions/236351/are-all-formal-schemes-really-ind-schemes .}
+\begin{definition}\todo{Erick has been complaining about this definition for a while, and I think he's right. His suggestion is for each scheme to be a nilpotent thickening over its reduction, which is of finite type (over whatever base).  I kept compulsively writing ``Artinian'', but he pointed out that $\Z[x] / x^n$ is \emph{not} Artinian, and so this can't be the right assumption.  I'm not sure why I was so stuck on this word... am I forgetting some important case?}
 Fix a scheme $S$.  A formal $S$--scheme $X = \{X_\alpha\}_\alpha$ is an ind-system of Artinian $S$--schemes $X_\alpha$.\todo{Why Artinian? Also, you used to say finite instead of Artinian, so maybe you can standardize the terminology across chapters.} $S$--schemes $X_\alpha$.
 \end{definition}
 
@@ -46,7 +46,7 @@ These ind-systems arise when studying completions of rings.  To address the geom
 Let $X$ be an affine formal scheme\todo{I'm guessing this means isomorphic to the constant ind-system $\{\Spec R\}$?}, and pick a chart $\Spec R \to X$.  A subscheme $Y \subseteq X$ is called \textit{closed} when it has the form
 \begin{center}
 \begin{tikzcd}
-Y \arrow{r} \arrow[-,double,densely dotted]{d} & X \arrow[-,double]{d} \\
+Y \arrow{r} \arrow[-,equal,densely dotted]{d} & X \arrow[-,equal]{d} \\
 \Spec (R/I) \arrow{r} & \Spec R.
 \end{tikzcd}
 \end{center}
@@ -87,7 +87,7 @@ There is an isomorphism \[TV \cong \CatOf{Modules}_R(T^* V, R).\]
 A point $f \in V(R[\eps] / \eps^2)$ is given by a map $f\co \sheaf O_V \to R[\eps] / \eps^2$.  If $f$ is pointed, then it carries the ideal $I(0)$ of functions vanishing at zero to the ideal $(\eps)$, and hence also carries $I(0)^2$ to $(\eps)^2 = 0$.  Hence, $f$ induces a map
 \begin{center}
 \begin{tikzcd}
-I(0) / I(0)^2 \arrow{r}{f} \arrow[-,double]{d} & (\eps) / (\eps)^2 \arrow[-,double]{d} \\
+I(0) / I(0)^2 \arrow{r}{f} \arrow[-,equal]{d} & (\eps) / (\eps)^2 \arrow[-,equal]{d} \\
 T^* V \arrow{r}{f} & R,
 \end{tikzcd}
 \end{center}
@@ -134,7 +134,7 @@ The induced map $T\sigma$ on tangent spaces is evidently invertible, so by \Cref
 Let $\G$ be a formal group.  In the presence of a coordinate $\phi \co \G \cong \A^n$, the addition law on $\G$ begets a map
 \begin{center}
 \begin{tikzcd}
-\G \times \G \arrow{r} \arrow[-,double]{d} & \G \arrow[-,double]{d} \\
+\G \times \G \arrow{r} \arrow[-,equal]{d} & \G \arrow[-,equal]{d} \\
 \A^n \times \A^n \arrow{r} & \A^n,
 \end{tikzcd} \todo{Again, the vertical arrows should be arrows, not equal signs?}
 \end{center}
@@ -214,7 +214,7 @@ An \textit{effective Weil divisor} $D$ on $C$ is a closed $S$--subscheme of $C$ 
 \todo{Is there a distinction between free and locally free?  I guess not because everything is affine.}
 
 Consider the case of interest to us, where we have selected a coordinate $x$ on $C$.  In that case, there are isomorphisms $S = \Spec E_*$ and $C \cong \Spf E^*\ps{x}$, so that a divisor $D$ must be of the form $D \cong \Spf E^*\ps{x} / f$ for some $f$ not a zero-divisor.  We see then that $\sheaf I_D$ corresponds to the principal ideal $E^*\ps{x} \cdot f \cong E^*\ps{x}$, and $D$ is a divisor exactly when $E^*\ps{x} / f$ is a flat $E^*$--module.\todo{Is this last condition easy to unpack?  I'd hope it means something about monicity.  Maybe see Lemma 17.1 of FPFP?} \todo{How do you even show that $f$ can be chosen to be a polynomial, and not just a power series?  Weierstrass?}
- 
+
 Before considering their connection to line bundles, we will study the concept of a divisor in isolation.
 
 \begin{lemma}
@@ -244,7 +244,7 @@ C^{\times n}_{\Sigma_n} \arrow[densely dotted]{r}{\cong} & \Div_n^+ C.
 \end{tikzcd}
 \end{center}
 \begin{lemma}\todo{Make a point that the other arrow is not surjective.}
-The object $C^{\times n}_{\Sigma_n}$ exists, it factors the iterated addition map, and the dotted arrow is an isomorphism. 
+The object $C^{\times n}_{\Sigma_n}$ exists, it factors the iterated addition map, and the dotted arrow is an isomorphism.
 \end{lemma}
 \begin{proof}
 The first assertion is a consequence of Newton's theorem on symmetric polynomials: the subring of symmetric polynomials in $R[x_1, \ldots, x_n]$ is itself polynomial on generators \[\sigma_j(x_1, \ldots, x_n) = \sum_{\substack{S \subseteq \{1, \ldots, n\} \\ |S| = j}} x_{S_1} \cdots x_{S_j},\] and hence \[R[\sigma_1, \ldots, \sigma_n] \subseteq R[x_1, \ldots, x_n].\]  Picking a coordinate on $C$ allows us to import this fact into formal geometry to deduce the existence of $C^{\times n}_{\Sigma_n}$.  The factorization then follows by noting that the iterated $\sqcup$ map is symmetric.  Finally, \Cref{DescriptionOfSqCupMapOnPolynomials} shows that the horizontal map pulls the coordinate $a_j$ back to $\sigma_j$, so the third assertion follows.
@@ -334,7 +334,7 @@ In the case of a formal curve $C$, there is a short exact sequence of formal gro
 \todo{This title needs improvement.}
 \todo{You are not consistent about calling vector bundles $V$ or $\xi$.}
 
-Today we will exploit all of the algebraic geometry we set up yesterday to deduce a load of topological results.  
+Today we will exploit all of the algebraic geometry we set up yesterday to deduce a load of topological results.
 
 \begin{definition}
 Let $E$ be a complex-orientable theory and let $V \to X$ be a complex vector bundle over a space $X$.  According to \Cref{ThomIsomOverC}, the cohomology of the Thom space $E^* T(V)$ forms a $1$--dimensional $E^* X$--module.  We denote the associated line bundle over $X_E$ by $\ThomSheaf{V}$.
@@ -351,7 +351,7 @@ One of the main utilities of this definition is that it only uses the \emph{prop
 
 The following example connects this topic with that of \Cref{FormalVarietiesLecture}:
 \begin{example}\label{Pi2AndInvariantDiffls}
-\todo{Make this clearer: point out that the cofiber definition of the Thom space helps you make the first identification (that's what the ``zero section'' refers to), and then point out that $\zeta^*(M) = M / \sheaf I(0) \cdot M$ helps you over the last hump.}\todo{In class you wrote $\L - 1$ instead of $\L$ almost everywhere in this example.} 
+\todo{Make this clearer: point out that the cofiber definition of the Thom space helps you make the first identification (that's what the ``zero section'' refers to), and then point out that $\zeta^*(M) = M / \sheaf I(0) \cdot M$ helps you over the last hump.}\todo{In class you wrote $\L - 1$ instead of $\L$ almost everywhere in this example.}
 If $\L$ denotes the canonical line bundle over $\CP^\infty$, then the zero section identifies $E^0 (\CP^\infty)^{\L}$ \footnote{What does this notation mean?  I would guess it's something like maps $\L \to E^0(\CP^\infty)$, but this doesn't seem to make sense.}with the augmentation ideal in $E^0 \CP^\infty$, and so we have an isomorphism $\ThomSheaf{\L} \cong \sheaf I(0)$.  Then, consider the map $\eps: * \to \CP^\infty$, which classifies a line bundle that Thomifies to $\CP^1 \to \CP^\infty$.  Using naturality, we see \todo{I think you should mention that the tilde means the sheaf associated to the module.  Also, in class you wrote $\pi_{-2} E$ instead of $\pi_2 E$}\[\widetilde{\pi_2 E} \cong \ThomSheaf{* \to \CP^\infty} \cong 0^* \sheaf I(0) \cong \omega_{\G_E},\] where $\G_E = \CP^\infty_E$ is the formal group associated to $E$--theory and $\omega_{\G_E}$ is its sheaf of invariant differentials\footnote{The identification of this with the sheaf of invariant differentials is something of a choice.  Certainly it is naturally isomorphic to $T_0^* \CP^\infty_E$, and this in turn is naturally isomorphic to $\omega_{\G_E}$, but deciding which of these two to write is a decision to be borne out as ``correct''.}.  More generally, if $k \eps$ \todo{It might be confusing using $\eps$ for two different things in the same paragraph.} is the trivial bundle of dimension $k$ over a point, then $\ThomSheaf{k \eps} \cong \omega_{\G_E}^{\otimes k}$.  If $f \co E \to F$ is an $E$--algebra (e.g., $F = E^{X_+}$), then this gives an interpretation of $\pi_{2k} F$ as $f_E^* \omega_{\G_E}^{\otimes k}$.
 \end{example}
 
@@ -367,11 +367,11 @@ Take $E$ to be complex-oriented.  The $E$--cohomology of $\P(\xi)$ is given by t
 We fit all of the fibrations we have into a single diagram:
 \begin{center}
 \begin{tikzcd}
-& \C^\times \arrow[-,double]{dd} \arrow{rd} \\
-\C^n \arrow{dd} & & \C^n \setminus \{0\} \arrow[crossing over]{ll} \arrow{r} \arrow{dd} & \CP^{n-1} \arrow{r} \arrow{dd} & \CP^\infty \arrow[-,double]{dd} \\
+& \C^\times \arrow[-,equal]{dd} \arrow{rd} \\
+\C^n \arrow{dd} & & \C^n \setminus \{0\} \arrow[crossing over]{ll} \arrow{r} \arrow{dd} & \CP^{n-1} \arrow{r} \arrow{dd} & \CP^\infty \arrow[-,equal]{dd} \\
 & \C^\times \arrow{rd} \\
 \xi \arrow{d} & & \xi \setminus \zeta \arrow{ll} \arrow{r} \arrow{d} & \P(\xi) \arrow{r} \arrow{d}{\pi} & \CP^\infty \arrow{d} \\
-X \arrow[-,double]{rr} \arrow[bend left, densely dotted]{u}{\zeta} & & X \arrow[-,double]{r} & X \arrow{r} & *.
+X \arrow[-,equal]{rr} \arrow[bend left, densely dotted]{u}{\zeta} & & X \arrow[-,equal]{r} & X \arrow{r} & *.
 \end{tikzcd}
 \end{center}
 We read this diagram as follows: on the far left, there's the vector bundle we began with, as well as its zero-section $\zeta$.  Deleting the zero-section gives the second bundle, a $\C^n \setminus \{0\}$--bundle over $X$.  Its quotient by the scaling $\C^\times$--action gives the third bundle, a $\CP^{n-1}$--bundle over $X$.  Additionally, the quotient map $\C^n \setminus \{0\} \to \CP^{n-1}$ is itself a $\C^\times$--bundle, and this induces the structure of a $\C^\times$--bundle on the quotient map $\xi \setminus \zeta \to \P(\xi)$.  Thinking of these as complex line bundles, they are classified by a map to $\CP^\infty$, which can itself be thought of as the last vertical fibration, fibering over a point.
@@ -427,7 +427,7 @@ What's most remarkable about the description in this theorem is its coherence wi
 The sum map \[BU(n) \times BU(m) \xrightarrow\oplus BU(n+m)\] induces on Chern polynomials the identity \[c(\xi \oplus \zeta) = c(\xi) \cdot c(\zeta).\]  In terms of divisors, \[\P(\xi \oplus \zeta)_E = \P(\xi)_E \sqcup \P(\zeta)_E,\] and hence there is an induced square
 \begin{center}
 \begin{tikzcd}
-BU(n)_E \times BU(m)_E \arrow{r}{\oplus} \arrow[-,double]{d} & BU(n+m) \arrow[-,double]{d} \\
+BU(n)_E \times BU(m)_E \arrow{r}{\oplus} \arrow[-,equal]{d} & BU(n+m) \arrow[-,equal]{d} \\
 \Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \arrow{r}{\sqcup} & \Div_{n+m}^+ \CP^\infty_E. \qed
 \end{tikzcd}
 \end{center}
@@ -449,7 +449,7 @@ There are natural isomorphisms $BU_E \cong \Div_0 \CP^\infty_E$ and $(BU \times 
 There is a commutative diagram
 \begin{center}
 \begin{tikzcd}
-BU(n)_E \times BU(m)_E \arrow{r}{\otimes} \arrow[-,double]{d} & BU(nm)_E \arrow[-,double]{d} \\
+BU(n)_E \times BU(m)_E \arrow{r}{\otimes} \arrow[-,equal]{d} & BU(nm)_E \arrow[-,equal]{d} \\
 \Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \arrow{r}{\cdot} & \Div_{nm}^+ \CP^\infty_E,
 \end{tikzcd}
 \end{center}
