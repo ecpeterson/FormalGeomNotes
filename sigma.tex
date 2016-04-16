@@ -385,7 +385,7 @@ The proof of projectivity arising from this method rests on choosing an ample li
 
 
 
-\section{Unstable chromatic cooperations for $kU$}
+\section{Unstable chromatic cooperations for $kU$}\label{ChromaticKUCoopnsSection}
 
 Let $\Gamma$ be a formal group of finite $p$--height of a field $k$ of positive characteristic $p$, and let $E = E_\Gamma$ denote the associated Morava $E$--theory.  Our goal in this section is to get a partial description of the Hopf ring of unstable cooperations $(E_\Gamma)_* \OS{kU}{2*}$.  Our results in previous sections give a foothold into this analysis by computing \[E_0 (BU \times \Z),\; E_0 BU,\; E_0 BSU\] in terms of the affine schemes they represent.  We also saw that these results were the cornerstone for accessing descriptions of the schemes \[\Spec E_0 MUP,\; \Spec E_0 MU,\; \Spec E_0 MSU.\]  In particular, the next step is to understand $E_0 BU[6, \infty)$, and our main tool for doing this will be the Postnikov fibration \[\OS{H\Z}{3} \to BU[6, \infty) \to BSU.\]  Our main goals are to construct a model sequence of formal schemes, then show that $E$--theory is well-behaved enough that the formal schemes it constructs exactly match the model.
 
@@ -417,7 +417,7 @@ Similarly, we define a cohomology class \[\Pi_3 = (\L_1 - 1)(\L_2 - 1)(\L_3 - 1)
 \end{definition}
 
 \begin{lemma}[{\cite[Lemma 7.1]{AndoStrickland}}]
-There is a commutative square\todo{Where did $\delta$ come from? A previous day? Talk about this some, probably.}
+There is a commutative square\todo{Where did $\delta$ come from? A previous day? Talk about this some, probably.}\todo{Jun Hou asked if this map fits into a larger chain complex --- presumably because of the name ``$\delta$''.  The problem is that $\delta$ is always bound to moving from $1$--cocycles to $2$--cocycles.  But maybe ``$\tau$'' is worth mentioning further on...}
 \begin{center}
 \begin{tikzcd}
 \Spec E_0 BSU \arrow{d}{\Pi_2} \arrow{r} & \Spec E_0 BU[6, \infty) \arrow{d}{\Pi_3} \\
@@ -446,6 +446,79 @@ Let $A$ be an abelian variety equipped with a line bundle $\L$.  Suppose that $s
 (\Theta^2 \L)_{x, y} \otimes (\Theta^2 \L)_{x', y} & \to (\Theta^2 \L)_{x + x', y}, &
 (\Theta^2 \L)_{x, y} \otimes (\Theta^2 \L)_{x, y'} & \to (\Theta^2 \L)_{x, y + y'}.
 \end{align*}
+\begin{figure}[htp]
+\begin{center}
+\begin{tikzpicture}[x  = {(-0.707cm,-0.707cm)},
+                    y  = {(0.9659cm,-0.25882cm)},
+                    z  = {(0cm,1cm)},
+                    scale = 1.8,
+                    color = {lightgray}]
+% style of faces
+\tikzset{facestyle/.style={fill=black!25,draw=black,very thin,line join=round,opacity=.4},slicestyle/.style={fill=black!25,draw=black,very thin,line join=round,opacity=.8}}
+%\tikzset{facestyle/.style={fill=cyan,draw=blue,very thin,line join=round,opacity=.4},slicestyle/.style={fill=cyan,draw=blue,very thin,line join=round,opacity=.7}}
+% face "back" 
+\begin{scope}[canvas is zy plane at x=0]
+  \path[facestyle,shade] (0,0) rectangle (2,2);
+\end{scope}
+% face  "left"
+\begin{scope}[canvas is zx plane at y=0]
+  \path[facestyle,shade] (0,0) rectangle (2,2);
+\end{scope}
+% face "down"
+\begin{scope}[canvas is yx plane at z=0]
+  \path[facestyle,color=lightgray] (0,0) rectangle (2,2);
+\end{scope}
+% face "red slice back"
+\begin{scope}[canvas is zy plane at x=1.5]
+  \path[slicestyle,color=black!50] (0,0) rectangle (2,0.5);
+\end{scope}
+% face "green slice back"
+\begin{scope}[canvas is zx plane at y=0.5]
+  \path[slicestyle,color=black] (0,0) rectangle (2,1.5);
+\end{scope}
+% face "red slice front"
+\begin{scope}[canvas is zy plane at x=1.5]
+  \path[slicestyle,color=black!50] (0,0.5) rectangle (2,2);
+\end{scope}
+% face "green slice front"
+\begin{scope}[canvas is zx plane at y=0.5]
+  \path[slicestyle,color=black] (0,1.5) rectangle (2,2);
+\end{scope}
+% face "front"
+\begin{scope}[canvas is zy plane at x=2]
+  \path[facestyle] (0,0) rectangle (2,2);
+\end{scope}
+% face  "right"
+\begin{scope}[canvas is zx plane at y=2]
+  \path[facestyle] (0,0) rectangle (2,2);
+\end{scope}
+% face "up" 
+\begin{scope}[canvas is yx plane at z=2]
+  \path[facestyle] (0,0) rectangle (2,2);
+\end{scope}
+% labels
+\draw[very thin,black,line join=round]
+     (2,0,0) -- node [below,black] {$A$} (2,2,0);
+\draw[very thin,black,line join=round]
+     (2,2,0) -- node [right,black] {$A$} (0,2,0);
+\draw[very thin,black,line join=round]
+     (0,2,0) -- node [right,black] {$\Gm$} (0,2,2);
+\draw[very thin,black,line join=round]
+     (2,0.5,0) -- node [below,black] {$a_1$} (2,0.5,0);
+\draw[very thin,black,line join=round]
+     (1.5,2,0) -- node [right,black] {$a_2$} (1.5,2,0);
+\end{tikzpicture}
+\hspace{0.5em}
+\begin{tikzpicture}
+    \draw[very thin,black,line join=round,fill=black!30]
+        (0,1) -- node [below,black] {$A \times \{a_2\}$} (3,1) -- node[right,black] {$\Gm$} (3,4) -- (0,4) -- (0,1);
+    \draw[very thin,black,line join=round,fill=black!70]
+        (0,5) -- node [below,black] {$\{a_1\} \times A$} (3,5) -- node[right,black] {$\Gm$} (3,8) -- (0,8) -- (0,5);
+    \node[anchor=east] at (-0.5,4) {\Huge $\Rightarrow$};
+\end{tikzpicture}
+\end{center}
+\caption{Extensions contained in a biextension.}
+\end{figure}
 There is a canonical piece of gluing data on this biextension, in the form of an isomorphism of pullback bundles
 \begin{align*}
 e_{p^j}\co (p^j \times 1)^* \L|_{A[p^j] \times A[p^j]} & \cong (1 \times p^j)^* \L|_{A[p^j] \times A[p^j]}, \\
@@ -508,19 +581,6 @@ The map \[\Pi_3\co \Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm)\] is an is
 \begin{proof}
 This is a direct consequence of the $5$--lemma.
 \end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -648,9 +708,9 @@ This is a direct consequence of the $5$--lemma.
 
 Write $H = H\F_p$.  Today we will study the effect of the map $\hat \Pi_3$ in ordinary homology.  Many parts of the proof we explored for $E$--theory break.  Topologically, the Serre spectral sequence for $H^* BU[6, \infty)$ is not even-concentrated and so is not forced to collapse.  Algebraically, because $\G_a$ is not $p$--divisible the behavior of the model exact sequence is also suspect.  Because the situation has fewer insulating good properties, we are forced to actually consider it carefully.  The upside, however, is that the standard group law on $\G_a$ is simple enough that we can compute the problem to death.
 
-We begin with the topological half of our tasks.  The Serre spectral sequence \[E_2^{*, *} = H^*(BSU; H\F_p^* \OS{H\Z}{3}) \Rightarrow H\F_p^* BU[6, \infty)\] is quite accessible, and we will recount the case of $p = 2$.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = H\F_2^* BSU \otimes H\F_2^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ \end{array}\right].\]  Because the target is $6$--connective, we must have the transgressive differential \[d_4 \iota_3 = c_2,\] which via the Kudo transgression theorem spurs the much larger family of differentials $d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2$.  This necessitates understanding the action of the Steenrod operations on the cohomology of $BSU$, which is due to Wu\citeme{Wu formulas, maybe May's concise book}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 = c_{1 + 2^j}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:\todo{This spectral sequence can be drawn in using Hood's package.}
+We begin with the topological half of our tasks.  The Serre spectral sequence \[E_2^{*, *} = H\F_p^* BSU \otimes H\F_p^* \OS{H\Z}{3}) \Rightarrow H\F_p^* BU[6, \infty)\] is quite accessible, and we will recount the case of $p = 2$.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = H\F_2^* BSU \otimes H\F_2^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ \end{array}\right].\]  Because the target is $6$--connective, we must have the transgressive differential $d_4 \iota_3 = c_2$, which via the Kudo transgression theorem spurs the much larger family of differentials \[d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2.\]  This necessitates understanding the action of the Steenrod operations on the cohomology of $BSU$, which is due to Wu\citeme{Wu formulas, maybe May's concise book}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 = c_{1 + 2^j}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:\todo{This spectral sequence can be drawn in using Hood's package.}
 
-\begin{theorem}
+\begin{theorem}\label{HF2BU6Calculation}
 There is an isomorphism \[H\F_2^* BU[6, \infty) \cong \frac{H\F_2^* BU}{(c_j \mid j \ne 2^k + 1, j \ge 3)} \otimes F_2[\iota_3^2, (\Sq^2 \iota_3)^2, \ldots]. \qed\]
 \end{theorem}
 
@@ -665,51 +725,79 @@ Stong specialized to $p = 2$ and carefully applied the Serre spectral sequence t
 These methods and results generalize directly to odd primes.  The necessary modifications come from understanding the unstable mod--$p$ Steenrod algebra, using the analogues of Wu's formulas due to Shay\citeme{Wu formulas, Shay's extension in \textit{mod--$p$ Wu formulas for the Steenrod algebra and the Dyer--Lashof algebra}}, and employing Singer's Eilenberg--Moore calculation.  Again, $H\F_p^* BU[6, \infty)$ is presented as a quotient by $H\F_p^* BU$ by certain Chern classes satisfying a $p$--adic sum condition, tensored up with the subalgebra of $H\F_p^* \OS{H\Z}{3}$ generated by a certain element.
 \end{remark}
 
-Now, we turn to the algebra.
-
-$\sheaf O(C^2(\G_a; \Gm)) \cong \Z_p[a_d \mid d \ge 2]$
-
-$\sheaf O(C^3(\G_a; \Gm)) \cong \Z_p[a_d \mid d \ge 3, d \ne 1 + p^t] \otimes \Gamma[b_d \mid d \ge 3, d = 1 + p^t]$
+\begin{remark}
+We can already see from \Cref{HF2BU6Calculation} that our map of short exact sequences in \Cref{ChromaticKUCoopnsSection} does not have a full analogue in the setting of additive homology.  By considering the edge homomorphism in the Serre spectral sequence, we see that \[\Spec HP_0 BSU \to \Spec HP_0 BU[6, \infty)\] is not a monomorphism.
+\end{remark}
 
 
 
 
 
-The bridge:
+Now, we turn to the algebra.  The main idea, as already used in \Cref{CalculationOfLTTangentSpace}, is to first perform a tangent space calculation of \[T_0 C^k(\G_a; \Gm) \cong C^k(\G_a; \G_a),\] then study the behavior of the different tangent directions to determine the full object $C^k(\G_a; \Gm)$.  As a warm-up, we will first consider the case $k = 2$:
+\begin{corollary}[{cf.\ \Cref{CohomologyOfGa}}]
+The unique symmetric $2$--cocycle of homogeneous degree $n$ has the form \[c_n(x, y) = \begin{cases} (x + y)^n - x^n - y^n & \text{if $n \ne p^j$}, \\ \frac{1}{p} \left( (x + y)^n - x^n - y^n \right) & \text{if $n = p^j$}. \end{cases} \qed\]
+\end{corollary}
 
+Our goal, then, is to select such a $2$--cocycle $f$ and study the minimal conditions needed on a symbol $a$ to produce a multiplicative $2$--cocycle of the form $1 + af + \cdots$.  Since $c_n = \frac{1}{d_n} \delta(x^n)$ is itself produced by an additive formula, life would be easiest if we had access to an exponential, so that we could build \[\text{``$ \delta \exp(a_n x^n)^{1/d_n} = \exp(\delta a_n x^n / d_n) = \exp(a_n c_n). $''}\]  However, the existence of an exponential series is equivalent to requiring that $a_n$ have all fractions, which turns out not to be minimal.  In fact, \emph{no} conditions on $a_n$ are required \emph{at all}, if we tweak the definition of an exponential series:
+
+\begin{definition}\todo{Where does this come from? I've never learned a universal property for it. That bothers me. It must have something to do with $p$--typification.}
+The \textit{Artin--Hasse exponential} is the power series \[E_p(t) = \exp\left( \sum_{j=0}^\infty \frac{t^{p^j}}{p^j} \right) \in \Z_{(p)}\ps{t}.\]
+\end{definition}
+
+This series has excellent properties, mimicking those of $\exp(t)$ as closely as possible while keeping coefficients in $\Z_{(p)}$ rather than in $\Q$.  Writing $\delta\co C^1 \to C^2$ and \[d_n = \begin{cases} 1 & \text{if $n = p^j$}, \\ 0 & \text{otherwise}, \end{cases}\] we set \[g_n(x, y) := \delta E_p(a_n x^n)^{1/p^{d_n}} = \exp\left( \sum_{j=0}^\infty \frac{a_n^{p^j} \delta x^{np^j}}{p^{j + d_n}} \right) = \exp\left( \sum_{j=0}^\infty \frac{a_n^{p^j} c_{np^j}(x, y)}{p^j} \right).\]  This gives a point in $C^2(\G_a; \Gm)(\Z_{(p)}[a_n])$, and exhaustion of the tangent space proves the following Lemma:
+
+\begin{lemma}[{\cite[Proposition 3.9]{AHSTheoremOfTheCube}}]
+The map \[\Spec \Z_{(p)}[a_n \mid n \ge 2] \xrightarrow{\prod_{n \ge 2} g_2} C^2(\G_a; \Gm) \times \Spec \Z_{(p)}\] is an isomorphism. \qed
+\end{lemma}
+
+The case $k = 3$ is similar, with one important new wrinkle.  Over an $\F_2$--algebra there is an equality $c_n^2 = c_{2n}$.  However, this relation does not generalize to trivariate $2$--cocycles:
+\begin{align*}
+\frac{1}{2} \delta (c_6) & = x^2 y^2 z^2 + x^4 y z + x y^4 z + x y z^4, &
+\left(\frac{1}{2} \delta c_3\right)^2 & = x^2 y^2 z^2.
+\end{align*}
+This pattern is generic and exhaustive for $\F_p$--algebras:
+\begin{lemma}[{\cite[Proposition 3.20, Proposition A.12]{AHSTheoremOfTheCube}}]
+The $p$--primary residue of the scheme of trivariate symmetric $2$--cocycles is presented by \[\Spec \F_p[a_d \mid d \ge 3] \times \Spec \F_p[b_d \mid d = p^j(1 + p^k)] \xrightarrow{\cong} C^3(\G_a; \G_a) \times \Spec \F_p. \qed\]
+\end{lemma}
+
+\noindent Similar juggling of the Artin--Hasse exponential yields the following multiplicative classification:
+\begin{theorem}[{\cite[Proposition 3.28]{AHSTheoremOfTheCube}}]
+There is an isomorphism \[\Spec \Z_{(p)}[a_d \mid d \ge 3, d \ne 1 + p^t] \times \Spec \Gamma[b_{1 + p^t}] \xrightarrow{} C^3(\G_a; \Gm) \times \Spec \Z_{(p)}.\]
+\end{theorem}
+\begin{proof}[Proof sketch]
+The main claim is that the Artin--Hasse exponential trick used in the case $k = 2$ works here as well, provided $d \ne 1 + p^t$ so that taking an appropriate $p${\th} root works out.  They then show that the remaining exceptional cases extend to multiplicative cocycles only when the $p${\th} power of the leading coefficient vanishes.  Finally, a rational calculation shows how to bind these truncated generators together into a divided power algebra.
+\end{proof}
+
+In our pursuit of the map of exact sequences of \Cref{ChromaticKUCoopnsSection}, we are missing one piece: a link from topology to the scheme of Weil pairings, $\Weil(\G_a)$.  The object ``$\Spec HP_0 \OS{H\Z}{3}$'' is insuitable because it doesn't exist --- the homology algebra $HP_0 \OS{H\Z}{3}$ is not even--concentrated.  However, analyzing the edge homomorphism from our governing Serre spectral sequence shows that the map \[HP^0 BU[6, \infty) \to HP^0 \OS{H\Z}{3}\] factors through the subalgebra $A$ generated by the \emph{squares} of the polynomial generators.  Accordingly, we aim to place $\Spec A^*$ in the top-right corner of our map of 
+
+\begin{lemma}[{\cite[Lemma 3.36, Proposition 4.13, Lemma 4.11]{AHSTheoremOfTheCube}}]
+The scheme $\Spec A^*$ models $\Weil(\G_a)$ by an isomorphism $\lambda$ commuting with $e \circ \hat \Pi_3$.
+\end{lemma}
+\begin{proof}[Proof sketch]
+The $\F_p$--scheme $\Weil(\G_a)$ is simple to describe:
 \begin{center}
-\begin{tikzcd}
-\Spec HP_0 BSU \arrow{r} \arrow{d}{\cong} & \Spec HP_0 BU[6, \infty) \arrow{r} \arrow{d} & \Spec HP_0 \OS{H\Z}{3} \arrow{r} \arrow{d}{\cong} & 0 \\
-C^2(\G_a; \Gm) \arrow{r}{\delta} & C^3(\G_a; \Gm) \arrow{r}{e} & \InternalHom{FormalGroups}(\G_a^{\wedge 2}, \Gm) \arrow{r} & 0.
+\begin{tikzcd}[row sep=1em]
+(a_{mn})_{m, n} \arrow[|->]{r} & \prod_{m < n} \operatorname{texp}\left(a_{mn}(x^{p^m} y^{p^n} - x^{p^n} y^{p^m})\right) \\
+\Spec \F_p[a_{mn} \mid m < n] / (a_{mn}^p) \arrow{r}{\cong} & \Weil(\G_a),
 \end{tikzcd}
 \end{center}
-
-The main point is that we don't actually have to compute much about the middle map.  Because the squares commute and the sequences are exact as indicated, we at least learn that $\hat \Pi_3$ is an epimorphism.  But, since both source and target are affine schemes of graded finite type with equal Poincar\'e series, an epimorphism is an isomorphism.
-
-
-
-
-
-We can also address the cohomological point of view.
-\begin{corollary}\citeme{4.41 in the AHS preprint}
-The scheme $C_3 \G_a$ exists, and it is modeled by $BU[6, \infty)_{H\Z P}$.
-\end{corollary}
-\begin{proof}
-\todo{Explicit calculation of the Verschiebung + Milnor--Moore}
+where $\operatorname{texp}(t) = \sum_{j=0}^{p-1} t^j / j!$ is the truncated exponential series.  It is easy to check that this ring of functions agrees with $A^*$, and it requires hard work (although not much creativity) to check the remainder of the statement: that $e \circ \hat \Pi_3$ factors through $\Spec A^*$ and that the factorization is an isomorphism.
 \end{proof}
 
-\begin{corollary}\citeme{``Representability'' Section 3 in the AHS preprint}
-The scheme $C_3 \CP^\infty_E$ exists, and it is modeled by $BU[6, \infty)_E$.
+We have now finally assembled our map of right-exact sequences:\todo{It's maybe not obvious to a reader why this sequence is exact in the middle, although you have secretly proven this in the mess above.}
+\begin{center}
+\begin{tikzcd}
+\Spec HP_0 BSU \arrow{r} \arrow["\hat \Pi_2", "\cong"']{d} & \Spec HP_0 BU[6, \infty) \arrow{r} \arrow["\hat \Pi_3"]{d} & \Spec A^* \arrow{r} \arrow["\lambda", "\cong"']{d} & 0 \\
+C^2(\G_a; \Gm) \arrow{r}{\delta} & C^3(\G_a; \Gm) \arrow{r}{e} & \Weil(\G_a) \arrow{r} & 0.
+\end{tikzcd}
+\end{center}
+Our calculations now pay off:
+\begin{corollary}
+The map $\hat \Pi_3$ is an isomorphism: \[\hat \Pi_3\co \Spec HP_0 BU[6, \infty) \xrightarrow{\cong} C^3(\G_a; \Gm).\]
 \end{corollary}
-\begin{proof}
-
+\begin{proof}[Proof sketch]
+The main point is that we don't actually have to compute much about the middle map.  Because the squares commute and the sequences are exact as indicated, we at least learn that $\hat \Pi_3$ is an epimorphism after base-change to $\Spec \Q$ and $\Spec \F_p$ for each prime $p$.  But, since both source and target are affine schemes of graded finite type with equal Poincar\'e series in each case, our epimorphism is an isomorphism.
 \end{proof}
-
-
-
-
-
-
 
 
 \begin{remark}
@@ -722,7 +810,25 @@ Our analysis in \Cref{LEFTCooperations} gives us full access to the Hopf ring st
 
 
 
-\section{Orientations from $\Theta$--structures on Thom sheaves}
+\section{Covariance and $\Theta$--structures on Thom sheaves}
+
+We can also address the cohomological point of view.
+\begin{corollary}\citeme{4.41 in the AHS preprint}
+The scheme $C_3 \G_a$ exists, and it is modeled by $BU[6, \infty)_{H\Z P}$.
+\end{corollary}
+\begin{proof}
+\todo{Explicit calculation of the Verschiebung (cf.\ the ``wrinkle'' in the previous section) + Milnor--Moore}
+\end{proof}
+
+\begin{corollary}\citeme{``Representability'' Section 3 in the AHS preprint}
+The scheme $C_3 \CP^\infty_E$ exists, and it is modeled by $BU[6, \infty)_E$.
+\end{corollary}
+\begin{proof}
+
+\end{proof}
+
+
+
 
 Moving from $BU$ to $MU$: $MU\<6\>^E$ is a $\G_m$--torsor over $BU\<6\>^E$, so if you can produce another torsor and any map between them, that automatically gives you an isomorphism and hence a description.  This is pretty easy to read about in section 2.4 of the AHS preprint.  The big theorem is Theorem 2.42 in Section 2.4.4.
 
