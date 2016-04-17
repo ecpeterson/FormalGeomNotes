@@ -52,7 +52,7 @@ It is unfortunate, then, that when working over an object more general than a fi
 Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$ of $C$ is said to be a \textit{good basis} when any finite subcollection of $\{x_j\}$ can be finitely enlarged to a subcollection that spans a subcoalgebra.  The coalgebra $C$ is itself said to be \textit{good} when it admits a good basis.  A formal scheme $X$ is said to be \textit{coalgebraic} when it is isomorphic to $\Sch C$ for a good coalgebra $C$.
 \end{definition}
 
-\begin{theorem}[{\cite[Proposition 4.64]{StricklandFSFG}}]
+\begin{theorem}[{\cite[Proposition 4.64]{StricklandFSFG}}]\label{CoalgebraicColimitsExist}
 Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram, including the colimit point, is a good coalgebra.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
 \end{theorem}
 
@@ -98,6 +98,10 @@ On the level of Hopf algebras $A = \sheaf O_G$, this has the effect \[DG = \Sch 
 
 \begin{remark}
 The effect of Cartier duality on the Dieudonn\'e module of a formal group is linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} are related by Cartier duality.
+\end{remark}
+
+\begin{remark}\label{TopologicalCartierDuality}
+The topological summary of Cartier duality is that, when $X$ is a free even commutative $H$--space, \[DX_E = \InternalHom{GroupSchemes}(X_E, \Gm) = \Spec E_0 X.\]
 \end{remark}
 
 
@@ -799,6 +803,13 @@ The map $\hat \Pi_3$ is an isomorphism: \[\hat \Pi_3\co \Spec HP_0 BU[6, \infty)
 The main point is that we don't actually have to compute much about the middle map.  Because the squares commute and the sequences are exact as indicated, we at least learn that $\hat \Pi_3$ is an epimorphism after base-change to $\Spec \Q$ and $\Spec \F_p$ for each prime $p$.  But, since both source and target are affine schemes of graded finite type with equal Poincar\'e series in each case, our epimorphism is an isomorphism.
 \end{proof}
 
+\begin{corollary}[{\cite[Theorem 2.31]{AHSTheoremOfTheCube}}]\label{Pi3ForCplxOrientableE}
+The map $\hat \Pi_3$ is an isomorphism for any complex-orientable $E$.
+\end{corollary}
+\begin{proof}[Proof sketch]
+This follows much along the lines of \Cref{HopfRingForEBP}.  We check that the statement holds for $E = MUP$ using a tangent space argument, and then an Atiyah--Hirzebruch argument gives the statement for any complex-oriented $E$.
+\end{proof}
+
 
 \begin{remark}
 Our analysis in \Cref{LEFTCooperations} gives us full access to the Hopf ring structure of the \emph{nonconnective} cooperations $H\F_p{}_* \OS{KU}{2*}$.  Using a variety of techniques, Cowen Morton and Strickland calculated the Hopf ring structure of $H\F_2{}_* \OS{K}{2*}$ where $K$ ranges among the nonconnective objects $KO$, $KU$, $KSp$, and the less common ``$KT$'', which is self--conjugated $K$--theory~\cite{CowenMortonStrickland,StricklandBottPeriodicity}.
@@ -810,29 +821,53 @@ Our analysis in \Cref{LEFTCooperations} gives us full access to the Hopf ring st
 
 
 
-\section{Covariance and $\Theta$--structures on Thom sheaves}
+\section{Covariance, $\Theta$--structures on Thom sheaves}
 
-We can also address the cohomological point of view.
-\begin{corollary}\citeme{4.41 in the AHS preprint}
-The scheme $C_3 \G_a$ exists, and it is modeled by $BU[6, \infty)_{H\Z P}$.
-\end{corollary}
+Today we will (despite appearances) mostly leave the algebraic geometry alone, instead attending to two lingering topological concerns.  First, over the past few lectures we have been concerned with the homology schemes $\Spec E_0 \OS{kU}{2*}$.  We were originally motivated by a sequence of cohomological isomorphisms
+\begin{align*}
+(BU \times \Z)_E & \cong \Sym^0_{\Div \CP^\infty_E} \Div_0 \CP^\infty_E =: C_0 \CP^\infty_E, \\
+BU_E & \cong \Sym^1_{\Div \CP^\infty_E} \Div_0 \CP^\infty_E =: C_1 \CP^\infty_E, \\
+BSU_E & \cong \Sym^2_{\Div \CP^\infty_E} \Div_0 \CP^\infty_E =: C_2 \CP^\infty_E,
+\end{align*}
+along with identifications
+\begin{align*}
+BU \times \Z & \simeq \OS{kU}{2 \cdot 0}, &
+BU & \simeq \OS{kU}{2 \cdot 1}, &
+BSU & \simeq \OS{kU}{2 \cdot 2}.
+\end{align*}
+Our analysis of Cartier duality in \Cref{TopologicalCartierDuality} gave us isomorphisms like \[\Spec E_0 BSU \cong \InternalHom{GroupSchemes}(BSU_E, \Gm) \cong \InternalHom{FormalGroups}(C_2 \CP^\infty_E, \G_m).\] Following the universal property of this particular symmetric square, we were led to consider the scheme of symmetric bivariate functions on $\CP^\infty_E$ satisfying a $2$--cocycle condition.  Our next move was to show that $\Spec E_0 BU[6, \infty)$ was modeled by a similar scheme of \emph{trivariate} functions --- but we proved this directly, while avoiding the ``predual'' cohomological statement \[BU[6, \infty)_E \cong C_3 \CP^\infty_E := \Sym^3_{\Div \CP^\infty_E} \Div_0 \CP^\infty_E.\]  This is because the homological statement is the low-hanging fruit: it is easy to demonstrate that the scheme of such functions exists as a closed subscheme of all functions.  It is considerably harder to show that a symmetric cube exists at all.
+
+\begin{lemma}\label{CkGaGmAreFVars}\citeme{4.41 in the AHS preprint}
+$C^k(\G_a; \Gm)$ are all formal varieties for $k \le 3$.
+\end{lemma}
 \begin{proof}
-\todo{Explicit calculation of the Verschiebung (cf.\ the ``wrinkle'' in the previous section) + Milnor--Moore}
+We will show that $\sheaf O(C^2(\G_a; \Gm))^*$ is a power series ring.  Because we know this ring to be torsion free, it suffices to show that it is a power series ring modulo $p$ for every prime $p$.  However, connected finite-type Hopf algebras over $\F_p$ were classified by Borel (and exposited in Milnor--Moore~\cite[Theorem 7.11]{MilnorMoore}) as either polynomial or truncated polynomial, so we are reduced to showing that $\sheaf O(C^2(\G_a; \Gm))^* \otimes \F_p$ is a graded polynomial ring.  These two cases are distinguished by the Frobenius operation: the Frobenius on a polynomial ring is injective, whereas the Frobenius on a truncated polynomial ring is not.  It is equivalent to show that the \emph{Verschiebung} on the original ring $\sheaf O(C^2(\G_a; \Gm)) \otimes \F_p$ is \emph{surjective}.  The equation $FV = p$, together with the observation $c_n^p = c_{np}$ of the level of bivariate $2$--cocycles, dictates the behavior of $V$: \[V(a_{np}) = a_n.\]
+
+Essentially the same proof handles the cases $k = 1$ and $k = 0$.  The case $k = 3$ requires a small modification, to cope with the two classes of trivariate $2$--cocycles.  On the polynomial tensor factor of $\sheaf O(C^3(\G_a; \Gm))$ we can reuse the same Verschiebung argument to see that its dual Hopf algebra is polynomial.  The dual of the divided power tensor factor is immediately a primitively generated polynomial algebra, without any further argument.
 \end{proof}
 
-\begin{corollary}\citeme{``Representability'' Section 3 in the AHS preprint}
+\begin{theorem}
 The scheme $C_3 \CP^\infty_E$ exists, and it is modeled by $BU[6, \infty)_E$.
-\end{corollary}
-\begin{proof}
+\end{theorem}
+\begin{proof}[Proof sketch]
+\citeme{Prop 3.3 in AHS preprint}
+Let $\G$ be an arbitrary formal group.  Note first that if $C^3(\G; \Gm)$ is coalgebraic, then $C_3 \G$ exists and is its Cartier dual: the diagram presenting $\sheaf O(C^3(\G; \Gm))$ as a reflexive coequalizer of free Hopf algebras is also the diagram meant to present $C_3 \G$ as a coalgebraic formal scheme.  So, if the coequalizing Hopf algebra has a good basis, it will follow from \Cref{CoalgebraicColimitsExist} that the resulting diagram is a colimit diagram in formal schemes, with $C_3 \G$ sitting at the cone point.
 
+\citeme{Prop 3.4 in the AHS preprint}
+So, we reduce to checking that $\sheaf O(C^3(\G; \Gm))$ admits a good basis.  By a base change argument, it suffices to take $\G$ to be the universal formal group over the Lazard ring.  In this case, $\sheaf O(C^3(\G; \Gm))$ has graded\todo{Here we are again, making grading arguments. We've been bad about this earlier in the paper too.} finite type.  Specializing from $\G$ over $\moduli{fgl}$ to $\G_a$ over $\Spec \Z$, we know from \Cref{CkGaGmAreFVars} that $\sheaf O(C^3(\G_a; \Gm))$ is a free abelian group, and we know from \Cref{LazardsTheorem} that $\sheaf O(\moduli{fgl})$ is as well.  By picking a basis of each and a lift, we construct a free abelian group $M$ as well as a surjective map \[\alpha\co M \to \sheaf O(C^3(\G; \Gm)).\]  We proceed to test this map rationally: over $\Spec \Q$ we can use the logarithm to construct an isomorphism \[\Spec \Q \times (\moduli{fgl} \times C^k(\G; \Gm)) \to \Spec \Q \times (\moduli{fgl} \times C^k(\G_a; \Gm)),\] which shows that $\alpha \otimes \Q$ is an isomorphism.  By a finite type argument, this shows that $\alpha$ itself is an isomorphism, and we see further that $M$ has a sequence of good subcoalgebras spanned by the basis vectors of degree at most $d$.
+
+Finally, it follows that the isomorphism $\Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm)$ from \Cref{Pi3ForCplxOrientableE} re-dualizes to an isomorphism \[C_3 \CP^\infty_E \xrightarrow{\cong} BU[6, \infty)_E. \qedhere\]
 \end{proof}
 
 
 
 
-Moving from $BU$ to $MU$: $MU\<6\>^E$ is a $\G_m$--torsor over $BU\<6\>^E$, so if you can produce another torsor and any map between them, that automatically gives you an isomorphism and hence a description.  This is pretty easy to read about in section 2.4 of the AHS preprint.  The big theorem is Theorem 2.42 in Section 2.4.4.
 
-There's also Lemma 2.49 and Theorem 2.50 in the real version.
+Secondly, our motivation for all of this is to give a description to the set \[(\Spec E_0 MU[6, \infty))(E_0).\]  What we have done so far is describe the scheme $\Spec E_0 BU[6, \infty)$.  Since these two spectra are related by a Thom construction, we should be able to deduce the description that we want by thinking about Thom sheaves.  We now straighten this out.
+
+
+
+Moving from $BU$ to $MU$: $MU\<6\>^E$ is a $\G_m$--torsor over $BU\<6\>^E$, so if you can produce another torsor and any map between them, that automatically gives you an isomorphism and hence a description.  This is pretty easy to read about in section 2.4 of the AHS preprint.  The big theorem is Theorem 2.42 in Section 2.4.4.  There's also Lemma 2.49 and Theorem 2.50 in the real version.
 
 
 
