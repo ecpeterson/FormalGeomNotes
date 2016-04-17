@@ -196,7 +196,7 @@ The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \text{trivializa
 However, the use of \Cref{BSUtoBUtoCPinftyIsSexseq} inspires us to spend a moment longer with the associated formal schemes.  An equivalent statement is that there is a short exact sequence of formal group schemes
 \begin{center}
 \begin{tikzcd}
-BSU_E \arrow{r} \arrow[-,equal]{d} & BU_E \arrow{r}{B\det} \arrow[-,equal]{d} & BU(1) \arrow[-,equal]{d} \\
+BSU_E \arrow{r} \arrow[equal]{d} & BU_E \arrow{r}{B\det} \arrow[equal]{d} & BU(1) \arrow[equal]{d} \\
 \SDiv_0 \CP^\infty_E \arrow{r} & \Div_0 \CP^\infty_E \arrow{r}{\mathrm{sum}} & \CP^\infty_E,
 \end{tikzcd}
 \end{center}
@@ -398,7 +398,7 @@ The main tool used to build the model is the following construction:
 A map $f\co X \to Y$ of spaces induces a map $f_E \co X_E \to Y_E$ of formal schemes.  In the case that $Y$ is a commutative $H$--space and $Y_E$ is connected, we can construct a map according to the composite
 \begin{center}
 \begin{tikzcd}
-X_E \times \InternalHom{GroupSchemes}(Y_E, \Gm) \arrow[-,equal]{d} \arrow[densely dotted]{rr} & & \A^1 \\
+X_E \times \InternalHom{GroupSchemes}(Y_E, \Gm) \arrow[equal]{d} \arrow[densely dotted]{rr} & & \A^1 \\
 X_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["f \times 1"]{r} & Y_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["\operatorname{ev}"]{r} & \G_m. \arrow{u}
 \end{tikzcd}
 \end{center}
@@ -859,15 +859,58 @@ So, we reduce to checking that $\sheaf O(C^3(\G; \Gm))$ admits a good basis.  By
 Finally, it follows that the isomorphism $\Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm)$ from \Cref{Pi3ForCplxOrientableE} re-dualizes to an isomorphism \[C_3 \CP^\infty_E \xrightarrow{\cong} BU[6, \infty)_E. \qedhere\]
 \end{proof}
 
+Our second task today is to address the gap between $\OS{kU}{2k}$ and its Thom spectrum $T(\OS{kU}{2k})$.  After all, our motivation for all of this algebraic geometry is to give a description to the set \[(\Spec E_0 MU[6, \infty))(E_0),\] but what we have done so far is describe the scheme $\Spec E_0 BU[6, \infty)$.  Since these two spectra are related by a Thom construction, we should be able to deduce the description that we want by thinking about Thom sheaves.  We now straighten this out.  The place to start is with a construction:
+
+\begin{lemma}
+For $\xi\co G \to BGL_1 \S$ a group map, the Thom spectrum $T\xi$ is a $(\Susp^\infty_+ G)$--cotorsor.
+\end{lemma}
+\begin{proof}[Proof sketch]
+The Thom isomorphism $T\xi \sm T\xi \simeq T\xi \sm \Susp^\infty_+ G$ composes with the unit map $\S \to T\xi$ to give the \textit{Thom diagonal} \[T\xi \to T\xi \sm \Susp^\infty_+ G. \qedhere\]
+\end{proof}
+
+\begin{corollary}
+In addition to our interpretation of $\ThomSheaf{\xi}$ as a $\Gm$--torsor over $G_E$, $\ThomSheaf{\xi}^{-1}$ is furthermore a $(G_E \times \Gm)$--torsor over $S_E$. \qed
+\end{corollary}
+
+We expand this idea out in our situation.  A morphism $MU[6, \infty) \to E$ produces a trivialization of $\ThomSheaf{\bigotimes_{j=1}^3 (\L_j - 1)}$ over $(\CP^\infty_E)^{\times 3}$, and the associated trivializing section is symmetric and rigid\citeme{Lemma 2.49 of AHS}.  This prompts us to make the following definition:
+
+\begin{definition}
+We write $C^k(\G; \sheaf L)$ for the functor of trivializing sections of $\Theta^k \sheaf L$ over $\G^{\times k}$ which are symmetric and rigid.  This construction has some nice properties:
+\begin{itemize}
+\item Note that taking the trivial sheaf $\sheaf L = \sheaf O_{\G}$ recovers the scheme $C^k(\G; \Gm)$ of $\Gm$--valued such functions from before.
+\item By consequence, if $\sheaf L$ is \emph{trivializable} then this functor is an affine scheme.
+\item Affine or not, there is a pairing map \[C^k(\G; \sheaf L) \times C^k(\G; \sheaf H) \to C^k(\G; \sheaf L \otimes \sheaf H).\]  In particular, this recovers the group structure on $C^k(\G; \Gm)$ and it makes $C^k(\G; \sheaf L)$ into a $C^k(\G; \Gm)$--torsor.
+\end{itemize}
+\end{definition}
+
+\noindent Thus, we have constructed a map \[\Spec E_0 MU[6, \infty) \to C^k(\CP^\infty_E; \sheaf I(0)).\] The following Lemma is a matter of fully expanding definitions:
+
+\begin{lemma}[{\cite[Theorem 2.50]{AHSTheoremOfTheCube}}]
+The map \[\Spec E_0 MU[6, \infty) \to C^k(\CP^\infty_E; \sheaf I(0))\] is an isomorphism.
+\end{lemma}
+\begin{proof}
+This map is equivariant, in the sense that the following square commutes:
+\begin{center}
+\begin{tikzcd}
+\Spec E_0 MU[6, \infty) \times \Spec E_0 BU[6, \infty) \arrow{r} \arrow[equal]{d} & \Spec E_0 MU[6, \infty) \arrow[equal]{d} \\
+C^k(\CP^\infty_E; \sheaf I(0)) \times C^k(\CP^\infty_E; \Gm) \arrow{r} & C^k(\CP^\infty_E; \sheaf I(0)).
+\end{tikzcd}
+\end{center}
+Any equivariant map of torsors is automatically an isomorphism.
+\end{proof}
+
+\noindent This, finally, gives us access to the analogue of \Cref{BUZTriumvirate}, \Cref{BUTriumvirate}, and \Cref{BSUTriumvirate}:
+
+\begin{corollary}\label{BU6Triumvirate}
+Take $E$ to be \emph{complex--orientable}.  The functor $C^3(\CP^\infty_E; \sheaf I(0))$ defined by
+\begin{align*}
+\CatOf{AffineSchemes}_{/\Spec E_0} & \to \CatOf{Sets}, \\
+(\Spec T \xrightarrow{u} \Spec E_0) & \mapsto \left\{ \begin{array}{c} \text{symmetric, rigid trivializations} \\ \text{of $u^* \Theta^3 \ThomSheaf{\L}$ over $u^* (\CP^\infty_E)^{\times 3}$} \end{array} \right\}
+\end{align*}
+is isomorphic to the affine scheme $\Spec E_0 MU[6, \infty)$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MU[6, \infty) \to E$. \qed
+\end{corollary}
 
 
-
-
-Secondly, our motivation for all of this is to give a description to the set \[(\Spec E_0 MU[6, \infty))(E_0).\]  What we have done so far is describe the scheme $\Spec E_0 BU[6, \infty)$.  Since these two spectra are related by a Thom construction, we should be able to deduce the description that we want by thinking about Thom sheaves.  We now straighten this out.
-
-
-
-Moving from $BU$ to $MU$: $MU\<6\>^E$ is a $\G_m$--torsor over $BU\<6\>^E$, so if you can produce another torsor and any map between them, that automatically gives you an isomorphism and hence a description.  This is pretty easy to read about in section 2.4 of the AHS preprint.  The big theorem is Theorem 2.42 in Section 2.4.4.  There's also Lemma 2.49 and Theorem 2.50 in the real version.
 
 
 
@@ -1071,7 +1114,7 @@ Let $F \xrightarrow i E \xrightarrow r B$ be a fibration of connected double loo
 Let $E \to B' \to B$ be connective coverings of a simply connected double loopspace $B$.  Consider the following diagram of fiber sequences:
 \begin{center}
 \begin{tikzcd}
-F' \arrow{d} \arrow{r} & E \arrow[-,equal]{d} \arrow{r} & B' \arrow{d} \\
+F' \arrow{d} \arrow{r} & E \arrow[equal]{d} \arrow{r} & B' \arrow{d} \\
 F \arrow{r} & E \arrow{r} & B.
 \end{tikzcd}
 \end{center}
@@ -1153,7 +1196,7 @@ This goes similarly to the one above.  You can compute that the composite $\Div 
 \begin{tikzcd}
 & & & K_* \arrow{d} \\
 & & & K_* K(\Z, 3) \arrow{d} \\
-K_* \arrow{r} & K_* B\Spin \arrow{r} \arrow{d} & K_* BSU \arrow{r}{\tau} \arrow[-,equal]{d} & K_* BU[6, \infty) \arrow{d}{\delta} \\
+K_* \arrow{r} & K_* B\Spin \arrow{r} \arrow{d} & K_* BSU \arrow{r}{\tau} \arrow[equal]{d} & K_* BU[6, \infty) \arrow{d}{\delta} \\
 K_* \arrow{r} & K_* BSO \arrow{r}{i} & K_* BSU \arrow{r}{1 - \xi} & K_* BSU \arrow{d} \\
 & & & K_* .
 \end{tikzcd}
