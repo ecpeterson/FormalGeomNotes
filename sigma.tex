@@ -882,17 +882,17 @@ We write $C^k(\G; \sheaf L)$ for the functor of trivializing sections of $\Theta
 \end{itemize}
 \end{definition}
 
-\noindent Thus, we have constructed a map \[\Spec E_0 MU[6, \infty) \to C^k(\CP^\infty_E; \sheaf I(0)).\] The following Lemma is a matter of fully expanding definitions:
+\noindent Thus, we have constructed a map \[\Spec E_0 MU[6, \infty) \to C^3(\CP^\infty_E; \sheaf I(0)).\] The following Lemma is a matter of fully expanding definitions:
 
 \begin{lemma}[{\cite[Theorem 2.50]{AHSTheoremOfTheCube}}]
-The map \[\Spec E_0 MU[6, \infty) \to C^k(\CP^\infty_E; \sheaf I(0))\] is an isomorphism.
+The map \[\Spec E_0 MU[6, \infty) \to C^3(\CP^\infty_E; \sheaf I(0))\] is an isomorphism.
 \end{lemma}
 \begin{proof}
 This map is equivariant, in the sense that the following square commutes:
 \begin{center}
 \begin{tikzcd}
 \Spec E_0 MU[6, \infty) \times \Spec E_0 BU[6, \infty) \arrow{r} \arrow[equal]{d} & \Spec E_0 MU[6, \infty) \arrow[equal]{d} \\
-C^k(\CP^\infty_E; \sheaf I(0)) \times C^k(\CP^\infty_E; \Gm) \arrow{r} & C^k(\CP^\infty_E; \sheaf I(0)).
+C^3(\CP^\infty_E; \sheaf I(0)) \times C^3(\CP^\infty_E; \Gm) \arrow{r} & C^3(\CP^\infty_E; \sheaf I(0)).
 \end{tikzcd}
 \end{center}
 Any equivariant map of torsors is automatically an isomorphism.
@@ -917,27 +917,69 @@ is isomorphic to the affine scheme $\Spec E_0 MU[6, \infty)$.  Moreover, the $E_
 
 
 
-\section{Elliptic spectra and Tate $K$--theory}
+\section{Modular forms from $MU[6, \infty)$--manifolds}
 
-\begin{definition}
-An \textit{elliptic spectrum} consists of:
-\begin{enumerate}
-\item An even-periodic ring spectrum $E$.
-\item A (generalized) elliptic curve $C$ over $S_E$.\todo{I'm not sure if this is worth explaining. I guess we just mean elliptic curves with certain singularities allowed far away from the origin. Maybe it is worth explaining: you don't get examples like $H\Z P$ or $K^{\Tate}$ without allowing degeneracies.}
-\item An isomorphism $\phi: C^\wedge_0 \cong \CP^\infty_E$.
-\end{enumerate}
-A \textit{map of elliptic spectra} consists of
-\begin{enumerate}
-\item A map of ring spectra $f: E \to E'$.
-\item An \emph{isomorphism} of elliptic curves $f^* C \to C'$.
-\end{enumerate}
+Our goal today is to actually leverage the arithmetic geometry in \Cref{Theta3IsTrivial}, rather than just using the body of results about $\theta$--functions as inspiration.  In order to do this, we need to place ourselves in a situation where algebraic topology is directly linked to abelian varieties.
+
+\begin{definition}\label{DefnEllipticSpectrum}
+An \textit{elliptic spectrum} consists of a even--periodic ring spectrum $E$, a (generalized) elliptic curve $C$ over $\Spec E_0$, and a fixed isomorphism \[\phi\co C^\wedge_0 \xrightarrow{\cong} \CP^\infty_E.\]  A map among such spectra consists of a map of ring spectra $f\co E \to E'$ together with a specified isomorphism of elliptic curves $\psi\co f^* C \to C'$.
 \end{definition}
 
-\todo{In particular, isogenies of elliptic curves are \emph{not} allowed. This is the realm of power operations.}
+\begin{remark}
+We have chosen to consider \emph{isomorphisms} of elliptic curve rather than general homomorphisms because this is what algebraic topology suggests that we do.  After all, the mixed cooperations of complex-oriented ring spectra are modeled by the isomorphisms of the associated formal groups.  In the next Case Study, we will develop a theory (with an attendant notion of a ``context'') which incorporates isogenies of elliptic curves in addition to isomorphisms.
+\end{remark}
+
+Coupling \Cref{DefnEllipticSpectrum} to \Cref{BU6Triumvirate} and \Cref{Theta3IsTrivial}, we learn the following result:
+\begin{corollary}\label{EllipticSpectraAreOriented}
+An elliptic spectrum $(E, C, \phi)$ receives a canonical map of ring spectra \[MU[6, \infty) \to E.\]  This map is natural in choice of elliptic spectrum: if $(E, C, \phi) \to (E', C', \phi')$ is a map of elliptic spectra, then the triangle
+\begin{center}
+\begin{tikzcd}
+& MU[6, \infty) \arrow{ld} \arrow{rd} \\
+E \arrow{rr} & & E'
+\end{tikzcd}
+\end{center}
+commutes. \qed
+\end{corollary}
 
 \begin{example}
-Cohomology with complex coefficients and a selected lattice in the plane: $HP_\Lambda$.  The required isomorphism of formal groups comes from the logarithm map inverse to formally expanding $\C \to \C/\Lambda$ at the origin.
+Our basic example of an elliptic curve was $E_\Lambda = \C / \Lambda$, with $\Lambda$ a complex lattice.  The projection $\C \to \C / \Lambda$ has a local inverse which defines an isomorphism of formal groups \[\phi\co (E_\Lambda)^\wedge_0 \xrightarrow{\cong} \G_a \otimes \C.\]  Accordingly, we define an elliptic spectrum $H\C P_\Lambda$ whose underlying ring spectrum is $H\C$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to H\C P_\Lambda,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n$ for some $\Phi_\Lambda(M) \in \C$.
 \end{example}
+
+\begin{example}
+The naturality of the $MU[6, \infty)$--orientation moves us to consider more than one elliptic spectrum at a time.  If $\Lambda'$ is another lattice with $\Lambda' = \lambda \cdot \Lambda$, then $\C \xrightarrow{\lambda} \C$ descends to give an isomorphism $E_\Lambda \to E_{\Lambda'}$ and hence a map of elliptic spectra $H\C P_{\Lambda'} \to H\C P_\Lambda$ acting by $u_{\Lambda'} \mapsto \lambda u_\Lambda$.  The commuting triangle in \Cref{EllipticSpectraAreOriented} then begets the \emph{modularity relation} \[\Phi(M; \lambda \cdot \Lambda) = \lambda^{-n} \Phi(M; \Lambda).\]
+\end{example}
+
+\begin{example}
+This equation leads us to consider all curves $E_\Lambda$ simultaneously --- or, equivalently, to consider modular forms.  The lattice $\Lambda$ can nearly always be put into a standard form, by picking a basis and scaling it so that one vector lies at $1$ and the other vector lies in the upper half-plane.  This gives a cover \[\h \to \moduli{ell} \times \Spec \C\] which is well-behaved away from the special points $i$ and $e^{2 \pi i / 6}$.  A \textit{complex modular form of weight $k$} is an analytic function $\h \to \C$ which satisfies a certain decay condition and which is quasi-periodic for the action of $SL_2(\Z)$\footnote{That is, for the action of change of basis vectors.}, i.e., \[f\left(M; \frac{a \tau + b}{c \tau + d} \right) = (c \tau + d)^n f(M; \tau).\]
+
+Using these ideas, we construct a cohomology theory $H \sheaf O_{\h} P$, where $\sheaf O_{\h}$ is the ring of complex-analytic functions on the upper half-plane.  The $\h$--parametrized family of elliptic curves \[\h \times \C / (1, \tau) \to \h,\] together with the logarithm, present $H \sheaf O_{\h} P$ as an elliptic spectrum $H\h P$.  The canonical map $\Phi\co MU[6, \infty) \to H\h P$ specializes at a point to give the functions $\Phi(-; \Lambda)$ considered above, and hence $\Phi(M)$ is itself a complex modular form of weight $k$.
+\end{example}
+
+In fact, this is a ghost of Ochanine and Witten's modular genus from \Cref{OchanineWittenTheorem}, as bordism class in $MU[6, \infty)$ is, in particular, a bordism class in $M\String$.  However, they know more about this function than we can presently see: they claim that it has an integral $q$--expansion.  In terms of the modular form, its $q$--expansion is given by building the Taylor expansion ``at $\infty$'' (using that unspoken decay condition).  In order to use our topological methods, it would be nice to have an elliptic spectrum embodying these $q$--expansions in the same way that $H\h P$ embodied holomorphic functions, together with a comparison map that trades a modular form for its $q$--expansion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+This definition of elliptic spectrum is inconveniently restrictive, essentially because $H\C P$ and $H\Z P$ (with associated formal groups $\G_a$) do not count as elliptic spectra.  Ando, Hopkins, and Strickland work around this by working with the following generalization of an elliptic curve:
+
+\begin{definition}[{\cite[Definitions B.1-2]{AHSTheoremOfTheCube}}]\citeme{Is this right? Check the published AHS to make sure}
+A \textit{Weierstrass curve} is any curve of the form \[C(a_1, a_2, a_3, a_4, a_6) := \left\{ ([x : y : z], s) \in \mathbb P^2 \times S \middle| \begin{array}{c} y^2 z + a_1(s) xyz + a_3(s) yz^2 = \\ x^3 + a_2(s) x^2 z + a_4(s) x z^2 + a_6(s) z^3 \end{array} \right\}.\]  A \textit{generalized elliptic curve} over $S$ is a scheme $C$ equipped with maps \[S \xrightarrow{0} C \xrightarrow{\pi} S\] such that $C$ is Zariski--locally isomorphic to a system of Weierstrass curves (in a way preserving $0$ and $\pi$).\footnote{An elliptic curve in the usual sense turns out to be a generalized elliptic curve which is smooth, i.e., the discriminant of the Weierstrass equations is a unit.}
+\end{definition}
+
+\noindent The trade for the breadth of this definition is that theorems pulled from the study of abelian varities have to be shown to extend uniquely to generalized elliptic curves which are not merely elliptic curves.
+
+\begin{theorem}[{\cite[Propositions 2.57 and B.25]{AHSTheoremOfTheCube}}]\label{GeneralizedTheta3IsTrivial}
+For a generalized elliptic curve $C$, there is a canonical trivialization $s$ of $\Theta^3 \sheaf I(0)$.  If $C$ is a smooth elliptic curve, then $s$ agrees with that of \Cref{Theta3IsTrivial}. \qed
+\end{theorem}
 
 \begin{example}
 Integral cohomology with the curve $zy^2 = x^3$.
@@ -1018,13 +1060,6 @@ Let $\gamma$ denote the element $K_{\Tate}(\Z \times BU)$ determined by the vect
 
 ------------
 
-Criteria for the existence of symmetric cocycle schemes.
-
-AHS: they exist
-\todo[inline]{The technical condition guaranteeing the existence of symmetric power schemes is that the symmetric cocycle schemes are coalgebraic formal schemes, since then we have an involutive Cartier duality functor.  This comparison essentially comes out of saying that $C_k$ can be defined by a strong colimit, so if we can check that this strong colimit exists\ldots (cf. Prop 3.3 of the AHS preprint).}
-
-------------
-
 Here's what the published version of AHS has to say about the $\sigma$--orientation of $K_{\Tate}$.  (See Section 2.7.)
 
 $K_{\Tate}$ has multiplicative cohomology theory $K\ps{q}$, formal group multiplicative (as induced by $K$--theory), and isomorphism to $\widehat C_{\Tate}$ given by $1 - u(t)$ as in Lecture 5.2.  Since the cubical structure on $\widehat C_{\Tate}$ is given as $\delta^3$ of something, it follows that the $\sigma$--orientation factors as
@@ -1074,7 +1109,6 @@ M\Spin \arrow{rd} \arrow{r} & K \\
 Finally, we want to see that for $[M] \in \pi_{2n} MU[6, \infty)$, \[\Phi(M) := (\pi_{2n} \sigma_{K_{\Tate}})(M) \left( -\frac{du}{u} \right)^{-n} \in \pi_0 K_{\Tate} = Z\ps{q}\] is a modular form.  We've at least seen that $\Phi(M)$ is a holomorphic function on $D$, with integral $q$--expansion coefficients.  It suffices to show that if $\pi: \h \to D$ is the map $\pi(\tau) = e^{2 \pi i \tau}$, then $\pi^* \Phi(M)$ transforms correctly under the action of $SL_2(\Z)$.  This is supposed to follow from stuff in the introduction (pp.\ 600-1, also Example 2.3).
 
 
-\todo[inline]{Now that you have an extra few days, you could actually go through the calculation of $H\F_{p*} \OS{ku}{2k}$ and $C^k(\G_a; \Gm)$.}
 
 
 
