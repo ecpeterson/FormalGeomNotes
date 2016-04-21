@@ -836,7 +836,7 @@ BSU & \simeq \OS{kU}{2 \cdot 2}.
 Our analysis of Cartier duality in \Cref{TopologicalCartierDuality} gave us isomorphisms like \[\Spec E_0 BSU \cong \InternalHom{GroupSchemes}(BSU_E, \Gm) \cong \InternalHom{FormalGroups}(C_2 \CP^\infty_E, \G_m).\] Following the universal property of this particular symmetric square, we were led to consider the scheme of symmetric bivariate functions on $\CP^\infty_E$ satisfying a $2$--cocycle condition.  Our next move was to show that $\Spec E_0 BU[6, \infty)$ was modeled by a similar scheme of \emph{trivariate} functions --- but we proved this directly, while avoiding the ``predual'' cohomological statement \[BU[6, \infty)_E \cong C_3 \CP^\infty_E := \Sym^3_{\Div \CP^\infty_E} \Div_0 \CP^\infty_E.\]  This is because the homological statement is the low-hanging fruit: it is easy to demonstrate that the scheme of such functions exists as a closed subscheme of all functions.  It is considerably harder to show that a symmetric cube exists at all.
 
 \begin{lemma}\label{CkGaGmAreFVars}\citeme{4.41 in the AHS preprint}
-$C^k(\G_a; \Gm)$ are all formal varieties for $k \le 3$.
+$DC^k(\G_a; \Gm)$ are all formal varieties for $k \le 3$.
 \end{lemma}
 \begin{proof}
 We will show that $\sheaf O(C^2(\G_a; \Gm))^*$ is a power series ring.  Because we know this ring to be torsion free, it suffices to show that it is a power series ring modulo $p$ for every prime $p$.  However, connected finite-type Hopf algebras over $\F_p$ were classified by Borel (and exposited in Milnor--Moore~\cite[Theorem 7.11]{MilnorMoore}) as either polynomial or truncated polynomial, so we are reduced to showing that $\sheaf O(C^2(\G_a; \Gm))^* \otimes \F_p$ is a graded polynomial ring.  These two cases are distinguished by the Frobenius operation: the Frobenius on a polynomial ring is injective, whereas the Frobenius on a truncated polynomial ring is not.  It is equivalent to show that the \emph{Verschiebung} on the original ring $\sheaf O(C^2(\G_a; \Gm)) \otimes \F_p$ is \emph{surjective}.  The equation $FV = p$, together with the observation $c_n^p = c_{np}$ of the level of bivariate $2$--cocycles, dictates the behavior of $V$: \[V(a_{np}) = a_n.\]
@@ -848,11 +848,12 @@ Essentially the same proof handles the cases $k = 1$ and $k = 0$.  The case $k =
 The scheme $C_3 \CP^\infty_E$ exists, and it is modeled by $BU[6, \infty)_E$.
 \end{theorem}
 \begin{proof}[Proof sketch]
+\todo{This regurgitated proof is pretty broken.}
 \citeme{Prop 3.3 in AHS preprint}
 Let $\G$ be an arbitrary formal group.  Note first that if $C^3(\G; \Gm)$ is coalgebraic, then $C_3 \G$ exists and is its Cartier dual: the diagram presenting $\sheaf O(C^3(\G; \Gm))$ as a reflexive coequalizer of free Hopf algebras is also the diagram meant to present $C_3 \G$ as a coalgebraic formal scheme.  So, if the coequalizing Hopf algebra has a good basis, it will follow from \Cref{CoalgebraicColimitsExist} that the resulting diagram is a colimit diagram in formal schemes, with $C_3 \G$ sitting at the cone point.
 
 \citeme{Prop 3.4 in the AHS preprint}
-So, we reduce to checking that $\sheaf O(C^3(\G; \Gm))$ admits a good basis.  By a base change argument, it suffices to take $\G$ to be the universal formal group over the Lazard ring.  In this case, $\sheaf O(C^3(\G; \Gm))$ has graded\todo{Here we are again, making grading arguments. We've been bad about this earlier in the paper too.} finite type.  Specializing from $\G$ over $\moduli{fgl}$ to $\G_a$ over $\Spec \Z$, we know from \Cref{CkGaGmAreFVars} that $\sheaf O(C^3(\G_a; \Gm))$ is a free abelian group, and we know from \Cref{LazardsTheorem} that $\sheaf O(\moduli{fgl})$ is as well.  By picking a basis of each and a lift, we construct a free abelian group $M$ as well as a surjective map \[\alpha\co M \to \sheaf O(C^3(\G; \Gm)).\]  We proceed to test this map rationally: over $\Spec \Q$ we can use the logarithm to construct an isomorphism \[\Spec \Q \times (\moduli{fgl} \times C^k(\G; \Gm)) \to \Spec \Q \times (\moduli{fgl} \times C^k(\G_a; \Gm)),\] which shows that $\alpha \otimes \Q$ is an isomorphism.  By a finite type argument, this shows that $\alpha$ itself is an isomorphism, and we see further that $M$ has a sequence of good subcoalgebras spanned by the basis vectors of degree at most $d$.
+So, we reduce to checking that $\sheaf O(C^3(\G; \Gm))$ admits a good basis.  By a base change argument, it suffices to take $\G$ to be the universal formal group over the Lazard ring.  In this case, $\sheaf O(C^3(\G; \Gm))$ has graded\todo{Here we are again, making grading arguments. We've been bad about this earlier in the paper too.} finite type.  Specializing from $\G$ over $\moduli{fgl}$ to $\G_a$ over $\Spec \Z$, we know from \Cref{CkGaGmAreFVars} that $\sheaf O(C^3(\G_a; \Gm))$ is a free abelian group, and we know from \Cref{LazardsTheorem} that $\sheaf O(\moduli{fgl})$ is as well.  By picking a basis of each and a lift, we construct a free abelian group $M$ as well as a surjective map\todo{What does this have to do with being a power series algebra?  Maybe it doesn't have to do with anything --- we're just showing that $M$ has an obvious filtration by good subcoalgebras?  But then we also how to do some change-of-base stuff to show that $C_3 \G$ arises by change-of-base from $C_3 \G_{univ}$.} \[\alpha\co M \to \sheaf O(C^3(\G; \Gm)).\]  We proceed to test this map rationally: over $\Spec \Q$ we can use the logarithm to construct an isomorphism \[\Spec \Q \times (\moduli{fgl} \times C^k(\G; \Gm)) \to \Spec \Q \times (\moduli{fgl} \times C^k(\G_a; \Gm)),\] which shows that $\alpha \otimes \Q$ is an isomorphism.  By a finite type argument, this shows that $\alpha$ itself is an isomorphism, and we see further that $M$ has a sequence of good subcoalgebras spanned by the basis vectors of degree at most $d$.
 
 Finally, it follows that the isomorphism $\Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm)$ from \Cref{Pi3ForCplxOrientableE} re-dualizes to an isomorphism \[C_3 \CP^\infty_E \xrightarrow{\cong} BU[6, \infty)_E. \qedhere\]
 \end{proof}
@@ -881,16 +882,17 @@ We write $C^k(\G; \sheaf L)$ for the functor of trivializing sections of $\Theta
 \end{itemize}
 \end{definition}
 
-\noindent Thus, we have constructed a map \[\Spec E_0 MU[6, \infty) \to C^3(\CP^\infty_E; \sheaf I(0)).\] The following Lemma is a matter of fully expanding definitions:
+\noindent Thus, we have constructed a map \[\phi\co \Spec E_0 MU[6, \infty) \to C^3(\CP^\infty_E; \sheaf I(0)).\] The following Lemma is a matter of fully expanding definitions:
 
 \begin{lemma}[{\cite[Theorem 2.50]{AHSTheoremOfTheCube}}]
 The map \[\Spec E_0 MU[6, \infty) \to C^3(\CP^\infty_E; \sheaf I(0))\] is an isomorphism.
 \end{lemma}
-\begin{proof}
+\begin{proof}[Proof sketch]
+\todo{You shouldn't call this anything more than a ``proof sketch'' unless you expand out the reasoning for why this square commutes.}
 This map is equivariant, in the sense that the following square commutes:
 \begin{center}
 \begin{tikzcd}
-\Spec E_0 MU[6, \infty) \times \Spec E_0 BU[6, \infty) \arrow{r} \arrow[equal]{d} & \Spec E_0 MU[6, \infty) \arrow[equal]{d} \\
+\Spec E_0 MU[6, \infty) \times \Spec E_0 BU[6, \infty) \arrow{r} \arrow{d}{\phi \times \text{\ref{Pi3ForCplxOrientableE}}} & \Spec E_0 MU[6, \infty) \arrow{d}{\phi} \\
 C^3(\CP^\infty_E; \sheaf I(0)) \times C^3(\CP^\infty_E; \Gm) \arrow{r} & C^3(\CP^\infty_E; \sheaf I(0)).
 \end{tikzcd}
 \end{center}
