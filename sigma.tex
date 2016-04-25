@@ -1073,7 +1073,7 @@ Fix a formal group $\Gamma$ of finite height $d$, and write $K = K_\Gamma$ for t
 BO[2, \infty) & := BSO, &
 BO[4, \infty) & := B\Spin, &
 BO[8, \infty) & := B\String.
-\end{align*}
+\end{align*}\todo{The $:=$ should be $=:$ perhaps?}
 
 \begin{remark}
 Unlike $kU$, there is \emph{not} an equivalence \[\OS{kO}{n} \not\simeq (BO \times \Z)[n, \infty),\] unless $n$ happens to take the form $n = 8k$ for a nonnegative integer $k$.  The reasoning for this stray equivalence is similar to that for $kU$: the homotopy ring of $kO$ has a polynomial factor of degree $8$, and the other elements lie in a band of dimensions smaller than $8$.  Otherwise, other things happen --- for instance,
@@ -1084,7 +1084,7 @@ Unlike $kU$, there is \emph{not} an equivalence \[\OS{kO}{n} \not\simeq (BO \tim
 \end{remark}
 
 \begin{remark}[{\cite[Section 5.2]{KLW}}]
-We may as well take the ground field of our Morava $K$--theory to have characteristic $p = 2$, since at odd characteristics there is little distinction between $kO$ and $kU$, owing to the fiber sequence \[\Susp kO \xrightarrow{\cdot \eta = 0} kO \to kU.\]  However, this reveals a disadvantage of Morava $K$--theory that will finally cause us real consternation: Morava $K$--theories at the prime $2$ are not commutative ring spectra.  Accordingly, $(K_\Gamma)_* G$ for a commutative $H$--group $G$ may fail to give a commutative algebra.  Luckily, \Cref{MoravaKIsNotCommutative} tells us that if $(K_\Gamma)_* G$ happens to be even-concentrated, then the obstructions to commutativity identically vanish.  So, we can be somewhat indelicate about this noncommutativity issue, provided that we continually check that the algebras we are forming are even-concentrated.
+We may as well take the ground field of our Morava $K$--theory to have characteristic $p = 2$, since at odd characteristics there is little distinction between $kO$ and $kU$, owing to the fiber sequence \[\Susp kO \xrightarrow{\cdot \eta = 0} kO \to kU.\] \todo{The way you wrote this fiber sequence doesn't show why $p=2$ is special.} However, this reveals a disadvantage of Morava $K$--theory that will finally cause us real consternation: Morava $K$--theories at the prime $2$ are not commutative ring spectra.  Accordingly, $(K_\Gamma)_* G$ for a commutative $H$--group $G$ may fail to give a commutative algebra.  Luckily, \Cref{MoravaKIsNotCommutative} tells us that if $(K_\Gamma)_* G$ happens to be even-concentrated, then the obstructions to commutativity identically vanish.  So, we can be somewhat indelicate about this noncommutativity issue, provided that we continually check that the algebras we are forming are even-concentrated.
 \end{remark}
 
 In order to get off the ground, we will need the following Lemma about the behavior of the Atiyah--Hirzebruch spectral sequence for a Morava $K$--theory:
@@ -1103,14 +1103,14 @@ There is a bi-Cartesian square of coalgebraic formal schemes
 \end{center}
 \end{corollary}
 \begin{proof}
-We apply \Cref{MoravaKThyAHSS} to the analysis of the spectral sequence of Hopf algebras \[H\F_2{}_* BO \otimes (K_\Gamma)_* \Rightarrow (K_\Gamma)_* BO.\]  \citeme{I don't know where these Milnor primitives are calculated. I guess we could have done them using formal geometry} We have $H\F_2{}_* BO \cong \F_2[b_1, b_2, \ldots]$ and \[Q_d b_{2^{d+1} + 2j} = b_{2j + 1},\] from which it follows that all the odd generators are killed, all their squares survive, and only the even generators of low degree are permanent cycles.  This results in a decomposition \[(K_\Gamma)_* BO \cong (K_\Gamma)_*[b_2, b_4, b_{2^{d+1}-2}] \underset{(K_\Gamma)[b_{2j}^2 \mid j < 2^d]}{\otimes} (K_\Gamma)_*[b_{2j}^2],\] and so we are tasked with assigning names to the coalgebraic formal schemes appearing in this formula.
+We apply \Cref{MoravaKThyAHSS} to the analysis of the spectral sequence of Hopf algebras \[H\F_2{}_* BO \otimes (K_\Gamma)_* \Rightarrow (K_\Gamma)_* BO.\]  \citeme{I don't know where these Milnor primitives are calculated. I guess we could have done them using formal geometry} We have $H\F_2{}_* BO \cong \F_2[b_1, b_2, \ldots]$ and \[Q_d b_{2^{d+1} + 2j} = b_{2j + 1},\] from which it follows that all the odd generators are killed, all their squares survive \todo{Only the squares of even generators survive.}, and only the even generators of low degree are permanent cycles.  This results in a decomposition \[(K_\Gamma)_* BO \cong (K_\Gamma)_*[b_2, b_4, b_{2^{d+1}-2}] \underset{(K_\Gamma)[b_{2j}^2 \mid j < 2^d]}{\otimes} (K_\Gamma)_*[b_{2j}^2],\] and so we are tasked with assigning names to the coalgebraic formal schemes appearing in this formula.
 
-The left-hand factor is the free Hopf algebra on the coalgebra determined by the $2$--torsion in the formal group $\Gamma$.  The right-hand factor is the free Hopf algebra on the formal curve $\barG := \HP^\infty_K$, using the isogeny
+The left-hand factor is the free Hopf algebra on the coalgebra determined by the $2$--torsion in the formal group $\Gamma$ \todo{You write $\Gamma$ but also $\G$.}.  The right-hand factor is the free Hopf algebra on the formal curve $\barG := \HP^\infty_K$, using the isogeny
 \begin{align*}
 \HP^\infty_K & \to \CP^\infty_K \\
 y & \mapsto x \cdot [-1](x)
 \end{align*}
-induced by desymplectification.  Because $\H^\times$ is not commutative, $\barG$ is not a formal group, but we pull back the multiplication-by-$2$ isogeny from $\G$ to $\barG$ and define the subscheme $\barG[2]$ of points mapping to zero.
+induced by desymplectification.  Because $\H^\times$ is not commutative, $\barG$ is not a formal group, but we pull back the multiplication-by-$2$ isogeny from $\G$ to $\barG$ and define the subscheme $\barG[2]$ of points mapping to zero. \todo{It would be nice if you could put in a bit more detail about why these formal schemes correspond to the coalgebras from above.}
 \end{proof}
 
 Suppose that the Postnikov sections \[X(n, \infty) \to X[n, \infty) \to X[n, n]\] induce short exact sequences of formal groups.  A presentation of $X_K$ as a bi-Cartesian square then acquires value via the following algebraic Lemma:
@@ -1138,14 +1138,14 @@ There is a bi-Cartesian square
 \end{center}
 \end{corollary}
 \begin{proof}[Proof sketch]
-The fibration $BSO \to BO \to BO(1)$ gives a short exact sequence of Hopf algebras, so using \Cref{FormalSchemeForBO} we are in the situation of \Cref{CubeOfFibers}.  To compute the pointwise kernels, begin by considering the commuting square of Postnikov sections
+The fibration $BSO \to BO \to BO(1)$ gives a short exact sequence of Hopf algebras \todo{after applying $K$-homology -- what is the argument for this? Do I need to look at some spectral sequence?}, so using \Cref{FormalSchemeForBO} we are in the situation of \Cref{CubeOfFibers}.  To compute the pointwise kernels, begin by considering the commuting square of Postnikov sections
 \begin{center}
 \begin{tikzcd}
 BO_K \arrow{r} \arrow{d} & BU_K \arrow{d} \\
 \G[2] \arrow{r} & \G.
 \end{tikzcd}
 \end{center}
-Both horizontal maps are injections.  Since $\Div \barG \to BU_K \cong \Div_0 \G \to \G$ is null, the composite $\Div_0 \barG \to \G[2]$ is null.  Similarly, the composite $\Div \G[2] \to \G[2]$ acts by summation, and its kernel is $\SDiv_0 \G[2]$.
+\todo{This diagram seems to be missing $\Div_0 \bar{G}$ and $\Div \bar{G}$.  Also, you are identifying $K(\mathbb{Z}/2.1)_K$ with $\hatG[2]$.  You argue using $BU$, but it also seems that whatever argument you are using to show that the right vertical arrows have null composite should also just work for $BO$.} Both horizontal maps are injections.  Since $\Div \barG \to BU_K \cong \Div_0 \G \to \G$ is null, the composite $\Div_0 \barG \to \G[2]$ is null.  Similarly, the composite $\Div \G[2] \to \G[2]$ acts by summation, and its kernel is $\SDiv_0 \G[2]$.
 \end{proof}
 
 From here, the computation gets harder.  
@@ -1178,7 +1178,9 @@ where $\tau\co C_2 \G \to C_3 \G$ is specified at the level of formal schemes by
 & = [a, a, b] - [b, a, b] - [-a - b, a, b] \\
 & = [a, a, b] - [b + a, a, b] + [b, a + a, b] - [b, a, b],
 \end{align*}
-and this is forced null in $C_3 \G$, as it looks like a $2$--cocycle shuffle.
+and this is forced null in $C_3 \G$, as it looks like a $2$--cocycle shuffle. 
+
+\todo{Where is $\hatG[2]^{\wedge 2}$ in the diagram?  What is $\xi$? What is $\epsilon$? Is the dotted arrow the Bockstein? In the diagram you wrote $K_* K(C_2,2)$, but I think we already have too many $C_2$'s.  I'm also confused about the appearances of all the symmetric powers $C_2$ and $C_3$.  Where do they appear in the diagram?}
 
 \todo[inline]{I'm a little fuzzy on the coherence of this with the Bockstein: this computes the lift of $\tau \circ f$ into $K(\Z, 3)_K$, and it does happen to factor through the subscheme $K(\Z/2, 2)_K$ determined by the Bockstein. However, I don't immediately see why this agrees with the bottom Postnikov section of $BSO$: that's a map off of $BSO$ and this is a rotated map into $BU[6, \infty)$, so it's not an immediate consequence of naturality.  It has to do with rotating the Wood cofiber sequence just right, and in particular where the horizontal sequences come from: they're stitched-together from two consecutive Wood cofiber sequences.}
 \end{proof}
@@ -1207,7 +1209,7 @@ Applying the Thom spectrum functor to the fiber square gives the pushout diagram
 \S \arrow{r} & M\String,
 \end{tikzcd}
 \end{center}
-or, equivalently, an equivalence \[M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S.\]  This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
+or, equivalently, an equivalence \[M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S.\] \todo{It seems that this approach, which I presume is the one that ultimately works, is independent of all the earlier work involving $B\Spin$.} This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures \todo{You have not introduced $\Sigma$--structures yet.}.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
 
 
 
