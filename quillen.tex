@@ -530,7 +530,35 @@ Let $E = MU$.  The Landweber--Novikov operations are the \emph{stable} operation
 \end{itemize}
 \end{remark}
 
+
+
+
 \todo[inline]{Jeremy Hahn, following Rudyak, produced a proof of the incidence relation which doesn't rely on this (particular) geometric model of complex bordism.  His write-up of the $p = 2$ case is elsewhere in the repository.  The end of this lecture and all of the next one should be reworked to use this other perspective!  Manifolds are gross.}
+
+\todo[inline]{Here's a copy-paste of what Rudyak has to say about power operations.}
+
+\citeme{Rudyak Definition 7.4}
+Let $EC_n^{(m)}$ denote the $m$--skeleton of the bar-complex model of the contractible space with a free $C_n$--action.  For a point space $X$, we set $\Gamma_n^+(X) := (EC_n^{(m)})^+ \sm_{C_n} X^{\sm n}$, so that $\colim_n \Gamma_n^+(X) = X^{\sm n}_{hC_n}$.  If $\xi\co X \to BU(k)$ selects a complex vector bundle on $X$, then we get a complex vector bundle $p^* \xi^{\times n} \to EC_n^{(m)} \sm X^{\times n}$, and there is a quotient map \[(p^* \xi^{\times n}) / C_n \to \Gamma_m(X)\] which is also a complex vector bundle $\xi(m)$ of dimension $n \cdot \dim \xi$.  This intertwines with Thomification by \[T(\xi(n)) = \Gamma_m^+(T \xi).\]\todo{I don't think I got all the $m$s and $n$s straight here.}
+
+The external Steenrod--tom Dieck operation has signature \[EP_n^{2r}\co \widetilde{MU}^{2r}(X) \to \widetilde{MU}^{4r}(\Gamma_n^+(X)).\]  Beginning with a class \[f\co S^{2l} X \to MU(l + r),\] which induces a map \[h\co \widetilde{MU}^{2n(l+r)}(\Gamma_m^+(MU(l+r))) \to \widetilde{MU}^{2n(l+r)} \Gamma_m^+(S^{2l} X) \cong \widetilde{MU}^{2nr} \Gamma_m^+(X)\] which images the Thom--Dold class \[U_{\gamma^{l+r}} \in \widetilde{MU}^{2 \cdot n \cdot (l + r)}(\Gamma_m^+(MU(l+r)))\] to \[EP_m^{2r}(a) := h(U_{\gamma^{l+r}(n)}).\]
+
+A different way of thinking of this is to assume that $MU$ has a sufficiently commutative multiplication so that there is a factorization \[MU^{\sm n} \to MU^{\sm n}_{hC_n} \xrightarrow\mu MU.\]  Given a class $x \in MU^* X$, you then get a map
+\begin{center}
+\begin{tikzcd}
+& X \arrow["\Delta"]{r} \arrow{d} & X^{\sm n} \arrow["x^{\sm n}"]{r} \arrow{d} & MU^{\sm n} \arrow{d} \\
+X \times BC_n \arrow[equal]{r} & X_{hC_n} \arrow{r} & X^{\sm n}_{hC_n} \arrow{r} & MU^{\sm n}_{hC_n} \arrow{r}{\mu} & MU
+\end{tikzcd}
+\end{center}
+by taking the composite on the bottom row.  This is the same map.  It has the behavior of raising $x$ to the $n${\th} power if you restrict to the basepoint inside of $BC_n$, but there is more data present beyond that.
+
+
+
+
+
+
+
+
+\todo[inline]{What follows is the original content of the lecture.}
 
 We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not (\textit{a priori}) expect them to be additive operations, so they are quite distinct from the Landweber--Novikov operations.  Power operations arise from ``$E_\infty$'' structures on ring spectra\footnote{Or, by some accounts, ``$H_\infty$'' structures.}, but most such structures arise in nature from geometric models of cohomology theories.  To produce them for complex cobordism, we will use a particular model, alluded to in \Cref{IntroductionSection}.
 
@@ -710,6 +738,12 @@ w^{r+q} P(f_* 1) & = \sum_{|\alpha| \le r} w^{r - |\alpha|} a(v)^\alpha f_* c_\a
 \end{proof}
 
 This formula is quite remarkable --- it says that a certain power operation defined for $MU$ is, in fact, additive and stable (after multiplying by $w$ some)!  This is certainly not the case in general, and I'm not aware of an \textit{a priori} reason to expect this to have happened all along.  Tomorrow, we will use it to power an induction to say something about the coefficient ring $MU_*$.
+
+
+
+
+
+\todo[inline]{In Rudyak's / Jeremy's approach, the main point is that $C_n$--equivariant vector bundles can be traded for ordinary vector bundles with a $BC_n$ factor in the base.  So, a decomposition of the $n$--fold sum of the tautological vector bundle, considered as a $C_n$--bundle, induces a decomposition of the associated bundle over $BC_n$, which computes the effect of the $n${\th} power operation.  Then, using the splitting principle, one recovers Quillen's incidence Theorem.  (I'm too sleepy to really work my way through this. Both Jeremy and Rudyak specialize to the case $n = 2$, and so we'll need to rewrite what they do at an arbitrary prime.  This will be easy, but it will require a clear head.)}
 
 
 
