@@ -19,7 +19,7 @@ Today we will discuss an elephant that has been lingering in our room: we began 
 Suppose that $E$ is a ring spectrum, and recall the usual way to produce the structure of an $E^*$--algebra on $E^* X$ for $X$ a space.  The space $X$ has a diagonal map $\Delta\co X \to X \times X$, which on $E$--cohomology induces a multiplication map \[E^* X \otimes_{E^*} E^* X \xrightarrow{\mu_E} E^*(X \times X) \xrightarrow{E^* \Delta} E^* X.\]  Dually, applying $E$--homology, we have a pair of maps \[E_* X \xrightarrow{E_* \Delta} E_*(X \times X) \xleftarrow{\text{K\"unneth}} E_* X \otimes_{E_*} E_* X.\]  In the case that the K\"unneth map is an isomorphism, the right--hand map is invertible, and the long composite induces the structure of an $E_*$--coalgebra on $E_* X$.  In the most generous case that $E$ is a field spectrum (in the sense of \Cref{FieldSpectraAreKTheories}), $E^* X$ is functorially the linear dual of $E_* X$, which motivates us to consider the following purely algebraic construction:
 
 \begin{definition}
-Let $C$ be a coalgebra over a field $k$.  The scheme $\Sch C$ associated to $C$ is defined by \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps f = 1 \end{array} \right\}.\]
+Let $C$ be a coalgebra over a field $k$.  The scheme \emph{$\Sch C$ associated to $C$} is defined by \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps f = 1 \end{array} \right\}.\]
 \end{definition}
 
 \begin{lemma}
@@ -56,7 +56,7 @@ Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$
 Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram, including the colimit point, is a good coalgebra.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
 \end{theorem}
 
-This Theorem gives us access to many constructions on formal schemes, provided we assume that the input is coalgebraic.  This covers many of the cases of interest to us, as every formal variety is coalgebraic.  For an example of the sort of constructions that become available, one can prove the following Corollary by analyzing the symmetric power of coalgebras:
+This Theorem gives us access to many constructions on formal schemes, provided we assume that the input is coalgebraic.  This covers many of the cases of interest to us, as every formal variety is coalgebraic\todo{I guess you would prove this by first d\'{e}vissaging to the case of $\A^n$.  How does this work?  Then you'd just need to prove it for $\A^n$ -- Jay asked you how to do this for $\A^1$, and I think you should include the argument here.}.  For an example of the sort of constructions that become available, one can prove the following Corollary by analyzing the symmetric power of coalgebras:
 
 \begin{corollary}[{\cite[Proposition 6.4]{StricklandFSFG}}]
 For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$.  If $\Spec k \to X$ is a pointing, then $\colim_n \{X^{\times n}_{\Sigma_n}\}_n$ models the free formal monoid on the pointed formal scheme. \qed
@@ -95,6 +95,8 @@ On the level of Hopf algebras $A = \sheaf O_G$, this has the effect \[DG = \Sch 
 \todo{You could stand to include a proof of this.  It's been a while since you actually proved something serious with formal schemes, and this is pretty nice.}
 
 \todo{You could also include mention of the motivation: $C_k \G$ is hard to exhibit, but $(C_k \G)^\vee$ is easy.  It's not clear how to do this without leaping too far ahead, though.}
+
+\todo{Your definition is for finite group schemes, but then you use it for formal groups.  One way to extend the definition is by $\InternalHom{FormalGroups}(G,\G_m)$.  Another is to take the limit of the objectwise duals in the direct system defining the formal group.  Are they the same?  Perhaps you should assure the reader that nothing goes wrong?}
 
 \begin{remark}
 The effect of Cartier duality on the Dieudonn\'e module of a formal group is linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} are related by Cartier duality.
@@ -138,7 +140,7 @@ is isomorphic to the affine scheme $\Spec E_0 MUP$.  Moreover, the $E_0$--points
 The equivalence between (1) and (2) is given by the splitting principle for complex line bundles.  The equivalence between (1) and (3) follows from calculating that $E_0 MUP$ is a free $E_0$--module.
 \end{proof}
 
-An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $\L - 1$, and it is proven in analogous way.  In particular, we will want a version of the splitting principle for virtual vector bundles of virtual rank $0$.  Given a finite complex $X$ and such a rank $0$ virtual vector bundle, write \[\tilde V \co X \to BU\] for the classifying map.  Because $X$ is a finite complex, there exists an integer $n$ so that $\tilde V = V - n \cdot 1$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ gives a of $\tilde V$ \emph{internally to $BU$} as \[\tilde V = V - n \cdot 1 = \bigoplus_{i=1}^n (\L_i - 1),\] as each bundle $\L_i - 1$ itself has the natural structure of a rank $0$ virtual vector bundle.  This begets the following analogue of the previous result:
+An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $\L - 1$, and it is proven in analogous way.  In particular, we will want a version of the splitting principle for virtual vector bundles of virtual rank $0$.  Given a finite complex $X$ and such a rank $0$ virtual vector bundle, write \[\tilde V \co X \to BU\] for the classifying map.  Because $X$ is a finite complex, there exists an integer $n$ so that $\tilde V = V - n \cdot 1$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ gives a trivialization of $\tilde V$ \emph{internally to $BU$} as \[\tilde V = V - n \cdot 1 = \bigoplus_{i=1}^n (\L_i - 1),\] as each bundle $\L_i - 1$ itself has the natural structure of a rank $0$ virtual vector bundle.  This begets the following analogue of the previous result:
 \begin{theorem}[{\cite[Example 2.54]{AHSTheoremOfTheCube}}]\label{BUTriumvirate}\citeme{Put in cross references}
 Take $E$ to be complex--orientable.  The functor
 \begin{align*}
@@ -160,7 +162,7 @@ f & \mapsto \frac{f'(0)}{f}.
 These two Thom spectra are the beginning of a larger pattern.  Their base spaces $BU \times \Z$ and $BU$ are both infinite loopspaces: they are $\OS{kU}{0}$ and $\OS{kU}{2}$ respectively, where $kU$ is the connective complex $K$--theory spectrum.  In general, the space $\OS{kU}{2k}$ is given as a connective cover\todo{Justify this as a Lemma.}: \[\OS{kU}{2k} = BU[2k, \infty),\] and so the next Thom spectrum in the sequence is $MSU$, the bordism theory of $SU$--structured manifolds.  The special unitary group $SU$ is explicit enough that these orientations can be fully understood along similar lines to what we have done so far.  Our jumping off point for that story will be, again, an extension of the splitting principle.
 \begin{lemma}\label{SplittingPrincipleForBSU}
 \todo{Hood had a question here: what symmetry group acts on this splitting? I think it's possible to show that the full symmetric group action on the $BU \times \Z$ splitting induces a full symmetric group action on the $BSU$ splitting. I don't know if there's any more or any less.}
-Let $X$ be a finite complex, and let $\tilde V\co X \to BU$ classify a virtual vector bundle of rank $0$ over $X$.  Select a factorization $\tilde{\tilde V}\co X \to BSU$ of $\tilde V$ through $BSU$.  Then, there is a space $f\co Y \to X$, where $f_E\co Y_E \to X_E$ is finite and flat, as well as a collection of line bundles $\sheaf H_j$, $\sheaf H'_j$ expressing a $BSU$--internal decomposition \[\tilde{\tilde V} = -\bigoplus_{j=1}^n (\sheaf H_j - 1)(\sheaf H'_j - 1).\]
+Let $X$ be a finite complex, and let $\tilde V\co X \to BU$ classify a virtual vector bundle of rank $0$ over $X$.  Select a factorization $\tilde{\tilde V}\co X \to BSU$ of $\tilde V$ through $BSU$.  Then, there is a space $f\co Y \to X$, where $f_E\co Y_E \to X_E$ is finite and flat, as well as a collection of line bundles $\sheaf H_j$, $\sheaf H'_j$ expressing a $BSU$--internal decomposition \[\tilde{\tilde V} = -\bigoplus_{j=1}^n (\sheaf H_j - 1)(\sheaf H'_j - 1).\] \todo{The minus sign: I understand mechanically where it comes from, but I still find it odd.  Can we recover the $BU$-splitting principle from this splitting principle -- and what happens to the signs?}
 \end{lemma}
 \begin{proof}
 Begin by using \Cref{OriginalSplittingPrinciple} on $V$ to get an equality of $BU$--bundles \[\tilde{\tilde V} = V' + \L_1 + \L_2 - n \cdot 1.\]  Adding $(\L_1 - 1)(\L_2 - 1)$ to both sides, this gives
@@ -181,7 +183,7 @@ Since we used the product map \[kU^2(Y) \otimes kU^2(Y) \to kU^4(Y)\] in the cou
 (\L_1-1)\sheaf H(\L_2 - 1) & = \\
 (\sheaf H \L_1 - \sheaf H)(\L_2 - 1) & = (\L_1-1)(\sheaf H \L_2 - \sheaf H) \\
 (\sheaf H \L_1 - 1)(\L_2 - 1) - (\sheaf H - 1)(\L_2 - 1) & = (\L_1 - 1)(\sheaf H \L_2 - 1) - (\L_1 - 1)(\sheaf H - 1).
-\end{align*}
+\end{align*}\todo{I think it's more symmetric if you write $\L_1 \sheaf H$ instead of $\sheaf H \L_1$.}
 This ``$kU^0$--linearity'' is sometimes called a ``$2$--cocycle condition'', in reference to the similarity with the formula in \Cref{DefinitionSymmetric2Cocycle}.
 \end{remark}
 
@@ -200,7 +202,7 @@ BSU_E \arrow{r} \arrow[equal]{d} & BU_E \arrow{r}{B\det} \arrow[equal]{d} & BU(1
 \SDiv_0 \CP^\infty_E \arrow{r} & \Div_0 \CP^\infty_E \arrow{r}{\mathrm{sum}} & \CP^\infty_E,
 \end{tikzcd}
 \end{center}
-where the scheme ``$\SDiv_0 \CP^\infty$'' of ``special divisors'' consists of those divisors which vanish under the summation map.  However, where the comparison map $BU(1)_E \to BU_E$ has an identifiable universal property --- it presents $BU_E$ as the universal formal group on the pointed curve $BU(1)_E$ --- the description of $BSU_E$ as a scheme of special divisors does not bear much immediate resemblance to a free object on the special divisor $([a] - [0])([b] - [0])$ classified by \[(\CP^\infty)^{\times 2}_E \xrightarrow{(\L_1 - 1)(\L_2 - 1)_E} BSU_E \to BU_E = \Div_0 \CP^\infty_E.\]  It would be wise of us to straighten this out before moving on.
+where the scheme ``$\SDiv_0 \CP^\infty_E$'' of ``special divisors'' consists of those divisors which vanish under the summation map\todo{Is the sum map induced by the diagonal on $\mathbb{C}P^\infty$ or the multiplication on $E$ -- does it matter?  Also, is it clear why the right square in the diagram commutes?  Does summation mean anything geometrically?  What does having zero sum mean?  The group of divisors is free abelian (before inverting the pointing), so wouldn't each point in the divisor have to be the basepoint in order for the sum to be zero?}.  However, where the comparison map $BU(1)_E \to BU_E$ has an identifiable universal property --- it presents $BU_E$ as the universal formal group on the pointed curve $BU(1)_E$ --- the description of $BSU_E$ as a scheme of special divisors does not bear much immediate resemblance to a free object on the special divisor $([a] - [0])([b] - [0])$\todo{$[0] = 1$?} classified by \[(\CP^\infty)^{\times 2}_E \xrightarrow{(\L_1 - 1)(\L_2 - 1)_E} BSU_E \to BU_E = \Div_0 \CP^\infty_E.\]  It would be wise of us to straighten this out before moving on.
 
 \begin{definition}\label{DefinitionOfC2G}
 If it exists, let $C_2 \G$ denote the symmetric square of $\Div_0 \G$, thought of as a module over $\Div \G$.  This scheme has the property that a formal group homomorphism $\phi\co C_2 \G \to H$ is equivalent data to a symmetric function $\psi\co \G \times \G \to H$ satisfying a rigidity condition ($\psi(x, 0) = 0$)\todo{Allen wanted to know why this deserved to be called ``rigid''.} and a $2$--cocycle condition as in \Cref{TwoCocycleConditionForBSUBundles}.
@@ -285,16 +287,16 @@ Today will constitute something of a r\'esum\'e on elliptic curves.  We'll hardl
 To begin with, recall that an elliptic curve in the complex setting is a torus, and it admits a presentation by selecting a lattice $\Lambda$ of full rank in $\C$ and forming the quotient \[\C \xrightarrow{\pi_\Lambda} E_\Lambda = \C / \Lambda.\]  The meromorphic functions $f$ on $E_\Lambda$ pull back to give meromorphic functions $\pi_\Lambda^* f$ on $\C$ satisfying a periodicity constraint in the form of the functional equation \[\pi_\Lambda^* f(z + \Lambda) = \pi_\Lambda^* f(z).\]  From this, it follows that there are no holomorphic such functions, save the constants --- such a function would be bounded, and Liouville's theorem would apply.  It is, however, possible to build the following meromorphic special function, which has poles of order $2$ at the lattice points: \[\wp_\Lambda(z) = \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \{0\}} \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2}.\]  Its derivative is also a meromorphic function satisfying the periodicity constraint: \[\wp_\Lambda'(z) = -2 \sum_{\omega \in \Lambda} \frac{1}{(z - \omega)^3}.\]  In fact, these two functions generate all other meromorphic functions on $E_\Lambda$, in the sense that the subsheaf spanned by the algebra generators $\wp_\Lambda$ and $\wp_\Lambda'$ is exactly $\pi_\Lambda^* \sheaf M_{E_\Lambda}$.  This algebra is subject to the following relation, in the form of a differential equation: \[\wp_\Lambda'(z)^2 = 4 \wp_\Lambda(z)^3 - g_2(\Lambda) \wp_\Lambda(z) - g_3(\Lambda),\] for some special values $g_2(\Lambda)$ and $g_3(\Lambda)$.  Accordingly, writing $C \subseteq \CP^2$ for the projective curve $wy^2 = 4x^3 - g_2(\Lambda) w^2 x - g_3(\Lambda) w^3$, there is an analytic group isomorphism
 \begin{align*}
 E_\Lambda & \to C, \\
-z \pmod \Lambda & \mapsto (1, \wp_\Lambda(z), \wp_\Lambda'(z)).
+z \pmod \Lambda & \mapsto [1: \wp_\Lambda(z): \wp_\Lambda'(z)].
 \end{align*}
 This is sometimes referred to as the Weierstrass presentation of $E_\Lambda$.
 
 There is a second standard embedding of a complex elliptic curve into projective space, using \textit{$\theta$--functions}, which are most naturally expressed \emph{multiplicatively}.  To begin, select a lattice $\Lambda$ and a basis for it, and rescale the lattice so that the basis takes the form $\{1, \tau\}$ with $\tau$ in the upper half-plane.  Then, the normalized exponential function $z \mapsto \exp(2 \pi i z)$ has $1 \cdot \Z$ as its kernel, and setting $q = \exp(2 \pi i \tau)$ we get a second presentation of $E_\Lambda$ as $\C^\times / q^{\Z}$.\todo{I think it's helpful to draw a picture here of an annulus with some identification made.}
 
-The associated $\theta$--function is defined by \[\theta_q(u) = \prod_{m \ge 1} (1 - q^m) (1 + q^{m-\frac{1}{2}}u) (1 + q^{m-\frac{1}{2}}u^{-1}) = \sum_{n \in \Z} u^n q^{\frac{1}{2} n^2}.\]  It vanishes on the set $\exp(2 \pi i (\frac{1}{2}m + \frac{\tau}{2}n))$, the center of the fundamental annulus.  However, since it has no poles it cannot descend to give a function on $\C^\times / q^{\Z}$.  A different obstruction to this descent is its imperfect periodicity relation: \[\theta_q(qu) = u^{-1} q^{\frac{-1}{2}} \theta_q(u).\]  We can also shift the zero-set of $\theta_q$ by rational rescalings $a$ of $q$ and $b$ of $1$:\todo{This isn't stated well.} \[\theta_q^{a,b}(u) = q^{\frac{a^2}{2}} \cdot u^a \cdot \exp(2 \pi i a b) \theta_q(u q^a \exp(2 \pi i b)).\]
+The associated $\theta$--function is defined by \[\theta_q(u) = \prod_{m \ge 1} (1 - q^m) (1 + q^{m-\frac{1}{2}}u) (1 + q^{m-\frac{1}{2}}u^{-1}) = \sum_{n \in \Z} u^n q^{\frac{1}{2} n^2}.\]  It vanishes on the set $\{\exp(2 \pi i (\frac{1}{2}m + \frac{\tau}{2}n))\}$, i.e., at the center of the fundamental annulus.  However, since it has no poles it cannot descend to give a function on $\C^\times / q^{\Z}$.  A different obstruction to this descent is its imperfect periodicity relation: \[\theta_q(qu) = u^{-1} q^{\frac{-1}{2}} \theta_q(u).\]  We can also shift the zero-set of $\theta_q$ by rational rescalings $a$ of $q$ and $b$ of $1$:\todo{This isn't stated well.} \[\theta_q^{a,b}(u) = q^{\frac{a^2}{2}} \cdot u^a \cdot \exp(2 \pi i a b) \theta_q(u q^a \exp(2 \pi i b)).\]
 
 \begin{remark}[{\cite[Proposition 10.2.6]{Husemoller}}]
-For any $N > 0$, define $V_\tau[N]$ to be the space of entire functions $f$ with $f(z + N) = f(z)$ and $f(z + \tau) = e^{-2 \pi i N z - \pi i N^2 \tau} f(z)$.  Then, $V_\tau[N]$ has $\C$--dimension $N^2$, and the functions $\theta_\tau^{a, b}$ give a basis by picking representatives $(a_i, b_i)$ of the classes in $((1/N)\Z / \Z)^2$.
+For any $N > 0$, define $V_\tau[N]$ to be the space of entire functions $f$ with $f(z + N) = f(z)$ and $f(z + \tau) = e^{-2 \pi i N z - \pi i N^2 \tau} f(z)$.  Then, $V_\tau[N]$ has $\C$--dimension $N^2$, and the functions $\theta_\tau^{a, b}$ \todo{At this point you swapped notation from $\theta_q$ to $\theta_\tau$.}give a basis by picking representatives $(a_i, b_i)$ of the classes in $((1/N)\Z / \Z)^2$.
 \end{remark}
 
 Even though these functions do not themselves descend to $\C^\times / q^{\Z}$, we can collectively use them to construct a map to complex projective space, where the quasi-periodicity relations will mutually cancel in homogeneous coordinates.
@@ -303,7 +305,7 @@ Consider the map
 \begin{align*}
 \C / N(\Lambda) & \xrightarrow{f_{(N)}} \P^{N^2-1}(\C), \\
 z & \mapsto [\cdots : \theta_\tau^{i/N, j/N}(z) : \cdots].
-\end{align*}
+\end{align*}\todo{What's $N(\Lambda)$?}
 For $N > 1$, this map is an embedding. \qed
 \end{theorem}
 
@@ -330,10 +332,10 @@ upon which there is the additional ``Jacobi'' relation \[A^4 = B^4 + C^4.\]
 \end{example}
 
 \begin{remark}
-This embedding of $E_\Lambda$ as an intersection of quadratic hypersurfaces in $\CP^3$ is quite different from the Weierstrass embedding.  Nonetheless, the embeddings are analytically related.  Namely, there is an equality \[\frac{d^2}{dz^2} \log \theta_{\exp{2 \pi i \tau}}(\exp{2 \pi i z}) = \wp_\Lambda(z).\]  Separately, Weierstrass considered a function $\sigma_\Lambda$, defined by \[\sigma_\Lambda(z) = z \prod_{\omega \in \Lambda \setminus 0} \left( 1 - \frac{z}{\omega} \right) \cdot \exp \left[ \frac{z}{\omega} + \frac{1}{2} \left( \frac{z}{\omega} \right)^2 \right],\] which also has the property that its second logarithmic derivative is $\wp$ and so is ``basically $\theta_q^{1/2,1/2}$''.  In fact, any elliptic function can be written in the form \[c \cdot \prod_{i=1}^n \frac{\sigma_\Lambda(z - a_i)}{\sigma_\Lambda(z - b_i)}.\]
+This embedding of $E_\Lambda$ as an intersection of quadric surfaces in $\CP^3$ is quite different from the Weierstrass embedding.  Nonetheless, the embeddings are analytically related.  Namely, there is an equality \[\frac{d^2}{dz^2} \log \theta_{\exp{2 \pi i \tau}}(\exp{2 \pi i z}) = \wp_\Lambda(z).\]  Separately, Weierstrass considered a function $\sigma_\Lambda$, defined by \[\sigma_\Lambda(z) = z \prod_{\omega \in \Lambda \setminus 0} \left( 1 - \frac{z}{\omega} \right) \cdot \exp \left[ \frac{z}{\omega} + \frac{1}{2} \left( \frac{z}{\omega} \right)^2 \right],\] which also has the property that its second logarithmic derivative is $\wp$ and so is ``basically $\theta_q^{1/2,1/2}$''.  In fact, any elliptic function can be written in the form \[c \cdot \prod_{i=1}^n \frac{\sigma_\Lambda(z - a_i)}{\sigma_\Lambda(z - b_i)}.\]
 \end{remark}
 
-The $\theta$--functions version of the story has two main successes.  One is that there is a version of this story for an arbitrary abelian variety.  It turns out that all abelian varieties are projective\citeme{Milne's abelian varieties, Theorem 7.1}, and the theorem sitting at the heart of this claim is\todo{Several people wanted some sketch of how to use this theorem to prove the projectivity thing. I don't have any good sketch, and neither did Erick (offhand).}
+The $\theta$--functions version of the story has two main successes.  \todo{What's the other success?}One is that there is a version of this story for an arbitrary abelian variety.  It turns out that all abelian varieties are projective\citeme{Milne's abelian varieties, Theorem 7.1}, and the theorem sitting at the heart of this claim is\todo{Several people wanted some sketch of how to use this theorem to prove the projectivity thing. I don't have any good sketch, and neither did Erick (offhand).}
 \begin{corollary}[Theorem of the cube]\label{Theta3IsTrivial}\citeme{Milne's Abelian Varieties chapter, Corollary 6.4 and Theorem 7.1}
 Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the projection onto the $i${\th} factor, and let $p_{ij} = p_i +_A p_j$, $p_{ijk} = p_i +_A p_j +_A p_k$.  Then for any invertible sheaf $\L$ on $A$, the sheaf \[\Theta^3(\L) := \frac{p_{123}^* \L \otimes p_1^* \L \otimes p_2^* \L \otimes p_3^* \L}{p_{12}^* \L \otimes p_{23}^* \L \otimes p_{31}^* \L \otimes p_\emptyset^* \L} = \bigotimes_{I \subseteq \{1, 2, 3\}} (p_I^* \L)^{(-1)^{|I| - 1}}\] on $A \times A \times A$ is trivial.  If $\L$ is rigid, then $\Theta^3(\L)$ is canonically trivialized by a section $s(A; \L)$. \qed
 \end{corollary}
@@ -342,13 +344,13 @@ Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the proje
 The section $s(A; \L)$ satisfies three familiar properties:
 \begin{itemize}
 \item It is symmetric: pulling back $\Theta^3 \L$ along a shuffle automorphism of $A^3$ yields $\Theta^3 \L$ again, and the pullback of the section $s(A; \L)$ along this shuffle agrees with the original $s(A; \L)$ across this identification.
-\item It is rigid: by restricting to $* \times A \times A$, the tensor factors in $\Theta^3 \L$ cancel out to give the trivial bundle over $A \times A$.  The restriction of the section $s(A; \L)$ to this pullback bundle agrees with the extension of the rigidifying section.
-\item It satisfies a $2$--cocycle condition: in general, we define \[\Theta^k \L := \bigotimes_{I \subseteq \{1, \ldots, k\}} (p_I^* \L)^{(-1)^{|I| - 1}}.\]  In fact, $\Theta^{k+1} \L$ can be written as a pullback of $\Theta^k \L$: \[\Theta^{k+1} \L = \frac{(p_{12} \times \id_{A^{k-1}})^* \L}{(p_1 \times \id_{A^{k-1}})^* \L \otimes (p_2 \times \id_{A^{k-1}})^* \L},\] and pulling back a section $s$ along this map gives a new section \[(\delta s)(x_0, x_1, \ldots, x_k) := \frac{s(x_0 +_A x_1, x_2, \ldots, x_k)}{s(x_0, x_2, \ldots, x_k) \cdot s(x_1, x_2, \ldots, x_k)}.\]  Performing this operation on the first and second factors yields the defining equation of a $2$--cocycle.
+\item It is rigid: by restricting to $* \times A \times A$, the tensor factors in $\Theta^3 \L$ cancel out to give the trivial bundle over $A \times A$.  The restriction of the section $s(A; \L)$ to this pullback bundle agrees with the extension of the rigidifying section\todo{What is the rigidifying section?}.
+\item It satisfies a $2$--cocycle condition: in general, we define \[\Theta^k \L := \bigotimes_{I \subseteq \{1, \ldots, k\}} (p_I^* \L)^{(-1)^{|I| - 1}}.\]  In fact, $\Theta^{k+1} \L$ can be written as a pullback of $\Theta^k \L$: \[\Theta^{k+1} \L = \frac{(p_{12} \times \id_{A^{k-1}})^* \L}{(p_1 \times \id_{A^{k-1}})^* \L \otimes (p_2 \times \id_{A^{k-1}})^* \L},\] and pulling back a section $s$ along this map gives a new section \[(\delta s)(x_0, x_1, \ldots, x_k) := \frac{s(x_0 +_A x_1, x_2, \ldots, x_k)}{s(x_0, x_2, \ldots, x_k) \cdot s(x_1, x_2, \ldots, x_k)}.\]  Performing this operation on the first and second factors yields the defining equation of a $2$--cocycle.\todo{You should write this equation out -- it never hurts to see it again.}
 \end{itemize}
 \end{remark}
 
 \begin{remark}
-The proof of projectivity arising from this method rests on choosing an ample line bundle on $A$ and constructing some generating global sections to get an embedding into $\P(\L^{\oplus n})$.  Mumford showed that a choice of ``$\theta$--structure'' on $A$, which is only slightly more data given in terms of Heisenberg representations\todo{I think.}, gives a canonical identification of $\P(\L^{\oplus n})$ with a \emph{fixed} projective space.  This is suitable for studying how these equations change as one considers different points in the \emph{moduli} of abelian varieties.  Separately, Breen\citeme{Breen} showed that if $\L$ is a line bundle on $A$ with a chosen trivialization of $\Theta^3 \L$ and $\pi\co A' \to A$ is an epimorphism that trivializes $\L$, then one can also associate to this a theory of $\theta$--functions.\todo{You could expand on what this is supposed to mean.}
+The proof of projectivity arising from this method rests on choosing an ample line bundle on $A$ \todo{This is a little strange to say: the existence of an ample line bundle is by definition equivalent to projectivity, so we're not so much ``choosing'' as we are ``constructing'' such a line bundle using the theorem of the cube.} and constructing some generating global sections to get an embedding into $\P(\L^{\oplus n})$.  Mumford showed that a choice of ``$\theta$--structure'' on $A$, which is only slightly more data given in terms of Heisenberg representations\todo{I think.}, gives a canonical identification of $\P(\L^{\oplus n})$ with a \emph{fixed} projective space.  This is suitable for studying how these equations change as one considers different points in the \emph{moduli} of abelian varieties.  Separately, Breen\citeme{Breen} showed that if $\L$ is a line bundle on $A$ with a chosen trivialization of $\Theta^3 \L$ and $\pi\co A' \to A$ is an epimorphism that trivializes $\L$, then one can also associate to this a theory of $\theta$--functions.\todo{You could expand on what this is supposed to mean.}
 \end{remark}
 
 
@@ -377,8 +379,7 @@ The proof of projectivity arising from this method rests on choosing an ample li
 
 % (See Olsson 3.5, 3.11.  You can also see Mumford's \textit{Abelian varieties} p.\ 222.)
 
-
-
+\todo{Akhil's class notes mention a ``very easy'' proof for the theorem of the cube for complex varieties at the end of lecture 5.  Consider fleshing out that argument and see whether it does what you need.}
 
 
 
@@ -398,21 +399,21 @@ X_E \times \InternalHom{GroupSchemes}(Y_E, \Gm) \arrow[equal]{d} \arrow[densely 
 X_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["f \times 1"]{r} & Y_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["\operatorname{ev}"]{r} & \G_m. \arrow{u}
 \end{tikzcd}
 \end{center}
-This is called \textit{the adjoint map}, and we write $\hat f$ for the version of this map valued variously in $\G_m$, $\Gm$, and $\A^1$.  It encodes equivalent information to the map of $E_*$--modules \[E_* \to E_* Y \widehat\otimes_{E_*} E^* X\] by applying the map to $1 \in E_*$.
+This is called \textit{the adjoint map}, and we write $\hat f$ for the version of this map valued variously in $\G_m$, $\Gm$, and $\A^1$.  It encodes equivalent information \todo{How do you recover the adjoint map and vice versa?}to the map of $E_*$--modules \[E_* \to E_* Y \widehat\otimes_{E_*} E^* X\] \todo{What's with the completed tensor product?  Also, this is just the dual of the map $E_* X \to E_* Y$?}by applying the map to $1 \in E_*$.
 \end{definition}
 
 \begin{lemma}\todo{I think this could be connected more strongly to the cooperations stuff in the previous Chapter.}
 This construction converts many properties of $f$ into corresponding properties of this adjoint element.  For instance:\todo{Expand on these, perhaps.}
 \begin{itemize}
-\item It is natural in the source: for $w \in F^n(X)$ and $\gamma\co \OS{F}{n} \to \OS{D}{n}$, there is \[(1 \times \Spec E_0 \gamma) \circ \hat w = \widehat{\gamma_* w}.\]
-\item It converts sums of classes to products of maps to $\Gm$.
+\item It is natural in the source: for $w \in F^n(X)$ and $\gamma\co \OS{F}{n} \to \OS{D}{n}$, there is \[(1 \times \Spec E_0 \gamma) \circ \hat w = \widehat{\gamma_* w}.\] \todo{This is confusing.  You write $\hat w$, but this is not the adjoint map $X_E \times \InternalHom{GroupSchemes}((\OS{F}{n})_E, \Gm) \to \Gm$, but rather the ``equivalent'' map $E_* \to E_* \OS{F}{n} \otimes E^* X$.  In that case, moreover, the formula should be $(\Spec E_* \gamma \otimes 1) \circ \hat w = \widehat{\gamma_* w}.$}
+\item It converts sums of classes to products of maps to $\Gm$. \todo{What about naturality in the target?}
 \qed
 \end{itemize}
 \end{lemma}
 
-In \Cref{MSUDay}, we became interested in the class $\Pi_2$, defined by \[\CP^\infty \times \CP^\infty \xrightarrow{\Pi_2 := (\L_1 - 1)(\L_2 - 1)} \OS{kU}{4} = BSU.\]  The adjoint to this cohomology class is a map of formal schemes \[\hat \Pi_2\co (\CP^\infty_E)^{\times 2} \times_{\S_E} \Spec E_0 BSU \to \Gm,\] which using the exponential adjunction can be interpreted as a map \[\Spec E_0 BSU \to \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm).\]  Because the adjoint construction preserves properties of the class $\Pi_2$, we learn that this map factors through a particular closed subscheme \[C^2(\CP^\infty_E; \Gm) \subseteq \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm)\] of symmetric, rigid functions satisfying the $2$--cocycle condition.  By careful manipulation of divisors in \Cref{SDivModelsC2}, we showed that $BSU_E \cong \SDiv_0 \CP^\infty_E$, which on applying Cartier duality shows that our induced map \[\Spec E_0 BSU \to C^2(\CP^\infty_E; \Gm)\] is an isomorphism.
+In \Cref{MSUDay}, we became interested in the class $\Pi_2$, defined by \[\CP^\infty \times \CP^\infty \xrightarrow{\Pi_2 := (\L_1 - 1)(\L_2 - 1)} \OS{kU}{4} = BSU.\]  The adjoint to this cohomology class is a map of formal schemes \[\hat \Pi_2\co (\CP^\infty_E)^{\times 2} \times_{\S_E} \Spec E_0 BSU \to \Gm,\] \todo{$\S_E$ is just $\Spec E_*$?} which using the exponential adjunction can be interpreted as a map \[\Spec E_0 BSU \to \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm).\]  Because the adjoint construction preserves properties of the class $\Pi_2$, we learn that this map factors through a particular closed subscheme \[C^2(\CP^\infty_E; \Gm) \subseteq \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm)\] of symmetric, rigid functions satisfying the $2$--cocycle condition.  By careful manipulation of divisors in \Cref{SDivModelsC2}, we showed that $BSU_E \cong \SDiv_0 \CP^\infty_E$, which on applying Cartier duality \todo{Cartier duality seems quite important to these examples.  Could you say more about this construction, either here or on the day about Dieudonn\'{e} modules?} shows that our induced map \[\Spec E_0 BSU \to C^2(\CP^\infty_E; \Gm)\] is an isomorphism.
 
-\begin{definition}
+\begin{definition}\todo{This is not really a definition\ldots}
 Similarly, we define a cohomology class \[\Pi_3 = (\L_1 - 1)(\L_2 - 1)(\L_3 - 1) \in kU^6(\CP^\infty)^{\times 3}.\]  It induces an adjoint map\todo{Is this bad notation?} \[\hat \Pi_3\co \Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm),\] where $C^3(\CP^\infty_E; \Gm)$ is the scheme of $\Gm$--valued trivariate functions on $\CP^\infty_E$ satisfying symmetry, rigidity, and a $2$--cocycle condition.  (If $C_3 \CP^\infty_E := \Sym^3_{\Div \CP^\infty_E} \Div_0 \CP^\infty_E$ were to exist, this would be its Cartier dual.)
 \end{definition}
 
@@ -423,11 +424,11 @@ There is a commutative square\todo{Where did $\delta$ come from? A previous day?
 \Spec E_0 BSU \arrow{d}{\Pi_2} \arrow{r} & \Spec E_0 BU[6, \infty) \arrow{d}{\Pi_3} \\
 C^2(\CP^\infty_E; \Gm) \arrow{r}{\delta} & C^3(\CP^\infty_E; \Gm),
 \end{tikzcd}
-\end{center}
+\end{center}\todo{You wrote $\Pi_2$ and $\Pi_3$, but these are not exactly the maps $\Pi_2$ and $\Pi_3$.  They're not even the adjoint maps $\hat{\Pi}_2$ and $\hat{\Pi}_3$.  I don't think you have any other options since introducing even more notation would be cumbersome, but perhaps you could make a small remark when you write down the induced maps that you're also calling them $\Pi_2$ and $\Pi_3$.}
 where \[\delta(f)(x_1, x_2, x_3) := \frac{f(x_1 +_E x_2, x_3)}{f(x_1, x_3) f(x_2, x_3)}.\]
 \end{lemma}
 \begin{proof}
-This is checked by calculating $\Pi_3 = (\mu_{12}^* - \pi_1^* - \pi_2^*)\Pi_2$.
+This is checked by calculating $\Pi_3 = (\mu_{12}^* - \pi_1^* - \pi_2^*)\Pi_2$\todo{The notation $\mu$ and $\pi$ does not comport with that from the previous lecture.}.
 \end{proof}
 
 With this now in hand, we have constructed the solid maps in the following diagram:
@@ -436,10 +437,10 @@ With this now in hand, we have constructed the solid maps in the following diagr
 \Spec E_0 BSU \arrow{r} \arrow["\Pi_2","\cong"']{d} & \Spec E_0 BU[6, \infty) \arrow{r} \arrow["\Pi_3"]{d} & \Spec E_0 \OS{H\Z}{3} \arrow["\cong"']{d} \\
 C^2(\CP^\infty_E; \Gm) \arrow["\delta"]{r} & C^3(\CP^\infty_E; \Gm) \arrow[densely dotted, "e_*"]{r} & \InternalHom{FormalGroups}((\CP^\infty_E)^{\wedge 2}, \G_m)
 \end{tikzcd}
-\end{center}
+\end{center}\todo{You haven't said anything about why the rightmost vertical map is an isomorphism.}
 We would like to prove enough about this diagram to show that is an isomorphism of short exact sequences.
 
-Before we begin testing exactness, we first need a pair of sequences --- i.e., we must construct the map $e$.  There is a candidate construction, coming from the theory of $\theta$--functions:
+Before we begin testing exactness, we first need a pair of sequences --- i.e., we must construct the map $e$.  There is a candidate construction, coming from the theory of $\theta$--functions\todo{Was there any motivation or reason why one might look to elliptic function theory to supply this map?}:
 \begin{definition}
 Let $A$ be an abelian variety equipped with a line bundle $\L$.  Suppose that $s$ is a symmetric, rigid section of $\Theta^3 \L$, i.e., a \textit{cubical structure on $\L$}.  This induces the structure of a \textit{symmetric biextension} on $\Theta^2 \L$ by furnishing compatible multiplication maps\todo{Hood wanted me to write out what the relevant pullbacks were, and I pretty well refused.  We should here, at least. The point is that $(p_{12} - p_1 - p_2)^* \Theta^2 \L = \Theta^3 \L$.}\todo{You might also want to give a second definition to the alternating-fraction one, using something like the tensor product of reduced line bundles, so that the link to the topology is more directly understood.}
 \begin{align*}
@@ -525,17 +526,17 @@ e_{p^j}\co (p^j \times 1)^* \L|_{A[p^j] \times A[p^j]} & \cong (1 \times p^j)^* 
 (\ell, x, y) & \mapsto \left(\ell \cdot \prod_{k=1}^{p^j-1} \frac{s(x, [k]x, y)}{s(x, [k]y, y)} \right).
 \end{align*}
 This function $e_{p^j}$ is called the \textit{($p^j${\th}) Weil pairing}.
-\end{definition}
+\end{definition}\todo{Can you prove some parts of this more carefully?}
 
 \begin{remark}
 In the case that $A$ is an elliptic curve, this agrees with the usual definition of its ``Weil pairing''. % In the case of an elliptic curve, this lines up with more traditional definitions --- for instance, using the isogeny $n: C \to C$.  In the case of a \emph{complex} elliptic curve $\C / (1, \tau)$, this degenerates further to the assignment \[\left( \frac{a}{n}, \frac{b}{n} \tau \right) \mapsto \exp\left(-2\pi i \frac{ab}{n}\right).\]
 \end{remark}
 
 \begin{lemma}\citeme{AS, I guess}
-The Weil pairings assemble into a total Weil pairing on the $p$--divisible group associated to $A$.  Together, the total Weil pairing is alternating and biexponential. \qed
+The Weil pairings assemble into a total Weil pairing on the $p$--divisible group associated to $A$.  Together, the total Weil pairing is alternating and biexponential\todo{What does biexponential mean?}. \qed
 \end{lemma}
 
-We can use the same formula in the setting of a cubical structure on a line bundle over a finite height formal group $\G$ to produce the desired map \[e_*\co C^3(\G; \Gm) \to \InternalHom{FormalGroups}(\G^{\wedge 2}, \Gm).\]  In fact, this is the right map:
+We can use the same formula in the setting of a cubical structure on a line bundle over a finite height formal group $\G$ to produce the desired map \[e_*\co C^3(\G; \Gm) \to \InternalHom{FormalGroups}(\G^{\wedge 2}, \Gm).\] \todo{How? What is $\ell$?} In fact, this is the right map:
 \begin{lemma}[{\cite[Theorem 4.2, Corollary 4.4]{AndoStrickland}}]
 The square commutes (up to sign):
 \begin{center}
@@ -544,9 +545,10 @@ The square commutes (up to sign):
 C^3(\CP^\infty_E; \mathbb G_m) \arrow{r}{e} & \Weil(\CP^\infty_E).
 \end{tikzcd}
 \end{center}
+\todo{You have not introduced the notation $\Weil$.
 \end{lemma}
 \begin{proof}[Proof sketch]
-This is reasonably difficult.  The main points are to show that the restriction \[d_{p^j}\co BC_{p^j}^{\times 2} \xrightarrow{\beta \circ \mu} \OS{H\Z}{3} \to BU[6, \infty)\] can be expressed by the Weil pairing formula: \[d_{p^j} = \bigoplus_{k=1}^{p^j-1} \left((\L_1 - 1)(\L_1^{\otimes k} - 1)(\L_2 - 1) - (\L_1 - 1)(\L_2^{\otimes k} - 1)(\L_2 - 1)\right).\]  After this is accomplished, what's left is to use naturality properties of the adjoint construction to compute the clockwise and counterclockwise composites.
+This is reasonably difficult.  The main points are to show that the restriction \[d_{p^j}\co BC_{p^j}^{\times 2} \xrightarrow{\beta \circ \mu} \OS{H\Z}{3} \to BU[6, \infty)\] can be expressed by the Weil pairing formula: \[d_{p^j} = \bigoplus_{k=1}^{p^j-1} \left((\L_1 - 1)(\L_1^{\otimes k} - 1)(\L_2 - 1) - (\L_1 - 1)(\L_2^{\otimes k} - 1)(\L_2 - 1)\right).\]  \todo{Where does $d_{p^j}$ appear in the diagram above?} After this is accomplished, what's left is to use naturality properties of the adjoint construction to compute the clockwise and counterclockwise composites.
 \end{proof}
 
 This fills out the diagram we are considering.  We now assemble just enough exactness results:
@@ -555,8 +557,8 @@ This fills out the diagram we are considering.  We now assemble just enough exac
 The map $\delta\co C^2 \to C^3$ is injective for $\CP^\infty_E$ a finite height formal group.
 \end{lemma}
 \begin{proof}
-Being finite height means that the multiplication-by-$p$ map of $\CP^\infty_E$ is fppf--surjective.  The kernel of $\delta$ consists of maps alternating, biexponential maps $(\CP^\infty_E)^{\times 2} \to \Gm$.  By restricting such a map $f$ to \[f \co \CP^\infty_E[p^j] \times \CP^\infty_E \to \Gm,\] we can calculate \[f(x, p^j y) = f(p^j x, y) = f(0, y) = 1.\]  But since $p^j$ is surjective on $\CP^\infty_E$, every point on the right-hand side can be so written, so at every left-hand stage the map is trivial.  Finally, $\CP^\infty_E = \colim_j \CP^\infty_E[p^j]$, so this filtration is exhaustive and we conclude that the kernel is trivial.
-\end{proof}
+Being finite height means that the multiplication-by-$p$ map of $\CP^\infty_E$ is fppf--surjective.  The kernel of $\delta$ consists of alternating, biexponential maps $(\CP^\infty_E)^{\times 2} \to \Gm$.  By restricting such a map $f$ to \[f \co \CP^\infty_E[p^j] \times \CP^\infty_E \to \Gm,\] we can calculate \[f(x, p^j y) = f(p^j x, y) = f(0, y) = 1.\]  But since $p^j$ is surjective on $\CP^\infty_E$, every point on the right-hand side can be so written, so at every left-hand stage the map is trivial.  Finally, $\CP^\infty_E = \colim_j \CP^\infty_E[p^j]$, so this filtration is exhaustive and we conclude that the kernel is trivial.
+\end{proof}\todo{This doesn't sound like the proof that you and Hood gave in class?  Is that a different proof?}
 
 \begin{lemma}[{\cite[Lemma 7.3]{AndoStrickland}}]
 In fact, the following sequence is exact \[0 \to C^2(\CP^\infty_E; \Gm) \xrightarrow\delta C^3(\CP^\infty_E; \Gm) \to \Weil(\CP^\infty_E).\]
@@ -708,7 +710,7 @@ This is a direct consequence of the $5$--lemma.
 
 Write $H = H\F_p$.  Today we will study the effect of the map $\hat \Pi_3$ in ordinary homology.  Many parts of the proof we explored for $E$--theory break.  Topologically, the Serre spectral sequence for $H^* BU[6, \infty)$ is not even-concentrated and so is not forced to collapse.  Algebraically, because $\G_a$ is not $p$--divisible the behavior of the model exact sequence is also suspect.  Because the situation has fewer insulating good properties, we are forced to actually consider it carefully.  The upside, however, is that the standard group law on $\G_a$ is simple enough that we can compute the problem to death.
 
-We begin with the topological half of our tasks.  The Serre spectral sequence \[E_2^{*, *} = H\F_p^* BSU \otimes H\F_p^* \OS{H\Z}{3}) \Rightarrow H\F_p^* BU[6, \infty)\] is quite accessible, and we will recount the case of $p = 2$.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = H\F_2^* BSU \otimes H\F_2^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ \end{array}\right].\]  Because the target is $6$--connective, we must have the transgressive differential $d_4 \iota_3 = c_2$, which via the Kudo transgression theorem spurs the much larger family of differentials \[d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2.\]  This necessitates understanding the action of the Steenrod operations on the cohomology of $BSU$, which is due to Wu\citeme{Wu formulas, maybe May's concise book}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 = c_{1 + 2^j}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:\todo{This spectral sequence can be drawn in using Hood's package.}
+We begin with the topological half of our tasks.  The Serre spectral sequence \[E_2^{*, *} = H\F_p^* BSU \otimes H\F_p^* \OS{H\Z}{3} \Rightarrow H\F_p^* BU[6, \infty)\] is quite accessible, and we will recount the case of $p = 2$.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = H\F_2^* BSU \otimes H\F_2^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ \end{array}\right].\] \todo{$2 I_1 - I_+$ doesn't look like a condition.  Also, what is $I_+$?  Somehow this should mean that you start with $\Sq^2$ not $\Sq^1$.}  Because the target is $6$--connective, we must have the transgressive differential $d_4 \iota_3 = c_2$, which via the Kudo transgression theorem spurs the much larger family of differentials \[d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2.\]  This necessitates understanding the action of the Steenrod operations on the cohomology of $BSU$, which is due to Wu\citeme{Wu formulas, maybe May's concise book}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 = c_{1 + 2^j}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:\todo{This spectral sequence can be drawn in using Hood's package.}
 
 \begin{theorem}\label{HF2BU6Calculation}
 There is an isomorphism \[H\F_2^* BU[6, \infty) \cong \frac{H\F_2^* BU}{(c_j \mid j \ne 2^k + 1, j \ge 3)} \otimes F_2[\iota_3^2, (\Sq^2 \iota_3)^2, \ldots]. \qed\]
@@ -733,18 +735,18 @@ We can already see from \Cref{HF2BU6Calculation} that our map of short exact seq
 
 
 
-Now, we turn to the algebra.  The main idea, as already used in \Cref{CalculationOfLTTangentSpace}, is to first perform a tangent space calculation of \[T_0 C^k(\G_a; \Gm) \cong C^k(\G_a; \G_a),\] then study the behavior of the different tangent directions to determine the full object $C^k(\G_a; \Gm)$.  As a warm-up, we will first consider the case $k = 2$:
+Now, we turn to the algebra.  The main idea, as already used in \Cref{CalculationOfLTTangentSpace}\todo{Is this really the best example to reference?}, is to first perform a tangent space calculation \[T_0 C^k(\G_a; \Gm) \cong C^k(\G_a; \G_a),\] then study the behavior of the different tangent directions to determine the full object $C^k(\G_a; \Gm)$.  As a warm-up, we will first consider the case $k = 2$:
 \begin{corollary}[{cf.\ \Cref{CohomologyOfGa}}]
 The unique symmetric $2$--cocycle of homogeneous degree $n$ has the form \[c_n(x, y) = \begin{cases} (x + y)^n - x^n - y^n & \text{if $n \ne p^j$}, \\ \frac{1}{p} \left( (x + y)^n - x^n - y^n \right) & \text{if $n = p^j$}. \end{cases} \qed\]
 \end{corollary}
 
-Our goal, then, is to select such a $2$--cocycle $f$ and study the minimal conditions needed on a symbol $a$ to produce a multiplicative $2$--cocycle of the form $1 + af + \cdots$.  Since $c_n = \frac{1}{d_n} \delta(x^n)$ is itself produced by an additive formula, life would be easiest if we had access to an exponential, so that we could build \[\text{``$ \delta \exp(a_n x^n)^{1/d_n} = \exp(\delta a_n x^n / d_n) = \exp(a_n c_n). $''}\]  However, the existence of an exponential series is equivalent to requiring that $a_n$ have all fractions, which turns out not to be minimal.  In fact, \emph{no} conditions on $a_n$ are required \emph{at all}, if we tweak the definition of an exponential series:
+Our goal, then, is to select such a $2$--cocycle $f$ and study the minimal conditions needed on a symbol $a$ to produce a multiplicative $2$--cocycle of the form $1 + af + \cdots$.  Since $c_n = \frac{1}{d_n} \delta(x^n)$ \todo{The notation is a little odd, since you're conflating $x^n$ with the function $x \mapsto x^n$.} is itself produced by an additive formula, life would be easiest if we had access to an exponential, so that we could build \[\text{``$ \delta \exp(a_n x^n)^{1/d_n} = \exp(\delta a_n x^n / d_n) = \exp(a_n c_n). $''}\]  However, the existence of an exponential series is equivalent to requiring that $a_n$ have all fractions, which turns out not to be minimal.  In fact, \emph{no} conditions on $a_n$ are required \emph{at all}, if we tweak the definition of an exponential series:
 
 \begin{definition}\todo{Where does this come from? I've never learned a universal property for it. That bothers me. It must have something to do with $p$--typification.}
 The \textit{Artin--Hasse exponential} is the power series \[E_p(t) = \exp\left( \sum_{j=0}^\infty \frac{t^{p^j}}{p^j} \right) \in \Z_{(p)}\ps{t}.\]
 \end{definition}
 
-This series has excellent properties, mimicking those of $\exp(t)$ as closely as possible while keeping coefficients in $\Z_{(p)}$ rather than in $\Q$.  Writing $\delta\co C^1 \to C^2$ and \[d_n = \begin{cases} 1 & \text{if $n = p^j$}, \\ 0 & \text{otherwise}, \end{cases}\] we set \[g_n(x, y) := \delta E_p(a_n x^n)^{1/p^{d_n}} = \exp\left( \sum_{j=0}^\infty \frac{a_n^{p^j} \delta x^{np^j}}{p^{j + d_n}} \right) = \exp\left( \sum_{j=0}^\infty \frac{a_n^{p^j} c_{np^j}(x, y)}{p^j} \right).\]  This gives a point in $C^2(\G_a; \Gm)(\Z_{(p)}[a_n])$, and exhaustion of the tangent space proves the following Lemma:
+This series has excellent properties, mimicking those of $\exp(t)$ as closely as possible while keeping coefficients in $\Z_{(p)}$ rather than in $\Q$.  Writing $\delta\co C^1 \to C^2$ and \[d_n = \begin{cases} 1 & \text{if $n = p^j$}, \\ 0 & \text{otherwise}, \end{cases}\] we set \[g_n(x, y) := \delta E_p(a_n x^n)^{1/p^{d_n}} = \exp\left( \sum_{j=0}^\infty \frac{a_n^{p^j} \delta x^{np^j}}{p^{j + d_n}} \right) = \exp\left( \sum_{j=0}^\infty \frac{a_n^{p^j} c_{np^j}(x, y)}{p^j} \right).\]  This gives a point in $C^2(\G_a; \Gm)(\Z_{(p)}[a_n])$, and exhaustion of the tangent space\todo{Granting that this exhausts the tangent space, how do we recover the global scheme?  Even if we had an inverse function theorem (like Thm.~2.1.4), I would only expect that to be at most a local isomorphism -- unless these are all really formal schemes masquerading as ordinary schemes?} proves the following Lemma:
 
 \begin{lemma}[{\cite[Proposition 3.9]{AHSTheoremOfTheCube}}]
 The map \[\Spec \Z_{(p)}[a_n \mid n \ge 2] \xrightarrow{\prod_{n \ge 2} g_2} C^2(\G_a; \Gm) \times \Spec \Z_{(p)}\] is an isomorphism. \qed
@@ -839,9 +841,9 @@ Our analysis of Cartier duality in \Cref{TopologicalCartierDuality} gave us isom
 $DC^k(\G_a; \Gm)$ are all formal varieties for $k \le 3$.
 \end{lemma}
 \begin{proof}
-We know that $\sheaf O C^k(\G_a; \Gm)$ are all free $\Z$--modules of graded finite rank in the range $k \le 3$, so we may write \[\sheaf O(D C^k(\G_a; \Gm)) \cong (\sheaf O C^k(\G_a; \Gm))^*.\]  We will show that this later Hopf algebra $\sheaf O(C^k(\G_a; \Gm))^*$ is a power series ring, specializing for the moment to the case $k = 2$.  It will suffice to show that it is a power series ring modulo $p$ for every prime $p$.  Such graded connected finite-type Hopf algebras over $\F_p$ were classified by Borel (and exposited by Milnor--Moore~\cite[Theorem 7.11]{MilnorMoore}) as either polynomial or truncated polynomial.  These two cases are distinguished by the Frobenius operation: the Frobenius on a polynomial ring is injective, whereas the Frobenius on a truncated polynomial ring is not.  It is therefore equivalent to show that the \emph{Verschiebung} on the original ring $\sheaf O(C^2(\G_a; \Gm)) \otimes \F_p$ is \emph{surjective}.  Recalling that $c_n^p = c_{np}$ at the level of bivariate $2$--cocycles, we compute \[p^* a_n = a_{np}^p,\] and since $F a_{np} = a_{np}^p$ and $FV = p^*$, we learn \[V(a_{np}) = a_n.\]
+We know that $\sheaf O C^k(\G_a; \Gm)$ are all free $\Z$--modules of graded finite rank in the range $k \le 3$\todo{Cite this from a couple lectures ago.}, so we may write \[\sheaf O(D C^k(\G_a; \Gm)) \cong (\sheaf O C^k(\G_a; \Gm))^*.\]  We will show that this later Hopf algebra $\sheaf O(C^k(\G_a; \Gm))^*$ is a power series ring, specializing for the moment to the case $k = 2$.  It will suffice to show that it is a power series ring modulo $p$ for every prime $p$.  Such graded connected finite-type Hopf algebras over $\F_p$ were classified by Borel (and exposited by Milnor--Moore~\cite[Theorem 7.11]{MilnorMoore}) as either polynomial or truncated polynomial.  These two cases are distinguished by the Frobenius operation: the Frobenius on a polynomial ring is injective, whereas the Frobenius on a truncated polynomial ring is not.  It is therefore equivalent to show that the \emph{Verschiebung} on the original ring $\sheaf O(C^2(\G_a; \Gm)) \otimes \F_p$ is \emph{surjective}.  Recalling that $c_n^p = c_{np}$ at the level of bivariate $2$--cocycles, we compute \[p^* a_n = a_{np}^p,\] and since $F a_{np} = a_{np}^p$ and $FV = p^*$, we learn \[V(a_{np}) = a_n.\] \todo{You should remind us that $c_n$ , $a_n$ were the things defined in the last lecture.}
 
-Essentially the same proof handles the cases $k = 1$ and $k = 0$.  The case $k = 3$ requires a small modification, to cope with the two classes of trivariate $2$--cocycles.  On the polynomial tensor factor of $\sheaf O(C^3(\G_a; \Gm))$ we can reuse the same Verschiebung argument to see that its dual Hopf algebra is polynomial.  The dual of the divided power tensor factor is immediately a primitively generated polynomial algebra, without any further argument.
+Essentially the same proof handles the cases $k = 1$ and $k = 0$.  The case $k = 3$ requires a small modification, to cope with the two classes of trivariate $2$--cocycles.  On the polynomial tensor factor of $\sheaf O(C^3(\G_a; \Gm))$ we can reuse the same Verschiebung argument to see that its dual Hopf algebra is polynomial.  The dual of the divided power tensor factor is immediately a primitively generated polynomial algebra, without any further argument \todo{I'm confused about this statement.  Why doesn't something similar hold for the polynomial factor, given that it is true?}.
 \end{proof}
 
 \begin{theorem}
@@ -874,11 +876,11 @@ Our second task today is to address the gap between $\OS{kU}{2k}$ and its Thom s
 For $\xi\co G \to BGL_1 \S$ a group map, the Thom spectrum $T\xi$ is a $(\Susp^\infty_+ G)$--cotorsor.
 \end{lemma}
 \begin{proof}[Proof sketch]
-The Thom isomorphism $T\xi \sm T\xi \simeq T\xi \sm \Susp^\infty_+ G$ composes with the unit map $\S \to T\xi$ to give the \textit{Thom diagonal} \[T\xi \to T\xi \sm \Susp^\infty_+ G. \qedhere\]
+The Thom isomorphism $T\xi \sm T\xi \simeq T\xi \sm \Susp^\infty_+ G$ composes with the unit map $\S \to T\xi$ \todo{Which factor are we composing into? Does it matter?} to give the \textit{Thom diagonal} \[T\xi \to T\xi \sm \Susp^\infty_+ G. \qedhere\]
 \end{proof}
 
 \begin{corollary}
-In addition to our interpretation of $\ThomSheaf{\xi}$ as a $\Gm$--torsor over $G_E$, $\ThomSheaf{\xi}^{-1}$ is furthermore a $(G_E \times \Gm)$--torsor over $S_E$. \qed
+In addition to our interpretation of $\ThomSheaf{\xi}$ as a $\Gm$--torsor over $G_E$, $\ThomSheaf{\xi}^{-1}$ is furthermore a $(G_E \times \Gm)$--torsor over $S_E$\todo{$S_E$ vs.\ $\S_E$, and how does this follow?}. \qed
 \end{corollary}
 
 We expand this idea out in our situation.  A morphism $MU[6, \infty) \to E$ produces a trivialization of $\ThomSheaf{\bigotimes_{j=1}^3 (\L_j - 1)}$ over $(\CP^\infty_E)^{\times 3}$, and the associated trivializing section is symmetric and rigid\citeme{Lemma 2.49 of AHS}.  This prompts us to make the following definition:
@@ -962,7 +964,7 @@ commutes. \qed
 \end{corollary}
 
 \begin{example}
-Our basic example of an elliptic curve was $E_\Lambda = \C / \Lambda$, with $\Lambda$ a complex lattice.  The projection $\C \to \C / \Lambda$ has a local inverse which defines an isomorphism of formal groups \[\phi\co (E_\Lambda)^\wedge_0 \xrightarrow{\cong} \G_a \otimes \C.\]  Accordingly, we define an elliptic spectrum $HE_\Lambda P$ whose underlying ring spectrum is $H\C$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to HE_\Lambda P,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n \in HE_\Lambda P_{2n}$ for some $\Phi_\Lambda(M) \in \C$.
+Our basic example of an elliptic curve was $E_\Lambda = \C / \Lambda$, with $\Lambda$ a complex lattice.  The projection $\C \to \C / \Lambda$ has a local inverse which defines an isomorphism of formal groups \[\phi\co (E_\Lambda)^\wedge_0 \xrightarrow{\cong} \G_a \otimes \C.\]  Accordingly, we define an elliptic spectrum $HE_\Lambda P$ whose underlying ring spectrum is $H\C$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to HE_\Lambda P,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n \in HE_\Lambda P_{2n}$ \todo{What is $u_\Lambda^n$?  How is it normalized?} for some $\Phi_\Lambda(M) \in \C$.
 \end{example}
 
 \begin{example}
@@ -970,7 +972,7 @@ The naturality of the $MU[6, \infty)$--orientation moves us to consider more tha
 \end{example}
 
 \begin{example}\label{OrdinaryHomologyInUpperHalfPlaneEx}
-This equation leads us to consider all curves $E_\Lambda$ simultaneously --- or, equivalently, to consider modular forms.  The lattice $\Lambda$ can be put into a standard form, by picking a basis and scaling it so that one vector lies at $1$ and the other vector lies in the upper half-plane.  This gives a cover \[\h \to \moduli{ell} \times \Spec \C\] which is well-behaved away from the special points $i$ and $e^{2 \pi i / 6}$.  A \textit{complex modular form of weight $k$} is an analytic function $\h \to \C$ which satisfies a certain decay condition and which is quasi-periodic for the action of $SL_2(\Z)$, i.e.,\footnote{That is, for the action of change of basis vectors.} \[f\left(M; \frac{a \tau + b}{c \tau + d} \right) = (c \tau + d)^n f(M; \tau).\]
+This equation leads us to consider all curves $E_\Lambda$ simultaneously --- or, equivalently, to consider modular forms.  The lattice $\Lambda$ can be put into a standard form, by picking a basis and scaling it so that one vector lies at $1$ and the other vector lies in the upper half-plane.  This gives a cover \[\h \to \moduli{ell} \times \Spec \C\] \todo{Is the notation $\h$ for the upper half plane standard here?  Usually it's denoted $\mathbb{H}$?}which is well-behaved away from the special points $i$ and $e^{2 \pi i / 6}$.  A \textit{complex modular form of weight $k$} is an analytic function $\h \to \C$ which satisfies a certain decay condition and which is quasi-periodic for the action of $SL_2(\Z)$, i.e.,\footnote{That is, for the action of change of basis vectors.} \[f\left(M; \frac{a \tau + b}{c \tau + d} \right) = (c \tau + d)^n f(M; \tau).\]
 
 Using these ideas, we construct a cohomology theory $H \sheaf O_{\h} P$, where $\sheaf O_{\h}$ is the ring of complex-analytic functions on the upper half-plane.  The $\h$--parametrized family of elliptic curves \[\h \times \C / (1, \tau) \to \h,\] together with the logarithm, present $H \sheaf O_{\h} P$ as an elliptic spectrum $H\h P$.  The canonical map $\Phi\co MU[6, \infty) \to H\h P$ specializes at a point to give the functions $\Phi(-; \Lambda)$ considered above, and hence $\Phi(M)$ is itself a complex modular form of weight $k$.
 \end{example}
@@ -1034,7 +1036,7 @@ In fact, \Cref{D3thetaTrivializes} gives us access to a formula for $\sigma_{\Ta
 \begin{center}
 \begin{tikzcd}
 MU[6, \infty) \arrow["\delta"']{d} \arrow["\sigma_{\Tate}"]{drrr} \\
-MSU \arrow["\delta"']{r} & MU \arrow["\delta"']{r} & MUP \arrow["\theta"']{r} & K\ps{q}.
+MSU \arrow["\delta"']{r} & MU \arrow["\delta"']{r} & MUP \arrow["\theta"']{r} & KU\ps{q}.
 \end{tikzcd}
 \end{center}
 To begin, the usual map $MUP \to KU$ selects the coordinate $f(u) = 1 - u$ on the formal completion of $\Gm = \Spec \Z[u^\pm]$.  The induced map \[MU \xrightarrow{\delta} MUP \to KU\] sends $f$ to the rigid section $\delta f$ of \[\Theta^1 \sheaf I(0) = \sheaf I(0)_0 \otimes \sheaf I(0)^{-1} \cong \omega \otimes \sheaf I(0),\] and in terms of the right-hand side, \[\delta f = \frac{f'(0)}{f(u)} Du = \frac{1}{1 - u} \left( - \frac{du}{u} \right),\] where $Du$ is the invariant differential.  We can augment this to a calculation of $\delta \theta$ by considering the composite \todo{This first map is one of the units.  Which is it?} \[\delta \theta\co MU \xrightarrow{\eta_R} MU \sm MU \simeq MU \sm BU_+ \xrightarrow{\delta(1 - u) \sm \theta'} K_{\Tate}\] where $\theta'$ is the element of $BU^{K_{\Tate}} \cong C^1(\widehat C_{\Tate}; \Gm)$ given by the formula\todo{I'm confused.  Where did this class come from? Is it the derivative of $\theta$?  The $\delta$--derivative of $\theta$?  Something else? Actually, it sort of looks like $(1 - u) \cdot \theta(1) / \theta(u)$...?} \[\theta' = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}.\]  This means that its effect on a line bundle is determined by \[\theta'(1 - \L) = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n \L)(1 - q^n \L^{-1})},\] and its effect on vector bundles in general is determined by the splitting principle and an exponential law.  In fact, one can work this exponential law out to mean \[\theta'(\dim V \cdot 1 - V) = \bigotimes_{n \ge 1} \bigoplus_{j \ge 0} \Sym^j(\dim V \cdot 1 - V \otimes_{\R} \C) q^{jn} =: \bigotimes_{n \ge 1} \Sym_{q^n}(- \bar V_{\C}).\]
@@ -1071,7 +1073,7 @@ Fix a formal group $\Gamma$ of finite height $d$, and write $K = K_\Gamma$ for t
 BO[2, \infty) & := BSO, &
 BO[4, \infty) & := B\Spin, &
 BO[8, \infty) & := B\String.
-\end{align*}
+\end{align*}\todo{The $:=$ should be $=:$ perhaps?}
 
 \begin{remark}
 Unlike $kU$, there is \emph{not} an equivalence \[\OS{kO}{n} \not\simeq (BO \times \Z)[n, \infty),\] unless $n$ happens to take the form $n = 8k$ for a nonnegative integer $k$.  The reasoning for this stray equivalence is similar to that for $kU$: the homotopy ring of $kO$ has a polynomial factor of degree $8$, and the other elements lie in a band of dimensions smaller than $8$.  Otherwise, other things happen --- for instance,
@@ -1082,7 +1084,7 @@ Unlike $kU$, there is \emph{not} an equivalence \[\OS{kO}{n} \not\simeq (BO \tim
 \end{remark}
 
 \begin{remark}[{\cite[Section 5.2]{KLW}}]
-We may as well take the ground field of our Morava $K$--theory to have characteristic $p = 2$, since at odd characteristics there is little distinction between $kO$ and $kU$, owing to the fiber sequence \[\Susp kO \xrightarrow{\cdot \eta = 0} kO \to kU.\]  However, this reveals a disadvantage of Morava $K$--theory that will finally cause us real consternation: Morava $K$--theories at the prime $2$ are not commutative ring spectra.  Accordingly, $(K_\Gamma)_* G$ for a commutative $H$--group $G$ may fail to give a commutative algebra.  Luckily, \Cref{MoravaKIsNotCommutative} tells us that if $(K_\Gamma)_* G$ happens to be even-concentrated, then the obstructions to commutativity identically vanish.  So, we can be somewhat indelicate about this noncommutativity issue, provided that we continually check that the algebras we are forming are even-concentrated.
+We may as well take the ground field of our Morava $K$--theory to have characteristic $p = 2$, since at odd characteristics there is little distinction between $kO$ and $kU$, owing to the fiber sequence \[\Susp kO \xrightarrow{\cdot \eta = 0} kO \to kU.\] \todo{The way you wrote this fiber sequence doesn't show why $p=2$ is special.} However, this reveals a disadvantage of Morava $K$--theory that will finally cause us real consternation: Morava $K$--theories at the prime $2$ are not commutative ring spectra.  Accordingly, $(K_\Gamma)_* G$ for a commutative $H$--group $G$ may fail to give a commutative algebra.  Luckily, \Cref{MoravaKIsNotCommutative} tells us that if $(K_\Gamma)_* G$ happens to be even-concentrated, then the obstructions to commutativity identically vanish.  So, we can be somewhat indelicate about this noncommutativity issue, provided that we continually check that the algebras we are forming are even-concentrated.
 \end{remark}
 
 In order to get off the ground, we will need the following Lemma about the behavior of the Atiyah--Hirzebruch spectral sequence for a Morava $K$--theory:
@@ -1101,14 +1103,14 @@ There is a bi-Cartesian square of coalgebraic formal schemes
 \end{center}
 \end{corollary}
 \begin{proof}
-We apply \Cref{MoravaKThyAHSS} to the analysis of the spectral sequence of Hopf algebras \[H\F_2{}_* BO \otimes (K_\Gamma)_* \Rightarrow (K_\Gamma)_* BO.\]  \citeme{I don't know where these Milnor primitives are calculated. I guess we could have done them using formal geometry} We have $H\F_2{}_* BO \cong \F_2[b_1, b_2, \ldots]$ and \[Q_d b_{2^{d+1} + 2j} = b_{2j + 1},\] from which it follows that all the odd generators are killed, all their squares survive, and only the even generators of low degree are permanent cycles.  This results in a decomposition \[(K_\Gamma)_* BO \cong (K_\Gamma)_*[b_2, b_4, b_{2^{d+1}-2}] \underset{(K_\Gamma)[b_{2j}^2 \mid j < 2^d]}{\otimes} (K_\Gamma)_*[b_{2j}^2],\] and so we are tasked with assigning names to the coalgebraic formal schemes appearing in this formula.
+We apply \Cref{MoravaKThyAHSS} to the analysis of the spectral sequence of Hopf algebras \[H\F_2{}_* BO \otimes (K_\Gamma)_* \Rightarrow (K_\Gamma)_* BO.\]  \citeme{I don't know where these Milnor primitives are calculated. I guess we could have done them using formal geometry} We have $H\F_2{}_* BO \cong \F_2[b_1, b_2, \ldots]$ and \[Q_d b_{2^{d+1} + 2j} = b_{2j + 1},\] from which it follows that all the odd generators are killed, all their squares survive \todo{Only the squares of even generators survive.}, and only the even generators of low degree are permanent cycles.  This results in a decomposition \[(K_\Gamma)_* BO \cong (K_\Gamma)_*[b_2, b_4, b_{2^{d+1}-2}] \underset{(K_\Gamma)[b_{2j}^2 \mid j < 2^d]}{\otimes} (K_\Gamma)_*[b_{2j}^2],\] and so we are tasked with assigning names to the coalgebraic formal schemes appearing in this formula.
 
-The left-hand factor is the free Hopf algebra on the coalgebra determined by the $2$--torsion in the formal group $\Gamma$.  The right-hand factor is the free Hopf algebra on the formal curve $\barG := \HP^\infty_K$, using the isogeny
+The left-hand factor is the free Hopf algebra on the coalgebra determined by the $2$--torsion in the formal group $\Gamma$ \todo{You write $\Gamma$ but also $\G$.}.  The right-hand factor is the free Hopf algebra on the formal curve $\barG := \HP^\infty_K$, using the isogeny
 \begin{align*}
 \HP^\infty_K & \to \CP^\infty_K \\
 y & \mapsto x \cdot [-1](x)
 \end{align*}
-induced by desymplectification.  Because $\H^\times$ is not commutative, $\barG$ is not a formal group, but we pull back the multiplication-by-$2$ isogeny from $\G$ to $\barG$ and define the subscheme $\barG[2]$ of points mapping to zero.
+induced by desymplectification.  Because $\H^\times$ is not commutative, $\barG$ is not a formal group, but we pull back the multiplication-by-$2$ isogeny from $\G$ to $\barG$ and define the subscheme $\barG[2]$ of points mapping to zero. \todo{It would be nice if you could put in a bit more detail about why these formal schemes correspond to the coalgebras from above.}
 \end{proof}
 
 Suppose that the Postnikov sections \[X(n, \infty) \to X[n, \infty) \to X[n, n]\] induce short exact sequences of formal groups.  A presentation of $X_K$ as a bi-Cartesian square then acquires value via the following algebraic Lemma:
@@ -1136,14 +1138,14 @@ There is a bi-Cartesian square
 \end{center}
 \end{corollary}
 \begin{proof}[Proof sketch]
-The fibration $BSO \to BO \to BO(1)$ gives a short exact sequence of Hopf algebras, so using \Cref{FormalSchemeForBO} we are in the situation of \Cref{CubeOfFibers}.  To compute the pointwise kernels, begin by considering the commuting square of Postnikov sections
+The fibration $BSO \to BO \to BO(1)$ gives a short exact sequence of Hopf algebras \todo{after applying $K$-homology -- what is the argument for this? Do I need to look at some spectral sequence?}, so using \Cref{FormalSchemeForBO} we are in the situation of \Cref{CubeOfFibers}.  To compute the pointwise kernels, begin by considering the commuting square of Postnikov sections
 \begin{center}
 \begin{tikzcd}
 BO_K \arrow{r} \arrow{d} & BU_K \arrow{d} \\
 \G[2] \arrow{r} & \G.
 \end{tikzcd}
 \end{center}
-Both horizontal maps are injections.  Since $\Div \barG \to BU_K \cong \Div_0 \G \to \G$ is null, the composite $\Div_0 \barG \to \G[2]$ is null.  Similarly, the composite $\Div \G[2] \to \G[2]$ acts by summation, and its kernel is $\SDiv_0 \G[2]$.
+\todo{This diagram seems to be missing $\Div_0 \bar{G}$ and $\Div \bar{G}$.  Also, you are identifying $K(\mathbb{Z}/2.1)_K$ with $\hatG[2]$.  You argue using $BU$, but it also seems that whatever argument you are using to show that the right vertical arrows have null composite should also just work for $BO$.} Both horizontal maps are injections.  Since $\Div \barG \to BU_K \cong \Div_0 \G \to \G$ is null, the composite $\Div_0 \barG \to \G[2]$ is null.  Similarly, the composite $\Div \G[2] \to \G[2]$ acts by summation, and its kernel is $\SDiv_0 \G[2]$.
 \end{proof}
 
 From here, the computation gets harder.  
@@ -1176,7 +1178,9 @@ where $\tau\co C_2 \G \to C_3 \G$ is specified at the level of formal schemes by
 & = [a, a, b] - [b, a, b] - [-a - b, a, b] \\
 & = [a, a, b] - [b + a, a, b] + [b, a + a, b] - [b, a, b],
 \end{align*}
-and this is forced null in $C_3 \G$, as it looks like a $2$--cocycle shuffle.
+and this is forced null in $C_3 \G$, as it looks like a $2$--cocycle shuffle. 
+
+\todo{Where is $\hatG[2]^{\wedge 2}$ in the diagram?  What is $\xi$? What is $\epsilon$? Is the dotted arrow the Bockstein? In the diagram you wrote $K_* K(C_2,2)$, but I think we already have too many $C_2$'s.  I'm also confused about the appearances of all the symmetric powers $C_2$ and $C_3$.  Where do they appear in the diagram?}
 
 \todo[inline]{I'm a little fuzzy on the coherence of this with the Bockstein: this computes the lift of $\tau \circ f$ into $K(\Z, 3)_K$, and it does happen to factor through the subscheme $K(\Z/2, 2)_K$ determined by the Bockstein. However, I don't immediately see why this agrees with the bottom Postnikov section of $BSO$: that's a map off of $BSO$ and this is a rotated map into $BU[6, \infty)$, so it's not an immediate consequence of naturality.  It has to do with rotating the Wood cofiber sequence just right, and in particular where the horizontal sequences come from: they're stitched-together from two consecutive Wood cofiber sequences.}
 \end{proof}
@@ -1205,7 +1209,7 @@ Applying the Thom spectrum functor to the fiber square gives the pushout diagram
 \S \arrow{r} & M\String,
 \end{tikzcd}
 \end{center}
-or, equivalently, an equivalence \[M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S.\]  This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
+or, equivalently, an equivalence \[M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S.\] \todo{It seems that this approach, which I presume is the one that ultimately works, is independent of all the earlier work involving $B\Spin$.} This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures \todo{You have not introduced $\Sigma$--structures yet.}.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
 
 
 
