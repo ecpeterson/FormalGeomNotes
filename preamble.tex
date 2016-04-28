@@ -17,13 +17,17 @@
 \normalfont
 \usepackage[T1]{fontenc}
 
+\usepackage{tikz}
+\usetikzlibrary{matrix,calc,3d,arrows,positioning}
+
 \usepackage{tikz-cd}
 \makeatletter
 \tikzcdset{
     iso/.style="\cong"{#1},
     iso'/.style="\cong"{/utils/exec=\isop@which,#1},
     equiv/.style="\simeq"{#1},
-    equiv'/.style="\simeq"{/utils/exec=\isop@which,#1}
+    equiv'/.style="\simeq"{/utils/exec=\isop@which,#1},
+    equal/.style={double distance=2pt,-}
 }
 
 \def\isop@getrow#1-#2-#3\@nil{#2}
@@ -97,6 +101,7 @@
 \renewcommand{\S}{\mathbb S}
 \newcommand{\F}{\mathbb F}
 \newcommand{\G}{\widehat{\mathbb G}}
+\newcommand{\barG}{\overline{\mathbb G}}
 \newcommand{\R}{\mathbb R}
 \newcommand{\RP}{\R\mathrm P}
 \newcommand{\C}{\mathbb{C}}
@@ -114,7 +119,10 @@
 \renewcommand{\t}{\mathbf t}
 \newcommand{\Gm}{\mathbb G_m}
 \newcommand{\h}{\mathfrak h}
+% this needs to be re-done because \D is an important svmono command, hold on
 \renewcommand{\D}{\mathbb D}
+\renewcommand{\H}{\mathbb H}
+\newcommand{\HP}{\H\mathrm P}
 
 \newcommand{\<}{\langle}
 \renewcommand{\>}{\rangle}
@@ -196,6 +204,7 @@
 \DeclareMathOperator{\Level}{Level}
 \DeclareMathOperator{\Mono}{Mono}
 \DeclareMathOperator{\Isog}{Isog}
+\DeclareMathOperator{\Td}{Td}
 \let\div\undefined\DeclareMathOperator{\div}{div}
 
 \numberwithin{equation}{section}
@@ -316,4 +325,4 @@
     }
     \temp
 }
-\makeatother 
+\makeatother

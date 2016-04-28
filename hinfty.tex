@@ -58,7 +58,7 @@ All of this rests, most importantly, on how a quotient of the Lubin--Tate univer
 
 
 
-\section{$E_\infty$ ring spectra and their contexts}
+\oldsection{$E_\infty$ ring spectra and their contexts}
 
 \todo[inline]{Mike has suggested looking at the paper \textit{The $K$--theory localization of an unstable sphere}, by Mahowald and Thompson.  In it, they manually construct a resolution of $S^{2n+1}$ suitable for computing the unstable Adams spectral sequence for $K$--theory, but the resolution that they build is also exactly what you would use to compute the mapping spectral sequence for $E_\infty(K^{S^{2n-1}}, K)$.  Additionally, because the unstable $K$--theoretic operations are exhausted by the power operations, these two spectral sequences converge to the same target.
 
@@ -71,7 +71,7 @@ This is also related to recent work of Behrens--Rezk on the Bousfield--Kuhn func
 
 
 
-\section{Subgroups and level structures}
+\oldsection{Subgroups and level structures}
 
 \todo[inline]{Something that these notes routinely fail to do is to lead into the algebraic geometry in a believable way.  ``Today we're going to talk about isogenies'' --- and then, lo' and behold, isogenies appear the next day in algebraic topology.  This book would read much better if it showed how these structures were guessed to exist to begin with.}
 
@@ -277,7 +277,7 @@ Talk with Nat:
 
 
 
-\section{The Drinfel'd ring and the universal level structure}
+\oldsection{The Drinfel'd ring and the universal level structure}
 
 Talk with Nat:
 \begin{itemize}
@@ -299,7 +299,7 @@ Talk with Nat:
 
 
 
-\section{Descending coordinates along level structures}
+\oldsection{Descending coordinates along level structures}
 
 % \begin{enumerate}
 % \item If $V = (1 - \L)$ is the reduced canonical line bundle over $\CP^\infty$, then using all the above we have \[\ThomSheaf{V} \cong \pi^* 0^* \sheaf I (0) \otimes \sheaf I(0)^{-1} = \Theta^1(\sheaf I(0)),\] where $\pi: \G_E \to S_E$ is the structural map and $\Theta^1$ is the usual.
@@ -424,7 +424,7 @@ The theorem is that these actually land in $E_n(X)$, as they definitely land in 
 
 
 
-\section{The moduli of subgroup divisors}
+\oldsection{The moduli of subgroup divisors}
 
 Following... the original? Following Nat?
 
@@ -476,7 +476,7 @@ where the product is now over all transitive Abelian $p$-subgroups. This implies
 
 
 
-\section{Interaction with $\Theta$--structures}
+\oldsection{Interaction with $\Theta$--structures}
 
 The Ando--Hopkins--Strickland result that the $\sigma$--orientation is an $H_\infty$--map
 
@@ -512,7 +512,7 @@ The map $\psi_\ell^V$ has the following properties:
 \begin{enumerate}
 \item If $m$ trivializes $\ThomSheaf{V}$ then $\psi_\ell^V(m)$ trivializes $\chi_\ell^* \ThomSheaf{V_{reg} \otimes V}$.
 \item $\psi_\ell^{V_1 \oplus V_2} = \psi_\ell^{V_1} \otimes \psi_\ell^{V_2}$.
-\item For $f\co Y \to X$ a map, $\psi_\ell^{f^* V} = f^* \psi_\ell^V$. \qed 
+\item For $f\co Y \to X$ a map, $\psi_\ell^{f^* V} = f^* \psi_\ell^V$. \qed
 \end{enumerate}
 \end{lemma}
 
@@ -593,9 +593,9 @@ F \arrow{r} & \FGps.
 Let $\G\co S \to \FGps$ be a formal group of finite height over a $p$--local formal scheme $S$.  The functor $\Level(A, \G)$ is exactly the functor defined in Section 9 (see above), and in particular it is represented by an $S$--scheme.  The maps $\psi_\ell$ and $f_\ell$ from Definition 3.1 amount to giving a map $d_1\co \Level_1(\G) \to S$ and an isogeny $q\co d_0^* \G \to d_1^* \G$ whose kernel on $\Level(A, \G)$ is $A$.  The other conditions on Definition 3.1 exactly ensure that $(\Level_*(\G), d_*, s_*)$ is a simplicial functor and over $\Level_2(\G)$ the relevant hexagonal diagram commutes:
 \begin{center}
 \begin{tikzcd}
-& d_0^* d_0^* \G \arrow[-,double]{ld} \arrow{rd}{d_0^* q} \\
-d_1^* d_0^* \G \arrow{d}{d_1^* q} & & d_0^* d_1^* \G \arrow[-,double]{d} \\
-d_1^* d_1^* \G \arrow[-,double]{rd} & & d_2^* d_0^* \G \arrow{ld}{d_2^* q} \\
+& d_0^* d_0^* \G \arrow[equal]{ld} \arrow{rd}{d_0^* q} \\
+d_1^* d_0^* \G \arrow{d}{d_1^* q} & & d_0^* d_1^* \G \arrow[equal]{d} \\
+d_1^* d_1^* \G \arrow[equal]{rd} & & d_2^* d_0^* \G \arrow{ld}{d_2^* q} \\
 & d_2^* d_1^* \G.
 \end{tikzcd}
 \end{center}
@@ -665,6 +665,53 @@ Incidentally, the descent data constructed here is also the descent data that wo
 
 
 
+\subsection*{Tyler's argument}
+
+There's an important injectivity result used by Ando and Ando--Hopkins--Strickland (though Matt blames it on Hopkins and Strickland both times) about the injectivity of a certain $p${\th} power map.  They cite the McClure chapter of BMMS, but McClure's proof requires finite type hypotheses on the cohomology theory involved, which Morava $E$--theory does not satisfy.  There is a similar proof in the recent paper of Hopkins--Lawson, and so Nat and I wrote to Tyler about whether there was a common generalization of the two theorems that would give a good replacement argument.  Here is his reply:
+
+---
+
+Here are my current thought processes, which may be a bit messy at present. Fix a space $X$ and take $X^{(p)}$ for its smash power, as McClure does.
+
+Let's write $M = F(\Sigma^\infty X^{(p)}, E)$ for the function spectrum which is now $C_p$--equivariant, and $N = F(\Sigma^\infty X,E)$. Let's assume that $E$ has an $E_\infty$ multiplication and that $X$ is nice in the following sense: $E^X$ is a wedge of copies of $E$ (unshifted). This is satisfied when $E$ is $E$--theory and $X$ is finite type with $\Z_{(p)}$-homology only in even degrees.
+
+We get two maps:
+\[M^{hC_p} \to M\]
+This will realize our ``forgetful'' map $E^*(D X) \to E^*(X^{(p)})$.
+\[M^{hC_p} \to N^{hC_p}\]
+This will realize the ``other'' map $E^*(D X) \to E^*((BC_p)_+ \wedge X)$.
+
+We want to prove that these are jointly monomorphisms.
+
+The assumptions on $X$ actually imply that $E^{X^{(p)}} = (E^X)^{(p)}$ where the latter smash is taken over $E$. This decomposes, $C_p$--equivariantly, into a wedge of copies of $E$ with trivial action and a bunch of regular representations $E[C_p]$. Since $M$ is $E$--dual to this, we find that the map $M^{hC_p} \to M$ is a monomorphism on all the $E[C_p]$ components; on the $E$ parts with trivial action it decomposes as a product of projections $E_*\ps{x} / [p](x) \to E_*$. The kernel of this consists of the multiples of $x$. So if we want to prove a monomorphism, all we have to do now is show that these multiples of x map monomorphically into the homotopy of $N^{hC_p}$.
+
+I now want to consider the composite to the Tate spectra \[M^{hC_p} \to N^{hC_p} \to N^{tC_p}\] or equivalently \[M^{hC_p} \to M^{tC_p} \to N^{tC_p}.\]
+
+The first composition shows that, if we can show that this composite is a monomorphism on the multiples of $x$, we will be done. The second composition has, as its first map, inverting $x$, and it's a monomorphism on the desired classes. So we just have to check that the second map preserves that.
+
+This has the following benefit: instead of being born out of the unstable diagonal map $X \to X^{(p)}$, the constructions
+\[M^{tC_p} = F(X^{(p)}, E)^{tC_p}\]
+and
+\[N^{tC_p} = F(X,E)^{tC_p}\]
+take cofiber sequences in (finite) $X$ to fiber sequences of spectra. I think that this means that, instead of being functions of the unstable diagonal map on $X$, they are constructions that only require knowledge of the \emph{stable} homotopy type of $X$\todo{I don't understand this. I guess this has been a recurring theme in the Thursday seminar, and also in Chapters 2 and 6 of these notes (in some guise). I can ask Mike to explain it to me.}. I believe in fact that, by checking the case $X = S^0$, we then find that the map $M^{tC_p} \to N^{tC_p}$ is an equivalence for any finite $X$, and that should hopefully be enough to buy us a monomorphism on any of the $X$'s that we're describing.
+
+
+
+The stability of the Tate construction comes about for the following reason.
+
+Say we have a cofiber sequence $X \to Y \to Y/X$. Then the $p$--fold smash power $Y^{(p)}$ has a natural, equivariant filtration: $Y$ is, for dumb reasons, the homotopy colimit of $(X \to Y)$, then $Y^{(p)}$ is the hocolim of a $p$--fold smash power of this diagram (now indexed on $\{0 \to 1\}^{\times p}$). We can filter this diagram, equivariantly, according to ``distance from the initial vertex'', and get an equivariant filtration of $Y^{(p)}$ whose associated graded in degree $k$ consists of all ways to smash $k$ copies of $Y/X$ with $(p-k)$ copies of $X$ in some order. In grading $0$ this is $X^{(p)}$, and in grading $p$ this is $(Y/X)^{(p)}$; in all the gradings in between you get a wedge of terms where $C_p$ acts by permuting the wedge factors.
+
+The Tate construction preserves $C_p$-equivariant cofiber sequences, and destroys anything where $C_p$ acts by permuting wedge factors. As a result, the only parts that survive are the bottom $(X^{(p)})^{tC_p}$ and the top $((Y/X)^{(p)})^{tC_p}$ in a cofiber sequence.
+
+The standard reference should probably be Greenlees--May's \textit{Generalized Tate cohomology theories} but I'm not as closely familiar with the contents there. Sometimes this is called the topological Singer construction and I originally learned about it from Lunoe--Nielsen--Rognes. This talk about the stability properties is present in section 2 of DAG XIII somewhere, and possibly also in Jacob's notes on the Sullivan conjecture. Charles pointed out to me recently that these properties of the Tate construction are really why the Steenrod operations and certain power operations are stable: it's because they don't come out of a homotopy orbit construction on a smash power, but instead out of a Tate construction.
+
+
+
+
+
+
+
+
 
 \subsection*{Other stuff that goes in this chapter}
 
@@ -685,3 +732,5 @@ Matt's Section 4 talks about the $E_\infty$ structure on $E_n$ and compatibility
 Mike says that Mahowald--Thompson analyzed $L_{K(n)} \Loops S^{2n+1}$ by writing down some clever finite resolution.  The resolution that they produce by hand is actually exactly what you would get if you tried to understand the mapping spectral sequence for $E_\infty(E_n^{\Loops S^{2n+1}}, E_n)$.
 
 Mike also says that a consequence of the unpublished Hopkins--Lurie ambidexterity follow-up is that the comparison map $\CatOf{Spaces}(*, Y) \to E_\infty(E_n^Y, E_n^*)$ is an equivalence if $Y$ is a finite Postnikov tower living in the range of degrees visible to Morava $E$--theory.
+
+The final chapter of Matt's thesis has never really been published, where he investigates power operations on elliptic cohomology theories.  That might belong in this chapter as an example of the techinques, since we've already defined elliptic cohomology theories.
