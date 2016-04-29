@@ -550,7 +550,7 @@ We now turn to the construction of the other cohomology operations we will be in
 Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \to BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the $C_n$--quotient, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
 \begin{center}
 \begin{tikzcd}
-X^{\times n} \arrow["xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow{r} \arrow{d} & BU(nk) \\
+X^{\times n} \arrow["\xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow{r} \arrow{d} & BU(nk) \\
 X^{\times n}_{hC_n} \arrow["\xi(n)"]{r} & BU(k)^{\times n}_{hC_n}. \arrow[red]{ru}
 \end{tikzcd}
 \end{center}
@@ -776,6 +776,39 @@ This formula is quite remarkable --- it says that a certain power operation defi
 
 
 \todo[inline]{In Rudyak's / Jeremy's approach, the main point is that $C_n$--equivariant vector bundles can be traded for ordinary vector bundles with a $BC_n$ factor in the base.  So, a decomposition of the $n$--fold sum of the tautological vector bundle, considered as a $C_n$--bundle, induces a decomposition of the associated bundle over $BC_n$, which computes the effect of the $n${\th} power operation.  Then, using the splitting principle, one recovers Quillen's incidence Theorem.  (I'm too sleepy to really work my way through this. Both Jeremy and Rudyak specialize to the case $n = 2$, and so we'll need to rewrite what they do at an arbitrary prime.  This will be easy, but it will require a clear head.)}
+
+Our goal today is to calculate the effect of our power operation $P^n$ on $MU$--cohomology classes.  Because of the definition $MU = \colim_k MU(k)$, it will suffice for us to study the effect of $P^n$ on certain universal classes in $MU^* MU(k)$, beginning with the canonical orientation $x \in MU^2 \CP^\infty$.
+
+
+
+
+The $MU(1)$ calculation.
+
+For whatever reason, we're interested in the tautological bundle $\L$ on $\CP^\infty$, as well as its $n$--fold internal direct sum $\L^{\oplus n}$.  In our discussion yesterday, this gave rise to a bundle $\L(n)$ and an associated $MU$--characteristic class $c_n \L(n)$ according to the diagram \[\CP^\infty_{hC_n} \to (\CP^\infty)^{\times n}_{hC_n} \to \Susp^{2n} MU^{\sm n}_{hC_n} \to \Susp^{2n} MU.\]
+
+The bundle $\L^{\oplus n}$ carries a $C_n$--action by permutation of the factors, and it is just as well to say that $\L^{\oplus n} \cong \L \otimes \pi^* \rho$, where $\rho$ is the regular representation of $C_n$ (considered as a vector bundle over a point) and $\pi\co \CP^\infty \to *$ is the constant map.  The regular representation for $C_n$ is accessible by character theory: for $\chi\co U(1)[n] \to U(1)$ the generating character, there is a decomposition $\rho \cong \bigoplus_{j=0}^{n-1} \chi^{\otimes j}$ of the associated vector bundles\todo{I guess I mean to consider $\chi$ as a line bundle with $C_n$--action.  It is just by complex rotation?}, and hence \[\L^{\oplus n} \cong \L \otimes \pi^* \rho \cong \L \otimes \bigoplus_{j=0}^{n-1} \pi^* \chi^{\otimes j} \cong \bigoplus_{j=0}^{n-1} \L \otimes \pi^* \chi^{\otimes j}.\]
+
+The $C_n$--action can equivalently be considered as presenting these as bundles over $\CP^\infty \times BC_n$.  In these terms, the above decomposition formula becomes \[\L(n) = \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j},\] where $\eta$ is the bundle classified by $\eta\co BC_n \to BU(1)$.  This gives us access to $c_n \L(n)$ as the top Chern class of this bundle, and hence the Euler class:
+\begin{align*}
+c_n \L(n) & = e\left( \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right) &
+& = \prod_{j=0}^{n-1} e\left( \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right) &
+& = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)),
+\end{align*}
+where $x$ is the Euler class $\L$, a/k/a the canonical coordinate on $\CP^\infty_{MU}$, and $t$ is the Euler class of $\eta$, a/k/a the induced coordinate on $(BC_n)_{MU}$, using \[MU^*(\CP^\infty \times BC_n) \cong MU^*\ps{x, t} / [n]_{MU}(t).\]  We can identify many of the component pieces of this formula by rewriting it as a sum in powers of $t$: \[P^n(x) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where $a_j(t)$ is a series with coefficients in the subring spanned by the coefficients of the universal formal group law and \[w = e(\rho) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the regular representation and, again, $b_j$ lie in the subring spanned by the coefficients of the universal formal group law.
+
+
+
+The next goal is to understand power operations on the canonical class in $MU(m)$.  The first task is to rewrite the formula above into one that looks somewhat odd, but which is amenable to application to direct sums: \[P^n(x) = \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x).\]  The main point now is to use the splitting principle, which says \[P^{nm}(U_m) = \overset{\text{$m$ times, suitably interpreted}}{\overbrace{P^n(U_1) \cdot \cdots \cdot P^n(U_1)}} = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(v) s_\alpha(U_m).\]
+
+
+
+In general, given a finite pointed space $X$ and a class $f \in \widetilde{MU}^{2q}(X)$, we can take $m$ large enough so that $f$ is represented by an unstable map \[g\co \Susp^{2m} X \to MU(m+q).\]  Then $g^* U_{m+q} = \sigma^{2m} f$ for $\sigma$ the suspension homomorphism, and since $P^{nm}(\sigma^{2m}) = w^m \sigma^{2m}$ we have \[w^m P^{nm}(f) = P^{nm}(\sigma^{2m} f) = \sum_{|\alpha| \le q} w^{q+m - |\alpha|} a_\alpha(t) s_\alpha(f).\]  That is, this operation $P^{nm}$ is \emph{almost} expressible in terms of the Landweber--Novikov operations, up to some $w$--torsion.
+
+\todo[inline]{You can put a remark here about how power operations become additive after passing to the Tate construction, now that you sort of understand this.  Or, you can put a forward reference in to where you're going to talk about this, way out in the Power Operations chapter.}
+
+
+
+
 
 
 
