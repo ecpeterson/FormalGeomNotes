@@ -1,0 +1,42 @@
+% -*- root: main.tex -*-
+
+% this macro was written by Hood Chatham, May 2016
+
+\makeatletter
+\def\makesymbdefs#1#2{\setcharsuff{#2}{#1}{abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ}}
+\let\@xp\expandafter
+\newtoks\setchars@toks
+\def\setchars#1#2{\def\setchar@name##1{##1}\setchars@{#1}{#2}}
+\def\setcharsuff#1#2#3{\def\setchar@name##1{##1#2}\setchars@{#1}{#3}}
+\def\setchars@#1#2{\setchars@toks{\setchars@@{#1}}\edef\next{\the\setchars@toks#2.}\next}
+\def\setchars@@#1#2{
+    \ifx#2.\else
+        \def\temp##1{#1}
+        \setchars@usedparam\temp % If you delete optional block, delete this line too
+        \@xp\def\csname\setchar@name{#2}\@xp\endcsname\@xp{\@xp{\temp{#2}}}
+        \setchars@toks{\setchars@@{#1}}
+        \@xp\the\@xp\setchars@toks
+    \fi
+}
+
+%optional
+\bgroup\lccode`*=`#\lowercase{\egroup
+    \def\setchars@usedparam#1{
+        \@xp\setchars@usedparam@\@xp#1\meaning#1*\@nil
+    }
+    \def\setchars@usedparam@#1#2->#3*#4\@nil{
+        \ifx&#4&
+            \@xp\def\@xp#1\@xp{#1{}}
+        \fi
+    }
+}
+%end optional
+\makeatother
+
+
+% Use cases: 
+% \setchars{\mathbb}{NZQRC} % (or \setchars{\mathbb{#1}}{NZQRC} **)
+% \setchars{\mathcal}{O}  % (or \setchars{\mathcal{#1}}{O} **)
+% \setchars{\widehat{\mathbb{#1}}}{AG}
+% \makesymbdefs{bb}{\mathbb} % Defines \Abb, \Bbb, \Cbb, etc to expand to \mathbb{A}, etc
+% \makesymbdefs{x}{#1^{\times}}
