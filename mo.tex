@@ -3,73 +3,86 @@
 \chapter{Unoriented bordism}\label{UnorientedBordismChapter}
 
 
-\todo{Write an introduction for me.}
+
+
+This Case Study culminates in the calculation of $MO_*(*)$, the bordism ring of unoriented manifolds, but we mainly take this as an opportunity to introduce several key concepts that will serve us throughout the book.  First and foremost, we will require a definition of bordism spectrum that we can manipulate computationally, using just the tools of abstract homotopy theory.  Once that is established, we immediately begin to bring algebraic geometry into the mix: the main idea is that the cohomology ring of a space is better viewed as a scheme (with plenty of extra structure), and the homology groups of a spectrum are better viewed as representation for a certain highly elaborate algebraic structure group.  This data finds expression in familiar homotopy theory: we show that a form of group cohomology for this representation forms the input to the classical Adams spectral sequence.  Finally, we calculate this representation structure for $H\F_{2*} MO$, find that it is suitably free, and thereby gain control of the Adams spectral sequence computing $MO_*(*)$.\todo{Thread Crefs to the relevant theorems below through this introduction.}
+
+
+
 
 
 \section{Thom spectra and the Thom isomorphism}\label{LectureThomSpectra}
 
-Our first case study is a sequence of theorems about the unoriented bordism spectrum $MO$.  I wanted to begin by recalling one definition of the spectrum $MO$, since it involves ideas that will be useful to us throughout the semester.
+Our goal is a sequence of theorems about the unoriented bordism spectrum $MO$.  We will begin by recalling a definition of the spectrum $MO$ using just abstract homotopy theory, because it involves ideas that will be useful to us throughout the semester and because we cannot compute effectively with the chain-level definition given in the Introduction.
 
 \begin{definition}
-For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T(\xi).\]
+For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T_n(\xi).\]
 \end{definition}
 \begin{proof}[``Proof'' of definition]
-There is a more classical construction of the Thom space: take the associated disk bundle by gluing an $n$--disk fiberwise, and add a point at infinity by collapsing $\xi$: \[T(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ to an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
+There is a more classical construction of the Thom space: take the associated disk bundle by gluing an $n$--disk fiberwise, and add a point at infinity by collapsing $\xi$: \[T_n(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ to an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
 \end{proof}
 
 Before proceeding, here are two important examples:
 \begin{example}\label{TrivialBundleThomExample}
-If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T(\xi) = S^n \sm (X_+)$.  This is supposed to indicate what Thom spaces are ``doing'': if you feed in the trivial bundle then you get the suspension out, so if you feed in a twisted bundle you should think of it as a \textit{twisted suspension}.
+If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T_n(\xi) = S^n \sm (X_+)$.  This is supposed to indicate what Thom spaces are ``doing'': if you feed in the trivial bundle then you get the suspension out, so if you feed in a twisted bundle you should think of it as a \textit{twisted suspension}.
 \end{example}
 
 \begin{example}\label{RPnThomExample}
-Let $\xi$ be the tautological $S^0$--bundle over $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, $EO(1)$, the cofiber degenerates and it follows that $T(\xi) = \RP^\infty$. More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
+Let $\xi$ be the tautological $S^0$--bundle over $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, $EO(1)$, the cofiber degenerates and it follows that $T_1(\xi) = \RP^\infty$. More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
 \end{example}
 
-\todo{Two people (Mauro and someone else) asked in what generality this ``$Bh\Aut F$'' construction works.  This can be clarified in a remark.}
-Now we catalog a bunch of useful properties of the Thom space functor. Firstly, recall that a spherical bundle over $X$ is the same data as a map $X \to B \GL_1 S^{n-1}$, where $\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback\todo{In lecture, you decided to call these $B h\operatorname{Aut}(S^{n-1})$, which is maybe a healthier choice?} \todo{does this mean we are regarding $h\operatorname{Aut}(S^{n-1})$ as a group? Is $\operatorname{Aut}(S^{n-1})$ a topological group? Would it make sense to say $B \operatorname{Aut}(S^{n-1})$? To be honest I personally like $GL_1S^n$. It might cause some potential for confusion but it looks more clean. - danny}
+\citeme{Give a reference for this general construction of classifying spaces for fibrations.}
+Now we catalog a bunch of useful properties of the Thom space functor.  Firstly, recall that a spherical bundle over $X$ is the same data as a map $X \to B \GL_1 S^{n-1}$, where $\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback of spaces
 \begin{center}
 \begin{tikzcd}
 \GL_1 S^{n-1} \arrow{r} \arrow{d} & F(S^{n-1}, S^{n-1}) \arrow{d} \\
 \Aut_{h\CatOf{Spaces}} S^{n-1} \arrow{r} & \End_{h\CatOf{Spaces}} S^{n-1} \arrow[equal]{r} & \pi_0 F(S^{n-1}, S^{n-1}).
 \end{tikzcd}
 \end{center}
-We can interpret $T$ as a functor off of the slice category over $BGL_1 S^{n-1}$: maps \[Y \xrightarrow{f} X \xrightarrow{\xi} B \GL_1 S^{n-1}\] induce maps $T(f^* \xi) \to T(\xi)$, and $T$ is suitably homotopy-invariant.
+We can interpret $T_n$ as a functor off of the slice category over $BGL_1 S^{n-1}$: maps \[Y \xrightarrow{f} X \xrightarrow{\xi} B \GL_1 S^{n-1}\] induce maps $T_n(f^* \xi) \to T_n(\xi)$, and $T_n$ is suitably homotopy-invariant.
 
-\todo{You can make this section clearer by noticing that the map $J_{\R}^n$ is directly induced by a map $O(n) \to h\Aut S^{n-1}$ by the action of $O(n)$ on $\R^n$.  This makes the commutativity of the relevant diagrams clear, whereas using the Yoneda lemma does not make it clear that we can take the appropriate homotopy colimits.  --Mauro}
-Next, the spherical subbundle of a vector bundle gives a common source of spherical bundles.  Since rank $n$ vector bundles are also classified by an object $BO(n)$, this begets a map $J_{\R}^n\co BO(n) \to B \GL_1 S^{n-1}$ for each $n$.  Stable homotopy theorists are very interested in the block--inclusion maps $i^n\co BO(n) \to BO(n+1)$ and the colimit $BO = BO(\infty)$.  The suspension functor induces a map $\GL_1 S^{n-1} \to \GL_1 S^n$, and we are led to ask about the compatibility of these operations.  As a route to answering this, the block--inclusion maps are a special case of a more general direct sum map $\oplus\co BO(n) \times BO(m) \to BO(n+m)$, given by the precomposition \[BO(n) = BO(n) \times * \xrightarrow{\operatorname{id} \times \text{triv}} BO(n) \times BO(1) \xrightarrow\oplus BO(n+1).\] The spaces $B \GL_1 S^{n-1}$ enjoy a similar ``collective monoid'' structure, given by taking the fiberwise join two spherical bundles with a common base.
+Next, the spherical subbundle of a vector bundle gives a common source of spherical bundles.  The action of $O(n)$ on $\R^n$ preserves the unit sphere, and hence gives a map $O(n) \to GL_1 S^{n-1}$.  These are maps of topological groups, and the block--inclusion maps $i^n\co O(n) \to O(n+1)$ commute with the suspension map $GL_1 S^{n-1} \to GL_1 S^n$.  In fact, much more can be said:
 \begin{lemma}\label{JIsMonoidal}
-The fiberwise join is represented by maps \[B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \to B\GL_1 S^{n+m-1},\] and these maps commute with the block sum maps on the $BO(n)$ family: \todo{Split the left vertical arrow into two?} \todo{Index it by $J_\mathbb{R}^n \times J_\mathbb{R}^m$, and the right vertical arrow by $J_\mathbb{R}^{n+m}$? -Danny}
+The block--sum maps $O(n) \times O(m) \to O(n+m)$ are compatible with the join maps $GL_1 S^{n-1} \times GL_1 S^{m-1} \to GL_1 S^{n+m-1}$.
+\end{lemma}
+\noindent Again taking a cue from $K$--theory, we take the colimit as $n$ grows large, using the maps
 \begin{center}
 \begin{tikzcd}
-BO(n) \times BO(m) \arrow{d} \arrow{r} & BO(n+m) \arrow{d} \\
-B\GL_1 S^{n-1} \times B\GL_1 S^{m-1} \arrow{r} & B\GL_1 S^{n+m-1}.
-\qed
+B\GL_1 S^{n-1} \arrow[equal]{r} & B\GL_1 S^{n-1} \times * \arrow["\operatorname{id} \times \text{triv}"]{r} & B\GL_1 S^{n-1} \times B\GL_1 S^0 \arrow["\ast"]{r} & B\GL_1 S^n, \\
+BO(n) \arrow[equal]{r} & BO(n) \times * \arrow["\operatorname{id} \times \text{triv}"]{r} & BO(n) \times BO(1) \arrow["\oplus"]{r} & BO(n+1).
 \end{tikzcd}
 \end{center}
-\end{lemma}
-\noindent Again taking a cue from $K$--theory, we take the colimit as $n$ grows large.
 \begin{corollary}
-There is a map of $H$--spaces $J_{\R}\co BO \to B\GL_1 \S$ called the \textit{stable $J$--homomorphism}. \qed
+The operations of block--sum and topological join imbue the colimiting spaces $BO$ and $B\GL_1 \S$ with the structure of $H$--groups\todo{Should you justify ``group'' rather than ``space''?}.  Moreover, the colimiting map \[J_{\R}\co BO \to B\GL_1 \S,\] called the \textit{stable $J$--homomorphism}, is a morphism of $H$--groups. \qed
 \end{corollary}
-\noindent Finally, we can ask about the compatibility of $T$ with all of this:\todo{The right place to address dimension is here.  $T$, as defined above, does not extend to a functor off of the system $\{BhAut(S^{n-1})\}$ unless you reduce each Thom complex by the appropriate dimension shift.  So, you should define a stable Thom spectrum functor.}
+\noindent Finally, we can ask about the compatibility of Thom constructions with all of this.  In order to properly phrase the question, we need a version of the construction which operates on stable spherical bundles, i.e., whose source is the slice category over $B\GL_1 \S$.  By calculating\todo{Does this calculation need justification?} \[T_{n+1}(\xi \ast \text{triv}) \simeq \Susp T_n(\xi),\] we are inspired to make the following definition:
+
+\begin{definition}
+For $\xi$ an $S^{n-1}$--bundle, we define the \textit{Thom spectrum} of $\xi$ to be \[T(\xi) := \Susp^{-n} \Susp^\infty T_n(\xi).\]  By filtering the base space by compact subspaces, this begets a functor \[T\co \CatOf{Spaces}_{/ B\GL_1 \S} \to \CatOf{Spectra}.\]
+\end{definition}
+
 \begin{lemma}\label{ThomSpacesAreMonoidal}
-$T$ is monoidal: it carries external fiberwise joins to smash products of Thom spaces. \qed
+$T$ is monoidal: it carries external fiberwise joins to smash products of Thom spectra.  Correspondingly, $T \circ J_{\R}$ carries external direct sums of stable vector bundles to smash products of Thom spectra. \qed
 \end{lemma}
 
-We are now prepared to define our spectrum $MO$.  The unstable $J$--maps $J_{\R}^n\co BO(n) \to B\GL_1 S^{n-1}$ give Thom spaces $T(J_{\R}^n)$,\todo{Be careful about dimension here: you really mean a reduced tautological bundle, related to how $BO$ has only one connected component.} equipped with maps\todo{Fix this equation.}\todo{What's wrong with it?-danny} \[\Susp T(J_{\R}^n) = T(J_{\R}^n \oplus \text{triv}) \to T(J_{\R}^{n+1}).\] Setting $MO(n) = \Susp^{-n} \Susp^\infty T(J_{\R}^n)$, we again assemble this data into a single object: \[MO := \colim_n MO(n) = \colim_n \Susp^{-n} T(J_{\R}^n).\]
-\todo{Question: You essentially defined $MO$ here by piecing together the $T(J_\mathbb{R}^n)$'s. We should mention that another way to pack all this info together is to say $MO = T(J_\mathbb{R})$ -danny}
-\todo{There should be a Theorem here saying that we recover $MO$ as defined on the first day.}
+\begin{definition}
+The spectrum $MO$ arises as the universal example of all these constructions, strung together:
+\[MO := T(J_{\R}) = \colim_n T(J_{\R}^n) = \colim_n \Susp^{-n} T_n J_{\R}^n.\]
+\end{definition}
+\citeme{There should be a reference here (to Pontryagin, presumably) saying that we recover $MO$ as defined on the first day.}
 
-The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces (from \Cref{JIsMonoidal}).  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
+The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces.  Much more excitingly, we can also deduce the presence of Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
 \begin{center}
 \begin{tikzcd}
 BO \times BO \rar["\sigma",equiv'] \arrow[bend right]{rrd} & BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
 & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
-We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.  \todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}\todo{Have you already mentioned that $BO$ is not just an $H$-space, but an $H$-group?}  It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little triangle it forms.} \todo{I'm confused about the commutativity of this factorization with the rest of the diagram.-danny}  We are now in a position to see the Thom isomorphism:
-\begin{lemma}[Thom isomorphism, universal example] As $MO$--modules,\todo{Is it clear that this is an equivalence of $MO$--modules? This should come from the $x$--factor being unmolested, right?}\todo{Is it furthermore clear that the cohomological version of this gives an action of $E^* X$ on $E^* T(\xi)$ by the ``Thom diagonal''?} \[MO \sm MO \simeq MO \sm \Susp^\infty_+ BO.\]
+We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.
+\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}
+It's evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little lifting triangle it forms.}  We are now in a position to see the Thom isomorphism:
+\begin{lemma}[Thom isomorphism, universal example]
+As $MO$--modules, \[MO \sm MO \simeq MO \sm \Susp^\infty_+ BO.\]
 \end{lemma}
 \begin{proof}
 Stringing together the naturality properties of the Thom functor outlined above, we can thus make the following calculation:
@@ -79,22 +92,22 @@ T(\mu \circ (J_{\R} \times J_{\R})) & \simeq T(\mu \circ (J_{\R} \times J_{\R}) 
 & \simeq T(J_{\R}) \sm T(0) & \text{(monoidality)} \\
 & \simeq T(J_{\R}) \sm \Susp^\infty_+ BO & \text{(\Cref{TrivialBundleThomExample})} \\
 T(J_{\R}) \sm T(J_{\R}) & \simeq T(J_{\R}) \sm \Susp^\infty_+ BO & \text{(monoidality)} \\
-MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. & \text{(definition of $MO$)} & \phantom{.} \qedhere
+MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. & \text{(definition of $MO$)}
 \end{align*}
+The equivalence is one of $MO$--modules because the $MO$--module structure of both sides comes from smashing with $MO$ on the left.
 \end{proof}
 
 \noindent From here, the general version of Thom's theorem follows quickly:
 
-\begin{theorem}[Thom isomorphism]
+\begin{theorem}[Thom isomorphism]\label{GeneralThomIsom}
 Let $\xi\co X \to BO$ classify a vector bundle and let $\phi\co MO \to E$ be a map of ring spectra. Then there is an equivalence of $E$--modules \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X.\]
 \end{theorem}
 
 \begin{proof}[Modifications to above proof]
-\todo{Added a little clarification, and gave what I think is a correct proof of the E case.  -Krishanu}
 To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma\co BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  Follow the same proof as before with the diagram
 \begin{center}
 \begin{tikzcd}
-BO \times X \rar["\sigma", equiv'] \arrow[bend right]{rrrd} & BO \times X \rar["\xi",equiv']& BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
+BO \times X \rar["\sigma", equiv'] \arrow[bend right]{rrrd} & BO \times X \rar["\id \times \xi",equiv']& BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
 & & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
@@ -108,22 +121,33 @@ E \sm T(\xi) \arrow{r}{\theta_E} & E \sm \Susp^\infty_+ X
 \end{center}
 The bottom arrow $\theta_E$ exists by applying the action map to both sides and pushing the map $\theta_{MO} \sm E$ down.  Since $\theta_{MO}$ is an equivalence, it has an inverse $\alpha_{MO}$.  Therefore, the middle map has inverse $\alpha_{MO} \sm E$, and we can similarly push this down to a map $\alpha_E$, which we now want to show is the inverse to $\theta_E$.  From here it is a simple diagram chase: we have renamed three of the maps in the diagram to $f$, $g$, and $h$ for brevity.  Noting that $g \circ f$ is the identity map because of the unit axiom, we conclude
 \begin{align*}
-g\circ f &\simeq g \circ (\alpha_{MO}\sm E) \circ (\theta_{MO} \sm E) \circ f& \\
-& \simeq \alpha_E \circ h \circ (\theta_{MO}\sm E) \circ f & \text{(action map)}\\
-& \simeq \alpha_E \circ \theta_E \circ g \circ f & \text{(action map)}\\
-&\simeq \alpha_E \circ \theta_E. & \qedhere
+g \circ f & \simeq g \circ (\alpha_{MO} \sm E) \circ (\theta_{MO} \sm E) \circ f \\
+& \simeq \alpha_E \circ h \circ (\theta_{MO}\sm E) \circ f & \text{(action map)} \\
+& \simeq \alpha_E \circ \theta_E \circ g \circ f & \text{(action map)} \\
+& \simeq \alpha_E \circ \theta_E.
 \end{align*}
+It follows that $\alpha_E$ gives an inverse to $\theta_E$.
 \end{proof}
-\todo{At least hint that there's a converse to this Theorem, to be explored later.}
+
+\begin{remark}
+One of the tentpoles of the theory of Thom spectra is that \Cref{GeneralThomIsom} has a kind of converse: if a ring spectrum $E$ has suitably natural and multiplicative Thom isomorphisms for Thom spectra formed from real vector bundles, then one can define an essentially unique ring map $MO \to E$ realizing these isomorphisms via the machinery of \Cref{GeneralThomIsom}.
+\end{remark}
 
 \begin{example}\label{HF2RPinftyExample}
-We'll close out today by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  By killing all the homotopy elements in positive degrees, we can also see that the map $MO \to H\F_2$ is a ring map\todo{This requires some justification, like $MO$ being connective .}, so that we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
+We'll close out this section by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  Because $MO$ is a connective spectrum, the diagram\todo{This is \emph{still} not a proof of this. Ugh.}
+\begin{center}
+\begin{tikzcd}
+MO \sm MO \arrow{d} \arrow{r} & (MO \sm MO)(-\infty, 0] \arrow{r} \arrow[equal]{d} & MO(-\infty, 0] \sm MO(-\infty, 0] \arrow[densely dotted]{ld} \arrow[equal]{r} & H\pi_0 MO \sm H\pi_0 MO \arrow[densely dotted]{d} \\
+MO \arrow{r} & MO(-\infty, 0] \arrow[equal]{rr} & & H\pi_0 MO
+\end{tikzcd}
+\end{center}
+shows that \[MO \to MO(-\infty, 0] = H\pi_0 MO = H\F_2\] is a map of ring spectra.  Hence, we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
 \begin{align*}
 \pi_* (H\F_2 \sm T(\L - 1)) & \cong \pi_* (H\F_2 \sm T(0)) & \text{(Thom isomorphism)} \\
 \pi_* (H\F_2 \sm \Susp^{-1} \Susp^\infty \RP^{n+1}) & \cong \pi_* (H\F_2 \sm \Susp^\infty_+ \RP^n) & \text{(\Cref{RPnThomExample})} \\
 \widetilde{H\F_2}_{*+1} \RP^{n+1} & \cong H\F_2{}_* \RP^n. & \text{(generalized homology)}
 \end{align*}
-This powers an induction that shows $H\F_2{}_* \RP^\infty$ has a single class in every degree.  \todo{Wouldn't hurt to expand on this.}  The cohomology version of all this, together with the $H\F_2^* \RP^n$--module structure of $H\F_2^* T(\L-1)$, also gives the ring structure: \[H\F_2^* \RP^n = \F_2[x] / x^{n+1}.\] \todo{This part is interesting. I just remembered that the Thom isomorphism theorem I know is actually about cohomology! What's the similar story for cohomology here? We should talk about this. -danny}
+This powers an induction that shows $H\F_2{}_* \RP^\infty$ has a single class in every degree.  The cohomological version of the Thom isomorphism\todo{This could use a reference or a remark or something.  Is there a Mahowaldian version of the cohomological Thom isomorphism?}, together with the $H\F_2^* \RP^n$--module structure of $H\F_2^* T(\L-1)$, also gives the ring structure: \[H\F_2^* \RP^n = \F_2[x] / x^{n+1}.\]
 \end{example}
 
 
