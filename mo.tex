@@ -157,7 +157,6 @@ This powers an induction that shows $H\F_2{}_* \RP^\infty$ has a single class in
 
 \section{Cohomology rings and affine schemes}
 
-\todo[inline]{Make sure you use $\F_2$ everywhere, rather than $\Z/2$.}
 An abbreviated summary of this semester is that we're going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents, $\Spec R$.  For any ``test $\F_2$--algebra'' $T$, we set \[(\Spec R)(T) := \CatOf{Algebras}_{\F_2/}(R, T) \cong \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R).\]  More generally, we have the following definition:
 \begin{definition}
 An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to \CatOf{Sets}$ which is (noncanonically) isomorphic to $\Spec R$ for some $\F_2$--algebra $R$.  Given such an isomorphism, we will refer to $\Spec R \to X$ as a \textit{parameter} for $X$ and its inverse $X \to \Spec R$ as a \textit{coordinate} for $X$.
@@ -176,17 +175,12 @@ Set $R_1 = \F_2[x]$.  Then \[(\Spec R_1)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x], 
 The symbol ``$\mathbb A^1$'' is pronounced ``the affine line'' --- reasonable, since the value $\mathbb A^1(T)$ is, indeed, a single $T$'s worth of points.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $(n+1)${\st} order (nilpotent) neighborhood of the origin in the affine line''.
 \end{example}
 
-We can also express in this language another common object arising from algebraic topology: the Hopf algebra, which appears when taking the mod--$2$ cohomology of an $H$--group.  In addition to the usual cohomology, the extra pieces of data are those induced by the $H$--group multiplication, unit, and inversion maps, which on cohomology beget a diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
+We can also use this language to re-express another common object arising in algebraic topology: the Hopf algebra, which appears when taking the mod--$2$ cohomology of an $H$--group.  In addition to the usual ring structure on cohomology groups, the $H$--group multiplication, unit, and inversion maps induce an additional diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
 \begin{lemma}
 For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \textit{group schemes}.  Conversely, a choice of group structure on $\Spec R$ endows $R$ with the structure of a Hopf algebra.
 \end{lemma}
-\begin{proof}
-The functor $\Spec \colon \CatOf{Algebras}_{\F_2 /}^{\mathrm{op}} \to \mathrm{Funct}(\CatOf{Algebras}_{\F_2 /}, \CatOf{Sets})$ takes limits into limits.
-Since tensor products of $\F_2$-algebras compute pushouts in $\CatOf{Algebras}_{\F_2 /}$, we see that Hopf algebras are simply cogroup objects in $\CatOf{Algebras}_{\F_2 /}$.
-These remarks imply that $\Spec$ takes Hopf algebras into group objects in $\mathrm{Funct}(\CatOf{Algebras}_{\F_2 /}, \CatOf{Sets})$.
-Now, for any small category $\cal{C}$, one has
-\[ \mathrm{Grp}( \mathrm{Funct}(\cal{C}, \CatOf{Sets}) ) \simeq \mathrm{Funct}(\cal{C}, \CatOf{Groups}). \]
-The conclusion now follows from the fully faithfulness of $\Spec$.
+\begin{proof}[Proof sketch]
+This is a matter of recognizing the product in $\CatOf{Algebras}_{\F_2/}^{\mathrm{op}}$ as the tensor product, then using the Yoneda lemma to transfer structure around.
 \end{proof}
 
 \begin{example}\label{InformalAdditiveGroupExample}
@@ -196,7 +190,19 @@ The functor $\mathbb A^1$ introduced above is naturally valued in groups: since 
 \mathbb G_a & \xrightarrow{\chi} \mathbb G_a & -x & \mapsfrom x, \\
 \Spec \F_2 & \xrightarrow{\eta} \mathbb G_a & 0 & \mapsfrom x.
 \end{align*}
-\todo{I think you explained this differently in class, so I wanted to work out how to use the Yoneda lemma to deduce these.  The idea is that we want a map, e.g., $\mu \in \mathrm{Nat}(\mathbb A^1 \times \mathbb A^1, \mathbb A^1)$.  The functors involved are corepresented, so this is just $\mathrm{Nat}(h^{\mathbb{F}_2[x_1,x_2]},h^{\mathbb{F}_2[x]})$.  The Yoneda lemma says that this is the same as an algebra map $\mathbb{F}_2[x] \rightarrow \mathbb{F}_2[x_1,x_2]$, which is obtained by evaluating the natural transformation at the identity of $\mathbb{F}_2[x_1,x_2]$.  The identity map of $\mathbb{F}_2[x_1,x_2]$ corresponds to the pair of elements $x_1, x_2$ in $\mathbb{F}_2[x_1,x_2]$, which gets sent to $x_1 + x_2$.  So the algebra homomorphism we want sends $x$ to $x_1 + x_2$.}
+As an example of how to reason this out, consider the following diagram:
+\begin{center}
+\begin{tikzcd}
+\mathbb G_a \times \mathbb G_a \arrow["\mu"]{r} & \mathbb G_a \\
+\Spec \F_2[x_1] \times \Spec \F_2[x_2] \arrow[shift left=1.2em, "x_1", "\simeq"']{u} \arrow[shift right=1.2em, "x_2", "\simeq"']{u} \\
+\Spec \F_2[x_1, x_2] \arrow[equal]{u} \arrow["\Delta^*"]{r} \arrow["x_1 + x_2" near end, bend right=18]{uur} & \Spec \F_2[x] \arrow["x", "\simeq"']{uu} .
+\end{tikzcd}
+\end{center}
+It follows that the bottom map of affine schemes is induced by the algebra map
+\begin{align*}
+\F_2[x] & \xrightarrow{\Delta} \F_2[x_1, x_2], &
+x & \mapsto x_1 + x_2.
+\end{align*}
 \end{example}
 
 \begin{remark}
@@ -204,7 +210,7 @@ In fact, $\mathbb A^1$ is naturally valued in \emph{rings}. It models the invers
 \end{remark}
 
 \begin{example}
-We define the \textit{multiplicative group scheme} by\todo{Do you want this to be a $\Z$--algebra? Ditto with $\mathbb A^1$ and $\mathbb G_a$? re; I don't think so, since we're just doing everything over $F_2$, but Eric could you check? AY} \[\mathbb G_m = \Spec \F_2[x, y] / (xy - 1).\]  Its value $\mathbb G_m(T)$ on a test algebra $T$ is the set of pairs $(x, y)$ such that $y$ is a multiplicative inverse to $x$, and hence $\mathbb G_m$ is valued in groups.  Applying the Yoneda lemma, we deduce the following formulas for the Hopf algebra structure maps:
+We define the \textit{multiplicative group scheme} by \[\mathbb G_m = \Spec \F_2[x, y] / (xy - 1).\]  Its value $\mathbb G_m(T)$ on a test algebra $T$ is the set of pairs $(x, y)$ such that $y$ is a multiplicative inverse to $x$, and hence $\mathbb G_m$ is valued in groups.  Applying the Yoneda lemma, we deduce the following formulas for the Hopf algebra structure maps:
 \begin{align*}
 \mathbb G_m \times \mathbb G_m & \xrightarrow{\mu} \mathbb G_m & x_1 \otimes x_2 & \mapsfrom x \\
 & & y_1 \otimes y_2 & \mapsfrom y, \\
@@ -218,45 +224,36 @@ As presented above, the multiplicative group comes with a natural inclusion $\ma
 \end{remark}
 
 \begin{example}[{cf.\ \Cref{WorkedAlpha2Example}}]\label{Alpha2Example}
-The following example shows that it is a bad idea to think of affine group schemes as a scheme-ified version of linear Lie groups.  Define the group scheme $\alpha_2$ to be $\mathrm{Spec}(\mathbb{F}_2[x]/(x^2))$ with group scheme structure given by
+This example showcases the complications that algebraic geometry introduces to this situation, and is meant as discouragement from thinking of the theory of affine group schemes as a strong analogue of the theory of linear complex Lie groups.  We set $\alpha_2 = \Spec \mathbb{F}_2[x]/(x^2)$, with group scheme structure given by
 \begin{align*}
 \alpha_2 \times \alpha_2 &\xrightarrow{\mu} \alpha_2 & x_1 + x_2 & \mapsfrom x, \\
 \alpha_2 & \xrightarrow{\chi} \alpha_2 & -x & \mapsfrom x, \\
 \Spec \F_2 & \xrightarrow{\eta} \alpha_2 & 0 & \mapsfrom x.
 \end{align*}
-
-This group scheme has several interesting properties:\todo{All of these can be proven using Dieudonn\'e theory, which we can write out and stick in a reference to Chapter 4.}
+This group scheme has several interesting properties, which we will merely state for now, reserving their proofs for \Cref{WorkedAlpha2Example}.
 \begin{enumerate}
-\item $\alpha_2$ has the same underlying structure ring as $\mu_2 = \mathbb{G}_m[2]$\todo{You introduced this notation in class, but it hasn't been defined in this document yet.  See example 1.2.12.} but is not isomorphic to it.  The easiest way to see this is that $\mathrm{Hom}(\mu_2, \mu_2) = \mathbb{Z}/2\mathbb{Z}$\todo{How is $\mathbb{Z}/2\mathbb{Z}$ an affine group scheme?  Is it just $\mathrm{Spec}(\mathbb{F}_2)$?} but $\mathrm{Hom}(\alpha_2, \mu_2) = \alpha_2$ (these homs are in the category of affine group schemes and give out an affine group scheme).  \todo{for jhfung: work this out}
+\item $\alpha_2$ has the same underlying structure ring as $\mu_2 := \mathbb{G}_m[2]$, the $2$--torsion points of $\mathbb G_m$, but is not isomorphic to it.  (For instance, $\InternalHom{GroupSchemes}(\mu_2, \mu_2)$ gives the constant group scheme $\underline{\Z/2}$, but $\InternalHom{GroupSchemes}(\alpha_2, \mu_2) = \alpha_2$.)
 \item There is no commutative group scheme $G$ of rank four such that $\alpha_2 = G[2]$.
-\item If $E/\mathbb{F}_2$ is the supersingular elliptic curve, then there is a short exact sequence $0 \rightarrow \alpha_2 \rightarrow E[2] \rightarrow \alpha_2 \rightarrow 0$.  However, this short exact sequence doesn't split (even after making a base change).
-\item The subgroups of $\alpha_2 \times \alpha_2$ of order two are parameterized by $\mathbb{P}^1$.  That is to say. if $R$ is an $\mathbb{F}_2$-algebra, then the subgroup schemes of $(\alpha_2 \times \alpha_2)_R$ of order two defined over $R$ are parameterized by $\mathbb{P}^1(R)$.
+\item If $E/\mathbb{F}_2$ is the supersingular elliptic curve, then there is a short exact sequence \[0 \rightarrow \alpha_2 \rightarrow E[2] \rightarrow \alpha_2 \rightarrow 0.\]  However, this short exact sequence doesn't split (even after base change).
+\item The subgroups of $\alpha_2 \times \alpha_2$ of order $2$ are parameterized by the scheme $\mathbb{P}^1$, i.e., for $R$ an $\F_2$-algebra the subgroup schemes of $\alpha_2 \times \alpha_2$ of order two \emph{which are defined over $R$} are parameterized by the set $\mathbb{P}^1(R)$.
 \end{enumerate}
 \end{example}
 
-Additionally, the colimit of the sets $\colim_{n \to \infty} \mathbb A^{1,(n)}(T)$ is of use in algebra: it is the collection of nilpotent elements in $T$.  These kinds of conditions which are ``unbounded in $n$'' appear frequently enough that we are moved to give these functors a name too:
+\todo{Jeremy had some motivation for this, that quite generally one wants to consider ind-systems of compact objects.  Why does one want this?  Is it better motivation than just dropping into it?}
+We now turn to a different class of examples, which will wind up being the key players in our upcoming topological story.  To begin, consider the colimit of the sets $\colim_{n \to \infty} \mathbb A^{1,(n)}(T)$, which is of use in algebra: it is the collection of nilpotent elements in $T$.  These kinds of conditions which are ``unbounded in $n$'' appear frequently enough that we are moved to give these functors a name too:
 \begin{definition}
-An \textit{affine formal scheme} is an ind-system of finite\todo{How are finite schemes characterized in the functor of points perspective?} affine schemes.  \todo{Several people had questions about the utility of this. Does it just add certain colimits to the category of \emph{finite} affine schemes?}  The morphisms between such schemes are computed by \[\CatOf{FormalSchemes}(\{X_\alpha\}, \{Y_\beta\}) = \lim_\alpha \colim_\beta \CatOf{Schemes}(X_\alpha, Y_\beta).\]\todo{Question: can we reverse the order of taking lim and colim here?-danny ; inserted answer+explanation in the source, AY}
+\todo{How are finite schemes characterized in the functor of points perspective?  They should commute with sequential colimits or something.}
+\todo{Erick points out that the morphisms in this system should be infintesimal thickenings.  Is there a functor-of-points way to recognize such things, without reaching all the way up to talking about ideals?  (He also thinks that we should allow finite type in addition to finite, but I don't think I want that. I've been wrong before, though.)}
+An \textit{affine formal scheme} is an ind-system of finite affine schemes.\footnote{This has the effect of formally adjoining colimits of filtered diagrams to the category of finite affine schemes.}  The morphisms between two formal schemes are computed by \[\CatOf{FormalSchemes}(\{X_\alpha\}, \{Y_\beta\}) = \lim_\alpha \colim_\beta \CatOf{Schemes}(X_\alpha, Y_\beta).\]  Given affine charts $X_\alpha = \Spec R_\alpha$, we will glibly suppress the system from the notation and write \[\Spf R := \{\Spec R_\alpha\}.\]
 \end{definition}
-%answer to danny's question, could be added as a remark
-%For any category $\mathcal{C}$, one can form the category $\CatOf{Ind}(\mathcal{C})$ of ind-systems in $\mathcal{C}$ which formally adjoins colimits of filtered diagrams.  For example, this produces the category of groups from the category of finitely presented groups.  It is instructive to make $\mathbb{Q}$ a category via ordering and note that $\CatOf{Ind}(\mathbb{Q}) = \mathbb{R}$ and see what goes wrong when you switch the limit and the colimit in the definition of morphism.  
-
-
-% I might be the only person who cares, but there are two issues with this definition: first off one needs that the morphisms to be infintesimal thickenings.  Secondly, usually one allows the schemes to be finite type over $\mathbb{F}_2$ and not just finite.  Obviously if all the formal schemes that will come up in this class are in $\mathrm{Art}(\mathbb{F}_2)$ then the second objection is moot.  EK
-\todo{Maybe it would be good at some point to define what Spf means because it's not actually stated explicitly anywhere. AY}
-%AY, attempt: \begin{definition} Let $R$ be a ring and $I\subset R$ an ideal.  Then $\Spf R$ is the ind system $\{ \Spec R \leftarrow \Spec R/I \leftarrow \Spec R/I^2 \leftarrow \cdots\}$. \end{definition}
 
 \begin{example}\label{FormalGaExample}
 The individual schemes $\mathbb A^{1, (n)}$ do not support group structures.  After all, the sum of two elements which are nilpotent of order $n+1$ can only be guaranteed to be nilpotent of order $2n+1$.  It follows that the entire ind-system $\{\mathbb A^{1, (n)}\} =: \A^1$ supports a group structure, even though none of its constituent pieces do.  We call such an object a \textit{formal group scheme}, and this particular formal group scheme we denote by $\G_a$.
 \end{example}
 
 \begin{example}
-Similarly, one can define the scheme $\Gm[n]$ of elements of unipotent order $n$: \[\Gm[n] = \Spec \frac{\F_2[x,y]}{(xy - 1, x^n - 1)} \subseteq \Gm.\]  These \emph{are} all group schemes, but there is a second filtration along the lines of the one considered above: \[\Gm^{(n)} = \Spec \frac{\F_2[x,y]}{(xy - 1, (x - 1)^n)}.\]  These schemes are only occasionally group schemes --- specifically, $\Gm^{(2^n)}$ is a group scheme, in which case $\Gm^{(2^n)} \cong \Gm[2^n]$ over $\F_2$.  This gives an ind-equivalence between these two subsystems, but $\{\Gm[2^n]\}$ is \emph{not} cofinal in $\{\Gm[n]\}$, and the equivalence does not extend across the larger system.\todo{Mauro was interested in the relationship of this to the punctured formal scheme $\F_p(\!(q)\!)$.}
+Similarly, one can define the scheme $\Gm[n]$ of elements of unipotent order $n$: \[\Gm[n] = \Spec \frac{\F_2[x,y]}{(xy - 1, x^n - 1)} \subseteq \Gm.\]  These \emph{are} all group schemes, and they nest together in a complicated way: there is an inclusion of $\Gm[n]$ into $\Gm[nm]$.\todo{Additionally, the only $\Gm[n]$ which are infinitesimal thickenings of $\Gm[1]$ are those with $n = 2^j$.}  There is also a second filtration along the lines of the one considered in \Cref{FormalGaExample}: \[\Gm^{(n)} = \Spec \frac{\F_2[x,y]}{(xy - 1, (x - 1)^n)}.\]  These schemes form a sequential system\todo{... of infinitesimal thickenings}, but they are only occasionally group schemes.  Specifically, $\Gm^{(2^j)}$ is a group scheme, in which case $\Gm^{(2^j)} \cong \Gm[2^j]$.  We define $\G_m$ using this common subsystem: \[\G_m := \{\Gm^{(2^j)}\}_{j=0}^\infty.\]
 \end{example}
-
-\todo{The reader invitation is as far as I can tell is either incoherent or impossible due to the condition that the maps making up formal schemes need to be infinitesimal thickenings.  I think that correcting it goes as follows: requiring the inverse system to be of infintesimal thickenings means that the only $m$ such that $\mathbb{G}_m[m]$ is an infinitesimal thickening of the identity are the $m$ of the form $p^n$ which makes the result ``obvious'' in some sense.  EK}
-
-\todo{The notion of the punctured disk is also wonky in the category of formal schemes.  In particular, one has that $\mathrm{Spf}(\mathbb{F}_2[[t]])$ has only one point in the underlying topological space.  This is part of why formal schemes aren't just schemes where the structure sheaf is of topological rings instead of rings: the points correspond to open ideals.  The ``correct'' category to take generic fibers of formal schemes is adic spaces, but that is not a discussion that is worth going into.  EK}
 
 Let's now consider the example that we closed with last time, where we calculated $H\F_2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  This is such a useful thing to do that we will give it a notation all of its own:
 
@@ -268,22 +265,22 @@ Let $X$ be a finite cell complex, so that $H\F_2^*(X)$ is a ring which is finite
 Putting together the discussions from this time and last time, in the new notation we have calculated \[\RP^n_{H\F_2} \cong \mathbb A^{1, (n)}.\]
 \end{example}
 
-So far, this example just restates things we knew in a mildly different language.  Our driving goal for the remainder of today and for tomorrow is to incorporate as much information as we have about these cohomology rings $H\F_2^* (\RP^n)$ into this description, which will result in us giving a more ``precise'' name for this object.  Along the way, we will discover why $X$ had to be a \emph{finite} complex and how to think about more general $X$.  For now, though, let's content ourselves with investigating the Hopf algebra structure on $H\F_2^* \RP^\infty$.
+So far, this example just restates things we knew in a mildly different language.  Our driving goal for the next section is to incorporate as much information as we have about these cohomology rings $H\F_2^* (\RP^n)$ into this description, which will result in us giving a more ``precise'' name for this object.  Along the way, we will discover why $X$ had to be a \emph{finite} complex and how to think about more general $X$.  For now, though, let's content ourselves with investigating the Hopf algebra structure on $H\F_2^* \RP^\infty$, the cohomology of an infinite complex.
 
 \begin{example}\label{RPExampleFaulty}
 Recall that $\RP^\infty$ is an $H$--space in two equivalent ways:
 \begin{enumerate}
-\item There is an identification $\RP^\infty \simeq K(\Z/2, 1)$, and the $H$--space structure is induced by the sum on cohomology.
+\item There is an identification $\RP^\infty \simeq K(\F_2, 1)$, and the $H$--space structure is induced by the sum on cohomology.
 \item There is an identification $\RP^\infty \simeq BO(1)$, and the $H$--space structure is induced by the tensor product of real line bundles.
+\todo{I thought we came up with an instructive third example of where to find the $H$--space structure.}
 \end{enumerate}
-\todo{Later on, you need that there's a map on skeleta $\RP^n \times \RP^m \to \RP^{m+n}$.  This is made apparent if you inserted another characterization of the $H$-space structure as the one treating $\RP^\infty$ as the monic polynomials (of all degrees) over $\R$, and then the map is given by multiplication. AY}
 In either case, this induces a Hopf algebra diagonal \[H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \xleftarrow\Delta H\F_2^* \RP^\infty\] which we would like to analyze.  This map is determined by where it sends the class $x$, and because it must respect gradings it must be of the form $\Delta x = ax_1 + bx_2$ for some constants $a, b \in \F_2$.  Furthermore, because it belongs to a Hopf algebra structure, it must satisfy the unitality axiom
 \begin{center}
 \begin{tikzcd}
 H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\begin{pmatrix} \epsilon \otimes \id \\ \id \otimes \epsilon \end{pmatrix}} & H\F_2^* \RP^\infty \otimes H\F_2^* \RP^\infty \arrow[leftarrow]{r}{\Delta} &\arrow[ll,bend left=15,"\id"]  H\F_2^* \RP^\infty.
 \end{tikzcd}
 \end{center}
-and hence it takes the form \[\Delta(x) = x_1 + x_2.\]  Noticing that this is exactly the diagonal map in \Cref{InformalAdditiveGroupExample}, we tentatively identify ``$\RP^\infty_{H\F_2}$'' with the additive group.  This is extremely suggestive but does not take into account the fact that $\RP^\infty$ is an infinite complex, so we haven't allowed ourselves to write ``$\RP^\infty_{H\F_2}$'' just yet.  In light of the above discussion, we have left a very particular point open: it's not clear if we should use the name ``$\mathbb G_a$'' or ``$\G_a$''.  We will straighten this out tomorrow.
+and hence it takes the form \[\Delta(x) = x_1 + x_2.\]  Noticing that this is exactly the diagonal map in \Cref{InformalAdditiveGroupExample}, we tentatively identify ``$\RP^\infty_{H\F_2}$'' with the additive group.  This is extremely suggestive but does not take into account the fact that $\RP^\infty$ is an infinite complex, so we haven't allowed ourselves to write ``$\RP^\infty_{H\F_2}$'' just yet.  In light of the rest of the material discussed in this section, we have left open a very particular point: it's not clear if we should use the name ``$\mathbb G_a$'' or ``$\G_a$''.  We will straighten this out tomorrow.
 \end{example}
 
 
