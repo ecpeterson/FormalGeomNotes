@@ -401,6 +401,10 @@ As group schemes, we have thus calculated \[\RP^\infty_{H\F_2} \cong \G_a.\]
 Given the appearance of a homomorphism condition in \Cref{SteenrodAlgIdentifiedWithAutGa}, we would like to connect $\Spec \mathcal AP_0$ with $\G_a$ more directly.  Toward this, we define a ``hom functor'' for two formal schemes: \[\InternalHom{FormalSchemes}(X, Y)(T) = \left\{ (u, f) \middle| \begin{array}{c} u: \Spec T \to \Spec \F_2, \\ f: u^* X \to u^* Y \end{array}\right\}.\]  Restricting attention to homomorphisms, we see that a proper name for $\Spec \mathcal AP_0$ is \[\Spec \mathcal AP_0 \cong \InternalAut \G_a.\]  To check this, consider a point $g \in (\Spec \mathcal AP_0)(T)$ for an $\F_2$--algebra $T$.  The $\F_2$--algebra structure of $T$ (which is uniquely determined by a property of $T$) gives rise to a map $u\co \Spec T \to \Spec \F_2$.  The rest of the data of $g$ gives rise to a power series in $T\ps{x}$ as in the proof of \Cref{SteenrodAlgIdentifiedWithAutGa}, which can be re-interpreted as an automorphism $g\co u^* \G_a \to u^* \G_a$ of formal group schemes.\footnote{This description, too, is sensitive to the difference between $\G_a$ and $\mathbb G_a$.  The scheme $\InternalEnd \mathbb G_a$ is populated by \emph{polynomials} satisfying a homomorphism condition, and essentially none of them have inverses.}
 \end{example}
 
+\begin{remark}\label{AutGaHasStableCoopns}
+The projection $\mathcal AP_0 \to \F_2[\xi_0^\pm]$ is split as Hopf algebras, and hence there is a decomposition \[\InternalAut \G_a \cong \Gm \times \InternalAut_1 \G_a,\] where $\InternalAut_1 \G_a$ consists of those automorphisms with leading coefficient $\xi_0$ exactly equal to $1$.  This can be read to mean that the ``interesting'' part of the Steenrod algebra, $\InternalAut_1 \G_a$, consists of stable operations, in the sense that their action is independent of the degree--tracking mechanism.
+\end{remark}
+
 \begin{example}
 Remembering the slogan \[\Spec \mathcal AP_0 \cong \InternalAut \G_a\] also makes it easy to recall the structure formulas for the dual Steenrod algebra.  For instance, consider the antipode map, which has the effect on $\InternalAut \G_a$ of sending a power series to its compositional inverse.  That is: \[\sum_{j=0}^\infty \chi(\xi_j) \left( \sum_{k=0}^\infty \xi_k x^{2^k} \right)^{2^j} = \sum_{j=0}^\infty \sum_{k=0}^\infty \chi(\xi_j) \xi_k^{2^j} x^{2^{j+k}} = \sum_{n=0}^\infty \left( \sum_{j+k=n} \chi(\xi_j) \xi_k^{2^j} \right) x^{2^n} = 1,\] from which we can extract formulas like
 \begin{align*}
@@ -421,91 +425,102 @@ In summary, the formula $\RP^\infty_{H\F_2} \cong \G_a$ is meant to point out th
 
 
 \section{Hopf algebra cohomology}\label{HopfAlgebraLecture}
-\todo{This section is written gradedly and probably shouldn't be, for consistency.  (In fact, this is the cause of some of the confusion about the $\Gm$--action used tomorrow to separate out the homotopy degrees...)}
 
-\todo{It's not clear to me that this introduction should be written in terms of cohomology rather than homology. It's true that yesterday we were talking about cohomology, but it's also true that the spectral sequence we're going to build takes in homology.  (More generally, contexts take in homology.  I still find this a little puzzling, that Strickland's formal schemes don't seem to live in the descent picture.)}
-In this section, we will focus on an important classical tool: the Adams spectral sequence.  We are going to study this in greater earnest later on, so I will avoid giving a satisfying construction today.  But, even without a construction, it is instructive to see how such a thing comes about.  \citeme{I first saw this presentation from Matt Ando. He must have learned it from someone. I'd like to know who to attribute this to}  Begin by considering the following three self-maps of the stable sphere:
+In this section, we will focus on an important classical tool: the Adams spectral sequence.  We are going to study this in greater earnest later on, so I will avoid giving a satisfying construction today.  But, even without a construction, it is instructive to see how such a thing comes about from a moral perspective.  \citeme{I first saw this presentation from Matt Ando. He must have learned it from someone. I'd like to know who to attribute this to}
+
+\begin{remark}
+Throughout today, we will work with graded homology groups, rather than with periodified cohomology as was the case in \Cref{TheSteenrodAlgebraSection}.  This choice will remain mysterious for now, but we can at least reassure ourselves that it carries the same data as we were studying previously.  Referring to our discussion of the construction of the coaction map, we see that without taking Spanier--Whitehead duals we already have an analogous coaction map on homology: \[H\F_{2*} X \to H\F_{2*} X \otimes \mathcal A_*.\]  Additionally, building on the discussion in \Cref{AutGaHasStableCoopns}, the splitting of the Hopf algebra shows that we are free to work gradedly or work with the periodified version of mod--$2$ homology, while still retaining the rest of the framework.
+\end{remark}
+
+With this caveat out of the way, begin by considering the following three self-maps of the stable sphere:
 \begin{align*}
 \S^0 & \xrightarrow{0} \S^0, & \S^0 & \xrightarrow{1} \S^0, & \S^0 & \xrightarrow{2} \S^0.
 \end{align*}
-If we apply mod--$2$ cohomology to each line, the induced maps are
+If we apply mod--$2$ homology to each line, the induced maps are
 \begin{align*}
-\F_2 & \xleftarrow{0} \F_2, & \F_2 & \xleftarrow{\id} \F_2, & \F_2 & \xleftarrow{0} \F_2.
+\F_2 & \xrightarrow{0} \F_2, & \F_2 & \xrightarrow{\id} \F_2, & \F_2 & \xrightarrow{0} \F_2.
 \end{align*}
-We see that mod--$2$ homology can immediately distinguish between the null map and the identity map just by its behavior on morphisms, but it can't so distinguish between the null map and the multiplication-by-$2$ map.  To try to distinguish these two, we use the only other tool available to us: cohomology theories send cofiber sequences to long exact sequences, and moreover the data of a map $f$ and the data of the inclusion map $\S^0 \to C(f)$ into its cone are equivalent in the stable category.  So, we trade our maps $0$ and $2$ for the following cofiber sequences:
+We see that mod--$2$ homology can immediately distinguish between the null map and the identity map just by its behavior on morphisms, but it cannot distinguish between the null map and the multiplication-by-$2$ map.  To try to distinguish between these two, we use the only other tool available to us: homology theories send cofiber sequences to long exact sequences, and moreover the data of a map $f$ and the data of the inclusion map $\S^0 \to C(f)$ into its cone are equivalent in the stable category.  So, we trade our maps $0$ and $2$ for the following cofiber sequences:
 \begin{center}
 \begin{tikzcd}
 \S^0 \arrow{r} & C(0) \arrow{r} & \S^1, & \S^0 \arrow{r} & C(2) \arrow{r} & \S^1.
 \end{tikzcd}
 \end{center}
-Applying cohomology, these again appear to be the same:
+Applying homology, these again appear to be the same:
 \begin{center}
 \begin{tikzcd}[column sep=1.0em]
-{[1]} & & \bullet & \arrow{l} \bullet & & \bullet & \arrow{l} \bullet \\
-{[0]} & \bullet & \arrow{l} \bullet & & \bullet & \arrow{l} \bullet \\
-& H\F_2^* \S^0 & \arrow{l} H\F_2^* C(0) & \arrow{l} H\F_2^* \S^1, & H\F_2^* \S^0 & \arrow{l} H\F_2^* C(2) & \arrow{l} H\F_2^* \S^1,
+{[1]} & & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet & \arrow[leftarrow]{l} \bullet \\
+{[0]} & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet & \arrow[leftarrow]{l} \bullet \\
+& H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(0) & \arrow[leftarrow]{l} H\F_{2*} \S^1, & H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(2) & \arrow[leftarrow]{l} H\F_{2*} \S^1,
 \end{tikzcd}
 \end{center}
-\todo{It would be nice if the dots aligned directly beneath the spaces in the cofiber sequences above.}
-where we have drawn a ``$\bullet$'' for a generator of an $\F_2$--vector space, graded vertically, and arrows indicating the behavior of each map.  However, if we enrich our picture with the data we discussed last time, we can finally see the difference.  Recall the topological equivalences \[C(0) \simeq \S^0 \vee \S^1, \quad C(2) \simeq \Susp^{-1} \RP^2.\]  In the two cases, the coaction map $\lambda^*$ is given by
+\todo{It would be nice if the dots aligned directly beneath the spaces in the cofiber sequences above.  This can't be accomplished by a ``column sep'' attribute, since this doesn't control the width of a column but rather its literal separation from its neighbor.}
+where we have drawn a ``$\bullet$'' for a generator of an $\F_2$--vector space, graded vertically, and arrows indicating the behavior of each map.  However, if we enrich our picture with the data we discussed last time, we can finally see the difference.  Recall the topological equivalences \[C(0) \simeq \S^0 \vee \S^1, \quad C(2) \simeq \Susp^{-1} \RP^2.\]  In the two cases, the coaction map $\lambda_*$ is given by
 \begin{align*}
-\lambda^*: H\F_2^* C(0) & \to H\F_2^* C(0) \otimes \mathcal A_* & \lambda^*: H\F_2^* C(2) & \to H\F_2^* C(2) \otimes \mathcal A_* \\
+\lambda_*: H\F_{2*} C(0) & \to H\F_{2*} C(0) \otimes \mathcal A_* & \lambda_*: H\F_{2*} C(2) & \to H\F_{2*} C(2) \otimes \mathcal A_* \\
 \lambda^*: e_0 & \mapsto e_0 \otimes 1 & \lambda^*: e_0 & \mapsto e_0 \otimes 1 + e_1 \otimes \xi_1 \\
 \lambda^*: e_1 & \mapsto e_1 \otimes 1, & \lambda^*: e_1 & \mapsto e_1 \otimes 1.
 \end{align*}
-\todo{Is it possible to work out the coaction on the cones without first identifying their homotopy types?}
 We draw this into the diagram as
 \begin{center}
 \begin{tikzcd}[column sep=1.0em]
-{[1]} & & \bullet & \arrow{l} \bullet & & \bullet \arrow[-, "{\xi_1}" description]{d} & \arrow{l} \bullet \\
-{[0]} & \bullet & \arrow{l} \bullet & & \bullet & \arrow{l} \bullet \\
-& H\F_2^* \S^0 & \arrow{l} H\F_2^* C(0) & \arrow{l} H\F_2^* \S^1, & H\F_2^* \S^0 & \arrow{l} H\F_2^* C(2) & \arrow{l} H\F_2^* \S^1,
+{[1]} & & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet \arrow[-, "{\xi_1}" description]{d} & \arrow[leftarrow]{l} \bullet \\
+{[0]} & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet & \arrow[leftarrow]{l} \bullet \\
+& H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(0) & \arrow[leftarrow]{l} H\F_{2*} \S^1, & H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(2) & \arrow[leftarrow]{l} H\F_{2*} \S^1,
 \end{tikzcd}
 \end{center}
-where the vertical line indicates the nontrivial coaction involving $\xi_1$.  We can now see what trading maps for cofiber sequences has bought us: mod--$2$ cohomology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.\todo{Can this be phrased so as to indicate how this works for longer extensions? I've never tried to think about even what happens for $C(4)$.}  The Adams spectral sequence bundles this thought process into a single machine:
-\begin{theorem}\citeme{Cite this somehow, or at least put a forward reference in}
+where the vertical line indicates the nontrivial coaction involving $\xi_1$.  We can now see what trading maps for cofiber sequences has bought us: mod--$2$ homology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.\todo{Can this be phrased so as to indicate how this works for longer extensions? I've never tried to think about even what happens for $C(4)$.}  The Adams spectral sequence bundles this thought process into a single machine:
+\begin{theorem}[{\cite[Definition 2.1.8, Lemma 2.1.16]{RavenelGreenBook}, \cite[Chapter 18]{MosherTangora}}]
 There is a convergent spectral sequence of signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, \F_2) \Rightarrow (\pi_* \S^0)^\wedge_2. \qed\]
 \end{theorem}
-In effect, this asserts that the above process is \emph{exhaustive}: every element of $(\pi_* \S^0)^\wedge_2$ can be detected and distinguished by some representative class of extensions of comodules for the dual Steenrod algebra.  Mildly more generally, if $X$ is a bounded-below spectrum, then there is even a spectral sequence of signature\todo{Mention that there are homological and cohomological $\F_2$--Adams spectral sequences.} \[\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X) \Rightarrow \pi_* X^\wedge_2.\]
+In effect, this asserts that the above process is \emph{exhaustive}: every element of $(\pi_* \S^0)^\wedge_2$ can be detected and distinguished by some representative class of extensions of comodules for the dual Steenrod algebra.  Mildly more generally, if $X$ is a bounded-below spectrum, then there is even a spectral sequence of signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X) \Rightarrow \pi_* X^\wedge_2.\]
 
-Here is where we could divert to talking about the construction of the Adams spectral sequence, but it will fit more nicely into a story later on.  Thus, for now we will leave this task for \Cref{StableContextLecture}.  Before moving on, we will record the following utility lemma about the Adams spectral sequence.  It is believable based on the above discussion, and we will need to use before we get around to examining the guts of the spectral sequence.
+We could now work through the construction of the Adams spectral sequence, but it will fit more nicely into a story later on in \Cref{StableContextLecture}.  Before moving on to other pursuits, however, we will record the following utility Lemma.  It is believable based on the above discussion, and we will need to use it before we get around to examining the guts of the construction.
 \begin{lemma}\label{HurewiczImageOnZeroLine}
-The $0$--line of the Adams spectral sequence contains those elements visible to the Hurewicz homomorphism. \qed \todo{This feels sloppily stated.}
+The $0$--line of the Adams spectral sequence contains those elements visible to the Hurewicz homomorphism. \qed
 \end{lemma}
 
-Today we will focus on the algebraic input $\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X)$, which will require us to grapple with the homological algebra of comodules for a Hopf algebra.  To begin, it's both reassuring and instructive to see that homological algebra can, in fact, be done with comodules.  In the usual development of homological algebra for modules, the key observations are the existence of projective and injective modules, and there is something similar here.
+For the rest of the section, we will focus on the algebraic input ``$\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X)$'', which will require us to grapple with the homological algebra of comodules for a Hopf algebra.  To start that discussion, it's both reassuring and instructive to see that homological algebra can, in fact, even be done with comodules.  In the usual development of homological algebra for \emph{modules}, the key observations are the existence of projective and injective modules, and there is something at work similar here.
 
-\begin{remark}
-Much of the results below do not rely on working with a Hopf algebra over the field $k = \F_2$.  In fact, $k$ can usually be taken to be a ring rather than a field. More generally, the theory goes through in the context of comodules over Hopf algebroids.
+\begin{remark}[{\cite[Appendix A1]{RavenelGreenBook}}]
+Much of the results below do not rely on working with a Hopf algebra over the field $k = \F_2$.  In fact, $k$ can usually be taken to be a ring rather than a field. More generally, the theory goes through in the context of comodules over flat Hopf algebroids.
 \end{remark}
 
-\begin{lemma}\citeme{Cite these. A1.1-2 in Ravenel are relevant}
+\begin{lemma}[{\cite[Definition A1.2.1]{RavenelGreenBook}}]
 Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  There is a \textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k (A \otimes_k A) = (N \otimes_k A) \otimes_k A.\]
 \end{lemma}
 \begin{proof}
 Given a map $f\co M \to N$ of $k$--modules, we can build the composite \[M \xrightarrow{\psi_M} M \otimes_k A \xrightarrow{f \otimes \id_A} N \otimes_k A.\]  Alternatively, given a map $g\co M \to N \otimes_k A$ of $A$--comodules, we build the composite \[M \xrightarrow{g} N \otimes_k A \xrightarrow{\id_N \otimes \eps} N \otimes_k k = N. \qedhere\]
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}[{\cite[Lemma A1.2.2]{RavenelGreenBook}}]
 The category $\CatOf{Comodules}_A$ has enough injectives.  Namely, if $M$ is an $A$--comodule and $M \to I$ is an inclusion of $k$--modules into an injective $k$--module $I$, then $M \to I \otimes_k A$ is an injective $A$--comodule under $M$. \qed
 \end{corollary}
 \begin{remark}
 In our case, $M$ itself is always $k$--injective, so there's already an injective map $\psi_M: M \to M \otimes A$: the coaction map.  The assertion that this map is coassociative is identical to saying that it is a map of comodules.
 \end{remark}
 
-Satisfied that ``$\Ext$'' at least makes sense, we're free to chase more conceptual pursuits.  Recall from algebraic geometry that a module $M$ over a ring $R$ gives rise to quasi-coherent sheaf $\widetilde{M}$ over $\Spec R$.  We give a definition that fits with our functorial perspective:\todo{Can this definition be motivated?  Is there an easily graspable sense in which it looks like a bundle?}
-\begin{definition}
-A presheaf (of modules) over a scheme $X$ is an assignment of maps $\sheaf F\co X(T) \to \CatOf{Modules}_T$, functorially in $T$. \todo{Straighten this out, using fibered categories?}\todo{Mention how the usual definition of a sheaf of $\sheaf O_X$--modules gives rise to such a thing: global sections over $\Spec T$.}  Such a presheaf is said to be \textit{quasicoherent} when a map $\Spec S \to \Spec T \to X$ induces a natural isomorphism $\sheaf F(T) \otimes_T S \cong \sheaf F(S)$.
+Satisfied that ``$\Ext$'' at least makes sense, we're free to pursue more conceptual ends.  Recall from algebraic geometry that a module $M$ over a ring $R$ is equivalent data to quasicoherent sheaf $\widetilde{M}$ over $\Spec R$.  We now give a definition of ``quasicoherent sheaf'' that fits with our functorial perspective:
+\begin{definition}[{\cite[Definition 1.1]{HoveyMoritaThy}, \cite[Definition 2.42]{StricklandFSFG}}]
+A presheaf (of modules) over a scheme $X$ is an assignment $\sheaf F\co X(T) \to \CatOf{Modules}_T$, satisfying a kind of functoriality in $T$: for each map $f\co T \to T'$, there is a compatible choice of natural transformation
+\begin{center}
+\begin{tikzcd}[row sep=3em]
+X(T) \arrow["\sheaf F(T)"]{r} \arrow["X(f)"]{d} & \CatOf{Modules}_T \arrow["- \otimes_T T'"]{d} \arrow[Rightarrow, "\tau(f)" description]{ld} \\
+X(T') \arrow["\sheaf F(T')"]{r} & \CatOf{Modules}_{T'}.
+\end{tikzcd}
+\end{center}
+(We think of the image of a particular point $t\co \Spec T \to X$ in $\CatOf{Modules}_T$ as the module of ``sections over $t$''.)  Such a presheaf is said to be a \textit{quasicoherent sheaf} when these natural transformations are all natural isomorphisms.
 \end{definition}
-\todo{There is a todo here that I can't get to compile.  See the source.}
-%\todo{I'm confused about this definition.  First, when you wrote $\sheaf F(T)$ (resp.\ $\sheaf F(S)$), you really meant $\sheaf F(t)$ (resp.\ $\sheaf F(s)$) where $t$ (resp.\ $s$) is a map $\Spec T \to X$ (resp.\ $\Spec S \to X$), right?  Second, I thought that functoriality of $\sheaf F$ meant that given a map $u: T \to S$ of rings over $X$, we have $\sheaf_T (\bullet) \otimes_T S = \sheaf S(u \circ \bullet)$, i.e., all presheaves are quasicoherent.  What am I missing here?  Third, only \emph{affine} schemes have been defined so far, but here it seems that we are assuming an arbitrary scheme here.}
 
-\begin{lemma}\citeme{Surely this is in Neil's FSFG somewhere}
-An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec R$ by the rule $(\Spec T \to \Spec R) \mapsto M \otimes_R T$.  Conversely, every quasicoherent sheaf over an affine scheme arises in this way.  \qed
+\begin{lemma}[{\cite[Proposition 2.47]{StricklandFSFG}}]
+An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec R$ by the rule \[(\Spec T \to \Spec R) \mapsto M \otimes_R T.\]  Conversely, every quasicoherent sheaf over an affine scheme arises in this way.  \qed
 \end{lemma}
 
-\begin{definition}\todo{Jay was frustrated with which adjoint I put on top (and perhaps which went on which side). Apparently there's some convention, which I should look up and obey.}
-A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of module sheaf categories, which on the level of quasi-coherent sheaves is given by
+The tensoring operation appearing in the definition of a presheaf appears more generally as an operation on the category of sheaves.
+
+\begin{definition}
+\todo{Jay was frustrated with which adjoint I put on top (and perhaps which went on which side). Apparently there's some convention, which I should look up and obey.}
+A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of categories of quasicoherent sheaves.  At the level of modules, these are given by
 \begin{center}
 \begin{tikzcd}
 \CatOf{QCoh}_{\Spec R} \arrow[shift left=0.2em]{r}{f^*} \arrow[equal]{d} & \CatOf{QCoh}_{\Spec S} \arrow[shift left=0.2em]{l}{f_*} \arrow[equal]{d} \\
@@ -514,39 +529,47 @@ A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of module sheaf c
 \end{center}
 \end{definition}
 
-The usual formula for the sheaf cohomology of a sheaf $\sheaf F$ over an $S$--scheme $X$ with structure map $\pi\co X \to S$ is given by $\Ext(\sheaf O_S, \pi_* \sheaf F)$ which is, indeed, vaguely reminiscent of the formula we were considering above as input to the Adams spectral sequence.  Experience in algebraic geometry shows that it is conceptually profitable to consider the \emph{six--functors yoga} more generally and their accompanying base-change formulas.  A very basic example of such a formula is \[\Ext_X(\pi^* \sheaf O_S, \sheaf F) \cong \Ext_S(\sheaf O_S, R\pi_* \sheaf F),\] which describes the functor ``$\Ext$'' on quasicoherent sheaves of modules over $X$ in terms of the derived functor $R\pi_*$.
+One of the main uses of these operations is to define the cohomology of a sheaf.  Let $\pi\co X \to \Spec k$ be a scheme over $\Spec k$, $k$ a field, and let $\sheaf F$ be a sheaf over $X$.  The adjunction above induces a derived adjunction \[\Ext_X(\pi^* k, \sheaf F) \cong \Ext_{\Spec k}(k, R\pi_* \sheaf F),\] which is used to translate the \emph{definition} of sheaf cohomology to that of the cohomology of the derived pushforward $R\pi_* \sheaf F$, itself interpretable as a mere complex of $k$--modules.  This pattern is very general: the sense of ``cohomology'' relevant to a situation is often accessed by taking the derived pushforward to a suitably terminal object.\footnote{This perspective often falls under the heading of ``six--functor formalism''.}  To invent a notion of cohomology for comodules over a Hopf algebra, we are thus moved to produce push and pull functors for a map of Hopf algebras, and this is best motivated by another example.
 
-\todo{Rearrange this middle bit some. ``Definition of sheaf, six functors for sheaves on affines, definition of cotensor, adjunction assertion for comodules, remark about cotensoring restricting the image of the coaction'' seems too convoluted a narrative structure.}
-We are thus moved to study derived base-change for comodules, thought of as sheaves equipped with an action by a group scheme.  In particular, we want to understand what it means to ``tensor'' two comodules together.  Unsurprisingly, the solution is dual to that for modules: tensor the two comodules together, then restrict to the elements where the coactions on either factor agree.
+\begin{example}\label{HopfAlgebrasFromFiniteGroups}
+\todo{I would like to explain the sense in which a comodule for $k^G$ gives rise to a $G$--representation when evaluating $\Spec(k^G)$ on, say, $k$.  This might also belong in \Cref{StableContextLecture}.}
+A common source of Hopf algebras is through group--rings: given a group $G$, we can define the Hopf $k$--algebra $k[G]$ consisting of formal $k$--linear combinations of elements of $G$.  This Hopf algebra is commutative exactly when $G$ is abelian, and $k[G]$--modules are naturally equivalent to $k$--linear $G$--representations.  Dually, the ring $k^G$ of $k$--valued functions on $G$ is always commutative, using pointwise multiplication of functions, and it is \emph{cocommutative} exactly when $G$ is abelian.  If $G$ is finite, then $k^G$ and $k[G]$ are $k$--linear dual Hopf algebras, and hence finite--dimensional $k^G$--comodules are naturally equivalent to finite--dimensional $k$--linear $G$--representations.
+
+A map of groups $f\co G \to H$ induces a map $k^f\co k^H \to k^G$ of Hopf algebras, and it is reasonable to expect that the induced push and pull maps of comodules mimic those of $G$-- and $H$--representations.  Namely, given an $H$--representation $M$, we can produce a corresponding $G$--representation by precomposition with $f$.  However, given a $G$--representation $N$, two things may have to be corrected to extract an $H$--representation:
+\begin{enumerate}
+\item If $f$ is not surjective, we must decide what to do with the extra elements in $G$.
+\item If $f$ is not injective --- say, $f(g_1) = f(g_2)$ --- then we must force the behavior of the extracted $H$--representation to agree on $f(g_1)$ and $f(g_2)$, even if $g_1$ and $g_2$ act differently on $N$.  In the extreme case of $f\co G \to 1$, we expect to recover the fixed points of $N$, since this computes $H^0_{\mathrm{gp}}(G; N)$.
+\end{enumerate}
+\end{example}
+
+These concerns, together with the definition of a tensor product as a coequalizer, motivate the following:
 
 \begin{definition}
 Given $A$--comodules $M$ and $N$, their cotensor product is the $k$-module defined by the equalizer \[M \cotensor_A N \to M \otimes_k N \xrightarrow{\psi_M \otimes 1 - 1 \otimes \psi_N} M \otimes_k A \otimes_k N.\]
 \end{definition}
-\todo{Typographical suggestion: can you use a slightly small box for the cotensor product?  It's very similar to the ``qed box''; see lemma 1.4.13.}
 
 \begin{lemma}
 Given a map $f \co A \to B$ of Hopf $k$--algebras, the induced adjunction $f^* \dashv f_*$ is given at the level of comodules by
 \begin{center}
 \begin{tikzcd}
-\text{``}\CatOf{QCoh}_{(\Spec k, \Spec A)}\text{''} \arrow[shift left=0.2em]{r}{f^*} \arrow[equal]{d} & \text{``}\CatOf{QCoh}_{(\Spec k, \Spec B)}\text{''} \arrow[shift left=0.2em]{l}{f_*} \arrow[equal]{d} \\
+\CatOf{QCoh}_{\Spec k \mmod \Spec A} \arrow[shift left=0.2em]{r}{f^*} \arrow[equal]{d} & \CatOf{QCoh}_{\Spec k \mmod \Spec B} \arrow[shift left=0.2em]{l}{f_*} \arrow[equal]{d} \\
 \CatOf{Comodules}_A \arrow[shift left=0.2em]{r}{M \mapsto M} & \CatOf{Comodules}_B \arrow[shift left=0.2em]{l}{N \cotensor_B A \mapsfrom N}.
 \qed
 \end{tikzcd}
 \end{center}
 \end{lemma}
-\todo{What is this notation $\Spec k$ double-slash $\Spec A$?  Jeremy mentioned it's a stack, but it hasn't been introduced yet.  Without more information, I can't verify this lemma.  Perhaps mention that it will be defined more precisely later?}
 
 \begin{remark}
-The formula for $f_* N$ is what one would guess from the formula for pushforward along maps of affine schemes.  The comodule $f_* N$ wants to have as its underlying module $N$, but the coaction map on $N$ needs to be reduced to lie only in $A$.  The equalizer diagram in the definition of the cotensor product enforces this.
+In \Cref{StableContextLecture} (and \Cref{FHGivesComodules} specifically), we will explain the notation ``$\Spec k \mmod \Spec A$'' used above.  For now, suffice it to say that there again exists a functor-of-points notion of ``quasicoherent sheaf'' associated to a Hopf $k$--algebra $A$, and such sheaves are equivalent to $A$--comodules.
 \end{remark}
 
-\noindent As an example application, cotensoring gives rise to a concise description of what it means to be a comodule map:
+As an example application, cotensoring gives rise to a concise description of what it means to be a comodule map:
 
 \begin{lemma}[{\cite[Lemma A1.1.6b]{RavenelGreenBook}}]
 Let $M$ and $N$ be $A$--comodules with $M$ projective as a $k$--module.  Then there is an equivalence \[\CatOf{Comodules}_A(M, N) = \CatOf{Modules}_k(M, k) \cotensor_A N. \qed\]
 \end{lemma}
 
-\noindent From this, we can deduce the six--functors formula described above:\todo{so what exactly is the six-functors formula?  I thought the formalism involved showing some adjunctions between 6 functors, but it's not totally clear to me what they are}
+\noindent From this, we can deduce a connection between the push--pull flavor of comodule cohomology described above and the input to the Adams spectral sequence.
 
 \begin{corollary}
 Let $N = N' \otimes_k A$ be a cofree comodule. Then $N \cotensor_A k = N'$.
@@ -561,59 +584,60 @@ Picking $M = k$, we have
 \end{proof}
 
 \begin{corollary}
-There is an isomorphism \[\CatOf{Comodules}_A(k, N) = \CatOf{Modules}_k(k, k) \cotensor_A N = k \cotensor_A N\] and hence \[\Ext_A(k, N) \cong \Cotor_A(k, N).\]
+There is an isomorphism \[\CatOf{Comodules}_A(k, N) = \CatOf{Modules}_k(k, k) \cotensor_A N = k \cotensor_A N\] and hence \[\Ext_A(k, N) \cong \Cotor_A(k, N) \left(= H^* R\pi_* N\right).\]
 \end{corollary}
 \begin{proof}
 Resolve $N$ using the cofree modules described above, then apply either functor $\CatOf{Comodules}_A(k, -)$ or $k \cotensor_A -$.  In both cases, you get the same complex.
 \end{proof}
 
-\begin{example}\label{HopfAlgebrasFromFiniteGroups}
-Let's contextualize this somewhat.  Given a finite group $G$, we can form a commutative Hopf algebra $k^G$, the $k$--valued functions on $G$.  This Hopf algebra is dual to the Hopf algebra $k[G]$, the group--algebra on $G$.  It is classical that a $G$--module $M$ is equivalent data to a $k[G]$--module structure, and if $M$ is suitably finite, we can dualize the action map to produce a coaction map \[M^* \to k^G \otimes M^*.\]  Additionally, we have $M^* \cotensor_{k^G} N^* = (M \otimes_G N)^*$, so that $M^* \cotensor_{k^G} k = (H^0 (G,M))^*$.
-\end{example}
-
 \begin{example}\label{HF2HomologyIsValuedInAutGaEquivarModules}
-In the previous lecture, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut_1(\G_a)$, which is defined by the kernel sequence \[0 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 0.\]  \todo{Technically, we've only identified $\Spec \mathcal AP_0$, but at least it's plausible that the sub-group scheme in degree 0 (what does this mean??) gives us $\Spec \mathcal A_*$???}  Today's punchline is that this is analogous to the example above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ is thought of as ``the derived fixed points'' of ``$G = \InternalAut_1(\G_a)$'' on the ``$G$--module'' $H\F_{2*} X$. \todo{Say the word ``strict'' here.} \todo{How do the duals from the above argument play into this?  Do they just cancel out?}
+In \Cref{TheSteenrodAlgebraSection}, we identified $\mathcal A_*$ with the ring of functions on the group scheme $\InternalAut_1(\G_a)$ of strict automorphisms of $\G_a$, which is defined by the kernel sequence \[0 \to \InternalAut_1(\G_a) \to \InternalAut(\G_a) \to \Gm \to 0.\]  Today's punchline is that this is analogous to \Cref{HopfAlgebrasFromFiniteGroups} above: $\Cotor_{\mathcal A_*}(\F_2, H\F_{2*} X)$ is thought of as ``the derived fixed points'' of ``$G = \InternalAut_1(\G_a)$'' on the ``$G$--module'' $H\F_{2*} X$.
+\end{example}
+
+We now give several examples to get a sense of how the Adams spectral sequence behaves.
+
+\begin{example}
+Consider the degenerate case $X = H\F_2$.  Then $H\F_{2*}(H\F_2) = \mathcal A_*$ is a cofree comodule, and hence $\Cotor$ is concentrated on the $0$--line: \[\Cotor_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*}(H\F_2)) = \F_2.\]  The Adams spectral sequence collapses to show the wholly unsurprising equality $\pi_* H\F_2 = \F_2$, and indeed this is the element in the image of the Hurewicz map $\pi_* H\F_2 \to H\F_{2*} H\F_2$.
 \end{example}
 
 \begin{example}
-Consider the degenerate case $X = H\F_2$.  Then $H\F_{2*}(H\F_2) = \mathcal A_*$ is a cofree comodule, and hence $\Cotor$ is concentrated on the $0$--line: \[\Cotor_{\mathcal A_*}(\F_2, H\F_{2*}(H\F_2)) = \F_2.\]  The Adams spectral sequence collapses to show the wholly unsurprising equality $\pi_* H\F_2 = \F_2$, and indeed this is the element in the image of the Hurewicz map $\pi_* H\F_2 \to H\F_{2*} H\F_2$.
-\end{example}
-
-\begin{example}
-In order to compute the Adams $E_2$--page for $X = kO$, we use the following trio of cofiber sequences:
+\todo{I can't tell if this example belongs.}
+Next, we consider $X = kO$, the connective real $K$--theory spectrum.  The main input we need is the structure of $H\F_{2*} kO$ as an $\mathcal A_*$--comodule, so that we can compute \[\Cotor_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} kO) \Rightarrow \pi_* kO^\wedge_2.\]  There is a slick trick for doing this: by working in the category of $kO$--modules rather than in all spectra, we can construct a relative Adams spectral sequence \[\Cotor_{\pi_* H\F_2 \sm_{kO} H\F_2}^{*, *}(\F_2, \pi_* H\F_2 \sm_{kO}(kO \sm H\F_2)) \Rightarrow \pi_*(kO \sm H\F_2).\]  The second argument is easy to identify: \[\pi_* H\F_2 \sm_{kO}(kO \sm H\F_2) = \pi_* H\F_2 \sm H\F_2 = \mathcal A_*.\]  The Hopf algebra requires further input.  Consider the following trio of cofiber sequences\footnote{This first sequence, known as the Wood cofiber sequence, is a consequence of a very simple form of Bott periodicity~\cite[Section 5]{Harris}.}:
 \begin{align*}
 \Susp kO & \xrightarrow{\cdot \eta} kO \to kU, &
 kU & \xrightarrow{\cdot 2} kU \to kU / 2, &
 kU / 2 & \xrightarrow{\cdot \beta} kU / 2 \to kU / (2, \beta) = H\F_2.
 \end{align*}
-This gives a resolution of $H\F_2$ via an iterated cofiber of free $kO$--modules, with Poincar\'e series \[((1 + t^2) + t^3(1 + t^2)) + t((1 + t^2) + t^3(1 + t^2)) = 1 + t + t^2 + 2t^3 + t^4 + t^5 + t^6.\]  This gives a small presentation of $\pi_* H\F_2 \sm_{kO} H\F_2$ by repeatedly using the identity $kO \sm_{kO} H\F_2 \simeq H\F_2$: it is a commutative Hopf algebra over $\F_2$ with the above Poincar\'e series.  It follows from Borel--Milnor--Moore~\cite[Theorem 7.11]{MilnorMoore} that
-
-computation that this gives $\Spec A(1)_*$
-
-remark about what $\Spec A(1)_*$ represents
-
-dual computation that the $H\F_2$--homology of $kO$ is $\mathcal A_* \mmod \mathcal A(1)_*$, using the $kO$--module Adams spectral sequence \[\Ext_{\mathcal A(1)_*}^{*, *}(\F_2, \pi_* H\F_2 \sm_{kO} (kO \sm H\F_2)) \Rightarrow \pi_* (kO \sm H\F_2).\]
-
-computation of the $E_2$--page of the Adams spectral sequence --- perhaps using a non--free resolution and a free one
-
-argument that there are no differentials
-\todo{Finish Mike Hill and Catherine's working of the Adams spectral sequence for $kO$.}
-\todo{The ordering of these examples probably isn't great, but the ASS pictures should appear on consecutive pages.}
+These combine to give a resolution of $H\F_2$ via an iterated cofiber of free $kO$--modules, with Poincar\'e series \[((1 + t^2) + t^3(1 + t^2)) + t((1 + t^2) + t^3(1 + t^2)) = 1 + t + t^2 + 2t^3 + t^4 + t^5 + t^6.\]  This gives a small presentation of $\pi_* H\F_2 \sm_{kO} H\F_2$ by repeatedly using the identity $kO \sm_{kO} H\F_2 \simeq H\F_2$: it is a commutative Hopf algebra over $\F_2$ with the above Poincar\'e series.  It follows from the Borel--Milnor--Moore~\cite[Theorem 7.11]{MilnorMoore} classification of commutative Hopf algebras over $\F_p$, as well as knowledge that $\pi_{* \le 2} \S \to \pi_{* \le 2} kO$, that we have a presentation
+\begin{center}
+\begin{tikzcd}
+\pi_* H\F_2 \sm H\F_2 \arrow{r} \arrow[equal]{d} & \pi_* H\F_2 \sm_{kO} H\F_2 \arrow[equal]{d} \\
+\mathcal A_* \arrow{r} & \begin{array}{c}\F_2[\xi_1, \xi_2, \xi_3, \xi_4, \ldots] \\ \hline (\xi_1^4, \xi_2^2), (\xi_n \mid n \ge 3)\end{array}.
+\end{tikzcd}
+\end{center}
+This subgroup scheme $\Spec \pi_* H\F_2 \sm_{kO} H\F_2 \subseteq \InternalAut_1 \G_a$ is admits easy memorization: it is the subscheme of automorphisms of the form $x + \xi_1 x^2 + \xi_2 x^4$, with exactly the additional relations imposed on $\xi_1$ and $\xi_2$ so that this set is stable under composition and inversion.\footnote{There is also an accidental isomorphism of this Hopf algebra with $\F_2^{D_4}$, where $D_4$ is the dihedral group with $8$ elements.}  Its cohomology is periodic with period $8$, and it is pictured through a range in \Cref{kOASSFigure}.
 \end{example}
 
 \begin{example}
-At the other extreme, we can pick the extremely nondegenerate case $X = \S$, pictured through a range in \Cref{HF2ASSFigure}.
-\begin{landscape}
-\begin{figure}[b]
-\input{sseqpages/ass.tex}
-
-\caption{A small piece of the $H\F_2$-Adams spectral sequence for the sphere, beginning at the second page.  North and north-east lines denote multiplication by $2$ and by $\eta$, north-west lines denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
-\end{figure}
-\end{landscape}
+At the other extreme, we can pick the extremely nondegenerate case $X = \S$, where $\InternalAut_1 \G_a$ acts maximally nonfreely on $\Spec k$.  The resulting spectral sequence is pictured through a range in \Cref{HF2ASSFigure}.
 \end{example}
 
 \todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?  I think this is a duality effect: working with the Steenrod algebra versus its dual.}
-\todo{$\mathcal A(1)_*$ is the Hopf algebra for a dihedral group. Is this example appropriate somewhere in this section?}
+
+\begin{landscape}
+\begin{figure}[b]
+\input{koass.tex}
+
+\caption{The $H\F_2$--Adams spectral sequence for $kO$, which collapses at the second page.  North and north-east lines denote multiplication by $2$ and by $\eta$.}
+\end{figure}
+\begin{figure}[b]
+\input{sseqpages/ass.tex}
+
+\caption{A small piece of the $H\F_2$--Adams spectral sequence for the sphere, beginning at the second page.  North and north-east lines denote multiplication by $2$ and by $\eta$, north-west lines denote $d_2$-- and $d_3$--differentials.}\label{HF2ASSFigure}
+\end{figure}
+\end{landscape}
+
+
 
 
 
