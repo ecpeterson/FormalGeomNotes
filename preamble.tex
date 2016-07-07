@@ -89,11 +89,14 @@
 
 \setlength{\marginparwidth}{1in-\marginparsep} % fullpage sets margins to 1in
 
+% todonotes definitions
+
 \newcommand{\oweproof}[1]{\todo[color=red]{\textbf{You owe a proof of: } #1.}}
 \newcommand{\citeme}[1]{\todo[color=green]{\textbf{Cite me: } #1.}}
 \newcommand{\needproof}[1]{\todo[color=magenta]{\textbf{I need to already know: } #1.}}
 
 
+% symbol definitions
 
 \input{letter-symbols.tex}
 
@@ -196,6 +199,8 @@
 \DeclareMathOperator{\Td}{Td}
 \let\div\undefined\DeclareMathOperator{\div}{div}
 
+% theorem environments
+
 \numberwithin{equation}{section}
 
 \theoremstyle{plain}
@@ -211,6 +216,23 @@
 \theoremstyle{remark}
 \newtheorem{remark}[equation]{Remark}
 \newtheorem{example}[equation]{Example}
+
+% sseqpages definitions
+
+\sseqnewgroup\tower[1]{
+    \class(0,0)
+    \foreach \y in {2,...,#1} {
+        \class(0, \y-1)
+        \structline(0, \y-2, -1)(0, \y-1, -1)
+    }
+}
+
+\sseqnewcmd\etaclass{
+    \class[class labels=above left,\options](\x,\y)
+    \structline(\x-1,\y-1,-1)(\x,\y,-1)
+}
+
+% section headers
 
 \crefname{section}{lecture}{lectures} \Crefname{section}{Lecture}{Lectures}
 \crefname{chapter}{case study}{case studies} \Crefname{chapter}{Case Study}{Case Studies}
