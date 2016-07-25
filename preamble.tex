@@ -235,3 +235,16 @@
 
 \crefname{section}{lecture}{lectures} \Crefname{section}{Lecture}{Lectures}
 \crefname{chapter}{case study}{case studies} \Crefname{chapter}{Case Study}{Case Studies}
+
+% put commas between adjacent footnotes without disturbing hyperref
+
+\let\oldFootnote\footnote
+\newcommand\nextToken\relax
+
+\renewcommand\footnote[1]{%
+    \oldFootnote{#1}\futurelet\nextToken\isFootnote}
+
+\newcommand\isFootnote{%
+    \ifx\footnote\nextToken\textsuperscript{,}%
+    \else\ifx\footnotemark\nextToken\textsuperscript{,}\fi%
+    \fi}
