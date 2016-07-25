@@ -3,35 +3,49 @@
 \chapter{Complex bordism}\label{ComplexBordismChapter}
 
 
-\todo{Write an introduction for me.}
+Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots --- the list continues.  We would like to replicate the results from \Cref{UnorientedBordismChapter} for these other cases, but upon even a brief inspection we quickly see that only one of the bordism theories mentioned supports this program.  Specifically, the space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other similar ground object is $\CP^\infty = BU(1)$ in complex bordism.  This informs our choice to spend this Case Study focused on it.  To begin, the contents of \Cref{LectureThomSpectra} can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
+
+\begin{theorem}[{cf.\ \Cref{JIsMonoidal} and surrounding discussion}]
+There is a complex $J$--homomorphism \[J_{\C}: BU \to B \GL_1 \S. \qed \]
+\end{theorem}
+
+\begin{definition}[{cf.\ \Cref{DefnOfMO}}]
+The associated Thom spectrum is written ``$MU$'' and called \textit{complex bordism}.  A map $MU \to E$ of ring spectra is said to be a \textit{complex orientation of $E$}.
+\todo{Something I've seen more than once is an equivalence $MU(k) \simeq BU(k) / BU(k-1)$. It's not immediately obvious to me where this comes from. Where does it come from? Is it helpful to think about?}
+\end{definition}
+
+\begin{theorem}[{cf.\ \Cref{GeneralThomIsom}}]\label{ThomIsomOverC}
+For a complex vector bundle $\xi$ on a space $X$ and a complex-oriented ring spectrum $E$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X. \qed\]
+\end{theorem}
+
+\begin{corollary}[{cf.\ \Cref{HF2RPinftyExample}}]\label{CPinftyNiceCalculation}
+In particular, for a complex-oriented ring spectrum $E$ it follows that $E^* \CP^\infty$ is isomorphic to a one--dimensional power series ring. \qed
+\todo{Maybe I'm confused about grading issues, but I thought $E^* \C P^\infty$ was a polynomial ring and $EP^0 \C P^\infty$ is the power series ring?}
+\todo{Also, this is a nice argument.  Usually this computation proceeds through the AHSS.  Can this method be adapted to spaces other than $\C P^\infty$?}
+\end{corollary}
+
+We would like to then review the results of \Cref{TheSteenrodAlgebraSection} and conclude (by reinterpreting \Cref{CPinftyNiceCalculation}) that $\CP^\infty_E$ gives a $1$--dimensional formal group over $\Spec E_*$.  In order to make this statement honestly, however, we are first required to describe more responsibly the algebraic geometry we previously flippantly outlined in \Cref{SectionSchemesOverF2}.  Specifically, the characteristic $2$ nature of the unoriented bordism ring was a major simplifying feature which made it wholly amenable to study by $H\F_2$.  In turn, $H\F_2$ has many nice properties --- for example, it has a duality between homology and cohomology, and it supports a K\"unneth isomorphism --- and these are reflected in the extremely simple algebraic geometry of $\Spec \F_2$.  By contrast, the complex bordism ring is considerably more complicated, not least of which because it is a characteristic $0$ ring, and more generally we have essentially no control over the behavior of the coefficient ring $E_*$.  Nonetheless, once the background theory and construction of ``$X_E$'' are taken care of in \Cref{FormalVarietiesLecture}, we indeed find that $\CP^\infty_E$ is a $1$--dimensional formal group over $\Spec E_*$.
+
+However, where we could explicitly calculate $\RP^\infty_{H\F_2}$ to be $\G_a$, we again have little control over what formal group $\CP^\infty_E$ could possibly be.  In the universal case, $\CP^\infty_{MU}$ comes equipped with a natural coordinate, and this induces a map \[\Spec MU_* \to \moduli{fgl}\] from the spectrum associated to the coefficient ring of complex bordism to the moduli of formal group laws.  The conclusion of this Case Study in in \Cref{QuillensTheorem} (modulo an algebraic result, shown in the next Case Study as \Cref{LazardsTheorem}) states that this map is an isomorphism, so that $\CP^\infty_{MU}$ is the universal --- i.e., maximally complicated --- formal group.  Our route for proving this passes through the foothills of the theory of ``$p${\th} power operations'', which simultaneously encode many possible natural transformations from $MU$--cohomology to itself glommed together in a large sum, one term of which is the literal $p${\th} power.  Remarkably, the identity operation also appears in this family of operations, and the rest of the operations are in some sense controlled by this naturally occuring formal group law.  A careful analysis of this sum begets the inductive proof in \Cref{QuillenSurjective} that $\sheaf O_{\moduli{fgl}} \to MU_*$ is surjective.
+
+The execution of this proof requires some understanding of cohomology operations for complex-oriented cohomology theories generally.  Stable such operations correspond to homotopy classes $MU \to E$, i.e., elements of $E^0 MU$, which correspond via the Thom isomorphism to elements of $E^0 BU$.  This object is the repository of $E$--characteristic classes for complex vector bundles, which we describe in terms of divisors on formal curves.  This amounts to a description of the formal schemes $BU(n)_E$, which underpins our understanding of the whole story and which significantly informs our study of connective orientations in \Cref{ChapterSigmaOrientation}.
+
+
+
+
+
+
+
 
 
 \section{Formal varieties}\label{FormalVarietiesLecture}
 
 \todo[inline]{I think this lecture may be too long.  On the other hand, the rational stuff at the end will go rather quickly --- which I know from experience in the Pittsburgh talks.}
 
-Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots.  We would like to replicate the results from \Cref{UnorientedBordismChapter} for these other contexts, but we quickly see that only one of the listed bordism theories supports this program.  The space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other bordism theory with a similar ground object is complex bordism, with $\CP^\infty = BU(1)$.  So, we will focus on it.
 
-The contents of \Cref{LectureThomSpectra} can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
-\begin{theorem}\citeme{Give a reference from Lecture 1.1}
-There is a complex $J$--homomorphism \[J_{\C}: BU \to B \GL_1 \S. \qed \]
-\end{theorem}
 
-\begin{definition}\citeme{Give a reference from Lecture 1.1}
-The associated Thom spectrum is written ``$MU$'' and called \textit{complex bordism}.  A map $MU \to E$ of ring spectra is said to be a \textit{complex orientation of $E$}.\todo{Something I've seen more than once is an equivalence $MU(k) \simeq BU(k) / BU(k-1)$. It's not immediately obvious to me where this comes from. Where does it come from? Is it helpful to think about?}
-\end{definition}
 
-\begin{theorem}\label{ThomIsomOverC}\citeme{Give a reference from Lecture 1.1}
-For a complex vector bundle $\xi$ on a space $X$ and a complex-oriented\todo{I don't remember discussing orientations in the last chapter (probably because it's not needed), but maybe you can say something about where the complex orientation is used in this theorem?} ring spectrum $E$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X. \qed\]
-\end{theorem}
-
-\begin{corollary}\label{CPinftyNiceCalculation}\citeme{Give a reference from Lecture 1.1}
-In particular, for a complex-oriented ring spectrum $E$ it follows that $E^* \CP^\infty$ is isomorphic to a one--dimensional power series ring. \qed
-\end{corollary}
-\todo{Maybe I'm confused about grading issues, but I thought $E^* \C P^\infty$ was a polynomial ring and $EP^0 \C P^\infty$ is the power series ring?}
-\todo{Also, this is a nice argument.  Usually this computation proceeds through the AHSS.  Can this method be adapted to spaces other than $\C P^\infty$?}
-
-In light of these results, it seems prudent to develop some of the theory of formal schemes and formal varieties outside of the context of $\F_2$--algebras.
+In light of the results in the introduction, it is prudent to develop some of the theory of formal schemes and formal varieties outside of the context of $\F_2$--algebras.
 
 \begin{definition}\todo{Erick has been complaining about this definition for a while, and I think he's right. His suggestion is for each scheme to be a nilpotent thickening over its reduction, which is of finite type (over whatever base).  I kept compulsively writing ``Artinian'', but he pointed out that $\Z[x] / x^n$ is \emph{not} Artinian, and so this can't be the right assumption.  I'm not sure why I was so stuck on this word... am I forgetting some important case?}
 Fix a scheme $S$.  A formal $S$--scheme $X = \{X_\alpha\}_\alpha$ is an ind-system of Artinian $S$--schemes $X_\alpha$.\todo{Why Artinian? Also, you used to say finite instead of Artinian, so maybe you can standardize the terminology across chapters.} $S$--schemes $X_\alpha$.
