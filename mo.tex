@@ -162,7 +162,7 @@ This powers an induction that shows $H\F_2{}_* \RP^\infty$ has a single class in
 \section{Cohomology rings and affine schemes}\label{SectionSchemesOverF2}
 
 An abbreviated summary of this book is that we are going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents, $\Spec R$.  For any ``test $\F_2$--algebra'' $T$, we set \[(\Spec R)(T) := \CatOf{Algebras}_{\F_2/}(R, T) \cong \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R).\]  More generally, we have the following definition:
-\begin{definition}
+\begin{definition}\label{DefnAffineF2Scheme}
 An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to \CatOf{Sets}$ which is (noncanonically) isomorphic to $\Spec R$ for some $\F_2$--algebra $R$.  Given such an isomorphism, we will refer to $\Spec R \to X$ as a \textit{parameter} for $X$ and its inverse $X \to \Spec R$ as a \textit{coordinate} for $X$.
 \end{definition}
 
@@ -387,8 +387,8 @@ Given a point $f \in (\Spec \mathcal AP_0)(T)$, we extract such a series by sett
 \end{proof}
 
 We close our discussion by codifying what Milnor did when he stabilized against $n$.  Each $\RP^n_{H\F_2}$ is a finite affine scheme, and to make sense of the object $\RP^\infty_{H\F_2}$ Milnor's technique was to consider the ind-system $\{\RP^n_{H\F_2}\}_{n=0}^\infty$ of finite affine schemes.  We will record this as our technique to handle general infinite complexes:
-\begin{definition}
-When $X$ is an infinite complex, filter it by its subskeleta $X^{(n)}$ and define $X_{H\F_2}$ to be the ind-system $\{X^{(n)}_{H\F_2}\}_{n=0}^\infty$ of finite schemes.\footnote{More canonically, when $X$ is ``compactly generated'', it can be written as the colimit of its compact subspaces $X^{(\alpha)}$, and we define $X_{H\F_2}$ using the ind-system $\{X^{(\alpha)}_{H\F_2}\}_\alpha$.  Any system arising from a choice of skeletal structure is cofinal in this system, hence ind-isomorphic.}
+\begin{definition}[{cf.\ \Cref{FullDefnOfXE}}]\label{FullDefnOfXHF2}
+When $X$ is an infinite complex, filter it by its subskeleta $X^{(n)}$ and define $X_{H\F_2}$ to be the ind-system $\{X^{(n)}_{H\F_2}\}_{n=0}^\infty$ of finite schemes.
 \end{definition}
 
 This choice to follow Milnor resolves our uncertainty about the topological example from last time:
@@ -401,7 +401,7 @@ Write $\G_a$ for the ind-system $\mathbb A^{1, (n)}$ with the group scheme struc
 As group schemes, we have thus calculated \[\RP^\infty_{H\F_2} \cong \G_a.\]
 \end{example}
 
-\begin{example}
+\begin{example}\label{FirstAppearanceOfInternalAut}
 Given the appearance of a homomorphism condition in \Cref{SteenrodAlgIdentifiedWithAutGa}, we would like to connect $\Spec \mathcal AP_0$ with $\G_a$ more directly.  Toward this, we define a ``hom functor'' for two formal schemes: \[\InternalHom{FormalSchemes}(X, Y)(T) = \left\{ (u, f) \middle| \begin{array}{c} u: \Spec T \to \Spec \F_2, \\ f: u^* X \to u^* Y \end{array}\right\}.\]  Restricting attention to homomorphisms, we see that a proper name for $\Spec \mathcal AP_0$ is \[\Spec \mathcal AP_0 \cong \InternalAut \G_a.\]  To check this, consider a point $g \in (\Spec \mathcal AP_0)(T)$ for an $\F_2$--algebra $T$.  The $\F_2$--algebra structure of $T$ (which is uniquely determined by a property of $T$) gives rise to a map $u\co \Spec T \to \Spec \F_2$.  The rest of the data of $g$ gives rise to a power series in $T\ps{x}$ as in the proof of \Cref{SteenrodAlgIdentifiedWithAutGa}, which can be re-interpreted as an automorphism $g\co u^* \G_a \to u^* \G_a$ of formal group schemes.\footnote{This description, too, is sensitive to the difference between $\G_a$ and $\mathbb G_a$.  The scheme $\InternalEnd \mathbb G_a$ is populated by \emph{polynomials} satisfying a homomorphism condition, and essentially none of them have inverses.}
 \end{example}
 
