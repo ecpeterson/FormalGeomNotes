@@ -64,7 +64,7 @@ Harkening back to \Cref{FirstAppearanceOfInternalAut}, the definition of the $R$
 There is an affine scheme $T_x X$ defined by \[(T_x X)(T) := \left\{ (u, f) \middle| \begin{array}{c} u\co \Spec T \to S, \\ f \in T_{u^* x} u^* X \end{array} \right\}.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
-We specialize an argument of Strickland~\cite[Proposition 2.94]{StricklandFSFG} to the case at hand.  We start by seeking an $R$--algebra $B$ such that $R$--algebra maps $B \to T$ biject with pairs of maps $u\co R \to T$ and $T$--algebra maps \[f\co A \otimes_R T \to R[\eps] / \eps^2 \otimes_R T.\]  Such maps $f$ biject with $R$--algebra maps \[A \to R[\eps] / \eps^2 \otimes_R T.\]  Noting that $R[\eps] / (\eps)^2$ is free and finite--dimensional as an $R$--module, we forget from $R$--algebra maps down to just $R$--module maps, use $R$--linear duality to move it to the domain, promote it back to an $R$--algebra by forming the symmetric algebra, then finally try to pick out the maps of interest by imposing a quotient.  By expanding Strickland's formulas, we arrive at the equation \[\InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) = \left. A\{1, da \mid a \in A\} \middle/ \left( \begin{array}{c} \text{$dr = 0$ for $r \in R$}, \\ d(a_1 a_2) = da_1 \cdot a_2 + a_1 \cdot da_2 \end{array} \right) \right. .\]  To extract the scheme $T_x X$ from this, we construct the pullback \[T_x X := \InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) \times_X S,\] where the structure maps are given on the left by setting $\eps = 0$ and on the right using the point $x$.  Expanding the formulas again shows that the coordinate ring of this affine scheme is given by \[\sheaf O_{T_x X} = A / I^2 \cong R \oplus T^*_x X. \qedhere\]
+We specialize an argument of Strickland~\cite[Proposition 2.94]{StricklandFSFG} to the case at hand.\footnote{Strickland also shows that mapping schemes between formal schemes exist considerably more generally~\cite[Theorem 4.69]{StricklandFSFG}.  The source either has to be ``finite'' in some sense, in which case the proof proceeds along the lines presented here, or it has to be \textit{coalgebraic}, which is an important technical tool that we discuss much later in \Cref{DefnCoalgebraicFormalScheme}.}  We start by seeking an $R$--algebra $B$ such that $R$--algebra maps $B \to T$ biject with pairs of maps $u\co R \to T$ and $T$--algebra maps \[f\co A \otimes_R T \to R[\eps] / \eps^2 \otimes_R T.\]  Such maps $f$ biject with $R$--algebra maps \[A \to R[\eps] / \eps^2 \otimes_R T.\]  Noting that $R[\eps] / (\eps)^2$ is free and finite--dimensional as an $R$--module, we forget from $R$--algebra maps down to just $R$--module maps, use $R$--linear duality to move it to the domain, promote it back to an $R$--algebra by forming the symmetric algebra, then finally try to pick out the maps of interest by imposing a quotient.  By expanding Strickland's formulas, we arrive at the equation \[\InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) = \left. A\{1, da \mid a \in A\} \middle/ \left( \begin{array}{c} \text{$dr = 0$ for $r \in R$}, \\ d(a_1 a_2) = da_1 \cdot a_2 + a_1 \cdot da_2 \end{array} \right) \right. .\]  To extract the scheme $T_x X$ from this, we construct the pullback \[T_x X := \InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) \times_X S,\] where the structure maps are given on the left by setting $\eps = 0$ and on the right using the point $x$.  Expanding the formulas again shows that the coordinate ring of this affine scheme is given by \[\sheaf O_{T_x X} = A / I^2 \cong R \oplus T^*_x X. \qedhere\]
 \end{proof}
 
 \begin{definition}
@@ -111,7 +111,7 @@ A \textit{formal affine variety} (of dimension $n$) is a formal scheme $V$ which
 With all this algebraic geometry in hand, we now return to our original motivation: extracting formal schemes from the rings appearing in algebraic topology.
 
 \begin{definition}[{cf.\ \Cref{FullDefnOfXHF2}}]\label{FullDefnOfXE}
-Let $E$ be an even-periodic ring spectrum, and let $X$ be a CW--space.  Because $X$ is compactly generated, it can be written as the colimit of its compact subspaces $X^{(\alpha)}$, and we set\footnote{The careful reader will immediately notice that the rings in the pro-system underlying \Cref{FullDefnOfXE} run the risk of not being even-concentrated.  We are thus required to make the following technical compromise: for any pro-isomorphic system of even $E^*$--algebras $\{R_\beta \otimes_{E^0} E^*\} \cong \{E^0 X^{(\alpha)}\}_\alpha$ we make set \[X_E := \{\Spec R_\beta\}_\beta,\] and otherwise we leave $X_E$ undefined.  For example, the technical condition of \Cref{FullDefnOfXE} is satisfied if there exists a cofinal subsystem of $\{X^{(\alpha)}\}_\alpha$ with $E^* X^{(\alpha)}$ even--concentrated.  This follows, for instance, from $H\Z_* X$ being free and even~\cite[Definition 8.15, ].} \[X_E := \Spf E^0 X := \{\Spec E^0 X^{(\alpha)}\}_\alpha.\]
+Let $E$ be an even-periodic ring spectrum, and let $X$ be a CW--space.  Because $X$ is compactly generated, it can be written as the colimit of its compact subspaces $X^{(\alpha)}$, and we set\footnote{The careful reader will immediately notice that the rings in the pro-system underlying \Cref{FullDefnOfXE} run the risk of not being even-concentrated.  We are thus required to make the following technical compromise: for any pro-isomorphic system of even $E^*$--algebras $\{R_\beta \otimes_{E^0} E^*\} \cong \{E^0 X^{(\alpha)}\}_\alpha$ we make set \[X_E := \{\Spec R_\beta\}_\beta,\] and otherwise we leave $X_E$ undefined.  For example, the technical condition of \Cref{FullDefnOfXE} is satisfied if there exists a cofinal subsystem of $\{X^{(\alpha)}\}_\alpha$ with $E^* X^{(\alpha)}$ even--concentrated.  This follows, for instance, from $H\Z_* X$ being free and even~\cite[Definition 8.15, Proposition 8.17]{StricklandFSFG}.} \[X_E := \Spf E^0 X := \{\Spec E^0 X^{(\alpha)}\}_\alpha.\]
 \end{definition}
 
 Consider the example of $\CP^\infty_E$ for $E$ a complex-oriented cohomology theory.  We saw in \Cref{CPinftyNiceCalculation} that the complex-orientation determines an isomorphism $\CP^\infty_E \cong \A^1$ (i.e., an isomorphism $E^0 \CP^\infty \cong E^0\ps{x}$).  However, the object ``$E^0 \CP^\infty$'' is something that exists independent of the orientation map $MU \to E$, and the language of \Cref{DefnFormalVariety} allows us to make the distinction between the two situations:
@@ -202,62 +202,73 @@ Consider the formal group law $x_1(t_1) +_{\G_m} x_2(t_2) = t_1 + t_2 - t_1 t_2$
 
 
 
-\section{Divisors on formal curves}\citeme{Section 2.4.2 of the AHS preprint}
+\section{Divisors on formal curves}
 
-We now have a solid foundation for the most important case of the complex-oriented cohomology of a space: $E^* \CP^\infty$.  We turn next to an algebro-geometric model for the other topological operation complex-oriented cohomology theories are well-suited for: the formation of Thom complexes.  Recall the theorem from the beginning of last time:
-\begin{theorem}[{\Cref{ThomIsomOverC}}]
-For a complex vector bundle $\xi$ on a space $X$ and a complex-oriented ring spectrum $E$, there is a natural equivalence \[E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X. \qed\]
-\end{theorem}
-Recalling also the perspective on modules as quasicoherent sheaves from \Cref{HopfAlgebraLecture}, we are thus moved to study sheaves of modules on $X_E$ which are $1$--dimensional --- i.e., line bundles.  Having said all that, we will leave the topology for tomorrow and focus on the algebra today.  We fix the following three pieces of data:
+We continue to develop vocabulary and accompanying machinery used to give algebro-geometric reinterpretations of the results in the introduction to this Case Study.  In the previous section we deployed the language of formal schemes to recast \Cref{CPinftyNiceCalculation} in geometric terms, and we now turn towards reencoding \Cref{ThomIsomOverC}.  In \Cref{DefnQCohSheaves} and \Cref{CorrespondenceQCohAndModules} we discussed a general correspondence between $R$--modules and quasicoherent sheaves over $\Spec R$, and the isomorphism of $1$--dimensional $E_* X$--modules appearing in \Cref{ThomIsomOverC} moves us to study sheaves over $X_E$ which are $1$--dimensional --- i.e., line bundles.  In this section we will focus on the basics of the geometric theory of line bundles, leaving aside the connections to algebraic topology for the next.  In particular, we will be interested in line bundles over curves (though it will take a while before we see why this special case suffices).
+
+For the rest of this section, we fix the following three pieces of data:
 \begin{itemize}
-\item $S$ is our ``base'' formal scheme.
+\item $S = \Spec R$ is our ``base'' formal scheme.
 \item $C$ is a formal curve over $S$.
 \item $\zeta: S \to C$ is a distinguished point on $C$.
 \end{itemize}
+To begin, we will be interested in a very particular sort of line bundle over $C$: for any function $f$ on $C$ which is not a zero-divisor, the subsheaf $\sheaf I_f = f \cdot \sheaf O_C$ of functions on $C$ which are divisible by $f$ form a $1$--dimensional $\sheaf O_C$--submodule of the ring of functions $\sheaf O_C$ itself --- i.e., a line bundle on $C$.  By interpreting $\sheaf I_f$ as an ideal sheaf, this gives rise to a second interpretation of this data in terms of a closed subscheme \[\Spec \sheaf O_C / f \subseteq C,\] which we will refer to as the \textit{divisor} associated to $\sheaf I_f$.  In general these can be somewhat pathological, so we specialize further to an extremely nice situation:
 
-Recall that yesterday we defined what it meant for a subscheme to be closed.  The notion of a divisor on a formal curve is a particular sort of closed subscheme:
-
-\begin{definition}\citeme{Def 2.33 of AHS preprint}
-An \textit{effective Weil divisor} $D$ on $C$ is a closed $S$--subscheme of $C$ whose structure map $D \to S$ is flat and whose ideal sheaf $\sheaf I_D$ is free of rank $1$ as an $\sheaf{O}_S$--module.  We say that the \textit{rank} of $D$ is $n$ when its ring of functions $\sheaf O_D$ is free of rank $n$ over $\sheaf O_S$.
+\begin{definition}[{\cite[Section 5.1]{StricklandFSFG}}]
+An \textit{effective Weil divisor} $D$ on a formal curve $C$ is a closed subscheme of $C$ whose structure map $D \to S$ presents $D$ as finite and free.  We say that the \textit{rank} of $D$ is $n$ when its ring of functions $\sheaf O_D$ is free of rank $n$ over $\sheaf O_S$.
 \end{definition}
-\todo{Is there a distinction between free and locally free?  I guess not because everything is affine.}
 
-Consider the case of interest to us, where we have selected a coordinate $x$ on $C$.  In that case, there are isomorphisms $S = \Spec E_*$ and $C \cong \Spf E^*\ps{x}$, so that a divisor $D$ must be of the form $D \cong \Spf E^*\ps{x} / f$ for some $f$ not a zero-divisor.  We see then that $\sheaf I_D$ corresponds to the principal ideal $E^*\ps{x} \cdot f \cong E^*\ps{x}$, and $D$ is a divisor exactly when $E^*\ps{x} / f$ is a flat $E^*$--module.\todo{Is this last condition easy to unpack?  I'd hope it means something about monicity.  Maybe see Lemma 17.1 of FPFP?} \todo{How do you even show that $f$ can be chosen to be a polynomial, and not just a power series?  Weierstrass?}
-
-Before considering their connection to line bundles, we will study the concept of a divisor in isolation.
-
-\begin{lemma}
-The scheme of such effective Weil divisors of rank $n$ exists: $\Div_n^+ C$.  It is a formal variety of dimension $n$.  In fact, a coordinate $x$ on $C$ determines an isomorphism $\Div_n^+ C \cong \A^n$.\todo{I wonder if it's possible to frame this argument with \Cref{DetectingFormalVarieties}.  The proof given here is Prop 5.2 of FSFG.}
+\begin{lemma}[{\cite[Proposition 5.2]{StricklandFSFG}, see also \cite[Example 2.10]{StricklandFSFG}}]
+There is a scheme $\Div_n^+ C$ of effective Weil divisors of rank $n$.  It is a formal variety of dimension $n$.  In fact, a coordinate $x$ on $C$ determines an isomorphism $\Div_n^+ C \cong \A^n$ where a divisor $D$ is associated to a monic polynomial $f_D(x)$ with nilpotent lower-order coefficients.
 \end{lemma}
-\begin{proof}
-Begin with the definition \[\Div_n^+(C)(R) = \left\{(a, D) \middle| \begin{array}{c} a: \Spec R \to S, \\ \text{$D$ is an effective divisor on $C \times_S \Spec R$} \end{array} \right\}.\]  To show that it is a formal variety, we pick a coordinate $x$ on $C$ and consider a point $(a, D) \in \Div_n^+(C)(R)$.  In this case, $C \times \Spec R$ is presented as \[C \times_X \Spec R = \Spf R\llbracket x \rrbracket\] and hence $D$ can be presented as the closed subscheme \[D = \Spf R\llbracket x \rrbracket / (x^n - g(x)), \quad g(x) = \sum_{j=0}^{n-1} a_j(D) x^j.\]  One checks that $a_j(D)$ is a nilpotent element of $R$ for all $j$\todo{This statement has real content! If $a_j(D)$ were not nilpotent, then Weierstrass factorization would strip off a smaller monic polynomial.  But, we haven't talked about Weierstrass preparation yet... and we were intending to leave it for much later.  Maybe we should have done this today.}\todo{Actually, Jeremy and Jun Hou point out that Weierstrass preparation requires hypotheses on the ground scheme (like: it's $\Spf$ of a complete and local ring) that aren't necessarily satisfied here.  So, what geometric thing do we \emph{really} mean?}, and hence determines a map $\Spec R \to \A^n$.  Conversely, given such a map, we can form the polynomial $g(x)$ and hence the divisor $D$.
+\begin{proof}[Proof sketch]
+To pin down the functor we wish to analyze, we make the definition \[\Div_n^+(C)(R) = \left\{(a, D) \middle| \begin{array}{c} a: \Spec R \to S, \\ \text{$D$ is an effective divisor on $C \times_S \Spec R$} \end{array} \right\}.\]  To show that this is a formal variety, we pursue the final claim and select a coordinate $x$ on $C$, as well as a point $(a, D) \in \Div_n^+(C)(T)$.  The coordinate presents $C \times_S \Spec T$ as \[C \times_X \Spec T = \Spf T\llbracket x \rrbracket,\] and the characteristic polynomial $f_D(x)$ of $x$ in $\sheaf O_D$ presents $D$ as the closed subscheme \[D = \Spf R\llbracket x \rrbracket / (f_D(x))\] for $f_D(x) = x^n + a_{n-1} x^{n-1} + \cdots + a_0$ monic.  Additionally, each lower-order coefficient $a_j$ must be nilpotent: for any prime ideal $\p \in R$ we can form the field $R_{\p} / \p$, over which the module $\sheaf O_D \otimes_R R_{\p} / \p$ must still be of rank $n$.  It follows that \[f_D(x) \otimes_R R_{\p} / \p \equiv x^n,\] hence that each $a_j$ lies in the intersection of all prime ideals of $R$, hence that each $a_j$ is nilpotent.
+
+In turn, this means that the polynomial $f_D$ is selected by a map $\Spec R \to \A^n$.  Conversely, given such a map, we can form the polynomial $f_D(x)$ and the divisor $D$.
 \end{proof}
 
-This proof lays bare the moral value of this scheme: it parametrizes collections of points on $C$ which arise as zero loci of polynomials.  It's well-known how basic operations on polynomials affect their zero loci, and these operations are also reflected on the level of divisor schemes.  For instance, there is a unioning map:
-\begin{lemma}
-There is a map
+\begin{remark}\label{DescriptionOfSqCupMapOnPolynomials}
+This Lemma connects several simple dots: especially nice polynomials $f_D(x) \in \sheaf O_C$, their vanishing loci $D \subseteq C$, and the ideal sheaves $\sheaf I_D$ of functions divisible by $f$ --- i.e., functions with a partially prescribed vanishing set.  Basic operations on polynomials affect their vanishing loci in predictable ways, and these operations are also reflected on the level of divisor schemes.  For instance, there is a unioning map
 \begin{align*}
 \Div_n^+ C \times \Div_m^+ C & \to \Div_{n+m}^+ C, \\
-(D_n, D_m) & \mapsto D_n \sqcup D_m. \qed
+(D_1, D_2) & \mapsto D_1 \sqcup D_2.
 \end{align*}
-\end{lemma}
-\begin{remark}\label{DescriptionOfSqCupMapOnPolynomials}
-On the level of the polynomials $g_n$, $g_m$, and $g_{n+m}$, this map is given by \[(g_n, g_m) \mapsto x^{n+m} - (x^n - g_n(x)) \cdot (x^m - g_m(x)) =: g_{n+m}(x).\] \todo{What was wrong with $g_{n+m} := g_n g_m$ from class?  The current $g_{n+m}$ has degree $<n+m$\ldots}
+At the level of ideal sheaves, we use their $1$--dimensionality to produce the formula \[\sheaf I_{D_1 \sqcup D_2} = \sheaf I_{D_1} \otimes_{\sheaf O_C} \sheaf I_{D_2}.\]  Under a choice of coordinate $x$, the map at the level of polynomials is given by \[(f_{D_1}, f_{D_2}) \mapsto f_{D_1} \cdot f_{D_2}.\]
 \end{remark}
 
-Note that there is a canonical isomorphism $C \to \Div_1^+ C$.  Iterating the above addition map gives the vertical map in the following triangle:
+Next, note that there is a canonical isomorphism $C \to \Div_1^+ C$.  Iterating the above addition map gives the vertical map in the following triangle:
 \begin{center}
 \begin{tikzcd}
-& C^{\times n} \arrow{ld} \arrow{d} \\
-C^{\times n}_{\Sigma_n} \arrow[densely dotted]{r}{\cong} & \Div_n^+ C.
+& C^{\times n} \arrow{ld} \arrow["\sqcup"]{d} \\
+C^{\times n}_{\Sigma_n} \arrow[densely dotted, "\cong"]{r} & \Div_n^+ C.
 \end{tikzcd}
 \end{center}
-\begin{lemma}\todo{Make a point that the other arrow is not surjective.}
-The object $C^{\times n}_{\Sigma_n}$ exists, it factors the iterated addition map, and the dotted arrow is an isomorphism.
+\begin{lemma}
+The object $C^{\times n}_{\Sigma_n}$ exists as a formal variety, it factors the iterated addition map, and the dotted arrow is an isomorphism.
 \end{lemma}
 \begin{proof}
 The first assertion is a consequence of Newton's theorem on symmetric polynomials: the subring of symmetric polynomials in $R[x_1, \ldots, x_n]$ is itself polynomial on generators \[\sigma_j(x_1, \ldots, x_n) = \sum_{\substack{S \subseteq \{1, \ldots, n\} \\ |S| = j}} x_{S_1} \cdots x_{S_j},\] and hence \[R[\sigma_1, \ldots, \sigma_n] \subseteq R[x_1, \ldots, x_n].\]  Picking a coordinate on $C$ allows us to import this fact into formal geometry to deduce the existence of $C^{\times n}_{\Sigma_n}$.  The factorization then follows by noting that the iterated $\sqcup$ map is symmetric.  Finally, \Cref{DescriptionOfSqCupMapOnPolynomials} shows that the horizontal map pulls the coordinate $a_j$ back to $\sigma_j$, so the third assertion follows.
 \end{proof}
+
+\begin{remark}
+The map $C^{\times n} \to C^{\times n}_{\Sigma_n}$ is our first example of a map of schemes which surjective \emph{as a map of sheaves}.  This is somewhat subtle: it is not necessarily the case that $C^{\times n}(T) \to C^{\times n}_{\Sigma_n}(T)$ is surjective on $T$--points for any given test ring $T$ --- indeed, not every polynomial can be written as a product of linear factors.  However, for a fixed point $f \in C^{\times n}_{\Sigma_n}(T)$, we are guaranteed a flat covering $T \to \prod_j T_j$ such that there are individual lifts $f'_j$ of $f$ over each $T_j$.\todo{Add an example here.}
+\end{remark}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 We now consider the effects of maps $q\co C \to C'$ between curves.
 \begin{lemma}\label{DivHasPushforwards}
@@ -271,7 +282,7 @@ The structure map map $D \to S$ is unchanged and hence still flat, and the ideal
 For a general map $q$, the pullback $D \times_{C'} C$ of a divisor $D \subseteq C'$ will not be a divisor on $C$.  However, conditions on $q$ can be imposed so that this is so, and in this case $q$ is called an \textit{isogeny}.  We will return to this in the future.
 \end{remark}
 
-Now we use the pointing $\zeta: S \to C$.  Together with the $\sqcup$ map, this gives a composite
+Now we use the pointing $\zeta\co S \to C$.  Together with the $\sqcup$ map, this gives a composite
 \begin{center}
 \begin{tikzcd}
 \Div_n^+ C \arrow{r} & C \times \Div_n^+ C \arrow{r} & \Div_1^+ C \times \Div_n^+ C \arrow{r} & \Div_{n+1}^+ C, \\
