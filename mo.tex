@@ -39,7 +39,17 @@ Now we catalog a bunch of useful properties of the Thom space functor.  Firstly,
 \Aut_{h\CatOf{Spaces}} S^{n-1} \arrow{r} & \End_{h\CatOf{Spaces}} S^{n-1} \arrow[equal]{r} & \pi_0 F(S^{n-1}, S^{n-1}).
 \end{tikzcd}
 \end{center}
-We can interpret $T_n$ as a functor off of the slice category over $BGL_1 S^{n-1}$: maps \[Y \xrightarrow{f} X \xrightarrow{\xi} B \GL_1 S^{n-1}\] induce maps $T_n(f^* \xi) \to T_n(\xi)$, and $T_n$ is suitably homotopy-invariant.
+
+\begin{lemma}\label{ThomConstructionIsASliceFunctor}
+The construction $T_n$ can be viewed as a functor from the slice category over $BGL_1 S^{n-1}$ to $\CatOf{Spaces}$.  Maps of slices
+\begin{center}
+\begin{tikzcd}
+Y \arrow["f"]{rr} \arrow["f^* \xi"]{rd} & & X \arrow["\xi"]{ld} \\
+& B\GL_1 S^{n-1}
+\end{tikzcd}
+\end{center}
+induce maps $T_n(f^* \xi) \to T_n(\xi)$, and $T_n$ is suitably homotopy-invariant. \qed
+\end{lemma}
 
 Next, the spherical subbundle of a vector bundle gives a common source of spherical bundles.  The action of $O(n)$ on $\R^n$ preserves the unit sphere, and hence gives a map $O(n) \to GL_1 S^{n-1}$.  These are maps of topological groups, and the block--inclusion maps $i^n\co O(n) \to O(n+1)$ commute with the suspension map $GL_1 S^{n-1} \to GL_1 S^n$.  In fact, much more can be said:
 \begin{lemma}\label{JIsMonoidal}
@@ -523,7 +533,7 @@ An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec 
 
 The tensoring operation appearing in the definition of a presheaf appears more generally as an operation on the category of sheaves.
 
-\begin{definition}
+\begin{definition}\label{PushAndPullForQCohOnAffines}
 \todo{Jay was frustrated with which adjoint I put on top (and perhaps which went on which side). Apparently there's some convention, which I should look up and obey.}
 A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of categories of quasicoherent sheaves.  At the level of modules, these are given by
 \begin{center}
