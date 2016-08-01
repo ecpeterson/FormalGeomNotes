@@ -7,10 +7,10 @@
 
 The goal of this book is to communicate a certain \textit{weltanschauung} uncovered in pieces by many different people working in bordism theory, and the goal just for this introduction is to tell a story about one theorem where it is especially apparent.
 
-To begin, we will define a homology theory called ``bordism homology''.  Recall that the singular homology of a space $X$ is defined by considering the collection of continuous maps $\sigma: \Delta^n \to X$, taking the free $\Z$--module on each of these sets, and constructing a chain complex \[\cdots \xrightarrow{\partial} \Z\{\Delta^n \to X\} \xrightarrow{\partial} \Z\{\Delta^{n-1} \to X\} \xrightarrow{\partial} \cdots.\]  Bordism homology is constructed analogously, but using manifolds $M$ as the sources instead of simplices:\footnote{One doesn't need to take the free abelian group on anything, since the disjoint union of two manifolds is already a (disconnected) manifold, whereas the disjoint union of two simplices is not a simplex.}
+To begin, we will define a homology theory called ``bordism homology''.  Recall that the singular homology of a space $X$ is comes about by probing $X$ with simplices: beginning with the collection of continuous maps $\sigma\co \Delta^n \to X$, we take the free $\Z$--module on each of these sets and construct a chain complex \[\cdots \xrightarrow{\partial} \Z\{\Delta^n \to X\} \xrightarrow{\partial} \Z\{\Delta^{n-1} \to X\} \xrightarrow{\partial} \cdots.\]  Bordism homology is constructed analogously, but using manifolds $Z$ as the probes instead of simplices:\footnote{One doesn't need to take the free abelian group on anything, since the disjoint union of two manifolds is already a (disconnected) manifold, whereas the disjoint union of two simplices is not a simplex.}
 \begin{align*}
-\cdots & \xrightarrow{\partial} \{M^n \to X \mid \text{$M^n$ a compact $n$--manifold}\} \\
-& \xrightarrow{\partial} \{M^{n-1} \to X \mid \text{$M^{n-1}$ a compact $(n-1)$--manifold}\} \\
+\cdots & \xrightarrow{\partial} \{Z^n \to X \mid \text{$Z^n$ a compact $n$--manifold}\} \\
+& \xrightarrow{\partial} \{Z^{n-1} \to X \mid \text{$Z^{n-1}$ a compact $(n-1)$--manifold}\} \\
 & \xrightarrow{\partial} \cdots.
 \end{align*}
 
@@ -23,23 +23,22 @@ In fact, we can define a bordism theory $MG$ for any suitable family of structur
 However, having maps of homology theories (rather than just maps of coefficient rings) is considerably more data then just the genus.  For instance, we can use it to extract a theory of integration as follows.  Consider the following special case of oriented bordism, where we evaluate $MSO_*$ on an infinite loopspace:
 \begin{align*}
 MSO_n K(\Z, n) & = \left\{ \text{oriented $n$--manifolds mapping to $K(\Z, n)$} \right\} / \sim \\
-& = \left. \left\{ \begin{array}{c}\text{oriented $n$--manifolds $M$} \\ \text{with a specified class $\omega \in H^n(M; \Z)$} \end{array}\right\} \middle/ \sim \right. .
+& = \left. \left\{ \begin{array}{c}\text{oriented $n$--manifolds $Z$} \\ \text{with a specified class $\omega \in H^n(M; \Z)$} \end{array}\right\} \middle/ \sim \right. .
 \end{align*}
-Associated to such a representative $(M, \omega)$, the yoga of stable homotopy theory then allows us to build a composite
+Associated to such a representative $(Z, \omega)$, the yoga of stable homotopy theory then allows us to build a composite
 \begin{align*}
-\S & \xrightarrow{\mathmakebox[2.5em]{(M, \omega)}} MSO \sm (\S^{-n} \sm \Susp^\infty_+ K(\Z, n)) \\ 
+\S & \xrightarrow{\mathmakebox[2.5em]{(Z, \omega)}} MSO \sm (\S^{-n} \sm \Susp^\infty_+ K(\Z, n)) \\ 
 & \xrightarrow{\mathmakebox[2.5em]{\colim}} MSO \sm H\Z \\
 & \xrightarrow{\mathmakebox[2.5em]{\phi \sm 1}} H\Z \sm H\Z \\
 & \xrightarrow{\mathmakebox[2.5em]{\mu}} H\Z,
 \end{align*}
-\todo{I changed $\S^0$ to $\S$ here, because that's what you used below, but it seems that the notation for the sphere spectrum has been inconsistent elsewhere too.}
 where $\phi$ is the orientation map.  Altogether, this composite gives us an element of $\pi_0 H\Z$, i.e., an integer.\todo{I used to think that this gave rise to a Stokes's Theorem, but now I'm not sure. Maybe this comes out of relative homology somehow.}
 
 \begin{lemma}\citeme{Where is this proven?}
-The integer obtained by the above process is $\int_M \omega$. \qed
+The integer obtained by the above process is $\int_Z \omega$. \qed
 \end{lemma}
 
-\noindent This definition of $\int_M \omega$ via stable homotopy theory is pretty nice, in the sense that many theorems accompany it for free.  It is also very general: given a ring map off of any bordism spectrum, a similar sequence of steps will furnish us with an integral tailored to that situation.
+\noindent This definition of $\int_Z \omega$ via stable homotopy theory is pretty nice, in the sense that many theorems accompany it for free.  It is also very general: given a ring map off of any bordism spectrum, a similar sequence of steps will furnish us with an integral tailored to that situation.
 
 Now take $G = e$ to be the trivial structure group, which is the bordism theory of manifolds with trivialized tangent bundle.  In this case, the Pontryagin--Thom construction gives an equivalence $\S \xrightarrow{\simeq} Me$.  It is thus possible (and some people have indeed taken up this viewpoint) that stable homotopy theory can be done solely through the lens of ``framed bordism''.  We will prefer to view this the other way: the sphere spectrum $\S$ often appears to us as a natural object, and we will occasionally replace it by $Me$, the framed bordism spectrum.  For example, given a ring spectrum $E$ with unit map $\S \to E$, we can reconsider this as a ring map \[Me \xrightarrow{\simeq} \S \to E.\]  Following along the lines of the previous paragraph, we learn that any ring spectrum $E$ is automatically equipped with a theory of integration for framed manifolds.
 
@@ -55,7 +54,7 @@ Me \arrow{r} \arrow{rrd} \arrow{rrrd} \arrow{rrrrd} & \cdots \arrow{r} & M\Spin 
 This is the situation homotopy theorists found themselves in some decades ago, when Ochanine and Witten proved the following mysterious theorem using analytical and physical methods:
 
 \begin{theorem}[{Ochanine~\cite{Ochanine}, Witten~\cite{WittenEllipticGeneraQFT,WittenIndexDiracOperatorLoopSpace}}]\label{OchanineWittenTheorem}
-There is a map of rings \[\sigma: M\Spin_* \to \C(\!(q)\!).\]  Moreover, if $M$ is a Spin manifold such that twice its first Pontryagin class vanishes --- that is, if $M$ lifts to a $\String$--manifold --- then $\sigma(M)$ lands in the subring $MF \subseteq \Z\ps{q}$ of modular forms with integral coefficients. \qed
+There is a map of rings \[\sigma: M\Spin_* \to \C(\!(q)\!).\]  Moreover, if $Z$ is a $\Spin$ manifold such that twice its first Pontryagin class vanishes --- that is, if $Z$ lifts to a $\String$--manifold --- then $\sigma(Z)$ lands in the subring $MF \subseteq \Z\ps{q}$ of modular forms with integral coefficients. \qed
 \end{theorem}
 
 \noindent However, neither party gave indication that their result should be valid ``in families'' (in our sense), and no theory of integration was formally produced (in our sense).  From the perspective of the homotopy theorist, it wasn't even totally clear what such a claim would mean: to give a topological enrichment of these theorems would mean finding a ring spectrum $E$ such that $E_*(*)$ had something to do with modular forms.
