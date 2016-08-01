@@ -119,10 +119,10 @@ Consider the example of $\CP^\infty_E$ for $E$ a complex-oriented cohomology the
 A cohomology theory $E$ is \textit{complex orientable} (i.e., it is able to receive a ring map from $MU$) precisely when $\CP^\infty_E$ is a formal curve (i.e., it is a formal variety of dimension $1$).  A choice of orientation $MU \to E$ determines a coordinate $\CP^\infty_E \cong \A^1$. \qed
 \end{lemma}
 
-As in \Cref{RPinftyExampleForReal}, the formal scheme $\CP^\infty_E$ has additional structure: it is naturally a group.  We close today with some remarks about such objects.
+As in \Cref{RPinftyExampleForReal}, the formal scheme $\CP^\infty_E$ has additional structure: it is a group.  We close today with some remarks about such objects.
 
-\begin{definition}
-A formal group is a formal variety endowed with an abelian group structure.\footnote{Formal groups in dimension $1$ are automatically commutative if and only if the ground ring has no elements which are simultaneously nilpotent and torsion~\cite[Theorem I.6.1]{Hazewinkel}.}
+\begin{definition}\label{DefnFormalGps}
+A formal group is a formal variety endowed with an abelian group structure.\footnote{Formal groups in dimension $1$ are automatically commutative if and only if the ground ring has no elements which are simultaneously nilpotent and torsion~\cite[Theorem I.6.1]{Hazewinkel}.}  If $E$ is a complex-orientable cohomology theory, then $\CP^\infty_E$ naturally forms a ($1$--dimensional) formal group using the map classifying the tensor product of line bundles.
 \end{definition}
 
 \begin{remark}
@@ -203,7 +203,7 @@ Consider the formal group law $x_1(t_1) +_{\G_m} x_2(t_2) = t_1 + t_2 - t_1 t_2$
 
 
 
-\section{Divisors on formal curves}
+\section{Divisors on formal curves}\label{CurveDivisorsSection}
 
 We continue to develop vocabulary and accompanying machinery used to give algebro-geometric reinterpretations of the results in the introduction to this Case Study.  In the previous section we deployed the language of formal schemes to recast \Cref{CPinftyNiceCalculation} in geometric terms, and we now turn towards reencoding \Cref{ThomIsomOverC}.  In \Cref{DefnQCohSheaves} and \Cref{CorrespondenceQCohAndModules} we discussed a general correspondence between $R$--modules and quasicoherent sheaves over $\Spec R$, and the isomorphism of $1$--dimensional $E_* X$--modules appearing in \Cref{ThomIsomOverC} moves us to study sheaves over $X_E$ which are $1$--dimensional --- i.e., line bundles.  In fact, for the purposes of \Cref{ThomIsomOverC}, we will find that it suffices to understand the basics of the geometric theory of line bundles \emph{just over formal curves}.  This is our goal in this Lecture, and we leave the applications to algebraic topology aside for later.  For the rest of this section we fix the following three pieces of data: a base formal scheme $S$, a formal curve $C$ over $S$, and a distinguished point $\zeta\co S \to C$ on $C$.
 
@@ -318,14 +318,12 @@ In the case of a formal curve $C$, there is a short exact sequence of formal gro
 
 
 
-\section{Projectivization and Thom spaces}\label{ProjectivizationLecture}
-\todo{This title needs improvement.}
-\todo{You are not consistent about calling vector bundles $V$ or $\xi$.}
+\section{Line bundles associated to Thom spectra}\label{ProjectivizationLecture}
 
 Today we will exploit all of the algebraic geometry we set up yesterday to deduce a load of topological results.
 
 \begin{definition}\label{DefnThomSheaf}
-Let $E$ be a complex-orientable theory and let $V \to X$ be a complex vector bundle over a space $X$.  According to \Cref{ThomIsomOverC}, the cohomology of the Thom space $E^* T(V)$ forms a $1$--dimensional $E^* X$--module.  Using \Cref{CorrespondenceQCohAndModules}, we construct a line bundle over $X_E$ \[\ThomSheaf{V} := \widetilde{E^* T(V)},\] called the \textit{Thom sheaf} of $V$.
+Let $E$ be a complex-orientable theory and let $V \to X$ be a complex vector bundle over a space $X$.  According to \Cref{ThomIsomOverC}, the cohomology of the Thom spectrum $E^* T(V)$ forms a $1$--dimensional $E^* X$--module.  Using \Cref{CorrespondenceQCohAndModules}, we construct a line bundle over $X_E$ \[\ThomSheaf{V} := \widetilde{E^* T(V)},\] called the \textit{Thom sheaf} of $V$.
 \end{definition}
 
 \begin{remark}
@@ -343,7 +341,7 @@ The first claim is justified by \Cref{ThomConstructionIsASliceFunctor}, the seco
 We use these properties to work the following Example, which connects Thom sheaves with the major players from \Cref{FormalVarietiesLecture}.
 
 \begin{example}[{\cite[Section 8]{AHSHinfty}}]\label{Pi2AndInvariantDiffls}
-\todo{Various people have been uncomfortable about whether the grading matters here, whether $E$ is periodified, \ldots .}
+\todo{Various people have been uncomfortable about whether the grading matters here, whether $E$ is periodified, \ldots .  \textbf{Actually, something is almost definitely wrong:} the functor $T$ is defined to give the reduced Thom spectrum.  Shit.}
 Take $\L$ to be the canonical line bundle over $\CP^\infty$.  Using the same mode of argument as in \Cref{RPnThomExample}, the zero-section \[\Susp^\infty \CP^\infty \xrightarrow{\simeq} T(\L)\] gives an identification \[E^0 \CP^\infty \supseteq \widetilde E^0 \CP^\infty \xleftarrow{\simeq} E^0 T(\L)\] of $E^0 T(\L)$ with the augmentation ideal in $E^0 \CP^\infty$.  At the level of Thom sheaves, this gives an isomorphism \[\sheaf I(0) \xleftarrow{\simeq} \ThomSheaf{\L}\] of $\ThomSheaf{\L}$ with the sheaf of functions vanishing at the origin of $\CP^\infty_E$.  Pulling $\L$ back along \[0\co * \to \CP^\infty\] gives a line bundle over the one-point space, which on Thom spectra gives the inclusion \[\Susp^\infty \CP^1 \to \Susp^\infty \CP^\infty.\]  Stringing many results together, we can now calculate:
 \footnote{The identification with $\sheaf I(0) / \sheaf I(0) \cdot \sheaf I(0)$ below deserves further explanation.  The functor $0^*$ is right-exact, so sends the short exact sequence \[0 \to \sheaf I(0)^2 \to \sheaf I(0) \to \sheaf I(0) / \sheaf I(0)^2 \to 0\] to a right-exact sequence, and we need only check that the map $0^* \sheaf I(0)^2 \to 0^* \sheaf I(0)$ is zero.  This is the statement that a function vanishing to second order also has vanishing first derivative.}
 \begin{align*}
@@ -353,24 +351,19 @@ Take $\L$ to be the canonical line bundle over $\CP^\infty$.  Using the same mod
 & \cong 0^* \sheaf I(0) & \text{(preceding calculation)} \\
 & \cong \sheaf I(0) / (\sheaf I(0) \cdot \sheaf I(0)) & \text{(definition of $0^*$ from \Cref{PushAndPullForQCohOnAffines})} \\
 & \cong T^*_0 \CP^\infty_E & \text{(\Cref{DefnOfCoTangentSpaces})} \\
-& \cong \omega_{\CP^\infty_E}. & \text{(proof of \Cref{RationalFGLsHaveLogarithms})}
+& \cong \omega_{\CP^\infty_E}, & \text{(proof of \Cref{RationalFGLsHaveLogarithms})}
 \end{align*}
-Consequently, if $k \cdot \eps$ is the trivial bundle of dimension $k$ over a point, then \[\widetilde{\pi_{2k} E} \cong \ThomSheaf{k \cdot \eps} \cong \ThomSheaf{k \cdot 0^* \L} \cong \ThomSheaf{0^* \L}^{\otimes k} \cong \omega_{\CP^\infty_E}^{\otimes k}.\]  Finally, given an $E$--algebra $f \co E \to F$ (e.g., $F = E^{X_+}$), then we have \[\widetilde{\pi_{2k} F} \cong f_E^* \omega_{\G_E}^{\otimes k}.\]
+where $\omega_{\CP^\infty_E}$ denotes the sheaf of invariant differentials on $\CP^\infty_E$.  Consequently, if $k \cdot \eps$ is the trivial bundle of dimension $k$ over a point, then \[\widetilde{\pi_{2k} E} \cong \ThomSheaf{k \cdot \eps} \cong \ThomSheaf{k \cdot 0^* \L} \cong \ThomSheaf{0^* \L}^{\otimes k} \cong \omega_{\CP^\infty_E}^{\otimes k}.\]  Finally, given an $E$--algebra $f \co E \to F$ (e.g., $F = E^{X_+}$), then we have \[\widetilde{\pi_{2k} F} \cong f_E^* \omega_{\CP^\infty_E}^{\otimes k}.\]
 \end{example}
 
+Outside of this Example, it is difficult to find line bundles $\ThomSheaf{V}$ which we can analyze so directly.  In order to get a handle on on $\ThomSheaf{V}$ in general, we now seek to strengthen this bond between line bundles and vector bundles by finding inside of algebraic topology the alternative presentations of line bundles given in \Cref{CurveDivisorsSection}.  In particular, we would like a topological construction on vector bundles which produces divisors --- i.e., finite schemes over $X_E$.  This has the scent of a certain familiar topological construction called projectivization, and we now work to justify the relationship.
 
-
-
-
-
-
-Aside from this example, though, this construction on its own does not allow for the ready manipulation of line bundles.  However, our discussion yesterday centered on an equivalent presentation of line bundles on a formal curve: their corresponding divisors.  Following that cue, we now seek out a topological construction on vector bundles $V \to X$ which produces finite schemes over $X_E$.  A quick browse through the literature will lead one to the following:
 \begin{definition}
-Let $\xi$ be a complex vector bundle of rank $n$ over a base $X$.  Define $\P(\xi)$, the \textit{projectivization of $\xi$}, to be the $\CP^{n-1}$--bundle over $X$ whose fiber of $x \in X$ is the space of complex lines in the original fiber $\xi|_x$.
+Let $V$ be a complex vector bundle of rank $n$ over a base $X$.  Define $\P(V)$, the \textit{projectivization of $V$}, to be the $\CP^{n-1}$--bundle over $X$ whose fiber of $x \in X$ is the space of complex lines in the original fiber $V|_x$.
 \end{definition}
 
 \begin{theorem}\label{CohomologyOfProjectivization}
-Take $E$ to be complex-oriented.  The $E$--cohomology of $\P(\xi)$ is given by the formula \[E^* \P(\xi) \cong \left. E^*(X) \llbracket t \rrbracket \middle/ c(\xi) \right.\] for a certain monic polynomial \[c(\xi) = t^n - c_1(\xi) t^{n-1} + c_2(\xi) t^{n-2} - \cdots + (-1)^n c_n(\xi).\]
+Take $E$ to be \emph{complex-oriented}.  The $E$--cohomology of $\P(V)$ is given by the formula \[E^* \P(V) \cong \left. E^*(X) \llbracket t \rrbracket \middle/ c(V) \right.\] for a certain monic polynomial \[c(V) = t^n - c_1(V) t^{n-1} + c_2(V) t^{n-2} - \cdots + (-1)^n c_n(V).\]
 \end{theorem}
 \begin{proof}
 We fit all of the fibrations we have into a single diagram:
@@ -379,62 +372,66 @@ We fit all of the fibrations we have into a single diagram:
 & \C^\times \arrow[equal]{dd} \arrow{rd} \\
 \C^n \arrow{dd} & & \C^n \setminus \{0\} \arrow[crossing over]{ll} \arrow{r} \arrow{dd} & \CP^{n-1} \arrow{r} \arrow{dd} & \CP^\infty \arrow[equal]{dd} \\
 & \C^\times \arrow{rd} \\
-\xi \arrow{d} & & \xi \setminus \zeta \arrow{ll} \arrow{r} \arrow{d} & \P(\xi) \arrow{r} \arrow{d}{\pi} & \CP^\infty \arrow{d} \\
+V \arrow{d} & & V \setminus \zeta \arrow{ll} \arrow{r} \arrow{d} & \P(V) \arrow{r} \arrow{d}{\pi} & \CP^\infty \arrow{d} \\
 X \arrow[equal]{rr} \arrow[bend left, densely dotted]{u}{\zeta} & & X \arrow[equal]{r} & X \arrow{r} & *.
 \end{tikzcd}
 \end{center}
-We read this diagram as follows: on the far left, there's the vector bundle we began with, as well as its zero-section $\zeta$.  Deleting the zero-section gives the second bundle, a $\C^n \setminus \{0\}$--bundle over $X$.  Its quotient by the scaling $\C^\times$--action gives the third bundle, a $\CP^{n-1}$--bundle over $X$.  Additionally, the quotient map $\C^n \setminus \{0\} \to \CP^{n-1}$ is itself a $\C^\times$--bundle, and this induces the structure of a $\C^\times$--bundle on the quotient map $\xi \setminus \zeta \to \P(\xi)$.  Thinking of these as complex line bundles, they are classified by a map to $\CP^\infty$, which can itself be thought of as the last vertical fibration, fibering over a point.
+We read this diagram as follows: on the far left, there's the vector bundle we began with, as well as its zero-section $\zeta$.  Deleting the zero-section gives the second bundle, a $\C^n \setminus \{0\}$--bundle over $X$.  Its quotient by the scaling $\C^\times$--action gives the third bundle, a $\CP^{n-1}$--bundle over $X$.  Additionally, the quotient map $\C^n \setminus \{0\} \to \CP^{n-1}$ is itself a $\C^\times$--bundle, and this induces the structure of a $\C^\times$--bundle on the quotient map $V \setminus \zeta \to \P(V)$.  Thinking of these as complex line bundles, they are classified by a map to $\CP^\infty$, which can itself be thought of as the last vertical fibration, fibering over a point.
 
-Note that the map between these two last fibers is surjective on $E$--cohomology.  It follows that the Serre spectral sequence for the third vertical fibration is degenerate, since all the classes in the fiber must survive.\footnote{This is called the Leray--Hirsch theorem.}  We thus conclude that $E^* \P(\xi)$ is a free $E^*(X)$--module on the classes $\{1, t, t^2, \ldots, t^{n-1}\}$ spanning $E^* \CP^{n-1}$.  To understand the ring structure, we need only compute $t^{n-1} \cdot t$, which must be able to be written in terms of the classes which are lower in $t$--degree: \[t^n = c_1(\xi) t^{n-1} - c_2(\xi) t^{n-2} + \cdots + (-1)^{n-1} c_n(\xi)\] for some classes $c_i(\xi) \in E^* X$.  The theorem follows.
-\todo{Look at Exercise 1.7 in COCTALOS. It might help you justify unicity of these elements.}
+Note that the map between these two last fibers is surjective on $E$--cohomology.  It follows that the Serre spectral sequence for the third vertical fibration is degenerate, since all the classes in the fiber must survive.\footnote{This is called the Leray--Hirsch theorem.}  We thus conclude that $E^* \P(V)$ is a free $E^*(X)$--module on the classes $\{1, t, t^2, \ldots, t^{n-1}\}$ spanning $E^* \CP^{n-1}$, where $t$ encodes the chosen complex-orientation of $E$.  To understand the ring structure, we need only compute $t^{n-1} \cdot t$, which must be able to be written in terms of the classes which are lower in $t$--degree: \[t^n = c_1(V) t^{n-1} - c_2(V) t^{n-2} + \cdots + (-1)^{n-1} c_n(V)\] for some classes $c_j(V) \in E^* X$.  The main claim follows.
 \end{proof}
 
 In coordinate-free language, we have the following Corollary:
 \begin{corollary}[{\Cref{CohomologyOfProjectivization} redux}]
-Take $E$ to be \emph{complex-orientable}.  The map \[\P(\xi)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes, and the structure map $\P(\xi)_E \to X_E$ is free and finite of rank $n$.  It follows that $\P(\xi)_E$ is a divisor on $\CP^\infty_E$ (considered over $X_E$). \qed \todo{Be more careful about this ``over $X_E$'' thing. Maybe just emphasize that having a Chern polynomial with coefficients in $E^* X$ really forces you to take this perspective to make things typecheck.}
+Take $E$ to be \emph{complex-orientable}.  The map \[\P(V)_E \to X_E \times \CP^\infty_E\] is a closed inclusion of $X_E$--schemes, and the structure map $\P(V)_E \to X_E$ is free and finite of rank $n$.  It follows that $\P(V)_E$ is a divisor on $\CP^\infty_E$ considered over $X_E$, i.e., \[\P(V)_E \in \left(\Div_n^+(\CP^\infty_E)\right)(X_E). \qed\]
 \end{corollary}
+
+\begin{definition}
+\todo{Does the multiplicativity need a proof?}
+The classes $c_j(V)$ of \Cref{CohomologyOfProjectivization} are called the \textit{Chern classes} of $V$ (with respect to the complex-orientation $t$ of $E$).  They are visibly natural with respect to pullback of bundles, and the Chern polynomial $c(-)$ is multiplicative: \[c(V_1 \oplus V_2) = c(V_1) \cdot c(V_2).\]
+\end{definition}
 
 The next major theorems concerning projectivization are the following:
 
 \begin{corollary}
-The sub-bundle of $\pi^*(\xi)$ consisting of vectors $(v, (\ell, x))$ such that $v$ lies along the line $\ell$ splits off a canonical line bundle. \qed
+The sub-bundle of $\pi^*(V)$ consisting of vectors $(v, (\ell, x))$ such that $v$ lies along the line $\ell$ splits off a canonical line bundle. \qed
 \end{corollary}
 
 \begin{corollary}[``Splitting principle'' / ``Complex--oriented descent'']\label{OriginalSplittingPrinciple}
-Associated to any $n$--dimensional complex vector bundle $\xi$ over a base $X$, there is a canonical map $i_\xi\co Y_\xi \to X$ such that $(i_\xi)_E\co (Y_\xi)_E \to X_E$ is finite and faithfully flat, and there is a canonical splitting into complex line bundles: \[i_\xi^*(\xi) \cong \bigoplus_{i=1}^n \L_i. \qed\]
+Associated to any $n$--dimensional complex vector bundle $V$ over a base $X$, there is a canonical map $i_V\co Y_V \to X$ such that $(i_V)_E\co (Y_V)_E \to X_E$ is finite and faithfully flat, and there is a canonical splitting into complex line bundles: \[i_V^*(V) \cong \bigoplus_{i=1}^n \L_i. \qed\]
 \end{corollary}
 
-This last Corollary is extremely important.  Its essential contents is to say that any question about characteristic classes can be checked for sums of line bundles.  Specifically, because of the injectivity of $i_\xi^*$, any relationship among the characteristic classes deduced in $E^* Y_\xi$ must already be true in the ring $E^* X$.  The following theorem is a consequence of this principle:
+This last Corollary is extremely important.  Its essential contents is to say that any question about characteristic classes can be checked for sums of line bundles.  Specifically, because of the injectivity of $i_V^*$, any relationship among the characteristic classes deduced in $E^* Y_V$ must already be true in the ring $E^* X$.  The following theorem is a consequence of this principle:
 
-\begin{theorem}\todo{Proposition 8.31 in FSFG shows that the isomorphism $BU(n)_E \cong \Div_n^+ \CP^\infty_E$ is independent of coordinate. Read it.}
-Again take $E$ to be complex-oriented.  The coset fibration \[U(n-1) \to U(n) \to S^{2n-1}\] deloops to a spherical fibration \[S^{2n-1} \to BU(n-1) \to BU(n).\]  The associated Serre spectral sequence \[E_2^{*, *} = H^*(BU(n); E^* S^{2n-1}) \Rightarrow E^* BU(n-1)\] degenerates at $E_{2n}$ and induces an isomorphism \[E^* BU(n) \cong E^* \llbracket \sigma_1, \ldots, \sigma_n\rrbracket.\] \todo{Shouldn't this be a polynomial ring instead of a power series ring?  Or are you considering the periodified version $EP^0 BU(n)$?} Now, let $\xi\co X \to BU(n)$ classify a vector bundle $\xi$.  Then the coefficient $c_j$ in the polynomial $c(\xi)$ is selected by $\sigma_j$: \[c_j(\xi) = \xi^*(\sigma_j).\]
+\begin{theorem}\label{ChernClassesAreSymmInChernRoots}
+Again take $E$ to be complex-oriented.  The coset fibration \[U(n-1) \to U(n) \to S^{2n-1}\] deloops to a spherical fibration \[S^{2n-1} \to BU(n-1) \to BU(n).\]  The associated Serre spectral sequence \[E_2^{*, *} = H^*(BU(n); E^* S^{2n-1}) \Rightarrow E^* BU(n-1)\] degenerates at $E_{2n}$ and induces an isomorphism \[E^* BU(n) \cong E^* \llbracket \sigma_1, \ldots, \sigma_n\rrbracket.\]  Now, let $V\co X \to BU(n)$ classify a vector bundle $V$.  Then the coefficient $c_j$ in the polynomial $c(V)$ is selected by $\sigma_j$: \[c_j(V) = V^*(\sigma_j).\]
 \end{theorem}
 \begin{proof}[Proof sketch]
-The first part is a standard calculation.  To prove the relation between the Chern classes and the $\sigma_j$, the splitting principle states that we can factor complete the map $\xi\co X \to BU(n)$ to a square
+The first part is a standard calculation.  To prove the relation between the Chern classes and the $\sigma_j$, the splitting principle states that we can factor complete the map $V\co X \to BU(n)$ to a square
 \begin{center}
 \begin{tikzcd}
-Y_\xi \arrow{d}{f_\xi} \arrow[densely dotted]{r}{\bigoplus_{i=1}^n \L_i} & BU(1)^{\times n} \arrow{d}{\oplus} \\
-X \arrow{r}{\xi} & BU(n).
+Y_V \arrow{d}{f_V} \arrow[densely dotted]{r}{\bigoplus_{i=1}^n \L_i} & BU(1)^{\times n} \arrow{d}{\oplus} \\
+X \arrow{r}{V} & BU(n).
 \end{tikzcd}
 \end{center}
-The equation $c_j(f_\xi^* \xi) = \xi^*(\sigma_j)$ can be checked in $E^* Y_\xi$.
+The equation $c_j(f_V^* V) = V^*(\sigma_j)$ can be checked in $E^* Y_V$.
 \end{proof}
 
-We now see that not only does $\P(\xi)_E$ produce a point of $\Div_n^+(\G_E)$, but actually the scheme $\Div_n^+(\G_E)$ itself appears internally to topology:
+We now see that not only does $\P(V)_E$ produce a point of $\Div_n^+(\CP^\infty_E)$, but actually the scheme $\Div_n^+(\CP^\infty_E)$ itself appears internally to topology:
 
-\begin{corollary}\label{IdentificationOfBUnWithDivn}
-For a complex orientable cohomology theory $E$, there is an isomorphism \[BU(n)_E \cong \Div_n^+ \CP^\infty_E,\] so that maps $\xi\co X \to BU(n)$ are transported to divisors $\P(\xi)_E \subseteq \CP^\infty_E \times X_E$.  Selecting a particular complex orientation of $E$ begets two isomorphisms
+\begin{corollary}\footnote{See \cite[Proposition 8.31]{StricklandFSFG} for a proof that recasts \Cref{ChernClassesAreSymmInChernRoots} itself in coordinate-free terms.}\label{IdentificationOfBUnWithDivn}
+For a complex orientable cohomology theory $E$, there is an isomorphism \[BU(n)_E \cong \Div_n^+ \CP^\infty_E,\] so that maps $V\co X \to BU(n)$ are transported to divisors $\P(V)_E \subseteq \CP^\infty_E \times X_E$.  Selecting a particular complex orientation of $E$ begets two isomorphisms
 \begin{align*}
 BU(n)_E & \cong \A^n, &
 \Div_n^+ \CP^\infty_E & \cong \A^n,
 \end{align*}
-and these are compatible with the centered isomorphism above.\footnote{Something to take away from this Theorem is the \emph{faithfulness} of this interpretation of the $E$--cohomology of vector bundles.  That this map is an isomorphism means that $\Div_n^+$ captures everything that $E$--cohomology can see.  There's nothing left in the theory of characteristic classes that is left untouched.} \qed
+and these are compatible with the centered isomorphism above. \qed
 \end{corollary}
 
-What's most remarkable about the description in this theorem is its coherence with topological facts we know about $BU(n)$.  The theorem follows from the projectivization construction, but there are natural operations on both sides of the isomorphism that continue to match up.  For instance, the Whitney sum map $BU(n) \times BU(m) \to BU(n+m)$ has the following behavior:
+This description has two remarkable features.  One is its ``faithfulness'': this isomorphism of formal schemes means that the entire theory of characteristic classes is captured by the behavior of the divisor scheme.  The other aspect is its coherence with topological operations we find on $BU(n)$.  For instance, the Whitney sum map translates as follows:
 
 \begin{lemma}\label{WhitneySumOfDivisors}
-The sum map \[BU(n) \times BU(m) \xrightarrow\oplus BU(n+m)\] induces on Chern polynomials the identity \[c(\xi \oplus \zeta) = c(\xi) \cdot c(\zeta).\]  In terms of divisors, \[\P(\xi \oplus \zeta)_E = \P(\xi)_E \sqcup \P(\zeta)_E,\] and hence there is an induced square
+The sum map \[BU(n) \times BU(m) \xrightarrow\oplus BU(n+m)\] induces on Chern polynomials the identity \[c(V_1 \oplus V_2) = c(V_1) \cdot c(V_2).\]  In terms of divisors, this means \[\P(V_1 \oplus V_2)_E = \P(V_1)_E \sqcup \P(V_2)_E,\] and hence there is an induced square
 \begin{center}
 \begin{tikzcd}
 BU(n)_E \times BU(m)_E \arrow{r}{\oplus} \arrow[equal]{d} & BU(n+m) \arrow[equal]{d} \\
@@ -446,14 +443,33 @@ BU(n)_E \times BU(m)_E \arrow{r}{\oplus} \arrow[equal]{d} & BU(n+m) \arrow[equal
 The following is a consequence of combining this Lemma with the splitting principle:
 
 \begin{corollary}
-The map $Y_E \xrightarrow{f_\xi} X_E$ pulls $\P(\xi)_E$ back to give \[Y_E \times_{X_E} \P(\xi)_E \cong \bigoplus_{i=1}^n \left\{ c_1(\L_i) \right\}. \qed\]
+The map $Y_E \xrightarrow{f_V} X_E$ pulls $\P(V)_E$ back to give \[Y_E \times_{X_E} \P(V)_E \cong \bigsqcup_{i=1}^n \P(\L_i)_E.\]
 \end{corollary}
+\begin{proof}[Interpretation]
+This says that the splitting principle is a topological enhancement of the claim that a divisor can be base-changed along a finite flat map where it splits as a sum of points.
+\end{proof}
 
-\noindent This says that the splitting principle is a topological enhancement of the claim that a divisor can be base-changed along a finite flat map where it splits as a sum of points.  The other theorems from yesterday are also easily matched up with topological counterparts:
+The other constructions from \Cref{CurveDivisorsSection} are also easily matched up with topological counterparts:
 
-\begin{corollary}\todo{Draw a table comparing the different notions of vector bundles (stable vs unstable, rank $n$ vs virtual rank $n$) to the different notions of Weil divisors.}
+\begin{corollary}
 There are natural isomorphisms $BU_E \cong \Div_0 \CP^\infty_E$ and $(BU \times \Z)_E \cong \Div \CP^\infty_E$. Additionally, $(BU \times \Z)_E$ is the free formal group on the curve $\CP^\infty_E$. \qed
 \end{corollary}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{|c|c||c|c|}
+\hline
+Space & classifies & Scheme & classifies \\
+\hline \hline
+$BU(n)$ & vector bundles of rank $n$ & $\Div_n^+ \CP^\infty_E$ & effective Weil divisors of rank $n$ \\
+$\coprod_n BU(n)$ & unstable vector bundles & $\Div^+ \CP^\infty_E$ & semiring of effective divisors \\
+$BU \times \Z$ & stable virtual bundles & $\Div \CP^\infty_E$ & ring of stable Weil divisors \\
+$BU \times \{0\}$ & stable virtual bundles of rank $0$ & $\Div_0 \CP^\infty_E$ & ideal of stable divisors of rank $0$ \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Different notions of vector bundles and their associated divisors}
+\end{figure}
 
 \begin{corollary}
 There is a commutative diagram
@@ -463,33 +479,28 @@ BU(n)_E \times BU(m)_E \arrow{r}{\otimes} \arrow[equal]{d} & BU(nm)_E \arrow[equ
 \Div_n^+ \CP^\infty_E \times \Div_m^+ \CP^\infty_E \arrow{r}{\cdot} & \Div_{nm}^+ \CP^\infty_E,
 \end{tikzcd}
 \end{center}
-where the bottom map acts by \[(D_1, D_2 \subseteq \CP^\infty_E \times X_E) \mapsto (D_1 \times D_2 \subseteq \CP^\infty_E \times \CP^\infty_E \xrightarrow{\mu} \CP^\infty_E),\] and $\mu$ is the map induced by the $H$-space multiplication $\CP^\infty \times \CP^\infty \to \CP^\infty$.
+where the bottom map acts by \[(D_1, D_2 \subseteq \CP^\infty_E \times X_E) \mapsto (D_1 \times D_2 \subseteq \CP^\infty_E \times \CP^\infty_E \xrightarrow{\mu} \CP^\infty_E),\] and $\mu$ is the map induced by the tensor product map $\CP^\infty \times \CP^\infty \to \CP^\infty$.
 \end{corollary}
 \begin{proof}
-By the splitting principle, it is enough to check this on sums of line bundles.  A sum of line bundles corresponds to a totally decomposed divisor, and on a pair of such divisors $\bigsqcup_{i=1}^n [a_i]$ and $\bigsqcup_{j=1}^m [b_j]$, the map acts by \[\left(\bigsqcup_{i=1}^n [a_i] \right) \left( \bigsqcup_{j=1}^m [b_j] \right) = \bigsqcup_{i, j} [\mu_{\CP^\infty_E}(a_i, b_j)]. \qedhere\]
+By the splitting principle, it is enough to check this on sums of line bundles.  A sum of line bundles corresponds to a totally decomposed divisor, so we consider the case of a pair of such divisors $\bigsqcup_{i=1}^n \{a_i\}$ and $\bigsqcup_{j=1}^m \{b_j\}$.  Referring to \Cref{DefnFormalGps}, the map acts by \[\left(\bigsqcup_{i=1}^n \{a_i\} \right) \left( \bigsqcup_{j=1}^m \{b_j\} \right) = \bigsqcup_{i, j} \{\mu_{\CP^\infty_E}(a_i, b_j)\}. \qedhere\]
 \end{proof}
 
 Finally, we can connect our analysis of the divisors coming from topological vector bundles with the line bundles studied at the start of the section.
 \begin{lemma}
-Let $\zeta: X_E \to X_E \times \CP^\infty_E$ denote the pointing of the formal curve $\CP^\infty_E$, and let $\sheaf I(\P(\xi)_E)$ denote the ideal sheaf on $X_E \times \CP^\infty_E$ associated to the divisor subscheme $\P(\xi)_E$.  There is a natural isomorphism of sheaves over $X_E$: \[\zeta^* \sheaf I(\P(\xi)_E) \cong \ThomSheaf{\xi}. \qed\]
+Let $\zeta: X_E \to X_E \times \CP^\infty_E$ denote the pointing of the formal curve $\CP^\infty_E$, and let $\sheaf I(\P(V)_E)$ denote the ideal sheaf on $X_E \times \CP^\infty_E$ associated to the divisor subscheme $\P(V)_E$.  There is a natural isomorphism of sheaves over $X_E$: \[\zeta^* \sheaf I(\P(V)_E) \cong \ThomSheaf{V}.\]
 \end{lemma}
+\begin{proof}[Proof sketch]
+In terms of a complex-oriented $E$ and \Cref{CohomologyOfProjectivization}, the effect of pulling back along the zero section is to set $t = 0$, which collapses the Chern polynomial to just the top class $c_n(V)$.  This element, called \textit{the Euler class of $V$}, provides the $E^* X$--module generator of $E^* T(V)$ --- or, equivalently, the trivializing section of $\ThomSheaf{V}$.
+\end{proof}
 
-\begin{remark}
-In terms of a complex-oriented $E$ and \Cref{CohomologyOfProjectivization}, the effect of pulling back along the zero section is to set $t = 0$, which collapses the Chern polynomial to just the top class $c_n(\xi)$.  This element, called \textit{the Euler class of $\xi$}, provides the $E^* X$--module generator of $E^* T(\xi)$ --- or, equivalently, the trivializing section of $\ThomSheaf{\xi}$.
-\end{remark}
-
-\begin{theorem}\label{ComplexOrientationsInTermsOfTrivs}
+\begin{theorem}[{cf.\ \Cref{BUTriumvirate}}]\label{ComplexOrientationsInTermsOfTrivs}
+\todo{Do you have the right spectrum here: $MU$ versus $MUP$?}
 A trivialization $t\co \ThomSheaf{\L - 1} \cong \sheaf O_{\CP^\infty_E}$ of the Thom sheaf associated to the canonical bundle induces a ring map $MU \to E$.
 \end{theorem}
 \begin{proof}
-Suppose that $\xi$ is a rank $n$ vector bundle over $X$, and let $f\co Y \to X$ be the space guaranteed by the splitting principle to provide an isomorphism $f^* \xi \cong \bigoplus_{j=1}^n \L_j$.  The chosen trivialization $t$ then pulls back to give a trivialization of $\sheaf I(\P(f^* \xi)_E)$, and by finite flatness this descends to also give a trivialization of $\sheaf I(\P(\xi)_E)$.  Pulling back along the zero section gives a trivialization of $\ThomSheaf{\xi}$.  Then note that the system of trivializations produced this way is multiplicative, as a consequence of $\P(\xi \oplus \zeta)_E \cong \P(\xi)_E \sqcup \P(\zeta)_E$.  In the universal examples, this gives a sequence of compatible maps $MU(n) \to E$ which assemble on the colimit $n \to \infty$ to give the desired map of ring spectra.
+Suppose that $V$ is a rank $n$ vector bundle over $X$, and let $f\co Y \to X$ be the space guaranteed by the splitting principle to provide an isomorphism $f^* V \cong \bigoplus_{j=1}^n \L_j$.  The chosen trivialization $t$ then pulls back to give a trivialization of $\sheaf I(\P(f^* V)_E)$, and by finite flatness this descends to also give a trivialization of $\sheaf I(\P(V)_E)$.  Pulling back along the zero section gives a trivialization of $\ThomSheaf{V}$.  Then note that the system of trivializations produced this way is multiplicative, as a consequence of $\P(V_1 \oplus V_2)_E \cong \P(V_1)_E \sqcup \P(V_2)_E$.  In the universal examples, this gives a sequence of compatible maps $MU(n) \to E$ which assemble on the colimit $n \to \infty$ to give the desired map of ring spectra.
 \end{proof}
 
-
-
-\todo{I think another definition of the Thom space is as the cofiber of $\P(V) \to \P(V \oplus \C)$.  This might come in handy.}
-
-\todo{Say that the top Chern class is the Euler class / the Thom class.}
 
 
 
