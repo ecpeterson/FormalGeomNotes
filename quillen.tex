@@ -6,7 +6,7 @@
 Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots --- the list continues.  We would like to replicate the results from \Cref{UnorientedBordismChapter} for these other cases, but upon even a brief inspection we quickly see that only one of the bordism theories mentioned supports this program.  Specifically, the space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other similar ground object is $\CP^\infty = BU(1)$ in complex bordism.  This informs our choice to spend this Case Study focused on it.  To begin, the contents of \Cref{LectureThomSpectra} can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
 
 \begin{theorem}[{cf.\ \Cref{JIsMonoidal} and surrounding discussion}]
-There is a map of infinite--loopspaces \[J_{\C}: BU \to B \GL_1 \S \] called the \textit{complex $J$--homomorphism}.
+There is a map of infinite--loopspaces \[J_{\C}\co BU \to B \GL_1 \S\] called the \textit{complex $J$--homomorphism}.
 \end{theorem}
 
 \begin{definition}[{cf.\ \Cref{DefnOfMO}}]
@@ -512,74 +512,85 @@ Suppose that $V$ is a rank $n$ vector bundle over $X$, and let $f\co Y \to X$ be
 
 
 
-\section{Operations and a model for cobordism}
+\section{Cohomology operations for complex bordism}
 
-Our eventual goal, like in \Cref{UnorientedBordismChapter}, is to give an algebro-geometric description of $MU_*(*)$ and of the cooperations $MU_* MU$.  There is such a description that passes through the Adams spectral sequence, also like last time, but $MU_*(*)$ is an integral algebra and so we cannot make do with working out the mod--$2$ Adams spectral sequence alone.  We would have to at least work out the mod--$p$ Adams spectral sequence for every $p$, but there is the following unfortunate theorem:
+Our eventual goal, like in \Cref{UnorientedBordismChapter}, is to give an algebro-geometric description of $MU_*(*)$ and of the cooperations $MU_* MU$.  It is possible to approach this the same way as last time, using the Adams spectral sequence.  However, $MU_*(*)$ is an integral algebra and so we cannot make do with working out the mod--$2$ Adams spectral sequence alone --- we would at least have to work out the mod--$p$ Adams spectral sequence for every $p$.  At odd primes $p$, there is the following unfortunate theorem:
 \begin{theorem}
 There is an isomorphism
 \[H\F_pP_0 H\F_pP \cong \F_p[\xi_0^\pm, \xi_1, \xi_2, \ldots] \otimes \Lambda[\tau_0, \tau_1, \ldots]\]
 with $|\xi_j| = 2p^j-2$ and $|\tau_j| = 2p^j - 1$. \qed
 \end{theorem}
-\noindent There are odd--dimension classes in this algebra, and because we are no longer working in characteristic $2$ we see that the dual mod--$p$ Steenrod algebra is \emph{graded-commutative}.  This is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild, and for now we will simply avoid these methods and find another approach.
+\noindent There are odd--dimensional classes in this algebra, and the \emph{graded-commutativity} of the dual mod--$p$ Steenrod algebra means that these classes anti-commute.  This prohibits us from writing ``$\Spec(H\F_pP_0 H\F_p)$'', and this is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild.  For now, we will simply avoid these methods and find another approach.
 
-There is such an alternative proof, due to Quillen, that bypasses the Adams spectral sequence.  This approach has some deficiencies of its own: it requires studying the algebra of operations $MU^* MU$, which we do not expect to be at all commutative, and it requires studying \textit{power operations}, which are in general very technical creatures.  However, we will eventually want to talk about power operations anyway, and because this is the road less traveled we will elect to take it.  Our job today is to define these two kinds of cohomology operations, as well as revisit the model of complex cobordism Quillen uses.
+There is such an alternative proof, due to Quillen, that bypasses the Adams spectral sequence.  This approach has some deficiencies of its own: it requires studying the algebra of stable operations $MU^* MU$, which we do not expect to be at all commutative, and it requires studying \textit{power operations}, which are in general very technical creatures.  However, we will eventually want to talk about power operations anyway (cf.\ \Cref{PowerOpnsChapter}), and because this is the road less traveled we will elect to take it.  Our goal in this Lecture is to define these two kinds of cohomology operations, specialized to the particular setting we will need them for Quillen's proof.
 
-The description of the first class of operations follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]  Two lectures ago, we learned that the stable divisor scheme has a universal property: it is the free formal group on the formal curve $\CP^\infty_E$.  Another avatar of this same fact is a description of the \emph{homology ring}, using the maps \[E_* BU(n) \otimes E_* BU(m) \to E_* BU(n+m)\] to induce a multiplicative structure on $E_* BU$:
-\begin{corollary}
-Let $E$ be a complex-orientable cohomology theory. Then: \[E_* BU \cong \Sym_{E_*} \widetilde E_* \CP^\infty.\] \todo{What is this a corollary of?  Have you proven this?}  A specific complex orientation of $E$ begets \[E_* \CP^\infty \cong E_*\{\beta_0, \beta_1, \ldots, \beta_n, \ldots\}\] and hence \[E_* BU \cong \Sym_{E_*} E_*\{\beta_1, \beta_2, \ldots\} = E_*[b_1, b_2, \ldots]. \qed\]
-\end{corollary} \oweproof{Free formal schemes agree with symmetric Hopf algebras on comodules}
+
+The description of the first class of operations, the stable operations, follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]  Two lectures ago, we learned that the stable divisor scheme has a universal property: it is the free formal group on the formal curve $\CP^\infty_E$.  Another avatar of this same fact is a description of the \emph{homology ring}, using the maps \[E_* BU(n) \otimes E_* BU(m) \to E_* BU(n+m)\] to induce a multiplicative structure on $E_* BU$:
+\begin{lemma}[{cf.\ \Cref{HF2BOIsSymAlg} and \Cref{CPinftyNiceCalculation}}]
+Let $E$ be a complex-orientable cohomology theory. There is an isomorphism \[E_* BU \cong \frac{\Sym_{E_*} E_* \CP^\infty}{\beta_0 = 1}.\]  A specific complex orientation of $E$ begets a system of classes \[E_* \CP^\infty \cong E_*\{\beta_0, \beta_1, \ldots, \beta_n, \ldots\}\] and hence\footnote{In the case of the identity orientation $MU \xrightarrow{\id} MU$, the resulting system of Chern classes is sometimes called the Conner--Floyd--Chern classes.} \[E_* BU \cong \frac{\Sym_{E_*} E_*\{\beta_0, \beta_1, \beta_2, \ldots\}}{\beta_0 = 1} = E_*[c_1, c_2, \ldots]. \qed\]
+\end{lemma}
 
 Thomifying these ``$\oplus$'' maps gives maps \[E_* MU(n) \otimes E_* MU(m) \to E_* MU(n+m),\] and the naturality of the $E$--Thom isomorphism produces an additional corollary:
-\begin{corollary}
-The Thom isomorphism $E_* BU \cong E_* MU$ respects both the $E_*$--module structure and the ring structure.  Hence, \[E_* MU \cong E_*[c_1, c_2, \ldots, c_n, \ldots],\] where $c_j$ is the image of $b_j$ under the Thom map. \qed
+\begin{corollary}[{cf.\ \Cref{HF2MOisFree}}]\label{EMUisFree}
+The Thom isomorphism $E_* BU \cong E_* MU$ respects both the $E_*$--module structure and the ring structure.  There is thus an isomorphism \[E_* MU \cong E_*[b_1, b_2, \ldots, b_n, \ldots],\] where $b_j$ is the image of $c_j$ under the Thom map. \qed
 \end{corollary}
 
-\todo{A corollary of the splitting principle is supposed to be that a Thom isomorphism for $\CP^\infty$ begets Thom isomorphisms for everything, and hence a ring spectrum map $MU \to E$.  We should produce that corollary now.  This is Lemma II.4.6 in Adams's blue book.}
+\begin{remark}[{cf.\ \Cref{MOOrientationsVsRPClasses}}]
+\Cref{EMUisFree} is enough to deduce a bijection between ring spectrum maps $MU \to E$ and homotopy classes of factorizations
+\begin{center}
+\begin{tikzcd}
+\S^0 \arrow{r} \arrow[densely dotted]{rd} & MU(1) \arrow{d} \\
+& MU.
+\end{tikzcd}
+\end{center}
+\end{remark}
 
-\noindent This compact description of $E_* MU$ as an algebra will be useful to us later, but right now we are interested in $E^* MU$ and especially in $MU^* MU$.  The former is \emph{not} a ring\todo{Does this totally prohibit us from giving a formal group re-exposition of Quillen's proof?  I wonder...} \todo{Why is it not a ring?  Isn't $E$ a ring spectrum?}, and although the latter is a ring its multiplication is exceedingly complicated.  Instead, we will content ourselves with an $E_*$--module basis:
+This compact description of $E_* MU$ as an algebra will be useful to us later, but right now we are interested in $E^* MU$ and especially in $MU^* MU$.  The former is \emph{not} a ring, and although the latter is a ring its multiplication is exceedingly complicated.\footnote{For a space $X$, $E^* X$ has a ring structure because $X$ has a diagonal, and $MU$ does not have a diagonal.  In the special case of $E = MU$, there is a ring product coming from endomorphism composition.}  Instead, we will content ourselves with an $E_*$--module basis.
 \begin{definition}
-Let $\alpha = (\alpha_1, \ldots, \alpha_n, \ldots)$ denote a multi-index where every entry is nonnegative and almost every entry is zero, and let $c_\alpha$ denote the corresponding monomial \[c_\alpha = \prod_{j=1}^\infty c_j^{\alpha_j}.\]  Additionally, we let $s_\alpha \in E^* MU$ denote the image of $c_\alpha$ under the duality isomorphism \[E^* MU = \CatOf{Modules}_{E_*}(E_* MU, E_*).\]  It is called the \textit{$\alpha${\th} Landweber--Novikov operation} (from $MU$ to $E$).
+Take $MU \to E$ to be a complex-oriented ring spectrum.  Let $\alpha = (\alpha_1, \alpha_2, \ldots)$ denote a multi-index where every entry is nonnegative and all but finitely many entries are zero, and let $b_\alpha$ denote the corresponding monomial \[b_\alpha = \prod_{j=1}^\infty b_j^{\alpha_j} \in E_* MU.\]  We then set $s_\alpha \in E^* MU$ to be the image of $b_\alpha$ under the duality isomorphism\footnote{This \emph{isomorphism} comes from having calculated that $E_* MU$ is a free $E_*$--module.} \[E^* MU = \CatOf{Modules}_{E_*}(E_* MU, E_*).\]  It is called the \textit{$\alpha${\th} Landweber--Novikov operation} (with respect to the orientation $MU \to E$).
 \end{definition}
-\todo{Why is this duality isomorphism an isomorphism?  You must be using corollary 2.4.3 somehow, but I can't see the argument.  Do we already know $E^* MU$?  Also, some of the grading is bugging me, but I guess all these issues go away because everything is in degree 0 by periodification?}
 
-\begin{remark}\citeme{I.5.1 in Adams's blue book}
-Let $E = MU$.  The Landweber--Novikov operations are the \emph{stable} operations acting on $MU$--cohomology, analogous to the Steenrod operations we started the semester talking about.  They satisfy the following properties:
+\begin{remark}[{\cite[Theorem I.5.1]{AdamsBlueBook}}]
+Take the orientation to be $MU \xrightarrow{\id} MU$, so that we are considering $MU^* MU$.  The Landweber--Novikov operations are the \emph{stable} operations acting on $MU$--cohomology, analogous to the Steenrod operations for $H\F_2$.  They satisfy the following properties:
 \begin{itemize}
 \item $s_0$ is the identity.
 \item $s_\alpha$ is natural: $s_\alpha(f^* x) = f^*(s_\alpha x)$.
 \item $s_\alpha$ is stable: $s_\alpha(\sigma x) = \sigma(s_\alpha x)$.
 \item $s_\alpha$ is additive: $s_\alpha(x + y) = s_\alpha(x) + s_\alpha(y)$.
-\item $s_\alpha$ satisfies a Cartan formula.  Define \[s_{\t}(x) := \sum_{\alpha} s_\alpha(x) \t^\alpha := \sum_\alpha s_\alpha(x) \cdot t_1^{\alpha_1} t_2^{\alpha_2} \cdots t_n^{\alpha_n} \cdots\] for an infinite sequence of indeterminates $t_1$, $t_2$, \ldots.  Then: \[s_{\t}(x y) = s_{\t}(x) \cdot s_{\t}(y).\]
-\item Let $\xi\co X \to BU(n)$ classify a vector bundle and let $\phi$ denote the Thom isomorphism \[\phi\co MU^* X \to MU^* T(\xi).\]  Then the Chern classes of $\xi$ are related to the Landweber--Novikov operations on the Thom spectrum by the formula \[\sum_\alpha \phi c_\alpha(\xi) \t^\alpha = \sum_\alpha s_\alpha \phi(1) \t^\alpha.\] \todo{I don't understand where everything is landing.  What is $1$ on the right hand side?  It seems $s_\alpha \phi(1) \in E^* T(\xi)$, but $c_\alpha(\xi) \in E^* X$, so how do I apply $\phi$ to get\ldots Wait, nvm.  The $\phi$ on the left is not the $\phi$ in the display above, but rather the $E$-Thom isomorphism $E^* X \to E^* T(\xi)$.  Maybe you can decorate the $\phi$ to distinguish them?} 
+\item $s_\alpha$ satisfies a Cartan formula.  Define \[s_{\t}(x) := \sum_{\alpha} s_\alpha(x) \t^\alpha := \sum_\alpha s_\alpha(x) \cdot t_1^{\alpha_1} t_2^{\alpha_2} \cdots t_n^{\alpha_n} \cdots \in MU^*(X)\ps{t_1, t_2, \ldots}\] for an infinite sequence of indeterminates $t_1$, $t_2$, \ldots.  Then \[s_{\t}(x y) = s_{\t}(x) \cdot s_{\t}(y).\]
+\item Let $\xi\co X \to BU(n)$ classify a vector bundle and let $\phi$ denote the Thom isomorphism \[\phi\co MU^* X \to MU^* T(\xi).\]  Then the Chern classes of $\xi$ are related to the Landweber--Novikov operations on the Thom spectrum by the formula \[\phi(c_\alpha(\xi)) = s_\alpha(\phi(1)).\]
 \end{itemize}
 \end{remark}
 
+\todo[inline]{I feel like there's a punchline missing here. Maybe a connection to the Steenrod algebra is due? Or some kind of computation?}
 
+We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not expect them to be additive operations --- the Landweber--Novikov operations account for all of the additive operations, and they satisfy a Cartan formula rather than splitting over products.  In the abstract, power operations arise from ``$E_\infty$'' or ``$H_\infty$'' structures on ring spectra, but in practice most such structures arise from geometric models of cohomology theories.  To produce power operations for complex bordism and to avoid speaking in suffocating generality, we will return to the geometry of complex vector bundles.
 
-
-\todo[inline]{Jeremy Hahn, following Rudyak, produced a proof of the incidence relation which doesn't rely on this (particular) geometric model of complex bordism.  His write-up of the $p = 2$ case is elsewhere in the repository.  The end of this lecture and all of the next one should be reworked to use this other perspective!}
-
-
-
-We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not (\textit{a priori}) expect them to be additive operations, so they are quite distinct from the Landweber--Novikov operations.  Power operations arise from ``$E_\infty$'' structures on ring spectra\footnote{Or, by some accounts, ``$H_\infty$'' structures.}, but most such structures arise in nature from geometric models of cohomology theories.  To produce them for complex cobordism, we will return to the geometry of complex vector bundles.
-
-\begin{definition}[{\cite[Definition 7.4]{Rudyak}}]
-Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \to BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the $C_n$--quotient, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
+\begin{definition}[{\cite[Definition VII.7.4]{Rudyak}}]
+Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the $C_n$--quotient, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
 \begin{center}
 \begin{tikzcd}
 X^{\times n} \arrow["\xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow{r} \arrow{d} & BU(nk) \\
-X^{\times n}_{hC_n} \arrow["\xi(n)"]{r} & BU(k)^{\times n}_{hC_n}. \arrow[red]{ru}
+X^{\times n}_{hC_n} \arrow["\xi(n)"]{r} & BU(k)^{\times n}_{hC_n}. \arrow["\mu"]{ru}
 \end{tikzcd}
 \end{center}
-The universal case gives the highlighted map.\todo{You could give justification for why this red map exists.  Why does the $C_n$--quotient still give a vector bundle?}
+The universal case gives the map $\mu$.
 \end{definition}
 
-\begin{lemma}\citeme{Rudyak}
-\todo{This should come out of saying that both these operations are homotopy colimits.}
-There is an isomorphism of Thom spectra \[T(\xi(n)) \simeq (T\xi)^{\sm n}_{hC_n}. \qed\]
+\begin{lemma}[{\cite[Equation VII.7.3]{Rudyak}}]
+\todo{This citation is actually for Thom spaces, where he picks up a factor of $S^n_{hC_n}$.  This might be important to get right for the future, when we're doing unstable / degree--sensitive things.}
+There is an isomorphism of Thom spectra \[T(\xi(n)) \simeq (T\xi)^{\sm n}_{hC_n}.\]
 \end{lemma}
+\begin{proof}
+This proof is mostly a matter of having had the idea to write down the Lemma to begin with.  From here, we string basic properties together:
+\begin{align*}
+T(\xi(n)) & = T(\xi^{\oplus n}_{hC_n}) & \text{(definition)} \\
+& = T(\xi^{\oplus n})_{hC_n} & \text{(colimits commute with colimits)} \\
+& = T(\xi)^{\sm n}_{hC_n}. & \text{($T$ is monoidal: \Cref{ThomSpacesAreMonoidal})} & \qedhere
+\end{align*}
+\end{proof}
 
-Applying the Lemma to the universal case, together with \Cref{ThomSpacesAreMonoidal}, produces a factorization \[MU(k)^{\sm n} \to MU(k)^{\sm n}_{hC_n} \to MU(nk)\] of the unstable multiplication map, and hence a stable factorization \[MU^{\sm n} \to MU^{\sm n}_{hC_n} \xrightarrow{\mu} MU\]  Such factorizations are what beget \textit{power operations}, which we will now define in the case at hand.
+Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n} \to MU(k)^{\sm n}_{hC_n} \to MU(nk)\] of the unstable multiplication map, and hence a stable factorization \[MU^{\sm n} \to MU^{\sm n}_{hC_n} \xrightarrow{\mu} MU.\]  Compatible such systems of factorizations are what beget \textit{power operations}, which we will now extract in the case at hand.
 
 \begin{definition}
 Starting with a class \[f\co \Susp^{2r} \Susp^\infty_+ X \to MU,\] we apply $(-)^{\sm n}_{hC_n}$ to produce the composite
@@ -593,94 +604,25 @@ This defines the \textit{external $n${\th} Steenrod power of $f$}.  Employing th
 \end{definition}
 
 \begin{remark}
-Upon restriction to the basepoint in $BC_n$, $P^n(f)$ reduces to the $n$--fold internal cup product $f^{n}$.
-\end{remark}
-
-\todo{This needs some smoothing with the surrounding text, since it got inserted later on.  In particular, we should list some properties and then tantalize by saying these two classes of operations are comparable.}
-
-
-
-
-
-
-
-
-\todo[inline]{What follows is the original content of the lecture.}
-
-We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not (\textit{a priori}) expect them to be additive operations, so they are quite distinct from the Landweber--Novikov operations.  Power operations arise from ``$E_\infty$'' structures on ring spectra\footnote{Or, by some accounts, ``$H_\infty$'' structures.}, but most such structures arise in nature from geometric models of cohomology theories.  To produce them for complex cobordism, we will use a particular model, alluded to in \Cref{IntroductionSection}.
-
-\todo[inline]{It is very annoying that you tend to switch $f$, $i$, and $j$; $X$, $Y$, and $Z$; what is attached to what; and what is drawn in what direction.  You'd do well to standardize this.}
-
-\begin{definition}
-Let $f: Y \to X$ be a map of manifolds.  A \textit{complex-orientation on the map $f$} is the data of a factorization
-\begin{center}
-\begin{tikzcd}
- & E \arrow{d} \\
-Y \arrow{r}{f} \arrow[densely dotted]{ru}{i} & X
-\end{tikzcd}
-\end{center}
-through a complex vector bundle $E$ on $X$ such that $i$ is an embedding and its normal bundle $\nu_i$ has a complex structure.\todo{Account for the odd-dimensional case and the dimension-jumping case.}  Two such factorizations are \textit{equivalent} when they appear as subbundles of a larger bundle and the embeddings are isotopic, compatibly with the structures on their normal bundles.
-\end{definition}
-\begin{lemma}
-For $\dim E \gg 0$, this equivalence class is unique, if it exists. \qed
-\end{lemma} \todo{I think you can at least give a heuristic argument here.  You haven't spelled out the precise definition above, but if I 'm not mistaken this just boils down to the fact that if the rank of $E$ is large relative to the dimension of $Y$ (say at least twice as big), then any two embeddings are isotopic.}
-\begin{definition}
-Two complex-oriented maps $f_0\co Y_0 \to X$ and $f_1\co Y_1 \to X$ are called \textit{cobordant} when there is a complex-oriented map $W \to X \times \R$ and elements $b_0, b_1 \in \R$ such that
-\begin{center}
-\begin{tikzcd}
-Y_0 \arrow{r} \arrow{d} & X \times \{b_0\} \arrow{d} & Y_1 \arrow{r} \arrow{d} & X \times \{b_1\} \arrow{d} \\
-W \arrow{r} & X \times \R & W \arrow{r} & X \times \R
-\end{tikzcd}
-\end{center}
-become pull-back squares of complex-oriented maps of manifolds.
-\end{definition}
-
-\begin{theorem}[Thom]\citeme{This is cited as [Tho51] in Matt's thesis}
-For a manifold $X$, $MU^{-q}(X)$ is canonically isomorphic to the cobordism classes of complex-oriented maps of dimension $q$. \qed \todo{Remark that this, as expected, puts the cobordism ring into negative degrees.}
-\end{theorem}
-
-\begin{remark}
-This model has a variety of nice features.  For instance, its two variances are visible from the construction.  For a map $g\co X' \to X$, there is an induced map $g^*\co MU^* X \to MU^* X'$ given by selecting a class $f\co Y \to X$, perturbing $g$ so that it is transversal to $f$, and taking the pullback
-\begin{center}
-\begin{tikzcd}
-Y \times_X X' \arrow{r} \arrow{d} & Y \arrow{d}{f} \\
-X' \arrow{r}{g} & X.
-\end{tikzcd}
-\end{center}
-But, also, if $g$ is additionally proper and complex-orientable, then it induces a wrong way map \[g_*\co MU^{-q} X' \to MU^{-q-d} X,\] where $d$ is the dimension of $g$.  This is simply by postcomposition: a representative $f'\co Y' \to X'$ begets a new representative $g_* f' = g \circ f'$.  This construction goes by various names: the \textit{Gysin map}, the \textit{complex-oriented pushforward}, the \textit{shriek map}, \ldots.
-\end{remark}
-
-Additionally, these push and pull maps are related:
-\begin{lemma}\label{PushPullFormulaForMU}
-Consider a Cartesian square of manifolds
-\begin{center}
-\begin{tikzcd}
-Y \times_X Z \arrow{r}{g'} \arrow{d}{f'} & Z \arrow{d}{f} \\
-Y \arrow{r}{g} & X,
-\end{tikzcd}
-\end{center}
-where $g$ is transversal to $f$, $f$ is proper and complex-oriented, and $f'$ is endowed with the pull-back of the complex orientation of $f$. Then \[g^* f_* = f'_* (g')^*\co MU^{-q}(Z) \to MU^{-q-d}(Y). \qed\]
-\end{lemma}
-
-
-We are now in a position to describe the power operations.
-\begin{definition}\label{DefnPowerOperationForMU}
-Consider a class in $MU^{-2q}(X)$ represented by a proper complex-oriented map $f \co Y \to X$.  Its $n$--fold Cartesian product determines a class $f^{\times n} \co Y^{\times n} \to X^{\times n}$, and taking the homotopy quotient by a group $G$ acting transitively on $\{1, \ldots, n\}$ gives a class \[Y^{\times n} \to X^{\times n} \to EG \times_G X^{\times n}\] and hence an \textit{external power operation} \[P^{\mathrm{ext}} \co MU^{-2q}(X) \to MU^{-2qn}(EG \times_G X^{\times n}).\]  Pulling back along the diagonal $\Delta: X \to X^{\times n}$ gives the the \textit{internal power operation} \[P \co MU^{-2q}(X) \to MU^{-2qn}(BG \times X).\]  Its action on the class represented by a proper complex-oriented even-dimensional map $f: Z \to X$ can also be written as \[P(f_* 1) = \Delta^* f^{\times n}_{hG}{}_* 1.\] \todo{I think Jay pointed out this after class, but the two $1$'s on either side mean slightly different things.  Also, by $1$ do you mean the unit element in the ring $MU^* Z$?  It took me a while to realize that $MU^* Z$ was a ring\ldots}
-\end{definition}
-
-\begin{remark}
-It's apparent that we've really needed this geometric model to accomplish this construction: we needed to understand how to take Cartesian powers of maps in a way that inherited a $G$--action.  This is not data that a ring spectrum is naturally equipped with, and if we were to tease out exactly what extra information we need to encode this operation, we would eventually arrive at the notion of an $E_\infty$--ring spectrum.
+This assignment \[\left\{ \Susp^\infty_+ X \to MU \right\} \xrightarrow{P^n} \left\{ \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \to MU \right\}\] extends to a map of function spaces\todo{Is this right? You can't interpret the image of an element of $\pi_{2r}$ on the left as being the power operation applied to another cohomology class, since you'd expect the image to lie in degree $\pi_{2nr}$.} \[\CatOf{Spaces}(X, MU) \xrightarrow{P^n} \CatOf{Spaces}(X \times BC_n, MU).\]  However, this is \emph{not} an infinite loop map, i.e., it does \emph{not} descend from a map of function spectra.  The basic obstruction is that power operations are not additive, which is what the infinite loopspace structure governs, but rather satisfy a kind of binomial theorem.\citeme{Give a reference to the binomial theorem}
 \end{remark}
 
 \begin{remark}
-A picky reader will (rightly) point out that $BG$ is not a manifold, and so we shouldn't be mixing it with out geometric model for $MU$.  This is a fair point, but since $BG$ can be approximated through any cellular dimension by a manifold, we won't worry about it.
+These operations $P^n$ are visibly multiplicative: \[P^n(f \smile g) = P^n(f) \smile P^n(g).\]  Additionally, $P^n(f)$ reduces to the $n$--fold internal cup product $f^{n}$ upon restriction to the basepoint in $BC_n$.  In general, classes in $MU^* BC_n$ can be used to give rise to other ``restricted power operations'' that encode unstable operations other than the literal $n${\th} cup power.
 \end{remark}
 
 \begin{remark}
-The chain model for ordinary homology is actually rigid enough to define power operations there, too.  Curiously, they are all generated by the quadratic power operations (i.e., the ``squares''), and all the quadratic power operations turn out to be \emph{additive} --- that is, you just get the Steenrod squares again!  This appears to be a lucky degeneracy, but tomorrow we will exploit something very similar with a particular power operation in complex cobordism.
+Power operations can also be constructed for other groups than $C_n$ acting on the index set $\{1, \ldots, n\}$ of smash factors in $X^{\sm n}$.  We do not need these for now, but they show up naturally when trying to understand compositions like $P^n_{\mathrm{ext}} \circ P^m_{\mathrm{ext}}$, which involve $X^{\sm(nm)}$ and the action of the wreath product $C_n \wr C_m$.
 \end{remark}
 
-\todo{Can we name some of the formal properties of power operations? Multiplicativity, say?}
+\begin{remark}[{\cite[Equations 3.10-11]{Quillen}}]
+The construction Quillen gives in the course of his proof is considerably different from the one recounted here.  He begins by giving a different presentation of the complex cobordism groups of a manifold $M$: a complex orientation of a smooth map $Z \to M$ is a factorization \[Z \xrightarrow{i} E \xrightarrow{\pi} M\] through a complex vector bundle $\pi\co E \to M$ by an embedding $i$, as well as a complex structure on the normal bundle $\nu_i$.  Up to suitable notions of stability (in the dimension of $E$) and homotopy equivalence (involving, in particular, isotopies of different embeddings $i$), these quotient to give cobordism classes of maps complex-oriented maps $Z \to M$.  The collection of cobordism classes over $M$ of codimension $q$ over is isomorphic to $MU^q(M)$~\cite[Proposition 1.2]{Quillen}.  Quillen's definition of the power operations is then given in terms of this geometric model: a representative $f\co Z \to M$ of a cobordism class gives rise to another complex-oriented map $f^{\times n}\co Z^{\times n} \to M^{\times n}$, and he defines $P^n_{\mathrm{ext}}(f)$ to be the postcomposition with $M^{\times n} \to M^{\times n}_{hC_n}$.
+\end{remark}
+
+\begin{remark}\citeme{Where can you find Steenrod squares defined like this?  The VFoS notes, but that's not a great reference.}
+The chain model for ordinary homology is actually rigid enough to define power operations there, too.  Curiously, they are all generated by the quadratic power operations (i.e., the ``squares''), and all the quadratic power operations turn out to be \emph{additive} --- that is, you just get the Steenrod squares again!  Specifically, the $C_2$--construction \[(\Susp^n X \xrightarrow{f} H\F_2) \xrightarrow{P^2} (\Susp^{2n} X \times BC_2{}_+ \xrightarrow{P^2(f)} H\F_2)\] gives a class in $H\F_2^{2n-*}(X) \otimes H\F_2^*(\RP^\infty)$, which decomposes as \[P^2(f) = \sum_{j=0}^{2n} \Sq^{2n-j}(X) \otimes x^j.\]  This appears to be a lucky degeneracy, but in the next Lecture we will exploit something similar with a particular power operation in complex cobordism.
+\end{remark}
+
 
 
 
