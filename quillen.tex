@@ -489,7 +489,7 @@ By the splitting principle, it is enough to check this on sums of line bundles. 
 
 Finally, we can connect our analysis of the divisors coming from topological vector bundles with the line bundles studied at the start of the section.
 \begin{lemma}
-Let $\zeta: X_E \to X_E \times \CP^\infty_E$ denote the pointing of the formal curve $\CP^\infty_E$, and let $\sheaf I(\P(V)_E)$ denote the ideal sheaf on $X_E \times \CP^\infty_E$ associated to the divisor subscheme $\P(V)_E$.  There is a natural isomorphism of sheaves over $X_E$: \[\zeta^* \sheaf I(\P(V)_E) \cong \ThomSheaf{V}.\]
+Let $\zeta: X_E \to X_E \times \CP^\infty_E$ denote the pointing of the formal curve $\CP^\infty_E$, and let $\sheaf I(\P(V)_E)$ denote the ideal sheaf on $X_E \times \CP^\infty_E$ associated to the divisor subscheme $\P(V)_E$.  There is a natural isomorphism of sheaves over $X_E$:\todo{In FPFP, Neil has a $-D$ rather than a $D$.} \[\zeta^* \sheaf I(\P(V)_E) \cong \ThomSheaf{V}.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
 In terms of a complex-oriented $E$ and \Cref{CohomologyOfProjectivization}, the effect of pulling back along the zero section is to set $t = 0$, which collapses the Chern polynomial to just the top class $c_n(V)$.  This element, called \textit{the Euler class of $V$}, provides the $E^* X$--module generator of $E^* T(V)$ --- or, equivalently, the trivializing section of $\ThomSheaf{V}$.
@@ -522,10 +522,14 @@ with $|\xi_j| = 2p^j-2$ and $|\tau_j| = 2p^j - 1$. \qed
 \end{theorem}
 \noindent There are odd--dimensional classes in this algebra, and the \emph{graded-commutativity} of the dual mod--$p$ Steenrod algebra means that these classes anti-commute.  This prohibits us from writing ``$\Spec(H\F_pP_0 H\F_p)$'', and this is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild.  For now, we will simply avoid these methods and find another approach.
 
-There is such an alternative proof, due to Quillen, that bypasses the Adams spectral sequence.  This approach has some deficiencies of its own: it requires studying the algebra of stable operations $MU^* MU$, which we do not expect to be at all commutative, and it requires studying \textit{power operations}, which are in general very technical creatures.  However, we will eventually want to talk about power operations anyway (cf.\ \Cref{PowerOpnsChapter}), and because this is the road less traveled we will elect to take it.  Our goal in this Lecture is to define these two kinds of cohomology operations, specialized to the particular setting we will need them for Quillen's proof.
+There is such an alternative proof, due to Quillen, that bypasses the Adams spectral sequence.  This approach has some deficiencies of its own: it requires studying the algebra of stable operations $MU^* MU$, which we do not expect to be at all commutative, and it requires studying \textit{power operations}, which are in general very technical creatures.  However, we will eventually want to talk about power operations anyway (cf.\ \Cref{PowerOpnsChapter}), and because this is the road less traveled we will elect to take it.  Our goal in this Lecture is to define these two kinds of cohomology operations, specialized to the particular setting we will need for Quillen's proof.
 
 
-The description of the first class of operations, the stable operations, follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]  Two lectures ago, we learned that the stable divisor scheme has a universal property: it is the free formal group on the formal curve $\CP^\infty_E$.  Another avatar of this same fact is a description of the \emph{homology ring}, using the maps \[E_* BU(n) \otimes E_* BU(m) \to E_* BU(n+m)\] to induce a multiplicative structure on $E_* BU$:
+The description of the first class of operations, the stable operations, follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]
+
+\todo[inline]{Below this, it's not clear that we actually need this to define the Landweber--Novikov operations. Quillen doesn't seem to. Probably throw it out?}
+
+Two lectures ago, we learned that the stable divisor scheme has a universal property: it is the free formal group on the formal curve $\CP^\infty_E$.  Another avatar of this same fact is a description of the \emph{homology ring}, using the maps \[E_* BU(n) \otimes E_* BU(m) \to E_* BU(n+m)\] to induce a multiplicative structure on $E_* BU$:
 \begin{lemma}[{cf.\ \Cref{HF2BOIsSymAlg} and \Cref{CPinftyNiceCalculation}}]
 Let $E$ be a complex-orientable cohomology theory. There is an isomorphism \[E_* BU \cong \frac{\Sym_{E_*} E_* \CP^\infty}{\beta_0 = 1}.\]  A specific complex orientation of $E$ begets a system of classes \[E_* \CP^\infty \cong E_*\{\beta_0, \beta_1, \ldots, \beta_n, \ldots\}\] and hence \[E_* BU \cong \frac{\Sym_{E_*} E_*\{\beta_0, \beta_1, \beta_2, \ldots\}}{\beta_0 = 1} = E_*[c_1, c_2, \ldots]. \qed\]
 \end{lemma}
@@ -548,6 +552,8 @@ The Thom isomorphism $E_* BU \cong E_* MU$ respects both the $E_*$--module struc
 \end{tikzcd}
 \end{center}
 \end{remark}
+
+\todo[inline]{Above this, it's not clear that we actually need this to define the Landweber--Novikov operations.}
 
 This compact description of $E_* MU$ as an algebra will be useful to us later, but right now we are interested in $E^* MU$ and especially in $MU^* MU$.  The former is \emph{not} a ring, and although the latter is a ring its multiplication is exceedingly complicated.\footnote{For a space $X$, $E^* X$ has a ring structure because $X$ has a diagonal, and $MU$ does not have a diagonal.  In the special case of $E = MU$, there is a ring product coming from endomorphism composition.}  Instead, we will content ourselves with an $E_*$--module basis.
 \begin{definition}
@@ -579,10 +585,10 @@ Take the orientation to be $MU \xrightarrow{\id} MU$, so that we are considering
 
 \todo[inline]{I feel like there's a punchline missing here. Maybe a connection to the Steenrod algebra is due? Or some kind of computation?}
 
-We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not expect them to be additive operations --- the Landweber--Novikov operations account for all of the additive operations, and they satisfy a Cartan formula rather than splitting over products.  In the abstract, power operations arise from ``$E_\infty$'' or ``$H_\infty$'' structures on ring spectra, but in practice most such structures arise from geometric models of cohomology theories.  To produce power operations for complex bordism and to avoid speaking in suffocating generality, we will return to the geometry of complex vector bundles.
+We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not expect them to be additive operations --- the Landweber--Novikov operations account for all of the additive operations, and they satisfy a Cartan formula rather than splitting outright over products.  In the abstract, power operations arise from ``$E_\infty$'' or ``$H_\infty$'' structures on ring spectra, but in practice most such structures arise from geometric models of cohomology theories.  To produce power operations for complex bordism and to avoid speaking in suffocating generality, we will return to the geometry of complex vector bundles.
 
 \begin{definition}[{\cite[Definition VII.7.4]{Rudyak}}]
-Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the $C_n$--quotient, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
+Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the (homotopy) $C_n$--quotient, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
 \begin{center}
 \begin{tikzcd}
 X^{\times n} \arrow["\xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow{r} \arrow{d} & BU(nk) \\
@@ -623,7 +629,7 @@ This assignment \[\left\{ \Susp^\infty_+ X \to MU \right\} \xrightarrow{P^n} \le
 \end{remark}
 
 \begin{remark}
-These operations $P^n$ are visibly multiplicative: \[P^n(f \smile g) = P^n(f) \smile P^n(g).\]  Additionally, $P^n(f)$ reduces to the $n$--fold internal cup product $f^{n}$ upon restriction to the basepoint in $BC_n$.  In general, classes in $MU^* BC_n$ can be used to give rise to other ``restricted power operations'' that encode unstable operations other than the literal $n${\th} cup power.
+These operations $P^n$ are visibly multiplicative: \[P^n(f \cdot g) = P^n(f) \cdot P^n(g).\]  Additionally, $P^n(f)$ reduces to the $n$--fold internal cup product $f^{n}$ upon restriction to the basepoint in $BC_n$.  In general, classes in $MU^* BC_n$ can be used to give rise to other ``restricted power operations'' that encode unstable operations other than the literal $n${\th} cup power.
 \end{remark}
 
 \begin{remark}
@@ -635,7 +641,7 @@ The construction Quillen gives in the course of his proof is considerably differ
 \end{remark}
 
 \begin{remark}\citeme{Where can you find Steenrod squares defined like this?  The VFoS notes, but that's not a great reference.}
-The chain model for ordinary homology is actually rigid enough to define power operations there, too.  Curiously, they are all generated by the quadratic power operations (i.e., the ``squares''), and all the quadratic power operations turn out to be \emph{additive} --- that is, you just get the Steenrod squares again!  Specifically, the $C_2$--construction \[(\Susp^n X \xrightarrow{f} H\F_2) \xrightarrow{P^2} (\Susp^{2n} X \times BC_2{}_+ \xrightarrow{P^2(f)} H\F_2)\] gives a class in $H\F_2^{2n-*}(X) \otimes H\F_2^*(\RP^\infty)$, which decomposes as \[P^2(f) = \sum_{j=0}^{2n} \Sq^{2n-j}(X) \otimes x^j.\]  This appears to be a lucky degeneracy, but in the next Lecture we will exploit something similar with a particular power operation in complex cobordism.
+The chain model for ordinary homology is actually rigid enough to define power operations there, too.  Curiously, they are all generated by the quadratic power operations (i.e., the ``squares''), and all the quadratic power operations turn out to be \emph{additive} --- that is, you just get the Steenrod squares again!  Specifically, the $C_2$--construction \[(\Susp^n \Susp^\infty_+ X \xrightarrow{f} H\F_2) \xrightarrow{P^2} (\Susp^{2n} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_2 \xrightarrow{P^2(f)} H\F_2)\] gives a class in $H\F_2^{2n-*}(X) \otimes H\F_2^*(\RP^\infty)$, which decomposes as \[P^2(f) = \sum_{j=0}^{2n} \Sq^{2n-j}(X) \otimes x^j.\]  This appears to be a lucky degeneracy, but in the next Lecture we will exploit something similar with a particular power operation in complex cobordism.
 \end{remark}
 
 
@@ -650,14 +656,16 @@ The chain model for ordinary homology is actually rigid enough to define power o
 
 We have left untouched a major component from the previous Lecture: any kind of example calculation of the Steenrod power operations.  Power operations turn out to be prohibitively complicated, preventing us from ever really doing this --- but in trying, we \emph{will} find a natural approximation formula in terms of the stable Landweber--Novikov operations.  Giving a precise formula for this approximation is the goal of this Lecture.
 
-For $X$ a finite complex and $f \in MU^{2q}(X)$ some $MU$--cohomology class, we set our sights on the too-lofty goal of computing $P^n(f)$.  Because of the definition $MU = \colim_k MU(k)$ and because $P^n$ is natural under pullback, it will suffice for us to study the effect of $P^n$ on the universal classes \[MU(k) \to MU,\] beginning with the canonical orientation \[x \in h\CatOf{Spectra}(MU(1), MU) \cong MU^2 \CP^\infty.\]  In order to understand the effect $P^n(x)$ of the power operation on $x$, we recall a different interpretation of $x$: it is also the $1${\st} Conner--Floyd--Chern class of the tautological bundle $\L$ on $\CP^\infty$, i.e., \[x\co MU(1) \to MU\] is the Thomification of the block inclusion \[\L\co BU(1) \to BU.\]  The construction defining $P^n_{\mathrm{ext}}(x)$ thus fits into the following diagram:
+For $X$ a finite complex and $f \in MU^{2q}(X)$ some $MU$--cohomology class, we set our sights on the too-lofty goal of computing $P^n(f)$.  Because of the definition $MU = \colim_k MU(k)$ and because $P^n$ is natural under pullback, it will suffice for us to study the effect of $P^n$ on the universal classes \[u_m\co MU(m) \to MU,\] beginning with the canonical orientation \[u_1 = x \in h\CatOf{Spectra}(MU(1), MU) \cong MU^2 \CP^\infty.\]  In order to understand the effect $P^n(x)$ of the power operation on $x$, we recall a different interpretation of $x$: it is also the $1${\st} Conner--Floyd--Chern class of the tautological bundle $\L$ on $\CP^\infty$, i.e., \[x\co MU(1) \to MU\] is the Thomification of the block inclusion \[\L\co BU(1) \to BU.\]  The construction defining $P^n_{\mathrm{ext}}(x)$ thus fits into the following diagram:
 \begin{center}
 \begin{tikzcd}
-& (\Susp^\infty_+ BU(1))^{\sm n} \arrow{r} \arrow[bend left=15, "\oplus"]{rr} \arrow["c_1^{\sm n}"]{d} & \Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \arrow{r} \arrow{d} & \Susp^\infty_+ BU(n) \arrow["c_n"]{d} \\
-& (\Susp^2 MU)^{\sm n} \arrow{r} & \Susp^{2n} MU^{\sm n}_{hC_n} \arrow{r} & \Susp^{2n} MU.
+\Susp^\infty_+ BU(1) \arrow["\Delta"]{d} \arrow{r} & \Susp^\infty_+ BU(1) \sm \Susp^\infty_+ BC_n \arrow["\Delta_{hC_n}"]{d} \\
+(\Susp^\infty_+ BU(1))^{\sm n} \arrow{r} \arrow[bend right=15, "\L^{\oplus n}"' near end]{rr} \arrow["c_1^{\sm n}"]{d} & \Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \arrow["\L(n)"]{r} \arrow{d} & \Susp^\infty_+ BU(n) \arrow["c_n"]{d} \\
+(\Susp^2 MU)^{\sm n} \arrow{r} & \Susp^{2n} MU^{\sm n}_{hC_n} \arrow{r} & \Susp^{2n} MU.
 \end{tikzcd}
 \end{center}
-Hence, the the internal Steenrod power operation $P^n(x)$ is defined by the composite \[\Susp^\infty_+ \CP^\infty \sm \Susp^\infty_+ BC_n \simeq \Susp^\infty_+ \CP^\infty_{hC_n} \xrightarrow{\Delta_{hC_n}} (\Susp^\infty_+ \CP^\infty)^{\sm n}_{hC_n} \to \Susp^{2n} MU^{\sm n}_{hC_n} \to \Susp^{2n} MU,\] which is to say \[P^n(x) = c_n(\Delta_{hC_n}^* \L(n)).\]  We have thus reduced to computing a particular Chern class of a particular bundle.
+\todo{Explain how you named the right-most arrow as $c_n$.}
+Hence, the the internal Steenrod power operation $P^n(x)$ is defined by the composite \[\Susp^\infty_+ BU(1) \sm \Susp^\infty_+ BC_n \simeq \Susp^\infty_+ BU(1)_{hC_n} \xrightarrow{\Delta_{hC_n}} (\Susp^\infty_+ BU(1))^{\sm n}_{hC_n} \to \Susp^{2n} MU^{\sm n}_{hC_n} \to \Susp^{2n} MU,\] which is to say \[P^n(x) = c_n(\Delta_{hC_n}^* \L(n)).\]  We have thus reduced to computing a particular Conner--Floyd--Chern class of a particular bundle.
 
 Our next move is to realize that we have not lost information by passing from the bundle $\Delta^* \L^{\oplus n}$ to the bundle $\Delta_{hC_n}^* \L(n)$.
 \begin{theorem}\label{GEquivBundlesVsBundlesOverBG}
@@ -678,37 +686,37 @@ The right-hand side consists of $G$--equivariant vector bundles over the $G$--tr
 Under this bijection, the vector bundle $\Delta_{hC_n}^* \L(n)$ on $BU(1) \times BC_n$ corresponds to the $C_n$--equivariant vector bundle $\Delta^* \L(n)$ on $BU(1)$. \qed
 \end{corollary}
 
-We thus proceed to analyze $\Delta^*_{hC_n} \L(n)$ by studying the $C_n$--equivariant bundle $\Delta^* \L^{\oplus n}$ instead.  The $C_n$--action is given by permutation of the factors, and hence we have an identification \[\Delta^* \L^{\oplus n} \cong \L \otimes \pi^* \rho,\] where $\rho$ is the permutation representation of $C_n$ (considered as a vector bundle over a point) and $\pi\co \CP^\infty \to *$ is the constant map.  The permutation representation for the abelian group $C_n$, also known as its regular representation, is accessible by character theory.  Namely, using the generating character $\chi\co U(1)[n] \to U(1)$ we gain a decomposition \[\rho \cong \bigoplus_{j=0}^{n-1} \chi^{\otimes j}\] of the associated vector bundles.  Applying this to our situation, we get a sequence of isomorphisms of $C_n$--equivariant vector bundles \[\Delta^* \L^{\oplus n} \cong \L \otimes \pi^* \rho \cong \L \otimes \bigoplus_{j=0}^{n-1} \pi^* \chi^{\otimes j} \cong \bigoplus_{j=0}^{n-1} \L \otimes \pi^* \chi^{\otimes j}.\]
+We thus proceed to analyze $\Delta^*_{hC_n} \L(n)$ by studying the $C_n$--equivariant bundle $\Delta^* \L^{\oplus n}$ instead.  The $C_n$--action is given by permutation of the factors, and hence we have an identification \[\Delta^* \L^{\oplus n} \cong \L \otimes \pi^* \rho,\] where $\rho$ is the permutation representation of $C_n$ (considered as a vector bundle over a point) and $\pi\co BU(1) \to *$ is the constant map.  The permutation representation for the abelian group $C_n$, also known as its regular representation, is accessible by character theory.  The generating character $\chi\co U(1)[n] \to U(1)$ gives a decomposition \[\rho \cong \bigoplus_{j=0}^{n-1} \chi^{\otimes j}.\]  Applying this to our situation, we get a sequence of isomorphisms of $C_n$--equivariant vector bundles \[\Delta^* \L^{\oplus n} \cong \L \otimes \pi^* \rho \cong \L \otimes \bigoplus_{j=0}^{n-1} \pi^* \chi^{\otimes j} \cong \bigoplus_{j=0}^{n-1} \L \otimes \pi^* \chi^{\otimes j}.\]  Applying \Cref{GEquivBundlesVsBundlesOverBG}, we recast this as a calculation of the bundle $\Delta_{hC_n}^* \L(n)$: \[\Delta_{hC_n}^* \L(n) = \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j},\] where $\eta$ is the bundle classified by $\eta\co BU(1)[n] \to BU(1)$ and $\pi_1$, $\pi_2$ are the two projections off of $BU(1) \times BC_n$.
 
-Applying \Cref{GEquivBundlesVsBundlesOverBG}, we recast this as a calculation of the bundle $\Delta_{hC_n}^* \L(n)$: \[\Delta_{hC_n}^* \L(n) = \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j},\] where $\eta$ is the bundle classified by $\eta\co BU(1)[n] \to BU(1)$ and $\pi_1$, $\pi_2$ are the two projections off of $BU(1) \times BC_n$.  We now use this to access $c_n(\Delta_{hC_n}^* \L(n))$.  As the top Chern class of this $n$--dimensional vector bundle, we recast this as a calculation of its Euler class, which lets us lean on multiplicativity as follows:
+We now use this to access $c_n(\Delta_{hC_n}^* \L(n))$.  As the top Chern class of this $n$--dimensional vector bundle, we think of this as a calculation of its Euler class, which lets us lean on multiplicativity:
 \begin{align*}
 P^n(x) = c_n(\Delta_{hC_n}^* \L(n)) & = e\left( \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right)
 = \prod_{j=0}^{n-1} e\left( \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right) \\
 & = \prod_{j=0}^{n-1} c_1\left( \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right)
 = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)).
 \end{align*}
-Here $x$ is still the $1${\st} Conner--Floyd--Chern class of $\L$, and $t$ is the Euler class of $\eta$.  We can understand $t$ as follows:
+Here $x$ is still the $1${\st} Conner--Floyd--Chern class of $\L$ and $t$ is the Euler class of $\eta$.\todo{You want to expand this as a series in $x$ and in $t$.  Do you really need to know much about $t$ to make that happen?}  We can understand $t$ as follows:
 
 \begin{lemma}[{cf.\ \cite[Theorem 5.7]{RavenelWilsonKthyOfEMSpaces}, \cite[Proposition 2.4.4]{HopkinsLurie}}]\label{MUConvertsTorsionPointsToTorsionPoints}
 \todo{Compare this with the result we prove in Chapter 4.}
 There is an isomorphism of formal groups \[BU(1)[n]_{MU} \cong \CP^\infty_{MU}[n].\]
 \end{lemma}
 \begin{proof}
-Consider the diagram of spherical fibrations:\todo{Put in a pullback corner here.}
+Consider the pullback diagram of spherical fibrations:\todo{Put in a pullback corner here.}
 \begin{center}
 \begin{tikzcd}
 U(1) \arrow{r} \arrow[equal]{d} & BU(1)[n] \arrow{r} \arrow{d} & BU(1) \arrow{d}{n} \\
 U(1) \arrow{r} & EU(1) \arrow{r} & BU(1).
 \end{tikzcd}
 \end{center}
-The Euler class of the first bundle is the class $x$, and it pulls back along the map $n\co BU(1) \to BU(1)$ to give the Euler class $[n](x)$ of the second bundle.  The induced long exact sequence (known as the Gysin sequence, or as the couple in the Serre spectral sequence for the first fibration) takes the form
+The Euler class of the first bundle is the class $x$, and it pulls back along the map $n\co BU(1) \to BU(1)$ to give the Euler class $[n](x)$ of the second bundle.  The induced long exact sequence\footnote{This sequence is known as the Gysin sequence.  It arises as the exact couple for the Serre spectral sequence for the spherical fibration.} takes the form
 \begin{center}
 \begin{tikzcd}
 & MU^* BU(1) \arrow[leftarrow]{rd}{- \smile [n](x)} \\
 MU^*(BU(1)[n]) \arrow[leftarrow]{ru} & & MU^{*+2} BU(1) \arrow[leftarrow]{ll}{\partial}
 \end{tikzcd}
 \end{center}
-where $x$ is the coordinate on $BU(1)_{MU}$.  Because $MU^2 \CP^1$ has no $n$--torsion,  the right diagonal map is injective and hence $\partial = 0$.  This therefore gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[0 \to BU(1)[n]_{MU} \to BU(1)_{MU} \xrightarrow{n} BU(1)_{MU} \to 0. \qedhere\]
+where $x$ is the coordinate on $BU(1)_{MU}$.  Because $MU^2 \CP^1$ has no $n$--torsion\todo{I don't think this is the right condition.}, the right diagonal map is injective and hence $\partial = 0$.  This therefore gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[0 \to BU(1)[n]_{MU} \to BU(1)_{MU} \xrightarrow{n} BU(1)_{MU} \to 0. \qedhere\]
 \end{proof}
 
 \begin{corollary}
@@ -718,26 +726,27 @@ The K\"unneth map \[MU^*(X) \otimes_{MU^*} MU^*(BU(1)[n]) \to MU^*(X \times BU(1
 This follows from the evenness of $MU^*(BU(1)[n])$.
 \end{proof}
 
-\noindent In all, we learn that the Euler class $t = e(\eta)$ corresponds to the restriction of the coordinate $x$ along the inclusion \[BU(1)[n]_{MU} \cong BU(1)_{MU}[n] \to BU(1)_{MU}.\]
+\noindent In all, we learn that the Euler class $t = e(\eta)$ corresponds to the restriction of the coordinate $x$ along the closed inclusion \[BU(1)[n]_{MU} \cong BU(1)_{MU}[n] \to BU(1)_{MU}.\]
+\todo[inline]{How much of this analysis of $BA^*_{MU}$ do you actually use? Quillen seems to use \emph{none} of it, and maybe we should leave this for later too.}
 
-We now try to make sense of this product expression for $c_n(\Delta_{hC_n}^* \L(n))$ by expanding it in powers of $x$ and identifying its component pieces.  Start by writing \[P^n(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where $a_j(t)$ is a series with coefficients in the subring spanned by the coefficients of the natural $MU$--formal group law and the leading term \[w = e(\rho) = \prod_{j=0}^{n-1} e(\eta^{\otimes j}) = \prod_{j=0}^{n-1} [j]_{MU} (e(\eta)) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the regular representation.  Here, again, the elements $b_j$ lie in the subring spanned by the coefficients of the natural $MU$--formal group law.
+We now try to make sense of this product expression for $c_n(\Delta_{hC_n}^* \L(n))$ by expanding it in powers of $x$ and identifying its component pieces.  Start by writing \[P^n(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where $a_j(t)$ is a series with coefficients in the subring spanned by the coefficients of the natural $MU$--formal group law and the leading term \[w = e(\rho) = \prod_{j=0}^{n-1} e(\eta^{\otimes j}) = \prod_{j=0}^{n-1} [j]_{MU} (e(\eta)) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the regular representation.  Here, again, the elements $b_j$ lie in the subring spanned by the coefficients of the natural $MU$--formal group law.\todo{Record these facts about $a_j(t)$ and $b_j$ in a separate Lemma, so that it can be referenced in the next Lecture.}
 
-This is as much information as we can hope to extract in the universal case.  We thus return to our original goal: understanding the action of $P^n$ on each of the canonical classes \[u_m\co MU(m) \to MU.\]  Our best hope to approach this is to use the splitting principle, so we rewrite the formula above into a form that looks odd but which is amenable to application to direct sums: \[P^n(x) = \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x),\] where $a_\alpha(t) = \prod_{j=0}^\infty a_j(t)^{\alpha_j}$.  We now appeal to the splitting principle and the Cartan formula to produce the universal formula \[P^n(u_m) = \overset{\text{each of the $m$ factors}}{\overbrace{P^n(x_1) \cdot \cdots \cdot P^n(x_m)}} = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m).\]  This powers the following conclusion about cohomology classes in general:
+This is as much information as we can hope to extract in the $1${\st} universal case.  We thus return to our original goal: understanding the action of $P^n$ on each of the canonical classes \[u_m\co MU(m) \to MU.\]  Our best hope to approach this is to use the splitting principle, so we rewrite the formula above into a form that looks odd but which is amenable to application to direct sums: \[P^n(x) = \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x),\] where $a_\alpha(t) = \prod_{j=0}^\infty a_j(t)^{\alpha_j}$.  We now appeal to the splitting principle and the Cartan formula to produce the universal formula \[P^n(u_m) = \overset{\text{each of the $m$ factors}}{\overbrace{P^n(x_1) \cdot \cdots \cdot P^n(x_m)}} = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m).\]  This powers the following conclusion about cohomology classes in general:
 \begin{theorem}[{cf.\ \cite[Proposition 3.17]{Quillen}}]\label{QuillensKeyRelation}
 Let $X$ be a finite pointed space and let $f$ be a cohomology class \[f \in \widetilde{MU}^{2q}(X).\]  For $m \gg 0$, there is a formula \[w^m P^n(f) = \sum_{|\alpha| \le q} w^{q+m - |\alpha|} a_\alpha(t) s_\alpha(f),\] with $t$, $w$, and $a_\alpha(t)$ as defined above.
 \end{theorem}
 \begin{proof}
-We take $m$ large enough so that $f$ is represented by an unstable map \[g\co \Susp^{2m} X \to T_m BU(m+q),\] in the sense that $g$ intertwines $f$ with the universal class $u_{m+q}$ by the formula \[g^* u_{m+q} = \sigma^{2m} f.\]  Since $P^n$ is multiplicative and $P^n(\sigma^{2m}) = w^m \sigma^{2m}$, we use naturality to conclude
+We take $m$ large enough so that $f$ is represented by an unstable map \[g\co \Susp^{2m} X \to T_m BU(m+q),\]\todo{Is this $T_{m+q}$?} in the sense that $g$ intertwines $f$ with the universal class $u_{m+q}$ by the formula\todo{This isn't quite right, and I think this is where the missing ``$-q$'' will come from.} \[g^* u_{m+q} = \sigma^{2m} f.\]  Since $P^n$ is multiplicative and $P^n(\sigma^{2m}) = w^m \sigma^{2m}$\todo{What does this formula really mean?}, we use naturality to conclude
 \begin{align*}
 w^m P^n(f) & = P^n(\sigma^{2m} f) = P^n(g^* u_{m+q}) = g^* P^n(u_{m+q}) \\
-& = g^* \left(\sum_{|\alpha| \le m} w^{q+m - |\alpha|} a_\alpha(t) s_\alpha(u_{m+q}) \right) \\
-& = \sum_{|\alpha| \le q} w^{q+m - |\alpha|} a_\alpha(t) s_\alpha(f). \qedhere
+& = g^* \left(\sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) s_\alpha(u_{m+q}) \right) \\
+& = \sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) s_\alpha(f). \qedhere
 \end{align*}
 \end{proof}
 
 \todo[inline]{Triple-check this, as this doesn't seem to be what Quillen gets in his article.  He concludes (in his notation) $w^{n+q} P x = \sum_{\ell(\alpha) \le n} w^{n-\ell(\alpha)} a(v)^\alpha s_\alpha(x)$ for $x \in U^{-2q}(X)$ and $n \gg (\dim X, q)$.  His preceding formulas, however, say $e(\rho)^m P(f_* 1) = f_* e(\rho \otimes (m \eps + \nu_f))$, but $e(\rho \otimes (m \eps + \nu_f)) = e(\rho \otimes m\eps) \cdot e(\rho \otimes \nu_f) = w^m e(\rho \otimes \nu_f)$ and I think $e(\rho \otimes \nu_f) = \sum_{\ell(\alpha) \le q} w^{q - \ell(\alpha)} a(v)^\alpha c_\alpha(\nu_f)$, which combines to give $w^m P(x) = \sum_{\ell(\alpha) \le q} w^{m+q-\ell(\alpha)} a(v)^\alpha s_\alpha(x)$, which is closer to what we computed separately...}
 
-Our conclusion, then, is that $P^n$ is \emph{almost} naturally expressible in terms of the Landweber--Novikov operations, where the ``\emph{almost}'' is controlled by some $w$--torsion.  Additionally, the various factors in this statement --- including $w$ itself --- are controlled by the formula group law ``$+_{MU}$'' associated to the tautological complex orientation of $MU$.
+Our conclusion, then, is that $P^n$ is \emph{almost} naturally expressible in terms of the Landweber--Novikov operations, where the ``\emph{almost}'' is controlled by some $w$--torsion.  Additionally, the various factors in this statement --- including $w$ itself --- are controlled by the formal group law ``$+_{MU}$'' associated to the tautological complex orientation of $MU$.
 
 \begin{remark}
 \todo[inline]{You can put a remark here about how power operations become additive after passing to the Tate construction, now that you sort of understand this.  Or, you can put a forward reference in to where you're going to talk about this, way out in the Power Operations chapter.  Actually, probably do both: mention it in passing and put in ``cf.''.}
@@ -753,8 +762,10 @@ Our conclusion, then, is that $P^n$ is \emph{almost} naturally expressible in te
 
 
 \section{Quillen's theorem}
+\todo{Retitle me.}
 
 With \Cref{QuillensKeyRelation} in hand, we deduce Quillen's major structural theorem about $MU_*$.  We will continue to use the following notations:
+\todo{This itemize block needs to be redone to match the previous Lecture.}
 \begin{itemize}
 \item $C$ is the subring of $MU_*$ generated by the coefficients of the formal group law associated to the identity complex--orientation.
 \item $G = C_k$ acts by cyclic permutation on $\{1, \ldots, k\}$.  In particular, the action is transitive.
@@ -770,36 +781,40 @@ MU^*(X) & = C \cdot \sum_{q \ge 0} MU^q(X), \\
 \end{align*}
 \end{theorem}
 \begin{proof}
-We can focus on the claim \[\widetilde{MU}^{2*}(X) \stackrel{?}{=} C \cdot \sum_{q > 0} MU^{2q}(X) =: R^{2*},\] since $MU^{2*+1}(*) = 0$ and $\widetilde{MU}^{2*+1}(X)$ can be handled by suspending $X$ once, and then the unreduced case follows directly.  We will show this by working $p$--locally and inducting on the value of ``$*$''.\todo{Remark on the base case: in all the negative dimensions, the claim is trivial.}  Suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $n \gg 0$, we have \[w^{n+q} P x = \sum_{|\alpha| \le n} w^{n - |\alpha|} a(v)^\alpha s_\alpha x.\] \todo{Mention that you are fixing a prime $p$ and looking at the $p$th power operation.} Recall that $w$ is a power series in $v$ with coefficients in $C$ and leading term $(p-1)! v^{p-1}$, so that $v^{p-1} = w \cdot \theta(v)$ for some invertible series $\theta$ with coefficients in $C$.  Since $s_\alpha$ lowers degree, we have $s_\alpha x \in R$ by the inductive hypothesis, so we may write \[v^m(w^qPx - x) = \psi_x(v)\] with $\psi_x(T) \in R_{(p)}\llbracket T \rrbracket$.
+We can focus on the claim \[\widetilde{MU}^{2*}(X) \stackrel{?}{=} C \cdot \sum_{q > 0} MU^{2q}(X) =: R^{2*},\] since $MU^{2*+1}(*) = 0$\todo{Give an argument for this.} and $\widetilde{MU}^{2*+1}(X)$ can be handled by suspending $X$ once, and then the unreduced case follows directly.\todo{Be clearer about what the two reductions are: evenness and reducedness.}  We will show this by working $p$--locally and inducting on the value of ``$*$''.\todo{Remark on the base case: in all the negative dimensions, the claim is trivial.}  Suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $n \gg 0$, we have \[w^{n+q} P x = \sum_{|\alpha| \le n} w^{n - |\alpha|} a(v)^\alpha s_\alpha x.\] \todo{Mention that you are fixing a prime $p$ and looking at the $p$th power operation.} Recall that $w$ is a power series in $v$ with coefficients in $C$ and leading term $(p-1)! v^{p-1}$, so that $v^{p-1} = w \cdot \theta(v)$ for some invertible series $\theta$ with coefficients in $C$.  Since $s_\alpha$ lowers degree\todo{Careful.}, we have $s_\alpha x \in R$ by the inductive hypothesis, so we may write \[v^m(w^qPx - x) = \psi_x(v)\] with $\psi_x(T) \in R_{(p)}\llbracket T \rrbracket$.
 
-Suppose $m \ge 1$ is the least integer for which we can write such an equation --- we will show $m = 1$ in a moment.  Applying the inclusion $i\co X \to X \times B\Z/p$ to this equation sets $v = 0$ and yields $\psi_x(0) = 0$, hence $\psi_x(T) = T \phi_x(T)$ and \[v (v^{m-1}(w^qPx - x) - \phi_x(v)) = 0.\]  Since $v$ annihilates this equation, we can use the Gysin sequence associated to the spherical bundle \[S^1 \to S(\eta) \to BC_p\] to produce a class $y \in \widetilde{MU}^{2(m-1)-2q}(X)$ with\todo{It's not clear (from this presentation) why $\<p\>(v)$ is involved in this sequence or where the shift by $-1$ in the dimension went.  I'm a little confused about Quillen's presentation of the total space as ``$S^\infty \times_{C_p} S^1$'', too.} \todo{When you figure this out, can you write down the Gysin sequence?}\[v^{m-1}(w^q P x - x) = \phi_x(x) + y \<p\>(v).\]  If $m > 1$, then $y \in R_{(p)}$ for degree reasons and hence the right-hand side gives an equation contradicting our minimality hypothesis.  So, $m = 1$, and the outer factor of $v^{m-1}$ is not present in the last expression.  Restricting along $i$ again, we obtain the equation \[\left. \begin{array}{rr} -x & \text{if $q > 0$} \\ x^p - x & \text{if $q = 0$} \end{array} \right\} = \phi_x(0) + py.\]
+Suppose $m \ge 1$ is the least integer for which we can write such an equation --- we will show $m = 1$ in a moment.  Applying the inclusion $i\co X \to X \times B\Z/p$ to this equation sets $v = 0$ and yields $\psi_x(0) = 0$, hence $\psi_x(T) = T \phi_x(T)$ and \[v (v^{m-1}(w^qPx - x) - \phi_x(v)) = 0.\]  Since $v$ annihilates this equation, we can use the Gysin sequence associated to the spherical bundle \[S^1 \to S(\eta) \to BC_p\] to produce a class $y \in \widetilde{MU}^{2(m-1)-2q}(X)$ with\todo{It's not clear (from this presentation) why $\<p\>(v)$ is involved in this sequence or where the shift by $-1$ in the dimension went.  I'm a little confused about Quillen's presentation of the total space as ``$S^\infty \times_{C_p} S^1$'', too.} \todo{When you figure this out, can you write down the Gysin sequence?}\[v^{m-1}(w^q P x - x) = \phi_x(x) + y \<p\>(v).\]  If $m > 1$, then $y \in R_{(p)}$ for degree reasons and hence the right-hand side gives an equation contradicting our minimality hypothesis.  So, $m = 1$\todo{Add a footnote about how this means that the nebulous ``$w$--torsion'' remark at the end of the previous Lecture is actually tightly controlled: you just need a single $w$.}, and the outer factor of $v^{m-1}$ is not present in the last expression.  Restricting along $i$ again, we obtain the equation\todo{Clarify where this equation comes from.} \[\left. \begin{array}{rr} -x & \text{if $q > 0$} \\ x^p - x & \text{if $q = 0$} \end{array} \right\} = \phi_x(0) + py.\]
 
-In the first case, where $q > 0$, it follows that $MU^{-2q}(X) \subseteq R^{-2q} + pMU^{-2q}(X)$, and since $MU^{-2q}(X)$ has finite order torsion, it follows that $MU^{-2q}(X) = R^{-2q}$.  In the other case, $x$ can be rewritten as a sum of things in $R^{0}$, things in $p MU^{0}(X)$, and things in $(MU^0)^p$.  Since the ideal $\widetilde{MU}^0(X)$ is nilpotent, it follows that $\widetilde{MU}^0(X) = R^0$, and induction proves the theorem.
+In the first case, where $q > 0$, it follows that $MU^{-2q}(X) \subseteq R^{-2q} + pMU^{-2q}(X)$, and since $MU^{-2q}(X)$ has finite order torsion\todo{In this \emph{fixed} degree $q$!!}, it follows that $MU^{-2q}(X) = R^{-2q}$.  In the other case, $x$ can be rewritten as a sum of things in $R^{0}$, things in $p \widetilde{MU}^{0}(X)$, and things in $(\widetilde{MU}^0(X))^p$.  Since the ideal $\widetilde{MU}^0(X)$ is nilpotent, it again follows that $\widetilde{MU}^0(X) = R^0$, and induction proves the theorem.
 \end{proof}
 
 \begin{corollary}\label{QuillenSurjective}
-The coefficients of the formal group law span $MU_*$. \qed
+The coefficients of the formal group law span $MU_*$.
 \end{corollary}
+\begin{proof}
+This is the case $X = *$ of the Theorem.
+\end{proof}
 
 \begin{remark}
-This proof actually also goes through for $MO$ as well.  In that case, it's even easier, since the equation $2 = 0$ in $\pi_0 MO$ causes much of the algebra to collapse.  One can try to further perturb this proof in two ways:
+This proof actually also goes through for $MO$ as well.  In that case, it's even easier, since the equation $2 = 0$ in $\pi_0 MO$ causes much of the algebra to collapse.  One can try to further perturb this proof in two ways:\todo{Nix this part of the Remark, or change it \emph{substantially}.}
 \begin{enumerate}
 \item One can try to replace the identity complex--orientation $MU \xrightarrow{\id} MU$ with a nontrivial complex--orientation $MU \xrightarrow{\phi} E$ which is suitably compatible with power operations.  It would be nice to understand why this doesn't give more information about $E$ than what's visible in the Hurewicz image of $\phi$.  Or, conversely, it would be nice to understand a proof of Mahowald's theorem that the free $E_2$--algebra with $p = 0$ is $H\F_p$, which this proof portends to give information about.\todo{Straighten this out.}
 \item One can also try to replace $MO$ and $MU$ with $MSp$ or $MSO$.  These, too, have presentations in terms of bordism theories and hence similar power operations to the ones we used above.  On the other hand, the Euler classes in $MSp$--theory, while simple, are not so well-behaved, because they are not controlled by a formal group law.  Characteristic classes in $MSO$--theory are not even simple.\todo{This isn't well-stated either.}
 \end{enumerate}
 \end{remark}
 
+\todo{Bad phrasing.}
 We now have a foothold on $\pi_* MU$, and this alone is enough to move us to study $\moduli{fgl}$, the moduli scheme of formal group laws.  However, while we're here, it's possible for us to prove the rest of Quillen's theorem, if we get just slightly ahead of ourselves and assume one algebraic fact about $\sheaf O_{\moduli{fgl}}$.  The place to start is with the following topological observation about mixing complex--orientations:
 
 \begin{lemma}[{\cite[Lemma 6.3 and Corollary 6.5]{AdamsBlueBook}}]\label{OrientationsOnEAndMU}
-Let $\phi\co MU \to E$ be complex--oriented and consider the two orientations
+Let $\phi\co MU \to E$ be complex--oriented\todo{Bad phrasing.} and consider the two orientations
 \begin{align*}
 \S \sm MU & \xrightarrow{\eta_E \sm 1} E \sm MU, &
 MU \sm \S & \xrightarrow{\phi \sm \eta_{MU}} E \sm MU.
 \end{align*}
 The two induced coordinates $x^E$ and $x^{MU}$ on $\CP^\infty_{E \sm MU}$ are related by the formulas
 \begin{align*}
-x^{MU} & = \sum_{j=0}^\infty b_j^E (x^E)^{j+1} = g(x^E), \\
+x^{MU} & = \sum_{j=0}^\infty b_j^E (x^E)^{j+1} =: g(x^E), \\
 g^{-1}(x^{MU} +_{MU} y^{MU}) & = g^{-1}(x^E) +_E g^{-1}(y^E).
 \end{align*}
 where $E_* MU \cong E_*[b_1, b_2, \ldots]$.
@@ -829,7 +844,7 @@ There is a ring $\sheaf O_{\moduli{fgl}}$\todo{It looks like this ring $\sheaf O
 The map $\sheaf O_{\moduli{fgl}} \to MU_*$ classifying the formal group law on $MU_*$ is an isomorphism.
 \end{corollary}
 \begin{proof}
-We proved in \Cref{QuillenSurjective} that this map is surjective.  We also proved in \Cref{RationalFGLsHaveLogarithms} that every rational formal group law has a logarithm, i.e., the long composite \[\sheaf O_{\moduli{fgl}} \otimes \Q \to MU_* \otimes \Q \xrightarrow{\cong} (H\Z_* MU) \otimes \Q\] is an isomorphism.  Using \Cref{DummyLazardsThm}, it follows that the map is also injective, hence an isomorphism.
+We proved in \Cref{QuillenSurjective} that this map is surjective.  We also proved in \Cref{RationalFGLsHaveLogarithms} that every rational formal group law has a logarithm, i.e., the long composite\todo{Maybe add a first row to this diagram with the integral information, so you can see that the long composite is injective and hence...} \[\sheaf O_{\moduli{fgl}} \otimes \Q \to MU_* \otimes \Q \xrightarrow{\cong} (H\Z_* MU) \otimes \Q\] is an isomorphism.  Using \Cref{DummyLazardsThm}, it follows that the map is also injective, hence an isomorphism.
 \end{proof}
 
 \begin{corollary}
@@ -846,7 +861,7 @@ Combine \Cref{OrientationsOnEAndMU} and \Cref{QuillensTheorem}.
 
 
 
-\todo[inline]{There's buzz about a ``Frobenius map'' for structured rings going around these days. I guess the point is that an $E_2$--algebra structure is enough to get a multiplicative map $E^0 X \to E^0 X \otimes E^0 BC_p$. This isn't additive, so it can't come from an infinite loop map, but it becomes additive when passing to the Tate construction: $E^X \to (E^X)^{tC_p}$, using the fact that the genuine $C_p$ fixed points of $E^{X^{\times p}}$ is $E^X$, and the square relating genuine, homotopy, and geometric fixed points.  Mike has been claiming that these results of Quillen's can be interpreted in this way, but I'm not sure what the interpretation is.  He says it has something to do with inverting the Euler class and the part of Quillen's argument that involves walking down the multiples of Euler classes on both sides of the equation.}
+\todo[inline]{\textbf{This todo belongs in the Remark at the end of 2.5 / in the footnote of 2.6.1 / in an appendix. Not here.} There's buzz about a ``Frobenius map'' for structured rings going around these days. I guess the point is that an $E_2$--algebra structure is enough to get a multiplicative map $E^0 X \to E^0 X \otimes E^0 BC_p$. This isn't additive, so it can't come from an infinite loop map, but it becomes additive when passing to the Tate construction: $E^X \to (E^X)^{tC_p}$, using the fact that the genuine $C_p$ fixed points of $E^{X^{\times p}}$ is $E^X$, and the square relating genuine, homotopy, and geometric fixed points.  Mike has been claiming that these results of Quillen's can be interpreted in this way, but I'm not sure what the interpretation is.  He says it has something to do with inverting the Euler class and the part of Quillen's argument that involves walking down the multiples of Euler classes on both sides of the equation.}
 
 
 
