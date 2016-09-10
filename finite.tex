@@ -3,13 +3,49 @@
 \chapter{Finite spectra}\label{ChapterFiniteSpectra}
 
 
-\todo{Write an introduction for me.}
+\todo[inline]{Andy Senger correctly points out that ``stalkwise'' is the wrong word to use in all this (if we mean to be working in the Zariski topology, which surely we must).  The stalks are selected by maps from certain local rings; $E_\Gamma$ selects the formal neighborhood of the special point inside of this; and $K_\Gamma$ selects the special point itself.  Is ``fiberwise'' enough of a weasel word to get out of this?}
+
+
+Our goal in this Case Study is to thoroughly examine one of the techniques from \Cref{UnorientedBordismChapter} that has not yet resurfaced: the idea that $H\F_2$--homology takes values in quasicoherent sheaves over some algebro-geometric object encoding the coaction of the dual Steenrod Hopf algebra.  We will find that this situation is quite generic: associated to mildly nice ring spectra $E$, we will construct a very rich algebro-geometric object $\context{E}$, called its context, such that $E$--homology sends spaces $X$ to sheaves $\context{E}(X)$ over $\context{E}$.  In still nicer situations, the difference between the $E_*$--module $E_*(X)$ and the sheaf $\context{E}(X)$ tracks exactly the analogue of the action of the dual Steenrod algebra, called the \textit{Hopf algebroid of stable $E$--homology cooperations}.
+
+From this perspective, we will reinterpret Quillen's \Cref{QuillensTheorem} as giving a presentation \[\context{MUP} \xrightarrow{\simeq} \moduli{fg},\] where $\moduli{fg}$ is the \textit{moduli of formal groups}.  This indicates a program for studying periodic complex bordism, which we now indicate.  Abstractly, one can hope to study any sheaf, including $\context{E}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of the context $\context{MUP}$, so that we can determine where to even look for those stalks.
+
+However, even this is not really enough to get off the ground: the stalks of some sheaf can exhibit nearly arbitrary behavior.  In particular, there is little reason to expect the stalks of $\context{E}(X)$ to vary nicely with $X$.  Accordingly, given a map $f$ in the diagram
+\begin{center}
+\begin{tikzcd}
+\Spec R \arrow{r}{f} & \moduli{fgl} \arrow[equal]{r} \arrow{d} & \context{MUP}[0] \arrow{d} \arrow[equal]{r} & \Spec MUP_0 \\
+& \moduli{fg} \arrow[equal]{r} \arrow[leftarrow]{lu} & \context{MUP},
+\end{tikzcd}
+\end{center}
+life would be easiest if the $R$--module determined by $f^* \context{MUP}(X)$ were itself the value of a homology theory $R_0(X) = MUP_0 X \otimes_{MUP_0} R$ --- this is exactly what it would mean for $R_0(X)$ to ``vary nicely with $X$''.  Of course, this is unreasonable to expect in general: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when the diagonal arrow is \textit{flat}.  However, if flatness is satisfied, this gives the following theorem:
+
+\begin{theorem}[Landweber]\label{LandwebersStackyTheorem}
+Given such a diagram where the diagonal arrow is flat, the functor \[R_0(X) := MUP_0(X) \otimes_{MUP_0} R\] is a homology theory.
+\end{theorem}
+
+\noindent In the course of proving this theorem, Landweber additionally devised a method to recognize flat maps.  Recall that a map $f$ is flat exactly when for any closed substack $i\co A \to \moduli{fg}$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \mathcal I \to f^* \mathcal O_{\moduli{fg}} \to f^* i_* \mathcal O_A \to 0.\]  Landweber classified the closed substacks of $\moduli{fg}$, thereby giving a precise list of conditions needed to check maps for flatness.
+
+This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks\todo{Here's this ``stalks'' word again.}: the inclusion of a geometric point is flat only in highly degenerate cases.  We will see that this can be repaired: the inclusion of the formal completion of a substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each geometric point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the geometric points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called \textit{Morava $E_\Gamma$--theories}.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover \textit{Morava $K_\Gamma$--theory}, a \emph{homology theory}, which plays the role of computing the stalk of $\context{MUP}(X)$ at $\Gamma$.\footnote{Incidentally, this program has no content when applied to $\context{H\F_2}$, as $\Spec \F_2$ is simply too small.}
+
+We have thus assembled a task list:
+\begin{itemize}
+\item Describe the open and closed substacks of $\moduli{fg}$.
+\item Describe the geometric points of $\moduli{fg}$.
+\item Analyze their infinitesimal deformation spaces.
+\end{itemize}
+This will occupy us for first half of this Case Study.  In the second half, we will exploit these homology theories $E_\Gamma$ and $K_\Gamma$, as well as their connection to $\moduli{fg}$ and to $MU$, to make various structural statements about the category $\CatOf{Spectra}$.  These homology theories are especially well-suited to understanding the subcategory $\CatOf{Spectra}^{\fin}$ of finite spectra, and we will recount several important statements in that setting.
+
+
+
+
 
 \todo{still need to talk about closed and open subschemes, their basic properties}
 
-\todo{Callan wrote something at http://chat.stackexchange.com/transcript/message/28980387\#28980387 which addresses the unicity of the formal group attached to a local number field. I thought I drew an analogy to that somewhere in here, but now I can't find it. I would like to.}
-
 \todo[inline]{A blanket todo from a conversation with Eva: (1) we should expand the comparison of a Cartesian q.c.\ sheaf on an affinely presented stack with a module plus structural data; (2) it's not clear why the complex $B\G$ computes the claimed $\Cotor$ groups; (3) we aren't very clear about where flat maps come from, which should be stated early on and which should be reiterated down in the big list of homology theories; (4) the Baer-criterion-style argument is fuzzy, and could be stated up in the big program and also in the proof of the LEFT; (5) the purpose of the Witt ring in deformation theory is not spelled out; (6) the difference between $0$--truncation (Grothendieck's faithfully flat descent) and $1$--truncation (having a nice ring spectrum) is blurred, which is perhaps unhealthy; (7) the business with descent data is still unclear, why $S \otimes_R N \cong N \otimes_R S$ is worth anything; (8) the coarse moduli uses the smoothness property, which should be referenced; (9) in the statement of $\context{MU}$, the analysis of $MU_* MU$ could be referenced (or, really, the chain of thought leading up to this could be sketched); (10) ``invariant prime ideal'' is not defined, nor is it compared to the geometric objects you'd call ``closed substacks''.}
+
+\todo{Danny has been nervous lately about the LEFT yielding module spectra and ring spectra. It would be good to write out how LEFT applied to a sheaf of rings gives a ring spectrum.}
+
+\todo[inline]{Figure out where the label StructureOfMfgl is referenced and make sure it points appropriately to either this introduction or to MfgI:Height.}
 
 
 
@@ -317,44 +353,19 @@ If $E$ is a complex-oriented ring spectrum, then the simplicial sheaf $\context{
 
 \todo{Say what open, closed, flat maps of simplicial schemes are?}
 \todo{Jon thinks that this picture can be instructively recast in terms of the cotangent complex.  I'm not sure how, but it's something to keep in mind for later.}
-\todo{Make a point about the difference between the two ``moduli problems'' here (or in the context lecture, Lecture 3.1): the natural map $\CatOf{RingSpectra}(MU \mmod MU \sm MU, E) \to \moduli{fg}(E_*)$ given by passing to homotopy groups hits \emph{at most one} connected component.  See also the beginning of the next Case Study for a relevant todo.}
+\todo{Make a point about the difference between the two ``moduli problems'' here (or in the context lecture, Lecture 3.1): the natural map $\CatOf{RingSpectra}(MU \mmod MU \sm MU, E) \to \moduli{fg}(E_*)$ given by passing to homotopy groups hits \emph{at most one} connected component.  Callan also wrote something at http://chat.stackexchange.com/transcript/message/28980387\#28980387 which addresses the unicity of the formal group attached to a local number field. I thought I drew an analogy to that somewhere in here, but now I can't find it. I would like to.}
+\todo{The bottom of COCTALOS page 68 has a better interpretation of what picking a formal group law lifting a flat map to $\moduli{fg}$ has to do with anything.  It probably belongs in this Lecture: it's a statement about flatness and a certain degeneracy of simplicial schemes.}
 
 
 
 
 
+\section{The structure of \texorpdfstring{$\moduli{fg}$}{Mfg} I: Distance from \texorpdfstring{$\G_a$}{Ga}}\label{MfgI:Height}
 
-\section{Fiberwise analysis and chromatic homotopy theory}\label{StructureOfMfgl}
+\todo{Put a proper lead-in here.}
+\todo{This lecture may now be too long. Maybe some of the $p$--typical stuff is better suited for the next lecture anyway?}
 
-\todo[inline]{Andy Senger correctly points out that ``stalkwise'' is the wrong word to use in all this (if we mean to be working in the Zariski topology, which surely we must).  The stalks are selected by maps from certain local rings; $E_\Gamma$ selects the formal neighborhood of the special point inside of this; and $K_\Gamma$ selects the special point itself.  Is ``fiberwise'' enough of a weasel word to get out of this?}
-\todo{Danny has been nervous lately about the LEFT yielding module spectra and ring spectra. It would be good to write out how LEFT applied to a sheaf of rings gives a ring spectrum.}
-
-Our first goal for today is to outline a program for the rest of this Case Study.  Yesterday, we developed a rich target for $E$--homology: sheaves over an algebro-geometric object $\context{E}$.  Furthermore, we have explored in \Cref{ContextOfMUPExample} an identification $\context{MUP} \simeq \moduli{fg}$, where $\moduli{fg}$ is the ``moduli of formal groups''.  Our initial goal for today is to outline a program by which we can leverage this to study $MUP$.  Abstractly, one can hope to study any sheaf, including $\context{MUP}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of $\context{MUP}$, so that we can determine where to even look for those stalks.
-
-With this in mind, given a map $f$ in the diagram\todo{The bottom of COCTALOS page 68 has a better interpretation of what picking a formal group law has to do with anything, I think.}
-\begin{center}
-\begin{tikzcd}
-\Spec R \arrow{r}{f} & \moduli{fgl} \arrow[equal]{r} \arrow{d} & \context{MUP}[0] \arrow{d} \arrow[equal]{r} & \Spec MUP_0 \\
-& \moduli{fg} \arrow[equal]{r} \arrow[leftarrow]{lu} & \context{MUP},
-\end{tikzcd}
-\end{center}\todo{please check the P's, 0's, and labels of arrows? I tried to fudge around with it since it looked funny but I want to make sure I didn't mess anything up, AY.}
-life would be easiest if the $R$--module determined by $f^* \context{MUP}(X)$ were itself the value of a homology theory $R_0(X) = MUP_0 X \otimes_{MUP_0} R$\todo{should this (and the one later) be $R(X)$ and not $R_0$? For example when $R=MUP_0$}.  After all, the pullback of some arbitrary sheaf along some arbitrary map has no special behavior, but homology functors do have familiar special behaviors which we could hope to exploit.  Generally, this is unreasonable to expect: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when the diagonal arrow is \textit{flat}.  In that case, this gives the following theorem:
-
-\begin{theorem}[Landweber]\label{LandwebersStackyTheorem}
-Given such a diagram where the diagonal arrow is flat, the functor \[R_0(X) := MUP_0(X) \otimes_{MUP_0} R\] is a homology theory.
-\end{theorem}
-
-\noindent In the course of proving this theorem, Landweber devised a method to recognize flat maps.  Recall that a map $f$ is flat exactly when for any closed substack $i\co A \to \moduli{fg}$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \mathcal I \to f^* \mathcal O_{\moduli{fg}} \to f^* i_* \mathcal O_A \to 0.\]  Landweber classified the closed substacks of $\moduli{fg}$, thereby giving a method to check maps for flatness.
-
-This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a closed substack (and so, in particular, a closed point $\Gamma$) is flat only in highly degenerate cases.  We saw in \Cref{AlgebraicCompletionSituation} that this can be repaired: the inclusion of the formal completion of a closed substack of a Noetherian\footnote{$\moduli{fg}$ is not Noetherian, but we will find that each closed point except $\G_a$ lives in an open substack that happens to be Noetherian.} stack is flat, and so we naturally become interested in the infinitesimal deformation spaces of the closed points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called $E_\Gamma$.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover a \emph{homology theory} $K_\Gamma$ which plays the role of computing the stalk of $\context{MUP}(X)$ at $\Gamma$.\footnote{Incidentally, this program has no content when applied to $\context{H\F_2}$, as $\Spec \F_2$ is simply too small.}
-
-We have thus assembled a task list:
-\begin{itemize}
-\item Describe the open and closed substacks of $\moduli{fg}$.
-\item Describe the geometric points of $\moduli{fg}$.
-\item Analyze their infinitesimal deformation spaces.
-\end{itemize}
-This will occupy us for the next few lectures.  Today, we will embark on this analysis by studying the scheme $\moduli{fgl}$ which naturally covers the stack $\moduli{fg}$.
+Today, we will embark on this analysis by studying the scheme $\moduli{fgl}$ which naturally covers the stack $\moduli{fg}$.
 
 \begin{definition}
 There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying all bivariate power series:
@@ -416,16 +427,9 @@ The following are equivalent:
 Verifying that Claims 1 and 2 are equivalent is a matter of writing out the purported $(r+1)$--buds and taking their difference. \todo{Do you mean write out a $(r+1)$-bud and applying the associativity axiom?}To see that Claim 2 is equivalent to Claim 3, follow the chain \[\CatOf{Groups}((QL)_{2n}, A) \cong \CatOf{Rings}(\Z \oplus (QL)_{2n}, \Z \oplus \Susp^{2n} A) \cong \CatOf{Rings}(L, \Z \oplus \Susp^{2n} A).\]  This shows that such a homomorphism of groups determines an extension of the $n$--bud $\G_a$ to an $(n+1)$--bud, which takes the form of a $2$--cocycle with coefficients in $A$, and hence factors through $T_{2n}$.  Finally, Claim 4 is the universal case of Claim 3.
 \end{proof}
 
-We will prove Claim 1 tomorrow.
+\todo[inline]{Stitch these together better.}
 
-
-
-
-\section{The structure of \texorpdfstring{$\moduli{fg}$}{Mfg} I: Distance from \texorpdfstring{$\G_a$}{Ga}}\label{MfgI:Height}
-
-We begin by finishing up our proof of Lazard's theorem (and, specifically, the Symmetric $2$--cocycle Lemma).
-
-\begin{lemma}[{Symmetric $2$--cocycle lemma (Part 2): Claim 1 of \Cref{Symmetric2CocycleLemma}}]\label{CohomologyOfGa}
+\begin{lemma}[{Claim 1 of \Cref{Symmetric2CocycleLemma}}]\label{CohomologyOfGa}
 Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n).\]
 \end{lemma}
 
