@@ -42,7 +42,7 @@ The execution of this proof requires some understanding of cohomology operations
 
 In light of the introduction, we see that it would be prudent to develop some of the theory of formal schemes and formal varieties outside of the context of $\F_2$--algebras.  However, writing down a list of definitions and checking that they have good enough properties is not especially enlightening or fun.  Instead, it will be informative to understand where these objects come from in algebraic geometry, so that we can carry the accompanying geometric intuition along with us as we maneuver our way back toward homotopy theory and bordism.  Our overarching goal in this Lecture is to develop a notion of calculus (and analytic expansions in particular) in the context of affine schemes.  The place to begin is with a definition of cotangent and tangent spaces, as well as some supporting vocabulary.
 \begin{definition}[{cf.\ \Cref{DefnAffineF2Scheme}}]
-For an $R$--algebra $A$, the functor $\Spec A \co \CatOf{Algebras}_R \to \CatOf{Sets}$ defined by \[(\Spec A)(T) := \CatOf{Algebras}_R(A, T)\] is called the \textit{spectrum of $A$}.  A functor $X$ which is naturally isomorphic to to $\Spec A$ for some $A$ is called an \textit{affine ($R$--)scheme}.  A subfunctor $Y \subseteq X$ is said to be a \textit{closed\footnote{The word ``closed'' is meant to suggest properties of these inclusions: in suitable senses, they are closed under finite unions and arbitrary intersections.} subscheme} when an identification\footnote{This property is independent of choice of chart.} $X \cong \Spec A$ induces a further identification
+For an $R$--algebra $A$, the functor $\Spec A \co \CatOf{Algebras}_R \to \CatOf{Sets}$ defined by \[(\Spec A)(T) := \CatOf{Algebras}_R(A, T)\] is called the \textit{spectrum of $A$}.  A functor $X$ which is naturally isomorphic to to $\Spec A$ for some $A$ is called an \textit{affine ($R$--)scheme}, and $A = \sheaf O_{\Spec A}$ is called its \textit{ring of functions}.  A subfunctor $Y \subseteq X$ is said to be a \textit{closed\footnote{The word ``closed'' is meant to suggest properties of these inclusions: in suitable senses, they are closed under finite unions and arbitrary intersections.} subscheme} when an identification\footnote{This property is independent of choice of chart.} $X \cong \Spec A$ induces a further identification
 \begin{center}
 \begin{tikzcd}
 Y \arrow{r} \arrow[leftarrow, "\simeq"]{d} & X \arrow[leftarrow, "\simeq"]{d} \\
@@ -527,26 +527,6 @@ There is such an alternative proof, due to Quillen, that bypasses the Adams spec
 
 The description of the first class of operations, the stable operations, follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]
 
-% Two lectures ago, we learned that the stable divisor scheme has a universal property: it is the free formal group on the formal curve $\CP^\infty_E$.  Another avatar of this same fact is a description of the \emph{homology ring}, using the maps \[E_* BU(n) \otimes E_* BU(m) \to E_* BU(n+m)\] to induce a multiplicative structure on $E_* BU$:
-% \begin{lemma}[{cf.\ \Cref{HF2BOIsSymAlg} and \Cref{CPinftyNiceCalculation}}]
-% Let $E$ be a complex-orientable cohomology theory. There is an isomorphism \[E_* BU \cong \frac{\Sym_{E_*} E_* \CP^\infty}{\beta_0 = 1}.\]  A specific complex orientation of $E$ begets a system of classes \[E_* \CP^\infty \cong E_*\{\beta_0, \beta_1, \ldots, \beta_n, \ldots\}\] and hence \[E_* BU \cong \frac{\Sym_{E_*} E_*\{\beta_0, \beta_1, \beta_2, \ldots\}}{\beta_0 = 1} = E_*[c_1, c_2, \ldots]. \qed\]
-% \end{lemma}
-
-% Thomifying these ``$\oplus$'' maps gives maps \[E_* MU(n) \otimes E_* MU(m) \to E_* MU(n+m),\] and the naturality of the $E$--Thom isomorphism produces an additional corollary:
-% \begin{corollary}[{cf.\ \Cref{HF2MOisFree}}]\label{EMUisFree}
-% The Thom isomorphism $E_* BU \cong E_* MU$ respects both the $E_*$--module structure and the ring structure.  There is thus an isomorphism \[E_* MU \cong E_*[b_1, b_2, \ldots, b_n, \ldots],\] where $b_j$ is the image of $c_j$ under the Thom map. \qed
-% \end{corollary}
-
-% \begin{remark}[{cf.\ \Cref{MOOrientationsVsRPClasses}}]
-% \Cref{EMUisFree} is enough to deduce a bijection between ring spectrum maps $MU \to E$ and homotopy classes of factorizations
-% \begin{center}
-% \begin{tikzcd}
-% \S^0 \arrow{r} \arrow[densely dotted]{rd} & MU(1) \arrow{d} \\
-% & MU.
-% \end{tikzcd}
-% \end{center}
-% \end{remark}
-
 We would like to leverage the Thom isomorphism to gain a description of $E^* MU$ generally and $MU^* MU$ specifically.  However, the former is \emph{not} a ring, and although the latter is a ring its multiplication is exceedingly complicated\footnote{For a space $X$, $E^* X$ has a ring structure because $X$ has a diagonal, and $MU$ does not have a diagonal.  In the special case of $E = MU$, there is a ring product coming from endomorphism composition.}, which means that our extremely compact algebraic description of $E^* BU$ in \Cref{IdentificationOfBUnWithDivn} will be of limited use.  Instead, we will have to content ourselves with an $E_*$--module basis of $E^* MU$.
 \begin{definition}
 Take $MU \to E$ to be a complex-oriented ring spectrum, which presents $E^* BU$ as the subalgebra of symmetric functions inside of an infinite--dimensional polynomial algebra: \[E^* BU \subseteq E^* BU(1)^{\times \infty} \cong E^*\ps{x_1, x_2, \ldots}.\]  For any nonnegative multi-index $\alpha = (\alpha_1, \alpha_2, \ldots)$ with finitely many entries nonzero, there is an associated \textit{monomial symmetric function} $b_\alpha$, which is the sum of those monomials whose exponent lists contain exactly $\alpha_j$ many instances of $j$.\footnote{For example, $\alpha = (1, 2, 0, 0, \ldots)$ corresponds to the sum \[b_\alpha = \sum_i \sum_{j \ne i} \sum_{\substack{k \ne i \\ k > j}} x_i x_j^2 x_k^2 = x_1 x_2^2 x_3^2 + x_1^2 x_2 x_3^2 + x_1^2 x_2^2 x_3 + \cdots.\]}  We then set $s_\alpha \in E^* MU$ to be the image of $b_\alpha$ under the Thom isomorphism of $E_*$--modules \[E^* MU \cong E^* BU.\]  It is called the \textit{$\alpha${\th} Landweber--Novikov operation} with respect to the orientation $MU \to E$.
@@ -650,7 +630,7 @@ The chain model for ordinary homology is actually rigid enough to define power o
 
 
 
-\section{Stabilizing the \texorpdfstring{$MU$}{MU}--Steenrod operations}
+\section{Stabilizing the \texorpdfstring{$MU$}{MU}--Steenrod operations}\label{StabilizingTheMUSteenrodOps}
 
 We have left untouched a major component from the previous Lecture: any kind of example calculation of the Steenrod power operations.  Power operations turn out to be prohibitively complicated, preventing us from ever really doing this --- but in trying, we \emph{will} find a natural approximation formula in terms of the stable Landweber--Novikov operations.  Giving a precise formula for this approximation is the goal of this Lecture.
 
@@ -835,18 +815,23 @@ This is the case $X = *$.
 \end{proof}
 
 \begin{remark}
-This proof actually also goes through for $MO$ as well.  In that case, it's even easier, since the equation $2 = 0$ in $\pi_0 MO$ causes much of the algebra to collapse.  One can try to further perturb this proof in two ways:\todo{Nix this part of the Remark, or change it \emph{substantially}.}
-\begin{enumerate}
-\item One can try to replace the identity complex--orientation $MU \xrightarrow{\id} MU$ with a nontrivial complex--orientation $MU \xrightarrow{\phi} E$ which is suitably compatible with power operations.  It would be nice to understand why this doesn't give more information about $E$ than what's visible in the Hurewicz image of $\phi$.  Or, conversely, it would be nice to understand a proof of Mahowald's theorem that the free $E_2$--algebra with $p = 0$ is $H\F_p$, which this proof portends to give information about.\todo{Straighten this out.}
-\item One can also try to replace $MO$ and $MU$ with $MSp$ or $MSO$.  These, too, have presentations in terms of bordism theories and hence similar power operations to the ones we used above.  On the other hand, the Euler classes in $MSp$--theory, while simple, are not so well-behaved, because they are not controlled by a formal group law.  Characteristic classes in $MSO$--theory are not even simple.\todo{This isn't well-stated either.}
-\end{enumerate}
+This proof actually also goes through for $MO$ as well.  In that case, it's even easier, since the equation $2 = 0$ in $\pi_0 MO$ causes much of the algebra to collapse.  The proof does not extend further to cases like $MSO$ or $MSp$, as explained in the introduction to this Case Study: these bordism theories do not have associated formal group laws, and so we lose the control we had in \Cref{StabilizingTheMUSteenrodOps}.
 \end{remark}
 
-\todo{Bad phrasing.}
-We now have a foothold on $\pi_* MU$, and this alone is enough to move us to study $\moduli{fgl}$, the moduli scheme of formal group laws.  However, while we're here, it's possible for us to prove the rest of Quillen's theorem, if we get just slightly ahead of ourselves and assume one algebraic fact about $\sheaf O_{\moduli{fgl}}$.  The place to start is with the following topological observation about mixing complex--orientations:
+Take $\moduli{fgl}$ to be the moduli of formal group laws.  Since a formal group law is a power series satisfying some algebraic identities, this moduli object is an affine scheme with coordinate ring $\sheaf O_{\moduli{fgl}}$.  A rephrasing of \Cref{QuillenSurjective} is that the natural map \[\sheaf O_{\moduli{fgl}} \to MU_*\] is \emph{surjective}.  This is reason enough to start studying $\moduli{fgl}$ in earnest, which we take up in the next Case Study --- but while we're here, if we anachronistically assume one algebraic fact about $\sheaf O_{\moduli{fgl}}$ we can prove that the natural map is actually an \emph{isomorphism}.  The place to start is with the following topological observation about mixing complex--orientations:
+
+% \begin{remark}[{cf.\ \Cref{MOOrientationsVsRPClasses}}]
+% \Cref{EMUisFree} is enough to deduce a bijection between ring spectrum maps $MU \to E$ and homotopy classes of factorizations
+% \begin{center}
+% \begin{tikzcd}
+% \S^0 \arrow{r} \arrow[densely dotted]{rd} & MU(1) \arrow{d} \\
+% & MU.
+% \end{tikzcd}
+% \end{center}
+% \end{remark}
 
 \begin{lemma}[{\cite[Lemma 6.3 and Corollary 6.5]{AdamsBlueBook}}]\label{OrientationsOnEAndMU}
-Let $\phi\co MU \to E$ be complex--oriented\todo{Bad phrasing.} and consider the two orientations
+Let $\phi\co MU \to E$ be a complex--oriented ring spectrum and consider the two orientations on $E \sm MU$ given by
 \begin{align*}
 \S \sm MU & \xrightarrow{\eta_E \sm 1} E \sm MU, &
 MU \sm \S & \xrightarrow{\phi \sm \eta_{MU}} E \sm MU.
@@ -856,7 +841,7 @@ The two induced coordinates $x^E$ and $x^{MU}$ on $\CP^\infty_{E \sm MU}$ are re
 x^{MU} & = \sum_{j=0}^\infty b_j^E (x^E)^{j+1} =: g(x^E), \\
 g^{-1}(x^{MU} +_{MU} y^{MU}) & = g^{-1}(x^E) +_E g^{-1}(y^E).
 \end{align*}
-where $E_* MU \cong E_*[b_1, b_2, \ldots]$.
+where $E_* MU \cong \frac{\Sym_{E_*} E_*\{\beta_1, \beta_2, \beta_3, \ldots\}}{\beta_1 = 1} \cong E_*[b_1, b_2, \ldots]$, as in \Cref{HF2BOIsSymAlg}, \Cref{HF2MOisFree}, and \Cref{CPinftyNiceCalculation}.
 \end{lemma}
 \begin{proof}
 The second formula is a direct consequence of the first.  The first formula comes from taking the module generators $\beta_{j+1} \in E_{2(j+1)} \CP^\infty = E_{2j} MU(1)$ and pushing them forward to get the algebra generators $b_j \in E_{2j} MU$.  Then, the triangle
@@ -873,14 +858,14 @@ allows us to pair $x^{MU}$ with $(x^E)^{j+1}$ to determine the coefficients of t
 In particular, for the orientation $MU \to H\Z$ we have \[x_1 +_{MU} x_2 = \exp^H(\log^H(x_1) + \log^H(x_2)),\] where $\exp^H(x) = \sum_{j=0}^\infty b_j x^{j+1}$. \qed
 \end{corollary}
 
-However, one also notes that $H\Z_* MU = \Z[b_1, b_2, \ldots]$ carries the universal example of a formal group law with a logarithm --- this observation is independent of any knowledge about $MU_*$.  It turns out that this brings us one step away from understanding $MU_*$:
+However, one also notes that $H\Z_* MU = \Z[b_1, b_2, \ldots]$ carries the universal example of a formal group law with a logarithm --- this observation is independent of any knowledge about the coefficient ring $MU_*$.  It turns out that this brings us one step away from understanding $MU_*$:
 
 \begin{theorem}[{To be proven as \Cref{LazardsTheorem}}]\label{DummyLazardsThm}
-There is a ring $\sheaf O_{\moduli{fgl}}$\todo{It looks like this ring $\sheaf O$ is the global sections of the sheaf $\sheaf O$, which seems reasonable given that it's affine. Is this standard? I was confused about this on a later appearance of this symbol. -EB} carrying the universal formal group law, and it is free: it is a polynomial ring over $\Z$ in countably many generators. \qed
+There is a ring $\sheaf O_{\moduli{fgl}}$ carrying the universal formal group law, and it is free: it is a polynomial ring over $\Z$ in countably many generators. \qed
 \end{theorem}
 
 \begin{corollary}\label{QuillensTheorem}
-The map $\sheaf O_{\moduli{fgl}} \to MU_*$ classifying the formal group law on $MU_*$ is an isomorphism.
+The natural map $\sheaf O_{\moduli{fgl}} \to MU_*$ classifying the formal group law on $MU_*$ is an isomorphism.
 \end{corollary}
 \begin{proof}
 We proved in \Cref{QuillenSurjective} that this map is surjective.  We also proved in \Cref{RationalFGLsHaveLogarithms} that every rational formal group law has a logarithm, i.e., the long composite on the second row
@@ -890,7 +875,7 @@ We proved in \Cref{QuillenSurjective} that this map is surjective.  We also prov
 \sheaf O_{\moduli{fgl}} \otimes \Q \arrow{r} & MU_* \otimes \Q \arrow["\simeq"]{r} & (H\Z_* MU) \otimes \Q
 \end{tikzcd}
 \end{center}
-is an isomorphism.  It follows from \Cref{DummyLazardsThm} that the top-left horizontal map is injective, hence an isomorphism.
+is an isomorphism.  It follows from \Cref{DummyLazardsThm} that the left-most vertical map is injective, hence the top-left horizontal map is injective, hence it is an isomorphism.
 \end{proof}
 
 \begin{corollary}
@@ -899,11 +884,6 @@ The ring $\pi_*(MU \sm MU)$ carries the universal example of two strictly isomor
 \begin{proof}
 Combine \Cref{OrientationsOnEAndMU} and \Cref{QuillensTheorem}.
 \end{proof}
-
-
-
-
-\todo{Make a point about the difference between the two ``moduli problems'' here (or in the context lecture, Lecture 3.1): the natural map $\CatOf{RingSpectra}(MU \mmod MU \sm MU, E) \to \moduli{fg}(E_*)$ given by passing to homotopy groups hits \emph{at most one} connected component.  See also the beginning of the next Case Study for a relevant todo.}
 
 
 
