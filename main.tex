@@ -2,9 +2,26 @@
 
 \input{preamble}
 
-\title{Formal Geometry and Bordism Operations \\ \vspace{0.5\baselineskip} \small{Lecture notes}}
+% if these change, be sure to update the pdf metadata in preamble.tex
+\title{Formal Geometry and Bordism Operations}% \\ \vspace{0.5\baselineskip} \small{Lecture notes}}
 \author{Eric Peterson}
-\date{{\footnotesize Compiled: \today \\ Git hash: {\gitAbbrevHash}{\gitDirty}}}
+% \date{{\footnotesize Compiled: \today \\ Git hash: {\gitAbbrevHash}{\gitDirty}}}
+
+
+
+
+% --- REMOVE ME EVENTUALLY ---
+
+\let\oldTodo\todo
+\newcounter{todocounter}
+\setcounter{todocounter}{0}
+\renewcommand{\todo}{\addtocounter{todocounter}{1}\oldTodo}
+
+% --- END REMOVE ME EVENTUALLY ---
+
+
+
+
 
 \begin{document}
 
@@ -28,13 +45,24 @@
 
 \todo[inline]{Should sections have subsections?  Does that help organize the TOC?}
 
-\todo[inline]{Hood wrote a macro called sumfgl (see also sumF and sumG) that will make a bunch of formal group law expressions typeset better. Propagate that change through.}
-
-\todo[inline]{http://tex.stackexchange.com/questions/53513/hyperref-token-not-allowed has information on how to make the PDF Bookmarks warnings go away. You can't use this until after you drop the date prefix macro.}
+\todo[inline]{Hood wrote a macro called sumfgl (see also sumF and sumG) that will make a bunch of formal group law expressions typeset better. Propagate that change through.  Consider also the adjunct macro in the preamble.  (Jay says that left-adjoints should be on top in general.)}
 
 \todo[inline]{Make sure you use either $\id$ or $1$ everywhere to denote the identity morphism.}
 
 \todo[inline]{You're not very consistent about using $\G$ or $\Gamma$ to denote an arbitrary formal group. It seems like you use one or the other based on your preference of whether it has finite height or not.}
+
+\todo[inline]{Eliminate contractions.}
+
+\todo[inline]{Eliminate filler words like ``things''.}
+
+\todo[inline]{Make sure that ``Case Study'' and ``Lecture'' are OK names by Springer's standards. If they aren't, do a careful search-and-replace for them.}
+
+\todo[inline]{Double check that you're careful about choosing consistent names for your objects: $S = \Spec R$ is the base scheme, that sort of thing.}
+
+\todo[inline]{Be consistent about $\sheaf O_X$ vs $\sheaf O(X)$, and similarly with $\sheaf I_D$ versus $\sheaf I(D)$.}
+
+\todo[inline]{Be consistent about ``$\S$'' versus ``$\S^0$'' for the standard sphere spectrum.}
+
 
 
 
@@ -72,8 +100,20 @@
 
 \backmatter
 
-\bibliographystyle{plain}
+\bibliographystyle{alpha}
 \bibliography{main}
+
+
+
+% --- REMOVE ME EVENTUALLY ---
+
+\newpage
+
+Number of to-dos used: \thetodocounter
+
+% --- END REMOVE ME EVENTUALLY ---
+
+
 
 
 
@@ -118,6 +158,18 @@ This is 9.6.4 in the Crystals notes.
 
 
 
+\begin{lemma}[{\cite[Proposition 4.6]{StricklandFSFG}}]
+A functor $X\co \CatOf{Algebras} \to \CatOf{Sets}$ is a formal scheme exactly when
+\begin{enumerate}
+\item $X$ preserves finite limits.
+\item There exists a family of maps $X_i \to X$ from a set of $S$--schemes $X_i$ such that the induced map \[\coprod_i X_i(T) \to X(T)\] is jointly surjective for all test algebras $T$. \qed
+\end{enumerate}
+\end{lemma}
+
+
+
+
+
 $MUP$ happens to be the Thom spectrum of $BU \times \Z$.
 
 
@@ -141,53 +193,30 @@ $MUP$ happens to be the Thom spectrum of $BU \times \Z$.
 
 + Lemma and proof: homomorphisms $F \to G$ of $\F_p$-FGLs factor as $F \to G' \to G$, where $G' \to G$ is a Frobenius isogeny and $F \to G'$ is invertible.
 + Definition of height.  Examples: $\G_a$ and $\G_m$.
-+ Redefinition of height as the log-$p$ rank of the $p$-torsion.
 + Logarithms for FGLs over torsion-free rings.  The integral equation.  Height as radius.
 
 ---Day 4
 
-+ A picture of $\moduli{fg} \times \Z_{(p)}$
-+ Definition of ``deformation''
 + Plausibility argument for square-zero deformations being classified by ``$\Ext^1(\G; M \otimes \G_a)$''
-+ Theorem statement: $\Ext^*(\G; \G_a)$ is computed by $H^* \operatorname{Hom}(B\G, \G_a)(R)$.
-+ Theorem statement: That cochain complex is quasi-isomorphic to Lazarev's infinitesimal complex.
-+ Proofs: Infinitesimal homomorphisms gives 1-cocycles, infinitesimal deformations give 2-cocycles.
-+ Theorem statement (Lubin—Tate): $H^0$, $H^1$, $H^2$ calculations.
-+ Implications for Bockstein spectral sequence computing infinitesimal deformations.
-+ Clarification about relative deformations and what ``arithmetic deformation'' means
 
 ---Day 5
 
-+ The rational complex bordism ring.
-+ Quillen’s theorem as refining rational complex genera to integral ones.
 + Honda’s theorem about $\zeta$--functions as manufacturing integral genera.
-+ A statement of Landweber's theorem about regularity, stacky interpretation, no proof.
 + Definition of forms of a module, map to Galois cohomology
 + Computation of the Galois cohomology for: $H\F_p$, $MU/p$, $KU/p$
 + Computation of the Galois cohomology for $\G_m$, explicit description of the invariant via the $\zeta$--function
 + Morava’s sheaf over $L_1(\Z_p^{nr})$, Gamma-equivariance and transitivity, Conner—Floyd
 + Identification of $L_1 / \Gamma$ with $\moduli{fg}^{\le 1}$, connection to LEFT.
 
----Day 6
-
-+ The invariant differential.
-+ de Rham cohomology in positive characteristic.  The de Rham cohomology of $\A^1 / \F_p$.
-+ Cohomologically invariant differentials and the functor $D$.
-+ Crystalline properties of $D$.  The map $F$.
-+ The Dieudonne functor, the main theorem.
-
 ---Future topics
 
 + The main theorem of class field theory
 + Lubin and Tate's construction of abelian extensions of local number fields
 + Description of the Lubin--Tate tower and the local Langlands correspondence
-+ Lazard's theorem
 + Uniqueness of $\O_K$-module structure in characteristic zero
-+ $p$-typification
 + Construction of the spectra $MU$, $BP$, $E(n)$, $K(n)$, $E_n$
 + Goerss--Hopkins--Miller and Devinatz--Hopkins
 + Gross--Hopkins period map and the calculation of the Verdier dualizing sheaf on $LT_n$
-+ The Ravenel--Wilson calculation, exterior powers of $p$-divisible groups
 + Kohlhaase's Iwasawa theory
 + Lubin's dynamical results on formal power series
 + Classification of field spectra
@@ -200,9 +229,6 @@ $MUP$ happens to be the Thom spectrum of $BU \times \Z$.
 
 \subsection*{Ideas}
 \begin{enumerate}
-
-\item Singer--Stong calculation of $H^* BU[2k, \infty)$. [ASIDE: $H\F_2^* ko$ and the Hopf algebra quotient of $\A_*$.]
-
 \item Ando, Hopkins, Strickland on $H_\infty$--orientations and the norm condition
 \item The rigid, real $\sigma$--orientation: AHR. Its effect in homology.
 \item The Rezk logarithm and the Bousfield--Kuhn functor
@@ -211,15 +237,11 @@ $MUP$ happens to be the Thom spectrum of $BU \times \Z$.
 \item Matt's calculation of $E_\infty$--orientations of $K(1)$--local spectra using the short free resolution of $MU$ in the $K(1)$--local category
 
 ---------------------
-\item Cartier duality
-\item Subschemes and divisors
-\item Coalgebraic formal schemes
 \item \textit{Forms of $K$--theory}, Elliptic spectra, Tate $K$--theory, $\TMF$
 \item What are Weil pairings for geometers?
 \item The Atiyah--Bott--Shapiro orientation (Is there a complex version of this? I understand it as a splitting of $M\Spin$...)
 \item Sinkinson's calculation and $M\BP\<m\>$--orientations
 \item Hovey--Ravenel on nonorientations of $E_n$ by $MO[k, \infty)$. Other things in H--R?
-\item Wood's cofiber sequence and $KO_{(p \ge 3)}$
 \item The Serre--Tate theorem
 \item The fundamental domain of $\pi_{GH}$
 \item Orientations and the functor $\gl_1$.
@@ -231,23 +253,11 @@ $MUP$ happens to be the Thom spectrum of $BU \times \Z$.
 
 \subsection*{Resources}
 
-Ando, Hopkins, Strickland (Theorem of the Cube)
-
-Ando, Hopkins, Strickland ($H_\infty$ map)
-
-Ando, Strickland
-
 Ando, Hopkins, Rezk
 
 Barry Walker's thesis
 
-Bill Singer's thesis, Bob Stong's \textit{Determination}
-
 Morava's \textit{Forms of $K$--theory}
-
-Neil's Functorial Philosophy for Formal Phenomena
-
-Ravenel, Wilson
 
 Kitchloo, Laures, Wilson
 
@@ -268,7 +278,7 @@ What follows are notes from other talks I've given about quasi-relevant material
 
 
 
-%\include{dreck}
+% \include{dreck}
 
 
 \end{document}

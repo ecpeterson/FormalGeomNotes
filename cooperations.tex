@@ -70,6 +70,7 @@ Ignoring for the moment what the correct scheme-theoretic analogue of this might
 
 \begin{definition}\todo{Can this definition be made without specifying the grading as such and instead using a $\G_m$--action?}
 A Hopf ring $A_{*, *}$ over a graded ring $R_*$ is itself a graded ring object in the category $\CatOf{Coalgebras}_{R_*}$, sometimes called an $R_*$--coalgebraic graded ring object.  It has the following structure maps:
+\todo{So this is sort of like a Hopf algebra/algebroid except with an extra grading ($s$), which corresponds to the fact that elements of $E_*\underline{E}_m$ correspond to maps where the source has no grading/ has any grading (just like the elements in stable $E_*E$), but the target comes from a specific level in the $\Omega$-spectrum. Maybe mention something to this effect? -EB}
 \begin{align*}
 + & \co A_{s, t} \times A_{s, t} \to A_{s, t} & \text{($A_{s, t}$ is an abelian group)} \\
 \cdot & \co R_{s'} \otimes_{R_*} A_{s, t} \to A_{s+s', t} & \text{($A_{*, t}$ is a $R_*$--module)} \\
@@ -324,8 +325,13 @@ Next time, we will investigate $F_* \OS{E}{*}$ in the more modest and concrete s
 
 
 
+
+
+
+
 \section{Complex-orientable cooperations}\label{COableCoopnsII}
 \todo{Jeremy found a paper (Chan's \textit{A simple proof that the unstable (co-)homology of the Brown--Peterson spectrum is torsion-free}, see also Wilson's Primer's Section 10) where $H_* \OS{BP}{2*}$ is proven to be bipolynomial (and even!) without any Hopf ring rigamarole. It looks like the method of proof is not very different from the Hopf ring one, but it's much shorter... and maybe the result will fall out of the Dieudonne module calculations anyhow?  Consider it as an option after you break this lecture in two.}
+\todo{Ravenel and Wilson also tell you how to get a basis of $\ast$--indecomposables, which they call ``allowable'' monomials.  Might be worth mentioning.}
 \citeme{Pages 266--270 of Ravenel--Wilson, especially the bottom of 268.}
 
 \begin{center}
@@ -427,7 +433,7 @@ This is an impressively broad theorem: the loopspaces $\OS{MU}{2*}$ are quite co
 Our goal today is strictly algebraic.  Because the category of finite type commutative and cocommutative Hopf algebras over a ground field $k$ is an abelian category, it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \textit{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, including three different presentations of the equivalence.\footnote{Emphasis on ``\emph{some of the results}''.  Dieudonn\'e theory is an enormous subject with many interesting results both internal and connected to arithmetic geometry, which we'll explore almost none of.}
 
 \citeme{Weinstein's geometry of Lubin--Tate spaces notes}
-Start with a formal line $V$ over a ground ring $A$, let $\G$ denote $V$ equipped with a group structure, and let $\Omega^1_{V/k}$ be the module of K\"ahler differentials on $V$.  We have previously been interested in the \textit{invariant differentials} $\omega_{\G} \subseteq \Omega^1_{V/A}$ on $V$, back when we first discussed logarithms in \Cref{RationalFGLsHaveLogarithms}.  Such a differential gave rise to a logarithm through integration, in the case that $A$ was a $\Q$--algebra.  However, if $A$ had positive characteristic $p$ then there would be an obstruction to integrating terms with exponents of the form $-1 \pmod p$, which in turn led us to the notion of $p$--height explored in \Cref{MfgI:Height}.
+Start with a formal line $V$ over a ground ring $A$, let $\G$ denote $V$ equipped with a group structure, and let $\Omega^1_{V/A}$ be the module of K\"ahler differentials on $V$.  We have previously been interested in the \textit{invariant differentials} $\omega_{\G} \subseteq \Omega^1_{V/A}$ on $V$, back when we first discussed logarithms in \Cref{RationalFGLsHaveLogarithms}.  Such a differential gave rise to a logarithm through integration, in the case that $A$ was a $\Q$--algebra.  However, if $A$ had positive characteristic $p$ then there would be an obstruction to integrating terms with exponents of the form $-1 \pmod p$, which in turn led us to the notion of $p$--height explored in \Cref{MfgI:Height}.
 
 A slightly different twist on this set-up leads to a new story entirely.  Recall that $\Omega^1_{V/A}$ forms the first level of the \textit{algebraic de Rham complex} $\Omega^*_{V/A}$.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that the identity $\mu^* - \pi_1^* - \pi_2^* = 0$ \todo{What are $\mu$, $\pi_1$ and $\pi_2$?} holds \emph{at the chain level}.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the algebraic de Rham complex.  This condition begets a sub--$A$--module $D(\G/A)$ of $H^1_{dR}(\G/A)$ consisting of those $1$--forms which are cohomologically translation invariant.
 
@@ -590,7 +596,7 @@ The functor $D_*\co \CatOf{HopfAlgebras}^{>0, \fin}_{\F_p/} \to \CatOf{GradedDMo
 \todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
 \todo{Weinstein's Section 1 also ends with a discussion of the Dieudonn\'e functor extended to the crystalline site.  This is necessary to get access to the period map.}
 \todo{Definition of the inverse functor to the Dieudonn\'e module functor?  I think this appears in the formal groups notes.}
-\todo{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...}
+\todo{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...  ---  Actually, Remark 18.1 in FPFP says that this is an unhealthy way to think about $H_* BU$.  Very interesting.}
 \todo{You could also try to give the Devinatz--Hopkins formula for the stabilizer action.  It's entirely a matter of different presentations of the Dieudonn\'e module... although it may require you to understand Dieudonn\'e crystals, which you are \emph{not} up for.}
 \todo{Include this remark:  However, the subspace of $M$ spanned by $\omega_{\G}$ is \emph{sensitive to choice of lift}, unlike the rest of this construction.  This observation is the wellspring of the Gross--Hopkins period map.}
 
@@ -785,7 +791,7 @@ To see this, note that because $E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}$ i
 
 
 
-\section{Cooperations and geometric points on $\moduli{fg}$}
+\section{Cooperations and geometric points on \texorpdfstring{$\moduli{fg}$}{Mfg}}
 
 Throughout today, we will write $K$ for a Morava $K$--theory $K_\Gamma$ (which, if you like, you can take to be $K(d)$) and $A$ for a finitely generated abelian group, and $H$ for the associated Eilenberg--Mac Lane spectrum.  Our goal is to study the unstable mixed cooperations $K_* \OS{H}{*}$, which we expect to be connected to formal group homomorphisms $\Gamma \to \G_a$ but which isn't covered by any of the cases studied thus far.  This calculation is interesting to us for two reasons:
 \begin{enumerate}
@@ -873,7 +879,7 @@ If $\G$ is a connected $p$--divisible group over a field $k$, then $H^*(\G; \G_a
 As a formal scheme, $(\OS{HC_{p^\infty}}{q+1})_K$ is a formal variety of dimension $\binom{d-1}{q}$.
 \end{corollary}
 \begin{proof}
-By setting $\G = (\OS{HC_{p^\infty}}{q})_K$, the Lemma gives us access to the $E^2$--page of our cohomological bar spectral sequence.  We can calculate the dimension of $H^1$ to be\todo{I have tried several times to figure out where this comes from, using tools from the beginning of H--L Section 2.2, but I haven't really convinced myself.  It must have something to do with the dimension of the Dieudonn\'e module of $\G$ minus the dimension of the image of $F$ --- or something?} \[\dim_k H^1((\OS{H\C_p}{q})_K; \G_a) = \height (\OS{HC_{p^\infty}}{q})_K - \dim (\OS{HC_{p^\infty}}{q})_K = \binom{d}{q-1} - \binom{d-1}{q-1} = \binom{d-1}{q}.\]  It follows that the $E_2$--page of this spectral sequence is a polynomial $k$--algebra on $\binom{d-1}{q}$ generators, concentrated in even degrees, so that the spectral sequence collapses and $K^0 \OS{HC_{p^\infty}}{q+1}$ is a power series algebra on as many generators.
+By setting $\G = (\OS{HC_{p^\infty}}{q})_K$, the Lemma gives us access to the $E^2$--page of our cohomological bar spectral sequence.  We can calculate the dimension of $H^1$ to be\todo{I have tried several times to figure out where this comes from, using tools from the beginning of H--L Section 2.2, but I haven't really convinced myself.  It must have something to do with the dimension of the Dieudonn\'e module of $\G$ minus the dimension of the image of $F$ --- or something?}\todo{I think I see how this is supposed to work out, do you think the detail is worth adding? In any case maybe we can talk about it since I'm not sure I'm right -AY} \[\dim_k H^1((\OS{H\C_p}{q})_K; \G_a) = \height (\OS{HC_{p^\infty}}{q})_K - \dim (\OS{HC_{p^\infty}}{q})_K = \binom{d}{q-1} - \binom{d-1}{q-1} = \binom{d-1}{q}.\]  It follows that the $E_2$--page of this spectral sequence is a polynomial $k$--algebra on $\binom{d-1}{q}$ generators, concentrated in even degrees, so that the spectral sequence collapses and $K^0 \OS{HC_{p^\infty}}{q+1}$ is a power series algebra on as many generators.
 \end{proof}
 
 In order to continue the induction, we now have to identify the group structure on $(\OS{HC_{p^\infty}}{q+1})_K$.  This is done using the theory of Dieudonn\'e modules:
@@ -882,6 +888,7 @@ In order to continue the induction, we now have to identify the group structure 
 
 Let $q \ge 1$ be an integer.  Suppose, in addition to the inductive hypotheses above, that the sequence of group schemes\todo{Figure out this formatting. I should be able to just set the fraction to be ``inline'' rather than displaymode, but I don't know how to do that.} \[(\OS{H(\frac{1}{p}\Z_p / \Z_p)}{q})_K \to (\OS{H(\Q_p/\Z_p)}{q})_K \to (\OS{H(\Q_p / \frac{1}{p}\Z_p)}{q})_K \to K_0\] is exact, and that the map \[\theta^q\co \Q_p / \Z_p \otimes M(\CP^\infty_K)^{\wedge q} \to M((\OS{H(\Q_p/\Z_p)}{q})_K)\] is an isomorphism.  Then $\theta^{q+1}$ is an isomorphism and the formal group $\OS{H(\Q_p/\Z_p)}{q+1}$ is a connected $p$--divisible group with height $\binom{d}{q+1}$ and dimension $\binom{d-1}{q}$.
 \todo{At one point this statement contained the phrase ``$K(n)$-good'' whose meaning I do not know.}
+\todo{my understanding: in their induction, they need two properties of the EM spaces which together they call K(n)-good: first it means that the K(n) homology is in even degrees, so that the $K(n)_0$ determines the $K(n)_*$.  Second, it means that $K(n)_0(X)$ is the union of its $p^t$ torsion over all $t$.  It seems like this allows them to define the Dieudonne module on $K(n)_0(X)$, since DM is originally defined for connected Hopf algebras, and then it gets extended to p-nilpotent ones via a general construction (see section 1.4 of ambidexterity).  I'm sort of curious why they use $K(n)$-homology throughout the paper though. -AY}
 \end{theorem}
 \begin{proof}[Proof sketch]
 \todo{Jay asked about the edge case of $\theta^1$, where the only interesting thing happening is the $p$--adic equivalence.  That might be worth expanding in a Remark.}

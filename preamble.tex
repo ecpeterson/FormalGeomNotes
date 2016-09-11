@@ -3,9 +3,12 @@
 % \usepackage{fullpage}
 % \usepackage{savetrees}
 % \usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[pdftex,
+            pdfauthor={Eric Peterson},
+            pdftitle={Formal Geometry and Bordism Operations}]{hyperref}
 \usepackage{amssymb}
 \usepackage{stmaryrd}
-\usepackage{hyperref}
+
 \usepackage[version warn]{sseqpages/sseqpages}
 %\usepackage{stmaryrd}
 %\usepackage{MnSymbol}
@@ -91,37 +94,31 @@
 
 \setlength{\marginparwidth}{1in-\marginparsep} % fullpage sets margins to 1in
 
+% todonotes definitions
+
 \newcommand{\oweproof}[1]{\todo[color=red]{\textbf{You owe a proof of: } #1.}}
 \newcommand{\citeme}[1]{\todo[color=green]{\textbf{Cite me: } #1.}}
 \newcommand{\needproof}[1]{\todo[color=magenta]{\textbf{I need to already know: } #1.}}
 
 
+% symbol definitions
 
-\newcommand{\Z}{\mathbb Z}
-\renewcommand{\S}{\mathbb S}
-\newcommand{\F}{\mathbb F}
-\newcommand{\G}{\widehat{\mathbb G}}
+\input{letter-symbols.tex}
+
+\setchars{\mathbb}{NZQRCSFPWH} % (or \setchars{\mathbb{#1}}{NZQRC} **)
+\setchars{\mathcal}{LHO}  % (or \setchars{\mathcal{#1}}{O} **)
+\setchars{\widehat{\mathbb{#1}}}{AG}
+\setchars{\mathfrak}{mhp}
+
 \newcommand{\barG}{\overline{\mathbb G}}
-\newcommand{\R}{\mathbb R}
 \newcommand{\RP}{\R\mathrm P}
-\newcommand{\C}{\mathbb{C}}
 \newcommand{\CP}{\C\mathrm P}
-\newcommand{\A}{\widehat{\mathbb{A}}}
-\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\HP}{\H\mathrm P}
 \newcommand{\FH}{\textbf{FH}}
 \newcommand{\CH}{\textbf{CH}}
-\renewcommand{\L}{\mathcal{L}}
-\renewcommand{\H}{\mathcal{H}}
-\renewcommand{\P}{\mathbb{P}}
-\newcommand{\W}{\mathbb W}
-\newcommand{\m}{\mathfrak m}
-\renewcommand{\O}{\mathcal O}
 \renewcommand{\t}{\mathbf t}
 \newcommand{\Gm}{\mathbb G_m}
-\newcommand{\h}{\mathfrak h}
 \newcommand{\ThomDivisor}{\mathbb D}
-\renewcommand{\H}{\mathbb H}
-\newcommand{\HP}{\H\mathrm P}
 
 \newcommand{\<}{\langle}
 \renewcommand{\>}{\rangle}
@@ -138,12 +135,12 @@
 \newcommand{\from}{\leftarrow}
 \newcommand{\onto}{\twoheadrightarrow}
 \newcommand{\mhyphen}{\text{-}}
+\newcommand{\adjunct}[4]{{#1}\colon\thinspace{#2} \begin{tikzpicture}[baseline] \draw[>=stealth,->] (0,1ex) -- (0.75,1ex); \draw[>=stealth,->] (0.75,0.25ex) -- (0,0.25ex); \end{tikzpicture}\ {#3}\thinspace\colon{#4}}
 
 \renewcommand{\th}{\textsuperscript{th}}
 \newcommand{\st}{\textsuperscript{st}}
 
-\newcommand{\bigast}{\mathop{\vcenter{\hbox{$\Huge \mathlarger{\mathlarger{\ast}}$}}}}
-% \newcommand{\bigcirc}{\mathop{\Huge \mathlarger{\mathlarger{\circ}}}}
+\newcommand{\bigast}{\mathop{\vcenter{\hbox{$\mathlarger{\mathlarger{\ast}}$}}}}
 
 \newcommand{\context}[1]{\mathcal{M}_{#1}}
 \newcommand{\Ucontext}[1]{\mathcal{UM}_{#1}}
@@ -155,6 +152,7 @@
 \newcommand{\InternalAut}{\operatorname{\underline{\smash{\operatorname{Aut}}}}}
 \newcommand{\InternalEnd}{\operatorname{\underline{\smash{\operatorname{End}}}}}
 \newcommand{\sheaf}[1]{\mathcal{#1}}
+\newcommand{\ThomSheaf}[1]{\mathbb{L}(#1)}
 
 \newcommand{\Spin}{\mathit{Spin}}
 \newcommand{\String}{\mathit{String}}
@@ -171,7 +169,6 @@
 \newcommand{\gpd}{\mathrm{gpd}}
 \newcommand{\ptyp}{p\text{-}\mathrm{typ}}
 \newcommand{\id}{\mathrm{id}}
-\newcommand{\ThomSheaf}[1]{\mathbb{L}(#1)}
 \newcommand{\FGps}{\mathrm{FGps}}
 \newcommand{\fin}{\mathrm{fin}}
 
@@ -206,6 +203,8 @@
 \DeclareMathOperator{\Td}{Td}
 \let\div\undefined\DeclareMathOperator{\div}{div}
 
+% theorem environments
+
 \numberwithin{equation}{section}
 
 % this is for use with amsthm
@@ -227,101 +226,35 @@
 % this is for use with svmono
 \smartqed
 
+% sseqpages definitions
+
+\sseqnewgroup\tower[1]{
+    \class(0,0)
+    \foreach \y in {2,...,#1} {
+        \class(0, \y-1)
+        \structline(0, \y-2, -1)(0, \y-1, -1)
+    }
+}
+
+\sseqnewcmd\etaclass{
+    \class[class labels=above left,\options](\x,\y)
+    \structline(\x-1,\y-1,-1)(\x,\y,-1)
+}
+
+% section headers
+
 \crefname{section}{lecture}{lectures} \Crefname{section}{Lecture}{Lectures}
 \crefname{chapter}{case study}{case studies} \Crefname{chapter}{Case Study}{Case Studies}
 
-\newcounter{whichdate}
-\setcounter{whichdate}{0}
-\newcommand{\lecturedate}{
-    \ifcase\value{whichdate}
-    \or % 1
-        Jan 25%
-    \or % 2
-        Jan 27%
-    \or % 3
-        Jan 29%
-    \or % 4
-        Feb 1%
-    \or % 5
-        Feb 3%
-    \or % 6%
-        Feb 5%
-    \or % 7%
-        Feb 8%
-    \or % 8%
-        Feb 10%
-    \or % 9%
-        Feb 12%
-    \or % 10%
-        Feb 17%
-    \or % 11%
-        Feb 19%
-    \or % 12%
-        Feb 22%
-    \or % 13%
-        Feb 24%
-    \or % 14%
-        Feb 26%
-    \or % 15%
-        Feb 29%
-    \or % 16%
-        Mar 2%
-    \or % 17%
-        Mar 4%
-    \or % 18%
-        Mar 7%
-    \or % 19%
-        Mar 9%
-    \or % 20%
-        Mar 11%
-    \or % 21%
-        Mar 21%
-    \or % 22%
-        Mar 23%
-    \or % 23%
-        Mar 25%
-    \or % 24%
-        Mar 28%
-    \or % 25%
-        Apr 1%
-    \or % 26%
-        Apr 4%
-    \or % 27%
-        Apr 6%
-    \or % 28%
-        Apr 8%
-    \or % 29%
-        Apr 11%
-    \or % 30%
-        Apr 13%
-    \or % 31%
-        Apr 15%
-    \or % 32%
-        Apr 18%
-    \or % 33%
-        Apr 20%
-    \or % 34%
-        Apr 22%
-    \or % 35%
-        Apr 25%
-    \or % 36%
-        Apr 27%
-    \else % >37%
-        POST%
-    \fi%
-}
+% put commas between adjacent footnotes without disturbing hyperref
 
-\newlength{\tocspacerlength}
-\settowidth{\tocspacerlength}{Mar 999: }
-\makeatletter
-\let\oldsection\section
-\newtoks\temptoks
-\def\section#1{%
-    \addtocounter{whichdate}{1}%
-    \temptoks{#1}
-    \edef\temp{
-        \@nx\oldsection[\rlap{\lecturedate:}\hskip\tocspacerlength\the\temptoks]{\lecturedate: \the\temptoks}%
-    }
-    \temp
-}
-\makeatother
+\let\oldFootnote\footnote
+\newcommand\nextToken\relax
+
+\renewcommand\footnote[1]{%
+    \oldFootnote{#1}\futurelet\nextToken\isFootnote}
+
+\newcommand\isFootnote{%
+    \ifx\footnote\nextToken\textsuperscript{,}%
+    \else\ifx\footnotemark\nextToken\textsuperscript{,}\fi%
+    \fi}
