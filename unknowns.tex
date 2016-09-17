@@ -116,11 +116,60 @@ Draw the picture of the period map at $n = 2$, $p = 2$.  The main reference for 
 \end{itemize}
 
 \begin{figure}
-% thanks: Tomasz M. Trzeciak
-% based off of: http://www.latex-community.org/viewtopic.php?f=4&t=2111
-
 \begin{center}
-\begin{tikzpicture}
+
+\pgfdeclareradialshading{myshading}{\pgfpointorigin}
+{
+  color(0cm)=(pgftransparent!100);
+  color(2cm)=(pgftransparent!100);
+  color(2.5cm)=(pgftransparent!0);
+  color(3cm)=(pgftransparent!0)
+}
+\pgfdeclarefading{fading3}{\pgfuseshading{myshading}}
+
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+% thanks to Tomasz M. Trzeciak
+% based off of http://www.latex-community.org/viewtopic.php?f=4&t=2111
+
+\draw (0,0) circle (3);
+
+\begin{scope}
+\pgfsetfading{fading3}{\pgftransformshift{\pgfpoint{0cm}{0cm}}}
+\filldraw[black!5] (0,0) circle (3);
+\end{scope}
+
+\draw[dashed] (0,0) circle (1);
+\coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (O) at (0,0);
+\node[below=5pt] at (O) {$0$};
+
+\draw (O) -- +( 90:1.5) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q1)
+      (O) -- +(210:1.5) coordinate[style={inner sep=0pt,outer sep=0pt,minimum size=3pt, fill=black,circle}] (Q2)
+      (O) -- +(330:1.5) coordinate[style={inner sep=0pt,outer sep=0pt,minimum size=3pt, fill=black,circle}] (Q3);
+
+\draw[black!40] (Q1) -- +(120-90:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q12)
+      (Q1) -- +(240-90:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q13)
+      (Q2) -- +(120-330:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q21)
+      (Q2) -- +(240-330:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q23)
+      (Q3) -- +(120-210:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q31)
+      (Q3) -- +(240-210:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q32);
+
+\draw[black!20] (Q12) -- +(90:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q121)
+      (Q12) -- +(330:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q123)
+      (Q13) -- +(90:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q131)
+      (Q13) -- +(210:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q132)
+      (Q21) -- +(90:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q212)
+      (Q21) -- +(210:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q213)
+      (Q23) -- +(210:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q231)
+      (Q23) -- +(330:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q232)
+      (Q31) -- +(210:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q312)
+      (Q31) -- +(330:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q313)
+      (Q32) -- +(90:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q321)
+      (Q32) -- +(330:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q323);
+\end{tikzpicture}%
+%
+\quad $\xrightarrow{\pi_{GH}}$ \quad%
+%
+\begin{tikzpicture}[baseline=(current bounding box.center)]
 
 \newcommand\pgfmathsinandcos[3]{%
   \pgfmathsetmacro#1{sin(#3)}%
