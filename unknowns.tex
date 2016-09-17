@@ -115,6 +115,49 @@ Draw the picture of the period map at $n = 2$, $p = 2$.  The main reference for 
 \item These quasicanonical points are the ones with nontrivial stabilizers under the action by the Morava stabilizer group --- all the other points belong to free orbits.  (The canonical lift has the largest stabilizer of all.)
 \end{itemize}
 
+\begin{figure}
+% thanks: Tomasz M. Trzeciak
+% based off of: http://www.latex-community.org/viewtopic.php?f=4&t=2111
+
+\begin{center}
+\begin{tikzpicture}
+
+\newcommand\pgfmathsinandcos[3]{%
+  \pgfmathsetmacro#1{sin(#3)}%
+  \pgfmathsetmacro#2{cos(#3)}%
+}
+\newcommand\LongitudePlane[3][current plane]{%
+  \pgfmathsinandcos\sinEl\cosEl{#2} % elevation
+  \pgfmathsinandcos\sint\cost{#3} % azimuth
+  \tikzset{#1/.style={cm={\cost,\sint*\sinEl,0,\cosEl,(0,0)}}}
+}
+\newcommand\DrawLongitudeCircle[2][1]{
+  \LongitudePlane{35}{#2} % first argument is angle of elevation
+  \tikzset{current plane/.prefix style={scale=#1}}
+   % angle of "visibility"
+  \pgfmathsetmacro\angVis{atan(sin(#2)*cos(35)/sin(35))} % these are angle of elevation too
+  % this might assume that the angle of elevation is positive
+  \draw[current plane] (\angVis:1) arc (\angVis:90:1);
+  \draw[current plane,dashed] (\angVis:1) arc (\angVis:-90:1);
+}
+
+% the "2.5" magic number is the radius of the sphere 
+% the "35" magic number is the angle of elevation of the camera
+\pgfmathsetmacro\H{2.5*cos(35)}
+\filldraw[ball color=white] (0,0) circle (2.5);
+\foreach \t in {-5,-125,-245} { \DrawLongitudeCircle[2.5]{\t} }
+\coordinate[style={inner sep=0pt,outer sep=0pt,minimum size=3pt,
+    fill=black,circle}] (O) at (0,-\H);
+\node[below=16pt] at (O) {$0$};
+\coordinate[style={inner sep=0pt,outer sep=0pt,minimum size=3pt,
+    fill=black,circle}] (I) at (0,\H);
+\node[above=16pt] at (I) {$\infty$};
+\end{tikzpicture}
+\end{center}
+
+\caption{The period map at $n = 2$, $p = 2$}
+\end{figure}
+
 \begin{theorem}\citeme{\cite{HopkinsGrossAnnouncement,StricklandGHDuality}}
 \todo{Make sure you get this right.}
 The sheaf $\context{E_\Gamma}(\mathbb I_{\Q/\Z})$ is the dualizing sheaf on $(\moduli{fg})^\wedge_\Gamma$. \qed
