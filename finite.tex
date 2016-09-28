@@ -31,7 +31,7 @@ We have thus assembled a task list:
 \item Describe the geometric points of $\moduli{fg}$.
 \item Analyze their infinitesimal deformation spaces.
 \end{itemize}
-This list will occupy us for the first half of this Case Study.  In the second half, we will exploit these homology theories $E_\Gamma$ and $K_\Gamma$, as well as their connection to $\moduli{fg}$ and to $MU$, to make various structural statements about the category $\CatOf{Spectra}$.  These homology theories are especially well-suited to understanding the subcategory $\CatOf{Spectra}^{\fin}$ of finite spectra, and we will recount several important statements in that setting.  Together with these homology theories, these celebrated results, collectively called the nilpotence and periodicity theorems, form the basis of \textit{chromatic homotopy theory}.  In fact, our \emph{real} goal in this Case Study is to give an introduction to the chromatic perspective that remains in line with our algebro-geometrically heavy narrative.
+These will occupy our attention for the first half of this Case Study.  In the second half, we will exploit these homology theories $E_\Gamma$ and $K_\Gamma$, as well as their connection to $\moduli{fg}$ and to $MU$, to make various structural statements about the category $\CatOf{Spectra}$.  These homology theories are especially well-suited to understanding the subcategory $\CatOf{Spectra}^{\fin}$ of finite spectra, and we will recount several important statements in that setting.  Together with these homology theories, these celebrated results, collectively called the nilpotence and periodicity theorems, form the basis of \textit{chromatic homotopy theory}.  In fact, our \emph{real} goal in this Case Study is to give an introduction to the chromatic perspective that remains in line with our algebro-geometrically heavy narrative.
 
 
 \todo{still need to talk about closed and open subschemes, their basic properties}
@@ -47,6 +47,8 @@ This list will occupy us for the first half of this Case Study.  In the second h
 
 
 \section{Descent and the context of a spectrum}\label{StableContextLecture}
+
+\todo{You are sloppy about $EP_0$ versus $E_*$ in this lecture.  Pretty sure you mean to choose $EP_0$ and be done with it.}
 
 In \Cref{HopfAlgebraLecture} we took for granted the $H\F_2$--Adams spectral sequence, which had the form \[E_2^{*, *} = H^*_{\mathrm{gp}}(\InternalAut(\G_a); \widetilde{H\F_2P_0 X}) \Rightarrow \pi_* X^\wedge_2,\] where we had already established some yoga by which we could identify the dual Steenrod coaction on $H\F_2P_0 X$ with an action of $\InternalAut{\G_a}$ on its associated quasicoherent sheaf over $\Spec \F_2$.  Our goal in this Lecture is to revise this tool to work for other ring spectra $E$ and target spectra $X$, eventually arriving at a spectral sequence with signature \[E_2^{*, *} = H^*(\context{E}; \context{E}(X)) \Rightarrow \pi_* X.\]  In particular, we will encounter along the way the object ``$\context{E}$'' envisioned in the introduction to this Case Study.
 
@@ -182,7 +184,13 @@ A ring spectrum $E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis,
 \end{definition}
 
 \begin{definition}
-A ring spectrum $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is flat.\footnote{If $E$ is a commutative ring spectrum, then this is equivalent to asking that the left-unit map is a flat map of $E_*$--modules.}  In this case, the Segal map \[(E_* E)^{\otimes_{E_*} j} \otimes_{E_*} E_* X \to \pi_*(E^{\sm (j+1)} \sm X) = \pi_* \mathcal D_E(X)[j]\] is an isomorphism for all $X$.  In geometric language, this says that $\context{E}$ is valued in simplicial sets equivalent to nerves of groupoids and that \[\context{E}(X) := \widetilde{\pi_* \mathcal D_E(X)}\] forms a Cartesian quasicoherent sheaf over $\context{E}$.
+A ring spectrum $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is flat.\footnote{If $E$ is a commutative ring spectrum, then this is equivalent to asking that the left-unit map is a flat map of $E_*$--modules.}  In this case, the Segal map \[(E_* E)^{\otimes_{E_*} j} \otimes_{E_*} E_* X \to \pi_*(E^{\sm (j+1)} \sm X) = \pi_* \mathcal D_E(X)[j]\] is an isomorphism for all $X$.  In geometric language, this says that $\context{E}$ is valued in simplicial sets equivalent to nerves of groupoids and that \[\context{E}(X) := \widetilde{\pi_* \mathcal D_E(X)}\] forms a Cartesian quasicoherent sheaf over $\context{E}$.  In this sense, we have constructed a factorization
+\begin{center}
+\begin{tikzcd}
+\CatOf{Spectra} \arrow["E_*(-)"]{rr} \arrow["\context{E}(-)"]{rd} & & \CatOf{Modules}_{E_*} \\
+& \CatOf{QCoh}(\context{E}) \arrow["{(-)[0]}"]{ru} .
+\end{tikzcd}
+\end{center}
 \end{definition}
 
 While {\CH} and {\FH} are enough to guarantee that $\context{E}$ and $\context{E}(X)$ are well-behaved, they still do not exactly connect us with \Cref{StrictCechDescentRemark}.  The main difference is that the ring of homology cooperations for $E$ \[E_*E = \pi_*(E \sm E) = \pi_* \mathcal D_E[1]\] is only distantly related to the tensor product $E_* \otimes_{\pi_* \S} E_*$ (or even $\Tor^{\pi_* \S}_{*, *}(E_*, E_*)$).  This is a trade we are eager to make, as the latter groups are typically miserably behaved, whereas $E_* E$ is typically fairly nice.  In order to take advantage of this, we enlarge our definition to match:
@@ -204,6 +212,7 @@ A Hopf $k$--algebra $H$ gives a Hopf algebroid $(k, H)$.  The scheme of objects 
 
 \begin{lemma}
 For $E$ an $A_\infty$--ring spectrum satisfying {\CH} and {\FH}, the $E_2$--page of its Adams spectral sequence can be identified as
+\todo{Fix the geometric statement here using Claim 8 of Lurie's Lecture 11.}
 \begin{align*}
 E_2^{*, *} & = \Cotor_{E_* E}^{*, *}(E_*, E_* X) \cong H^*(\context{E}; \context{E}(X)) \Rightarrow \pi_* X^\wedge_E.
 \end{align*}
@@ -225,7 +234,7 @@ The context for $MUP$ is considerably more complicated, but Quillen's theorem ca
 \end{example}
 
 \begin{remark}
-The algebraic moduli $\context{MU} = (\Spec MU_*, \Spec MU_* MU)$ and the topological moduli $(MU, MU \sm MU)$ are quite different.  An orientation $MU \to E$ selects a coordinate on the formal group $\CP^\infty_E$, but $\CP^\infty_E$ itself exists independently of the orientation.  Hence, while $\context{MU}(E_*)$ can have many connected components corresponding to \emph{distinct formal groups} on the coefficient ring $E_*$, the $\CatOf{RingSpectra}(\sheaf D_{MU}, E)$ has only one connected component corresponding to the formal group $\CP^\infty_E$ intrinsic to $E$.\footnote{The reader might compare with the situation in explicit local class field theory, where a local number field has a preferred formal group attached to it.}
+The algebraic moduli $\context{MU} = (\Spec MU_*, \Spec MU_* MU)$ and the topological moduli $(MU, MU \sm MU)$ are quite different.  An orientation $MU \to E$ selects a coordinate on the formal group $\CP^\infty_E$, but $\CP^\infty_E$ itself exists independently of the orientation.  Hence, while $\context{MU}(E_*)$ can have many connected components corresponding to \emph{distinct formal groups} on the coefficient ring $E_*$, the groupoid $\CatOf{RingSpectra}(\sheaf D_{MU}, E)$ has only one connected component corresponding to the formal group $\CP^\infty_E$ intrinsic to $E$.\footnote{The reader might compare with the situation in explicit local class field theory, where a local number field has a preferred formal group attached to it.}
 \end{remark}
 
 \begin{remark}\citeme{pg 5 of From Spectra To Stacks by Hopkins in the TMF volume}
@@ -236,12 +245,11 @@ If $E$ is a complex-oriented ring spectrum, then the simplicial sheaf $\context{
 
 
 
-\todo[inline]{Think about what sorts of simplicial sheaves you really want. They seem like they should be valued in something like quasicategories: the stable operations are valued in space-like simplicial sets, the isogenies pile is a sheaf of \emph{categories}, then unstable operations generically have some other weird structure...}
+\todo{Think about what sorts of simplicial sheaves you really want. They seem like they should be valued in something like quasicategories: the stable operations are valued in space-like simplicial sets, the isogenies pile is a sheaf of \emph{categories}, then unstable operations generically have some other weird structure...}
 \todo{We should expand the comparison of a Cartesian q.c.\ sheaf on an affinely presented stack with a module plus structural data.}
 \citeme{Pridham's article \textit{Presenting higher stacks as simplicial schemes} seems like a good reference?  Maybe some Toen things are appropriate?  I don't really know where this simplicial scheme stuff is written down.}
 \todo{Say what open, closed, flat maps of simplicial schemes are?}
 \todo{Jon thinks that this picture can be instructively recast in terms of the cotangent complex.  I'm not sure how, but it's something to keep in mind for later.}
-\todo{The bottom of COCTALOS page 68 has a better interpretation of what picking a formal group law lifting a flat map to $\moduli{fg}$ has to do with anything.  It probably belongs in this Lecture: it's a statement about flatness and a certain degeneracy of simplicial schemes.}
 
 
 
@@ -253,10 +261,18 @@ If $E$ is a complex-oriented ring spectrum, then the simplicial sheaf $\context{
 
 \section{The structure of \texorpdfstring{$\moduli{fg}$}{Mfg} I: The affine cover}\label{MfgI:AffineCover}
 
-\todo{Put a proper lead-in here.}
-\todo{These three lectures are now kind of imbalanced.  The $p$--typical discussion is really long, and Lazard's theorem is not that hard.  They should be rebalanced.}
 
-Today, we will embark on this analysis by studying the scheme $\moduli{fgl}$ which naturally covers the stack $\moduli{fg}$.
+\todo{Consider talking about the stack $\moduli{fg}$ in earnest. Talk about how formal groups admit local coordinates. Talk about Jacob's distinction between $\moduli{fg}$ and $\moduli{fg}^{(1)}$ in terms of the existence of global coordinates.}
+
+
+In \Cref{FHGivesComodules} we gave a factorization
+\begin{center}
+\begin{tikzcd}
+\CatOf{Spectra} \arrow["MUP_0(-)"]{rr} \arrow["\context{MUP}(-)"]{rd} & & \CatOf{Modules}_{MUP_0} \\
+& \CatOf{QCoh}(\context{MUP}) \arrow["{(-)[0]}"]{ru} ,
+\end{tikzcd}
+\end{center}
+and in \Cref{ContextOfMUPExample} we established an equivalence \[\phi\co \context{MUP} \xrightarrow{\simeq} \moduli{fg}.\]  Our program, as outlined in the introduction, is to analyze this functor $\context{MUP}(-)$ by postcomposing it with $\phi^*$ and studying the resulting sheaf over $\moduli{fg}$.  In order to perform such an analysis, we will want a firm grip on the geometry of $\moduli{fg}$, and in this Lecture we begin to study $\moduli{fg}$ by studying its natural cover by the scheme $\moduli{fgl}$.
 
 \begin{definition}
 There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying all bivariate power series:
@@ -264,71 +280,72 @@ There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin w
 \Spec \Z[a_{ij} \mid i, j \ge 0] & \leftrightarrow \left\{ \text{bivariate power series} \right\}, \\
 f \in \Spec\Z[a_{ij} \mid i, j \ge 0](R) & \leftrightarrow \sum_{i, j \ge 0} f(a_{ij}) x^i y^j.
 \end{align*}
-Then, set $\moduli{fgl}$ to be the closed subscheme selected by the formal group law axioms in \Cref{FGLDefinition}.
+Then, $\moduli{fgl}$ is the closed subscheme selected by the formal group law axioms in \Cref{FGLDefinition}.
 \end{definition}
 
-This presentation of $\moduli{fgl}$ as a subscheme appears to be extremely complicated in that its ideal is generated by many hard-to-describe elements, but $\moduli{fgl}$ itself is actually not complicated at all.  We will prove the following theorem:
+This presentation of $\moduli{fgl}$ as a subscheme appears to be extremely complicated in that its ideal is generated by many hard-to-describe elements, but $\moduli{fgl}$ itself is actually not complicated at all.  We will prove the following:
 \begin{theorem}[{\cite[Th\'eor\`eme II]{Lazard}}]\label{LazardsTheorem}
-There is a noncanonical isomorphism \[L_\infty := \sheaf{O}_{\moduli{fgl}} \cong \Z[t_n \mid 1 \le n < \infty]. \qed\]
+There is a noncanonical isomorphism \[\sheaf{O}_{\moduli{fgl}} \cong \Z[t_n \mid 1 \le n < \infty] =: L. \qed\]
 \end{theorem}
-
-The most important consequence of this is \emph{smoothness}:
-\begin{corollary}\label{MfglIsSmooth}
-Given a formal group law $\phi$ over a ring $R$ and a surjective ring map $f\co S \to R$, there exists a formal group law $\widetilde \phi$ over $S$ with \[\phi = f^* \widetilde \phi. \qed\]
-\end{corollary}
-
-\begin{remark}
-\todo{Get rid of this remark entirely.  You don't talk about $n$--buds anymore.}
-One might hope that the filtration above has an immediate geometric realization.  After all, one can consider the $n${\th} order formal neighborhood $\A^{1, (n)}$ of \Cref{FiniteOrderAffineSpaceDefn}.  The appropriate analogue of \Cref{MapsOfFVarsArePowerSeries} shows that a map \[\A^{1, (n)} \times \A^{1, (n)} \to \A^{1, (n)}\] is represented by a bivariate power series, \emph{modulo the ideal $(x^{n+1}, y^{n+1})$}.  This ideal is distinct from $(x, y)^{n+1}$, and so the source scheme of a formal $n$--bud is not the square of $\A^{1, (n)}$, and a formal $n$--bud does \emph{not} determine a group object on some finite scheme.  This is actually a good thing: there are structure theorems preventing many of these intermediate group structures on finite schemes from existing.\citeme{Akhil is who reminded me of this, back in Berkeley.}
-\end{remark}
-
-\todo{There's some hidden text here about $n$--buds, but I don't think we ever care about it.}
-% In addition to the Corollary above, we can deduce the following:
-
-% \begin{corollary}[{cf. \Cref{LazardsTheorem}}]\citeme{Lazard??}
-% There are elements $t_n \in L$, $0 < n < \infty$, such that
-% \begin{align*}
-% L_r & \cong \Z[t_1, t_2, \ldots, t_r], &
-% L_\infty & \cong \Z[t_1, t_2, \ldots, t_r, \ldots],
-% \end{align*}
-% and such that $L_r \to L_{r+1}$ is the evident inclusion. \qed
-% \end{corollary}
-
-% \begin{corollary}[{\cite[Th\'eor\`eme III]{Lazard}}]
-% Given an $r$--bud over $R$, there exists an $(r+1)$--bud extending it. \qed
-% \end{corollary}
-
-\begin{proof}[{Proof of \Cref{LazardsTheorem}}]
-Let $U = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting a ``strict'' exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $U$ by the formula \[x +_U y = \exp(\log(x) + \log(y)),\] classified by a map $u\co L_\infty \to U$. \todo{Why are you writing $L_\infty$ instead of $\sheaf{O}_{\moduli{fgl}}$?}  Modulo decomposables, this map can be computed as \[u(a_{i(n-i)}) = \binom{n}{i} b_{n-1} \pmod{\text{decomposables}}.\]  Writing $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$, the map $Qu$ on degree $2n$ has image the subgroup generated by $d_{n+1} b_n$.  We write $T_{2n}$ for this subgroup.  Using the splitting of $Qu$ from \Cref{Symmetric2CocycleLemma}.4 below, we use the freeness of $U$ to \emph{choose} an algebra splitting \[U \xrightarrow{v} L_\infty \xrightarrow{u} U.\]  The map $v$ is an isomorphism because $uv$ is injective and because we have checked that $v$ is surjective on indecomposables.\todo{This last sentence was a little quick for me.  For example, I don't think you're ``checking'' that $v$ is surjective but more observing that it is so by construction.}\todo{Do the intermediate rings matter here?}
+\begin{proof}
+Let $L = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting a ``strict''\todo{Does the invocation of strictness make you want to talk about $\moduli{fg}$ versus $\moduli{fg}^{(1)}$ earlier?} exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $L$ by the conjugation formula \[x +_! y = \exp(\log(x) + \log(y)),\] which is in turn classified by a map $u\co \sheaf O_{\moduli{fgl}} \to L$.\footnote{This is \emph{not} the universal formal group law.  We will soon see that some formal group laws do not admit logarithms.}  Modulo decomposables, we compute
+\begin{align*}
+x & = \exp(\log(x)) \\
+& = x + \sum_{n=1}^\infty m_n x^{n+1} + \sum_{n=1}^\infty b_n \left( x + \sum_{j=1}^\infty m_j x^{j+1} \right)^{n+1} \\
+& \equiv x + \sum_{n=1}^\infty m_n x^{n+1} + \sum_{n=1}^\infty b_n x^{n+1} \pmod{\text{decomposables}},
+\end{align*}
+hence $b_n \equiv -m_n \pmod{\text{decomposables}}$.  Using this, we then compute
+\begin{align*}
+x +_! y & = \exp(\log(x) + \log(y)) \\
+& = \left( (x + y) + \sum_{n=1}^\infty m_n (x^{n+1} + y^{n+1}) \right) + \sum_{n=1}^\infty b_n \left( (x + y) + \sum_{j=1}^\infty m_j (x^{j+1} + y^{j+1}) \right)^{n+1} \\
+& \equiv x + y + \sum_{n=1}^\infty -b_n (x^{n+1} + y^{n+1}) + \sum_{n=1}^\infty b_n (x+y)^{n+1} \pmod{\text{decomposables}} \\
+& = x + y + \sum_{n=1}^\infty b_n ((x+y)^{n+1} - x^{n+1} - y^{n+1}),
+\end{align*}
+hence \[u(a_{i(n-i)}) \equiv \binom{n}{i} b_{n-1} \pmod{\text{decomposables}}.\]  It follows that the map $Qu$ on degree $2n$ has image the subgroup $T_{2n}$ generated by $d_{n+1} b_n$, where $d_{n+1} = \gcd\left( \binom{n+1}{i} \middle| 0 < k < n + 1 \right)$.  \Cref{LazardSplittingLemma} below provides a canonical splitting of $Qu$, and we couple it to the freeness of $L$ to \emph{choose} an algebra splitting \[L \xrightarrow{v} \sheaf O_{\moduli{fgl}} \xrightarrow{u} L.\]  The map $uv$ is injective, so $v$ is injective.  Furthermore, $Qv$ is designed to be surjective, so $v$ itself is surjective and hence an isomorphism.
 \end{proof}
+
+Recall that we have yet to prove the following Lemma:
+
+\begin{lemma}\label{LazardSplittingLemma}
+There is a canonical splitting $T_{2n} \to (Q \mathcal O_{\moduli{fgl}})_{2n}$.
+\end{lemma}
 
 \begin{definition}\label{DefinitionSymmetric2Cocycle}
-In order to prove the missing \Cref{Symmetric2CocycleLemma}, it will be useful to study the series $+_\phi$ ``up to degree $n$'', i.e., modulo $(x, y)^{n+1}$.  Such a truncated series satisfying the analogues of the formal group law axioms is called a \textit{formal $n$--bud}.  Additionally, a \textit{symmetric $2$--cocycle} is a symmetric polynomial $f(x, y)$ satisfying the equation \[f(x, y) - f(t + x, y) + f(t, x + y) - f(t, x) = 0.\]
+In order to prove the missing \Cref{LazardSplittingLemma}, it will be useful to study the series $+_\phi$ ``up to degree $n$'', i.e., modulo $(x, y)^{n+1}$.  Such a truncated series satisfying the analogues of the formal group law axioms is called a \textit{formal $n$--bud}.\footnote{A formal $n$--bud determines a ``multiplication'' $(\A^1 \times \A^1)^{(n)} \to \A^{1,(n)}$.  Note that this does \emph{not} belong to a group object, since $(\A^1 \times \A^1)^{(n)} \not\simeq \A^{1,(n)} \times \A^{1,(n)}$.  This is the observation that the ideals $(x, y)^{n+1}$ and $(x^{n+1}, y^{n+1})$ are distinct.}  We will additionally be moved to study the difference between a formal $n$--bud and a formal $(n+1)$--bud extending it.  The simplest case of this is when the formal $n$--bud is just the additive law $x +_\phi y = x + y$, in which case any extension to an $(n+1)$--bud has the form $x + y + f(x, y)$ for $f(x, y)$ a homogeneous polynomial of degree $n$.  Symmetry of the group law requires $f(x, y)$ to be symmetric, and associativity of the group law requires $f(x, y)$ to satisfy the equation \[f(x, y) - f(t + x, y) + f(t, x + y) - f(t, x) = 0.\]  Such a polynomial is called a \textit{symmetric $2$--cocycle} (of degree $n$).\footnote{We will justify the ``$2$--cocycle'' terminology in the course of the proof of \Cref{Symmetric2CocycleLemma}.}
 \end{definition}
 
-\begin{lemma}[Symmetric $2$--cocycle lemma (Part 1)]\label{Symmetric2CocycleLemma}
-The following are equivalent:
+\begin{proof}[{Reduction of \Cref{LazardSplittingLemma} to \Cref{Symmetric2CocycleLemma}}]
+We now show that the following conditions are equivalent:
 \begin{enumerate}
-\item Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n).\]
-\item For $F$ is an $r$--bud, the set of $(r+1)$--buds extending $F$ form a torsor under addition for $R_{2n-2} \otimes c_r$.\todo{Things suddenly become graded here --- and you really make use of this.  Explain yourself.}
-\item Any homomorphism $(QL)_{2n} \to A$ factors through the map $(QL)_{2n} \to T_{2n}$.
-\item There is a canonical splitting $T_{2n} \to (QL)_{2n}$.
+\item (\Cref{Symmetric2CocycleLemma}) Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$.
+\item For $F$ is an $n$--bud, the set of $(n+1)$--buds extending $F$ form a torsor under addition for $R \otimes c_n$.
+\item Any homomorphism $(Q\mathcal O_{\moduli{fgl}})_{2n} \to A$ factors through the map $(Q \mathcal O_{\moduli{fgl}})_{2n} \to T_{2n}$.
+\item (\Cref{LazardSplittingLemma}) There is a canonical splitting $T_{2n} \to (Q \mathcal O_{\moduli{fgl}})_{2n}$.
 \end{enumerate}
-\end{lemma}
-\begin{proof}[Equivalences]\renewcommand{\qedsymbol}{}
-Verifying that Claims 1 and 2 are equivalent is a matter of writing out the purported $(r+1)$--buds and taking their difference. \todo{Do you mean write out a $(r+1)$-bud and applying the associativity axiom?}To see that Claim 2 is equivalent to Claim 3, follow the chain \[\CatOf{Groups}((QL)_{2n}, A) \cong \CatOf{Rings}(\Z \oplus (QL)_{2n}, \Z \oplus \Susp^{2n} A) \cong \CatOf{Rings}(L, \Z \oplus \Susp^{2n} A).\]  This shows that such a homomorphism of groups determines an extension of the $n$--bud $\G_a$ to an $(n+1)$--bud, which takes the form of a $2$--cocycle with coefficients in $A$, and hence factors through $T_{2n}$.  Finally, Claim 4 is the universal case of Claim 3.
+
+To verify that Claims 1 and 2 are equivalent, suppose that $x +_\phi y$ is some $(n+1)$--bud and that $x +_\phi' y$ is some $(n+1)$--bud such that \[(x +_\phi' y) = (x +_\phi y) + f(x, y)\] where $f(x, y)$ is homogeneous of degree $(n+1)$.  Symmetry of $x +_\phi' y$ enforces symmetry of $f$, and from associativity we calculate\todo{Typeset me better.}
+\begin{align*}
+(x +_\phi' y) +_\phi' z & = x +_\phi' (y +_\phi' z) \\
+(x +_\phi y + f(x, y)) +_\phi' z & = x +_\phi' (y +_\phi z + f(y, z)) \\
+(x +_\phi y + f(x, y)) +_\phi z + f(x +_\phi y + f(x, y), z) & = x +_\phi (y +_\phi z + f(y, z)) + f(x, y +_\phi z + f(y, z)) \\
+(x +_\phi y) +_\phi z + f(x, y) + f(x + y, z) & \equiv x +_\phi (y +_\phi z) + f(y, z) + f(x, y + z) \pmod{(x, y)^{n+2}},
+\end{align*}
+Conversely, given such an $f(x, y)$, the formal $(n+1)$--bud $+_\phi'$ formed by translating $+_\phi$ by $f$ is again a formal $(n+1)$--bud extending the same formal $n$--bud.
+
+To see that Claim 2 is equivalent to Claim 3, note that a group map \[(Q\mathcal O_{\moduli{fgl}})_{2n} \to A\] is equivalent data to a ring map \[\mathcal O_{\moduli{fgl}} \to Z \oplus A\] with the prescribed behavior on $(Q\mathcal O_{\moduli{fgl}})_{2n}$ and which sends all other indecomposables to $0$..  This shows that such a homomorphism of groups determines an extension of the $n$--bud $\G_a$ to an $(n+1)$--bud, which takes the form of a $2$--cocycle with coefficients in $A$, and hence factors through $T_{2n}$.
+
+Finally, Claim 4 is the universal case of Claim 3.
 \end{proof}
 
-\todo[inline]{Stitch these together better.}
+We will now verify Claim 1 computationally, completing the proof of \Cref{LazardSplittingLemma} (and hence \Cref{LazardsTheorem}).
 
-\begin{lemma}[{Claim 1 of \Cref{Symmetric2CocycleLemma}}]\label{CohomologyOfGa}
-Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n).\]
+\begin{lemma}[Symmetric $2$--cocycle lemma]\label{Symmetric2CocycleLemma}
+Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$.
 \end{lemma}
+\begin{proof}
+We begin with a reduction of the sorts of rings over which we must consider the possible symmetric $2$--cocycles.  First, notice that only the additive group structure of the ring matters: the symmetric $2$--cocycle condition does not involve any ring multiplication.  Second, it suffices to show the Lemma over a finitely generated abelian group, as a particular polynomial has finitely many terms and hence involves finitely many coefficients.  Noticing that the Lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, we couple these facts to the structure theorem for finitely generated abelian groups to reduce to the cases $\Z$ and $\Z/p^r$.  From here, we can reduce to the prime fields: if $A \le B$ is a subgroup and the Lemma is true for $B$, it's true for $A$, so we will be able to deduce the case of $\Z$ from the case of $\Q$.  Lastly, we can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive Bockstein-style argument over the extensions \[(p^{r-1}) / (p^r) \to \Z/p^r \to \Z/p^{r-1}\] and noticing that $(p^{r-1}) / (p^r) \cong \Z/p$ as abelian groups.  Hence, we can now freely assume that our ground object is a prime field.
 
-\begin{proof}\citeme{This follows Chapter 3 of COCTALOS.}
-It suffices to show the Lemma over a finitely generated ring.  In fact, the Lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, so the structure theorem for finitely generated abelian groups reduces to the cases of $\Z$ and $\Z/p^r$.  If $A \subseteq B$ and the Lemma is true for $B$, it's true for $A$, so we can further reduce the $\Z$ case to $\Q$.\todo{Rephrase this in terms of localizations.}  We can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive, Bockstein-style argument.  Hence, we can now freely assume that our ground object is a prime field.
-
-For a formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usual way:
+We now ground ourselves by fitting symmetric $2$--cocycles into a more general homological framework, hoping that we can use such a thing to power a computation.  For a formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usual way:
 \[B\G := \left\{
 \begin{tikzcd}[ampersand replacement=\&]
 \begin{array}{c} * \\ \times \\ * \end{array} \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} \&
@@ -337,13 +354,48 @@ For a formal group scheme $\G$, we can form a simplicial scheme $B\G$ in the usu
 \cdots
 \end{tikzcd}
 \right\}.\]
-By applying the functor $\InternalHom{FormalGroups}(-, \G_a)(k)$, we get a cosimplicial abelian group, hence a cochain complex, of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} the things we've been calling $2$--cocycles\footnote{They aren't obligated to be symmetric, though.}, so we are interested in computing $H^2$.  The first observation in this direction is that $d^1(x^k) = d_k c_k$.  Secondly, one may check that this complex also computes\todo{EB: Why is this?} \[\Cotor_{\sheaf O_{\G}^*}(k, k) \cong \Ext_{\sheaf O_{\G}^*}(k, k),\] which we're now going to compute using a more efficient complex.
+By applying the functor $\InternalHom{FormalSchemes}(-, \G_a)(k)$, we get a cosimplicial abelian group stemming from the group scheme structure on $\G_a$, and this gives a cochain complex of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} the things we've been calling $2$--cocycles\footnote{They aren't obligated to be symmetric or of homogeneous degree, though.}, so we are interested in computing $H^2$.  First, we can quickly compute $B^2$, since $C^1$ is so small: \[d^1(x^k) = d_k c_k.\]  Secondly, one may think of this complex as a resolution computing various\footnote{Refer back to \Cref{ExtAndCotorAgree}.} derived functors \[\Cotor_{\sheaf O_{\G}}(k, k) \cong \Ext_{\sheaf O_{\G}}(k, k) \cong \Tor_{\sheaf O_{\G}^*}(k, k).\]\todo{Do you use ${}^*$ or ${}^\vee$ later for linear dual?}  We are now going to compute these last groups using a more efficient complex.
 
 \begin{itemize}
-\item[$\Q$:] There is a resolution \[0 \to \Q[t] \xrightarrow{\cdot t} \Q[t] \to \Q \to 0,\] from which this follows: \[H^* \InternalHom{FormalGroups}(B\G_a, \G_a)(\Q) = \begin{cases} \Q & \text{when $* = 0$}, \\ \Q & \text{when $* = 1$}, \\ 0 & \text{otherwise}. \end{cases}\] This means that every $2$--cocycle is a coboundary, symmetric or not.
-\item[$\F_p$:] Again, we switch to working with $\Ext$ over a free divided power algebra.  Such an algebra splits as a tensor of truncated polynomial algebras, and again computing a minimal free resolution results in the calculation \[H^* \InternalHom{FormalGroups}(B\G_a, \G_a)(\F_p) = \Lambda[\alpha_k \mid k \ge 0] \otimes \F_p[\beta_k \mid k \ge 0],\] with $\alpha_k \in \Ext^1$ and $\beta_k \in \Ext^2$.  In fact, $\alpha_k$ is represented by $x^{p^k}$ and $\beta_k$ is represented by $c_{p^k}(x, y)$, and in the case $p = 2$ the exceptional class $\alpha_{k-1}^2$ is represented by $C_{2^k}(x, y)$.\todo{I'm not sure how to do any of these calculations! Ha.}  Since we have representatives for the surviving homology classes and we know where the bounding class lives, it follows that $c_n(x, y)$ and $x^{p^a} y^{p^b}$ give a basis for \emph{all} of the $2$--cocycles.  It's easy to select the symmetric ones, and it agrees with the prediction of the statement of the Lemma.
+\item[$\Q$:] There is a free $\Q[t]$--module resolution
+\begin{center}
+\begin{tikzcd}
+& \Q \\
+0 & \Q[t] \arrow{u} \arrow{l} & \Q[t] \arrow["\cdot t"]{l} & 0 \arrow{l},
+\end{tikzcd}
+\end{center}
+to which we apply $(-) \otimes_{\Q[t]} \Q$ to calculate \[H^* \InternalHom{FormalSchemes}(B\G_a, \G_a)(\Q) = \begin{cases} \Q & \text{when $* = 0$}, \\ \Q & \text{when $* = 1$}, \\ 0 & \text{otherwise}. \end{cases}\] This means that every $2$--cocycle is a coboundary, symmetric or not.
+\item[$\F_p$:] Now we are computing $\Ext$ over a free commutative $\F_p$--algebra on one generator with divided powers.  Such an algebra splits as a tensor of truncated polynomial algebras, and again computing a minimal free resolution results in the calculation
+\[H^* \InternalHom{FormalSchemes}(B\G_a, \G_a)(\F_p) =
+\begin{cases}
+\frac{\F_p[\alpha_k \mid k \ge 0]}{\alpha_k^2 = 0} \otimes \F_p[\beta_k \mid k \ge 0] & \text{when $p > 2$}, \\
+\F_2[\alpha_k \mid k \ge 0] & \text{when $p = 2$},
+\end{cases}\] with $\alpha_k \in H^1$ and $\beta_k \in H^2$.  Now that we know what to look for, we can find representatives of each of these classes:
+\begin{itemize}
+\item The class $\alpha_k$ can be represented by $x^{p^k}$, as this is a minimally divisible monomial of degree $p^k$ satisfying the $1$--cocycle condition \[x^{p^k} - (x+y)^{p^k} + y^{p^k} = 0.\]
+\item The $2$--cohomology is concentrated in degrees of the form $p^k$ and $p^j + p^k$, corresponding to $\beta_k$ and $\alpha_j \alpha_k$.  Since $c_{p^k}$ is a $2$--cocycle of the correct degree and not a $2$--coboundary (cf.\ $d^1(x^{p^k}) = d_{p^k} c_{p^k}$, and $p \mid d_{p^k}$), we can use it as a representative for $\beta_k$.  (Additionally, the asymmetric class $\alpha_k \alpha_j$ is represented by $x^{p^k} y^{p^j}$.)
+\item Similarly, in the case $p = 2$ the exceptional class $\alpha_{k-1}^2$ is represented by $c_{2^k}(x, y)$, as this is a $2$--cocycle in the correct degree which is not a $2$--coboundary.
 \end{itemize}
-This finally concludes the proof of \Cref{LazardsTheorem}.
+Given how few $2$--coboundaries and $2$--cohomology classes there are, we conclude that $c_n(x, y)$ and $x^{p^a} y^{p^b}$ give a basis for \emph{all} of the $2$--cocycles.  Of these it is easy to select the symmetric ones, which agrees with our expected conclusion. \qedhere
+\end{itemize}
+\end{proof}
+
+
+
+
+
+
+-------
+
+this belongs in a discussion of how $\moduli{fg}$ and $\moduli{fgl}$ behave with regards to covers
+
+
+The most important consequence of this is \emph{smoothness}:
+\begin{corollary}\label{MfglIsSmooth}
+Given a formal group law $F$ over a ring $R$ and a surjective ring map $f\co S \to R$, there exists a formal group law $\widetilde F$ over $S$ with \[F = f^* \widetilde F.\]
+\end{corollary}
+\begin{proof}
+Identify $F$ with the classifying map $\Spec R \to \moduli{fgl}$.  Employ an isomorphism \[\phi\co \moduli{fgl} \to \Spec L\] afforded by \Cref{LazardsTheorem}, so that $\phi \circ F$ is selected by a sequence of elements $r_n = \phi^* F^*(t_n) \in R$.  Each of these admit preimages $s_n$ through $f$, and we determine a map \[\widetilde{\phi \circ F}\co \Spec S \to \Spec L\] by the formula $\widetilde{\phi \circ F}^* (t_j) = s_j$ and freeness of $L$.  Since $\phi$ is an isomorphism, this determines a map $\widetilde F = \phi^{-1} \circ \widetilde{\phi \circ F}$ factoring $F$.
 \end{proof}
 
 
@@ -527,23 +579,6 @@ The complementary open substack of dimension $d$ is harder to describe.  From fi
 \todo[inline]{I'm not sure where this goes --- maybe it goes right here --- but Allen told me how to give a nice proof of this fact.  He didn't give me a citation for this, but the main point was that flatness can be checked locally, so the general formula for the pullback $\mathcal M_{(A_1, \Gamma_1)} \to \mathcal M_{(L, W)} \from \mathcal M_{(A_2, \Gamma_2)}$ being $\mathcal M_{(A_1 \otimes W \otimes A_2, \Gamma_1 \otimes W \otimes \Gamma_2)}$ specializes to compute the pullback of $\Spec A \to \mathcal M_{(L, W)} \from \Spec E(d)_*$ to be $\mathcal M_{(A \otimes W \otimes E(d)_*, A \otimes W \otimes E(d)_*)} = \Spec (A \otimes W \otimes E(d)_*)$.  But the map $\Spec A \to \mathcal M_{(L, W)}$ factors through $\Spec L$ (*hold on*), so it suffices just to check flatness for $\Spec L \otimes_L W \otimes_L E(d)_* \cong \Spec W \otimes_L E(d)_* \to \Spec E(d)_*$, which you finally do by hand.  For (*hold on*), Lurie gives a nice proof at the end of Lecture 11 (internal to an actual discussion of representability and stacks) of this factorization Lemma, where he uses an iterated decomposition of $\moduli{ps}^{\mathrm{gpd}}$ into extensions of $\mathbb G_m$ by $\mathbb G_a$s, and noting that $H^*(\Spec R; \mathbb G_a)$ vanishes for $* > 0$.}
 \end{remark}
 
-We can now rephrase \Cref{LandwebersStackyTheorem} in terms of algebraic conditions.
-\begin{theorem}[{Landweber, cf.\ \Cref{LandwebersStackyTheorem}, see also \cite[Theorem 21.4 and Proposition 21.5]{HopkinsCOCTALOS}}]\citeme{Find Landweber's original paper}
-\todo{We should really clean this Baer-criterion-style argument up.  It's fuzzy, and it's sort of the main point of this part of the LEFT program.}
-Let $M$ be a module over \[\sheaf O_{\moduli{fg}^{\ptyp}} \cong \Z_{(p)}[v_1, \ldots, v_d, \ldots].\]  If $(p, v_1, \ldots, v_d, \ldots)$ forms an infinite regular sequence on $M$, then \[X \mapsto M \otimes_{\sheaf O_{\moduli{fg}^{\ptyp}}} MU_0(X)\] determines a homology theory \emph{on finite spectra $X$}.  Moreover, if $M/I_d = 0$ for some $d \gg 0$, then the same formula determines a homology theory \emph{on all spectra $X$}.
-\end{theorem}
-\begin{proof}
-This is a direct consequence of the classification of closed substacks of $\moduli{fg}{}_{,(p)}$ in \Cref{LandwebersClassificationOfClosedSubstacks}.  Specifically, $M$ determines a flat quasicoherent sheaf on $\moduli{fg}{}_{,(p)}$ when $\Tor_1(M, N) = 0$ for any other comodule $N$ \todo{Why comodule and not module?  Can you even take $\Tor$ of a module with a comodule?}.  Using the classification of closed substacks and the regularity condition, one can iteratively use the short exact sequences \[0 \to M / I_d \xrightarrow{\cdot v_d} M / I_d \to M / I_{d+1} \to 0\] to trade this condition for the list of conditions
-\begin{itemize}
-\item $\Tor_1(p^{-1} M, N) = 0$.
-\item $\Tor_2(v_1^{-1} M / p, N) = 0$.
-\item \ldots
-\item $\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0$.
-\item $\Tor_{d+1}(M / I_d, N) = 0$.
-\end{itemize}
-for any $d$.  \todo{Can you explain this more?  How is the classification of closed substacks used?  Where are these conditions coming from?}If $N$ is coherent, as in the case $N = MU_*(X)$ for a finite spectrum $X$\todo{Is this true? There's some going-around / extension-problem stuff that I've never understood, and it's gotten me in trouble before.}, then this final condition is satisfied automatically for $d \gg 0$.  (Alternatively, we can assume that $M$ eventually satisfies this condition on its own.)  By observing the length of the Koszul resolution associated to the cover $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$, one finally sees that \[\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0\] is satisfied for \emph{any} quasicoherent sheaf.
-\end{proof}
-
 \begin{remark}
 It's worth pointing out how strange all of this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.  Here, proper open substacks of every dimension appear, and every nonempty closed substack is $\infty$--dimensional (albeit of positive codimension).
 \end{remark}
@@ -689,9 +724,33 @@ PICTURE GOES HERE.
 
 
 
+\section{Chromatic homology theories}
 
-\section{Spectra detecting nilpotence}
+\todo{Consider renaming this section.}
+\todo{The bottom of COCTALOS page 68 has a better interpretation of what picking a formal group law lifting a flat map to $\moduli{fg}$ has to do with anything.  It probably belongs in this Lecture.}
+\todo{This section could be beefed up substantially.  Maybe it could even be combined with the localization section, which needs a trim?}
 
+\todo{This used to be in 3.3.}
+We can now rephrase \Cref{LandwebersStackyTheorem} in terms of algebraic conditions.
+\begin{theorem}[{Landweber, cf.\ \Cref{LandwebersStackyTheorem}, see also \cite[Theorem 21.4 and Proposition 21.5]{HopkinsCOCTALOS}}]\citeme{Find Landweber's original paper}
+\todo{We should really clean this Baer-criterion-style argument up.  It's fuzzy, and it's sort of the main point of this part of the LEFT program.}
+Let $M$ be a module over \[\sheaf O_{\moduli{fg}^{\ptyp}} \cong \Z_{(p)}[v_1, \ldots, v_d, \ldots].\]  If $(p, v_1, \ldots, v_d, \ldots)$ forms an infinite regular sequence on $M$, then \[X \mapsto M \otimes_{\sheaf O_{\moduli{fg}^{\ptyp}}} MU_0(X)\] determines a homology theory \emph{on finite spectra $X$}.  Moreover, if $M/I_d = 0$ for some $d \gg 0$, then the same formula determines a homology theory \emph{on all spectra $X$}.
+\end{theorem}
+\begin{proof}
+This is a direct consequence of the classification of closed substacks of $\moduli{fg}{}_{,(p)}$ in \Cref{LandwebersClassificationOfClosedSubstacks}.  Specifically, $M$ determines a flat quasicoherent sheaf on $\moduli{fg}{}_{,(p)}$ when $\Tor_1(M, N) = 0$ for any other comodule $N$ \todo{Why comodule and not module?  Can you even take $\Tor$ of a module with a comodule?}.  Using the classification of closed substacks and the regularity condition, one can iteratively use the short exact sequences \[0 \to M / I_d \xrightarrow{\cdot v_d} M / I_d \to M / I_{d+1} \to 0\] to trade this condition for the list of conditions
+\begin{itemize}
+\item $\Tor_1(p^{-1} M, N) = 0$.
+\item $\Tor_2(v_1^{-1} M / p, N) = 0$.
+\item \ldots
+\item $\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0$.
+\item $\Tor_{d+1}(M / I_d, N) = 0$.
+\end{itemize}
+for any $d$.  \todo{Can you explain this more?  How is the classification of closed substacks used?  Where are these conditions coming from?}If $N$ is coherent, as in the case $N = MU_*(X)$ for a finite spectrum $X$\todo{Is this true? There's some going-around / extension-problem stuff that I've never understood, and it's gotten me in trouble before.}, then this final condition is satisfied automatically for $d \gg 0$.  (Alternatively, we can assume that $M$ eventually satisfies this condition on its own.)  By observing the length of the Koszul resolution associated to the cover $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$, one finally sees that \[\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0\] is satisfied for \emph{any} quasicoherent sheaf.
+\end{proof}
+
+---
+
+\todo{This used to be in 3.6.}
 \todo{We aren't very clear about where flat maps come from, which should be emphasized early on (i.e., in the introduction), should be reiterated here, and should probably also be reiterated up above in \Cref{OpenSubstacksOfMfg}.}
 
 We have now arrived at the conclusion of our program from \Cref{StructureOfMfgl} for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open and closed substacks of $\moduli{fg}$, and we have analyzed its geometric points as well as their deformation neighborhoods.
@@ -711,6 +770,13 @@ We define the following ``chromatic'' homology theories:
 \todo{Ravenel's Localization W/R/T, Corollaries 2.14 and 2.16, is another reference for this.  He, in turn, cites Yosimura's \textit{Universal coefficient sequences for cohomology theories of CW-spectra}.}
 Morava $K$--theory at the even prime is not commutative.  Instead, there is a derivation $Q_d: K(d) \to \Susp K(d)$ satisfying \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, $K(d)^* X$ is a commutative ring whenever $K(d)^1 X = 0$.
 \end{remark}
+
+
+
+
+
+
+\section{Nilpotence and periodicity in finite spectra}
 
 Having constructed these ``stalk'' homology theories, I want to show that you can actually perform stalkwise analyses of the sheaves coming from bordism theory.  Our example case is a famous theorem: the solution of Ravenel's nilpotence conjectures by Devinatz, Hopkins, and Smith.  Their theorem concerns spectra which ``detect nilpotence'' in the following sense:
 
@@ -770,10 +836,7 @@ This is interesting in its own right, because field spectra are exactly those sp
 
 
 
-
-
-
-\section{Periodicity in finite spectra}
+\todo{There used to be a section break here.}
 
 We're now well-situated to address Ravenel's question about finite spectra and periodic self-maps.  The solution to this problem passes through some now-standard machinery for triangulated $\otimes$--categories. \todo{might suggest introducing a notation for (finite) p-local spectra? And say that $\S$ means the $p$-local sphere; AY}
 
