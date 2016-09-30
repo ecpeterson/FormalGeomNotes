@@ -221,7 +221,7 @@ E_2^{*, *} & = \Cotor_{E_* E}^{*, *}(E_*, E_* X) \cong H^*(\context{E}; \context
 The homological algebra of Hopf algebras from \Cref{HopfAlgebraLecture} can be lifted almost verbatim, allowing us to define resolutions suitable for computing derived functors~\cite[Definition A1.2.3]{RavenelGreenBook}.  This includes the cobar resolution~\cite[Definition A1.2.11]{RavenelGreenBook}, which shows that the associated graded for the coskeletal filtration of $\mathcal D_E(X)$ is a complex computing the derived functors claimed in the Lemma statement.
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{WarningAboutStacks}
 In \Cref{DescentFromHFpToHZp}, we discussed translating from the algebra descent picture to a homotopical one, and a crucial point was how thorough we had to be: we transferred not just to the derived category $D(\Spec R)$ but we also replaced the base ring $R$ with its homotopical incarnation $HR$.  In \Cref{FHGivesComodules}, we have not been as thorough as possible: both $X_0$ and $X_1$ are schemes and hence satisfy a sheaf condition individually, but the functor $(X_0, X_1)$, thought of as valued in homotopy $1$--types, does not necessarily satisfy a homotopy sheaf condition.  Enforcing this descent condition results in the \textit{associated stack}~\cite[Definition 8.13]{HopkinsCOCTALOS}, denoted \[\Spec A \mmod \Spec \Gamma = X_0 \mmod X_1.\]  Remarkably, this does not change the category of Cartesian quasicoherent sheaves --- it is still equivalent to the category of $(A, \Gamma)$--comodules~\cite[Proposition 11.6]{HopkinsCOCTALOS}.  However, several different Hopf algebroids (even those with maps between them inducing natural equivalences of groupoid schemes, as studied by Hovey~\cite[Theorem D]{HoveyMoritaThy}) can give the same associated stack, resulting in surprising equivalences of comodule categories.\footnote{We will employ one of these surprising equivalences in \Cref{OpenSubstacksOfMfg}.}  For the most part, it will not be especially relevant to us whether we are considering the groupoid scheme or its associated stack, so we will not draw much of a distinction.\todo{Maybe this is irresponsible and we should be careful not to be sloppy.}
 \end{remark}
 
@@ -230,11 +230,11 @@ Most of the homology theories we will discuss have these {\CH} and {\FH} propert
 \end{example}
 
 \begin{example}\label{ContextOfMUPExample}
-The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  Quillen's theorem on its face gives an equivalence $\Spec MUP_0 \cong \moduli{fgl}$, but in \Cref{OrientationsOnEAndMU} we also gave a description of $\Spec MUP_0 MUP$: it is the moduli of pairs of formal group laws equipped with an invertible power series intertwining them.  Altogether, this presents $\context{MUP}$ as the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.
+The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  Quillen's theorem on its face gives an equivalence $\Spec MUP_0 \cong \moduli{fgl}$, but in \Cref{OrientationsOnEAndMU} we also gave a description of $\Spec MUP_0 MUP$: it is the moduli of pairs of formal group laws equipped with an invertible power series intertwining them.  Altogether, this presents $\context{MUP}$ as the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.  In view of \Cref{WarningAboutStacks}, there is an important subtlety about the stack $\moduli{fg}$: an $R$--point is a functor on affines over $\Spec R$ which is locally isomorphic to a formal group, but whose local isomorphism \emph{may not patch} to give a global isomorphism.  This does not agree, a priori, with the definition of formal group given in \Cref{DefnFormalGps}, where the isomorphism witnessing a functor as a formal variety was expected to be global.  We will address this further in \Cref{CoordinatizbleFGs} below.
 \end{example}
 
 \begin{remark}
-The algebraic moduli $\context{MU} = (\Spec MU_*, \Spec MU_* MU)$ and the topological moduli $(MU, MU \sm MU)$ are quite different.  An orientation $MU \to E$ selects a coordinate on the formal group $\CP^\infty_E$, but $\CP^\infty_E$ itself exists independently of the orientation.  Hence, while $\context{MU}(E_*)$ can have many connected components corresponding to \emph{distinct formal groups} on the coefficient ring $E_*$, the groupoid $\CatOf{RingSpectra}(\sheaf D_{MU}, E)$ has only one connected component corresponding to the formal group $\CP^\infty_E$ intrinsic to $E$.\footnote{The reader might compare with the situation in explicit local class field theory, where a local number field has a preferred formal group attached to it.}
+The algebraic moduli $\context{MU} = (\Spec MU_*, \Spec MU_* MU)$ and the topological moduli $(MU, MU \sm MU)$ are quite different.  An orientation $MU \to E$ selects a coordinate on the formal group $\CP^\infty_E$, but $\CP^\infty_E$ itself exists independently of the orientation.  Hence, while $\context{MU}(E_*)$ can have many connected components corresponding to \emph{distinct formal groups} on the coefficient ring $E_*$, the groupoid $\CatOf{RingSpectra}(\sheaf D_{MU}, E)$ has only one connected component corresponding to the formal group $\CP^\infty_E$ intrinsic to $E$.\footnote{The reader ought to compare this with the situation in explicit local class field theory, where a local number field has a preferred formal group attached to it.}
 \end{remark}
 
 \begin{remark}\citeme{pg 5 of From Spectra To Stacks by Hopkins in the TMF volume}
@@ -244,7 +244,7 @@ If $E$ is a complex-oriented ring spectrum, then the simplicial sheaf $\context{
 
 
 
-
+\todo{You can build an Adams resolution in the absence of an $A_\infty$ structure too, you just miss the descent picture.}
 \todo{Think about what sorts of simplicial sheaves you really want. They seem like they should be valued in something like quasicategories: the stable operations are valued in space-like simplicial sets, the isogenies pile is a sheaf of \emph{categories}, then unstable operations generically have some other weird structure...}
 \todo{We should expand the comparison of a Cartesian q.c.\ sheaf on an affinely presented stack with a module plus structural data.}
 \citeme{Pridham's article \textit{Presenting higher stacks as simplicial schemes} seems like a good reference?  Maybe some Toen things are appropriate?  I don't really know where this simplicial scheme stuff is written down.}
@@ -261,10 +261,6 @@ If $E$ is a complex-oriented ring spectrum, then the simplicial sheaf $\context{
 
 \section{The structure of \texorpdfstring{$\moduli{fg}$}{Mfg} I: The affine cover}\label{MfgI:AffineCover}
 
-
-\todo{Consider talking about the stack $\moduli{fg}$ in earnest. Talk about how formal groups admit local coordinates. Talk about Jacob's distinction between $\moduli{fg}$ and $\moduli{fg}^{(1)}$ in terms of the existence of global coordinates.}
-
-
 In \Cref{FHGivesComodules} we gave a factorization
 \begin{center}
 \begin{tikzcd}
@@ -272,10 +268,10 @@ In \Cref{FHGivesComodules} we gave a factorization
 & \CatOf{QCoh}(\context{MUP}) \arrow["{(-)[0]}"]{ru} ,
 \end{tikzcd}
 \end{center}
-and in \Cref{ContextOfMUPExample} we established an equivalence \[\phi\co \context{MUP} \xrightarrow{\simeq} \moduli{fg}.\]  Our program, as outlined in the introduction, is to analyze this functor $\context{MUP}(-)$ by postcomposing it with $\phi^*$ and studying the resulting sheaf over $\moduli{fg}$.  In order to perform such an analysis, we will want a firm grip on the geometry of $\moduli{fg}$, and in this Lecture we begin to study $\moduli{fg}$ by studying its natural cover by the scheme $\moduli{fgl}$.
+and in \Cref{ContextOfMUPExample} we established an equivalence \[\phi\co \context{MUP} \xrightarrow{\simeq} \moduli{fg}.\]  Our program, as outlined in the introduction, is to analyze this functor $\context{MUP}(-)$ by postcomposing it with $\phi^*$ and studying the resulting sheaf over $\moduli{fg}$.  In order to perform such an analysis, we will want a firm grip on the geometry of the stack $\moduli{fg}$, and in this Lecture we begin by studying the scheme $\moduli{fgl}$ as well as the natural covering map \[\moduli{fgl} \to \moduli{fg}.\]
 
 \begin{definition}
-There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying all bivariate power series:
+There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying \emph{all} bivariate power series:
 \begin{align*}
 \Spec \Z[a_{ij} \mid i, j \ge 0] & \leftrightarrow \left\{ \text{bivariate power series} \right\}, \\
 f \in \Spec\Z[a_{ij} \mid i, j \ge 0](R) & \leftrightarrow \sum_{i, j \ge 0} f(a_{ij}) x^i y^j.
@@ -285,10 +281,10 @@ Then, $\moduli{fgl}$ is the closed subscheme selected by the formal group law ax
 
 This presentation of $\moduli{fgl}$ as a subscheme appears to be extremely complicated in that its ideal is generated by many hard-to-describe elements, but $\moduli{fgl}$ itself is actually not complicated at all.  We will prove the following:
 \begin{theorem}[{\cite[Th\'eor\`eme II]{Lazard}}]\label{LazardsTheorem}
-There is a noncanonical isomorphism \[\sheaf{O}_{\moduli{fgl}} \cong \Z[t_n \mid 1 \le n < \infty] =: L. \qed\]
+There is a noncanonical isomorphism \[\sheaf{O}_{\moduli{fgl}} \cong \Z[b_n \mid 1 \le n < \infty] =: L. \qed\]
 \end{theorem}
 \begin{proof}
-Let $L = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting a ``strict''\todo{Does the invocation of strictness make you want to talk about $\moduli{fg}$ versus $\moduli{fg}^{(1)}$ earlier?} exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $L$ by the conjugation formula \[x +_! y = \exp(\log(x) + \log(y)),\] which is in turn classified by a map $u\co \sheaf O_{\moduli{fgl}} \to L$.\footnote{This is \emph{not} the universal formal group law.  We will soon see that some formal group laws do not admit logarithms.}  Modulo decomposables, we compute
+Let $L = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting an exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $L$ by the conjugation formula \[x +_! y = \exp(\log(x) + \log(y)),\] which is in turn classified by a map $u\co \sheaf O_{\moduli{fgl}} \to L$.\footnote{This is \emph{not} the universal formal group law.  We will soon see that some formal group laws do not admit logarithms.}  Modulo decomposables, we compute
 \begin{align*}
 x & = \exp(\log(x)) \\
 & = x + \sum_{n=1}^\infty m_n x^{n+1} + \sum_{n=1}^\infty b_n \left( x + \sum_{j=1}^\infty m_j x^{j+1} \right)^{n+1} \\
@@ -339,7 +335,7 @@ Finally, Claim 4 is the universal case of Claim 3.
 
 We will now verify Claim 1 computationally, completing the proof of \Cref{LazardSplittingLemma} (and hence \Cref{LazardsTheorem}).
 
-\begin{lemma}[Symmetric $2$--cocycle lemma]\label{Symmetric2CocycleLemma}
+\begin{lemma}[{Symmetric $2$--cocycle lemma~\cite[Lemme 3]{Lazard}}]\label{Symmetric2CocycleLemma}
 Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$.
 \end{lemma}
 \begin{proof}
@@ -380,23 +376,47 @@ Given how few $2$--coboundaries and $2$--cohomology classes there are, we conclu
 \end{itemize}
 \end{proof}
 
-
-
-
-
-
--------
-
-this belongs in a discussion of how $\moduli{fg}$ and $\moduli{fgl}$ behave with regards to covers
-
-
-The most important consequence of this is \emph{smoothness}:
+The most important consequence of \Cref{LazardsTheorem} is \emph{smoothness}:
 \begin{corollary}\label{MfglIsSmooth}
 Given a formal group law $F$ over a ring $R$ and a surjective ring map $f\co S \to R$, there exists a formal group law $\widetilde F$ over $S$ with \[F = f^* \widetilde F.\]
 \end{corollary}
 \begin{proof}
 Identify $F$ with the classifying map $\Spec R \to \moduli{fgl}$.  Employ an isomorphism \[\phi\co \moduli{fgl} \to \Spec L\] afforded by \Cref{LazardsTheorem}, so that $\phi \circ F$ is selected by a sequence of elements $r_n = \phi^* F^*(t_n) \in R$.  Each of these admit preimages $s_n$ through $f$, and we determine a map \[\widetilde{\phi \circ F}\co \Spec S \to \Spec L\] by the formula $\widetilde{\phi \circ F}^* (t_j) = s_j$ and freeness of $L$.  Since $\phi$ is an isomorphism, this determines a map $\widetilde F = \phi^{-1} \circ \widetilde{\phi \circ F}$ factoring $F$.
 \end{proof}
+
+\todo{This isn't super well stated, but it's at least here to be smoothed out later.}
+In order to employ \Cref{MfglIsSmooth} effectively, we need to know when a map $\Spec R \to \moduli{fg}$ classifying a formal group can be lifted to a triangle
+\begin{center}
+\begin{tikzcd}
+& \moduli{fgl} \arrow{d} \\
+\Spec R \arrow{r} \arrow[densely dotted]{ru} & \moduli{fg},
+\end{tikzcd}
+\end{center}
+so that a surjective map of rings $\Spec R \to \Spec S$ can then be completed to a second diagram
+\begin{center}
+\begin{tikzcd}
+\Spec S \arrow[densely dotted]{r} \arrow[densely dotted]{rd} & \moduli{fgl} \arrow{d} \\
+\Spec R \arrow{r} \arrow[crossing over]{ru} \arrow{u} & \moduli{fg}.
+\end{tikzcd}
+\end{center}
+
+\begin{lemma}[{\cite[Proposition 11.7]{LurieChromaticCourseNotes}}]\label{CoordinatizbleFGs}
+A map $\G\co \Spec R \to \moduli{fg}$ lifts to $\moduli{fgl}$ exactly when the Lie algebra $T_0 \G$ of $\G$ is isomorphic to $R$.
+\end{lemma}
+\begin{proof}
+Certainly if $\G$ admits a global coordinate, then $T_0 \G \cong R$.  Conversely, the formal group $\G$ is certainly locally isomorphic to $\A^1$ by a covering $i_\alpha\co X_\alpha \to \Spec R$ and isomorphisms $\phi_\alpha$ --- but, \textit{a priori}, these isomorphisms may not glue, precisely corresponding to the nontriviality of the {\Cech} $1$--cocycle \[[\phi_\alpha] \in \check{H}^1(\Spec R; \moduli{ps}^{\gpd}).\]  The group scheme $\moduli{ps}^{\gpd}$ is populated by $T$--points of the form \[\moduli{ps}^{\gpd}(T) = \left\{ t_0 x + t_1 x^2 + t_2 x^3 + \cdots \mid t_j \in T, t_0 \in T^\times \right\},\] and it is admits a filtration by the closed subschemes \[\moduli{ps}^{\gpd, \ge N}(T) = \left\{ 1 \cdot x + t_N x^{N+1} + t_{N+1} x^{N+2} + \cdots \mid t_j \in T \right\}.\]  The associated graded of this filtration is $\Gm \times \mathbb G_a^{\times \infty}$, and hence the filtration spectral sequence shows \[\check{H}^1(\Spec R; \moduli{ps}^{\gpd}) \xrightarrow{\simeq} \check{H}^1(\Spec R; \Gm),\] as $\check{H}^1(\Spec R; \mathbb G_a) = 0$ for all affine schemes.  Finally, given a choice of trivialization $T_0 \G \cong R$, this induces compatible trivializations of $T_0 i_\alpha^* \G$, which we can use to rescale the isomorphisms $\phi_\alpha$ so that their image in $\check{H}^1(\Spec R; \Gm)$ vanishes, and hence $[\phi_\alpha]$ is induced from a class in \[\check{H}^1(\Spec R; \moduli{ps}^{\gpd, \ge 1}).\]  This obstruction group vanishes.
+\end{proof}
+
+\begin{remark}
+Incidentally, a choice of trivialization of $T_0 \G$ exactly resolves the indeterminacy of $\log'(0)$ in \Cref{RationalFGLsHaveLogarithms}.
+\end{remark}
+
+\begin{remark}
+The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the literature as the group of \textit{strict isomorphisms}.  There is an associated moduli of formal groups identified only up to strict isomorphism, which sits in a fiber sequence \[\Gm \to \moduli{fgl} \mmod \moduli{ps}^{\gpd, \ge 1} \to \moduli{fg}.\]  These appeared earlier in this Lecture as well: in the proof of \Cref{LazardsTheorem}, we constructed over $L$ the universal formal group law equipped with a \emph{strict} exponential map.
+\end{remark}
+
+
+
 
 
 
