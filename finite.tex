@@ -113,7 +113,7 @@ A quasicoherent (and Cartesian~\cite[Tag 09VK]{stacks-project}) sheaf $\sheaf F$
 which shows that any descent datum (including those not arising, a priori, from a pullback) can be naturally extended to a full quasicoherent sheaf on $\mathcal D_f$.
 \end{remark}
 
-The following Theorem is the culmination of a typical first investigation of descent:\footnote{For details and additional context, see Vistoli~\cite[Section 4.2.1]{Vistoli}.  The story in the context of Hopf algebroids is also spelled out in detail by Miller~\cite{Miller}.}
+The following Theorem is the culmination of a typical first investigation of descent:\footnote{For details and additional context, see Vistoli~\cite[Section 4.2.1]{Vistoli}.  The story in the context of Hopf algebroids is also spelled out in detail by Miller~\cite{MillerSheavesGradings}.}
 
 \begin{theorem}[Grothendieck]\label{OriginalFFDescent}\citeme{Actually give an original citation for f.f.\ descent? Or just reference Vakil}
 If $f\co R \to S$ is faithfully flat, then the natural assignments
@@ -212,9 +212,9 @@ A Hopf $k$--algebra $H$ gives a Hopf algebroid $(k, H)$.  The scheme of objects 
 
 \begin{lemma}
 For $E$ an $A_\infty$--ring spectrum satisfying {\CH} and {\FH}, the $E_2$--page of its Adams spectral sequence can be identified as
-\todo{Fix the geometric statement here using Claim 8 of Lurie's Lecture 11.}
 \begin{align*}
-E_2^{*, *} & = \Cotor_{E_* E}^{*, *}(E_*, E_* X) \cong H^*(\context{E}; \context{E}(X)) \Rightarrow \pi_* X^\wedge_E.
+E_2^{*, *} & = \Cotor_{E_* E}^{*, *}(E_*, E_* X) \\
+& \cong H^*(\context{E}; \context{E}(X) \otimes \omega^{\otimes *}) \oplus H^*(\context{E}; \context{E}(\Susp X) \otimes \omega^{\otimes *})[1] \Rightarrow \pi_* X^\wedge_E.
 \end{align*}
 \end{lemma}
 \begin{proof}[Proof sketch]
@@ -231,6 +231,10 @@ Most of the homology theories we will discuss have these {\CH} and {\FH} propert
 
 \begin{example}\label{ContextOfMUPExample}
 The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  Quillen's theorem on its face gives an equivalence $\Spec MUP_0 \cong \moduli{fgl}$, but in \Cref{OrientationsOnEAndMU} we also gave a description of $\Spec MUP_0 MUP$: it is the moduli of pairs of formal group laws equipped with an invertible power series intertwining them.  Altogether, this presents $\context{MUP}$ as the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.  In view of \Cref{WarningAboutStacks}, there is an important subtlety about the stack $\moduli{fg}$: an $R$--point is a functor on affines over $\Spec R$ which is locally isomorphic to a formal group, but whose local isomorphism \emph{may not patch} to give a global isomorphism.  This does not agree, a priori, with the definition of formal group given in \Cref{DefnFormalGps}, where the isomorphism witnessing a functor as a formal variety was expected to be global.  We will address this further in \Cref{CoordinatizbleFGs} below.
+\end{example}
+
+\begin{example}\label{ContextOfMOPExample}
+The context for $MOP$, by contrast, is reasonably simple.  \Cref{CalculationOfPiStarMO} shows that the scheme $\Spec MOP_0$ classifies formal group laws over $\F_2$ which admit logarithms, so that $\context{MOP}$ consists of the groupoid of formal group laws with logarithms and isomorphisms between them.  This admits a natural deformation-retraction to the moduli consisting just of $\G_a$ and its automorphisms, expressing the redundancy in $MOP_0(X)$ encoded in the splitting of \Cref{MOSplitsIntoHF2s}.
 \end{example}
 
 \begin{remark}
@@ -335,7 +339,7 @@ Finally, Claim 4 is the universal case of Claim 3.
 
 We will now verify Claim 1 computationally, completing the proof of \Cref{LazardSplittingLemma} (and hence \Cref{LazardsTheorem}).
 
-\begin{lemma}[{Symmetric $2$--cocycle lemma~\cite[Lemme 3]{Lazard}}]\label{Symmetric2CocycleLemma}
+\begin{lemma}[{Symmetric $2$--cocycle lemma~\cite[Lemme 3]{Lazard}, cf.\ \cite[Theorem 3.1]{HopkinsCOCTALOS}}]\label{Symmetric2CocycleLemma}
 Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{i} \middle| 0 < k < n \right)$.
 \end{lemma}
 \begin{proof}
@@ -412,7 +416,7 @@ Incidentally, a choice of trivialization of $T_0 \G$ exactly resolves the indete
 \end{remark}
 
 \begin{remark}
-The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the literature as the group of \textit{strict isomorphisms}.  There is an associated moduli of formal groups identified only up to strict isomorphism, which sits in a fiber sequence \[\Gm \to \moduli{fgl} \mmod \moduli{ps}^{\gpd, \ge 1} \to \moduli{fg}.\]  These appeared earlier in this Lecture as well: in the proof of \Cref{LazardsTheorem}, we constructed over $L$ the universal formal group law equipped with a \emph{strict} exponential map.
+The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the literature as the group of \textit{strict isomorphisms}.  There is an associated moduli of formal groups identified only up to strict isomorphism, which sits in a fiber sequence \[\Gm \to \moduli{fgl} \mmod \moduli{ps}^{\gpd, \ge 1} \to \moduli{fg}.\]  These appeared earlier in this Lecture as well: in the proof of \Cref{LazardsTheorem}, we constructed over $L$ the universal formal group law equipped with a \emph{strict} exponential map.\todo{Give a comparison with $\context{MU}$ vs $\context{MUP}$.}
 \end{remark}
 
 
@@ -427,112 +431,205 @@ The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the lite
 
 \section{The structure of \texorpdfstring{$\moduli{fg}$}{Mfg} II: Large scales}\label{MfgII:LargeScales}
 
-\todo{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I wonder if we should phrase things in those terms.}
-\todo[inline]{Section 12 of Neil's FG notes talk about the infinite height subscheme of $\moduli{fgl}$. He compares it to $H_* MO$ and to the Hurewicz image $\pi_* MU \to H_*(MU; \F_p)$.}
+We now turn to understanding the geometry of the quotient stack $\moduli{fg}$ itself, armed with two important tools: \Cref{RationalFGLsHaveLogarithms} and \Cref{MfglIsSmooth}.  We begin with a rephrasing of the former:
 
-Having described the structure of $\moduli{fgl}$, we turn to understanding the quotient stack $\moduli{fg}$.  Earlier, we proved the following theorem:
-
-\begin{theorem}\todo{Be careful about $\star$-isomorphisms versus isomorphisms.}
-Let $k$ be any field of characteristic $0$.  Then there is a unique map \[\Spec k \to \moduli{fg}. \qed\]
+\begin{theorem}[{cf.\ \Cref{RationalFGLsHaveLogarithms}}]
+Let $k$ be any field of characteristic $0$.  Then $\G_a$ describes a unique map \[\Spec k \xrightarrow{\simeq} \moduli{fg}. \qed\]
 \end{theorem}
-\begin{proof}
-This is a rephrasing of \Cref{RationalFGLsHaveLogarithms} in the language of stacks.
-\end{proof}
 
-We would like to have a similar classification of the closed points in positive characteristic.  We proved the theorem above by solving a certain differential equation, which necessitated integrating a power series.  Integration is what we expect to fail in positive characteristic.  The following definition tracks \emph{where} it fails:
+One of our overarching tasks from the introduction to this Case Study is to enhance this to a classification of \emph{all} of the geometric points of $\moduli{fg}$, including those where $k$ is a field of positive characteristic $p$: \[\G\co \Spec k \to \moduli{fg} \times \Spec \Z_{(p)}.\]  We proved this Theorem in the characteristic $0$ case by solving a certain differential equation, which necessitated integrating a power series, and integration is what we expect to fail in characteristic $p$.  The following definition tracks \emph{where} it fails:
 \begin{definition}
-Let $+_\phi$ be a formal group law.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] \todo{Should that be a $n+1$?} i.e., $\ell$ is a logarithm for the $n$--bud determined by $+_\phi$.  The \textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
+Let $+_\phi$ be a formal group law over a $\Z_{(p)}$--algebra.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $(n-1)$--bud determined by $+_\phi$.  The \textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
 \end{definition}
 
-We will show that this definition is well-behaved, in the following sense:
-\begin{lemma}\label{FGLHeightIsAnInteger}
-Over a field of positive characteristic $p$, the $p$--height of a formal group law is always an integer.  (That is, $n = p^d$ for some natural number $d$.)
+This turns out to be a crucial invariant of a formal group law, admitting many other interesting presentations.  In this Lecture, investigation of this definition will lead us to a classification of the closed substacks of $\moduli{fg}$, another of our overarching tasks.  As a first step, we would like to show that this value is well-behaved in various senses, including the following:
+\begin{lemma}[{cf.\ \cite[Proposition 13.6]{LurieChromaticCourseNotes}}]\label{FGLHeightIsAnInteger}
+Over a field of positive characteristic $p$, the $p$--height of a formal group law is always an integer (or $\infty$).  (That is, the radius of convergence of the logarithmic differential equation is either $\infty$ or $p^d$ for some nonnegative natural $d$.)
 \end{lemma}
-\noindent We will have to develop some machinery to get there.  First, notice that this definition of height really depends on the formal group rather than the formal group law.
+
+\noindent We will have to develop some machinery to get there.  First, we note that this definition really depends on the formal group rather than the formal group law.
 
 \begin{lemma}
-The height of a formal group law is an isomorphism invariant, i.e., it descends to a function on $\moduli{fg}$.
+The height of a formal group law is an isomorphism invariant, i.e., it descends to give a locally constant function \[\moduli{fg}(T) \to \N \cup \{\infty\}\] for any test $\Z_{(p)}$--algebra $T$.
 \end{lemma}
 \begin{proof}
 The series $\ell$ is a partial logarithm for the formal group law $\phi$, i.e., an isomorphism between the formal group defined by $\phi$ and the additive group.  Since isomorphisms compose, this statement follows.
 \end{proof}
 
-With this in mind, we look for a more standard form for formal group laws, where \Cref{FGLHeightIsAnInteger} will hopefully be obvious.  In light of our goal, the most obvious standard form is as follows:
-\begin{definition}\label{DefnpTypicalLog}
-Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that $+_\phi$ has a \textit{$p$--typical logarithm} in the case that its logarithm has the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
+With this in mind, we look for a more standard form for formal group laws, where \Cref{FGLHeightIsAnInteger} will hopefully be obvious.  The most blindly optimistic standard form is as follows:
+\begin{definition}[{cf.\ \cite[Proposition 15.2.4]{Hazewinkel}}]\label{DefnpTypicalLog}
+Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that its logarithm is \textit{$p$--typical} when it takes the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
 \end{definition}
 
-\begin{lemma}\label{EveryLogHaspTypification}\citeme{This is due to Hazewinkel}
-Every formal group law $+_\phi$ with a logarithm $\log_\phi$ is naturally isomorphic to one whose logarithm is $p$--typical, called the $p$--typification of $+_\phi$.
+\begin{lemma}[{\cite[Theorem 15.2.9]{Hazewinkel}}]\label{EveryLogHaspTypification}
+Every formal group law $+_\phi$ over a $\Z_{(p)}$--algebra with a logarithm $\log_\phi$ is naturally isomorphic to one whose logarithm is $p$--typical, called the \textit{$p$--typification} of $+_\phi$.
 \end{lemma}
 \begin{proof}
-Let $\G$ denote the formal group associated to $+_\phi$, and consider its inherited coordinate \[g_0\co \A^1 \xrightarrow{\cong} \G,\] so that \[\log_\phi = \log \circ g_0 = \sum_{n=1}^\infty a_n x^n.\]  Our goal is to perturb this coordinate to a new coordinate $g$ which has the property that it couples with the logarithm \[\A^1 \xrightarrow{g} \G \xrightarrow{\log} \G_a\] to give a power series expansion \[\log(g(x)) = \sum_{n=0}^\infty a_{p^n} x^{p^n}.\]  To do this, we introduce four operators on \emph{curves}:
+Let $\G$ be the formal group associated to $+_\phi$, and denote its inherited parameter by \[g_0\co \A^1 \xrightarrow{\cong} \G,\] so that the composite \[\A^1 \xrightarrow{g_0} \G \xrightarrow{\log} \G_a \xrightarrow{x} \A^1\] expresses $\log_\phi = \log \circ g_0$ as the power series \[\log_\phi(x) = \sum_{n=1}^\infty a_n x^n.\]  Our goal is to perturb this coordinate to a new coordinate $g_\infty$ which couples with the logarithm in the same way to give a series expansion of the form \[\log(g_\infty(x)) = \sum_{n=0}^\infty a_{p^n} x^{p^n}.\]  To do this, we introduce four operators on functions\footnote{Unfortunately, it is standard in the literature to call these operators on ``curves'', which does not fit well with our previous use of the term in \Cref{ComplexBordismChapter}.} $\A^1 \to \G$:
 \begin{itemize}
-\item Given $r \in R$, we can define a \textit{homothety} by rescaling the coordinate by $r$: \[\log(g(rx)) = \sum_{n=1}^\infty (a_n r^n) x^n.\]
-\item For $\ell \in \Z$, we can define a shift operator (or \textit{Verschiebung}) by \[\log(V_\ell g(x)) = \log(g(x^\ell)) = \sum_{n=1}^\infty a_n x^{n \ell}.\]
-\item Given an $\ell \in \Z_{(p)}$, we define the \textit{$\ell$--series} by \[\log([\ell](g(x))) = \ell \log(g(x)) = \sum_{n=1}^\infty \ell a_n x^n.\]
-\item For $\ell \in \Z$, we can define a \textit{Frobenius operator} by \[\log(F_\ell g(x)) = \log\left(\sum_{j=1}^\ell{}_{\G} g(\zeta_\ell^j x^{1/\ell}) \right) = \sum_{n=1}^\infty \ell a_{n \ell} x^n,\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$).  But, by pulling the logarithm through and noting \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$.\footnote{The definition of Frobenius comes from applying the Verschiebung to the character group (or ``Cartier dual'') of $\G$.}
+\item Given $r \in R$, we can define a \textit{homothety} by rescaling the coordinate by $r$: \[\log(\theta_r g_0) = \log(g_0(rx)) = \sum_{n=1}^\infty (a_n r^n) x^n.\]
+\item For $\ell \in \Z$, we can define a shift operator (or \textit{Verschiebung}) by \[\log(V_\ell g_0(x)) = \log(g(x^\ell)) = \sum_{n=1}^\infty a_n x^{n \ell}.\]
+\item Given an $\ell \in \Z_{(p)}$, we define the \textit{$\ell$--series} by\footnote{Note that for $\ell \in \Z$, this agrees with $[\ell](g_0(x)) = \overset{\text{$\ell$ times}}{\overbrace{g_0(x) +_{\G} \cdots +_{\G} g_0(x)}}$.} \[\log([\ell](g_0(x))) = \ell \log(g_0(x)) = \sum_{n=1}^\infty \ell a_n x^n.\]
+\item For $\ell \in \Z$, we can define a \textit{Frobenius operator}\footnote{There are other definitions of the Frobenius operator which are less mysterious but less explicit.  For instance, it also arises from applying the Verschiebung to the character group (or ``Cartier dual'') of $\G$.} by \[\log(F_\ell g_0(x)) = \log\left(\sum_{j=1}^\ell{}_{\G} g_0(\zeta_\ell^j x^{1/\ell}) \right),\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$).  But, by pulling the logarithm through and noting \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$: \[\log(F_\ell g_0(x)) = \sum_{n=1}^\infty \ell a_{n \ell} x^n.\]
 \end{itemize}
-Stringing these together, for $p \nmid \ell$ we have \[\log([1/\ell] V_\ell F_\ell g(x)) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell}.\]  Hence, we can consider the curve $g -_{\G} \sum_{p \nmid \ell} [1/\ell] V_\ell F_\ell g$\todo{The sum is taken over all $\ell \in \mathbb{Z}$ not a multiple of $p$, using the formal group addition, right?  In that case, aren't you subtracting too much?  If $n$ is not a power of $p$, then the logarithm of this expression is $a_n$ times $1 -$ the number of factors of $n$ coprime to $p$.  Also, why is this still an isomorphism?} \todo{Some of these $g$s should be $g_0$s.}, which is another coordinate on the same formal group $\G$, but with a $p$--typical logarithm.
+Stringing these together, for $p \nmid \ell$ we have \[\log([1/\ell] V_\ell F_\ell g_0(x)) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell}.\]  Hence, we can iterate over primes $\ell \ne p$, and for two adjacent such primes $\ell' > \ell$ we consider the perturbation \[g_{\ell'} = g_\ell -_{\G} [1/\ell] V_\ell F_\ell g_\ell.\]  Each of these differences gives a parameter according to \Cref{InverseFunctionTheoremForFVars}, and the first possible nonzero term appears in degree $\ell$, hence the coefficients stabilize linearly in $\ell$.  Passing to the limit thus gives a new parameter $g_\infty$ on the same formal group $\G$, but now with a $p$--typical logarithm.
 \end{proof}
 
-Of course, not every formal group law supports a logarithm --- after all, this is the point of ``height''.  There are two ways around this: one is to pick a surjection $S \to R$ from a torsion-free ring $S$, \emph{choose} a lift of the formal group law to $S$, then pass to $S \otimes \Q$ and study how much of the resulting logarithm descends to $R$.  However, it is not clear that this procedure is independent of choice.  We therefore pursue an alternative approach: an intermediate definition that applies to all formal group laws and which specializes to the one above in the presence of a logarithm.  To do this, we consider what computations are made easier with this sort of formula for a logarithm, and we arrive at the following:
+Of course, the whole idea of ``height'' is that not every formal group law supports a logarithm.  Because of this, we would like to re-express $p$--typicality in more general terms.  Our foothold for this is the following computation of the $p$--series of a formal group law with $p$--typical logarithm:
 
-\begin{definition}
-The \textit{$p$--series} of a formal group law $+_\phi$ is given by the formula \[[p]_\phi(x) := \overset{\text{$p$ times}}{\overbrace{x +_\phi \cdots +_\phi x}}.\]
-\end{definition}
-
-\begin{lemma}
-If $+_\phi$ is a formal group law with $p$--typical logarithm, then there are elements $v_n$ with \[[p]_\phi(x) = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots.\]
+\begin{lemma}\label{pTypLogGivesNicePSeries}
+For a formal group $+_\phi$ with a logarithm $\log_\phi$, the logarithm is $p$--typical if and only if there are elements $v_d$ with \[[p]_\phi(x) = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_d x^{p^d} +_\phi \cdots.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
-This comes from comparing the two series
+Suppose first that $\log_\phi$ is $p$--typical.  We can then compare the two series
 \begin{align*}
 \log_\phi(px) & = px + \cdots, \\
 \log_\phi([p]_\phi(x)) & = p \log_\phi(x) = px + \cdots.
 \end{align*}
-The difference is concentrated in degrees of the form $p^d$, beginning in degree $p$, so one can find an element $v_1$ so that \[p \log_\phi(x) - (\log_\phi(px) + \log_\phi(v_1 x^p))\] starts in degree $p^2$, and so on.  In all, this gives the equation
+The difference is concentrated in degrees of the form $p^d$, beginning in degree $p$, so we can find an element $v_1$ such that \[p \log_\phi(x) - (\log_\phi(px) + \log_\phi(v_1 x^p))\] is also concentrated in degrees of the form $p^d$ but now starts in degree $p^2$.  Iterating this gives the equation
 \begin{align*}
-p \log_\phi(x) & = \log_\phi (px) + \log_\phi(v_1 x^p) + \log_\phi(v_2 x^{p^2}) + \cdots \\
+p \log_\phi(x) & = \log_\phi (px) + \log_\phi(v_1 x^p) + \log_\phi(v_2 x^{p^2}) + \cdots, \\
 \intertext{at which point we can use formal properties of the logarithm to deduce}
-\log_\phi [p]_\phi(x) & = \log_\phi \left(px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots\right) \\
-[p]_\phi(x) & = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots \qedhere
+\log_\phi [p]_\phi(x) & = \log_\phi \left(px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots\right), \\
+[p]_\phi(x) & = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots.
 \end{align*}
-\end{proof}
-
-\begin{definition}
-A formal group law is itself said to be \textit{$p$--typical} when its $p$--series has the above form.  (In particular, the logarithm of a $p$--typical formal group law is a $p$--typical logarithm.)
-\end{definition}
-
-\begin{corollary}[{\Cref{EveryLogHaspTypification}}]\label{EveryFGLIsPTypical}
-Every formal group law is naturally isomorphic to a $p$--typical one.
-\end{corollary}
-\begin{proof}
-The procedure applied to the formal group law $+_\phi$ in the proof of \Cref{EveryLogHaspTypification} applies equally well to an arbitrary formal group law, even without a logarithm --- it just wasn't clear what was being gained.  Now, it is clear\todo{I'm still not sure about this.  Lemma 3.3.7 doesn't say anything about $p$-series, and the previous two lemmas use the existence of a logarithm rather substantially.}: we are gaining the conclusion of this Corollary.
-\citeme{This is Lemma 6.6.3 in the crystals notes. Definitely copy this proof! It avoids invoking a logarithm, which you haven't managed to do otherwise. Additionally: this gives a proof that the $p$--series of a $p$--typical coordinate has the usual $p$--typical expression. To go the other way, a $p$--typical coordinate on a finite height formal group can't be killed by $p$ (in the curves formulation of the Dieudonn\'e module), and hence because its $p$--series is nonvanishing (and lies in $DG \subseteq C_p G \cong (DG)^{\times \infty}$) its $p$--division must as well by uniformity or reducedness or something.}
-\end{proof}
-
-\begin{remark}\label{EveryPSeriesArises}
-There is an inclusion of groupoid--valued sheaves from $p$--typical formal group laws with isomorphisms to all formal group laws with isomorphisms.  \Cref{EveryFGLIsPTypical} can be viewed as presenting this inclusion as a deformation retraction, and in particular the inclusion is a natural \emph{equivalence} of groupoids.  It follows that they both present the same stack: $\moduli{fg}$.  In fact\todo{I don't think we've shown this?  For what it's worth, the statements around Lemma 11.9 and Application 13.10 of COCTALOS prove it.}, the moduli of $p$--typical formal group laws is isomorphic to $\Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$ --- every possible $p$--series is realized by a unique $p$--typical formal group law.
-\end{remark}
-
-\begin{remark}\label{RecoverLogarithmRemark}
-In fact, the rational logarithm coefficients can be recursively recovered from the coefficients $v_d$, using a similar manipulation:
+In the other direction, the logarithm coefficients can be recursively recovered from the coefficients $v_d$ for a formal group law with $p$--typical $p$--series, using a similar manipulation:
 \begin{align*}
 p \log_\phi(x) & = \log_\phi\left([p]_\phi(x)\right) \\
-p \sum_{n=0}^\infty m_n x^{p^n} & = \log_\phi \left(\sum_{d=0}^\infty{}_\phi v_d x^{p^d} \right) = \sum_{d=0}^\infty \log_\phi\left(v_d x^{p^d}\right) \\
-\sum_{n=0}^\infty p m_n x^{p^n} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_j v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_k v_{n-k}^{p^k} \right) x^{p^n},
+p \sum_{n=0}^\infty m_n x^n & = \log_\phi \left(\sum_{d=0}^\infty{}_\phi v_d x^{p^d} \right) = \log_\phi(px) + \sum_{d=1}^\infty \log_\phi\left(v_d x^{p^d}\right), \\
+\intertext{which is only soluable if $\log_\phi$ is concentrated in degrees of the form $p^d$.  In that case, we can push this slightly further:}
+\sum_{d=0}^\infty p m_{p^d} x^{p^d} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_{p^j} v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_{p^k} v_{n-k}^{p^k} \right) x^{p^n},
 \end{align*}
-implicitly taking $m_0 = 1$ and $v_0 = p$.
-\end{remark}
-
-\begin{proof}[{Proof of \Cref{FGLHeightIsAnInteger}}]
-Replace the formal group law by its $p$--typification.  Based on \Cref{RecoverLogarithmRemark}, we see that the height of a $p$--typical formal group law over a field of characteristic $p$ is coincides with the appearance of the first nonzero coefficient in its $p$--series.
+implicitly taking $m_1 = 1$ and $v_0 = p$.
 \end{proof}
 
-\todo{You could be clearer about the varying assumptions on the ground rings in these different theorems.  Some need to work over $k$, others work over any $\Z_{(p)}$--algebra.}
+This result portends much of what is to come.  We now set our definition of $p$--typical to correspond to the manipulations we were making in the course of proving \Cref{EveryLogHaspTypification}.
 
-\todo{Old section break.}
+\begin{definition}\label{pTypicalityInGeneral}
+A parameter $g\co \A^1 \to \G$ of a formal group is said to be \textit{$p$--typical} when $F_\ell g = 0$ for all $p \nmid \ell$.
+\end{definition}
+
+\begin{corollary}[{cf.\ \Cref{EveryLogHaspTypification}}]\label{EveryFGLIsPTypical}
+Every formal group law $+_\phi$ is naturally isomorphic to a $p$--typical one. \qed
+\end{corollary}
+
+\begin{lemma}[{cf.\ \Cref{pTypLogGivesNicePSeries}}]\label{pTypLawsHaveNicePSeries}
+If $+_\phi$ is a $p$--typical formal group law, then there are elements $v_d$ with \[[p]_\phi(x) = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_d x^{p^d} +_\phi \cdots.\]
+\end{lemma}
+\begin{proof}
+\citeme{Is there a Kudo--Araki citation for this?}
+As before, let $\G$ denote the formal group associated to $+_\phi$ and let $g\co \A^1 \to G$ denote the induced $p$--typical coordinate.  Any auxiliary function $h\co \A^1 \to \G$ can be expressed in the form \[h = \sum_{m = 0}^\infty {}_{\G} V_m \theta_{a_m} g.\]  We will show that if $h$ is $p$--typical (i.e., $F_\ell h = 0$ for $p \nmid \ell$) then $a_m = 0$ for every $m \ne p^d$.\footnote{The converse so this claim also holds: since $F_\ell F_p = F_p F_\ell$ for $p \nmid \ell$, we can commute $F_\ell$ through the sum expression (which is absent any non-commuting terms by hypothesis), where it then kills $g$ to give $F_\ell h = 0$.}  Suppose instead that we can find a smallest index $m = rp^d$ with $p \nmid r$, $r \ne 1$, and $a_m \ne 0$.  We can then write
+\begin{align*}
+F_\ell \left( h -_{\G} \sum_{j=0}^{d} {}_{\G} V_{p^j} \theta_{a_{p^j}} g \right) & = F_\ell(V_m \theta_{a_m} g + \cdots) \\
+& = r V_{p^d} \theta_{a_m} g + \cdots \ne 0.
+\end{align*}
+Since $p$--typical curves are closed under difference, $h$ could not have been $p$--typical.
+
+Finally, we specialize to the case $h = [p]_{\G}(g)$.  Since $F_\ell$ and $[p]$ commute, $[p]$ is $p$--typical, hence has an expression of the desired form.
+\end{proof}
+
+\begin{proof}[{Proof of \Cref{FGLHeightIsAnInteger}}]
+Replace the formal group law by its $p$--typification.  Using the formulas from \Cref{pTypLogGivesNicePSeries}, we see that the height of a $p$--typical formal group law over a field of characteristic $p$ coincides with the appearance of the first nonzero coefficient in its $p$--series.
+\end{proof}
+
+\Cref{pTypLogGivesNicePSeries} shows that the $p$--series of a formal group law with $p$--typical logarithm contains exactly as much information as the logarithm itself (and hence fully determines the formal group law).  We would again like to show that ``all'' of the data of a $p$--typical group law is found in its $p$--series, even if it does not have a logarithm to mediate the two.  The following important theorem makes this thought precise.
+
+\begin{theorem}[{cf.\ \cite[Proposition 5.1]{MillerNotesCobordism}, \cite[Theorem A2.2.3]{RavenelGreenBook}, and the proof of \cite[Proposition 19.10]{HopkinsCOCTALOS}}]\label{KudoArakiIsomorphism}
+The \textit{Kudo--Araki map} determined by \Cref{pTypLawsHaveNicePSeries} \[\Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots] \xrightarrow{v} \sheaf O_{\moduli{fgl}^{\ptyp}}\] is an isomorphism.
+\end{theorem}
+\begin{proof}
+\todo{Is there a version of this proof that doesn't make a rational argument?}
+Begin with a universal group law over the ring $\sheaf O_{\moduli{fgl}}$.  This group law $p$--typifies by \Cref{EveryFGLIsPTypical} to a second group law which is selected by a map $\eps\co \sheaf O_{\moduli{fgl}} \to \sheaf O_{\moduli{fgl}}$.  The following diagram includes the image factorization of $\eps$, as well as its rationalization and the map $v$:
+\begin{center}
+\begin{tikzcd}[column sep=0.2em]
+& \sheaf O_{\moduli{fgl}} \arrow["s"]{rdd} \arrow["\eps"]{rrd} \arrow{rrr} & & & \sheaf O_{\moduli{fgl}} \otimes \Q \arrow["\eps"]{rrd} \arrow["s" near end]{rdd} \\
+& & & \sheaf O_{\moduli{fgl}} \arrow[crossing over]{rrr} & & & \sheaf O_{\moduli{fgl}} \otimes \Q \\
+\Z_{(p)}[v_1, \ldots, v_d, \ldots] \arrow["v"]{rr} & & \sheaf O_{\moduli{fgl}^{\ptyp}} \arrow["i"]{ru} \arrow{rrr} & & & \sheaf O_{\moduli{fgl}^{\ptyp}} \otimes \Q \arrow["i"]{ru}.
+\end{tikzcd}
+\end{center}
+We immediately deduce that all the horizontal arrows are injections: in \Cref{LazardsTheorem} we calculated $\sheaf O_{\moduli{fgl}}$ to be torsion-free; $\sheaf O_{\moduli{fgl}^{\ptyp}}$ is a subring of $\sheaf O_{\moduli{fgl}}$, hence it is also torsion-free; and \Cref{pTypLogGivesNicePSeries} shows that $(i \circ v)(v_n)$ agrees with $pm_{p^n}$ in the module of indecomposables $Q(\sheaf O_{\moduli{fgl}} \otimes \Q)$.
+
+\todo{This is muddy.}
+To complete the proof, we need to show that $v$ is surjective, which will follow from calculating the indecomposables in $\sheaf O_{\moduli{fgl}^{\ptyp}}$ and checking that $Qv$ is surjective.  Since $s$ is surjective, the map $Qs$ on indecomposables is surjective as well, and its effect can largely be calculated rationally.  Since $(Q\eps)(m_n) = 0$ for $n \ne p^d$, we have that $Q(\sheaf O_{\moduli{fgl}^{\ptyp}})$ is generated by $s(b_{p^d-1})$ under an isomorphism as in \Cref{LazardsTheorem}.  It follows that $Qi$ injects, hence $Qv$ must surject by the calculation of $Q(i \circ v)(v_n)$ above.
+\end{proof}
+
+\begin{corollary}\label{PSeriesDetermines}
+If $[p]_\phi(x) = [p]_\phi(x)$ for two $p$--typical formal group laws $+_\phi$ and $+_\psi$, then $+_\phi$ and $+_\psi$ are themselves equal. \qed
+\end{corollary}
+
+\begin{corollary}\label{EveryPSeriesArises}
+For any sequence of coefficients $v_j \in R$ in a $\Z_{(p)}$--algebra $R$, there is a unique $p$--typical formal group law $+_\phi$ with \[[p]_\phi = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_d x^{p^d} +_\phi \cdots. \qed\]
+\end{corollary}
+
+Finally, we exploit these results to make deductions about the geometry of $\moduli{fg} \times \Spec \Z_{(p)}$.  There is an inclusion of groupoid--valued sheaves from $p$--typical formal group laws with $p$--typical isomorphisms to all formal group laws with all isomorphisms.  \Cref{EveryFGLIsPTypical} can be viewed as presenting this inclusion as a deformation retraction, witnessing a natural \emph{equivalence} of groupoids.  It follows from \Cref{WarningAboutStacks} that they both present the same stack.  The central utility of this equivalence is that the Kudo--Araki moduli of $p$--typical formal group laws is a considerably smaller algebra than $\sheaf O_{\moduli{fgl}}$, resulting in a less noisy picture of the Hopf algebroid.
+
+Our final goal in this Lecture is to exploit this refined presentation in the study of invariant functions.
+\begin{definition}[{\cite[Lemma 2.28]{GoerssQCohOnMfg}}]\label{DefnClosedSubstack}
+Let $(X_0, X_1)$ be the groupoid scheme associated to a Hopf algebroid $(A, \Gamma)$.  A function $f\co X_0 \to \mathbb A^1$ is said to be \textit{invariant} when it is stable under isomorphism, i.e., when there is a diagram
+\begin{center}
+\begin{tikzcd}
+X_1 \arrow[shift left=0.3em, "t"]{d} \arrow[shift right=0.3em, "s"']{d} \arrow["s^* f = t^* f"]{rd} \\
+X_0 \arrow["f"]{r} & \mathbb A^1.
+\end{tikzcd}
+\end{center}
+(In terms of Hopf algebroids, the corresponding element $a \in A$ satisfies $\eta_L(a) = \eta_R(a)$.)  Correspondingly, a closed subscheme $A \subseteq X$ determined by the simultaneous vanishing of functions $f_\alpha$ is said to be \textit{invariant} when the functions $f_\alpha$ are themselves invariant.  In terms of Hopf algebroids, the corresponding ideal $I \subseteq A$ satisfies $\eta_L(I) = \eta_R(I)$.  Finally, a \textit{closed substack} is a substack determined by an invariant ideal of $X_0$.
+\todo{At some point you really should talk about open complements (of affine schemes and then of affinely presented stacks).}
+\end{definition}
+
+We are in a good position to discern all of the closed substacks of $\moduli{fg} \times \Spec \Z_{(p)}$ --- or, equivalently, to discern all of the invariant ideals of $\sheaf O_{\moduli{fgl}^{\ptyp}}$.
+
+\begin{corollary}[{\cite[Theorem 4.6 and Lemmas 4.7-8]{Wilson}}]
+The ideal $I_d = (p, v_1, \ldots, v_{d-1})$ is invariant for all $d$.  It determines the closed substack $\moduli{fg}^{\ge d}$ of formal group laws of $p$--height at least $d$.
+\end{corollary}
+\begin{proof}
+%\textit{Put a dictionary entry here defining the submoduli of height $\ge d$ formal group laws.}
+Recall from \Cref{KudoArakiIsomorphism} the Kudo--Araki isomorphism \[\moduli{fgl}^{\ptyp} \xrightarrow{\simeq} \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots] =: \Spec V,\] and let $+_L$ denote the associated universal $p$--typical formal group law with $p$--series \[[p]_L(x) = px +_L v_1 x^p +_L v_2 x^{p^2} +_L \cdots +_L v_d x^{p^d} +_L \cdots.\]  Over $\Spec V[t_1, t_2, \ldots]$, we can form a second group law $+_R$ by conjugating $+_L$ by the universal $p$--typical coordinate transformation $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$.  The corresponding $p$--series \[[p]_R(x) = \sum_{d=0}^\infty {}_R \eta_R(v_d) x^{p^d}\] determines the $\eta_R$ map of the Hopf algebroid $(V, V[t_1, t_2, \ldots])$ presenting the moduli of $p$--typical formal group laws and $p$--typical isomorphisms.  We cannot hope to compute $\eta_R(v_d)$ explicitly, but modulo $p$ we can apply Freshman's Dream to the expansion of \[[p]_L(g(x)) = g([p]_R(x))\] to discern some information: \[\sum_{\substack{i \ge 0 \\ j > 0}}{}_L t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}_L v_i t_j^{p^i} \pmod p.\]  This is still inexplicit, since $+_L$ is a very complicated operation, but we can see $\eta_R(v_d) \equiv v_d \pmod{I_d}$.  It follows that $I_d$ is invariant for each $d$.  Additionally, the closed substack this determines are those formal groups admitting local $p$--typical coordinates for which $v_{\le d} = 0$, guaranteeing that the height of the associated formal group is at least $d$.
+\end{proof}
+
+\noindent What is \emph{much} harder to prove is the following:
+
+\begin{theorem}[{\cite[Corollary 2.4 and Proposition 2.5]{Landweber}, cf.\ \cite[Theorem 4.9]{Wilson}}]\label{LandwebersClassificationOfClosedSubstacks}
+The unique closed reduced substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by the invariant prime ideal $I_d \subseteq \sheaf O_{\moduli{fgl}^{\ptyp}}$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+We want to show that if $I$ is an invariant prime ideal, then $I = I_d$ for some $d$.  To begin, note that $v_0 = p$ is the only invariant function on $\moduli{fgl}^{\ptyp}$, hence $I$ must either be trivial or contain $p$.  Then, inductively assume that $I_d \subseteq I$.  If this is not an equality, we want to show that $I_{d+1} \subseteq I$ is forced.  Take $y \in I \setminus I_d$; if we could show \[\eta_R(y) = a v_d^j t^K + \text{higher order terms}\] for nonzero $a \in \Z_{(p)}$, we could proceed by primality to show that $v_d \in I$ and hence $I_{d+1} \subseteq I$.  This is possible (and, indeed, this is how the full proof goes), but it requires serious bookkeeping.
+\end{proof}
+
+\begin{remark}\label{OpenSubstacksOfMfg}
+The complementary open substack of dimension $d$ is harder to describe.  From first principles, we can say only that it is the locus where the coordinate functions $p$, $v_1$, \ldots, $v_d$ do not \emph{all simultaneously vanish}.  It turns out that:
+\begin{enumerate}
+\item On a cover, at least one of these coordinates can be taken to be invertible.\item Once one of them is invertible, a coordinate change on the formal group law can be used to make $v_d$ (and perhaps others in the list) invertible.  Hence, we can use $v_d^{-1} \sheaf O_{\moduli{fgl}^{\ptyp}}$ as a coordinate chart.
+\item Over a further base extension and a further coordinate change, the higher coefficients $v_{d+k}$ can be taken to be zero.  Hence, we can also use $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$ as a coordinate chart.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}[{cf.\ \cite[Section 12]{StricklandFGNotes} and \cite[Remark 13.9]{LurieChromaticCourseNotes}}]
+Specialize now to the case of a field $k$ of characteristic $p$.  Since the additive group law has vanishing $p$--series and is $p$--typical, a consequence of \Cref{PSeriesDetermines} is that \emph{every} $p$--typical group law with vanishing $p$--series is exactly equal to $\G_a$, and in fact any formal group law with vanishing $p$--series $p$--typifies exactly to $\G_a$.  This connects several ideas we have seen so far: the presentation of formal group laws with logarithms in \Cref{CalculationOfAutGaActionOnMO}, the presentation of the context $\context{MOP}$ in \Cref{ContextOfMOPExample}, and the Hurewicz image of $MU_*$ in $H\F_p{}_* MU$ in \Cref{HZMUCarriesALog}.
+\end{remark}
+
+\begin{remark}
+It's worth pointing out how strange all of this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.  Here, proper open substacks of every dimension appear, and every nonempty closed substack is $\infty$--dimensional (albeit of positive codimension).
+\end{remark}
+
+\todo{I'm not sure where this goes --- maybe it goes right here --- but Allen told me how to give a nice proof of this fact.  He didn't give me a citation for this, but the main point was that flatness can be checked locally, so the general formula for the pullback $\mathcal M_{(A_1, \Gamma_1)} \to \mathcal M_{(L, W)} \from \mathcal M_{(A_2, \Gamma_2)}$ being $\mathcal M_{(A_1 \otimes W \otimes A_2, \Gamma_1 \otimes W \otimes \Gamma_2)}$ specializes to compute the pullback of $\Spec A \to \mathcal M_{(L, W)} \from \Spec E(d)_*$ to be $\mathcal M_{(A \otimes W \otimes E(d)_*, A \otimes W \otimes E(d)_*)} = \Spec (A \otimes W \otimes E(d)_*)$.  But the map $\Spec A \to \mathcal M_{(L, W)}$ factors through $\Spec L$, so it suffices just to check flatness for $\Spec L \otimes_L W \otimes_L E(d)_* \cong \Spec W \otimes_L E(d)_* \to \Spec E(d)_*$, which you finally do by hand.}
+\todo{Also, people seem to say things about the Mischenko logarithm rather than the invariant differential, but I wonder if we should phrase things in those terms.}
+
+
+
+
+
+
+\section{The structure of \texorpdfstring{$\moduli{fg}$}{Mfg} III: Small scales}
+
+\todo{This is the most confusing section in this chapter, says Danny.}
+\todo{\cite[Section 4.A]{Drinfeld} also contains a Lubin--Tate cohomology theory, this time for formal $A$--modules. You should also cite \cite{LubinTate}.}
+\todo{Look at Prop 2.5 of Charles's Felix Klein notes, which proves the uniqueness of deformations of homomorphisms by hand.  Also, his version of the Lubin--Tate theorem (2.6) has the best motivation of ``$\star$--isomorphism'' that I've seen.}
+\todo{Remark 4.2 of Charles's \textit{Notes on the Hopkins--Miller theorem} talks about the difference between Matt's presentation of the Lubin--Tate moduli (involving formal group laws and equalities) and Neil's (involving formal groups and isomorphisms) in terms of an isomorphism between a fiber and a homotopy fiber of a Kan fibration of simplicial sets.}
+\todo{Lecture 21 of Jacob's course notes talks about the L--T moduli problem.  The text after Theorem 5 makes clear how deformations from $k$ to $k[\eps]/\eps^2$ control all square-zero deformations.}
+\todo{We should explain how the Witt ring enters this.}
+
+
+
 
 With the notion of ``height'' firmly in hand, we are now in a position to classify the geometric points of $\moduli{fg}$.
 
@@ -555,76 +652,14 @@ For $g$ to be a coordinate transformation, we must have $b_1 = 1$, which in the 
 From this, it follows that the ``coarse moduli of formal groups'' --- i.e., the functor from rings to isomorphism classes of formal groups over that ring --- is not representable by a scheme.  The infinitely many isomorphism classes over $\Spec \F_p$ produce infinitely many over $\Spec \Z$ as well.  On the other hand, there is a single $\Q$--valued point of the coarse moduli, whereas the $\Z$--points of a representable functor would inject into its $\Q$--points.
 \end{remark}
 
-We now turn to the closed substacks of $\moduli{fg}$, which also admit a reasonable presentation in terms of height.
 
-\begin{lemma}[{\cite[Theorem 4.6]{Wilson}}]
-Recall that the moduli scheme of $p$--typical formal group laws is presented as \[\moduli{fgl}^{\ptyp} = \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots].\]  Suppose $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$ is the universal $p$-typical coordinate transformation, which we can use to conjugate the universal group law\todo{What is this universal group law?  Is it the one with $p$-series $px + v_1 x^p + \cdots$?} ``$+_L$'' to a second $p$--typical group law ``$+_R$'', whose $p$--series has the form \[[p]_R(x) = \sum_{d=0}^\infty {}_R \eta_R(v_d) x^{p^d}.\] \todo{What is $\eta_R$? Why does the coefficient of $x^{p^d}$ depend only on $v_d$?} Modulo $p$, there is the relation:
-\[\sum_{\substack{i \ge 0 \\ j > 0}}{}_L t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}_L v_i t_j^{p^i} \pmod p.\]
-\end{lemma}
-\begin{proof}[Proof sketch]
-Work modulo $p$, one can Freshman's Dream the identity $[p]_L(g(x)) = g([p]_R(x))$ to death.
-\end{proof}
 
-\todo{To understand where the $\eta_R$ comes from in the formal below it's the best to mention that the two formal group laws coming from $\eta_L, \eta_R: BP_* \to BP_*BP$ are isomorphic.  And the formula for this isomorphism is the one in the lemma below.  I don't think we've mentioned $BP$ yet, though.  But I guess $\mathcal{M}_{BPP}$ is the moduli of $p$-typical formal group laws mentioned above, so we are very close to introducing $BP$. I have part of this written up about the Hopf algebroid $(BP_*, BP_*BP)$.  I am wary of including it and risk botching up the big picture. -d.s.}
-
-\todo{Someone wrote ``Under $\eta_R$?'' but you really ought to define what an invariant ideal is and what it has to do with the geometric objects ``closed substacks''.}
-\begin{corollary}[{\cite[Lemmas 4.7-8]{Wilson}}]
-Write $I_d$ for the ideal $I_d = (p, v_1, \ldots, v_{d-1})$.  Then \[\eta_R(v_d) \equiv v_d \pmod{I_d}.\]  It follows that the ideals $I_d$ are invariant for all $d$. \qed
-\end{corollary}
-
-\noindent What is \emph{much} harder to prove is the following:
-
-\todo{I'm gonna try tidying this proof up a bit. -d.s.}
-
-\begin{theorem}[{\cite[Theorem 4.9]{Wilson}}]
-If $I$ is an invariant prime ideal, then $I = I_d$ for some $d$.
-\end{theorem}
-\begin{proof}[Proof sketch]
-Inductively assume that $I_d \subseteq I$.  \todo{How does the base case go?} If this is not an equality, we want to show that $I_{d+1} \subseteq I$ is forced.  Take $y \in I \setminus I_d$; if we could show \[\eta_R(y) = a v_d^j t^K + \cdots, \] \todo{I can't extrapolate this series just from one term, but I'm guessing the rest obviously lives in $I_d$?  Also, what is $a$ and $t$ and why can't they be in $I$ instead of $v_d$?} we could proceed by primality to show that $v_d \in I$ and hence $I_{d+1} \subseteq I$.  This is possible (and, indeed, this is how the proof goes), but it requires serious bookkeeping.
-\end{proof}
-
-The equivalent statement in terms of stacks is:
-
-\begin{theorem}[Landweber]\label{LandwebersClassificationOfClosedSubstacks}\citeme{Landweber must have a paper?}
-The unique closed substack of $\moduli{fg}{}_{,(p)}:= \moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by $\sheaf O_{\moduli{fgl}^{\ptyp}} / (p, v_1, \ldots, v_{d-1})$. \qed
-\end{theorem}
-
-\begin{remark}\label{OpenSubstacksOfMfg}
-The complementary open substack of dimension $d$ is harder to describe.  From first principles, we can say only that it is the locus where the coordinate functions $p$, $v_1$, \ldots, $v_d$ do not \emph{all simultaneously vanish}.  It turns out that:
-\begin{enumerate}
-\item On a cover, at least one of these coordinates can be taken to be invertible.\todo{This actually uses the Zariski topology on the affine site, and hence may really use stackiness instead of levelwise schemeiness.  This is a problem, since you just told your students that stackiness won't come up...}
-\item Once one of them is invertible, a coordinate change on the formal group law can be used to make $v_d$ (and perhaps others in the list) invertible.  Hence, we can use $v_d^{-1} \sheaf O_{\moduli{fg}^{\ptyp}}$\todo{What is the (global sections of the) sheaf of rings on a simplicial scheme (stack)? If you take sheaves of rings, and then global sections, levelwise, you end up with a simplicial ring, not a ring. -EB} as a coordinate chart.\todo{Hood wanted to know: What, exactly, is required here?}
-\item Over a further base extension and a further coordinate change, the higher coefficients $v_{d+k}$ can be taken to be zero.  Hence, we can also use $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$ as a coordinate chart.
-\end{enumerate}
-\todo[inline]{I'm not sure where this goes --- maybe it goes right here --- but Allen told me how to give a nice proof of this fact.  He didn't give me a citation for this, but the main point was that flatness can be checked locally, so the general formula for the pullback $\mathcal M_{(A_1, \Gamma_1)} \to \mathcal M_{(L, W)} \from \mathcal M_{(A_2, \Gamma_2)}$ being $\mathcal M_{(A_1 \otimes W \otimes A_2, \Gamma_1 \otimes W \otimes \Gamma_2)}$ specializes to compute the pullback of $\Spec A \to \mathcal M_{(L, W)} \from \Spec E(d)_*$ to be $\mathcal M_{(A \otimes W \otimes E(d)_*, A \otimes W \otimes E(d)_*)} = \Spec (A \otimes W \otimes E(d)_*)$.  But the map $\Spec A \to \mathcal M_{(L, W)}$ factors through $\Spec L$ (*hold on*), so it suffices just to check flatness for $\Spec L \otimes_L W \otimes_L E(d)_* \cong \Spec W \otimes_L E(d)_* \to \Spec E(d)_*$, which you finally do by hand.  For (*hold on*), Lurie gives a nice proof at the end of Lecture 11 (internal to an actual discussion of representability and stacks) of this factorization Lemma, where he uses an iterated decomposition of $\moduli{ps}^{\mathrm{gpd}}$ into extensions of $\mathbb G_m$ by $\mathbb G_a$s, and noting that $H^*(\Spec R; \mathbb G_a)$ vanishes for $* > 0$.}
-\end{remark}
-
-\begin{remark}
-It's worth pointing out how strange all of this is. In Euclidean geometry, open subspaces are always top-dimensional, and closed subspaces can drop dimension.  Here, proper open substacks of every dimension appear, and every nonempty closed substack is $\infty$--dimensional (albeit of positive codimension).
-\end{remark}
+-----
 
 
 
 
-
-
-
-
-\section{The structure of \texorpdfstring{$\moduli{fg}$}{Mfg} III: Small scales}
-
-\todo{This is the most confusing section in this chapter, says Danny.}
-
-\todo{\cite[Section 4.A]{Drinfeld} also contains a Lubin--Tate cohomology theory, this time for formal $A$--modules. You should also cite \cite{LubinTate}.}
-
-\todo{Look at Prop 2.5 of Charles's Felix Klein notes, which proves the uniqueness of deformations of homomorphisms by hand.  Also, his version of the Lubin--Tate theorem (2.6) has the best motivation of ``$\star$--isomorphism'' that I've seen.}
-
-\todo{Remark 4.2 of Charles's \textit{Notes on the Hopkins--Miller theorem} talks about the difference between Matt's presentation of the Lubin--Tate moduli (involving formal group laws and equalities) and Neil's (involving formal groups and isomorphisms) in terms of an isomorphism between a fiber and a homotopy fiber of a Kan fibration of simplicial sets.}
-
-\todo{Lecture 21 of Jacob's course notes talks about the L--T moduli problem.  The text after Theorem 5 makes clear how deformations from $k$ to $k[\eps]/\eps^2$ control all square-zero deformations.}
-
-\todo{We should explain how the Witt ring enters this.}
-
-We now turn to the deformation theory of formal groups, which is about the appearance of formal groups in families.  Specifically, following \Cref{StructureOfMfgl} we will be interested in infinitesimal deformations of formal groups over fields of positive characteristic.
+We now turn to the deformation theory of formal groups, which is about the appearance of formal groups in families.  Specifically, following the program outlined in the introduction, we will be interested in infinitesimal deformations of formal groups over fields of positive characteristic.
 
 \begin{definition}
 Given a formal group $\Gamma$ classified by a map $\Spec k \to \moduli{fg}$, then a \textit{deformation of $\Gamma$ to a scheme $X$} is a factorization \[\Spec k \to X \to \moduli{fg}.\]  If $X$ is a nilpotent thickening of $\Spec k$ (or an ind-system of such), then the deformation is said to be \textit{infinitesimal}.
@@ -743,8 +778,8 @@ PICTURE GOES HERE.
 
 
 
-
-\section{Chromatic homology theories}
+\section{Nilpotence and periodicity in finite spectra}
+%\section{Chromatic homology theories}
 
 \todo{Consider renaming this section.}
 \todo{The bottom of COCTALOS page 68 has a better interpretation of what picking a formal group law lifting a flat map to $\moduli{fg}$ has to do with anything.  It probably belongs in this Lecture.}
@@ -773,7 +808,7 @@ for any $d$.  \todo{Can you explain this more?  How is the classification of clo
 \todo{This used to be in 3.6.}
 \todo{We aren't very clear about where flat maps come from, which should be emphasized early on (i.e., in the introduction), should be reiterated here, and should probably also be reiterated up above in \Cref{OpenSubstacksOfMfg}.}
 
-We have now arrived at the conclusion of our program from \Cref{StructureOfMfgl} for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open and closed substacks of $\moduli{fg}$, and we have analyzed its geometric points as well as their deformation neighborhoods.
+We have now arrived at the conclusion of our program from the introduction for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open and closed substacks of $\moduli{fg}$, and we have analyzed its geometric points as well as their deformation neighborhoods.
 \begin{definition}
 We define the following ``chromatic'' homology theories:
 \begin{itemize}
@@ -793,10 +828,7 @@ Morava $K$--theory at the even prime is not commutative.  Instead, there is a de
 
 
 
-
-
-
-\section{Nilpotence and periodicity in finite spectra}
+\todo{This used to be a section break}
 
 Having constructed these ``stalk'' homology theories, I want to show that you can actually perform stalkwise analyses of the sheaves coming from bordism theory.  Our example case is a famous theorem: the solution of Ravenel's nilpotence conjectures by Devinatz, Hopkins, and Smith.  Their theorem concerns spectra which ``detect nilpotence'' in the following sense:
 
