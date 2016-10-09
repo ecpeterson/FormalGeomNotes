@@ -617,7 +617,20 @@ The results of this section have several alternative forms in the literature.  F
 \end{remark}
 
 \begin{remark}
-\todo{Compute the $p$--typification of the standard formal group law on $\G_m$.  You can use this to define the Artin--Haase exponential, which arises as the coordinate change from the $p$--typical group law (by its logarithm to $\G_a$) to the standard group law (by its exponential from $\G_a$).}
+\todo{Maybe add a reference to the Hazewinkel book section on Artin--Haase exponentials.}
+The $p$--typification operation often gives ``unusual'' results.  For instance, we will examine the standard multiplicative formal group law of \Cref{GmAndItsLogExample}, its rational logarithm, and its rational exponential:
+\begin{align*}
+x +_{\G_m^{\mathrm{std}}} y & = x + y - xy, &
+\log_{\G_m^{\mathrm{std}}}(x) & = -\log(1 - x), &
+\exp_{\G_m^{\mathrm{std}}}(x) & = 1 - \exp(-x).
+\end{align*}
+By \Cref{EveryLogHaspTypification}, we see that the $p$--typification of this rational logarithm takes the form \[\log_{\G_m^{\ptyp}}(x) = \sum_{j=0}^\infty \frac{x^{p^j}}{p^j}.\]  We can couple this to the standard exponential of the rational multiplicative group
+\begin{center}
+\begin{tikzcd}
+\A^1 \arrow["\eps x"]{r} \arrow[bend left, "\log^{\ptyp}"]{rr} & \G_m \arrow["\log"]{r} & \G_a \arrow["\exp"]{r} \arrow[bend left,"\exp^{\mathrm{std}}"]{rr} & \G_m \arrow["x"]{r} & \A^1
+\end{tikzcd}
+\end{center}
+to produce the coordinate change from \Cref{EveryFGLIsPTypical}: \[1 - \exp \left( -\sum_{j=0}^\infty \frac{x^{p^j}}{p^j} \right) = 1 - E_p(-x).\]  This series $E_p(x)$ is known as the \textit{Artin--Hasse exponential}, and it has the miraculous property that it is a series lying in $\Z_{(p)}\ps{x} \subseteq \Q\ps{x}$, as it is a change of coordinate series on $\G_m$ over $\Spec \Z_{(p)}$.
 \end{remark}
 
 \todo{I'm not sure where this goes --- maybe it goes right here --- but Allen told me how to give a nice proof of this fact.  He didn't give me a citation for this, but the main point was that flatness can be checked locally, so the general formula for the pullback $\mathcal M_{(A_1, \Gamma_1)} \to \mathcal M_{(L, W)} \from \mathcal M_{(A_2, \Gamma_2)}$ being $\mathcal M_{(A_1 \otimes W \otimes A_2, \Gamma_1 \otimes W \otimes \Gamma_2)}$ specializes to compute the pullback of $\Spec A \to \mathcal M_{(L, W)} \from \Spec E(d)_*$ to be $\mathcal M_{(A \otimes W \otimes E(d)_*, A \otimes W \otimes E(d)_*)} = \Spec (A \otimes W \otimes E(d)_*)$.  But the map $\Spec A \to \mathcal M_{(L, W)}$ factors through $\Spec L$, so it suffices just to check flatness for $\Spec L \otimes_L W \otimes_L E(d)_* \cong \Spec W \otimes_L E(d)_* \to \Spec E(d)_*$, which you finally do by hand.}
