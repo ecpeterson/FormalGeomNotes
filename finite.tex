@@ -31,7 +31,7 @@ We have thus assembled a task list:
 \item Describe the geometric points of $\moduli{fg}$.
 \item Analyze their infinitesimal deformation spaces.
 \end{itemize}
-These will occupy our attention for the first half of this Case Study.  In the second half, we will exploit these homology theories $E_\Gamma$ and $K_\Gamma$, as well as their connection to $\moduli{fg}$ and to $MU$, to make various structural statements about the category $\CatOf{Spectra}$.  These homology theories are especially well-suited to understanding the subcategory $\CatOf{Spectra}^{\fin}$ of finite spectra, and we will recount several important statements in that setting.  Together with these homology theories, these celebrated results, collectively called the nilpotence and periodicity theorems, form the basis of \textit{chromatic homotopy theory}.  In fact, our \emph{real} goal in this Case Study is to give an introduction to the chromatic perspective that remains in line with our algebro-geometrically heavy narrative.
+These will occupy our attention for the first half of this Case Study.  In the second half, we will exploit these homology theories $E_\Gamma$ and $K_\Gamma$, as well as their connection to $\moduli{fg}$ and to $MU$, to make various structural statements about the category $\CatOf{Spectra}$.  These homology theories are especially well-suited to understanding the subcategory $\CatOf{Spectra}^{\fin}$ of finite spectra, and we will recount several important statements in that setting.  Together with these homology theories, these celebrated results (collectively called the nilpotence and periodicity theorems) form the basis of \textit{chromatic homotopy theory}.  In fact, our \emph{real} goal in this Case Study is to give an introduction to the chromatic perspective that remains in line with our algebro-geometrically heavy narrative.
 
 
 \todo{still need to talk about closed and open subschemes, their basic properties}
@@ -572,8 +572,9 @@ X_1 \arrow[shift left=0.3em, "t"]{d} \arrow[shift right=0.3em, "s"']{d} \arrow["
 X_0 \arrow["f"]{r} & \mathbb A^1.
 \end{tikzcd}
 \end{center}
-(In terms of Hopf algebroids, the corresponding element $a \in A$ satisfies $\eta_L(a) = \eta_R(a)$.)  Correspondingly, a closed subscheme $A \subseteq X$ determined by the simultaneous vanishing of functions $f_\alpha$ is said to be \textit{invariant} when the functions $f_\alpha$ are themselves invariant.  In terms of Hopf algebroids, the corresponding ideal $I \subseteq A$ satisfies $\eta_L(I) = \eta_R(I)$.  Finally, a \textit{closed substack} is a substack determined by an invariant ideal of $X_0$.
+(In terms of Hopf algebroids, the corresponding element $a \in A$ satisfies $\eta_L(a) = \eta_R(a)$.)  Correspondingly, a closed subscheme $A \subseteq X_0$ determined by the simultaneous vanishing of functions $f_\alpha$ is said to be \textit{invariant} when the vanishing condition is invariant --- i.e., a point lies in the simultaneous vanishing locus if and only if its entire orbit under $X_1$ also lies in the simultaneous vanishing locus.  (In terms of Hopf algebroids, the corresponding ideal $I \subseteq A$ satisfies $\eta_L(I) = \eta_R(I)$.)  Finally, a \textit{closed substack} is a substack determined by an invariant ideal of $X_0$.
 \todo{At some point you really should talk about open complements (of affine schemes and then of affinely presented stacks).}
+\todo{The geometric definition of invariant ideal is carelessly phrased.}
 \end{definition}
 
 We are in a good position to discern all of the closed substacks of $\moduli{fg} \times \Spec \Z_{(p)}$ --- or, equivalently, to discern all of the invariant ideals of $\sheaf O_{\moduli{fgl}^{\ptyp}}$.
@@ -588,7 +589,7 @@ Recall from \Cref{KudoArakiIsomorphism} the Kudo--Araki isomorphism \[\moduli{fg
 
 \noindent What is \emph{much} harder to prove is the following:
 
-\begin{theorem}[{\cite[Corollary 2.4 and Proposition 2.5]{Landweber}, cf.\ \cite[Theorem 4.9]{Wilson}}]\label{LandwebersClassificationOfClosedSubstacks}
+\begin{theorem}[{\cite[Corollary 2.4 and Proposition 2.5]{LandweberInvariantRegIdeals}, cf.\ \cite[Theorem 4.9]{Wilson}}]\label{LandwebersClassificationOfClosedSubstacks}
 The unique closed reduced substack of $\moduli{fg} \times \Spec \Z_{(p)}$ of codimension $d$ is selected by the invariant prime ideal $I_d \subseteq \sheaf O_{\moduli{fgl}^{\ptyp}}$.
 \end{theorem}
 \begin{proof}[Proof sketch]
@@ -879,88 +880,104 @@ I drew an approximation to this picture by hand in \texttt{other resources}.  I 
 
 
 
-\section{Nilpotence and periodicity in finite spectra}
-\label{NilpotenceAndPeriodicity}
-%\section{Chromatic homology theories}
+\section{Nilpotence and periodicity in finite spectra}\label{NilpotenceAndPeriodicity}
 
-\todo{Consider renaming this section.}
 \todo{The bottom of COCTALOS page 68 has a better interpretation of what picking a formal group law lifting a flat map to $\moduli{fg}$ has to do with anything.  It probably belongs in this Lecture.}
-\todo{This section could be beefed up substantially.  Maybe it could even be combined with the localization section, which needs a trim?}
-\todo{Talk about flatness and formal completions.  The point is that $\moduli{fg}$ is not Noetherian, but each geometric point except $\G_a$ lives in an open substack that happens to be Noetherian.}
+\todo{Much of this section is written graded-ly.  I guess we still haven't decided whether this is the right presentation.}
 
-\todo{This used to be in 3.3.}
-We can now rephrase \Cref{LandwebersStackyTheorem} in terms of algebraic conditions.
-\begin{theorem}[{Landweber, cf.\ \Cref{LandwebersStackyTheorem}, see also \cite[Theorem 21.4 and Proposition 21.5]{HopkinsCOCTALOS}}]\citeme{Find Landweber's original paper}
-\todo{We should really clean this Baer-criterion-style argument up.  It's fuzzy, and it's sort of the main point of this part of the LEFT program.}
-Let $M$ be a module over \[\sheaf O_{\moduli{fg}^{\ptyp}} \cong \Z_{(p)}[v_1, \ldots, v_d, \ldots].\]  If $(p, v_1, \ldots, v_d, \ldots)$ forms an infinite regular sequence on $M$, then \[X \mapsto M \otimes_{\sheaf O_{\moduli{fg}^{\ptyp}}} MU_0(X)\] determines a homology theory \emph{on finite spectra $X$}.  Moreover, if $M/I_d = 0$ for some $d \gg 0$, then the same formula determines a homology theory \emph{on all spectra $X$}.
+
+With our analysis of $\moduli{fg}$ complete, our first goal in this Lecture is to finish the program sketched in the introduction to this Case Study by manufacturing those interesting homology theories connected to the functor $\context{MU}(-)$.  We begin by rephrasing our main tool, \Cref{LandwebersStackyTheorem}, in terms of algebraic conditions.
+\begin{theorem}[{\cite[Corollary 2.7]{LandweberHomologicalComodules} and \cite[Theorem 21.4 and Proposition 21.5]{HopkinsCOCTALOS}, cf.\ \Cref{LandwebersStackyTheorem}}]\label{LEFTRealTheoremWithProof}
+Let $\sheaf F$ a quasicoherent sheaf over $\moduli{fg} \times \Spec \Z_{(p)}$, thought of as a comodule $M$ for the Kudo--Araki Hopf algebroid (cf.\ \Cref{KudoArakiIsomorphism}) \[(A, \Gamma) = (\sheaf O_{\moduli{fgl}^{\ptyp}}, \sheaf O_{\moduli{fgl}^{\ptyp}}[t_1, t_2, \ldots]).\]  If $(p, v_1, \ldots, v_d, \ldots)$ forms an infinite regular sequence on $M$, then \[X \mapsto M \otimes_{\sheaf O_{\moduli{fgl}^{\ptyp}}} MU_0(X)\] determines a homology theory on \emph{finite} spectra $X$.  Moreover, if $M/I_d = 0$ for some $d \gg 0$, then the same formula determines a homology theory on \emph{all} spectra $X$.
 \end{theorem}
 \begin{proof}
-This is a direct consequence of the classification of closed substacks of $\moduli{fg}{}_{,(p)}$ in \Cref{LandwebersClassificationOfClosedSubstacks}.  Specifically, $M$ determines a flat quasicoherent sheaf on $\moduli{fg}{}_{,(p)}$ when $\Tor_1(M, N) = 0$ for any other comodule $N$ \todo{Why comodule and not module?  Can you even take $\Tor$ of a module with a comodule?}.  Using the classification of closed substacks and the regularity condition, one can iteratively use the short exact sequences \[0 \to M / I_d \xrightarrow{\cdot v_d} M / I_d \to M / I_{d+1} \to 0\] to trade this condition for the list of conditions
+Following the discussion in the introduction, we note that a cofiber sequence \[X' \to X \to X''\] of spectra gives rise to an exact sequence
+\begin{center}
+\begin{tikzcd}
+\cdots \arrow{r} & \context{MU}(X') \arrow{r} & \context{MU}(X) \arrow{r} & \context{MU}(X'') \arrow{r} & \cdots \\
+\cdots \arrow{r} & \sheaf N' \arrow[equal]{u} \arrow{r} & \sheaf N \arrow[equal]{u} \arrow{r} & \sheaf N'' \arrow[equal]{u} \arrow{r} & \cdots.
+\end{tikzcd}
+\end{center}
+We thus see that we are essentially tasked with showing that $\sheaf F$ is flat, so that tensoring with $\sheaf F$ does not disturb the exactness of this sequence.  In that case, we can then apply Brown representability to the composite functor $\sheaf F \otimes \context{MU}(X)$.
+
+Flatness of $\sheaf F$ is equivalent to $\Tor_1(\sheaf F, \sheaf N) = 0$ for an arbitrary auxiliary quasicoherent sheaf $\sheaf N$ (soon to be thought of as $\context{MU}(X)$).  By our regularity hypothesis, there is an exact sequence of sheaves \[0 \to \sheaf F \xrightarrow{p} \sheaf F \to \sheaf F / (p) \to 0,\] so applying $\Tor_*(-, \sheaf N)$ gives an exact sequence \[\Tor_2(\sheaf F / (p), \sheaf N) \xrightarrow{} \Tor_1(\sheaf F, \sheaf N) \xrightarrow{p} \Tor_1(\sheaf F, \sheaf N)\] of $\Tor$ groups.  The sequence gives the following sufficiency condition: \[[\Tor_1(p^{-1} \sheaf F, \sheaf N) = 0 \quad \text{and} \quad \Tor_2(\sheaf F/(p), \sheaf N) = 0] \quad \Rightarrow \quad \Tor_1(\sheaf F, \sheaf N) = 0.\]  Similarly, the $v_1$--multiplication sequence gives another sufficiency condition: \[[\Tor_2(v_1^{-1} \sheaf F/(p), \sheaf N) = 0 \quad \text{and} \quad \Tor_3(\sheaf F/I_2, \sheaf N) = 0] \quad \Rightarrow \quad \Tor_2(\sheaf F/(p), \sheaf N) = 0.\]  Continuing in this fashion, for some $D \gg 0$ we would like to show
+\begin{align*}
+\Tor_{d+1}(v_d^{-1} \sheaf F/I_d, \sheaf N) & = 0 & \text{(for each $d < D$),} \\
+\Tor_{D+1}(\sheaf F/I_{D+1}, \sheaf N) & = 0.
+\end{align*}
+The second condition is satisfied one of two ways, corresponding to our two auxiliary hypotheses and two conclusions in the Theorem statement:
 \begin{itemize}
-\item $\Tor_1(p^{-1} M, N) = 0$.
-\item $\Tor_2(v_1^{-1} M / p, N) = 0$.
-\item \ldots
-\item $\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0$.
-\item $\Tor_{d+1}(M / I_d, N) = 0$.
+\item If $\sheaf F$ itself satisfies $\sheaf F / I_{D+1} = 0$, we are done.
+\item Writing $j_{D+1}\co \moduli{fg}^{\ge D+1} \to \moduli{fg}$ for the inclusion of the prime closed substack, we can identify $\sheaf N / I_{D+1}$ with $j_{D+1}{}_* j_{D+1}^* \sheaf N$.  If $\sheaf N$ is coherent (for instance, in the case that $\sheaf N = \context{MU}(X)$ for a \emph{finite} complex $X$), then $j_{D+1}^* \sheaf N$ is free for large $D$ and hence has vanishing $\Tor$ groups.
 \end{itemize}
-for any $d$.  \todo{Can you explain this more?  How is the classification of closed substacks used?  Where are these conditions coming from?}If $N$ is coherent, as in the case $N = MU_*(X)$ for a finite spectrum $X$\todo{Is this true? There's some going-around / extension-problem stuff that I've never understood, and it's gotten me in trouble before.}, then this final condition is satisfied automatically for $d \gg 0$.  (Alternatively, we can assume that $M$ eventually satisfies this condition on its own.)  By observing the length of the Koszul resolution associated to the cover $v_d^{-1} \Z_{(p)}[v_1, \ldots, v_d]$, one finally sees that \[\Tor_d(v_{d-1}^{-1} M / I_{d-1}, N) = 0\] is satisfied for \emph{any} quasicoherent sheaf.
+
+We then turn to the first collection of conditions.  They are \emph{always} satisfied, but this requires an argument.  We write $i_d\co \moduli{fg}^{= d} \to \moduli{fg}$ for the inclusion of the substack of formal groups of height exactly $d$, which (following \Cref{OpenSubstacksOfMfg}) has a presentation by the Hopf algebroid \[(v_d^{-1} A / I_d, \Gamma \otimes v_d^{-1} A / I_d).\]  We are trying to study the derived functors of \[\sheaf N \mapsto (i_d{}_* i_d^* \sheaf F) \otimes \sheaf N \cong i_d{}_* (i_d^* \sheaf F \otimes i_d^* \sheaf N).\]  Since $i_d{}_*$ is exact, we are moved to study the composite functor spectral sequence for \[\CatOf{QCoh}_{\moduli{fg}} \xrightarrow{i_d^*} \CatOf{QCoh}_{\moduli{fg}^{=d}} \xrightarrow{i_d^* \sheaf F \otimes -} \CatOf{QCoh}_{\moduli{fg}^{=d}}.\]  The second functor is actually exact: the geometric map \[\Gamma_d\co \Spec k \to \moduli{fg}^{=d}\] is a faithfully flat cover, and $k$--modules have no nontrivial $\Tor$.  Meanwhile, the first functor has at most $d$ derived functors: $i_d^*$ is modeled by tensoring with $v_d^{-1} A / I_d$, but $A / I_d$ admits a Koszul resolution with $d$ stages and $A / I_d \to v_d^{-1} A / I_d$ is exact.  As $\Tor_{d+1}$ is beyond the length of this resolution, it is always zero.
 \end{proof}
 
----
-
-\todo{This used to be in 3.6.}
-\todo{We aren't very clear about where flat maps come from, which should be emphasized early on (i.e., in the introduction), should be reiterated here, and should probably also be reiterated up above in \Cref{OpenSubstacksOfMfg}.}
-
-We have now arrived at the conclusion of our program from the introduction for manufacturing interesting homology theories from Quillen's theorem: we have an ample supply of open and closed substacks of $\moduli{fg}$, and we have analyzed its geometric points as well as their deformation neighborhoods.
 \begin{definition}
-We define the following ``chromatic'' homology theories:
+Coupling \Cref{LEFTRealTheoremWithProof} to our understanding of $\moduli{fg}$, we produce many interesting homology theories, collectively referred to as \textit{chromatic homology theories}:
 \begin{itemize}
-\item Recall that the moduli of $p$--typical group laws is affine, presented by the scheme $\Spec BPP_0$, $BPP_0 := \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$.  Since the inclusion of $p$--typical group laws into all group laws induces an equivalence of stacks, it follows that this formula determines a homology theory on finite spectra, called \textit{Brown--Peterson homology}: \[BPP_0(X) := MUP_0(X) \otimes_{MUP_0} BPP_0.\]
-\item A chart for the open substack $\moduli{fg}^{\le d}$ in terms of $\moduli{fgl}^{\ptyp} \cong \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots]$ is $\Spec E(d)P_0 := \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d^\pm]$.  It follows that there is a homology theory $E(d)P$, called \textit{the $d${\th} Johnson--Wilson homology}, defined on all spectra by \[E(d)P_0(X) := MUP_0(X) \otimes_{MUP_0} E(d)P_0.\]
-\item Similarly, for a formal group $\Gamma$ of height $d < \infty$, there is a chart $\Spf \Z_p\ps{u_1, \ldots, u_{d-1}}$ for its deformation neighborhood.  Correspondingly, there is a homology theory $E_\Gamma{}$, called \textit{the (discontinuous) Morava $E$--theory for $\Gamma$}, determined by \[E_\Gamma{}_0(X) := MUP_0(X) \otimes_{MUP_0} \Z_p\ps{u_1, \ldots, u_{d-1}}.\] \todo{Why is this not written as $E_\Gamma P_0$?}
-\item Since $(p, u_1, \ldots, u_{d-1})$ forms a regular sequence on $E_\Gamma{}_*$, we can form the regular quotient $K_\Gamma$ in the homotopy category.  This determines a spectrum, and hence determines a homology theory called \textit{the Morava $K$--theory for $\Gamma$}.  In the case where $\Gamma$ comes from the Honda $p$--typical formal group law (of height $d$), this spectrum is often written as $K(d)$.  As an edge case, we also set $K(\infty) = H\F_p$.\footnote{By \Cref{FGpsOverAlgClosedFields}, it often suffices to consider just these spectra to make statements about all $K_\Gamma$.  With more care, it even often suffices to consider formal groups $\Gamma$ of finite height.}
-\item More delicately, there is a version of Morava $E$--theory which takes into account the formal topology on $(\moduli{fg})^\wedge_\Gamma$, called \textit{continuous Morava $E$--theory}.  It is defined by the pro-system $\{E_\Gamma(X) / u^I\}$, where $I$ ranges over multi-indices and the quotient is taken in the ``homotopical sense''\todo{Can you be more precise about this?}, i.e., $u_j$--torsion elements contribute to the odd-degree homotopy of the quotient.
-\item There is also a homology theory associated to the closed substack $\moduli{fg}^{\ge d}$.  Since $I_d = (p, v_1, \ldots, v_{d-1})$ is generated by a regular sequence on $BPP_0$, we can directly define the spectrum $P(d)P$ by a regular quotient: \[P(d)P = BP / (p, v_1, \ldots, v_{d-1}).\]  This spectrum does have the property $P(d)P_0 = BPP_0 / I_d$, but it is \emph{only} the case that $P(d)P_0 = BPP_0(X) / I_d$ when $I_d$ forms a regular sequence on $BPP_0(X)$ --- which is reasonably rare among the cases of interest.
+\item Recall that the moduli of $p$--typical group laws is affine, presented in \Cref{KudoArakiIsomorphism} by \[\sheaf O_{\moduli{fgl}^{\ptyp}} \cong \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots].\]  Since the inclusion of $p$--typical group laws into all group laws induces an equivalence of stacks, it is in particular flat, and hence this formula determines a homology theory on finite spectra, called \textit{Brown--Peterson homology}: \[BPP_0(X) := MUP_0(X) \otimes_{MUP_0} BPP_0.\]
+\item A chart for the open substack $\moduli{fg}^{\le d}$ in terms of $\moduli{fgl}^{\ptyp}$ was given in \Cref{OpenSubstacksOfMfg} by $\Spec \Z_{(p)}[v_1, v_2, \ldots, v_d^\pm]$.  Since open maps are in particular flat, it follows that there is a homology theory $E(d)P$, called \textit{the $d${\th} Johnson--Wilson homology}, defined on all spectra by \[E(d)P_0(X) := MUP_0(X) \otimes_{MUP_0} \Z_{(p)}[v_1, v_2, \ldots, v_d^\pm].\]
+\item Similarly, for a formal group $\Gamma$ of height $d < \infty$, we produced in \Cref{LubinTateModuliThm} a chart $\Spf \Z_p\ps{u_1, \ldots, u_{d-1}}$ for its deformation neighborhood.  Since inclusions of deformation neighborhoods of substacks of Noetherian stacks are flat\citeme{Consider citing this}, there is a corresponding homology theory $E_\Gamma{}$, called \textit{the (discontinuous) Morava $E$--theory for $\Gamma$}, determined by \[E_\Gamma{}_0(X) := MUP_0(X) \otimes_{MUP_0} \Z_p\ps{u_1, \ldots, u_{d-1}}[u^\pm].\]
+\item Since $(p, u_1, \ldots, u_{d-1})$ forms a regular sequence on $E_\Gamma{}_*$, we can form the regular quotient at the level of spectra, using cofiber sequences
+\begin{align*}
+E_\Gamma \xrightarrow{p} E_\Gamma & \to E_\Gamma / (p), \\
+E_\Gamma / (p) \xrightarrow{u_1} E_\Gamma / (p) & \to E_\Gamma / (p, u_1), \\
+& \vdots \\
+E_\Gamma / I_{d-1} \xrightarrow{u_{d-1}} E_\Gamma / I_{d-1} & \to E_\Gamma / I_d.
+\end{align*}
+This determines a spectrum $K_\Gamma = E_\Gamma / I_d$, and hence determines a homology theory called \textit{the Morava $K$--theory for $\Gamma$}.  In the case where $\Gamma$ comes from the Honda $p$--typical formal group law (of height $d$), this spectrum is often written as $K(d)$.  As an edge case, we also set $K(0) = H\Q$ and $K(\infty) = H\F_p$.\footnote{By \Cref{FGpsOverAlgClosedFields} and \Cref{FieldSpectraAreKTheories} to follow, it often suffices to consider just these spectra $K(d)$ to make statements about all $K_\Gamma$.  With more care, it even often suffices to consider $d \ne \infty$.}
+\item More delicately, there is a version of Morava $E$--theory which takes into account the formal topology on $(\moduli{fg})^\wedge_\Gamma$, called \textit{continuous Morava $E$--theory}.  It is defined by the pro-system $\{E_\Gamma(X) / u^I\}$, where $I$ ranges over multi-indices and the quotient is again given by cofiber sequences.
+\item There is also a homology theory associated to the closed substack $\moduli{fg}^{\ge d}$.  Since $I_d = (p, v_1, \ldots, v_{d-1})$ is generated by a regular sequence on $BPP_0$, we can directly define the spectrum $P(d)P$ by a regular quotient: \[P(d)P = BP / (p, v_1, \ldots, v_{d-1}).\]  This spectrum does have the property $P(d)P_0 = BPP_0 / I_d$ on coefficient rings, but $P(d)P_0(X) = BPP_0(X) / I_d$ \emph{only} when $I_d$ forms a regular sequence on $BPP_0(X)$ --- which is reasonably rare among the cases of interest.
 \end{itemize}
 \end{definition}
 
-\begin{remark}[{\cite[Section 5.2]{KLW}, \cite[Theorem 2.13]{StricklandProductsOnModules}}]\label{MoravaKIsNotCommutative}
-\todo{Ravenel's Localization W/R/T, Corollaries 2.14 and 2.16, is another reference for this.  He, in turn, cites Yosimura's \textit{Universal coefficient sequences for cohomology theories of CW-spectra}.}
-Morava $K$--theory at the even prime is not commutative.  Instead, there is a derivation $Q_d: K(d) \to \Susp K(d)$ satisfying \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, $K(d)^* X$ is a commutative ring whenever $K(d)^1 X = 0$.
+\begin{remark}
+The trailing ``$P$'' in these names is to disambiguate them from similar less-periodic objects in the literature.  Namely, $BP$ is often taken to be a minimal wedge summand of $MU_{(p)}$, whereas $E(d)$, $E_\Gamma$, and $K(d)$ can all be taken to be $2(p^d-1)$--periodic (for heights $0 < d < \infty$).  The one exception to this minimality convention is $E_\Gamma$, which is \emph{usually} taken to be $2$--periodic already, so we do not attach a ``$P$'' to its name.
 \end{remark}
 
+\begin{example}[{cf.\ \Cref{CPinftyKUExample}}]\label{ExampleOfMoravasTheoriesAtGm}
+In the case $\Gamma = \G_m$, the resulting spectra are connected to complex $K$--theory:
+\begin{align*}
+E_{\G_m} & \cong KU^\wedge_p, &
+K_{\G_m} & \cong KU / p, &
+E(1)P & \cong KU_{(p)}.
+\end{align*}
+\end{example}
 
+\begin{remark}[{\cite[Section 5.2]{KLW}, \cite[Corollaries 2.14 and 2.16]{RavenelLocalizationWRTPeriodic}, \cite[Theorem 2.13]{StricklandProductsOnModules}}]\label{MoravaKIsNotCommutative}
+\todo{He, in turn, cites Yosimura's \textit{Universal coefficient sequences for cohomology theories of CW-spectra}.}
+In general, the quotient of a ring spectrum by a homotopy element does not give another ring spectrum.  The most typical example of this phenomenon is that $\S/2$ is not a ring spectrum, since its homotopy is not $2$--torsion.  Most of our constructions above do not suffer from this deficiency, with one exception: Morava $K$--theories at $p = 2$ are not commutative.  Instead, there is a derivation $Q_d: K(d) \to \Susp K(d)$ which tracks the commutativity by the relation \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, we find that $K(d)^* X$ is a commutative ring whenever $K(d)^1 X = 0$, which is often the case.
+\end{remark}
 
-\todo{This used to be a section break}
+Having constructed these chromatic homology theories, for the rest of this Lecture we pursue an example of a ``fiberwise'' analysis of a phenomenon in homotopy theory.  First, recall the following classical theorem:
 
-Having constructed these ``stalk'' homology theories, I want to show that you can actually perform stalkwise analyses of the sheaves coming from bordism theory.  Our example case is a famous theorem: the solution of Ravenel's nilpotence conjectures by Devinatz, Hopkins, and Smith.  Their theorem concerns spectra which ``detect nilpotence'' in the following sense:
-
-\todo[inline]{All the stuff after this point is written graded-ly.  I guess we still haven't decided whether this is the right presentation.}
-
-\begin{definition}\citeme{Hopkins--Smith, or maybe the intro to D--H--S}
-A ring spectrum $E$ \textit{detects nilpotence} if, for any ring spectrum $R$, the kernel of the Hurewicz homomorphism $E_*: \pi_* R \to E_* R$ consists of nilpotent elements.
-\end{definition}
-
-First, a word about why one would care about such a condition.  The following theorem is classical:
 \begin{theorem}[Nishida]\citeme{Nishida}
 Every homotopy class $\alpha \in \pi_{\ge 1} \S$ is nilpotent. \qed
 \end{theorem}
 
-\noindent However, people studying $K$--theory in the '$70$s discovered the following phenomenon:
+\noindent People studying $K$--theory in the '$70$s discovered the following related phenomenon:
 
 \begin{theorem}[Adams]\citeme{Adams}
 Let $M_{2n}(p)$ denote the mod--$p$ Moore spectrum with bottom cell in degree $2n$.  Then there is an index $n$ and a map $v: M_{2n}(p) \to M_0(p)$ such that $KU_* v$ acts by multiplication by the $n$\textsuperscript{th}\, power of the Bott class.  The minimal such $n$ is given by the formula \[n = \begin{cases} p-1 & \text{when $p \ge 3$}, \\ 4 & \text{when $p = 2$}. \qed \end{cases}\]
 \end{theorem}
 
-\noindent In particular, this means that $v$ cannot be nilpotent, since a null-homotopic map induces the zero map in any homology theory.  Just as we took the non-nilpotent endomorphism $p$ in $\pi_0 \End \S$ and coned it off, we can take the endomorphism $v$ in $\pi_{2p-2} \End M_0(p)$ and cone it off to form a new spectrum called $V(1)$.\footnote{The spectrum $V(1)$ is actually defined to be a finite spectrum with $BP_* V(1) \cong BP_* / (p, v_1)$. At $p = 2$ this spectrum doesn't exist and this is a misnomer.  More generally, at odd primes $p$ Nave shows that $V((p+1)/2)$ doesn't exist~\cite[Theorem 1.3]{Nave}.}
+\noindent In particular, this means that $v$ cannot be nilpotent, since a null-homotopic map induces the zero map in any homology theory.  Just as we took the non-nilpotent endomorphism $p \in \pi_0 \End \S$ and coned it off, we can take the endomorphism $v \in \pi_{2p-2} \End M_0(p)$ and cone it off to form a new spectrum called $V(1)$.\footnote{The spectrum $V(1)$ is actually defined to be a finite spectrum with $BP_* V(1) \cong BP_* / (p, v_1)$. At $p = 2$ this spectrum doesn't exist and this is a misnomer.  More generally, at odd primes $p$ Nave shows that $V((p+1)/2)$ doesn't exist~\cite[Theorem 1.3]{Nave}.}  One can ask, then, whether the pattern continues: does $V(1)$ have a non-nilpotent self-map, and can we cone it off to form a new such spectrum with a new such map?  Can we then do that again, indefinitely?  In order to study this question, we are motivated to find spectra satisfying the following condition:
 
-One can ask, then, whether the pattern continues: does $V(1)$ have a non-nilpotent self-map, and can we cone it off to form a new such spectrum with a new such map?  Can we then do that again, indefinitely?  In order to study this question, we are motivated to find spectra $E$ as above, since an $E$ that detects nilpotence cannot send such a nontrivial self-map to zero.  In fact, we found one such $E$ already:
+\begin{definition}[{\cite[Definition 4]{HopkinsSmith}, cf.\ \cite[Theorem 1]{DHS}}]
+A ring spectrum $E$ \textit{detects nilpotence} if for any ring spectrum $R$ the kernel of the Hurewicz homomorphism \[R_*\eta_E\co \pi_* R \to E_* R\] consists of nilpotent elements.
+\end{definition}
+
+\noindent In particular, such an $E$ cannot send such a nontrivial self-map to zero.
+
+This question and surrounding issues formed the basis of Ravenel's nilpotence conjectures~\cite[Section 10]{RavenelLocalizationWRTPeriodic}, which were resolved by by Devinatz, Hopkins, and Smith~\cite{DHS,HopkinsSmith}.  Their main technical input was to demonstrate that we already have access to a nice homology theory which detects nilpotence:
 
 \begin{theorem}[{\cite[Theorem 1.i]{DHS}}]\label{DevinatzHopkinsSmith}
-Complex cobordism $MU$ detects nilpotence. \qed
+The spectrum $MU$ detects nilpotence. \qed
 \end{theorem}
 
-They also show that the $MU$ is the universal object which detects nilpotence, in the sense that any other ring spectrum can have this property checked stalkwise on $\context{MU}$:
+\noindent They also show that the $MU$ is the universal object which detects nilpotence, in the sense that any other ring spectrum can have this property checked stalkwise on $\context{MU}$:
 
 \begin{corollary}[{\cite[Theorem 3]{HopkinsSmith}}]\label{LocalNilpotenceDetection}
 A ring spectrum $E$ detects nilpotence if and only if for all $0 \le d \le \infty$ and for all primes $p$, $K(d)_* E \ne 0$.
@@ -968,38 +985,44 @@ A ring spectrum $E$ detects nilpotence if and only if for all $0 \le d \le \inft
 \begin{proof}
 If $K(d)_* E = 0$ for some $d$, then the non-nilpotent unit map $\S \to K(d)$ lies in the kernel of the Hurewicz homomorphism for $E$, so $E$ fails to detect nilpotence.
 
-Hence, for any $d$ we must have $K(d)_* E \ne 0$.  Because $K(d)_*$ is a field, it follows by picking a basis of $K(d)_* E$ that $K(d) \sm E$ is a nonempty wedge of suspensions of $K(d)$.  So, for $\alpha \in \pi_* R$, if $E_* \alpha = 0$ then $(K(d) \sm E)_* \alpha = 0$ and hence $K(d)_* \alpha = 0$.  So, we need to show that if $K(d)_* \alpha = 0$ for all $n$ and all $p$ then $\alpha$ is nilpotent.  Taking \Cref{DevinatzHopkinsSmith} as given, it would suffice to show merely that $MU_* \alpha$ is nilpotent.  This is equivalent to showing that the ring spectrum $MU \sm R[\alpha^{-1}]$ is contractible or that the unit map is null: \[\S \to MU \sm R[\alpha^{-1}].\]
+In the other direction, suppose that for every $d$ we have $K(d)_* E \ne 0$.  Because $K(d)_*$ is a field, it follows by picking a basis of $K(d)_* E$ that $K(d) \sm E$ is a nonempty wedge of suspensions of $K(d)$.  So, for $\alpha \in \pi_* R$, if $E_* \alpha = 0$ then $(K(d) \sm E)_* \alpha = 0$ and hence $K(d)_* \alpha = 0$.  So, we need to show that if $K(d)_* \alpha = 0$ for all $n$ and all $p$ then $\alpha$ is nilpotent.  Taking \Cref{DevinatzHopkinsSmith} as given, it would suffice to show merely that $MU_* \alpha$ is nilpotent.  This is equivalent to showing that the ring spectrum $MU \sm R[\alpha^{-1}]$ is contractible or that the unit map is null: \[\S \to MU \sm R[\alpha^{-1}].\]
 
-A nontrivial result of Johnson and Wilson shows that if $MU_* X = 0$ for any $X$, then for any $d$ we have $K([0, d])_* X = 0$ and $P(d+1)_* X = 0$.  (Specifically, it is immediate that $MU_* X = 0$ forces $P(d+1)_* X = 0$ and $v_{d'}^{-1} P(d')_*(X) = 0$ for all $d' < d$.  What's nontrivial is showing that $v_{d'}^{-1} P(d')_*(X) = 0$ if and only if $K(d')_*(X) = 0$~\cite[Theorem 2.1.a]{RavenelLocalizationWRTPeriodic},~\cite[Section 3]{JohnsonWilson}.)  Taking $X = R[\alpha^{-1}]$, we have assumed all of these are zero except for $P(d+1)$.  But $\colim_d P(d+1) \simeq H\F_p \simeq K(\infty)$, and $\S \to K(\infty) \sm R[\alpha^{-1}]$ is assumed to be null as well.  By compactness of $\S$, that null-homotopy factors through some finite stage $P(d+1) \sm R[\alpha^{-1}]$ with $d \gg 0$.
+A nontrivial result of Johnson and Wilson shows that if $MU_* X = 0$, then for any $d$ we have $K([0, d])_* X = 0$ and $P(d+1)_* X = 0$.\footnote{Specifically, it is immediate that $MU_* X = 0$ forces $P(d+1)_* X = 0$ and $v_{d'}^{-1} P(d')_*(X) = 0$ for all $d' < d$.  What's nontrivial is showing that $v_{d'}^{-1} P(d')_*(X) = 0$ if and only if $K(d')_*(X) = 0$~\cite[Theorem 2.1.a]{RavenelLocalizationWRTPeriodic},~\cite[Section 3]{JohnsonWilson}.}  Taking $X = R[\alpha^{-1}]$, we have assumed all of these are zero except for $P(d+1)$.  But $\colim_d P(d+1) \simeq H\F_p \simeq K(\infty)$, and $\S \to K(\infty) \sm R[\alpha^{-1}]$ is assumed to be null as well.  By compactness of $\S$, that null-homotopy factors through some finite stage $P(d+1) \sm R[\alpha^{-1}]$ with $d \gg 0$.
 \end{proof}
 
-As another example of the primacy of these methods, we can show the following interesting result.  Say that $R$ is a field spectrum when every $R$--module (in the homotopy category) splits as a wedge of suspensions of $R$.  It is easy to check (as mentioned in the proof above) that $K(d)$ is an example of such a spectrum.
-\todo{This might require some care. You've been talking about $K(d)P$ mostly. Why is this the right thing to switch to? If you restrict attention to $2$--periodic field spectra, can you use $K(d)P$ instead?}
+\Cref{LocalNilpotenceDetection} has the following consequence, which speaks to the primacy of both the chromatic program and these results.
+
+\begin{definition}
+A ring spectrum $R$ is a \textit{field spectrum} when every $R$--module (in the homotopy category) splits as a wedge of suspensions of $R$.
+\end{definition}
 
 \begin{corollary}\label{FieldSpectraAreKTheories}
 Every field spectrum $R$ splits as a wedge of Morava's $K(d)$ theories.
 \end{corollary}
 \begin{proof}
-Set $E = \bigvee_{\text{primes $p$}} \bigvee_{d \in [0, \infty]} K(d)$, so that $E$ detects nilpotence.  The class $1$ in the field spectrum $R$ is non-nilpotent, so it survives when paired with some $K$--theory $K(d)$, and hence $R \sm K(d)$ is not contractible.  Because both $R$ and $K(d)$ are field spectra, the smash product of the two simultaneously decomposes into a wedge of $K(d)$s and a wedge of $R$s.  So, $R$ is a retract of a wedge of $K(d)$s, and picking a basis for its image on homotopy shows that it is a sub-wedge of $K(d)$s.
+It is easy to check (as mentioned in the proof of \Cref{LocalNilpotenceDetection}) that $K(d)$ is a field spectrum.
+
+Now, consider an arbitrary field spectrum $R$.  Set $E = \bigvee_{\text{primes $p$}} \bigvee_{d \in [0, \infty]} K(d)$, so that $E$ detects nilpotence.  The class $1$ in the field spectrum $R$ is non-nilpotent, so it survives when paired with some $K$--theory $K(d)$, and hence $R \sm K(d)$ is not contractible.  Because both $R$ and $K(d)$ are field spectra, the smash product of the two simultaneously decomposes into a wedge of $K(d)$s and a wedge of $R$s.  So, $R$ is a retract of a wedge of $K(d)$s, and picking a basis for its image on homotopy shows that it is a sub-wedge of $K(d)$s.
 \end{proof}
 
 \begin{remark}
 This is interesting in its own right, because field spectra are exactly those spectra which have K\"unneth isomorphisms.  So, even if you weren't neck-deep in algebraic geometry, you might still have struck across these homology theories just if you like to compute things, since K\"unneth formulas make things computable.
 \end{remark}
 
-\todo{Jake asked if there was a geometric interpretation of these cohomology theories $K_\Gamma$.  At present, there isn't one.  Maybe remark on this.}
+\begin{remark}
+In the $2$--periodic setting we've become accustomed to, the analogue of \Cref{FieldSpectraAreKTheories} is that every $2$--periodic field spectrum splits as a wedge of suspensions of $K(d)P$.
+\end{remark}
 
+\begin{remark}
+In service of \Cref{ExampleOfMoravasTheoriesAtGm}, the geometric definition of $MU$ given in \Cref{OriginalDefnOfBordism}, the edge cases of $K(0) = H\Q$ and $K(\infty) = H\F_p$, and the claimed primacy of these methods, we might wonder if there is any geometric interpretation of the field theories $K(d)$ for $0 < d < \infty$.  To date, this is a completely open question and the subject of intense research.
+\end{remark}
 
-
-\todo{There used to be a section break here.}
-
-We're now well-situated to address Ravenel's question about finite spectra and periodic self-maps.  The solution to this problem passes through some now-standard machinery for triangulated $\otimes$--categories. \todo{might suggest introducing a notation for (finite) p-local spectra? And say that $\S$ means the $p$-local sphere; AY}
+We're now well-situated to address Ravenel's question about finite spectra and periodic self-maps.  The solution to this problem passes through some now-standard machinery for triangulated $\otimes$--categories.
 
 \begin{definition}
-A full subcategory of a triangulated category (e.g., the homotopy category of $p$--local finite spectra) is \textit{thick} if\ldots\todo{there's an issue here because triangulated categories don't have weak equivalences - in any case, these are isomorphisms because we're talking about the homotopy category.  However, 2 of 3 should imply that it's closed under isomorphism.  You could either say the full subcategory is triangulated (i.e. has 0 and 2 of 3) and closed under retracts, or just state this for full subcategories of the category/homotopy category of p-local finite spectra since that's where all the relevant examples are; AY}
+A full subcategory of a triangulated category (e.g., the homotopy category of $p$--local finite spectra) is \textit{thick} if\ldots
 \begin{itemize}
-\item \ldots it is closed under weak equivalences.
-\item \ldots it is closed under retracts.
+\item \ldots it is closed under isomorphisms and retracts.
 \item \ldots it has a $2$-out-of-$3$ property for cofiber sequences.
 \end{itemize}
 \end{definition}
@@ -1007,21 +1030,33 @@ A full subcategory of a triangulated category (e.g., the homotopy category of $p
 \noindent Examples of thick subcategories include:
 \begin{itemize}
 \item The category $\CatOf{C}_d$ of $p$--local finite spectra which are $K(d-1)$--acyclic.  (For instance, if $d = 1$, the condition of $K(0)$--acyclicity is that the spectrum have purely torsion homotopy groups.)  These are called ``finite spectra of type at least $d$''.
-\item The category $\CatOf{D}_d$ of $p$--local finite spectra $F$ which have a self-map $v: \Susp^N F \to F$, $N \gg 0$ inducing multiplication by a unit in $K(d)$--homology.  These are called ``$v_d$--self--maps''.\todo{Doesn't $v$ have to be nilpotent in the other $K(m)$'s? AY}
+\item The category $\CatOf{D}_d$ of $p$--local finite spectra $F$ for which there is a self-map $v: \Susp^N F \to F$, $N \gg 0$ which induces multiplication by a unit in $K(d)$--homology and which is nilpotent in $K(\ne d)$--homology.  These are called ``finite spectra admitting $v_d$--self--maps''.
+\todo{Do you really need the nilpotence condition?}
 \end{itemize}
 
-Ravenel shows the following useful result interrelating the $\CatOf C_d$:
+\noindent Ravenel shows the following useful result interrelating the $\CatOf C_d$:
 \begin{lemma}[{\cite[Theorem 2.11]{RavenelLocalizationWRTPeriodic}}]\label{CdCategoriesNest}
-For $X$ a finite complex, there is a bound \[\dim K(d-2)_* X \le \dim K(d-1)_* X.\]  In particular, there is an inclusion $\CatOf C_{d-1} \subseteq \CatOf C_d$. \qed
-\end{lemma}\todo{as an extension of what we talked briefly about today, I suppose this is the fact that the stalk dimension of a coherent sheaf is upper semi-continuous; maybe this is worth adding in. AY}
+For $X$ a finite complex, there is a bound \[\dim K(d-2)_* X \le \dim K(d-1)_* X.\]  In particular, there is an inclusion $\CatOf C_{d-1} \subseteq \CatOf C_d$.
+\end{lemma}
+\begin{proof}[Proof sketch]
+One should compare this with the statement that the stalk dimension of a coherent sheaf is upper semi-continuous.  In fact, this gives the essentials of the proof: one considers the ring spectrum $v_d^{-1} BP / I_{d-1}$, which admits two maps
+\begin{center}
+\begin{tikzcd}[row sep=1em]
+& v_{d-1}^{-1} (v_d^{-1} BP / I_{d-1}) \\
+v_d^{-1} BP / I_{d-1} \arrow{ru} \arrow{rd} \\
+& (v_d^{-1} BP / I_{d-1}) / v_{d-1}.
+\end{tikzcd}
+\end{center}
+Studying the relevant $\Tor$ spectral sequences gives the result.
+\end{proof}
 
-Hopkins and Smith show the following classification theorem:
+In fact, all of the thick subcategories of $\CatOf{Spectra}^{\fin}_{(p)}$ are captured by this framework, as demonstrated in the following classification result.
 
-\begin{theorem}[{\cite[Theorem 7]{HopkinsSmith}}]
-Any thick subcategory $\CatOf C$ of the category of $p$--local finite spectra must be $\CatOf C_d$ for some finite $d$.
+\begin{theorem}[{\cite[Theorem 7]{HopkinsSmith}}]\label{ThickSubcatClassification}
+Any thick subcategory $\CatOf C$ of the category of $p$--local finite spectra must be $\CatOf C_d$ for some $d$.
 \end{theorem}
 \begin{proof}
-Since $\CatOf C_d$ are nested by \Cref{CdCategoriesNest} and they form an exhaustive filtration\todo{Why do you not need $\CatOf C_\infty$ for this?}, it is thus sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.  Write $R$ for the endomorphism ring spectrum $R = F(X, X)$, and write $F$ for the fiber of its unit map: \[F \xrightarrow{f} \S \xrightarrow{\eta_R} R.\]  Finally, let $Y$ be \emph{any} finite spectrum of type at least $d$.  It suffices to show $Y\in \CatOf C$.  
+Since $\CatOf C_d$ are nested by \Cref{CdCategoriesNest} and they form an exhaustive filtration (i.e., $C_\infty$ = 0), it is thus sufficient to show that any object $X \in \CatOf C$ with $X \in \CatOf C_d$ induces an inclusion $\CatOf C_d \subseteq \CatOf C$.  Write $R$ for the endomorphism ring spectrum $R = F(X, X)$, and write $F$ for the fiber of its unit map: \[F \xrightarrow{f} \S \xrightarrow{\eta_R} R.\]  Finally, let $Y$ be \emph{any} finite spectrum of type at least $d$.  It suffices to show $Y\in \CatOf C$.  
 
 Now consider applying $K(n)$--homology (for \emph{arbitrary} $n$) to the map \[1 \sm f\co Y \sm F \to Y \sm \S.\]  The induced map is always zero:
 \begin{itemize}
@@ -1035,25 +1070,37 @@ We now work to show that this smash product lies in the thick subcategory $\CatO
 Now turn an eye toward induction.  Noting that $\operatorname{cofib}(f) = R = X \sm DX$ lies in $\CatOf C$, we can use the $2$-out-of-$3$ property on the octahedral sequence to see that $\operatorname{cofib}(f^{\sm j})$ lies in $\CatOf C$.  It follows that $Y \sm \operatorname{cofib}(f^{\sm j})$ also lies in $\CatOf C$, and using the retraction $Y$ belongs to $\CatOf C$ as well.
 \end{proof}
 
-As an application of this classification, they also show the following considerably harder theorem:
+Coupling \Cref{CdCategoriesNest} to \Cref{ThickSubcatClassification} already has interesting consequences about the lattice of thick subcategories of $\CatOf{Spectra}^{\fin}_{(p)}$.  However, it remains to show the nondegeneracy result that each $C_d$ is distinct, i.e., there exist type $d$ finite spectra for each $d$.  This is a \emph{considerably} harder theorem, which we will not attempt to prove.
 
 \begin{theorem}[{\cite[Theorem 9]{HopkinsSmith}}]
-A $p$--local finite spectrum is $K(d-1)$--acyclic exactly when it admits a $v_d$--self--map.\todo{It's also a corollary of these same methods that the inclusion $\CatOf C_d \subsetneq \CatOf C_{d-1}$ is proper.}
+A $p$--local finite spectrum is $K(d-1)$--acyclic exactly when it admits a $v_d$--self--map.  Additionally, the inclusion $\CatOf C_d \subsetneq \CatOf C_{d-1}$ is proper.
 \end{theorem}
 \begin{proof}[Executive summary of proof]
-Given the classification of thick subcategories, if a property is closed under thickness then one need only exhibit a single spectrum with the property to know that all the spectra in the thick subcategory it generates also all have that property.  Inductively, they manually construct finite spectra $M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}})$ for sufficiently large indices $i_*$ which admit a self-map $v$ governed by a commuting square
+Given the classification of thick subcategories, if a property is closed under thickness then one need only exhibit a single spectrum with the property to know that all the spectra in the thick subcategory it generates also all have that property.  Inductively, they manually construct finite spectra $M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}})$ for sufficiently large\footnote{We ran into the asymptotic condition $I \gg 0$ earlier, when we asserted that there is no root of the $2$--local $v_1$--self--map $v\co M_8(2) \to M_0(2)$.} indices $i_*$ which admit a self-map $v$ governed by a commuting square
 \begin{center}
 \begin{tikzcd}
 BP_* M_{|v_d| i_d}(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{v} \arrow[equal]{d} & BP_* M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow[equal]{d} \\
 \Susp^{|v_d| i_d} BP_* / (p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{- \cdot v_d^{i_d}} & BP_* / (p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}).
 \end{tikzcd}
-\end{center} \todo{You wrote $BPP_0$ yesterday.}
+\end{center}
 These maps are guaranteed by very careful study of Adams spectral sequences.
 \end{proof}
 
-\begin{remark}
-We ran into the asymptotic condition $I \gg 0$ yesterday, when we asserted that there is no root of the $2$--local $v_1$--self--map $v\co M_8(2) \to M_0(2)$.
-\end{remark}
+\todo{Does this section have an ending?}
+
+
+
+
+
+
+
+
+
+\section{Chromatic localization}\label{ChromaticLocalizationSection}
+
+\todo{Sew these $\otimes$--triangulated category concerns all together.}
+
+
 
 There is a second interesting application of these ideas, investigated by Paul Balmer as part of a broad attempt to analyze a geometric object through its modules.
 
@@ -1084,9 +1131,10 @@ In fact, our favorite functor $\context{MU}(-)\co \CatOf{Spectra} \to \CatOf{QCo
 
 
 
+-----
 
 
-\section{Chromatic localization}\label{ChromaticLocalizationSection}
+
 
 Balmer's construction is remarkably successful at describing the most salient features of the stable category, but it falls a ways short of the rich ``spectrum'' object we've come to know from algebraic geometry.  In particular, we have only a topological space, and not anything like a locally ringed space (or a space otherwise equipped locally with algebraic data).  It's also totally unclear why $MU$ plays such an important mediating role between geometry (i.e., the stable category) and algebra (i.e., the moduli of formal groups).
 %\footnote{We will address this in our situation, but in general this is an open question: given a ring spectrum $R$, how can one recognize these local categories of spectra in terms of $R$, without reference to auxiliary spectra like $MU$?  Or, just as importantly: what makes $MU$ a special $\S$--algebra?}
@@ -1199,6 +1247,7 @@ In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on
 \todo{I think it would be good to include how to construct the $v_1$--periodicity operator on $M(p)$ from $\alpha_{1/1}$.}
 \todo{Charles's 512 Notes's Example 7.17 and Corollary 5.12 are about $\alpha_{1/1}$.  It may well warrant inclusion in here somewhere.}
 \todo{Charles's 512 Notes's Example 7.18 is pretty cool: he deduces the nontriviality of $\eta$ from studying $\psi^{-1}$ on $KU^* \CP^\infty$ and solving some formal group law stuff.}
+\todo{Show that $K(n)$--localization of a coconnective spectrum is null: coconnective spectra are the colimits of finite Postnikov towers.}
 
 
 
