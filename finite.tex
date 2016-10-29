@@ -204,7 +204,7 @@ such that $(X_0, X_1)$ forms a groupoid scheme.  An \textit{$(A, \Gamma)$--comod
 A Hopf $k$--algebra $H$ gives a Hopf algebroid $(k, H)$.  The scheme of objects $\Spec k$ in the groupoid scheme is the constant scheme $0$.
 \end{example}
 
-\begin{lemma}
+\begin{lemma}\label{IdentifyingAdamsE2Page}
 For $E$ an $A_\infty$--ring spectrum satisfying {\CH} and {\FH}, the $E_2$--page of its Adams spectral sequence can be identified as
 \begin{align*}
 E_2^{*, *} & = \Cotor_{E_* E}^{*, *}(E_*, E_* X) \\
@@ -443,7 +443,7 @@ Over a field of positive characteristic $p$, the $p$--height of a formal group l
 
 \noindent We will have to develop some machinery to get there.  First, we note that this definition really depends on the formal group rather than the formal group law.
 
-\begin{lemma}
+\begin{lemma}\label{HeightIsAnIsomInvariant}
 The height of a formal group law is an isomorphism invariant, i.e., it descends to give a function \[\height\co \pi_0 \moduli{fg}(T) \to \N \cup \{\infty\}\] for any test $\Z_{(p)}$--algebra $T$.
 \end{lemma}
 \begin{proof}
@@ -572,12 +572,13 @@ X_0 \arrow["f"]{r} & \mathbb A^1.
 \end{definition}
 
 We are in a good position to discern all of the closed substacks of $\moduli{fg} \times \Spec \Z_{(p)}$ --- or, equivalently, to discern all of the invariant ideals of $\sheaf O_{\moduli{fgl}^{\ptyp}}$.
+\todo{You could be more careful about stating this: these functions $v_d$ aren't really invariant modulo $I_d$, since they transform through a character of $\G_m \subseteq \moduli{ps}^{\gpd}$.}
 
-\begin{corollary}[{\cite[Theorem 4.6 and Lemmas 4.7-8]{Wilson}}]
+\begin{corollary}[{\cite[Theorem 4.6 and Lemmas 4.7-8]{Wilson}}]\label{IdIsAnInvariantIdeal}
 The ideal $I_d = (p, v_1, \ldots, v_{d-1})$ is invariant for all $d$.  It determines the closed substack $\moduli{fg}^{\ge d}$ of formal group laws of $p$--height at least $d$.
 \end{corollary}
 \begin{proof}
-%\textit{Put a dictionary entry here defining the submoduli of height $\ge d$ formal group laws.}
+%\todo{\textit{Put a dictionary entry here defining the submoduli of height $\ge d$ formal group laws.}}
 Recall from \Cref{KudoArakiIsomorphism} the Kudo--Araki isomorphism \[\moduli{fgl}^{\ptyp} \xrightarrow{\simeq} \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots] =: \Spec V,\] and let $+_L$ denote the associated universal $p$--typical formal group law with $p$--series \[[p]_L(x) = px +_L v_1 x^p +_L v_2 x^{p^2} +_L \cdots +_L v_d x^{p^d} +_L \cdots.\]  Over $\Spec V[t_1, t_2, \ldots]$, we can form a second group law $+_R$ by conjugating $+_L$ by the universal $p$--typical coordinate transformation $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$.  The corresponding $p$--series \[[p]_R(x) = \sum_{d=0}^\infty {}_R \eta_R(v_d) x^{p^d}\] determines the $\eta_R$ map of the Hopf algebroid $(V, V[t_1, t_2, \ldots])$ presenting the moduli of $p$--typical formal group laws and $p$--typical isomorphisms.  We cannot hope to compute $\eta_R(v_d)$ explicitly, but modulo $p$ we can apply Freshman's Dream to the expansion of \[[p]_L(g(x)) = g([p]_R(x))\] to discern some information: \[\sum_{\substack{i \ge 0 \\ j > 0}}{}_L t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}_L v_i t_j^{p^i} \pmod p.\]  This is still inexplicit, since $+_L$ is a very complicated operation, but we can see $\eta_R(v_d) \equiv v_d \pmod{I_d}$.  It follows that $I_d$ is invariant for each $d$.  Additionally, the closed substack this determines are those formal groups admitting local $p$--typical coordinates for which $v_{\le d} = 0$, guaranteeing that the height of the associated formal group is at least $d$.
 \end{proof}
 
@@ -909,12 +910,12 @@ The second condition is satisfied one of two ways, corresponding to our two auxi
 We then turn to the first collection of conditions.  They are \emph{always} satisfied, but this requires an argument.  We write $i_d\co \moduli{fg}^{= d} \to \moduli{fg}$ for the inclusion of the substack of formal groups of height exactly $d$, which (following \Cref{OpenSubstacksOfMfg}) has a presentation by the Hopf algebroid \[(v_d^{-1} A / I_d, \Gamma \otimes v_d^{-1} A / I_d).\]  We are trying to study the derived functors of \[\sheaf N \mapsto (i_d{}_* i_d^* \sheaf F) \otimes \sheaf N \cong i_d{}_* (i_d^* \sheaf F \otimes i_d^* \sheaf N).\]  Since $i_d{}_*$ is exact, we are moved to study the composite functor spectral sequence for \[\CatOf{QCoh}_{\moduli{fg}} \xrightarrow{i_d^*} \CatOf{QCoh}_{\moduli{fg}^{=d}} \xrightarrow{i_d^* \sheaf F \otimes -} \CatOf{QCoh}_{\moduli{fg}^{=d}}.\]  The second functor is actually exact: the geometric map \[\Gamma_d\co \Spec k \to \moduli{fg}^{=d}\] is a faithfully flat cover, and $k$--modules have no nontrivial $\Tor$.  Meanwhile, the first functor has at most $d$ derived functors: $i_d^*$ is modeled by tensoring with $v_d^{-1} A / I_d$, but $A / I_d$ admits a Koszul resolution with $d$ stages and $A / I_d \to v_d^{-1} A / I_d$ is exact.  As $\Tor_{d+1}$ is beyond the length of this resolution, it is always zero.
 \end{proof}
 
-\begin{definition}
+\begin{definition}\label{DefnChromaticHomologyThys}
 Coupling \Cref{LEFTRealTheoremWithProof} to our understanding of $\moduli{fg}$, we produce many interesting homology theories, collectively referred to as \textit{chromatic homology theories}:
 \begin{itemize}
 \item Recall that the moduli of $p$--typical group laws is affine, presented in \Cref{KudoArakiIsomorphism} by \[\sheaf O_{\moduli{fgl}^{\ptyp}} \cong \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots].\]  Since the inclusion of $p$--typical group laws into all group laws induces an equivalence of stacks, it is in particular flat, and hence this formula determines a homology theory on finite spectra, called \textit{Brown--Peterson homology}: \[BPP_0(X) := MUP_0(X) \otimes_{MUP_0} BPP_0.\]
 \item A chart for the open substack $\moduli{fg}^{\le d}$ in terms of $\moduli{fgl}^{\ptyp}$ was given in \Cref{OpenSubstacksOfMfg} by $\Spec \Z_{(p)}[v_1, v_2, \ldots, v_d^\pm]$.  Since open maps are in particular flat, it follows that there is a homology theory $E(d)P$, called \textit{the $d${\th} Johnson--Wilson homology}, defined on all spectra by \[E(d)P_0(X) := MUP_0(X) \otimes_{MUP_0} \Z_{(p)}[v_1, v_2, \ldots, v_d^\pm].\]
-\item Similarly, for a formal group $\Gamma$ of height $d < \infty$, we produced in \Cref{LubinTateModuliThm} a chart $\Spf \Z_p\ps{u_1, \ldots, u_{d-1}}$ for its deformation neighborhood.  Since inclusions of deformation neighborhoods of substacks of Noetherian stacks are flat\citeme{Consider citing this}, there is a corresponding homology theory $E_\Gamma{}$, called \textit{the (discontinuous) Morava $E$--theory for $\Gamma$}, determined by \[E_\Gamma{}_0(X) := MUP_0(X) \otimes_{MUP_0} \Z_p\ps{u_1, \ldots, u_{d-1}}[u^\pm].\]
+\item Similarly, for a formal group $\Gamma$ of height $d < \infty$, we produced in \Cref{LubinTateModuliThm} a chart $\Spf \Z_p\ps{u_1, \ldots, u_{d-1}}$ for its deformation neighborhood.  Since inclusions of deformation neighborhoods of substacks of Noetherian stacks are flat\citeme{Consider citing this}, there is a corresponding homology theory $E_\Gamma{}$, called \textit{the (discontinuous) Morava $E$--theory for $\Gamma$}, determined by \[E_\Gamma{}_0(X) := MUP_0(X) \otimes_{MUP_0} \Z_p\ps{u_1, \ldots, u_{d-1}}[u^\pm].\]  In the case that $\Gamma = \Gamma_d$ is the Honda formal group of height $d$, the notation is often abbreviated from $E_{\Gamma_d}$ to merely $E_d$.
 \item Since $(p, u_1, \ldots, u_{d-1})$ forms a regular sequence on $E_\Gamma{}_*$, we can form the regular quotient at the level of spectra, using cofiber sequences
 \begin{align*}
 E_\Gamma \xrightarrow{p} E_\Gamma & \to E_\Gamma / (p), \\
@@ -954,7 +955,7 @@ Every homotopy class $\alpha \in \pi_{\ge 1} \S$ is nilpotent. \qed
 
 \noindent People studying $K$--theory in the '$70$s discovered the following related phenomenon:
 
-\begin{theorem}[Adams]\citeme{Adams}
+\begin{theorem}[Adams]\label{AdamsSelfMapThm}\citeme{Adams}
 Let $M_{2n}(p)$ denote the mod--$p$ Moore spectrum with bottom cell in degree $2n$.  Then there is an index $n$ and a map $v: M_{2n}(p) \to M_0(p)$ such that $KU_* v$ acts by multiplication by the $n$\textsuperscript{th}\, power of the Bott class.  The minimal such $n$ is given by the formula \[n = \begin{cases} p-1 & \text{when $p \ge 3$}, \\ 4 & \text{when $p = 2$}. \qed \end{cases}\]
 \end{theorem}
 
@@ -1060,7 +1061,7 @@ By a small variant of local nilpotence detection (\Cref{LocalNilpotenceDetection
 We now work to show that this smash product lies in the thick subcategory $\CatOf C$ of interest.  First, note that it suffices to show that $\cofib f^{\sm j}$ on its own lies in $\CatOf C$: a finite spectrum (such as $Y$ or $F$) can be expressed as a finite gluing diagram of spheres, and smashing this through with $\cofib f^{\sm j}$ then expresses $Y \sm \cofib f^{\sm j}$ as the iterated cofiber of maps with source and target in $\CatOf C$.  With that in mind, we will in fact show that $\cofib f^{\sm k}$ lies in $\CatOf C$ for all $k \ge 1$.  Consider the following smash version of the octahedral axiom: the factorization \[F \sm F^{\sm (k-1)} \xrightarrow{1 \sm f^{\sm (k-1)}} F \sm \S^{\sm (k-1)} \xrightarrow{f \sm 1} \S \sm \S^{\sm (k-1)}\] begets a cofiber sequence \[F \sm \cofib f^{\sm (k-1)} \to \cofib f^{\sm k} \to \cofib f \sm \S^{\sm (k-1)}.\]  Noting that the base case $\cofib(f) = R = X \sm DX$ lies in $\CatOf C$, we can inductively use the $2$-out-of-$3$ property on the octahedral cofiber sequence to see that $\cofib(f^{\sm k})$ lies in $\CatOf C$ for all $k$.  It follows in particular that $Y \sm \cofib(f^{\sm j})$ lies in $\CatOf C$, and using the retraction $Y$ belongs to $\CatOf C$ as well.
 \end{proof}
 
-\begin{theorem}[{\cite[Theorem 9]{HopkinsSmith}}]
+\begin{theorem}[{\cite[Theorem 9]{HopkinsSmith}}]\label{CdEqualsDd}
 A $p$--local finite spectrum is $K(d-1)$--acyclic exactly when it admits a $v_d$--self--map.  Additionally, the inclusion $\CatOf C_d \subsetneq \CatOf C_{d-1}$ is proper.
 \end{theorem}
 \begin{proof}[Executive summary of proof]
@@ -1074,7 +1075,7 @@ BP_* M_{|v_d| i_d}(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{v} \
 These maps are guaranteed by very careful study of Adams spectral sequences.
 \end{proof}
 
-They therefore conclude the strongest possible positive response to Ravenel's conjectures.  Not only can we continue the sequence \[\S, \; \S/p, \; \S/(p, v), \; \ldots,\] but in fact \emph{any} finite spectrum admits an (essentially unique) interesting periodic self-map.  This is maybe the most remarkable of the statements: although Nishida's theorem initially led us to think of periodic self-maps as rare, they are in fact ubiquitous.  Additionally, we learned that the shift\footnote{Sometimes referred to as the ``wavelength'' in the chromatic analogy.} of this self-map is determined by the first nonvanishing $K(d)$--homology, giving an effective detection tool.  Finally, all such periodicity shifts arise: for any $d$, there is a spectrum admitting a $v_d$--self--map but not a $v_{d-1}$--self--map.
+They therefore conclude the strongest possible positive response to Ravenel's conjectures.  Not only can we continue the sequence \[\S, \; \S/p, \; \S/(p, v), \; \ldots,\] but in fact \emph{any} finite spectrum admits an (essentially unique) interesting periodic self-map.  This is maybe the most remarkable of the statements: although Nishida's theorem initially led us to think of periodic self-maps as rare, they are in fact ubiquitous.  Additionally, we learned that the shift\footnote{This is sometimes referred to as the ``wavelength'' in the chromatic analogy.} of this self-map is determined by the first nonvanishing $K(d)$--homology, giving an effective detection tool.  Finally, all such periodicity shifts arise: for any $d$, there is a spectrum admitting a $v_d$--self--map but not a $v_{d-1}$--self--map.
 
 
 
@@ -1084,158 +1085,211 @@ They therefore conclude the strongest possible positive response to Ravenel's co
 
 
 
-\section{Chromatic localization}\label{ChromaticLocalizationSection}
+\section{Chromatic dissembly}\label{ChromaticLocalizationSection}
 
-\todo{Sew these $\otimes$--triangulated category concerns all together.}
+In this Lecture, we will couple the ideas of \Cref{StableContextLecture} to the homology theories and structure theorems described in \Cref{NilpotenceAndPeriodicity}.  In particular, we have not yet exhausted \Cref{ThickSubcatClassification}, and for inspiration about how to utilize it, we will begin with an algebraic analogue of the situation considered thus far.
 
+For a ring $R$, the full derived category $D(\Spec R)$ and the derived category of perfect complexes $D^{\perf}(\Spec R)$ form examples of triangulated categories analogous to $\CatOf{Spectra}$ and $\CatOf{Spectra}^{\fin}$.  By interpreting an $R$--module as a quasicoherent sheaf over $\Spec R$, we can use them to probe for structure of $\Spec R$ --- for instance, we can test whether $\widetilde M$ is supported over some closed subscheme $\Spec R/I$ by restricting the sheaf, which amounts algebraically to asking whether $M$ is annihilated by $I$.  In the reverse, we can also try to discern what ``closed subscheme'' should mean in some arbitrary triangulated category by codifying the properties of the subcategory of $D(\Spec R)$ supported away from $\Spec R$.  The key observation is this subcategory is closed under tensoring modules: if $M$ is annihilated by $I$, then $M \otimes_R N$ is also annihilated by $I$.
 
-
-There is a second interesting application of these ideas, investigated by Paul Balmer as part of a broad attempt to analyze a geometric object through its modules.
-
-\begin{definition}\citeme{Reference Balmer's SSS paper throughout this tail}
-Given a triangulated $\otimes$--category $\CatOf C$, define a thick subcategory $\CatOf C' \subseteq \CatOf C$ to be\ldots
+\begin{definition}[{\cite[Definition 1.3]{Balmer}}]
+Let $\CatOf C$ be a triangulated $\otimes$--category $\CatOf C$.  A thick subcategory $\CatOf C' \subseteq \CatOf C$ is\ldots
 \begin{itemize}
-\item \ldots a \textit{$\otimes$--ideal} when it has the additional property that $x \in \CatOf C'$ forces $x \otimes y \in \CatOf C'$ for any $y \in \CatOf C$.
+\item \ldots a \textit{$\otimes$--ideal} when $x \in \CatOf C'$ forces $x \otimes y \in \CatOf C'$ for any $y \in \CatOf C$.
 \item \ldots a \textit{prime $\otimes$--ideal} when $x \otimes y \in \CatOf C'$ also forces at least one of $x \in \CatOf C'$ or $y \in \CatOf C'$.
 \end{itemize}
-Finally, define the \textit{spectrum} of $\CatOf C$ to be its collection of prime $\otimes$--ideals, topologized so that $U(x) = \{\CatOf C' \mid x \in \CatOf C'\}$ form a basis of opens.\todo{Double check that you have the directionality of this right.  Is $U$ a basic open or a basic closed?  It it full of things that contain $x$ or that don't contain in $x$?}
+Finally, define the \textit{spectrum} of $\CatOf C$ to be its collection of prime $\otimes$--ideals.  For any $x \in \CatOf C$ we define a basic open $U(x) = \{\CatOf C' \mid x \in \CatOf C'\}$, which altogether give a basis for a topology on the spectrum.\todo{Double check that you have the directionality of this right.  Is $U$ a basic open or a basic closed?  It it full of things that contain $x$ or that don't contain in $x$?}
 \end{definition}
 
-\begin{theorem}[Balmer]
-The spectrum of $D^{\perf}(\CatOf{Mod}_R)$ is naturally homeomorphic to the Zariski spectrum of $R$. \qed
+The basic result about this definition is that it does not miss any further conditions:
+
+\begin{theorem}[{\cite[Proposition 8.1]{Balmer}}]
+The spectrum of $D^{\perf}(\Spec R)$ is naturally homeomorphic to the Zariski spectrum of $R$. \qed
 \end{theorem}
 
-Balmer's construction applies much more generally.  The category $\CatOf{Spectra}$ can be identified with $\CatOf{Modules}_{\S}$, and so one is moved to attempt to compute the Balmer spectrum of $\CatOf{Modules}_{\S}^{\perf} = \CatOf{Spectra}^{\mathrm{fin}}$.  In fact, we just finished this.
-\begin{theorem}
-The Balmer spectrum of $\CatOf{Spectra}_{(p)}^{\mathrm{fin}}$ consists of the thick subcategories $\CatOf C_d$, and $\{\CatOf C_n\}_{n=0}^d$ are its open sets.
+\noindent Satisfied, we apply the definition to the more difficult case of $\CatOf{Spectra}$.
+
+\begin{theorem}[{\cite[Corollary 9.5]{Balmer}}]
+The spectrum of $\CatOf{Spectra}_{(p)}^{\mathrm{fin}}$ consists of the thick subcategories $\CatOf C_d$, and $\{\CatOf C_n\}_{n=0}^d$ are its open sets.
 \end{theorem}
 \begin{proof}
-Using the characterization of $\CatOf C_d$ as the kernel of $K(d-1)_*$, we see that it is a prime $\otimes$--ideal: \[K(d-1)_*(X \sm Y) \cong K(d-1)_* X \otimes_{K(d-1)_*} K(d-1)_* Y\] is zero exactly when at least one of $X$ and $Y$ is $K(d-1)$--acyclic.
+Using \Cref{CdEqualsDd}, we can characterize $\CatOf C_d$ as the kernel of $K(d-1)_*$.  This shows it to be a prime $\otimes$--ideal: \[K(d-1)_*(X \sm Y) \cong K(d-1)_* X \otimes_{K(d-1)_*} K(d-1)_* Y\] is zero exactly when at least one of $X$ and $Y$ is $K(d-1)$--acyclic.
 \end{proof}
 
-\begin{remark}
-In fact, our favorite functor $\context{MU}(-)\co \CatOf{Spectra} \to \CatOf{QCoh}(\context{MU})$ induces a homeomorphism of the Balmer spectrum of $\CatOf{Spectra}^{\mathrm{fin}}$ to that of $\moduli{fg}$\todo{Be careful about what the latter half of this means.  Do you mean again to form something like $D^{\perf}(\moduli{fg})$?}.  However, this functor does \emph{not} exist on the level triangulated categories, so this remark has to be interpreted somewhat lightly.
-\end{remark}
+\begin{corollary}[{cf.\ \Cref{ThickSubcatClassification} and \Cref{CdEqualsDd}}]
+The functor \[\context{MU}(-)\co \CatOf{Spectra}^{\fin} \to \CatOf{Coh}(\context{MU})\] induces\footnote{This has to be interpreted delicately, as the functor $\context{MU}(-)$ is not (quite) a functor of triangulated categories~\cite[2.4.2]{MoravaCplxBordismInAT}.} a homeomorphism of the spectrum of $\CatOf{Spectra}^{\fin}$ to that of $\moduli{fg}$. \qed
+\end{corollary}
 
-
-
------
-
-
-
-
-Balmer's construction is remarkably successful at describing the most salient features of the stable category, but it falls a ways short of the rich ``spectrum'' object we've come to know from algebraic geometry.  In particular, we have only a topological space, and not anything like a locally ringed space (or a space otherwise equipped locally with algebraic data).  It's also totally unclear why $MU$ plays such an important mediating role between geometry (i.e., the stable category) and algebra (i.e., the moduli of formal groups).
-%\footnote{We will address this in our situation, but in general this is an open question: given a ring spectrum $R$, how can one recognize these local categories of spectra in terms of $R$, without reference to auxiliary spectra like $MU$?  Or, just as importantly: what makes $MU$ a special $\S$--algebra?}
-Nonetheless, taking that as granted, we can use Bousfield's theory of homological localization to access ``local'' categories of spectra of the sort that a sheaf of local rings would supply us with.\todo{Is this just motivation or is there something specific you can say relating the following to Balmer spectra?}
+The construction as we have described it falls short of completely recovering $\Spec R$, as we have constructed only a topological space rather than a locally ringed space (or anything otherwise equipped locally with algebraic data, as in our functor of points perspective).  The approach taken by Balmer~\cite[Section 6]{Balmer} is to use Tannakian reconstruction to extract a structure sheaf of local rings from the prime $\otimes$--ideal subcategories.  We, however, are at least as interested in finite spectra as we are the ring spectrum $\S$, so we will take an approach that emphasizes module categories rather than local rings.  Specifically, Bousfield's theory of homological localization allows us to lift the localization structure among open substacks of $\moduli{fg}$ to the category $\CatOf{Spectra}$ as follows:
 
 \begin{theorem}[{\cite{Bousfield}, \cite[Theorem 7.7]{Margolis}}]
-Let $R_*$ denote the homology theory associated by Landweber's \Cref{LandwebersStackyTheorem} to a flat map $j\co \Spec R \to \moduli{fg}$.  There is then a diagram
+Let $j\co \Spec R \to \moduli{fg}$ be a flat map, and let $R_*$ denote the homology theory associated to it by \Cref{LandwebersStackyTheorem}.  There is then a diagram
 \begin{center}
 \begin{tikzcd}[column sep=2.2cm,row sep=2cm]
-\CatOf{Spectra}_R \arrow["R_*", "\mathrm{conservative}"', red]{r} \arrow[leftarrow, shift left=0.20cm, red]{d}{L_R} & \CatOf{QCoh}(\Spec R) \arrow[shift left=0.20cm, red, leftarrow]{d}{j^*} \\
-\CatOf{Spectra} \arrow[leftarrow,shift left=0.20cm, "\dashv"']{u}{i} \arrow[red]{ru}{R_*} \arrow[red]{r}{MU_*} & \CatOf{QCoh}(\context{MU}), \arrow[leftarrow, shift left=0.20cm, "\dashv"']{u}{j_*}
+\CatOf{Spectra}_R \arrow["\context{R}(-)", "\mathrm{conservative}"', red]{r} \arrow[leftarrow, shift right=0.20cm, red, "L_R"']{d} & \CatOf{QCoh}(\context{R}) \arrow[shift right=0.20cm, red, leftarrow, "j^*"']{d} \\
+\CatOf{Spectra} \arrow[leftarrow,shift right=0.20cm, "\dashv", "i"']{u} \arrow[red]{ru}[description]{\context{R}(-)} \arrow[red]{r}{\context{MU}(-)} & \CatOf{QCoh}(\context{MU}), \arrow[leftarrow, shift right=0.20cm, "\dashv", "j_*"']{u}
 \end{tikzcd}
 \end{center}
-such that $i$ is fully faithful, $i$ is left-adjoint to $L_R$, $j^*$ is left-adjoint to $j_*$, $i$ and $j_*$ are inclusions of full subcategories, the red composites are all equal, and $R_*$ is conservative on $\CatOf{Spectra}_R$.\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak--equivalences.} \qed
+such that $L_R$ is left-adjoint to $i$, $j^*$ is left-adjoint to $j_*$, $i$ and $j_*$ are inclusions of full subcategories, $L_R$ and $j^*$ are idempotent, the red composites are all equal, and $R_*$ is conservative on $\CatOf{Spectra}_R$.\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak--equivalences.} \qed
 \end{theorem}
 
-\todo{Jay was rightfully fussy about the difference between, e.g., the open submoduli and its affine cover.  Write this more carefully.}
-In the case when $R$ models the inclusion of the deformation space around the point $\Gamma_d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{\widehat L_d} \CatOf{Spectra}_{\Gamma_d}.\]  In the case when $R$ models the inclusion of the open complement of the unique closed substack of codimension $d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{L_d} \CatOf{Spectra}_d = \CatOf{Spectra}_{\moduli{fg}^{\le d}}.\]  We have set up our situation so that the following properties of these localizations either have easy proofs or are intuitive from the algebraic analogue of $j^* \vdash j_*$:
-\begin{enumerate}
-\item There is an equivalence \[L_d X \simeq (L_d \S) \sm X,\] analogous to $j^* M \simeq R \otimes M$ in the algebraic setting~\cite[Theorem 7.5.6]{RavenelOrangeBook}.  Because $\widehat L_d$ is associated to the inclusion of a formal scheme (i.e., an ind-finite scheme), it has the formula \[\widehat L_d X \simeq \lim_I \left( M_0(v^I) \sm L_d X \right)\] analogous to $j^* M \simeq \lim_j (R/I^j \otimes M)$ in the complete algebraic setting~\cite[Proof of Lemma 2.3]{HoveyCSC}.\citeme{Ravenel (and Hopkins)}\todo{Also mention that there are results about thinking of this thing as a pro-spectrum rather than a spectrum?  For instance, there's the Davis--Lawson result on $\{M_0(v^I)\}$ forming an $E_\infty$--ring in the pro-category.}
-\item Because the open substack of dimension $d$ properly contains both the open substack of dimension $(d-1)$ and the infinitesimal deformation neighborhood of the closed point of height $d$, there are natural factorizations
+The idea, then, is that $\CatOf{Spectra}_R$ plays the topological role of the derived category of those sheaves supported on the image of the map $j$.  In \Cref{DefnChromaticHomologyThys}, we identified several classes of interesting such maps $j$ tied to the geometry of $\moduli{fg}$.  We record these special cases now:
+\begin{definition}
+In the case that $R = E_\Gamma$ models the inclusion of the deformation space around the point $\Gamma$, we will denote the localizer by $L_\Gamma$.  In the special case that $\Gamma = \Gamma_d$ is taken to be the Honda formal group, we further abbreviate the localizer by \[\CatOf{Spectra} \xrightarrow{\widehat L_d} \CatOf{Spectra}_{\Gamma_d}.\]  In the case when $R = E(d)$ models the inclusion of the open complement of the unique closed substack of codimension $d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{L_d} \CatOf{Spectra}_d = \CatOf{Spectra}_{\moduli{fg}^{\le d}}.\]
+\end{definition}
+
+These localizers have a number of nice properties linking them to algebraic models.
+
+\begin{lemma}
+There are natural factorizations
 \begin{align*}
 \operatorname{id} \to L_d \to L_{d-1}, & & \operatorname{id} \to L_d \to \widehat L_d.
 \end{align*}
-In particular, $L_d X = 0$ implies both $L_{d-1} X = 0$ and $\widehat L_d X = 0$.\todo{Also, idempotence?}
-\item The inclusion of the open substack of dimension $d-1$ into the one of dimension $d$ has relatively closed complement the point of height $d$.  Algebraically, this gives a gluing square (or Mayer-Vietoris square), and this is reflected in homotopy theory by a homotopy pullback square (or chromatic fracture square): \todo{This deserves a proof or a reference. (I spent a moment looking, and I can't actually find a nice ``old'' reference for chromatic fracture squares in the literature...) AY: inserted bousfield reference, should we also put a more recent reference for the general statement?  Tilman bauer has a thing that gives the proof. }
-\begin{center}
-\begin{tikzcd}
-L_d \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \widehat L_d \arrow{d} \\
-L_{d-1} \arrow{r} & L_{d-1} \widehat L_d.
-\end{tikzcd}
-\end{center}
-\end{enumerate}
+In particular, $L_d X = 0$ implies both $L_{d-1} X = 0$ and $\widehat L_d X = 0$.
+\end{lemma}
+\begin{proof}[Analogy to $j_* \vdash j^*$]
+The open substack of dimension $d$ properly contains both the open substack of dimension $(d-1)$ and the infinitesimal deformation neighborhood of the geometric point of height $d$.  The factorization is inclusions gives a factorization of pullback functors.
+\end{proof}
 
-\begin{remark}
-More generally, whenever $L_B L_A = 0$, there is a fracture square
-\begin{center}
-\begin{tikzcd}
-L_{A \vee B} \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & L_B \arrow{d} \\
-L_A \arrow{r} & L_A L_B.
-\end{tikzcd}
-\end{center}
-So, this last fact follows from $L_d \simeq L_{K(0) \vee \cdots \vee K(d)}$ and $L_{K(d)} L_{K(d-1)} = 0$.  Similarly, there is an ``arithmetic fracture square''
-\begin{center}
-\begin{tikzcd}
-X \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \prod_p X^\wedge_p \arrow{d} \\
-X_{\Q} \arrow{r} & \left( \prod_p X^\wedge_p \right)_{\Q},
-\end{tikzcd}
-\end{center}
-which is a topological instantiation of the ad\`elic decomposition of a $\Z$--module - see \cite{Bousfield} for details in the arithmetic case.
-\end{remark}
-
-There are also considerably more complicated facts known about these functors:
-\begin{theorem}[{\cite[Theorem 7.5.7]{RavenelOrangeBook}}]
-The homotopy limit of the tower \[\cdots \to L_d F \to L_{d-1} F \to \cdots \to L_1 F \to L_0 F\] recovers the $p$--local homotopy type of any finite spectrum $F$.\footnote{Spectra satisfying this limit property are said to be \textit{chromatically complete}, which is closely related to being \textit{harmonic}, i.e., being local with respect to $\bigvee_{d=0}^\infty K(d)$.  (I believe this a joke about ``music of the spheres''.)  It is known that nice Thom spectra are harmonic (so, in particular, every suspension and finite spectrum), that every finite spectrum is chromatically complete, and that there exist some harmonic spectra which are not chromatically complete.}
-\end{theorem}
-
-\noindent This suggests a productive method for analyzing the homotopy groups of spheres: study the homotopy groups of each $L_d \S$ and perform the reassembly process encoded by this inverse limit.  Writing $M_d$ for the fiber in the sequence \[M_d \to L_d \to L_{d-1},\] the ``geometric chromatic spectral sequence'' associated to this tower takes the form \[\pi_* M_* \S \Rightarrow \pi_* \S_{(p)}.\]  So, $M_d$ means the difference between the assembled layers $L_d$ and $L_{d-1}$ --- but this was also the heuristic job of $\widehat L_d$ above.  It turns out that these are interrelated by the following two theorems:
-\begin{theorem}\citeme{Gross--Hopkins?}
-There is a pair of natural equivalences
+\begin{lemma}[{\cite[Theorem 7.5.6]{RavenelOrangeBook}, \cite[Proof of Lemma 2.3]{HoveyCSC}}]\label{FormulaForKnLocalization}
+There are equivalences
 \begin{align*}
-\widehat L_d M_d & \simeq \widehat L_d, &
-M_d \widehat L_d & \simeq M_d.
-\qed
+L_d X & \simeq (L_d \S) \sm X, &
+\widehat L_d X & \simeq \lim_I \left( M_0(v^I) \sm L_d X \right).
 \end{align*}
+\end{lemma}
+\begin{proof}[Analogy to $j_* \vdash j^*$]
+The first formula stems from $j$ an open inclusion, which has $j^* M \simeq R \otimes M$ in the algebraic setting.  The second formula can be compared to the inclusion $j$ of the formal infinitesimal neighborhood of a closed subscheme, which has algebraic model $j^* M = \lim_j (R/I^j \otimes M)$.\footnote{In keeping with our discussion of continuous Morava $E$--theory, it is also possible to consider the object $\{\left( M_0(v^I) \sm L_d X \right)\}_I$ itself as a pro-spectrum.  This is an interesting thing to do: Davis and Lawson have shown that setting $X = \S$ gives an $E_\infty$ pro-spectrum, even though none of the individual objects are $E_\infty$ ring spectra themselves~\cite{DavisLawson}.}
+\end{proof}
+
+\begin{lemma}
+Let $k$ be a field of positive characteristic $p$, and let $\Gamma$ and $\Gamma'$ be two formal groups over $k$ of differing heights $0 \le d, d', \le \infty$.  Then $K_\Gamma \sm K_{\Gamma'} \simeq 0$.
+\end{lemma}
+\begin{proof}[Analogy to $j_* \vdash j^*$]
+The map classifying the formal group $\CP^\infty_{K_{\Gamma} \sm K_{\Gamma'}}$ simultaneously factors through the maps classifying the formal groups $\CP^\infty_{K_\Gamma} = \Gamma$ and $\CP^\infty_{K_{\Gamma'}} = \Gamma'$.  By \Cref{HeightIsAnIsomInvariant}, such a formal group must simultaneously have heights $d$ and $d'$, which forces the homotopy ring to be the zero ring.\footnote{Alternatively, \Cref{FieldSpectraAreKTheories} shows that $K_\Gamma \sm K_{\Gamma'}$ simultaneously decomposes as a wedge of $K_\Gamma$s and of $K_{\Gamma'}$, which forces both wedges to be empty.}
+\end{proof}
+
+\begin{lemma}[{\cite[Lemma 23.6]{LurieChromaticCourseNotes}}]\label{ChromaticFractureInput}
+For $d > \height \Gamma$, $\widehat L_{\Gamma} L_d \simeq 0$.
+\end{lemma}
+\begin{proof}[Proof sketch]
+After a nontrivial reduction argument, this comes down to an identical fact: the formal group associated to $E(d) \sm K_\Gamma$ must simultaneously be of heights at most $d$ and exactly $\height \Gamma > d$, which forces the spectrum to vanish.
+\end{proof}
+
+\begin{corollary}
+$L_\Gamma E = 0$ for any coconnective $E$, and hence $L_\Gamma E = L_\Gamma(E[n, \infty))$ for \emph{any} spectrum $E$ and \emph{any} index $n$.\footnote{This property has the memorable slogan that Morava $K$--theories remember the ``germ at $\infty$'' of $E$.}
+\end{corollary}
+\begin{proof}
+Any coconnective spectrum can be expressed as the colimit of its truncations
+\begin{center}
+\begin{tikzcd}
+E[n, n] \arrow{r} \arrow[equals]{d} & E[n-1, n] \arrow{r} \arrow{d} & E[n-2, n] \arrow{d} \arrow{r} & \cdots \arrow["\colim"]{r} & E(-\infty, n] \\
+\Susp^n H\pi_nE & \Susp^{n-1} H\pi_{n-1} E & \Susp^{n-2} H\pi_{n-2} E & \cdots.
+\end{tikzcd}
+\end{center}
+Applying $L_\Gamma$ preserves this colimit diagram, but the above argument shows that $HA$ is $L_\Gamma$--acyclic for any abelian group $A$.  This gives the statement about coconnective spectra, from which the general statement follows by considering the cofiber sequence \[E[n, \infty) \to E \to E(-\infty, n). \qedhere\]
+\end{proof}
+
+\begin{corollary}[{\cite[Proposition 23.5]{LurieChromaticCourseNotes}}]\label{ChromaticFractureSquares}
+There are a homotopy pullback squares
+\begin{center}
+\begin{tikzcd}
+L_d X \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \widehat L_d X \arrow{d} & X \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \prod_p X^\wedge_p \arrow{d} \\
+L_{d-1} X \arrow{r} & L_{d-1} \widehat L_d X, & X_{\Q} \arrow{r} & \left( \prod_p X^\wedge_p \right)_{\Q}.
+\end{tikzcd}
+\end{center}
+\end{corollary}
+\begin{proof}[Analogy to $j_* \vdash j^*$]
+For the left-hand square, the inclusion of the open substack of dimension $d-1$ into the one of dimension $d$ has relatively closed complement the point of height $d$.  Algebraically, this gives a Mayer-Vietoris sequence with analogous terms.  The right-hand square is analogous to the ad\`elic decomposition of abelian groups.\footnote{Whenever $L_B L_A = 0$, $L_{A \vee B}$ appears as the homotopy pullback of the cospan $L_A \to L_A L_B \from L_B$.  Hence, this follows from \Cref{ChromaticFractureInput}, as well as the identification $L_{E(d-1) \vee K(d)} \simeq L_{E(d)}$.}
+\end{proof}
+
+\begin{remark}
+\Cref{ChromaticFractureSquares} is maybe the most useful result discussed in this Lecture.  It shows that a map to an $L_d$--local spectrum can be understood as a system of compatible maps to its $\widehat L_j$--localizations, $j \le d$.  In turn, any map into an $\widehat L_j$--local object factors through the $\widehat L_j$--localization of the source.  Thus, if the source itself has chromatic properties, this often puts \emph{very} strong restrictions on how maps to the original target can behave.
+\end{remark}
+
+These functors and their properties listed thus far give a tight analogy between certain local categories of spectra and sheaves supported on particular submoduli of formal groups, in a way that lifts the six-functors formalism of $j_* \vdash j^*$ to the level of spectra.  With this analogy in hand, however, one is led to ask considerably more complicated questions whose proofs are not at all straightforward.  For instance, a useful fact about coherent sheaves on $\moduli{fg}$ is that they are completely determined by their restrictions to all of the open submoduli.  The analogous fact about finite spectra is referred to as \textit{chromatic convergence}:
+
+\begin{theorem}[{\cite[Theorem 7.5.7]{RavenelOrangeBook}}]\label{ChromaticConvergence}
+The homotopy limit of the tower \[\cdots \to L_d F \to L_{d-1} F \to \cdots \to L_1 F \to L_0 F\] recovers the $p$--local homotopy type of any finite spectrum $F$.\footnote{Spectra satisfying this limit property are said to be \textit{chromatically complete}, which is closely related to being \textit{harmonic}, i.e., being local with respect to $\bigvee_{d=0}^\infty K(d)$.  (I believe this a joke about ``music of the spheres''.)  It is known that nice Thom spectra are harmonic~\cite{Kriz} (so, in particular, every suspension and finite spectrum), that every finite spectrum is chromatically complete, and that there exist some harmonic spectra which are not chromatically complete~\cite[Section 5.1]{Barthel}.} \qed
 \end{theorem}
 
-\begin{theorem}\citeme{I forget who this is due to}
-\todo{Referring to ``1.'' is clumsy.  Make the previous things into Lemmas or something, rather than a bulleted list.}
-Analogous to ``1.'' above, there is a natural equivalence \[M_d X \simeq \colim_I \left( M^0(v^I) \sm L_d X \right),\] where $M^0(v^I)$ denotes a generalized Moore spectrum with \emph{top} cell in dimension $0$.
+In addition to furthering the analogy, \Cref{ChromaticConvergence} suggests a method for analyzing the homotopy groups of spheres: we could study the homotopy groups of each $L_d \S$ and perform the reassembly process encoded by this inverse limit.  Additionally, \Cref{ChromaticFractureSquares} shows that this process is inductive: $L_d \S$ can be understood in terms of the spectrum $L_{d-1} \S$, the spectrum $\widehat L_d \S$, and some gluing data in the form of $L_{d-1} \widehat L_d \S$.  Hence, we become interested in the homotopy of $\widehat L_d \S$, which is the target of the $E_d$--Adams spectral sequence considered in \Cref{StableContextLecture}.
+
+\begin{theorem}[{\Cref{IdentifyingAdamsE2Page}, see also \Cref{Pi2AndInvariantDiffls}, \Cref{DefnOfNilpCompletionAndASS}, and \Cref{FHGivesComodules}}]
+The $E_d$--based\footnote{Although the $K(d)$--Adams spectral sequence more obviously targets $\widehat L_d \S$, we have chosen to analyze the $E_d$--Adams spectral sequence above because $K(d)$ fails to satisfy {\CH}.  Starting with $BPP_0 BPP \cong BPP_0[t_0^{\pm}, t_1, t_2, \ldots]$ from \Cref{DefnChromaticHomologyThys} and \Cref{IdIsAnInvariantIdeal}, we can calculate $E(d)P_0 E(d)P$ by base-changing this Hopf algebroid: $E(d)P_0 E(d)P = E(d)P_0 \otimes_{BPP_0} BPP_0 BPP \otimes_{BPP_0} E(d)P_0$, which is again free over $E(d)P_0$.  Since $K(d)P$ is formed from $E(d)P$ by quotienting by a regular sequence, we calculate that $K(d)P_0 E(d)P$ is free over $K(d)P_0$, generated by the same summands.  However, when quotienting by the regular sequence \emph{again} to form $K(d)P_* K(d)P$, the maps in the quotient sequences act by elements in $I_d = 0$, hence introduce Bocksteins.  The end result is \[K(d)P_* K(d)P = \left(K(d)P_* \otimes_{BPP_*} BPP_* BPP \otimes_{BPP_*} K(d)P_*\right) \otimes \Lambda[\tau_0, \ldots, \tau_{d-1}],\] where $\tau_j$ in degree $1$ controls the cofiber of $E(d)P \xrightarrow{v_j} E(d)P$.} Adams spectral sequence for the sphere converges strongly to $\pi_* \widehat L_d \S$.  Writing $\omega$ for the line bundle on $\context{E_d}$ of invariant differentials, we have \[E_2^{*, *} = H^*(\context{E_d}; \omega^{\otimes *}) \Rightarrow \pi_* \widehat L_d \S. \qed\]
+\end{theorem}
+
+The utility of this Theorem is in the identification of the stack $\context{E_d} \cong (\moduli{fg})^\wedge_{\Gamma_d}$ from \Cref{DefnChromaticHomologyThys}.  Our algebraic analysis from \Cref{LubinTateModuliThm} and \Cref{LubinTateModuliThmInFGLTerms} shows a further identification \[\context{E_{\Gamma_d}} = \left( \moduli{fg} \right)^\wedge_{\Gamma_d} \simeq \widehat{\mathbb A}^{d-1}_{\mathbb W(k)} \mmod \InternalAut(\Gamma_d).\]  This computation is thus boiled down to a calculation of the cohomology of the $\Aut(\Gamma_d)$--representations arising via \Cref{ActionBySnLiftsToLTn} as the global sections of the sheaves $\omega^{\otimes *}$ (cf.\ the discussion in \Cref{HopfAlgebrasFromFiniteGroups} and \Cref{HF2HomologyIsValuedInAutGaEquivarModules}).\footnote{In fact, the stable \emph{operations} of $E_d$ take the form of the twisted group-ring $E_d^0 E_d = E_d^0\<\!\<\Aut(\Gamma_d)\>\!\>$.}  We will later deduce the following polite description of $\Aut \Gamma_d$:
+\begin{theorem}[{cf.\ \Cref{FormOfStabilizerGroup}}]
+For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$ of positive characteristic $p$, we compute \[\Aut \Gamma_d \cong \left( \W_p(k) \<S\> \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right)^\times,\] where $\phi$ denotes a lift of the Frobenius from $k$ to $\W_p(k)$. \qed
 \end{theorem}
 
 \begin{remark}
-It is possible to draw the chromatic fracture square and the definition of $M_d$ in the same diagram:
-\begin{center}
-\begin{tikzcd}
-M_d X \arrow{d} \arrow[equal]{r} & M_d X \arrow{d} \\
-L_d X \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \widehat L_d X \arrow{d} \\
-L_{d-1} X \arrow{r} & L_{d-1} \widehat L_d X.
-\end{tikzcd}
-\end{center}
-From this, we see that there is a fiber sequence \[M_d X \to \widehat L_d X \to L_{d-1} \widehat L_d X.\]  The case $d = 1$ gives the prototypical example of the difference between these two presentations of the ``exact height $d$ data'', where the sequence becomes: \[\colim_j (M^0(p^j) \sm L_1 X) \to \lim_j (M_0(p^j) \sm L_1 X) \to \left( \lim_j (M_0(p^j) \sm L_1 X) \right)_{\Q}.\]  If, for instance, $\pi_0 L_1 X = \Z_{(p)}$, then the long exact sequence of homotopy groups associated to this fiber sequence gives
-\begin{center}
-\begin{tikzcd}
-\pi_0 \widehat L_1 X \arrow{r} \arrow[equal]{d} & \pi_0 L_0 \widehat L_1 X \arrow{r} \arrow[equal]{d} & \pi_{-1} M_1 X \arrow[equal]{d} \\
-\Z^\wedge_p \arrow{r} & \Q_p \arrow{r} & \Z/p^\infty.
-\end{tikzcd}
-\end{center}
-This is a model for what happens generally: the $v_j$--torsion--free groups get converted to infinitely $v_j$--divisible groups, with some dimension shifts.  (\emph{Exactly} what happens is often hard to work out, and I'm not aware of a totally general statement.)
+As a matter of emphasis, this Theorem does not give any description of the \emph{representation} of $\Aut \Gamma_d$, which is very complicated (cf.\ \Cref{ThePeriodMapSection}).  Nonetheless, the arithmetically-minded reader might recognize this description of $\Aut \Gamma_d$ as the group of units of a maximal order in the division algebra of Brauer--Hasse invariant $1/d$ over $k$ --- another glimpse of arithmetic geometry poking through to affect stable homotopy theory.
 \end{remark}
 
-In any case, one sees that it is also profitable to consider the homotopy groups of $\widehat L_d \S$.  The spectral version $\sheaf D_{\S \to E}(F)$ of $\context{E}(F)$ considered on the first day furnishes us with a tool by which we can approach this:
-
-\begin{theorem}[{\Cref{Pi2AndInvariantDiffls}, \Cref{DefnOfNilpCompletionAndASS}, and \Cref{FHGivesComodules}}]
-The $E_\Gamma$--based Adams spectral sequence for the sphere converges strongly to $\pi_* \widehat L_d \S$.  Writing $\omega$ for the line bundle on $\context{E_\Gamma}$ of invariant differentials, we have \[E_2^{*, *} = H^*_{\mathrm{stack}}(\context{E_\Gamma}; \omega^{\otimes *}) \Rightarrow \pi_* \widehat L_d \S. \qed\]
-\end{theorem}
-
-\todo{Show that the action of the stabilizer group lifts to an action on Lubin--Tate space.  This is relevant for what you're about to write.}
-
-The utility of this theorem is in the identification with stack cohomology.  Recalling the discussion in \Cref{HopfAlgebrasFromFiniteGroups,HF2HomologyIsValuedInAutGaEquivarModules}, as well as the identification \[\context{E_{\Gamma_d}} = \left( \moduli{fg} \right)^\wedge_{\Gamma_d} \simeq \widehat{\mathbb A}^{d-1}_{\mathbb W(k)} \mmod \InternalAut(\Gamma_d)\] in \Cref{ActionBySnLiftsToLTn}, we become interested in the action of $\Aut \Gamma_d$ on $LT_d$.\todo{You should explain this and the backreference more clearly --- the connection is a little obscure, and this is a useful result. Wherever you expand it, you might also give the accompanying cohomological calculation and the stable operations take the form of a group-ring.}\todo{You should also remark about the Bocksteins in the Morava $K$--theoretic cooperations, and that $E$--theory ``maxes out'' the ring spectrum deformation space.  Relatedly, you can also say that the context for Morava $K$--theory doesn't satisfy the {\CH} hypothesis.}  We will deduce the following description of $\Aut \Gamma_d$ later on:
-\begin{theorem}[{\Cref{FormOfStabilizerGroup}}]
-For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$ of positive characteristic $p$, we compute \[\Aut \Gamma_d \cong \left. \W_p(k) \<S\> \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right.,\] where $\phi$ denotes a lift of the Frobenius from $k$ to $\W_p(k)$. \qed
-\end{theorem}
-\noindent As a matter of emphasis, this Theorem does not give a description of the \emph{representation} of $\Aut \Gamma_d$, which is very complicated.  Nonetheless, we have reduced the computation of all of the stable homotopy groups of spheres to an arithmetically--founded problem in profinite group cohomology, so that arithmetic geometry might lend a hand.
-
-\begin{example}[Adams]
-In the case $d = 1$, $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$ and it acts on $\pi_* E_1 = \Z_p[u^\pm]$ by $\gamma \cdot u^n \mapsto \gamma^n u^n$.  At odd primes $p$ (so that $p$ is coprime to the torsion part of $\Z_p^\times$), one computes \[H^s(\operatorname{Aut}(\Gamma_1); \pi_* E_1) = \begin{cases}\Z_p & \text{when $s = 0$}, \\ \bigoplus_{j = 2(p-1)k} \Z_p\{u^j\} / (pk u^j) & \text{when $s = 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  This, in turn, gives the calculation \[\pi_t \widehat L_1 \S^0 = \begin{cases} \Z_p & \text{when $t = 0$}, \\ \Z_p / (pk) & \text{when $t = t|v_1| - 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  These groups are familiar to homotopy theorists: the $J$--homomorphism $J: BU \to BF$\todo{I don't remember what $F$ is.} described on the first day selects exactly these elements (for nonnegative $t$).  \todo[inline]{It is a good exercise to work out what this calculation means in terms of the rest of the fracture square and for $M_1 \S$.}
+\begin{example}[Adams]\label{piLK1SExample}\citeme{Find a citation}
+In the case $d = 1$, the objects involved are small enough that we can compute them by hand.  To begin, we have an isomorphism $\operatorname{Aut}(\Gamma_1) = \Z_p^\times$, and the action of this group on $\pi_* E_1 = \Z_p[u^\pm]$ is by $\gamma \cdot u^n \mapsto \gamma^n u^n$.  At odd primes $p$, one computes\footnote{At odd primes, $p$ is coprime to the order of the torsion part of $\Z_p^\times$.  At $p = 2$, this is not true, so the representation has infinite cohomological dimension and there is plenty of room for differentials in the ensuing $E_{\G_m}$--Adams spectral sequence..} \[H^s(\operatorname{Aut}(\Gamma_1); \pi_* E_1) = \begin{cases}\Z_p & \text{when $s = 0$}, \\ \bigoplus_{j = 2(p-1)k} \Z_p\{u^j\} / (pk u^j) & \text{when $s = 1$}, \\ 0 & \text{otherwise}. \end{cases}\]  This, in turn, gives the calculation\footnote{The groups $\pi_* \widehat L_1 \S$ are familiar to homotopy theorists: the Adams conjecture~\cite{AdamsJXIV} (and its solution) implies that the $J$--homomorphism $J_{\C}\co BU \to BGL_1 \S$ described in \Cref{DefnRealJHomomorphism} and \Cref{ComplexJHomomorphism} selects exactly these elements for nonnegative $t$.}
+\[
+\pi_t \widehat L_1 \S^0 = \begin{cases} \Z_p & \text{when $t = 0$}, \\ \Z_p / (pk) & \text{when $t = k|v_1| - 1$}, \\ 0 & \text{otherwise}. \end{cases}
+\]
+With this in hand, we can compute the homotopy of the rest of the fracture square:
+\begin{center}
+\begin{tikzcd}
+\pi_* L_1 \S \arrow{r} \arrow{d} & \Z_p \oplus \bigoplus_{t = k|v_1| - 1} \Susp^t \Z_p/(pk) \arrow{d} \\
+\Q \arrow{r} & \Q_p \oplus \Susp^{-1} \Q_p,
+\end{tikzcd}
+\end{center}
+from which we deduce
+\begin{align*}
+\pi_t L_1 \S^0 & = \begin{cases} \Z_{(p)} & \text{when $t = 0$}, \\ \Z_p / (pk) & \text{when $t = k|v_1| - 1$ and $t \ne 0$}, \\ \Z/p^\infty & \text{when $t = (0 \cdot |v_1| - 1) - 1 = -2$}, \\ 0 & \text{otherwise}. \end{cases}
+\end{align*}
 \end{example}
 
-\todo{I think it would be good to include how to construct the $v_1$--periodicity operator on $M(p)$ from $\alpha_{1/1}$.}
-\todo{Charles's 512 Notes's Example 7.17 and Corollary 5.12 are about $\alpha_{1/1}$.  It may well warrant inclusion in here somewhere.}
-\todo{Charles's 512 Notes's Example 7.18 is pretty cool: he deduces the nontriviality of $\eta$ from studying $\psi^{-1}$ on $KU^* \CP^\infty$ and solving some formal group law stuff.}
-\todo{Show that $K(n)$--localization of a coconnective spectrum is null: coconnective spectra are the colimits of finite Postnikov towers.}
+\begin{example}[{\cite[Example 7.18]{Rezk512Notes}}]
+We can also give an explicit chromatic analysis of the homotopy element $\eta \in \pi_1 \S$ studied in \Cref{HopfAlgebraLecture}.  As before, consider the complex $\CP^2 = \Susp^2 C(\eta)$.  We now consider the possibility that $\CP^2$ splits as $\S^2 \vee \S^4$, in which case there would be a dotted retraction in the cofiber sequence
+\begin{center}
+\begin{tikzcd}
+\S^2 \arrow{r} & \CP^2 \arrow{r} \arrow[densely dotted, bend right, "i"']{l} & \S^4.
+\end{tikzcd}
+\end{center}
+If this were possible, we would also be able to detect the retraction after chromatic localization --- so, for instance, we could consider the cohomology theory $E_{\G_m} = KU^\wedge_p$ from \Cref{ExampleOfMoravasTheoriesAtGm} and test this hypothesis in $\G_m$--local homotopy.  Writing $t$ for a coordinate on $\CP^\infty_{KU^\wedge_p}$, this cofiber sequence gives a short exact sequence on $KU^\wedge_p$--cohomology:
+\begin{center}
+\begin{tikzcd}
+0 & (t) / (t)^2 \arrow{l} \arrow[bend left, densely dotted, "i^*"]{r} & (t) / (t)^3 \arrow{l} & (t)^2 / (t)^3 \arrow{l} & 0. \arrow{l}
+\end{tikzcd}
+\end{center}
+Because $i$ is taken to be a retraction, the map $i^*$ would satisfy $i^*(t) = t \pmod{t^2}$, so that $i^*(t) = t + at^2$ for some $a$.  Additionally, $i^*$ would be natural with respect to all cohomology operations on $KU^\wedge_p$.  In particular, the element $(-1) \in \Z_p^\times \cong \Aut \G_m$ gives rise to an operation $\psi^{-1}$, which acts by the $(-1)$--series on the coordinate $t$.  In the case that $t$ is the coordinate considered in \Cref{CPinftyKUExample}, this gives \[[-1](t) = -\sum_{j=1}^\infty t^j = -t - t^2 \pmod{t^3}.\]  We thus compute:
+\begin{align*}
+\psi^{-1} \circ i(t) & = i \circ \psi^{-1}(t) \\
+\psi^{-1}(t + at^2) & = i(-t) \\
+(-t - t^2) + a(-t - t^2)^2 & = -(t + at^2) \\
+-t + (a - 1) t^2 & = -t - at^2,
+\end{align*}
+so that we would arrive at a contradiction if the equation $2a = 1$ were insoluable.  Note that this has no solution in $\Z_2$, so that the attaching map $\eta$ in $\CP^2$ is nontrivial in $\G_m$--local homotopy at the prime $2$ (hence also in the global homotopy group $\pi_1 \S$).  For $p$ odd, this equation \emph{does} have a solution in $\Z_p$, and it furthermore turns out that $\eta = 0$ at odd primes.  This problem also disappears if we require $i(t) = 2t + at^2$ instead, so that the above argument does not obstruct the triviality of $2 \eta$ (and, indeed, \Cref{HF2ASSFigure} shows that the relation $2 \eta = 0$ holds in $2$--adic homotopy).
+\end{example}
+
+\begin{example}[{\cite[Example 7.17 and Corollary 5.12]{Rezk512Notes}}]
+Take $k$ to be a perfect field of positive characteristic $p$, and take $\Gamma$ over $\Spec k$ to be a finite height formal group with associated Morava $E$--theory $E_\Gamma$.  By smashing the unit map $\S \to E_\Gamma$ with the mod--$p$ Moore spectrum, we get an induced map of homotopy groups \[h_{2n}\co \pi_{2n} M_0(p) \to \pi_{2n} E_\Gamma.\]  We concluded as a consequence of \Cref{IdIsAnInvariantIdeal} that there is an invariant section $v_1$ of $\omega^{\otimes(p-1)}$ on $\moduli{fg}^{\ge 1} \to \A^1$, and hence a preferred element of $\pi_{2(p-1)} E_\Gamma$ which is natural in the choice of $\Gamma$.  One might hope that these elements are the image of an element in $\pi_{2(p-1)} M_0(p)$ under the Hurewicz map $h$, and this turns out to be true: this element is called $\alpha_{1/1}$.  This element furthermore turns out to be $p$--torsion, meaning it extends to a map
+\begin{center}
+\begin{tikzcd}
+\S^{2(p-1)} \arrow["p"]{r} \arrow["0"]{rd} & \S^{2(p-1)} \arrow["\alpha_{1/1}"]{d} \arrow["\cofib"]{r} & M_{2(p-1)}(p) \arrow[densely dotted, "v"]{ld} \\
+& M_0(p).
+\end{tikzcd}
+\end{center}
+At odd primes, this turns out to be the $v_1$--self-map $v\co M_{2(p-1)}(p) \to M_0(p)$ announced in \Cref{AdamsSelfMapThm}.
+
+More generally, different powers $v_1^j$ of the section $v_1$ also give rise to homotopy elements $\alpha_{j/1} \in \pi_{2(p-1)j} M_0(p)$.  These have varying orders of divisibility, and we write $\alpha_{j/k}$ for the element satisfying $p^{k-1} \alpha_{j/k} = \alpha_{j/1}$.  Compositionally, these maps satisfy the useful relation $\alpha_{p^{j-1}/j-1}^p = \alpha_{p^j/j}$.
+\todo{Is this relation right?}
+The other invariant functions described in \Cref{IdIsAnInvariantIdeal} (e.g., $v_d$ modulo $I_d$) also give rise to elements in $H^*(\moduli{fg}^{\ge d}; \omega^{\otimes *})$, which map to the $BP$--Adams $E_2$--term and which sometimes survive the spectral sequence to give to homotopy elements of the generalized Moore spectra $M_0(v^I)$.  Homotopy elements arising in this way are collectively referred to as \textit{Greek letter families}~\cite[Section 3]{MRW}.
+\end{example}
+
+\begin{remark}
+In the broader literature, the phrase ``Greek letter elements'' typically refers to the pushforward of the above elements to the homotopy groups of $\S$ by pinching to the top cell.  This is somewhat obscuring: for instance, this significantly entangles how multiplication by $\alpha_{j/k}$ behaves.  Finally, the incarnation of these element in $\G_m$--local homotopy are exactly the elements witnessed by the invariant function $u^{2(p-1)k}$ in \Cref{piLK1SExample}.
+\end{remark}
+
+
+
+
 
 
 
