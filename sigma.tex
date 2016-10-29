@@ -738,13 +738,14 @@ We can already see from \Cref{HF2BU6Calculation} that our map of short exact seq
 
 
 Now, we turn to the algebra.  The main idea, as already used in \Cref{CalculationOfLTTangentSpace}\todo{Is this really the best example to reference?}, is to first perform a tangent space calculation \[T_0 C^k(\G_a; \Gm) \cong C^k(\G_a; \G_a),\] then study the behavior of the different tangent directions to determine the full object $C^k(\G_a; \Gm)$.  As a warm-up, we will first consider the case $k = 2$:
-\begin{corollary}[{cf.\ \Cref{CohomologyOfGa}}]
+\begin{corollary}[{cf.\ \Cref{Symmetric2CocycleLemma}}]
 The unique symmetric $2$--cocycle of homogeneous degree $n$ has the form \[c_n(x, y) = \begin{cases} (x + y)^n - x^n - y^n & \text{if $n \ne p^j$}, \\ \frac{1}{p} \left( (x + y)^n - x^n - y^n \right) & \text{if $n = p^j$}. \end{cases} \qed\]
 \end{corollary}
 
 Our goal, then, is to select such a $2$--cocycle $f$ and study the minimal conditions needed on a symbol $a$ to produce a multiplicative $2$--cocycle of the form $1 + af + \cdots$.  Since $c_n = \frac{1}{d_n} \delta(x^n)$ \todo{The notation is a little odd, since you're conflating $x^n$ with the function $x \mapsto x^n$.} is itself produced by an additive formula, life would be easiest if we had access to an exponential, so that we could build \[\text{``$ \delta \exp(a_n x^n)^{1/d_n} = \exp(\delta a_n x^n / d_n) = \exp(a_n c_n). $''}\]  However, the existence of an exponential series is equivalent to requiring that $a_n$ have all fractions, which turns out not to be minimal.  In fact, \emph{no} conditions on $a_n$ are required \emph{at all}, if we tweak the definition of an exponential series:
 
-\begin{definition}\todo{Where does this come from? I've never learned a universal property for it. That bothers me. It must have something to do with $p$--typification.}
+\begin{definition}
+\todo{Where does this come from? I've never learned a universal property for it. That bothers me. It must have something to do with $p$--typification.}
 The \textit{Artin--Hasse exponential} is the power series \[E_p(t) = \exp\left( \sum_{j=0}^\infty \frac{t^{p^j}}{p^j} \right) \in \Z_{(p)}\ps{t}.\]
 \end{definition}
 
@@ -968,7 +969,7 @@ commutes. \qed
 \end{corollary}
 
 \begin{example}
-Our basic example of an elliptic curve was $E_\Lambda = \C / \Lambda$, with $\Lambda$ a complex lattice.  The projection $\C \to \C / \Lambda$ has a local inverse which defines an isomorphism of formal groups \[\phi\co (E_\Lambda)^\wedge_0 \xrightarrow{\cong} \G_a \otimes \C.\]  Accordingly, we define an elliptic spectrum $HE_\Lambda P$ whose underlying ring spectrum is $H\C$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to HE_\Lambda P,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n \in HE_\Lambda P_{2n}$ \todo{What is $u_\Lambda^n$?  How is it normalized?} for some $\Phi_\Lambda(M) \in \C$.
+Our basic example of an elliptic curve was $E_\Lambda = \C / \Lambda$, with $\Lambda$ a complex lattice.  The projection $\C \to \C / \Lambda$ has a local inverse which defines an isomorphism of formal groups \[\phi\co (E_\Lambda)^\wedge_0 \xrightarrow{\cong} \G_a \otimes \C.\]  Accordingly, we define an elliptic spectrum $HE_\Lambda P$ whose underlying ring spectrum is $H\C P$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to HE_\Lambda P,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n \in HE_\Lambda P_{2n}$ \todo{What is $u_\Lambda^n$?  How is it normalized?} for some $\Phi_\Lambda(M) \in \C$.
 \end{example}
 
 \begin{example}
@@ -976,7 +977,7 @@ The naturality of the $MU[6, \infty)$--orientation moves us to consider more tha
 \end{example}
 
 \begin{example}\label{OrdinaryHomologyInUpperHalfPlaneEx}
-This equation leads us to consider all curves $E_\Lambda$ simultaneously --- or, equivalently, to consider modular forms.  The lattice $\Lambda$ can be put into a standard form, by picking a basis and scaling it so that one vector lies at $1$ and the other vector lies in the upper half-plane.  This gives a cover \[\h \to \moduli{ell} \times \Spec \C\] \todo{Is the notation $\h$ for the upper half plane standard here?  Usually it's denoted $\mathbb{H}$?}which is well-behaved away from the special points $i$ and $e^{2 \pi i / 6}$.  A \textit{complex modular form of weight $k$} is an analytic function $\h \to \C$ which satisfies a certain decay condition and which is quasi-periodic for the action of $SL_2(\Z)$, i.e.,\footnote{That is, for the action of change of basis vectors.} \[f\left(M; \frac{a \tau + b}{c \tau + d} \right) = (c \tau + d)^n f(M; \tau).\]
+This equation leads us to consider all curves $E_\Lambda$ simultaneously --- or, equivalently, to consider modular forms.  The lattice $\Lambda$ can be put into a standard form, by picking a basis and scaling it so that one vector lies at $1$ and the other vector lies in the upper half-plane.  This gives a cover \[\h \to \moduli{ell} \times \Spec \C\] \todo{Is the notation $\h$ for the upper half plane standard here?  Usually it's denoted $\mathbb{H}$?}which is well-behaved\todo{You probably mean ``unramified''.} away from the special points $i$ and $e^{2 \pi i / 6}$.  A \textit{complex modular form of weight $k$} is an analytic function $\h \to \C$ which satisfies a certain decay condition and which is quasi-periodic for the action of $SL_2(\Z)$, i.e.,\footnote{That is, for the action of change of basis vectors.} \[f\left(M; \frac{a \tau + b}{c \tau + d} \right) = (c \tau + d)^n f(M; \tau).\]
 
 Using these ideas, we construct a cohomology theory $H \sheaf O_{\h} P$, where $\sheaf O_{\h}$ is the ring of complex-analytic functions on the upper half-plane.  The $\h$--parametrized family of elliptic curves \[\h \times \C / (1, \tau) \to \h,\] together with the logarithm, present $H \sheaf O_{\h} P$ as an elliptic spectrum $H\h P$.  The canonical map $\Phi\co MU[6, \infty) \to H\h P$ specializes at a point to give the functions $\Phi(-; \Lambda)$ considered above, and hence $\Phi(M)$ is itself a complex modular form of weight $k$.
 \end{example}
@@ -1071,7 +1072,7 @@ This is exactly Witten's formula for his genus, as applied to complex manifolds 
 
 \todo[inline]{A different approach to this is to work through the $p \ne 2$ case, since you can totally, correctly work it out and see the $\Sigma$--structure relation get imposed. That's kind of attractive.  Too bad you had this thought after the class was complete.  ------  We might also try to understand the extension problem of orientations across $MU \to MSO$ for spectra which are local away from $2$.  It seems like some juggling of the complex-conjugation idempotents could give you access to $BSO$ information in terms of $BU$, which would be satisfying.  Compare with Neil's response at \texttt{http://mathoverflow.net/questions/123958/a-formal-group-law-over-oriented-bordism}. Hood also points out that the usual ``$\operatorname{tanh}^{-1}$'' equation for the $L$--genus has an expansion in terms of the usual logarithm: it's an averaging between the positive and negative logarithmic series.}
 
-\todo[inline]{Hood also points out that the mysterious series $x / (1 - e^{-x})$ occurs as $\exp_{\G_a} / \exp_{\G_m}$.}
+\todo[inline]{Hood also points out that the mysterious series $x / (1 - e^{-x})$ occurs as $\exp_{\G_a} / \exp_{\G_m}$.  Also, Section 3 of Ando--Hopkins--Rezk sets up a bunch of the rational Hirzebruch genera stuff in a way that extends to $MO\<8\>$.}
 
 
 
@@ -1229,6 +1230,7 @@ Applying the Thom spectrum functor to the fiber square gives the pushout diagram
 \end{center}
 or, equivalently, an equivalence \[M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S.\] \todo{It seems that this approach, which I presume is the one that ultimately works, is independent of all the earlier work involving $B\Spin$.} This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures \todo{You have not introduced $\Sigma$--structures yet.}.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
 
+\todo{Mike thinks that $K(2)_* \Spin / SU \to K(2)_* BU[6, \infty)$ follows from this being a map of co/commutative Hopf algebras which is injective on indecomposables. I don't know how to prove this hypothesis condition and I also don't know how to prove the reduction.  Bousfield's paper \textit{On $\lambda$--rings and the $K$--theory of infinite loopspaces} in Theorem 10.8 gives a description of flat Hopf algebras in the setting of periodic $K$--theory (or, rather, a reference).  It looks like his conclusion is that flat maps are \emph{precisely} the inclusions of Hopf algebras.  If we could adapt something like this to our situation, we would immediately learn that $K(2)_* \Spin / SU \to K(2)_* BU[6, \infty)$ is flat from Kitchloo--Laures--Wilson.}
 
 
 

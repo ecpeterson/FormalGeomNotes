@@ -5,7 +5,7 @@
 
 Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots --- the list continues.  We would like to replicate the results from \Cref{UnorientedBordismChapter} for these other cases, but upon even a brief inspection we quickly see that only one of the bordism theories mentioned supports this program.  Specifically, the space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other similar ground object is $\CP^\infty = BU(1)$ in complex bordism.  This informs our choice to spend this Case Study focused on it.  To begin, the contents of \Cref{LectureThomSpectra} can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
 
-\begin{theorem}[{cf.\ \Cref{JIsMonoidal} and surrounding discussion}]
+\begin{theorem}[{cf.\ \Cref{JIsMonoidal} and surrounding discussion}]\label{ComplexJHomomorphism}
 There is a map of infinite--loopspaces \[J_{\C}\co BU \to B \GL_1 \S\] called the \textit{complex $J$--homomorphism}.
 \end{theorem}
 
@@ -64,7 +64,7 @@ Harkening back to \Cref{FirstAppearanceOfInternalAut}, the definition of the $R$
 There is an affine scheme $T_x X$ defined by \[(T_x X)(T) := \left\{ (u, f) \middle| \begin{array}{c} u\co \Spec T \to S, \\ f \in T_{u^* x} u^* X \end{array} \right\}.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
-We specialize an argument of Strickland~\cite[Proposition 2.94]{StricklandFSFG} to the case at hand.\footnote{Strickland also shows that mapping schemes between formal schemes exist considerably more generally~\cite[Theorem 4.69]{StricklandFSFG}.  The source either has to be ``finite'' in some sense, in which case the proof proceeds along the lines presented here, or it has to be \textit{coalgebraic}, which is an important technical tool that we discuss much later in \Cref{DefnCoalgebraicFormalScheme}.}  We start by seeking an $R$--algebra $B$ such that $R$--algebra maps $B \to T$ biject with pairs of maps $u\co R \to T$ and $T$--algebra maps \[f\co A \otimes_R T \to R[\eps] / \eps^2 \otimes_R T.\]  Such maps $f$ biject with $R$--algebra maps \[A \to R[\eps] / \eps^2 \otimes_R T.\]  Noting that $R[\eps] / (\eps)^2$ is free and finite--dimensional as an $R$--module\todo{Seriously consider just writing out what you mean here in symbols.}, we forget from $R$--algebra maps down to just $R$--module maps, use $R$--linear duality to move it to the domain, promote it back to an $R$--algebra by forming the symmetric algebra, then finally try to pick out the maps of interest by imposing a quotient.  By expanding Strickland's formulas, we arrive at the equation \[\InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) = \Spec \left. A\{1, da \mid a \in A\} \middle/ \left( \begin{array}{c} \text{$dr = 0$ for $r \in R$}, \\ d(a_1 a_2) = da_1 \cdot a_2 + a_1 \cdot da_2 \end{array} \right) \right. .\]  To extract the scheme $T_x X$ from this, we construct the pullback \[T_x X := \InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) \times_X S,\] where the structure maps are given on the left by setting $\eps = 0$ and on the right using the point $x$.  Expanding the formulas again shows that the coordinate ring of this affine scheme is given by \[\sheaf O_{T_x X} = A / I^2 \cong R \oplus T^*_x X. \qed\]
+We specialize an argument of Strickland~\cite[Proposition 2.94]{StricklandFSFG} to the case at hand.\footnote{Strickland also shows that mapping schemes between formal schemes exist considerably more generally~\cite[Theorem 4.69]{StricklandFSFG}.  The source either has to be ``finite'' in some sense, in which case the proof proceeds along the lines presented here, or it has to be \textit{coalgebraic}, which is an important technical tool that we discuss much later in \Cref{DefnCoalgebraicFormalScheme}.}  We start by seeking an $R$--algebra $B$ such that $R$--algebra maps $B \to T$ biject with pairs of maps $u\co R \to T$ and $T$--algebra maps \[f\co A \otimes_R T \to R[\eps] / \eps^2 \otimes_R T.\]  Such maps $f$ biject with $R$--algebra maps \[A \to R[\eps] / \eps^2 \otimes_R T.\]  Noting that $R[\eps] / (\eps)^2$ is free and finite--dimensional as an $R$--module\todo{Seriously consider just writing out what you mean here in symbols.}, we forget from $R$--algebra maps down to just $R$--module maps, use $R$--linear duality to move it to the domain, promote it back to an $R$--algebra by forming the symmetric algebra, then finally try to pick out the maps of interest by imposing a quotient.  By expanding Strickland's formulas, we arrive at the equation \[\InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) = \Spec \left. A\{1, da \mid a \in A\} \middle/ \left( \begin{array}{c} \text{$dr = 0$ for $r \in R$}, \\ d(a_1 a_2) = da_1 \cdot a_2 + a_1 \cdot da_2 \end{array} \right) \right. .\]  To extract the scheme $T_x X$ from this, we construct the pullback \[T_x X := \InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) \times_X S,\] where the structure maps are given on the left by setting $\eps = 0$ and on the right using the point $x$.  Expanding the formulas again shows that the coordinate ring of this affine scheme is given by \[\sheaf O_{T_x X} = A / I^2 \cong R \oplus T^*_x X. \qedhere\]
 \end{proof}
 
 \begin{definition}
@@ -94,6 +94,7 @@ Pointed maps $\A^n \to \A^m$ naturally biject with $m$--tuples of $n$--variate p
 The preceding Lemma shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.\footnote{In some sense, this Lemma is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology have long been expressed in terms of power series rings, and with this Lemma we are provided geometric interpretations for such statements.}  In particular, this allows local theorems from analytic differential geometry to be imported, including a version of the inverse function theorem.
 
 \begin{theorem}\label{InverseFunctionTheoremForFVars}\citeme{This is 3.1.8 in the Crystals notes.}
+\todo{Wait a second, have you introduced this terminology yet?}
 A pointed map $f\co V \to W$ of finite--dimensional formal varieties is an isomorphism if and only if the induced map $T_0 f\co T_0 V \to T_0 W$ is an isomorphism of $R$--modules.
 \end{theorem}
 \begin{proof}
@@ -193,8 +194,8 @@ For $R$ a $\Q$--algebra, there is a canonical isomorphism of formal groups \[\lo
 Taking a cue from classical Lie theory, we attempt to use integration to define exponential and logarithm functions for a given formal group law $F$.  This is typically accomplished by studying invariant differentials: a $1$--form $\omega \in \Omega^1_{A/R}$ is said to be \textit{invariant (under $F$)} when $\omega = T_y^* \omega$ for all translations $T_y(x) = x +_F y$.  In terms of a coordinate $\omega = f(x) dx$, this condition becomes \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $x = 0$, we deduce the condition \[f(0) = f(y) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{x=0}.\]  Since $R$ is a $\Q$--algebra, integrating against $y$ yields \[\log_F(y) = \int f(y) \, dy = f(0) \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{x=0} \right)^{-1} dy.\]  To see that the series $\log_F$ has the claimed homomorphism property, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} dx = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x} dx,\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $y = 0$ shows that the constant is $\log_F(x)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  The choice of boundary value $f(0)$ corresponds to the choice of vector in $T_0 \G$.
 \end{proof}
 
-\begin{example}
-Consider the formal group law $x_1(t_1) +_{\G_m} x_2(t_2) = t_1 + t_2 - t_1 t_2$ studied in \Cref{CPinftyKUExample}.  Its associated rational logarithm is computed as \[\log_{\G_m}(t_2) = f(0) \cdot \int \frac{1}{1 - t_2} dt_2 = -f(0) \log(1 - t_2) = -f(0) \log(x_2),\] where ``$\log(x_2)$'' refers to the classical natural logarithm of $x_2$.
+\begin{example}\label{GmAndItsLogExample}
+Consider the formal group law $x_1(t_1) +_{\G_m} x_2(t_2) = t_1 + t_2 - t_1 t_2$ studied in \Cref{CPinftyKUExample}.  Its associated rational logarithm is computed as \[\log_{\G_m}(t_2) = f(0) \cdot \int \frac{1}{1 - t_2} dt_2 = -f(0) \log(1 - t_2) = f(0) \log(x_2),\] where ``$\log(x_2)$'' refers to the classical natural logarithm of $x_2$.
 \end{example}
 
 
@@ -484,7 +485,7 @@ BU(n)_E \times BU(m)_E \arrow{r}{\otimes} \arrow[equal]{d} & BU(nm)_E \arrow[equ
 where the bottom map acts by \[(D_1, D_2 \subseteq \CP^\infty_E \times X_E) \mapsto (D_1 \times D_2 \subseteq \CP^\infty_E \times \CP^\infty_E \xrightarrow{\mu} \CP^\infty_E),\] and $\mu$ is the map induced by the tensor product map $\CP^\infty \times \CP^\infty \to \CP^\infty$.
 \end{corollary}
 \begin{proof}
-By the splitting principle, it is enough to check this on sums of line bundles.  A sum of line bundles corresponds to a totally decomposed divisor, so we consider the case of a pair of such divisors $\bigsqcup_{i=1}^n \{a_i\}$ and $\bigsqcup_{j=1}^m \{b_j\}$.  Referring to \Cref{DefnFormalGps}, the map acts by \[\left(\bigsqcup_{i=1}^n \{a_i\} \right) \left( \bigsqcup_{j=1}^m \{b_j\} \right) = \bigsqcup_{i, j} \{\mu_{\CP^\infty_E}(a_i, b_j)\}. \qed\]
+By the splitting principle, it is enough to check this on sums of line bundles.  A sum of line bundles corresponds to a totally decomposed divisor, so we consider the case of a pair of such divisors $\bigsqcup_{i=1}^n \{a_i\}$ and $\bigsqcup_{j=1}^m \{b_j\}$.  Referring to \Cref{DefnFormalGps}, the map acts by \[\left(\bigsqcup_{i=1}^n \{a_i\} \right) \left( \bigsqcup_{j=1}^m \{b_j\} \right) = \bigsqcup_{i, j} \{\mu_{\CP^\infty_E}(a_i, b_j)\}. \qedhere\]
 \end{proof}
 
 Finally, we can connect our analysis of the divisors coming from topological vector bundles with the line bundles studied at the start of the section.
@@ -583,7 +584,7 @@ This proof is mostly a matter of having had the idea to write down the Lemma to 
 \begin{align*}
 T(\xi(n)) & = T(\xi^{\oplus n}_{hC_n}) & \text{(definition)} \\
 & = T(\xi^{\oplus n})_{hC_n} & \text{(colimits commute with colimits)} \\
-& = T(\xi)^{\sm n}_{hC_n}. & \text{($T$ is monoidal: \Cref{ThomSpacesAreMonoidal})} & \qed
+& = T(\xi)^{\sm n}_{hC_n}. & \text{($T$ is monoidal: \Cref{ThomSpacesAreMonoidal})} & \qedhere
 \end{align*}
 \end{proof}
 
@@ -602,7 +603,7 @@ This defines the \textit{external $n${\th} Steenrod power of $f$}.  Employing th
 
 \todo{This is pretty much the definition of an $H_\infty$ ring spectrum, but this is not enough to extract power operations on positive-degree classes.  There, you want compatible systems of maps like $(\Susp^j E)^{\sm n}_{h\Sigma_n} \to \Susp^{nj} E$.  In general, you get such systems only for all $j$ which are divisible by some fixed $d$, and the resulting mess is called an $H_\infty^d$--structure.  For example, $KU$ has an $H_\infty^2$--structure and $KO$ has an $H_\infty^8$--structure.  My suspicion with Nat is that power operation maps come from applying the power operation functor to the identity class in $[E, E]$, and that the $H_\infty^d$--structures on these two spectra come from applying the power operation functor to the autoequivalence supplied by the relevant Bott element.}
 
-\begin{remark}
+\begin{remark}\label{RemarkSteenrodOpnsAreNotStable}
 This assignment \[\left\{ \Susp^\infty_+ X \to MU \right\} \xrightarrow{P^n} \left\{ \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \to MU \right\}\] extends to a map of function spaces\todo{Is this right? You can't interpret the image of an element of $\pi_{2r}$ on the left as being the power operation applied to another cohomology class, since you'd expect the image to lie in degree $\pi_{2nr}$.} \[\CatOf{Spaces}(X, MU) \xrightarrow{P^n} \CatOf{Spaces}(X \times BC_n, MU).\]  However, this is \emph{not} an infinite loop map, i.e., it does \emph{not} descend from a map of function spectra.  The basic obstruction is that power operations are not additive, which is what the infinite loopspace structure governs, but rather satisfy a kind of binomial theorem~\cite[pg.\ 25]{BMMS}.
 \end{remark}
 
@@ -676,7 +677,7 @@ P^n(x) = c_n(\Delta_{hC_n}^* \L(n)) & = e\left( \bigoplus_{j=0}^{n-1} \pi_1^* \L
 \end{align*}
 Here $x$ is still the $1${\st} Conner--Floyd--Chern class of $\L$ and $t$ is the Euler class of $\eta$.  We now try to make sense of this product expression for $c_n(\Delta_{hC_n}^* \L(n))$ by expanding it in powers of $x$ and identifying its component pieces.
 \begin{lemma}\label{AjAndBjAreInTheFGLSubring}
-There is a series expansion \[P^n(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where $a_j(t)$ is a series with coefficients in the subring $C \subseteq MU_*$ spanned by the coefficients of the natural $MU$--formal group law.  The leading term \[w = e(\rho) = \prod_{j=0}^{n-1} e(\eta^{\otimes j}) = \prod_{j=0}^{n-1} [j]_{MU} (e(\eta)) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the reduced permutation representation, and, again, the elements $b_j$ lie in the subring $C$. \qed
+There is a series expansion \[P^n(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where $a_j(t)$ is a series with coefficients in the subring $C \subseteq MU_*$ spanned by the coefficients of the natural $MU$--formal group law.  The leading term \[w = e(\rho) = \prod_{j=0}^{n-1} e(\eta^{\otimes j}) = \prod_{j=0}^{n-1} [j]_{MU} (e(\eta)) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the reduced permutation representation, and, again, the elements $b_j$ lie in the subring $C$. \qedhere
 \end{lemma}
 
 This is about as much information as we can hope to extract in the $1${\st} universal case.  We thus return to our original goal: understanding the action of $P^n$ on each of the canonical classes \[u_m\co MU(m) \to MU.\]  Our best hope to approach this is to use the splitting principle, so we rewrite the formula in \Cref{AjAndBjAreInTheFGLSubring} in a form amenable to direct sums:
@@ -693,7 +694,7 @@ This follows directly from the splitting principle and the Cartan formula:
 \begin{align*}
 P^n(u_m) & = \overset{\text{each of the $m$ factors}}{\overbrace{P^n(x_1) \cdot \cdots \cdot P^n(x_m)}} \\
 & = \left(\sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x_1)\right) \cdot \cdots \cdot \left( \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x_m) \right) \\
-& = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m). \qed
+& = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m). \qedhere
 \end{align*}
 \end{proof}
 
@@ -718,15 +719,16 @@ We take $m$ large enough so that $f$ is represented by an unstable map \[g\co \S
 \begin{align*}
 w^m \sigma^{2m} P^n(f) & = P^n(\sigma^{2m} f) = P^n(g^* u_{m+q}) = g^* P^n(u_{m+q}) \\
 & = g^* \left(\sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) s_\alpha(u_{m+q}) \right) \\
-& = \sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) \sigma^{2m} s_\alpha(f). \qed
+& = \sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) \sigma^{2m} s_\alpha(f). \qedhere
 \end{align*}
 \end{proof}
 
 Our conclusion, then, is that $P^n$ is \emph{almost} naturally expressible in terms of the Landweber--Novikov operations, where the ``\emph{almost}'' is controlled by some $w$--torsion.  Additionally, the various factors in this statement --- including $w$ itself --- are controlled by the formal group law ``$+_{MU}$'' associated to the tautological complex orientation of $MU$ and the subring $C$.
 
 \begin{remark}
-\todo[inline]{You can put a remark here about how power operations become additive after passing to the Tate construction, now that you sort of understand this.  Or, you can put a forward reference in to where you're going to talk about this, way out in the Power Operations chapter.  Actually, probably do both: mention it in passing and put in ``cf.''.}
+The target of the Steenrod operation \[P^n\co F(X, \Susp^{2m} MU) \to F(X_{hC_n}, \Susp^{2nm} MU)\] can be reidentified as \[F(X_{hC_n}, \Susp^{2nm} MU) \simeq F(X, \Susp^{2nm} MU)^{hC_n}.\]  For any $C_n$--equivariant spectrum $X$, there is a special map called the \textit{transfer map}\citeme{Greenlees--May?} \[X_{hC_n} \to X^{hC_n} \xrightarrow{\cofib} X^{tC_n}\] whose cofiber is called a \textit{Tate spectrum}.  The construction of Tate spectra is \emph{homological}\todo{Does this require $n$ to be prime?}: cofiber sequences of spaces are sent to cofiber sequences of Tate spectra, and hence there is a natural \emph{stable} (cf.\ \Cref{RemarkSteenrodOpnsAreNotStable}) map \[F(X, \Susp^{2m} MU) \to F(X, \Susp^{2nm} MU)^{tC_n}.\]  In this setting, passing to the Tate construction has the effect of inverting $t$ on homotopy\citeme{Greenlees--May?}, and so this is a homotopical witness to a generic kind of relation expressed in \Cref{QuillensKeyRelation}: the Steenrod operations become stable after multiplication by huge powers of $t$.  The method described here gives a precise formula for the relationship, and in the proof of \Cref{CGenerationForFiniteCplx} in the next Lecture we will discover the surprising fact that we only need to multiply by a \emph{single} $t$.
 \end{remark}
+
 
 
 
@@ -766,7 +768,7 @@ The Euler class of the first bundle is the class $x$, and it pulls back along th
 MU^*(BU(1)[n]) \arrow[leftarrow]{ru} & & MU^{*+2} BU(1) \arrow[leftarrow]{ll}{\partial}
 \end{tikzcd}
 \end{center}
-where $x$ is the coordinate on $BU(1)_{MU}$.  Because $[n]_{MU}(x) = nx + \cdots$ and because $\widetilde{MU}^2 \CP^1$ has no $n$--torsion, the right diagonal map is injective and hence $\partial = 0$.  This therefore gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[0 \to BU(1)[n]_{MU} \to BU(1)_{MU} \xrightarrow{n} BU(1)_{MU} \to 0. \qed\]
+where $x$ is the coordinate on $BU(1)_{MU}$.  Because $[n]_{MU}(x) = nx + \cdots$ and because $\widetilde{MU}^2 \CP^1$ has no $n$--torsion, the right diagonal map is injective and hence $\partial = 0$.  This therefore gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[0 \to BU(1)[n]_{MU} \to BU(1)_{MU} \xrightarrow{n} BU(1)_{MU} \to 0. \qedhere\]
 \end{proof}
 
 \begin{corollary}
@@ -800,7 +802,7 @@ In what follows, the reader should carefully remember the degree conventions ste
 \begin{proof}[{Proof of \Cref{CGenerationForFiniteCplx}}]
 We can immediately reduce the claim in two ways.  First, it is true if and only if it is also true for reduced cohomology.  Second, because $MU^{2*+1}(*) = 0$, we can restrict attention just to $MU^{2*}(X)$, since we can then handle the odd-degree parts of $MU^*(X)$ by suspending $X$ once.  Defining \[R^{2*} := C \cdot \sum_{q > 0} MU^{2q}(X),\] we can thus focus on the claim \[\widetilde{MU}^{2*}(X) \stackrel{?}{=} C \cdot \sum_{q > 0} MU^{2q}(X).\]  Noting that the claim is trivially true for all positive values of $*$, we will show this by working $p$--locally and inducting on the value of ``$-*$''.
 
-Suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $m \gg 0$, we have \[w^m P^p(x) = \sum_{|\alpha| \le m-q} w^{m-q - |\alpha|} a(t)^\alpha s_\alpha x = w^{m-q} x + \sum_{\substack{|\alpha| \le m-q \\ \alpha \ne 0}} w^{m-q - |\alpha|} a(t)^\alpha s_\alpha x.\]  Recall that $w$ is a power series in $t$ with coefficients in $C$ and leading term $(p-1)! \cdot t^{p-1}$, so that $t^{p-1} = w \cdot \theta(t)$ for some multiplicatively invertible series $\theta(t)$ with coefficients in $C$.  Since $s_\alpha$ raises degree, we have $s_\alpha x \in R$ by the inductive hypothesis, and we may thus collect all those terms into a series $\psi_x(t) \in R_{(p)}\llbracket T \rrbracket$ to write \[t^{m-q}(w^qP^p(x) - x) = \psi_x(t).\]
+Suppose that \[R^{-2j}_{(p)} = \widetilde{MU}^{-2j}(X)_{(p)}\] for $j < q$ and consider $x \in \widetilde{MU}^{-2q}(X)$.  Then, for $m \gg 0$, we have \[w^m P^p(x) = \sum_{|\alpha| \le m-q} w^{m-q - |\alpha|} a(t)^\alpha s_\alpha x = w^{m-q} x + \sum_{\substack{|\alpha| \le m-q \\ \alpha \ne 0}} w^{m-q - |\alpha|} a(t)^\alpha s_\alpha x.\]  Recall that $w$ is a power series in $t$ with coefficients in $C$ and leading term $(p-1)! \cdot t^{p-1}$, so that $t^{p-1} = w \cdot \theta(t)$ for some multiplicatively invertible series $\theta(t)$ with coefficients in $C$.  Since $s_\alpha$ raises degree, we have $s_\alpha x \in R$ by the inductive hypothesis, and we may thus collect all those terms into a series $\psi_x(t) \in R_{(p)}\llbracket T \rrbracket$ to write\todo{I think you confused $t$ and $w$ in this equation. Shouldn't it be more like $(m-q)(k-1)$?} \[t^{m-q}(w^qP^p(x) - x) = \psi_x(t).\]
 
 Suppose $m > q$ is the least integer for which we can write such an equation --- we will show $m = q+1$ in a moment.  Using \Cref{RestrictingSteenrodOpToBasepoint}, we find that restricting this equation along the inclusion $i\co X \to X \times BU(1)[p]$ sets $t = 0$ and yields $\psi_x(0) = 0$.  It follows that $\psi_x(t) = t \phi_x(t)$ is at least once $t$--divisible, and thus \[t (t^{m-q-1}(w^qPx - x) - \phi_x(t)) = 0.\]  Appealing to \Cref{QuillensGysinFact}, we produce a class $y \in \widetilde{MU}^{-2q + 2(m-1)}(X)$ with \[t^{m-q-1}(w^q P^p(x) - x) = \phi_x(x) + y \<p\>(t).\]  If $m > q + 1$, then $y \in R_{(p)}$ for degree reasons and hence the right-hand side gives a series expansion contradicting our minimality hypothesis.  So, $m = q + 1$, and the outer factor of $t^{m-q-1}$ is not present in the last expression.\footnote{One can interpret the proof thus far as giving a bound on the amount of $w$--torsion needed to get the stability relation described in \Cref{QuillensKeyRelation}.  Our answer is quite surprising: we have found that we need just a single $w$, which isn't much stability at all!}  Restricting along $i$ again to set $w = t = 0$ and $P^p(x) = x^p$, we obtain the equation \[\left. \begin{array}{rr} -x & \text{if $q > 0$} \\ x^p - x & \text{if $q = 0$} \end{array} \right\} = \phi_x(0) + py.\]
 
@@ -854,7 +856,7 @@ The second formula is a direct consequence of the first.  The first formula come
 allows us to pair $x^{MU}$ with $(x^E)^{j+1}$ to determine the coefficients of the series.
 \end{proof}
 
-\begin{corollary}[{\cite[Corollary 6.6]{AdamsBlueBook}}]
+\begin{corollary}[{\cite[Corollary 6.6]{AdamsBlueBook}}]\label{HZMUCarriesALog}
 In particular, for the orientation $MU \to H\Z$ we have \[x_1 +_{MU} x_2 = \exp^H(\log^H(x_1) + \log^H(x_2)),\] where $\exp^H(x) = \sum_{j=0}^\infty b_j x^{j+1}$. \qed
 \end{corollary}
 
@@ -884,11 +886,6 @@ The ring $\pi_*(MU \sm MU)$ carries the universal example of two strictly isomor
 \begin{proof}
 Combine \Cref{OrientationsOnEAndMU} and \Cref{QuillensTheorem}.
 \end{proof}
-
-
-
-\todo[inline]{\textbf{This todo belongs in the Remark at the end of 2.5 / in the footnote of 2.6.1 / in an appendix. Not here.} There's buzz about a ``Frobenius map'' for structured rings going around these days. I guess the point is that an $E_2$--algebra structure is enough to get a multiplicative map $E^0 X \to E^0 X \otimes E^0 BC_p$. This isn't additive, so it can't come from an infinite loop map, but it becomes additive when passing to the Tate construction: $E^X \to (E^X)^{tC_p}$, using the fact that the genuine $C_p$ fixed points of $E^{X^{\times p}}$ is $E^X$, and the square relating genuine, homotopy, and geometric fixed points.  Mike has been claiming that these results of Quillen's can be interpreted in this way, but I'm not sure what the interpretation is.  He says it has something to do with inverting the Euler class and the part of Quillen's argument that involves walking down the multiples of Euler classes on both sides of the equation.}
-
 
 
 
