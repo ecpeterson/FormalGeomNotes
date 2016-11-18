@@ -104,10 +104,35 @@ First, reduce to the case where $V \cong \A^n$ and $W \cong \A^n$ have the same 
 We now construct the inverse function by induction on degree.  Set $g^{(1)}$ to be the identity function, so that $f$ and $g^{(1)}$ are mutual inverses when restricted to the first-order neighborhood.  So, suppose that $g^{(r-1)}$ has been constructed, and consider its interaction with $f$ on the $r${\th} order neighborhood: \[g_i^{(r-1)}(f(x)) = x_i + \sum_{|J| = r} c_J x_1^{J_1} \cdots x_n^{J_n} + o(r+1). \]  By adding in the correction term \[g_i^{(r)} = g_i^{(r-1)} - \sum_{|J| = r} c_J x_1^{J_1} \cdots x_n^{J_n},\] we have $g_i^{(r)}(f(x)) = x_i + o(r)$.
 \end{proof}
 
-Part of the point of the geometric language is to divorce abstract rings from concrete presentations, so we additionally reserve some vocabulary for the property of being isomorphic to $\A^n$:
+Part of the point of the geometric language is to divorce abstract rings (e.g., $E^0 \CP^\infty$) from concrete presentations (e.g., $E^0\ps{x}$), so we additionally reserve some vocabulary for the property of being isomorphic to $\A^n$:
 \begin{definition}\label{DefnFormalVariety}
 A \textit{formal affine variety} (of dimension $n$) is a formal scheme $V$ which is (noncanonically) isomorphic to $\A^n$.  The two maps in an isomorphism pair \[V \xrightarrow{\simeq} \A^n, \quad V \xleftarrow{\simeq} \A^n\] are called a \textit{coordinate (system)} and a \textit{parameter (system)} respectively.  Finally, an $S$--point $x\co S \to X$ is called \textit{formally smooth} when $X^\wedge_x$ gives a formal variety.
 \end{definition}
+
+\todo[inline]{Work this in, comparing property with structure.}
+\begin{theorem}\label{DetectingFormalVarieties}
+\todo{Get rid of this obnoxious auxiliary module $M$ and just call $I \otimes_R M$ by its real name: $I^n$.}
+Let $R$ be a Noetherian ring and $F\co \CatOf{Algebras}_{R/} \to \CatOf{Sets}$ be a functor such that $F(R) = 0$, $F$ takes surjective maps to surjective maps, and there is a fixed finite free $R$--module $M$ such that $F$ carries square-zero extensions of $R$--algebras $I \to B \to B'$ to product sequences \[I \otimes_R M \to G(B) \to G(B').\]  Then, $V \cong \A^n$, where $n = \dim M$.
+\end{theorem}
+\begin{proof}
+\citeme{This is 9.6.4 in the Crystals notes}
+\end{proof}
+
+\begin{corollary}
+An $S$--point $x\co S \to X$ is formally smooth exactly when for any nilpotent thickenings $S \to \Spec B \to \Spec B'$ and any solid diagram
+\begin{center}
+\begin{tikzcd}
+S \arrow{r} \arrow["x"]{rd} & \Spec B \arrow{r} \arrow{d} & \Spec B' \arrow[densely dotted]{ld} \\
+& X
+\end{tikzcd}
+\end{center}
+there exists a dotted arrow extending the diagram.
+\end{corollary}
+\begin{proof}
+\todo{Prove me.}
+\end{proof}
+
+\todo[inline]{Below this, things are figured out.}
 
 With all this algebraic geometry in hand, we now return to our original motivation: extracting formal schemes from the rings appearing in algebraic topology.
 
