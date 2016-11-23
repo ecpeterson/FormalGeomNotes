@@ -6,7 +6,228 @@
 
 \todo[inline]{I'd like to spend a couple of days talking about ways the picture in this class can be extended, finally, some actually unanswered questions that naturally arise.  The following two section titles are totally made up and probably won't last.}
 
-\section{\texorpdfstring{$E_\infty$}{Eoo} geometry}
+\section{Orientations by \texorpdfstring{$E_\infty$}{Eoo} maps}
+
+A more modern take on the story of the $\sigma$--orientation passes through the algebraic geometry of $E_\infty$--ring spectra, which are the homotopically coherent analogues of commutative ring objects that one finds in the $\infty$--category $\CatOf{Spectra}$.  Essentially all of the ring spectra discussed in this book have incarnations as $E_\infty$--rings:
+\begin{theorem}
+\citeme{this is a mega-theorem}
+The classical $K$--theories $KU$ and $KO$, the Eilenberg--Mac Lane spectra $HR$, the Morava $E$--theories $E_\Gamma$, their fixed point spectra, the Thom spectra arising from the $J$--homomorphism (including $MO$, $MSO$, $M\Spin$, $M\String$, $MU$, $MSU$, and $MU[6, \infty)$), the spectra $\TMF$, $\Tmf$, and $\tmf$ are all $E_\infty$--ring spectra.\footnote{Notably, the Morava $K$--theories are \emph{not} $E_\infty$ rings at finite heights.} \qed
+\end{theorem}
+
+A great deal of classical commutative algebra can be lifted into this new setting, including a particular functor \[\gl_1\co E_\infty\CatOf{RingSpectra} \to \CatOf{Spectra}.\]  This functor derives its name from two compatible sources: for one, its underlying infinite loopspace is the construction $GL_1$ described in \Cref{LectureThomSpectra}; and secondly, it participates in an adjunction
+\begin{center}
+\begin{tikzcd}[column sep=4em]
+\CatOf{ConnectiveSpectra} \arrow[shift left=0.3\baselineskip, "\Susp^\infty_+ \Omega^\infty"]{r} & E_\infty\CatOf{RingSpectra} \arrow[shift left=0.3\baselineskip, "\gl_1"]{l}
+\end{tikzcd}
+\end{center}
+analogous to the adjunction between the group of units and the group-ring constructions in classical algebra.  Its relevance to us is its participation in the theory of highly structured Thom spectra.  Let $j\co g \to \gl_1 \S$ be a map of connective spectra, begetting an infinite loopmap $J\co G \to \GL_1 \S$, where we have written $G = \Loops^\infty g$.
+\begin{lemma}
+\citeme{May? or ABGHR?}
+The Thom spectrum of the map $BJ$ is presented by the pushout of $E_\infty$ rings
+\begin{center}
+\begin{tikzcd}
+\Susp^\infty_+ \GL_1 \S \arrow["\Loops^\infty \Susp j"]{r} \arrow{d} & \Susp^\infty_+ \Loops^\infty \gl_1 \S / g \arrow{d} \\
+\S \arrow{r} & MG. \qed
+\end{tikzcd}
+\end{center}
+\end{lemma}
+
+\begin{corollary}
+\citeme{May, but also ABGHR}
+There is a natural equivalence between the space of null-homotopies of the composite \[g \xrightarrow j \gl_1 \S \xrightarrow{\gl_1 \eta_R} \gl_1 R\] and the space of $E_\infty$ ring maps $MG \to R$, where $MG$ is the Thom spectrum of the stable spherical bundle classified by $J$.
+\end{corollary}
+\begin{proof}
+Applying the mapping space functor $E_\infty(-, R)$ to the pushout diagram in the Lemma, we have a pullback diagram of mapping spaces:
+\begin{center}
+\begin{tikzcd}
+E_\infty(\Susp^\infty_+ \GL_1 \S, R) & E_\infty(\Susp^\infty_+ \Loops^\infty \gl_1 \S / g, R) \arrow{l} \\
+E_\infty(\S, R) \arrow{u} & E_\infty(MG, R) \arrow{l} \arrow{u}.
+\end{tikzcd}
+\end{center}
+We can reidentify each of the three terms to get
+\begin{center}
+\begin{tikzcd}
+\CatOf{Spectra}(\gl_1 \S, \gl_1 R) & \CatOf{Spectra}(\gl_1 \S / g, \gl_1 R) \arrow{l} \\
+\{\gl_1 \eta_R\} \arrow{u} & E_\infty(MG, R) \arrow{l} \arrow{u},
+\end{tikzcd}
+\end{center}
+hence $E_\infty(MG, R)$ appears as the fiber at $\gl_1 \eta_R$ of the restriction map, which coincides with the space of nullhomotopies as claimed.
+\end{proof}
+
+
+
+
+
+rational phenomena, Hirzebruch genera revisited
+
+the example of $\Spin$ orientations of $KO_p$:
+\begin{itemize}
+  \item It's a torsor for $[b\Spin, KO_p]$, which has a computable form using the logarithm.  (Needs the coconnective discrepancy spectrum Lemma.)
+  \item It has a basepoint.
+\end{itemize}
+
+the canonical map
+
+Irrationality of $\gl_1 \S$ says that the map $\Susp^{-1} \Q/\Z \otimes \gl_1 R \to \gl_1 R$ induces an equivalence upon applying $[\gl_1 \S, -]$, so the map $\gl_1 \eta_R$ corresponds to a unique map $\gl_1 \S \to \Susp^{-1} \Q/\Z \otimes \gl_1 R$.  Composing this with a map $j\co g \to \gl_1 \S$ gives a diagram
+\begin{center}
+\begin{tikzcd}
+g \arrow["j"]{r} \arrow{rd}[description]{\Susp^{-1} m_R} & \gl_1 \S \arrow{rd}[description]{\gl_1 \eta_R} \arrow{rrd}[description]{0} \arrow["\exists!"]{d} \\
+& \Susp^{-1} \Q/\Z \otimes \gl_1 R \arrow{r} & \gl_1 R \arrow{r} & \Q \otimes \gl_1 R.
+\end{tikzcd}
+\end{center}
+The map $m_X$ is called the \textit{Miller invariant} (for $j$ and $R$).  This map and this diagram are very close to the kind of diagram one considers when studying orientation theory, where one wants to extend $\gl_1 \eta_R$ to maps $\alpha$ over the cone $\gl_1 \S / g$ of the map $j$:
+\begin{center}
+\begin{tikzcd}
+g \arrow["j"]{r} & \gl_1 \S \arrow["\exists!"]{d} \arrow{r} \arrow{rd}[description]{\gl_1 \eta_R} & \gl_1 \S / g \arrow{r} \arrow{rd} \arrow[densely dotted]{d}[description]{\alpha} & bg \arrow{r} \arrow{rd}[description]{m_R} \arrow[densely dotted]{d}[description]{\beta} & b\gl_1 \S \arrow["\exists!"]{d} \\
+& \Susp^{-1} \Q/\Z \otimes \gl_1 R \arrow{r} & \gl_1 R \arrow{r} & \Q \otimes \gl_1 R \arrow{r} & \Q/\Z \otimes \gl_1 R.
+\end{tikzcd}
+\end{center}
+The vertical maps appears in the Miller invariant show that $\alpha$ and $\beta$ determine each other.  The maps $\beta$ are easier to analyze, since they have a rational target: $[bg, \Q \otimes \gl_1 R]$ is populated by sequences of sequences of elements in the rational homotopy of $\gl_1 R$.  Those sequences which correspond to maps $\beta$ making the diagram commute are exactly those which postcompose with the irrationalization map to give $m_R$, and this is something that can be checked on homotopy.\footnote{Mapping to $\Q \otimes \gl_1 R$ means factoring through $\Q \otimes bg$, and maps of rational spectra are determined on homotopy.  I would like to seal this up by saying that rational spectra can't map into irrational ones in ``invisible'' ways.}
+
+
+
+\textbf{Question:} Why is the Miller invariant naturally attached to $\gl_1$?  Couldn't we take $0$--connected covers of a map of ring spectra and deduce identical-sounding statements?  Is it helpful to observe that $\CP^\infty$ rationally \emph{multiplicatively} generates $bSU$, or something like that?
+
+
+
+
+\textbf{Now work $K(1)$--locally.}
+
+
+The next claim (5.19.vi) is that maps $R \to S$ of ring spectra which are $6$--connective induce equivalences on the respective spaces of $E_\infty$ $\String$--orientations.  (Their argument has two pieces: first, they show that if $A(S)$ is nonempty, then $A(R)$ is nonempty.  Then, since they know that they are both torsors for $[b\String, \gl_1 R] = [b\String, \gl_1 S]$ (wait, what? Isn't that only a statement available on $\pi_0$?), they must be equivalent as nonempty spaces.)
+
+There is the following important logarithm utility calculation:
+
+\begin{theorem}[{\cite[Theorem 4.11]{AHR}}]
+Let $R$ be an $E_\infty$ ring spectrum satisfying $R = L_d R$, and set $F$ to be the fiber \[F \to \gl_1 R \to L_n \gl_1 R.\]  Then $\pi_* F$ is torsion and $F$ satisfies the coconnectivity condition $F \simeq F(-\infty, d]$. \qed
+\end{theorem}
+
+\noindent from which it follows that $\gl_1 KO_p \to KO_p$ is a $1$--connected map and $\gl_1 \tmf_p \to \tmf_p$ is a $2$--connected map.  So, for the purposes of studying $\String$ orientations, it is safe to follow the logarithm and consider its target as the spectrum under $\gl_1 \S$:
+\begin{center}
+\begin{tikzcd}
+\mathit{string} \arrow["j"]{r} & \gl_1 \S \arrow["\exists!"]{d} \arrow{r} \arrow{rd}[description]{\gl_1 \eta_{KO_p}} & \gl_1 \S / \mathit{string} \arrow{r} \arrow{rd} \arrow[densely dotted]{d}[description]{\alpha} & b\String \arrow{r} \arrow{rd}[description]{m_{KO_p}} \arrow[densely dotted]{d}[description]{\beta} & b\gl_1 \S \arrow["\exists!"]{d} \\
+& \Susp^{-1} \Q/\Z \otimes \gl_1 KO_p \arrow{r} \arrow{d} & \gl_1 KO_p \arrow{r} \arrow{d}[description]{\ell} & \Q \otimes \gl_1 KO_p \arrow{r} \arrow{d}[description]{\Q \otimes \ell} & \Q/\Z \otimes \gl_1 KO_p \arrow{d} \\
+& \Susp^{-1} \Q/\Z \otimes KO_p \arrow{r} & KO_p \arrow{r} & \Q \otimes KO_p \arrow{r} & \Q/\Z \otimes KO_p.
+\end{tikzcd}
+\end{center}
+
+The main effect of this is that $KO_p$ is a $K(1)$--local spectrum, so we earn the right to $K(1)$--localize the sources:
+\begin{center}
+\begin{tikzcd}[column sep=1em]
+\Susp^{-1} KO_p \arrow{r} \arrow[equal]{d} & L_{K(1)} \S \arrow{r} \arrow[equal]{d}[description]{\ell} & KO_p \arrow{r} \arrow[equal]{d}[description]{\ell,\mathrm{Adams}} & KO_p \arrow{r} \arrow[equal]{d} & L_{K(1)} \S^1 \arrow[equal]{d}[description]{\ell} \\
+L_{K(1)} \mathit{string} \arrow["j"]{r} & L_{K(1)} \gl_1 \S \arrow["\exists!"]{d} \arrow{r} \arrow{rd}[description]{\gl_1 \eta_R} & L_{K(1)} \gl_1 \S / L_{K(1)} \mathit{string} \arrow{r} \arrow{rd} \arrow[densely dotted]{d}[description]{\alpha} & L_{K(1)} b\String \arrow{r} \arrow{rd}[description]{m_{KO_p}} \arrow[densely dotted]{d}[description]{\beta} & L_{K(1)} b\gl_1 \S \arrow["\exists!"]{d} \\
+& \Susp^{-1} \Q/\Z \otimes KO_p \arrow{r} & KO_p \arrow{r} & \Q \otimes KO_p \arrow{r} & \Q/\Z \otimes KO_p.
+\end{tikzcd}
+\end{center}
+
+The upshot of what AHR expect to get out of this is a little different from what we've been talking about so far --- so maybe it's worth understanding.  First, fillers $\alpha$ are supposed to have now been identified as particular points in $[KO_p, KO_p]$.  Ancient calculation identifies \emph{all} such maps as sequences of $p$--adic rationals satisfying an interesting integrability condition: \[[KO_p, KO_p] \to \prod_{j=-\infty}^\infty \pi_{2j} KO_p \to \prod_{j=-\infty}^\infty \Q_p\] is already inclusion of the set of sequences satisfying the generalized K\"ummer congruences.  First, we need to account for the effect the logarithm had on changing the source and target: this means we are no longer looking for sequences satisfying the K\"ummer congruences, but sequences which satisfy rescaled K\"ummer congruences.  Then, we are looking for maps which make the square with the Miller invariant commute, and it is easiest to encode this condition by rotating it through: the rationalized data above agrees with the image of these homotopy generators under the rationalization map, which is supposed to also agree with the extension $\beta$ over $L_{K(1)} b\String$.  Checking that $\beta$ refines the Miller invariant is a matter of calculating the Miller invariant (which I don't know how to do, but which Haynes's paper portends to tell me), resulting in a condition on the denominators of the $p$--adic sequence.
+
+\begin{theorem}
+\citeme{AHR Proposition 7.10}
+The set of fillers $\alpha$ can be identified with the set of sequences $(b_k) \in \prod_{j=-\infty}^\infty \Q_p$ satisfying the two conditions
+\begin{enumerate}
+\item $(1 - c^k)(1 - p^{k-1}) b_k$ satisfies the generalized K\"ummer congruences.
+\item $b_k = B_k / (2k)$ as elements of $\Q_p / \Z_p$, where $B_k$ is the $k${\th} Bernoulli number.
+\qed
+\end{enumerate} 
+\end{theorem}
+
+
+---------
+
+$i\co \gl_1 \S \to X$
+
+\begin{center}
+\begin{tikzcd}
+A(X) \arrow{r} \arrow{d} & \CatOf{Spectra}(\gl_1 \S, X) \arrow{d} \\
+\{i\} \arrow{r} & \CatOf{Spectra}(\gl_1 \S / \Susp^{-1} b\String, X).
+\end{tikzcd}
+\end{center}
+$B(X) = \{u\co \gl_1 \S / \Susp^{-1} b\String \to X \mid (\gl_1 \S \to \gl_1 \S/\Susp^{-1} b\String \xrightarrow{u} X) = i\}$
+$D(X) = [b\String, X \otimes \Q]$
+
+$\pi_0 A(X) \to B(X)$ induced by van Kampen
+$B(X) \to D(X)$ induced by irrationality of $\gl_1(\S)$
+
+$C(X) = \text{image factorization of $B(X) \to D(X)$}$
+
+5.3: $A(\gl_1 R) = \CatOf{Alg}_{E_\infty}(M\String, R)$.
+
+7.3: $\pi_0 A, B, C$ on $KO_p$ and $\gl_1 KO_p$ are all equal.
+
+Jeremy: $A(L_{K(1)} \gl_1 KO_p) = \CatOf{Spectra}(KO_p, KO_p)$
+
+$\pi_0 \CatOf{Spectra}(KO_p, KO_p)$ injects into $\pi_{*>0} KO_p \otimes \Q$. ($p$-adic measures and $K$-theory $\Rightarrow$) the image is even sequences satisfying the generalized Kummer congruences.
+
+Jeremy's nonlocal diagram puts this in bijection with a subset of maps $b\String \to \Q \otimes \gl_1 KO_p$.
+
+LINGERING QUESTION: what is the subset in the previous step?
+
+Putative 7.10: $u \in B(L_{K(1)} \gl_1 KO_p)$ biject with $(b_k) \in D(KO_p) = \prod_{k \ge 4} \Q_p$ satisfying generalized Kummer congruences and $b_k = -B_k/2k \pmod{\Z_p}$.
+
+
+
+
+
+
+
+\subsection{Mike's perspective}
+
+\subsubsection{The torsor acting on $E_\infty$ orientations}
+$\Spin$-orientations of $KO_p$ agree with nullhomotopies of the composite \[\Susp^{-1} b\Spin \to \gl_1 \S \to \gl_1 KO_p,\] which agree with extensions over the cofiber sequence \[\Susp^{-1} b\Spin \to \gl_1 \S \to C \to b\Spin\] of a map $C \to \gl_1 KO_p$.  Notice also that there is a sequence \[\gl_1 \S \to \gl_1 KO_p \xrightarrow{\psi_\ell(x) / x} \gl_1 KO_p,\] which is \emph{not} a cofiber sequence but $\gl_1 KO_p$ at least receives a map from the cofiber of map between the first two terms.  Somehow this means that the collection of extensions $C \to \gl_1 KO_p$, if it is nonempty, is a torsor for the group $[b\Spin, \gl_1 KO_p]$.
+
+This group can be canonically identified: these maps are rationally determined, we can use the logarithm to map $\gl_1 KO_p$ down to $KO_p$ (where we have an understood basis of the homotopy elements), and $b\Spin$ maps to (or do we want from?) $bU$ which also has a preferred homotopy basis (related to Hirzebruch genera). The effect of $\psi^\ell(x) / x$ and of the logarithm account for condition (i) in AHR 7.10.
+
+\subsubsection{The canonical map}
+The availability of a map $C \to \gl_1 KO$ is supposed to induce a map $\gl_1 \S \to \Susp^{-1} \gl_1 KO_{\Q/\Z}$ which precomposes to give a map $\Susp^{-1} b\String \to \Susp^{-1} \gl_1 KO_{\Q/\Z}$ which is independent of the actual map off of $C$ picked.  Calculating what this map is (which amounts to compute its behavior on homotopy, it seems) yields the Bernoulli numbers. This same phenomenon in the $\tmf$ case selects the Eisenstein series.
+
+This is also supposed to help select a basepoint for the torsor, and the correct incantation will yield the ABS orientation.  Mike also said this as selecting something like an ``integrality condition'': there's the space of all sequences in $\Q_p^{\times \infty}$, certain unit sequences acting by multiplication, and then some ``integral'' sequences that are actually realizable.
+
+Mike says there are several ways to calculate this canonical map / integrality condition.  He pointed to Haynes's \textit{Universal Bernoulli numbers}, which is I think explained in AHR.  He also said there was some trick using the $S^1$-transfer
+
+    \[S^1 \sm \CP^\infty \to \S^0\]
+
+which has a canonical lift through $\Susp^{-1} \S_{\Q/\Z}$, and then he trailed off.  Something about mapping along the unit $\S \to KO_p$.
+
+LINGERING QUESTION: AHR cites in Example 5.15-6 the Hirzebruch series of the ABS orientation as where the universal Bernoulli numbers come from. (Note also that they assert the independence of these numbers from the orientation right around there too.) How do they do this computation in the $\tmf$ case, where they don't have access to a preexisting orientation?
+
+
+
+
+Jeremy told me to think about the $S^1$--transfer business this way: start by thinking of $\CP^\infty_+$ as the homotopy orbits of a point with trivial $S^1$--action, so that $\S^0$ is the homotopy orbits of $ES^1$.  The transfer is an equivariant stable map $pt \to ES^1_+$ which is dual to the restriction map $ES^1_+ \to pt$.  Calculating the cofiber of the transfer is equivalent to calculating the fiber of the restriction, dualizing, and taking homotopy orbits.  Since we're stable, calculating the fiber of the restriction is equivalent to calculating the cofiber, which is geometrically-visibly a representation sphere.  The homotopy orbits of that are the colimit over $BS^1$ of a certain spherical bundle, i.e., a certain Thom spectrum.
+
+
+
+
+
+\begin{theorem}[Unpublished work of Hopkins and Lurie]
+Let $F_d$ denote the discrepancy spectrum for $E_d$.  There is a natural equivalence of infinite loopspaces $\Loops^\infty F_d \simeq \Susp^d \mathbb I_{\Q/\Z}$. \qed
+\end{theorem}
+
+
+
+
+
+\subsection{Other things to mention back here}
+
+
+
+
+The $\tmf$ outline is to work by chromatic fracture, comparing $\tmf = L_2 \tmf$ to its $K$--localizations.  There are no maps from $b\String = kO[8, \infty)$ into $L_{K(2)} \tmf$, since $L_{K(2)} kO[8, \infty) = L_{K(2)} kO = 0$.  So, all of the work is in the $K(1)$--local case, either into $L_{K(1)} \tmf$ or $L_{K(1)} L_{K(2)} \tmf$.  One of these is supposed to look like the $p$--adic $K$--theory case (though I'm not sure exactly how) (cf.\ the introduction to the lesser known Ando--Hopkins--Rezk, where they talk about mapping into a $K$--algebra).  The other is supposed to get involved through power operations and the logarithm.  The algebraic picture is supposed to be Katz's monodromy of the $p$--adic moduli of elliptic curves, though it is also not clear to me how.
+
+
+
+The ``moments of measures'' picture is pretty nice inside of stable homotopy theory, and it has a nice pedigree (as outlined in the lesser-known AHR).  There they also say that the same picture is crucial in the classical analysis of $p$--adic modular forms, which is worth understanding and describing too.
+
+
+
+Haynes's \textit{Universal Bernoulli Numbers} paper is about describing the effect of the $S^1$--transfer in the $MU$--Adams spectral sequence.  The notion is that any convergent spectral sequence can be used to calculate it, and inside of a complex-orientable setting (as for a connected integral complex-orientable spectrum), one can get control over the basics of the Adams spectral sequence by understanding the coaction of $MU_* MU$ on $MU_* \CP{}_{-\infty}^{\infty}$, which is the cofiber of some other (related) transfer.  Unsurprisingly, given all the references, he ends up playing a similar trick to what appears in AHR: he rationalizes $MU$ and studies the difference series $x / \exp_{MU}(x)$ (which specializes in the case of $MU \to KU$ to $x / (1 - e^{-x})$, which is supposed to be where the original Bernoulli numbers appear in the ABS orientation arise).
+
+
+
+
+
+
 
 \Cref{OrdinaryHomologyInUpperHalfPlaneEx} is an inspiration for considering $\tmf$ as well.
 
@@ -23,6 +244,7 @@ Thom spectra and $\infty$--categories
 The Bousfield--Kuhn functor and the Rezk logarithm
 
 % free $E_\infty$--orientations off of $MU$
+
 
 
 
@@ -345,6 +567,8 @@ This is a model for what happens generally when passing from $\pi_* \widehat L_d
 \end{remark}
 
 
+
+Sections 5.3-4 of Hopkins's ICM address \textit{Algebraic Topology and Modular Forms} has a discussion of what $\eta$ and $\nu$ have to do with $\tmf$, as well as the construction of some interesting ``topological $\theta$--series'' in the elliptic cohomology of certain Thom complexes.
 
 
 
