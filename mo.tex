@@ -154,14 +154,7 @@ There is also a cohomological version of the Thom isomorphism.  Suppose that $E$
 \end{remark}
 
 \begin{example}\label{HF2RPinftyExample}
-We will close out this section by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  Because $MO$ is a connective spectrum, the diagram\todo{This is \emph{still} not a proof of this. Ugh.}
-\begin{center}
-\begin{tikzcd}
-MO \sm MO \arrow{d} \arrow{r} & (MO \sm MO)(-\infty, 0] \arrow{r} \arrow[equal]{d} & MO(-\infty, 0] \sm MO(-\infty, 0] \arrow[densely dotted]{ld} \arrow[equal]{r} & H\pi_0 MO \sm H\pi_0 MO \arrow[densely dotted]{d} \\
-MO \arrow{r} & MO(-\infty, 0] \arrow[equal]{rr} & & H\pi_0 MO
-\end{tikzcd}
-\end{center}
-shows that \[MO \to MO(-\infty, 0] = H\pi_0 MO = H\F_2\] is a map of ring spectra.  Hence, we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
+We will close out this section by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  Because $MO$ is a connective spectrum, the truncation map \[MO \to MO(-\infty, 0] = H\pi_0 MO = H\F_2\] is a map of ring spectra\citeme{Find a reference for this, which I actually am not sure how to prove}.  Hence, we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
 \begin{align*}
 \pi_* (H\F_2 \sm T(\L - 1)) & \cong \pi_* (H\F_2 \sm T(0)) & \text{(Thom isomorphism)} \\
 \pi_* (H\F_2 \sm \Susp^{-1} \Susp^\infty \RP^{n+1}) & \cong \pi_* (H\F_2 \sm \Susp^\infty_+ \RP^n) & \text{(\Cref{RPnThomExample})} \\
@@ -345,7 +338,7 @@ Our route to finding this internally occurring $\alpha^*$ is by turning to the n
 {[H\F_2, H\F_2]_*} \otimes {[X, H\F_2]_*} \arrow["\circ"]{r} & {[X, H\F_2]}
 \end{tikzcd}
 \end{center}
-will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the Steenrod algebra is a Hopf algebra\footnote{The construction of both the Hopf algebra diagonal here and the coaction map below is somewhat ad hoc.  We will give a more robust presentation in \Cref{FHGivesComodules}.}\todo{Make sure this Cref points to the right place.}, using the map \[[H\F_2, H\F_2]_* \xrightarrow{\mu^*} [H\F_2 \sm H\F_2, H\F_2]_* \cong [H\F_2, H\F_2]_* \otimes [H\F_2, H\F_2]_*\] as the diagonal.  This Hopf algebra structure is actually cocommutative --- this is a rephrasing of the symmetry of the Cartan formula: \[\Sq^n(x y) = \sum_{i+j=n} \Sq^i(x) \Sq^j(y).\]  It follows that the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, and hence $\Spec \mathcal A_*$ would make a reasonable algebro-geometric object.
+will be difficult to squeeze into any kind of algebro-geometric framework.  Milnor was the first person to see a way around this, with two crucial observations.  First, the Steenrod algebra is a Hopf algebra\footnote{The construction of both the Hopf algebra diagonal here and the coaction map below is somewhat ad hoc.  We will give a more robust presentation in \Cref{StableContextLecture}.}, using the map \[[H\F_2, H\F_2]_* \xrightarrow{\mu^*} [H\F_2 \sm H\F_2, H\F_2]_* \cong [H\F_2, H\F_2]_* \otimes [H\F_2, H\F_2]_*\] as the diagonal.  This Hopf algebra structure is actually cocommutative --- this is a rephrasing of the symmetry of the Cartan formula: \[\Sq^n(x y) = \sum_{i+j=n} \Sq^i(x) \Sq^j(y).\]  It follows that the linear-algebraic dual of the Steenrod algebra $\mathcal A_*$ is a commutative ring, and hence $\Spec \mathcal A_*$ would make a reasonable algebro-geometric object.
 
 Second, we want to identify the role of $\mathcal A_*$ in acting on $H\F_2^* X$.  By assuming that $X$ is a finite complex, we can write it as the Spanier--Whitehead dual $X = DY$ of some other finite complex $Y$.  Starting with the action map on $H\F_2^* Y$:
 \begin{align*}
@@ -474,7 +467,7 @@ Applying homology, these again appear to be the same:
 & H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(0) & \arrow[leftarrow]{l} H\F_{2*} \S^1, & H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(2) & \arrow[leftarrow]{l} H\F_{2*} \S^1,
 \end{tikzcd}
 \end{center}
-\todo{It would be nice if the dots aligned directly beneath the spaces in the cofiber sequences above.  This can't be accomplished by a ``column sep'' attribute, since this doesn't control the width of a column but rather its literal separation from its neighbor.}
+\todo{It would be nice if the dots aligned directly beneath the spaces in the cofiber sequences above.  This can't be accomplished by a ``column sep'' attribute, since this doesn't control the width of a column but rather its literal separation from its neighbor.  This means finding some kind of ``intertext'' analogue for tikzcd.}
 where we have drawn a ``$\bullet$'' for a generator of an $\F_2$--vector space, graded vertically, and arrows indicating the behavior of each map.  However, if we enrich our picture with the data we discussed last time, we can finally see the difference.  Recall the topological equivalences \[C(0) \simeq \S^0 \vee \S^1, \quad C(2) \simeq \Susp^{-1} \RP^2.\]  In the two cases, the coaction map $\lambda_*$ is given by
 \begin{align*}
 \lambda_*: H\F_{2*} C(0) & \to H\F_{2*} C(0) \otimes \mathcal A_* & \lambda_*: H\F_{2*} C(2) & \to H\F_{2*} C(2) \otimes \mathcal A_* \\
@@ -496,8 +489,7 @@ There is a convergent spectral sequence of signature \[\Ext_{\mathcal A_*}^{*, *
 In effect, this asserts that the above process is \emph{exhaustive}: every element of $(\pi_* \S^0)^\wedge_2$ can be detected and distinguished by some representative class of extensions of comodules for the dual Steenrod algebra.  Mildly more generally, if $X$ is a bounded-below spectrum, then there is even a spectral sequence of signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} X) \Rightarrow \pi_* X^\wedge_2.\]
 
 We could now work through the construction of the Adams spectral sequence, but it will fit more nicely into a story later on in \Cref{StableContextLecture}.  Before moving on to other pursuits, however, we will record the following utility Lemma.  It is believable based on the above discussion, and we will need to use it before we get around to examining the guts of the construction.
-\begin{lemma}\label{HurewiczImageOnZeroLine}
-\oweproof{Hurewicz image = $0$--line}
+\begin{lemma}[{cf.\ \Cref{HurewiczRemark}}]\label{HurewiczImageOnZeroLine}
 The $0$--line of the Adams spectral sequence consists of exactly those elements visible to the Hurewicz homomorphism. \qed
 \end{lemma}
 
@@ -553,8 +545,7 @@ A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of categories of 
 One of the main uses of these operations is to define the cohomology of a sheaf.  Let $\pi\co X \to \Spec k$ be a scheme over $\Spec k$, $k$ a field, and let $\sheaf F$ be a sheaf over $X$.  The adjunction above induces a derived adjunction \[\Ext_X(\pi^* k, \sheaf F) \cong \Ext_{\Spec k}(k, R\pi_* \sheaf F),\] which is used to translate the \emph{definition} of sheaf cohomology to that of the cohomology of the derived pushforward $R\pi_* \sheaf F$, itself interpretable as a mere complex of $k$--modules.  This pattern is very general: the sense of ``cohomology'' relevant to a situation is often accessed by taking the derived pushforward to a suitably terminal object.\footnote{This perspective often falls under the heading of ``six--functor formalism''.}  To invent a notion of cohomology for comodules over a Hopf algebra, we are thus moved to produce push and pull functors for a map of Hopf algebras, and this is best motivated by another example.
 
 \begin{example}\label{HopfAlgebrasFromFiniteGroups}
-\todo{I would like to explain the sense in which a comodule for $k^G$ gives rise to a $G$--representation when evaluating $\Spec(k^G)$ on, say, $k$.  This might also belong in \Cref{StableContextLecture}.}
-A common source of Hopf algebras is through group--rings: given a group $G$, we can define the Hopf $k$--algebra $k[G]$ consisting of formal $k$--linear combinations of elements of $G$.  This Hopf algebra is commutative exactly when $G$ is abelian, and $k[G]$--modules are naturally equivalent to $k$--linear $G$--representations.  Dually, the ring $k^G$ of $k$--valued functions on $G$ is always commutative, using pointwise multiplication of functions, and it is \emph{cocommutative} exactly when $G$ is abelian.  If $G$ is finite, then $k^G$ and $k[G]$ are $k$--linear dual Hopf algebras, and hence finite--dimensional $k^G$--comodules are naturally equivalent to finite--dimensional $k$--linear $G$--representations.
+A common source of Hopf algebras is through group--rings: given a group $G$, we can define the Hopf $k$--algebra $k[G]$ consisting of formal $k$--linear combinations of elements of $G$.  This Hopf algebra is commutative exactly when $G$ is abelian, and $k[G]$--modules are naturally equivalent to $k$--linear $G$--representations.  Dually, the ring $k^G$ of $k$--valued functions on $G$ is always commutative, using pointwise multiplication of functions, and it is \emph{cocommutative} exactly when $G$ is abelian.  If $G$ is finite, then $k^G$ and $k[G]$ are $k$--linear dual Hopf algebras, and hence finite--dimensional $k^G$--comodules are naturally equivalent to finite--dimensional $k$--linear $G$--representations.\footnote{There is a variation on this equivalence that uses fewer dualities and which is instructive to expand.  The Hopf algebra $k^G = \prod_{g \in G} k$ is the ring of functions on the constant group scheme $G$, and its $k$--points $(\Spec k^G)(k)$ biject with points in $G$.  Namely, given $g \in G$ we can form a projection map $g\co k^G \to k$ and hence a composite $M \to M \otimes_k k^G \xrightarrow{\id \otimes g} M \otimes_k k \cong M$.  Collectively, this determines a map $G \times M \to M$ witnessing $M$ as a $G$--representation.  In the other direction, if $G$ is finite then we can construct a map $M \to M \otimes_k \prod_{g \in G} k$ sending $m \in M$ to $g \cdot m$ in the $g${\th} labeled component of the target.}
 
 A map of groups $f\co G \to H$ induces a map $k^f\co k^H \to k^G$ of Hopf algebras, and it is reasonable to expect that the induced push and pull maps of comodules mimic those of $G$-- and $H$--representations.  Namely, given an $H$--representation $M$, we can produce a corresponding $G$--representation by precomposition with $f$.  However, given a $G$--representation $N$, two things may have to be corrected to extract an $H$--representation:
 \begin{enumerate}
@@ -622,8 +613,7 @@ Consider the degenerate case $X = H\F_2$.  Then $H\F_{2*}(H\F_2) = \mathcal A_*$
 \end{example}
 
 \begin{example}
-\todo{I can't tell if this example belongs.}
-Next, we consider $X = kO$, the connective real $K$--theory spectrum.  The main input we need is the structure of $H\F_{2*} kO$ as an $\mathcal A_*$--comodule, so that we can compute \[\Cotor_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} kO) \Rightarrow \pi_* kO^\wedge_2.\]  There is a slick trick for doing this: by working in the category of $kO$--modules rather than in all spectra, we can construct a relative Adams spectral sequence \[\Cotor_{\pi_* H\F_2 \sm_{kO} H\F_2}^{*, *}(\F_2, \pi_* H\F_2 \sm_{kO}(kO \sm H\F_2)) \Rightarrow \pi_*(kO \sm H\F_2).\]  The second argument is easy to identify: \[\pi_* H\F_2 \sm_{kO}(kO \sm H\F_2) = \pi_* H\F_2 \sm H\F_2 = \mathcal A_*.\]  The Hopf algebra requires further input.  Consider the following trio of cofiber sequences\footnote{This first sequence, known as the Wood cofiber sequence, is a consequence of a very simple form of Bott periodicity~\cite[Section 5]{Harris}: there is a fiber sequence of infinite-loopspaces $O/U \to BO \to BU$, and $\OS{kO}{1} = O/U$.}:
+Next, we consider the more computationally serious case of $X = kO$, the connective real $K$--theory spectrum.  The main input we need is the structure of $H\F_{2*} kO$ as an $\mathcal A_*$--comodule, so that we can compute \[\Cotor_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} kO) \Rightarrow \pi_* kO^\wedge_2.\]  There is a slick trick for doing this: by working in the category of $kO$--modules rather than in all spectra, we can construct a relative Adams spectral sequence \[\Cotor_{\pi_* H\F_2 \sm_{kO} H\F_2}^{*, *}(\F_2, \pi_* H\F_2 \sm_{kO}(kO \sm H\F_2)) \Rightarrow \pi_*(kO \sm H\F_2).\]  The second argument is easy to identify: \[\pi_* H\F_2 \sm_{kO}(kO \sm H\F_2) = \pi_* H\F_2 \sm H\F_2 = \mathcal A_*.\]  The Hopf algebra requires further input.  Consider the following trio of cofiber sequences\footnote{This first sequence, known as the Wood cofiber sequence, is a consequence of a very simple form of Bott periodicity~\cite[Section 5]{Harris}: there is a fiber sequence of infinite-loopspaces $O/U \to BO \to BU$, and $\OS{kO}{1} = O/U$.}:
 \begin{align*}
 \Susp kO & \xrightarrow{\cdot \eta} kO \to kU, &
 \Susp^2 kU & \xrightarrow{\cdot \beta} kU \to H\Z, &
@@ -672,11 +662,10 @@ Our goal in this section is to use our results so far to make a calculation of $
 
 Our first step toward this is the following calculation:
 \begin{lemma}[{\cite[Theorem 16.17]{Switzer}}]\label{HF2BOIsSymAlg}
-\todo{You could describe how the coaction map is induced on the symmetric algebra: I think it's applied simultaneously to each factor in the tensor element, then all the Steenrod algebra runoff is collected together by a multiplication.}
-The natural map \[\Sym \widetilde{H\F_2P}_0(BO(1)) \to H\F_2P_0(BO).\] induces an isomorphism of Hopf algebras and of comodules for the dual Steenrod algebra \[\Sym \widetilde{H\F_2P}_0(BO(1)) = \frac{\Sym H\F_2P_0(BO(1))}{\beta_0 = 0} \xrightarrow{\simeq} H\F_2P_0(BO).\]
+The natural map \[\Sym \widetilde{H\F_2P}_0(BO(1)) \to H\F_2P_0(BO).\] induces a map \[\Sym \widetilde{H\F_2P}_0(BO(1)) = \frac{\Sym H\F_2P_0(BO(1))}{\beta_0 = 0} \xrightarrow{\simeq} H\F_2P_0(BO)\] which is an isomorphism of Hopf algebras and of comodules for the dual Steenrod algebra.
 \end{lemma}
 \begin{proof}
-\todo{You could cite these standard facts.}
+\citeme{You could cite these standard facts.}
 This follows from a combination of standard facts about Stiefel--Whitney classes.  First, these classes generate the cohomology ring $H\F_2^* BO(n)$: \[H\F_2^* BO(n) \cong \F_2\ps{w_1, \ldots, w_n}.\]  Second, the total Stiefel--Whitney class\todo{... which you haven't defined.} is exponential, in the sense of \[w(V \oplus W) = w(V) \cdot w(W).\]  From this, it follows that the natural map \[H\F_2^* BO(n) \xrightarrow{\bigoplus_{j=1}^n \L_j} H\F_2^* BO(1)^{\times n} \cong (H\F_2^* BO(1))^{\otimes n}\] is the inclusion of the symmetric polynomials, by calculating the total Stiefel--Whitney class \[w\left( \bigoplus_{j=1}^n \L_j \right) = \prod_{j=1}^n (1 + w_1(\L_j)) = \sum_{j=0}^n \sigma_j(w_1(\L_1), \ldots, w_1(\L_n)) t^j.\]  Dually, the homological map \[(H\F_{2*} BO(1))^{\otimes n} \to H\F_{2*} BO(n)\] is surjective, modeling the quotient from the tensor product to the symmetric tensor product.  Stabilizing as $n \to \infty$, we recover the statement of the Lemma.
 \end{proof}
 
@@ -764,13 +753,12 @@ Because we assumed $b_0 = 1$ and $f_2$ is concentrated in power--of--$2$ degrees
 $\pi_* MO = \F_2[b_j \mid j \ne 2^k - 1, j \ge 1]$ with $|b_j| = j$.
 \end{corollary}
 \begin{proof}
-Set $M = \F_2[b_j \mid j \ne 2^k - 1]$.  It follows from \Cref{CotensorReducesCofreeness} applied to \Cref{CalculationOfAutGaActionOnMO} that the $\InternalAut_1(\G_a)$--cohomology of $H\F_2P_0(MO)$ has $\Cotor$--amplitude $0$:
+Set $M = \F_2[b_j \mid j \ne 2^k - 1]$, and write $\mathcal AP_0'$ for the ring of functions on $\InternalAut_1(\G_a)$.  It follows from \Cref{CotensorReducesCofreeness} applied to \Cref{CalculationOfAutGaActionOnMO} that the $\InternalAut_1(\G_a)$--cohomology of $H\F_2P_0(MO)$ has amplitude $0$:
 \begin{align*}
-\Cotor_{\mathcal A_*}^{*, *}(\F_2, H\F_2P_0(MO)) & = \Cotor_{\mathcal A_*}^{*, *}(\F_2, \mathcal A_* \otimes_{\F_2} M) \\
+\Cotor_{\mathcal AP_0'}^{*, *}(\F_2, H\F_2P_0(MO)) & = \Cotor_{\mathcal AP_0'}^{*, *}(\F_2, \mathcal A_* \otimes_{\F_2} M) \\
 & = \F_2 \cotensor_{\mathcal A_*} (\mathcal A_* \otimes_{\F_2} M) \\
 & = \F_2 \otimes_{\F_2} M = M.
 \end{align*}
-\todo{The notation here is a little sloppy. I've written $\mathcal A_*$ for the kernel of the map $\mathcal AP_0 \to \F_2[\xi_0^\pm]$.}
 Since the Adams spectral sequence \[H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); H\F_2P_0(MO)) \Rightarrow \pi_* MO\] is concentrated on the $0$--line, it collapses.  Using the residual $\Gm$--action to infer the grading, we deduce \[\pi_* MO = \F_2[b_j \mid j \ne 2^k-1]. \qedhere\]
 \end{proof}
 
