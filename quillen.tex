@@ -542,18 +542,111 @@ Suppose that $V$ is a rank $n$ vector bundle over $X$, and let $f\co Y \to X$ be
 
 \section{Cohomology operations for complex bordism}
 
-Our eventual goal, like in \Cref{UnorientedBordismChapter}, is to give an algebro-geometric description of $MU_*(*)$ and of the cooperations $MU_* MU$.  It is possible to approach this the same way as last time, using the Adams spectral sequence.  However, $MU_*(*)$ is an integral algebra and so we cannot make do with working out the mod--$2$ Adams spectral sequence alone --- we would at least have to work out the mod--$p$ Adams spectral sequence for every $p$.  At odd primes $p$, there is the following unfortunate theorem:
+Our eventual goal, like in \Cref{UnorientedBordismChapter}, is to give an algebro-geometric description of $MU_*(*)$ and of the cooperations $MU_* MU$.  It is possible to approach this the same way as in \Cref{PiStarMOSection}, using the Adams spectral sequence.  However, $MU_*(*)$ is an integral algebra and so we cannot make do with working out the mod--$2$ Adams spectral sequence alone --- we would at least have to work out the mod--$p$ Adams spectral sequence for every $p$.  At odd primes $p$, there is the following unfortunate theorem:
 \begin{theorem}
 There is an isomorphism
-\[H\F_pP_0 H\F_pP \cong \F_p[\xi_0^\pm, \xi_1, \xi_2, \ldots] \otimes \Lambda[\tau_0, \tau_1, \ldots]\]
+\[H\F_p{}_* H\F_p \cong \F_p[\xi_0^, \xi_1, \xi_2, \ldots] \otimes \Lambda[\tau_0, \tau_1, \tau_2, \ldots]\]
 with $|\xi_j| = 2p^j-2$ and $|\tau_j| = 2p^j - 1$. \qed
 \end{theorem}
-\noindent There are odd--dimensional classes in this algebra, and the \emph{graded-commutativity} of the dual mod--$p$ Steenrod algebra means that these classes anti-commute.  This prohibits us from writing ``$\Spec(H\F_pP_0 H\F_p)$'', and this is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild.  For now, we will simply avoid these methods and find another approach.
+\noindent There are odd--dimensional classes in this algebra, and the \emph{graded-commutativity} of the dual mod--$p$ Steenrod algebra means that these classes anti-commute.  This prohibits us from writing ``$\Spec(H\F_p{}_* H\F_p)$'' and from trusting ``$\Spec(H\F_pP_0 H\F_p)$'' to do a good job.  This is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild.
 
-There is such an alternative proof, due to Quillen, that bypasses the Adams spectral sequence.  This approach has some deficiencies of its own: it requires studying the algebra of stable operations $MU^* MU$, which we do not expect to be at all commutative, and it requires studying \textit{power operations}, which are in general very technical creatures.  However, we will eventually want to talk about power operations anyway (cf.\ \Cref{PowerOpnsChapter}), and because this is the road less traveled we will elect to take it.  Our goal in this Lecture is to define these two kinds of cohomology operations, specialized to the particular setting we will need for Quillen's proof.
+Because of this, we will not feel any guilt for taking a completely alternative approach to this calculation.  This other method, due to Quillen, has as its keystone a completely different kind of cohomology operation called a \textit{power operation}.  These operations are quite technical to describe, but at their core is taking the $n${\th} power of a cohomology class --- and hence they have a frustrating lack of properties, including their failure to be additive and to be stable.  Our goal in this Lecture is just to define these cohomology operations, specialized to the particular setting we will need for Quillen's proof.  Unlike with Steenrod operations, their algebro-geometric interpretation will not be immediately accessible to us, and indeed their eventual reinterpretation in algebraic geometry will be one of our more hard-won pursuits in this book (cf.\ \Cref{PowerOpnsChapter}).
+
+In the abstract, power operations arise from ``$E_\infty$'' or ``$H_\infty$'' structures on ring spectra, but in practice most such structures arise from geometric models of cohomology theories.  To produce power operations for complex bordism and to avoid speaking in suffocating generality, we will return to the geometry of complex vector bundles.
+
+\begin{definition}[{\cite[Definition VII.7.4]{Rudyak}}]
+Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the (homotopy) $C_n$--quotient, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
+\begin{center}
+\begin{tikzcd}
+X^{\times n} \arrow["\xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow{r} \arrow{d} & BU(nk) \\
+X^{\times n}_{hC_n} \arrow["\xi(n)"]{r} & BU(k)^{\times n}_{hC_n}. \arrow["\mu"]{ru}
+\end{tikzcd}
+\end{center}
+The universal case gives the map $\mu$.
+\end{definition}
+
+\begin{lemma}[{\cite[Equation VII.7.3]{Rudyak}}]
+\todo{This citation is actually for Thom spaces, where he picks up a factor of $S^n_{hC_n}$.  This might be important to get right for the future, when we're doing unstable / degree--sensitive things.  \textbf{Jeremy warned me that this is more serious than I wanted to admit.  Compare carefully with Rudyak.}}
+There is an isomorphism of Thom spectra \[T(\xi(n)) \simeq (T\xi)^{\sm n}_{hC_n}.\]
+\end{lemma}
+\begin{proof}
+This proof is mostly a matter of having had the idea to write down the Lemma to begin with.  From here, we string basic properties together:
+\begin{align*}
+T(\xi(n)) & = T(\xi^{\oplus n}_{hC_n}) & \text{(definition)} \\
+& = T(\xi^{\oplus n})_{hC_n} & \text{(colimits commute with colimits)} \\
+& = T(\xi)^{\sm n}_{hC_n}. & \text{($T$ is monoidal: \Cref{ThomSpacesAreMonoidal})} & \qedhere
+\end{align*}
+\end{proof}
+
+Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n} \to MU(k)^{\sm n}_{hC_n} \to MU(nk)\] of the unstable multiplication map, and hence a stable factorization \[MU^{\sm n} \to MU^{\sm n}_{hC_n} \xrightarrow{\mu} MU.\]  Compatible such systems of factorizations are what beget power operations, which we will now extract in the case at hand.
+
+\begin{definition}
+Starting with a class \[f\co \Susp^{2r} \Susp^\infty_+ X \to MU,\] we apply $(-)^{\sm n}_{hC_n}$ to produce the composite
+\begin{center}
+\begin{tikzcd}
+(\Susp^{2r} \Susp^\infty_+ X)^{\sm n}_{hC_n} \arrow["f^{\sm n}_{hC_n}"]{r} & MU^{\sm n}_{hC_n} \arrow["\mu"]{r} & MU \\
+\Susp^{2nr} (\Susp^\infty_+ X)^{\sm n}_{hC_n}. \arrow[equal]{u} \arrow["P^{C_n}_{\mathrm{ext}}(f)"']{urr}
+\end{tikzcd}
+\end{center}
+This defines the \textit{external $n${\th} cyclic power operation applied to $f$}.  Employing the diagonal map on $X$, we can also pull back to get a map \[P^{C_n}(f)\co \Susp^{2nr} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \simeq \Susp^{2nr} X_{hC_n} \xrightarrow{\Delta_{hC_n}} \Susp^{2nr} X^{\sm n}_{hC_n} \xrightarrow{P^{C_n}_{\mathrm{ext}}(f)} MU.\]  This defines the \textit{internal $n${\th} cyclic power of $f$}.
+\todo{Wait a second, is that vertical equality actually an equality? What about the $S^{2r\rho}$ concern?}
+\end{definition}
+
+\begin{remark}[{\cite[Equations 3.10-11]{Quillen}}]
+The construction Quillen gives in the course of his proof is considerably different from the one recounted here.  He begins by giving a different presentation of the complex cobordism groups of a manifold $M$: a complex orientation of a smooth map $Z \to M$ is a factorization \[Z \xrightarrow{i} E \xrightarrow{\pi} M\] through a complex vector bundle $\pi\co E \to M$ by an embedding $i$, as well as a complex structure on the normal bundle $\nu_i$.  Up to suitable notions of stability (in the dimension of $E$) and homotopy equivalence (involving, in particular, isotopies of different embeddings $i$), these quotient to give cobordism classes of maps complex-oriented maps $Z \to M$.  The collection of cobordism classes over $M$ of codimension $q$ over is isomorphic to $MU^q(M)$~\cite[Proposition 1.2]{Quillen}.  Quillen's definition of the power operations is then given in terms of this geometric model: a representative $f\co Z \to M$ of a cobordism class gives rise to another complex-oriented map $f^{\times n}\co Z^{\times n} \to M^{\times n}$, and he defines $P^{C_n}_{\mathrm{ext}}(f)$ to be the postcomposition with $M^{\times n} \to M^{\times n}_{hC_n}$.
+\end{remark}
+
+\todo{This is pretty much the definition of an $H_\infty$ ring spectrum, but this is not enough to extract power operations on positive-degree classes.  There, you want compatible systems of maps like $(\Susp^j E)^{\sm n}_{h\Sigma_n} \to \Susp^{nj} E$.  In general, you get such systems only for all $j$ which are divisible by some fixed $d$, and the resulting mess is called an $H_\infty^d$--structure.  For example, $KU$ has an $H_\infty^2$--structure and $KO$ has an $H_\infty^8$--structure.  My suspicion with Nat is that power operation maps come from applying the power operation functor to the identity class in $[E, E]$, and that the $H_\infty^d$--structures on these two spectra come from applying the power operation functor to the autoequivalence supplied by the relevant Bott element.  Meanwhile, Jeremy keeps telling us that this really has to do with representation spheres: the $n$--fold smash power of $S^j$ ought to be called $S^{j\rho}$ for $\rho$ the permutation representation of $\Sigma_n$.  Being able to identify $S^{j\rho}_{h\Sigma_n}$ with $S^{jn}$ is somehow the main input to an $H_\infty^n$--structure.}
+
+\begin{remark}
+This construction can be mimicked using \emph{any} group $G$ that acts on $(\Susp^\infty_+ X)^{\sm n}$.  For instance, $\Sigma_n$ is another natural choice.  This flexibility in the choice of $G$ shows up naturally when trying to understand compositions like $P^{C_n}_{\mathrm{ext}} \circ P^{C_m}_{\mathrm{ext}}$, which involve $X^{\sm(nm)}$ and the action of the wreath product $C_n \wr C_m$.  The adjective ``cyclic'' is meant to record our choice of group $G = C_n$.  
+\end{remark}
+
+\begin{remark}\label{RemarkSteenrodOpnsAreNotStable}\label{RestrictingSteenrodOpToBasepoint}
+This assignment \[\left\{ \Susp^\infty_+ X \to MU \right\} \xrightarrow{P^{C_n}} \left\{ \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \to MU \right\}\] extends to a map of function spaces\todo{Is this right? You can't interpret the image of an element of $\pi_{2r}$ on the left as being the power operation applied to another cohomology class, since you'd expect the image to lie in degree $\pi_{2nr}$.} \[\CatOf{Spaces}(X, MU) \xrightarrow{P^{C_n}} \CatOf{Spaces}(X \times BC_n, MU).\]  However, this is \emph{not} an infinite loop map, i.e., it does \emph{not} descend from a map of function spectra.  The basic obstruction is that power operations are not additive, which is what the infinite loopspace structure governs, but rather satisfy a kind of binomial theorem~\cite[pg.\ 25]{BMMS}.  On the other hand, these operations $P^{C_n}$ are visibly multiplicative: \[P^{C_n}(f \cdot g) = P^{C_n}(f) \cdot P^{C_n}(g).\]  Additionally, $P^{C_n}(f)$ reduces to the $n$--fold internal cup product $f^{n}$ upon restriction to the basepoint in $BC_n$.
+\end{remark}
+
+\begin{definition}
+More generally, classes in $\sigma \in MU_* BC_n$ can be used to give rise to operations using the Kronecker pairing: \[\{\Susp^\infty_+ X \xrightarrow{f} MU\} \to \{\Susp^\infty_+ X \sm \S \xrightarrow{1 \sm \sigma} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \sm MU \xrightarrow{P^n F \sm 1} MU \sm MU \xrightarrow{\mu} MU\}.\]  This construction encodes other \textit{restricted power operations} than the literal $n${\th} cup power.
+\end{definition}
+
+\citeme{Where can you find Steenrod squares defined like this?  The VFoS notes, but that's not a great reference.}
+With this in mind, we now try to understand what it is that we've constructed by means of a simpler example.  The chain model for $H\F_2$--homology is actually also rigid enough to define cyclic squaring operations.  Curiously, these power operations turn out to be \emph{additive}.  Specifically, the $C_2$--construction \[(\Susp^n \Susp^\infty_+ X \xrightarrow{f} H\F_2) \xrightarrow{P^{C_2}} (\Susp^{2n} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_2 \xrightarrow{P^{C_2}(f)} H\F_2)\] gives a class in $H\F_2^{2n-*}(X) \otimes H\F_2^*(\RP^\infty)$, which decomposes as \[P^{C_2}(f) = \sum_{j=0}^{2n} \Sq^{2n-j}(f) \otimes x^j.\]  This appears to be a lucky degeneracy owing to the binomial identity $(x + y)^2 \equiv x^2 + y^2 \pmod 2$, but we will see that this behavior is actually quite generic.
 
 
-The description of the first class of operations, the stable operations, follows immediately from our discussion of complex cobordism up to this point, so we will begin there.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]
+---
+
+
+Try to construct an exact functor to the right of fixed points.
+
+The equivariant map $\sum_g g^* i\co X \to G \times X$ has homotopy orbits the \textit{transfer map} $X_{hG} \to X$, and this witnesses $X_{hG}$ as a cone over the $* \mmod G$--indexed diagram $X$, hence gives a \textit{norm map} $X_{hG} \to X^{hG}$.  Its cofiber is the Tate construction $X^{tG}$.
+
+The composite $X \mapsto (\Susp^\infty_+ X^{\times n})^{tC_n}$ preserves cofiber sequences, i.e., it is \emph{stable}.  (This is ``Tyler's argument'' from \texttt{hinfty.tex}.)
+
+Remark: in fact, the Tate construction is the universal additive functor under fixed points.
+
+Thm: The effect of the map to the Tate construction is to invert the Euler class.
+
+Cor: The total cyclic power operation decomposes as a sum of stable operations after inverting the Euler class in $MU^* BC_n$.
+
+
+
+---
+
+
+
+
+
+
+The cyclic power operation for $MU$ has signature \[P^{C_n}\co F(X, \Susp^{2m} MU) \to F(X_{hC_n}, \Susp^{2nm} MU),\] and its target can be reidentified as \[F(X_{hC_n}, \Susp^{2nm} MU) \simeq F(X, \Susp^{2nm} MU)^{hC_n}.\]  For any $C_n$--equivariant spectrum $X$, there is a special map called the \textit{transfer map}\citeme{Greenlees--May?} \[X_{hC_n} \to X^{hC_n} \xrightarrow{\cofib} X^{tC_n}\] whose cofiber is called a \textit{Tate spectrum}.  The construction of Tate spectra is \emph{homological}: cofiber sequences of spaces are sent to cofiber sequences of Tate spectra, and hence there is a natural \emph{stable} map \[F(X, \Susp^{2m} MU) \to F(X, \Susp^{2nm} MU)^{tC_n}.\]  In this setting, passing to the Tate construction has the effect of inverting $t$ on homotopy\citeme{Greenlees--May?}, and so this is a homotopical witness to a generic kind of relation expressed in \Cref{QuillensKeyRelation}: the cyclic power operations become stable after multiplication by huge powers of $t$.  The method described here gives a precise formula for the relationship, and in the proof of \Cref{CGenerationForFiniteCplx} in the next Lecture we will discover the surprising fact that we only need to multiply by a \emph{single} $t$.
+
+
+
+---
+
+
+
+We are thus moved to understand the stable operations in complex bordism.  This follows quickly from our discussion of complex cobordism in the previous Lectures.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]
 
 We would like to leverage the Thom isomorphism to gain a description of $E^* MU$ generally and $MU^* MU$ specifically.  However, the former is \emph{not} a ring, and although the latter is a ring its multiplication is exceedingly complicated\footnote{For a space $X$, $E^* X$ has a ring structure because $X$ has a diagonal, and $MU$ does not have a diagonal.  In the special case of $E = MU$, there is a ring product coming from endomorphism composition.}, which means that our extremely compact algebraic description of $E^* BU$ in \Cref{IdentificationOfBUnWithDivn} will be of limited use.  Instead, we will have to content ourselves with an $E_*$--module basis of $E^* MU$.
 \begin{definition}
@@ -587,68 +680,7 @@ Take the orientation to be $MU \xrightarrow{\id} MU$, so that we are considering
 \todo{Should you include Quillen's ``norm'' perspective on these operations (cf.\ between equations 2.2 and 2.3)? You were just almost-but-not-quite talking about isogenies, and you're going to want to talk about norm constructions eventually...}
 \end{definition}
 
-\todo[inline]{I feel like there's a punchline missing here. Maybe a connection to the Steenrod algebra is due? Or some kind of computation?}
-
-We now turn to the construction of the other cohomology operations we will be interested in: the power operations.  Power operations get their name from their \emph{multiplicative} properties, and correspondingly we do not expect them to be additive operations --- the Landweber--Novikov operations account for all of the additive operations, and they satisfy a Cartan formula rather than splitting outright over products.  In the abstract, power operations arise from ``$E_\infty$'' or ``$H_\infty$'' structures on ring spectra, but in practice most such structures arise from geometric models of cohomology theories.  To produce power operations for complex bordism and to avoid speaking in suffocating generality, we will return to the geometry of complex vector bundles.
-
-\begin{definition}[{\cite[Definition VII.7.4]{Rudyak}}]
-Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the (homotopy) $C_n$--quotient, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
-\begin{center}
-\begin{tikzcd}
-X^{\times n} \arrow["\xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow{r} \arrow{d} & BU(nk) \\
-X^{\times n}_{hC_n} \arrow["\xi(n)"]{r} & BU(k)^{\times n}_{hC_n}. \arrow["\mu"]{ru}
-\end{tikzcd}
-\end{center}
-The universal case gives the map $\mu$.
-\end{definition}
-
-\begin{lemma}[{\cite[Equation VII.7.3]{Rudyak}}]
-\todo{This citation is actually for Thom spaces, where he picks up a factor of $S^n_{hC_n}$.  This might be important to get right for the future, when we're doing unstable / degree--sensitive things.  \textbf{Jeremy warned me that this is more serious than I wanted to admit.  Compare carefully with Rudyak.}}
-There is an isomorphism of Thom spectra \[T(\xi(n)) \simeq (T\xi)^{\sm n}_{hC_n}.\]
-\end{lemma}
-\begin{proof}
-This proof is mostly a matter of having had the idea to write down the Lemma to begin with.  From here, we string basic properties together:
-\begin{align*}
-T(\xi(n)) & = T(\xi^{\oplus n}_{hC_n}) & \text{(definition)} \\
-& = T(\xi^{\oplus n})_{hC_n} & \text{(colimits commute with colimits)} \\
-& = T(\xi)^{\sm n}_{hC_n}. & \text{($T$ is monoidal: \Cref{ThomSpacesAreMonoidal})} & \qedhere
-\end{align*}
-\end{proof}
-
-Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n} \to MU(k)^{\sm n}_{hC_n} \to MU(nk)\] of the unstable multiplication map, and hence a stable factorization \[MU^{\sm n} \to MU^{\sm n}_{hC_n} \xrightarrow{\mu} MU.\]  Compatible such systems of factorizations are what beget \textit{power operations}, which we will now extract in the case at hand.
-
-\begin{definition}
-Starting with a class \[f\co \Susp^{2r} \Susp^\infty_+ X \to MU,\] we apply $(-)^{\sm n}_{hC_n}$ to produce the composite
-\begin{center}
-\begin{tikzcd}
-(\Susp^{2r} \Susp^\infty_+ X)^{\sm n}_{hC_n} \arrow["f^{\sm n}_{hC_n}"]{r} & MU^{\sm n}_{hC_n} \arrow["\mu"]{r} & MU \\
-\Susp^{2nr} (\Susp^\infty_+ X)^{\sm n}_{hC_n}. \arrow[equal]{u} \arrow["P^n_{\mathrm{ext}}(f)"']{urr}
-\end{tikzcd}
-\end{center}
-This defines the \textit{external $n${\th} Steenrod power of $f$}.  Employing the diagonal map on $X$, we can also pull back to get a map \[P^n(f)\co \Susp^{2nr} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \simeq \Susp^{2nr} X_{hC_n} \xrightarrow{\Delta_{hC_n}} \Susp^{2nr} X^{\sm n}_{hC_n} \xrightarrow{P^n_{\mathrm{ext}}(f)} MU.\]  This defines the \textit{internal $n${\th} Steenrod power of $f$}.
-\end{definition}
-
-\todo{This is pretty much the definition of an $H_\infty$ ring spectrum, but this is not enough to extract power operations on positive-degree classes.  There, you want compatible systems of maps like $(\Susp^j E)^{\sm n}_{h\Sigma_n} \to \Susp^{nj} E$.  In general, you get such systems only for all $j$ which are divisible by some fixed $d$, and the resulting mess is called an $H_\infty^d$--structure.  For example, $KU$ has an $H_\infty^2$--structure and $KO$ has an $H_\infty^8$--structure.  My suspicion with Nat is that power operation maps come from applying the power operation functor to the identity class in $[E, E]$, and that the $H_\infty^d$--structures on these two spectra come from applying the power operation functor to the autoequivalence supplied by the relevant Bott element.}
-
-\begin{remark}\label{RemarkSteenrodOpnsAreNotStable}
-This assignment \[\left\{ \Susp^\infty_+ X \to MU \right\} \xrightarrow{P^n} \left\{ \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \to MU \right\}\] extends to a map of function spaces\todo{Is this right? You can't interpret the image of an element of $\pi_{2r}$ on the left as being the power operation applied to another cohomology class, since you'd expect the image to lie in degree $\pi_{2nr}$.} \[\CatOf{Spaces}(X, MU) \xrightarrow{P^n} \CatOf{Spaces}(X \times BC_n, MU).\]  However, this is \emph{not} an infinite loop map, i.e., it does \emph{not} descend from a map of function spectra.  The basic obstruction is that power operations are not additive, which is what the infinite loopspace structure governs, but rather satisfy a kind of binomial theorem~\cite[pg.\ 25]{BMMS}.
-\end{remark}
-
-\begin{remark}\label{RestrictingSteenrodOpToBasepoint}
-These operations $P^n$ are visibly multiplicative: \[P^n(f \cdot g) = P^n(f) \cdot P^n(g).\]  Additionally, $P^n(f)$ reduces to the $n$--fold internal cup product $f^{n}$ upon restriction to the basepoint in $BC_n$.  In general, classes in $MU^* BC_n$ can be used to give rise to other ``restricted power operations'' that encode unstable operations other than the literal $n${\th} cup power.
-\end{remark}
-
-\begin{remark}
-Power operations can also be constructed for other groups than $C_n$ acting on the index set $\{1, \ldots, n\}$ of smash factors in $X^{\sm n}$.  We do not need these for now, but they show up naturally when trying to understand compositions like $P^n_{\mathrm{ext}} \circ P^m_{\mathrm{ext}}$, which involve $X^{\sm(nm)}$ and the action of the wreath product $C_n \wr C_m$.
-\end{remark}
-
-\begin{remark}[{\cite[Equations 3.10-11]{Quillen}}]
-The construction Quillen gives in the course of his proof is considerably different from the one recounted here.  He begins by giving a different presentation of the complex cobordism groups of a manifold $M$: a complex orientation of a smooth map $Z \to M$ is a factorization \[Z \xrightarrow{i} E \xrightarrow{\pi} M\] through a complex vector bundle $\pi\co E \to M$ by an embedding $i$, as well as a complex structure on the normal bundle $\nu_i$.  Up to suitable notions of stability (in the dimension of $E$) and homotopy equivalence (involving, in particular, isotopies of different embeddings $i$), these quotient to give cobordism classes of maps complex-oriented maps $Z \to M$.  The collection of cobordism classes over $M$ of codimension $q$ over is isomorphic to $MU^q(M)$~\cite[Proposition 1.2]{Quillen}.  Quillen's definition of the power operations is then given in terms of this geometric model: a representative $f\co Z \to M$ of a cobordism class gives rise to another complex-oriented map $f^{\times n}\co Z^{\times n} \to M^{\times n}$, and he defines $P^n_{\mathrm{ext}}(f)$ to be the postcomposition with $M^{\times n} \to M^{\times n}_{hC_n}$.
-\end{remark}
-
-\begin{remark}\citeme{Where can you find Steenrod squares defined like this?  The VFoS notes, but that's not a great reference.}
-The chain model for ordinary homology is actually rigid enough to define power operations there, too.  Curiously, they are all generated by the quadratic power operations (i.e., the ``squares''), and all the quadratic power operations turn out to be \emph{additive} --- that is, you just get the Steenrod squares again!  Specifically, the $C_2$--construction \[(\Susp^n \Susp^\infty_+ X \xrightarrow{f} H\F_2) \xrightarrow{P^2} (\Susp^{2n} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_2 \xrightarrow{P^2(f)} H\F_2)\] gives a class in $H\F_2^{2n-*}(X) \otimes H\F_2^*(\RP^\infty)$, which decomposes as \[P^2(f) = \sum_{j=0}^{2n} \Sq^{2n-j}(X) \otimes x^j.\]  This appears to be a lucky degeneracy, but in the next Lecture we will exploit something similar with a particular power operation in complex cobordism.
-\end{remark}
+\textbf{Our goal in the next Lecture is to make this decomposition of $P^{C_n}$ more explicit.}
 
 
 
@@ -658,21 +690,25 @@ The chain model for ordinary homology is actually rigid enough to define power o
 
 
 
-\section{Stabilizing the \texorpdfstring{$MU$}{MU}--Steenrod operations}\label{StabilizingTheMUSteenrodOps}
 
-We have left untouched a major component from the previous Lecture: any kind of example calculation of the Steenrod power operations.  Power operations turn out to be prohibitively complicated, preventing us from ever really doing this --- but in trying, we \emph{will} find a natural approximation formula in terms of the stable Landweber--Novikov operations.  Giving a precise formula for this approximation is the goal of this Lecture.
 
-For $X$ a finite complex and $f \in MU^{2q}(X)$ some $MU$--cohomology class, we set our sights on the too-lofty goal of computing $P^n(f)$.  Because of the definition $MU = \colim_k MU(k)$ and because $P^n$ is natural under pullback, it will suffice for us to study the effect of $P^n$ on the universal classes \[u_m\co MU(m) \to MU,\] beginning with the canonical orientation \[u_1 = x \in h\CatOf{Spectra}(MU(1), MU) \cong MU^2 \CP^\infty.\]  In order to understand the effect $P^n(x)$ of the power operation on $x$, we recall a different interpretation of $x$: it is also the $1${\st} Conner--Floyd--Chern class of the tautological bundle $\L$ on $\CP^\infty$, i.e., \[x\co MU(1) \to MU\] is the Thomification of the block inclusion \[\L\co BU(1) \to BU.\]  The construction defining $P^n_{\mathrm{ext}}(x)$ thus fits into the following diagram:
+
+
+\section{Explicitly stabilizing the cyclic power operations for \texorpdfstring{$MU$}{MU}}\label{StabilizingTheMUSteenrodOps}
+
+We have left untouched a major component from the previous Lecture: any kind of example calculation of the cyclic power operations.  Power operations turn out to be prohibitively complicated, preventing us from ever really doing this --- but in trying, we \emph{will} find a natural approximation formula in terms of the stable Landweber--Novikov operations.  Giving a precise formula for this approximation is the goal of this Lecture.
+
+For $X$ a finite complex and $f \in MU^{2q}(X)$ some $MU$--cohomology class, we set our sights on the too-lofty goal of computing $P^{C_n}(f)$.  Because of the definition $MU = \colim_k MU(k)$ and because $P^{C_n}$ is natural under pullback, it will suffice for us to study the effect of $P^{C_n}$ on the universal classes \[u_m\co MU(m) \to MU,\] beginning with the canonical orientation \[u_1 = x \in h\CatOf{Spectra}(MU(1), MU) \cong MU^2 \CP^\infty.\]  In order to understand the effect $P^{C_n}(x)$ of the power operation on $x$, we recall a different interpretation of $x$: it is also the $1${\st} Conner--Floyd--Chern class of the tautological bundle $\L$ on $\CP^\infty$, i.e., \[x\co MU(1) \to MU\] is the Thomification of the block inclusion \[\L\co BU(1) \to BU.\]  The construction defining $P^{C_n}_{\mathrm{ext}}(x)$ thus fits into the following diagram:
 \begin{center}
 \begin{tikzcd}
 \Susp^\infty_+ BU(1) \arrow["\Delta"]{d} \arrow{r} & \Susp^\infty_+ BU(1) \sm \Susp^\infty_+ BC_n \arrow["\Delta_{hC_n}"]{d} \\
-(\Susp^\infty_+ BU(1))^{\sm n} \arrow{r} \arrow[bend right=15, "\L^{\oplus n}"' near start]{rr} \arrow["c_1^{\sm n}"]{d} & \Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \arrow["\L(n)"]{r} \arrow[crossing over]{d} \arrow["P^n_{\mathrm{ext}}" near end, crossing over]{rd} & \Susp^\infty_+ BU(n) \arrow["c_n"]{d} \\
+(\Susp^\infty_+ BU(1))^{\sm n} \arrow{r} \arrow[bend right=15, "\L^{\oplus n}"' near start]{rr} \arrow["c_1^{\sm n}"]{d} & \Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \arrow["\L(n)"]{r} \arrow[crossing over]{d} \arrow["P^{C_n}_{\mathrm{ext}}" near end, crossing over]{rd} & \Susp^\infty_+ BU(n) \arrow["c_n"]{d} \\
 (\Susp^2 MU)^{\sm n} \arrow{r} & (\Susp^2 MU)^{\sm n}_{hC_n} \arrow{r} & \Susp^{2n} MU.
 \end{tikzcd}
 \end{center}
 The commutativity of the widest rectangle (i.e., the justification for the name ``$c_n$'' on the right-most vertical arrow) comes from the Cartan formula for Chern classes: because $\L^{\oplus n}$ splits as the sum of $n$ line bundles, $c_n(\L^{\oplus n})$ is computed as the product of the $1${\st} Chern classes of those line bundles.  Second, the commutativity of the right-most square is not trivial: it is a specific consequence of how the multiplicative structure on $MU$ arises from the direct sum of vector bundles.\footnote{In general, any notion of first Chern class $\Susp^\infty_+ BU(1) \to \Susp^2 E$ gives rise to a \emph{noncommuting} diagram of this same shape.  The two composites $\Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \to \Susp^{2n} E$ need not agree, since $\L(n)$ has no \textit{a priori} reason to be compatible with the factorization appearing in the $H_\infty^2$--structure.  They turn out to be related nonetheless, and their exact relation (as well as a procedure for making them agree) is the subject of \textbf{PUT REFERENCE TO CHAPTER 6}.}  The commutativities of the other two squares comes from the natural transformation from a $C_n$--space to its homotopy orbit space.
 
-Hence, the the internal Steenrod power operation $P^n(x)$ is defined by the composite \[\Susp^\infty_+ BU(1) \sm \Susp^\infty_+ BC_n \simeq \Susp^\infty_+ BU(1)_{hC_n} \xrightarrow{\Delta_{hC_n}} (\Susp^\infty_+ BU(1))^{\sm n}_{hC_n} \to \Susp^{2n} MU^{\sm n}_{hC_n} \to \Susp^{2n} MU,\] which is to say \[P^n(x) = c_n(\Delta_{hC_n}^* \L(n)).\]  We have thus reduced to computing a particular Conner--Floyd--Chern class of a particular bundle.
+Hence, the the internal cyclic power operation $P^{C_n}(x)$ is defined by the composite \[\Susp^\infty_+ BU(1) \sm \Susp^\infty_+ BC_n \simeq \Susp^\infty_+ BU(1)_{hC_n} \xrightarrow{\Delta_{hC_n}} (\Susp^\infty_+ BU(1))^{\sm n}_{hC_n} \to \Susp^{2n} MU^{\sm n}_{hC_n} \to \Susp^{2n} MU,\] which is to say \[P^{C_n}(x) = c_n(\Delta_{hC_n}^* \L(n)).\]  We have thus reduced to computing a particular Conner--Floyd--Chern class of a particular bundle.
 
 Our next move is to realize that we have not lost information by passing from the bundle $\Delta^* \L^{\oplus n}$ to the bundle $\Delta_{hC_n}^* \L(n)$.
 \begin{theorem}\label{GEquivBundlesVsBundlesOverBG}
@@ -697,29 +733,29 @@ We thus proceed to analyze $\Delta^*_{hC_n} \L(n)$ by studying the $C_n$--equiva
 
 We now use this to access $c_n(\Delta_{hC_n}^* \L(n))$.  As the top Chern class of this $n$--dimensional vector bundle, we think of this as a calculation of its Euler class, which lets us lean on multiplicativity:
 \begin{align*}
-P^n(x) = c_n(\Delta_{hC_n}^* \L(n)) & = e\left( \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right)
+P^{C_n}(x) = c_n(\Delta_{hC_n}^* \L(n)) & = e\left( \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right)
 = \prod_{j=0}^{n-1} e\left( \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right) \\
 & = \prod_{j=0}^{n-1} c_1\left( \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right)
 = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)).
 \end{align*}
 Here $x$ is still the $1${\st} Conner--Floyd--Chern class of $\L$ and $t$ is the Euler class of $\eta$.  We now try to make sense of this product expression for $c_n(\Delta_{hC_n}^* \L(n))$ by expanding it in powers of $x$ and identifying its component pieces.
 \begin{lemma}\label{AjAndBjAreInTheFGLSubring}
-There is a series expansion \[P^n(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where $a_j(t)$ is a series with coefficients in the subring $C \subseteq MU_*$ spanned by the coefficients of the natural $MU$--formal group law.  The leading term \[w = e(\rho) = \prod_{j=0}^{n-1} e(\eta^{\otimes j}) = \prod_{j=0}^{n-1} [j]_{MU} (e(\eta)) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the reduced permutation representation, and, again, the elements $b_j$ lie in the subring $C$. \qed
+There is a series expansion \[P^{C_n}(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where $a_j(t)$ is a series with coefficients in the subring $C \subseteq MU_*$ spanned by the coefficients of the natural $MU$--formal group law.  The leading term \[w = e(\rho) = \prod_{j=0}^{n-1} e(\eta^{\otimes j}) = \prod_{j=0}^{n-1} [j]_{MU} (e(\eta)) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the reduced permutation representation, and, again, the elements $b_j$ lie in the subring $C$. \qed
 \end{lemma}
 
-This is about as much information as we can hope to extract in the $1${\st} universal case.  We thus return to our original goal: understanding the action of $P^n$ on each of the canonical classes \[u_m\co MU(m) \to MU.\]  Our best hope to approach this is to use the splitting principle, so we rewrite the formula in \Cref{AjAndBjAreInTheFGLSubring} in a form amenable to direct sums:
+This is about as much information as we can hope to extract in the $1${\st} universal case.  We thus return to our original goal: understanding the action of $P^{C_n}$ on each of the canonical classes \[u_m\co MU(m) \to MU.\]  Our best hope to approach this is to use the splitting principle, so we rewrite the formula in \Cref{AjAndBjAreInTheFGLSubring} in a form amenable to direct sums:
 \begin{align*}
-P^n(x) & = \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x), &
+P^{C_n}(x) & = \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x), &
 a_\alpha(t) & = \prod_{j=0}^\infty a_j(t)^{\alpha_j}.
 \end{align*}
 
 \begin{corollary}
-There is the universal formula \[P^n(u_m) = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m).\]
+There is the universal formula \[P^{C_n}(u_m) = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m).\]
 \end{corollary}
 \begin{proof}
 This follows directly from the splitting principle and the Cartan formula:
 \begin{align*}
-P^n(u_m) & = \overset{\text{each of the $m$ factors}}{\overbrace{P^n(x_1) \cdot \cdots \cdot P^n(x_m)}} \\
+P^{C_n}(u_m) & = \overset{\text{each of the $m$ factors}}{\overbrace{P^{C_n}(x_1) \cdot \cdots \cdot P^{C_n}(x_m)}} \\
 & = \left(\sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x_1)\right) \cdot \cdots \cdot \left( \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) s_\alpha(x_m) \right) \\
 & = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m). \qedhere
 \end{align*}
@@ -728,33 +764,29 @@ P^n(u_m) & = \overset{\text{each of the $m$ factors}}{\overbrace{P^n(x_1) \cdot 
 We will use this to power the following conclusion about cohomology classes on in general, starting with an observation about the fundamental class of a sphere:
 
 \begin{lemma}[{cf.\ \cite[Corollary VII.7.14]{Rudyak}}]\label{PowerOpnsOnSuspensions}
-For $f \in MU^{2q}(X)$ a cohomology class in a finite complex $X$, there is the suspension relation \[P^n(\sigma^{2m} f) = w^m \sigma^{2m} P^n(f).\]
+For $f \in MU^{2q}(X)$ a cohomology class in a finite complex $X$, there is the suspension relation \[P^{C_n}(\sigma^{2m} f) = w^m \sigma^{2m} P^{C_n}(f).\]
 \end{lemma}
 \begin{proof}
-We calculate $P^n$ applied to the fundamental class \[S^{2m} \xrightarrow{\iota_{2m}} T_m BU(m) \simeq \Susp^{2m} MU(m) \xrightarrow{\Susp^{2m} u_m} \Susp^{2m} MU\] by restricting the universal formula:
+We calculate $P^{C_n}$ applied to the fundamental class \[S^{2m} \xrightarrow{\iota_{2m}} T_m BU(m) \simeq \Susp^{2m} MU(m) \xrightarrow{\Susp^{2m} u_m} \Susp^{2m} MU\] by restricting the universal formula:
 \begin{align*}
-P^n(\iota_{2m}^* u_m) = \iota_{2m}^* P^n(u_m) & = \iota_{2m}^* \left( \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m) \right) = w^m \iota_{2m},
+P^{C_n}(\iota_{2m}^* u_m) = \iota_{2m}^* P^{C_n}(u_m) & = \iota_{2m}^* \left( \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m) \right) = w^m \iota_{2m},
 \end{align*}
-since $s_\alpha(\iota_{2m}) = 0$ for any nonzero $\alpha$, as the cohomology of $S^{2m}$ is too sparse.  Because $\sigma^{2m} f = \iota_{2m} \sm f$, we conclude the proof by multiplicativity of $P^n$.
+since $s_\alpha(\iota_{2m}) = 0$ for any nonzero $\alpha$, as the cohomology of $S^{2m}$ is too sparse.  Because $\sigma^{2m} f = \iota_{2m} \sm f$, we conclude the proof by multiplicativity of $P^{C_n}$.
 \end{proof}
 
 \begin{theorem}[{cf.\ \cite[Proposition 3.17]{Quillen}, \cite[Corollary VII.7.14]{Rudyak}}]\label{QuillensKeyRelation}
-Let $X$ be a finite pointed space and let $f$ be a cohomology class \[f \in \widetilde{MU}^{2q}(X).\]  For $m \gg 0$, there is a formula \[w^m P^n(f) = \sum_{|\alpha| \le m+q} w^{q+m - |\alpha|} a_\alpha(t) s_\alpha(f),\] with $t$, $w$, and $a_\alpha(t)$ as defined above.\footnote{The reader comparing with Quillen's paper will notice various apparent discrepancies between the statements of our Theorem and of his.  These are notational: he grades his cohomology functor homologically, which occasionally causes our $q$ to match his $-q$, so that his $n$ is comparable to our $m-q$.  \textbf{GET THIS WARNING RIGHT}}
+Let $X$ be a finite pointed space and let $f$ be a cohomology class \[f \in \widetilde{MU}^{2q}(X).\]  For $m \gg 0$, there is a formula \[w^m P^{C_n}(f) = \sum_{|\alpha| \le m+q} w^{q+m - |\alpha|} a_\alpha(t) s_\alpha(f),\] with $t$, $w$, and $a_\alpha(t)$ as defined above.\footnote{The reader comparing with Quillen's paper will notice various apparent discrepancies between the statements of our Theorem and of his.  These are notational: he grades his cohomology functor homologically, which occasionally causes our $q$ to match his $-q$, so that his $n$ is comparable to our $m-q$.  \textbf{GET THIS WARNING RIGHT}}
 \end{theorem}
 \begin{proof}
 We take $m$ large enough so that $f$ is represented by an unstable map \[g\co \Susp^{2m} X \to T_{m+q} BU(m+q),\] in the sense that $g$ intertwines $f$ with the universal class $u_{m+q}$ by the formula \[g^* u_{m+q} = \sigma^{2m} f.\]  We use \Cref{PowerOpnsOnSuspensions} and naturality to conclude
 \begin{align*}
-w^m \sigma^{2m} P^n(f) & = P^n(\sigma^{2m} f) = P^n(g^* u_{m+q}) = g^* P^n(u_{m+q}) \\
+w^m \sigma^{2m} P^{C_n}(f) & = P^{C_n}(\sigma^{2m} f) = P^{C_n}(g^* u_{m+q}) = g^* P^{C_n}(u_{m+q}) \\
 & = g^* \left(\sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) s_\alpha(u_{m+q}) \right) \\
 & = \sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) \sigma^{2m} s_\alpha(f). \qedhere
 \end{align*}
 \end{proof}
 
-Our conclusion, then, is that $P^n$ is \emph{almost} naturally expressible in terms of the Landweber--Novikov operations, where the ``\emph{almost}'' is controlled by some $w$--torsion.  Additionally, the various factors in this statement --- including $w$ itself --- are controlled by the formal group law ``$+_{MU}$'' associated to the tautological complex orientation of $MU$ and the subring $C$.
-
-\begin{remark}
-The target of the Steenrod operation \[P^n\co F(X, \Susp^{2m} MU) \to F(X_{hC_n}, \Susp^{2nm} MU)\] can be reidentified as \[F(X_{hC_n}, \Susp^{2nm} MU) \simeq F(X, \Susp^{2nm} MU)^{hC_n}.\]  For any $C_n$--equivariant spectrum $X$, there is a special map called the \textit{transfer map}\citeme{Greenlees--May?} \[X_{hC_n} \to X^{hC_n} \xrightarrow{\cofib} X^{tC_n}\] whose cofiber is called a \textit{Tate spectrum}.  The construction of Tate spectra is \emph{homological}\todo{Does this require $n$ to be prime?}: cofiber sequences of spaces are sent to cofiber sequences of Tate spectra, and hence there is a natural \emph{stable} (cf.\ \Cref{RemarkSteenrodOpnsAreNotStable}) map \[F(X, \Susp^{2m} MU) \to F(X, \Susp^{2nm} MU)^{tC_n}.\]  In this setting, passing to the Tate construction has the effect of inverting $t$ on homotopy\citeme{Greenlees--May?}, and so this is a homotopical witness to a generic kind of relation expressed in \Cref{QuillensKeyRelation}: the Steenrod operations become stable after multiplication by huge powers of $t$.  The method described here gives a precise formula for the relationship, and in the proof of \Cref{CGenerationForFiniteCplx} in the next Lecture we will discover the surprising fact that we only need to multiply by a \emph{single} $t$.
-\end{remark}
+Our conclusion, then, is that $P^{C_n}$ is \emph{almost} naturally expressible in terms of the Landweber--Novikov operations, where the ``\emph{almost}'' is controlled by some $w$--torsion.  Additionally, the various factors in this statement --- including $w$ itself --- are controlled by the formal group law ``$+_{MU}$'' associated to the tautological complex orientation of $MU$ and the subring $C$.
 
 
 
