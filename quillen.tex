@@ -548,18 +548,18 @@ There is an isomorphism
 \[H\F_p{}_* H\F_p \cong \F_p[\xi_0^, \xi_1, \xi_2, \ldots] \otimes \Lambda[\tau_0, \tau_1, \tau_2, \ldots]\]
 with $|\xi_j| = 2p^j-2$ and $|\tau_j| = 2p^j - 1$. \qed
 \end{theorem}
-\noindent There are odd--dimensional classes in this algebra, and the \emph{graded-commutativity} of the dual mod--$p$ Steenrod algebra means that these classes anti-commute.  This prohibits us from writing ``$\Spec(H\F_p{}_* H\F_p)$'' and from trusting ``$\Spec(H\F_pP_0 H\F_p)$'' to do a good job.  This is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild.
+\noindent There are odd--dimensional classes in this algebra, and the \emph{graded-commutativity} of the dual mod--$p$ Steenrod algebra means that these classes anti-commute.  This prohibits us from writing ``$\Spec(H\F_p{}_* H\F_p)$'' and from trusting ``$\Spec(H\F_pP_0 H\F_p)$'' to do a good enough job.  This is the first time we have encountered Hindrance \#\ref{SkewCommutativeDeficiency} from \Cref{TheSteenrodAlgebraSection} in the wild.
 
-Because of this, we will not feel any guilt for taking a completely alternative approach to this calculation.  This other method, due to Quillen, has as its keystone a completely different kind of cohomology operation called a \textit{power operation}.  These operations are quite technical to describe, but at their core is taking the $n${\th} power of a cohomology class --- and hence they have a frustrating lack of properties, including their failure to be additive and to be stable.  Our goal in this Lecture is just to define these cohomology operations, specialized to the particular setting we will need for Quillen's proof.  Unlike with Steenrod operations, their algebro-geometric interpretation will not be immediately accessible to us, and indeed their eventual reinterpretation in algebraic geometry will be one of our more hard-won pursuits in this book (cf.\ \Cref{PowerOpnsChapter}).
+Because of this, we will not feel any guilt for taking a completely alternative approach to this calculation.  This other method, due to Quillen, has as its keystone a completely different kind of cohomology operation called a \textit{power operation}.  These operations are quite technical to describe, but at their core is taking the $n${\th} power of a cohomology class --- and hence they have a frustrating lack of properties, including failures to be additive and to be stable.  Our goal in this Lecture is just to define these cohomology operations, specialized to the particular setting we will need for Quillen's proof.  Unlike with Steenrod operations, their algebro-geometric interpretation will not be immediately accessible to us, and indeed their eventual reinterpretation in these terms will be one of our more hard-won pursuits in this book (cf.\ \Cref{PowerOpnsChapter}).
 
-In the abstract, power operations arise from ``$E_\infty$'' or ``$H_\infty$'' structures on ring spectra, but in practice most such structures arise from geometric models of cohomology theories.  To produce power operations for complex bordism and to avoid speaking in suffocating generality, we will return to the geometry of complex vector bundles.
+In the abstract, power operations arise from ``$E_\infty$'' or ``$H_\infty$'' structures on ring spectra, but in practice most such structures arise from geometric models of cohomology theories.  To produce power operations for complex bordism and to avoid speaking in suffocating generality, we return to the geometry of complex vector bundles.
 
 \begin{definition}[{\cite[Definition VII.7.4]{Rudyak}}]
-Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the (homotopy) $C_n$--quotient, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
+Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the (homotopy) $C_n$--quotient\todo{Make it clear that you're also taking the quotient of the total space.}, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
 \begin{center}
 \begin{tikzcd}
 X^{\times n} \arrow["\xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow{r} \arrow{d} & BU(nk) \\
-X^{\times n}_{hC_n} \arrow["\xi(n)"]{r} & BU(k)^{\times n}_{hC_n}. \arrow["\mu"]{ru}
+X^{\times n}_{hC_n} \arrow["\xi(n)"]{r} & BU(k)^{\times n}_{hC_n}. \arrow[densely dotted, "\mu"]{ru}
 \end{tikzcd}
 \end{center}
 The universal case gives the map $\mu$.
@@ -593,42 +593,64 @@ This defines the \textit{external $n${\th} cyclic power operation applied to $f$
 \end{definition}
 
 \begin{remark}[{\cite[Equations 3.10-11]{Quillen}}]
-The construction Quillen gives in the course of his proof is considerably different from the one recounted here.  He begins by giving a different presentation of the complex cobordism groups of a manifold $M$: a complex orientation of a smooth map $Z \to M$ is a factorization \[Z \xrightarrow{i} E \xrightarrow{\pi} M\] through a complex vector bundle $\pi\co E \to M$ by an embedding $i$, as well as a complex structure on the normal bundle $\nu_i$.  Up to suitable notions of stability (in the dimension of $E$) and homotopy equivalence (involving, in particular, isotopies of different embeddings $i$), these quotient to give cobordism classes of maps complex-oriented maps $Z \to M$.  The collection of cobordism classes over $M$ of codimension $q$ over is isomorphic to $MU^q(M)$~\cite[Proposition 1.2]{Quillen}.  Quillen's definition of the power operations is then given in terms of this geometric model: a representative $f\co Z \to M$ of a cobordism class gives rise to another complex-oriented map $f^{\times n}\co Z^{\times n} \to M^{\times n}$, and he defines $P^{C_n}_{\mathrm{ext}}(f)$ to be the postcomposition with $M^{\times n} \to M^{\times n}_{hC_n}$.
+The construction Quillen gives is considerably different from ours.  He begins by giving a different presentation of the complex cobordism groups of a manifold $M$: a complex orientation of a smooth map $Z \to M$ is a factorization \[Z \xrightarrow{i} E \xrightarrow{\pi} M\] through a complex vector bundle $\pi\co E \to M$ by an embedding $i$, as well as a complex structure on the normal bundle $\nu_i$.  Up to suitable notions of stability (in the dimension of $E$) and homotopy equivalence (involving, in particular, isotopies of different embeddings $i$), these quotient to give cobordism classes of maps complex-oriented maps $Z \to M$.  The collection of cobordism classes over $M$ of codimension $q$ over is isomorphic to $MU^q(M)$~\cite[Proposition 1.2]{Quillen}.  Quillen's definition of the power operations is then given in terms of this geometric model: a representative $f\co Z \to M$ of a cobordism class gives rise to another complex-oriented map $f^{\times n}\co Z^{\times n} \to M^{\times n}$, and he defines $P^{C_n}_{\mathrm{ext}}(f)$ to be the postcomposition with $M^{\times n} \to M^{\times n}_{hC_n}$.
 \end{remark}
 
 \todo{This is pretty much the definition of an $H_\infty$ ring spectrum, but this is not enough to extract power operations on positive-degree classes.  There, you want compatible systems of maps like $(\Susp^j E)^{\sm n}_{h\Sigma_n} \to \Susp^{nj} E$.  In general, you get such systems only for all $j$ which are divisible by some fixed $d$, and the resulting mess is called an $H_\infty^d$--structure.  For example, $KU$ has an $H_\infty^2$--structure and $KO$ has an $H_\infty^8$--structure.  My suspicion with Nat is that power operation maps come from applying the power operation functor to the identity class in $[E, E]$, and that the $H_\infty^d$--structures on these two spectra come from applying the power operation functor to the autoequivalence supplied by the relevant Bott element.  Meanwhile, Jeremy keeps telling us that this really has to do with representation spheres: the $n$--fold smash power of $S^j$ ought to be called $S^{j\rho}$ for $\rho$ the permutation representation of $\Sigma_n$.  Being able to identify $S^{j\rho}_{h\Sigma_n}$ with $S^{jn}$ is somehow the main input to an $H_\infty^n$--structure.}
 
 \begin{remark}
-This construction can be mimicked using \emph{any} group $G$ that acts on $(\Susp^\infty_+ X)^{\sm n}$.  For instance, $\Sigma_n$ is another natural choice.  This flexibility in the choice of $G$ shows up naturally when trying to understand compositions like $P^{C_n}_{\mathrm{ext}} \circ P^{C_m}_{\mathrm{ext}}$, which involve $X^{\sm(nm)}$ and the action of the wreath product $C_n \wr C_m$.  The adjective ``cyclic'' is meant to record our choice of group $G = C_n$.  
+This construction can be mimicked using \emph{any} group $G$ that acts on $(\Susp^\infty_+ X)^{\sm n}$ through the natural $\Sigma_n$--action.  This flexibility in the choice of $G$ shows up naturally when trying to understand compositions like $P^{C_n}_{\mathrm{ext}} \circ P^{C_m}_{\mathrm{ext}}$, which involve $X^{\sm(nm)}$ and the action of the wreath product $C_n \wr C_m$.  The adjective ``cyclic'' is meant to record our choice of group $G = C_n$.  
 \end{remark}
 
-\begin{remark}\label{RemarkSteenrodOpnsAreNotStable}\label{RestrictingSteenrodOpToBasepoint}
-This assignment \[\left\{ \Susp^\infty_+ X \to MU \right\} \xrightarrow{P^{C_n}} \left\{ \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \to MU \right\}\] extends to a map of function spaces\todo{Is this right? You can't interpret the image of an element of $\pi_{2r}$ on the left as being the power operation applied to another cohomology class, since you'd expect the image to lie in degree $\pi_{2nr}$.} \[\CatOf{Spaces}(X, MU) \xrightarrow{P^{C_n}} \CatOf{Spaces}(X \times BC_n, MU).\]  However, this is \emph{not} an infinite loop map, i.e., it does \emph{not} descend from a map of function spectra.  The basic obstruction is that power operations are not additive, which is what the infinite loopspace structure governs, but rather satisfy a kind of binomial theorem~\cite[pg.\ 25]{BMMS}.  On the other hand, these operations $P^{C_n}$ are visibly multiplicative: \[P^{C_n}(f \cdot g) = P^{C_n}(f) \cdot P^{C_n}(g).\]  Additionally, $P^{C_n}(f)$ reduces to the $n$--fold internal cup product $f^{n}$ upon restriction to the basepoint in $BC_n$.
-\end{remark}
+This assignment \[\left\{ \Susp^\infty_+ X \to MU \right\} \xrightarrow{P^{C_n}} \left\{ \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \to MU \right\}\] extends to a map of function spaces\todo{Is this right? You can't interpret the image of an element of $\pi_{2r}$ on the left as being the power operation applied to another cohomology class, since you'd expect the image to lie in degree $\pi_{2nr}$.} \[\CatOf{Spaces}(X, MU) \xrightarrow{P^{C_n}} \CatOf{Spaces}(X \times BC_n, MU).\]  However, this is \emph{not} an infinite loop map, i.e., it does \emph{not} descend from a map of function spectra.  The basic obstruction is that power operations are not additive, which is what the infinite loopspace structure governs, but rather satisfy a kind of binomial theorem~\cite[pg.\ 25]{BMMS}.  On the other hand, these operations $P^{C_n}$ are visibly multiplicative: \[P^{C_n}(f \cdot g) = P^{C_n}(f) \cdot P^{C_n}(g).\]  Restriction to the basepoint in $BC_n$ causes $P^{C_n}(f)$ to reduce to the $n$--fold internal cup product $f^{n}$.  More generally, classes in $\sigma \in MU_* BC_n$ give rise to operations using the Kronecker pairing as follows:
 
 \begin{definition}
-More generally, classes in $\sigma \in MU_* BC_n$ can be used to give rise to operations using the Kronecker pairing: \[\{\Susp^\infty_+ X \xrightarrow{f} MU\} \to \{\Susp^\infty_+ X \sm \S \xrightarrow{1 \sm \sigma} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \sm MU \xrightarrow{P^n F \sm 1} MU \sm MU \xrightarrow{\mu} MU\}.\]  This construction encodes other \textit{restricted power operations} than the literal $n${\th} cup power.
+A homology class $\sigma \in MU_* BC_n$ and a cohomology class $f\co \Susp^\infty_+ X \to MU$ gives rise to a \textit{restricted power operation} via the composite
+\begin{center}
+\begin{tikzcd}
+\Susp^\infty_+ X \sm \S \arrow["1 \sm \sigma"]{r} & \Susp^\infty_+ X \sm \Susp^\infty_+ BC_n \sm MU \arrow["P^n f \sm 1"]{r} & MU \sm MU \arrow["\mu"]{r} & MU.
+\end{tikzcd}
+\end{center}
 \end{definition}
 
 \citeme{Where can you find Steenrod squares defined like this?  The VFoS notes, but that's not a great reference.}
-With this in mind, we now try to understand what it is that we've constructed by means of a simpler example.  The chain model for $H\F_2$--homology is actually also rigid enough to define cyclic squaring operations.  Curiously, these power operations turn out to be \emph{additive}.  Specifically, the $C_2$--construction \[(\Susp^n \Susp^\infty_+ X \xrightarrow{f} H\F_2) \xrightarrow{P^{C_2}} (\Susp^{2n} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_2 \xrightarrow{P^{C_2}(f)} H\F_2)\] gives a class in $H\F_2^{2n-*}(X) \otimes H\F_2^*(\RP^\infty)$, which decomposes as \[P^{C_2}(f) = \sum_{j=0}^{2n} \Sq^{2n-j}(f) \otimes x^j.\]  This appears to be a lucky degeneracy owing to the binomial identity $(x + y)^2 \equiv x^2 + y^2 \pmod 2$, but we will see that this behavior is actually quite generic.
+With this in mind, we now try to understand what it is that we've constructed by means of a simpler example.  The chain model for $H\F_2$--homology is actually also rigid enough to define cyclic squaring operations, and somewhat curiously these operations turn out to be \emph{additive} --- and hence recognizable in terms of classical Steenrod operations.  Specifically, the $C_2$--construction \[\{\Susp^n \Susp^\infty_+ X \xrightarrow{f} H\F_2\} \xrightarrow{P^{C_2}} \{\Susp^{2n} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_2 \xrightarrow{P^{C_2}(f)} H\F_2\}\] gives a class in $H\F_2^{2n-*}(X) \otimes H\F_2^*(\RP^\infty)$, which decomposes as \[P^{C_2}(f) = \sum_{j=0}^{2n} \Sq^{2n-j}(f) \otimes x^j.\]  Since the failure of the power operations to be additive was a consequence of the binomial formula, it is intuitive that modulo $2$, where $(x + y)^2 \equiv x^2 + y^2$, that this operation becomes stable.  In fact, all power operations --- including those associated to a characteristic $0$ cohomology theory like $MU$ --- have natural stable approximations through the \textit{Tate construction}.
+
+\begin{definition}
+The definitions of homotopy orbits and fixed points as homotopy co/limits of $* \mmod G$--indexed diagrams of spectra beget natural maps \[X^{hG} \to X \to X_{hG}.\]  Additionally, there are two stable $G$--equivariant maps
+\begin{center}
+\begin{tikzcd}[column sep=4em]
+G \times X \arrow[shift left=0.2\baselineskip, "\mu"]{r} & X \arrow[shift left=.2\baselineskip, "\sum_g \{g\} \times -"]{l} .
+\end{tikzcd}
+\end{center}
+Taking the homotopy orbits of the leftward map yields a map $X_{hG} \to (G \times X)_{hG} \simeq X$ witnessing $X_{hG}$ as a cone over the $* \mmod G$--index diagram $X$.  This produces a natural map $X_{hG} \to X^{hG}$ called the \textit{norm map}, and its cofiber is called the \textit{Tate construction}: \[X_{hG} \xrightarrow{\mathrm{norm}} X^{hG} \to X^{tG}.\]
+\end{definition}
+
+\begin{lemma}
+The assignment $X \mapsto (X^{\sm p})^{tC_p}$ preserves cofiber sequences of finite complexes.
+\end{lemma}
+\begin{proof}
+\todo{The Tate construction kills free cells.}
+\end{proof}
+
+\begin{corollary}
+The cyclic Tate power operation is stable.
+\end{corollary}
+\begin{proof}
+\todo{This proof is wrong. You either want Tate on the inside of the function spectrum or you want to be taking the smash power of the function spectrum (which requires some kind of K\"unneth thing to happen). I'm not sure how to fix this, and I can't find a reasonable reference.}
+Consider the composite
+\begin{align*}
+F(\Susp^\infty_+ X, E) & \to F((\Susp^\infty_+ X)^{\sm n}, E^{\sm n}) \to F((\Susp^\infty_+ X)^{\sm n}_{hC_n}, E^{\sm n}_{hC_n}) \xrightarrow{\mu_*} F((\Susp^\infty_+ X)^{\sm n}_{hC_n}, E) \\
+& \xrightarrow{\simeq} F((\Susp^\infty_+ X)^{\sm n}, E)^{hC_n} \to F((\Susp^\infty_+ X)^{\sm n}, E)^{tC_n}.
+\end{align*}
+Taking $\pi_0$, the Lemma states that this is a natural transformation between finite cohomology theories, hence is automatically additive.
+\end{proof}
 
 
 ---
 
 
-Try to construct an exact functor to the right of fixed points.
-
-The equivariant map $\sum_g g^* i\co X \to G \times X$ has homotopy orbits the \textit{transfer map} $X_{hG} \to X$, and this witnesses $X_{hG}$ as a cone over the $* \mmod G$--indexed diagram $X$, hence gives a \textit{norm map} $X_{hG} \to X^{hG}$.  Its cofiber is the Tate construction $X^{tG}$.
-
-The composite $X \mapsto (\Susp^\infty_+ X^{\times n})^{tC_n}$ preserves cofiber sequences, i.e., it is \emph{stable}.  (This is ``Tyler's argument'' from \texttt{hinfty.tex}.)
-
-Remark: in fact, the Tate construction is the universal additive functor under fixed points.
-
 Thm: The effect of the map to the Tate construction is to invert the Euler class.
-
-Cor: The total cyclic power operation decomposes as a sum of stable operations after inverting the Euler class in $MU^* BC_n$.
-
 
 
 ---
@@ -636,6 +658,7 @@ Cor: The total cyclic power operation decomposes as a sum of stable operations a
 
 Here's Tyler Lawson on why the Tate construction is stable:
 
+\begin{quote}
 The stability of the Tate construction comes about for the following reason.
 
 Say we have a cofiber sequence $X \to Y \to Y/X$. Then the $p$--fold smash power $Y^{(p)}$ has a natural, equivariant filtration: $Y$ is, for dumb reasons, the homotopy colimit of $(X \to Y)$, then $Y^{(p)}$ is the hocolim of a $p$--fold smash power of this diagram (now indexed on $\{0 \to 1\}^{\times p}$). We can filter this diagram, equivariantly, according to ``distance from the initial vertex'', and get an equivariant filtration of $Y^{(p)}$ whose associated graded in degree $k$ consists of all ways to smash $k$ copies of $Y/X$ with $(p-k)$ copies of $X$ in some order. In grading $0$ this is $X^{(p)}$, and in grading $p$ this is $(Y/X)^{(p)}$; in all the gradings in between you get a wedge of terms where $C_p$ acts by permuting the wedge factors.
@@ -643,6 +666,7 @@ Say we have a cofiber sequence $X \to Y \to Y/X$. Then the $p$--fold smash power
 The Tate construction preserves $C_p$-equivariant cofiber sequences, and destroys anything where $C_p$ acts by permuting wedge factors. As a result, the only parts that survive are the bottom $(X^{(p)})^{tC_p}$ and the top $((Y/X)^{(p)})^{tC_p}$ in a cofiber sequence.
 
 The standard reference should probably be Greenlees--May's \textit{Generalized Tate cohomology theories} but I'm not as closely familiar with the contents there. Sometimes this is called the topological Singer construction and I originally learned about it from Lunoe--Nielsen--Rognes. This talk about the stability properties is present in section 2 of DAG XIII somewhere, and possibly also in Jacob's notes on the Sullivan conjecture. Charles pointed out to me recently that these properties of the Tate construction are really why the Steenrod operations and certain power operations are stable: it's because they don't come out of a homotopy orbit construction on a smash power, but instead out of a Tate construction.
+\end{quote}
 
 
 
@@ -659,9 +683,7 @@ The cyclic power operation for $MU$ has signature \[P^{C_n}\co F(X, \Susp^{2m} M
 
 ---
 
-
-
-We are thus moved to understand the stable operations in complex bordism.  This follows quickly from our discussion of complex cobordism in the previous Lectures.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]
+Having thus demonstrated that the Tate variant of the cyclic power operation decomposes as a sum of stable operations, we are motivated to understand the available such stable operations in complex bordism.  This follows quickly from our discussions in the previous few Lectures.  We learned in \Cref{IdentificationOfBUnWithDivn} that for any complex-oriented cohomology theory $E$ we have the calculation \[E^* BU \cong E^*\llbracket \sigma_1, \sigma_2, \ldots, \sigma_j, \ldots\rrbracket,\] and we gave a rich interpretation of this in terms of divisor schemes: \[BU_E \cong \Div_0 \CP^\infty_E.\]
 
 We would like to leverage the Thom isomorphism to gain a description of $E^* MU$ generally and $MU^* MU$ specifically.  However, the former is \emph{not} a ring, and although the latter is a ring its multiplication is exceedingly complicated\footnote{For a space $X$, $E^* X$ has a ring structure because $X$ has a diagonal, and $MU$ does not have a diagonal.  In the special case of $E = MU$, there is a ring product coming from endomorphism composition.}, which means that our extremely compact algebraic description of $E^* BU$ in \Cref{IdentificationOfBUnWithDivn} will be of limited use.  Instead, we will have to content ourselves with an $E_*$--module basis of $E^* MU$.
 \begin{definition}
@@ -695,7 +717,13 @@ Take the orientation to be $MU \xrightarrow{\id} MU$, so that we are considering
 \todo{Should you include Quillen's ``norm'' perspective on these operations (cf.\ between equations 2.2 and 2.3)? You were just almost-but-not-quite talking about isogenies, and you're going to want to talk about norm constructions eventually...}
 \end{definition}
 
-\textbf{Our goal in the next Lecture is to make this decomposition of $P^{C_n}$ more explicit.}
+Combining this analysis with the discussion of Tate stability, we have demonstrated the following summary theorem:
+
+\begin{corollary}
+For $f \in MU^* X$, there is a decomposition \[P^{C_n}_{\Tate}(f) = \sum_{j = -\infty}^\infty w^j \otimes \left( \sum_\alpha k_\alpha s_\alpha(f) \right) \in MU^* (*)^{tC_n} \otimes_{MU_*} MU^*(X)\] for a fixed set of coefficients $k_\alpha \in MU^*(*)$. \qed
+\end{corollary}
+
+\noindent Our goal in the next Lecture is to make a more explicit analysis of this abstract decomposition, again using the geometry of vector bundles.
 
 
 
