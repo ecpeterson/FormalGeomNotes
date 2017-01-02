@@ -5,7 +5,7 @@
 
 In \Cref{StableContextLecture} (and more broadly in \Cref{ChapterFiniteSpectra}), we codified the structure of the stable $E$--cooperations acting on the $E$--homology of a spectrum $X$, attached to it the $E$--Adams spectral sequence which approximates the stable homotopy groups $\pi_* X$, and gave algebro-geometric descriptions of the stable cooperations for some typical spectra: $H\F_2$, $MO$, and $MU$.  We will now pursue a variation on this theme, where we consider the $E$--homology of a \emph{space} rather than of a generic spectrum.  In this Case Study, we will examine the theory of cooperations that arises from this set-up, called the \textit{unstable $E$--cooperations}.  This broader collection of cooperations has considerably more intricate structure than their stable counterparts, requiring the introduction of a new notion of an unstable context.  With that established, we will again find that $E$--homology assigns spaces to quasicoherent Cartesian sheaves over the unstable context, and we will again assemble an \emph{unstable} $E$--Adams spectral sequence approximating the \emph{unstable} homotopy groups of the input space, whose $E^2$--page in favorable situations is tracked by the cohomology of the sheaf over the unstable context.
 
-Remarkably, these unstable contexts also admit algebro-geometric interpretations.  In finding the right language for this, we introduce different subclasses of cooperations (e.g., \textit{additive}), and we are also naturally led to consider \textit{mixed cooperations} (as we did stably in \Cref{OrientationsOnEAndMU}) of the form $E_* \OS{F}{*}$.  The running theme is that when $E$ and $F$ are complex-orientable, there is a natural approximation map\todo{Should this be $E_* \OS{F}{2*}$?} \[\Spec Q^* E_* \OS{F}{*} \to \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_F)\] which is an isomorphism in every situation of interest.  However, these isomorphisms do not appear to admit uniform proofs\footnote{The best uniform result I can find is due to Butowiez and Turner~\cite[Theorem 3.12]{ButowiezTurner}.}, so we instead investigate the following cases by hand:
+Remarkably, these unstable contexts also admit algebro-geometric interpretations.  In finding the right language for this, we introduce different subclasses of cooperations (e.g., \textit{additive}), and we are also naturally led to consider \textit{mixed cooperations} (as we did stably in \Cref{OrientationsOnEAndMU}) of the form $E_* \OS{F}{*}$.  The running theme is that when $E$ and $F$ are complex-orientable, there is a natural approximation map\todo{Should this be $E_* \OS{F}{2*}$?  This seems tricky: $K_\Gamma{}_* \OS{H\Z}{q+1}$ shouldn't restrict to even things, but $H\F_p{}_* \OS{BP}{2*}$ probably should.} \[\Spec Q^* E_* \OS{F}{*} \to \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_F)\] which is an isomorphism in every situation of interest.  However, these isomorphisms do not appear to admit uniform proofs\footnote{The best uniform result I can find is due to Butowiez and Turner~\cite[Theorem 3.12]{ButowiezTurner}.}, so we instead investigate the following cases by hand:
 \todo{You will probably have to re-reference this list.}
 \begin{itemize}
 \item (\Cref{UnstableSteenrodCoops}:) For $E = F = H\F_2$, we compute the full unstable dual Steenrod algebra $H\F_2{}_* \OS{H\F_2}{*}$ by means of iterated bar spectral sequences.  We then pass to the additive unstable cooperations, where we show by hand that this presents the homomorphism scheme $\InternalHom{FormalGroups}(\G_a, \G_a)$.  Finally, we pass to the stable additive cooperations, and we check that our results here are compatible with the isomorphism \[\Spec H\F_2{}_* H\F_2 \cong \InternalAut{\G_a}\] presented in \Cref{SteenrodAlgIdentifiedWithAutGa}.
@@ -20,43 +20,44 @@ BSU \to BU & \to \OS{H\Z}{2}, & \OS{H\Z}{3} \to BU[6, \infty) & \to BSU,
 \end{align*}
 which mediate the difference between $E_* BU$ and $E_* BU[6, \infty)$ by means of $E_* \OS{H\Z}{2}$ and $E_* \OS{H\Z}{3}$.  Thus, in our pursuit of $K_\Gamma{}_* BU[6, \infty)$, we will want to have $K_\Gamma{}_* \OS{H\Z}{*}$ already in hand, as well as an algebro-geometric interpretation of it.
 
-\todo[inline]{Jeremy thought we got really close to outright proving Wilson's theorem.  We should figure out exactly how close we got and possibly close the gap.  (Could also be an excuse to understand Sinkinson's thesis.)}
 
 
 
 
 
-\section{Unstable contexts}\label{UnstableContextsSection}
+
+
+
+\section{Unstable contexts and the unstable Steenrod algebra}\label{UnstableContextsSection}
 
 \todo{We should spend a paragraph arguing about why we don't care about odd unstable cooperations --- in either sense, as neither index in $E_* \OS{F}{*}$ is allowed to be odd.  This can be done in a few ways: for instance, if we only care about spaces with even-concentrated homology, then none of the odd cooperations act nontrivially, so we can discard them all.  There's also the bar spectral sequence explanation (though this is a bit ad hoc): the odd information can be recovered from the even information, and it tends to be a large exterior algebra.  There's also the Bockstein explanation.}
-
-Today we will take the framework of contexts discussed in \Cref{StableContextLecture} and augment it in two\todo{Fix this intro. Don't name ``two'' things, for instance.} important (and very distinct) ways.  First, we will assume that $X$ is a \emph{space} rather than a spectrum, and try to encode the extra structure appearing on $E_* X$ from this assumption.  Toward that end, recall that the levels of $\context{E}(X)$ are defined by repeatedly smashing $X$ with $E$, and that we had arrived at this by considering descent for the adjunction
+In this Lecture, our goal is to codify the study of unstable cooperations, beginning with an unstructured account of how they arise.  Recall that for a ring map $f\co R \to S$, in \Cref{StableContextLecture} we studied the problem of recovering an $R$--module from an $S$--module plus extra data.  The intermediate category of extra data that we settled on was that of \textit{descent data}, which we phrased most enduringly as a certain cosimplicial diagram.  Stripping away the commutative algebra, the only categorical formality that went into this was the adjunction
 \begin{center}
 \begin{tikzcd}
-\CatOf{Spectra} = \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} & \CatOf{Modules}_E \arrow[shift left=0.4em]{l}
+\CatOf{Modules}_R \arrow[shift left=0.4em]{r}{- \otimes_R S} & \CatOf{Modules}_S \arrow[shift left=0.4em, "\mathrm{forget}"]{l} ,
 \end{tikzcd}
 \end{center}
-induced by the algebra map $\S \to E$.  Given a spectrum $X$, our framework was set up to give its best possible approximation $X^\wedge_E$ within $E$--module spectra.
-
-We will extend this to spaces by sewing this adjunction together with another:
+or later on, when given a ring spectrum $\eta\co \S \to E$, the adjunction
 \begin{center}
 \begin{tikzcd}
-\CatOf{Spaces} \arrow[shift left=0.4em]{r}{\Susp^\infty} & \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} \arrow[shift left=0.4em]{l}{\Loops^\infty} & \CatOf{Modules}_E \arrow[shift left=0.4em]{l} .
+\CatOf{Spectra} = \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} & \CatOf{Modules}_E \arrow[shift left=0.4em, "\mathrm{forget}"]{l} .
 \end{tikzcd}
 \end{center}
-We will write $E(-)$ for the induced monad \todo{You avoided talking about \emph{monadic} descent in the previous lectures, and instead you were vague about it. Maybe you have to spell that out now.}on $\CatOf{Spaces}$, given by the formula \[E(X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X) = \Loops^\infty (E \sm \Susp^\infty X),\] \todo{Danny didn't like the colimit definition. We also don't need it; everything can be phrased stably. Maybe remove it.} where $\OS{E}{*}$ are the constituent spaces in the $\Omega$--spectrum of $E$.  This space has the property that $\pi_* E(X) = \widetilde E_* X$ (in nonnegative dimensions).  The monadic structure comes from the two evident natural transformations:
+The identification of $\CatOf{Modules}_S$ with $T$--algebras in $\CatOf{Modules}_R$ for the monad $T = \mathrm{forget} \circ (- \otimes_R S)$ is the objective of \textit{monadic descent}\citeme{give a reference to Barr--Beck here}.  This categorical recasting is ignorant of some of the algebraic geometry we discovered next, but it is suitable for us now as we consider the composition with a second adjunction:
+\begin{center}
+\begin{tikzcd}
+\CatOf{Spaces} \arrow[shift left=0.4em]{r}{\Susp^\infty} & \CatOf{Spectra} = \CatOf{Modules}_{\S} \arrow[shift left=0.4em]{r}{- \sm E} \arrow[shift left=0.4em]{l}{\Loops^\infty} & \CatOf{Modules}_E \arrow[shift left=0.4em, "\mathrm{forget}"]{l} .
+\end{tikzcd}
+\end{center}
+We will write $E(-)$ for the induced monad on $\CatOf{Spaces}$, given by the formula \[E(X) = \Loops^\infty (E \sm \Susp^\infty X) = \colim_{j \to \infty} \Loops^j (\OS{E}{j} \sm X),\] where $\OS{E}{*}$ are the constituent spaces in the $\Omega$--spectrum of $E$.  This space has the property $\pi_* E(X) = \widetilde E_{* \ge 0} X$.  The monadic structure comes from the two evident natural transformations:
+\[\eta\co X \to \Loops^\infty \Susp^\infty X \simeq \Loops^\infty (\S \sm \Susp^\infty X) \to \Loops^\infty (E \sm \Susp^\infty X) = E(X),\]
 \begin{align*}
-\eta \co X & \simeq S^0 \sm X \\
-& \to \OS{E}{0} \sm X \\
-& \to \colim_{j \to \infty} \Loops^j(\OS{E}{j} \sm X) = E(X), \\
-\mu \co E(E(X)) & = \colim_{j \to \infty} \Loops^j \left( \OS{E}{j} \sm \colim_{k \to \infty} \Loops^k (\OS{E}{k} \sm X) \right) \\
-& \to \colim_{\substack{j \to \infty \\ k \to \infty}} \Loops^{j+k} (\OS{E}{j} \sm \OS{E}{k} \sm X) \\
-& \xrightarrow{\mu} \colim_{\substack{j \to \infty \\ k \to \infty}} \Loops^{j+k} (\OS{E}{j+k} \sm X) \xleftarrow{\simeq} E(X).
+\mu\co E(E(X)) & = \Loops^\infty(E \sm \Susp^\infty\Loops^\infty(E \sm \Susp^\infty X)) \\
+& \to \Loops^\infty(E \sm E \sm \Susp^\infty X) \to \Loops^\infty(E \sm \Susp^\infty X) = E(X).
 \end{align*}
-
 Just as in the stable situation, we can extract from this a cosimplicial space:
 \begin{definition}
-Consider the descent cosimplicial object
+The \textit{unstable descent object} is the cosimplicial space
 \[\sheaf{UD}_E(X) := \left\{
 \begin{tikzcd}
 \begin{array}{c} E \\ \circ \\ X \end{array} \arrow[leftarrow, shift left=\baselineskip]{r}{\mu} \arrow[shift left=(2*\baselineskip)]{r}{\eta_L} \arrow{r}{\eta_R} &
@@ -68,42 +69,20 @@ Consider the descent cosimplicial object
 Its totalization gives the \textit{unstable $E$--completion of $X$}.
 \end{definition}
 
-Under suitable hypotheses, we can extract from this an unstable analog of $\context{E}$.  Recall that our goal in \Cref{StableContextLecture} was to associate to $E_* X$ a quasi-coherent sheaf over $\context{E}$, a fixed object, dependent on $E$ but independent of $X$.  In the presence of further hypotheses called ``{\FH}'', we saw in \Cref{FHGivesComodules} that this same data could be expressed as an $E_* E$--comodule structure on $E_* X$.  In particular, {\FH} caused the marked map in \[E_* X \xrightarrow{\eta_R} E_*(E \sm X) \xleftarrow{\star} E_* E \otimes_{E_*} E_* X\] to become invertible.
+The remainder of this section will be spent trying to understand the spectral sequence associated to the coskeletal filtration of such an unstable descent object.  In the stable situation, we recognized that in favorite situations the homotopy groups of the descent object formed a cosimplicial module over a certain cosimplicial ring --- or, equivalently, a sheaf over a certain simplicial scheme.  Furthermore, we found that the simplicial scheme itself had some arithmetic meaning, and that the $E_2$--page of the descent spectral sequence computed the cohomology of this sheaf.  We will find analogues of all of these results in the unstable setting, listed above in order from least to most difficult.
 
-In the present setting, consider the analogous composite
-\begin{align*}
-\pi_m E(X) & \xrightarrow{\eta_R} \pi_m E(E(X)) \\
-& \xleftarrow{\mu \circ 1} \pi_m E(E(E(X))) \\
-& \xleftarrow{\mathrm{compose}} \pi_m E(E(S^n)) \times \pi_n E(X).
-\end{align*}
+To begin, we would like to recognize the cosimplicial abelian group $\pi_* \sheaf{UD}_E(X)$ as a sort of comodule.  In the stable case, this came from the smash product map $\S^0 \sm X \to X$, as well as the lax monoidality of the functor $\sheaf{D}_E(-)$.  However, to get a Segal condition by which we could identify the higher-dimensional objects in $\pi_* \sheaf D_E(X)$, we had to introduce the condition {\FH}.\footnote{In particular, {\FH} caused the marked map in $E_* X \xrightarrow{\eta_R} E_*(E \sm X) \xleftarrow{\star} E_* E \otimes_{E_*} E_* X$ to become invertible.}  The unstable situation has an analogous antecedent:
 
-\begin{definition}
-The \textit{unstable context of $E$} is the collection of cosimplicial abelian groups $\pi_* \sheaf{UD}_E(S^n)$.  In the case $n = 0$, this is a cosimplicial ring, and in the case $n \ne 0$ the $0$--simplices merely form a module over $\pi_* \sheaf{UD}_E(S^0)[0]$\todo{This is just $E_*$, right?}.\todo{Sort out exactly what structure lives here.}
+\begin{definition}[{\cite[Assumption 6.5]{BCM}}]
+A ring spectrum $E$ is said to satisfy the \textbf{U}nstable \textbf{F}latness \textbf{H}ypothesis, or \UFH, if $E_* \OS{E}{k}$ is a free $E_*$--module for every value of $k$.\footnote{This helps us understand the following analogous zigzag: \[\pi_m E(X) \xrightarrow{\eta_R} \pi_m E(E(X)) \xleftarrow{\mu \circ 1} \pi_m E(E(E(X))) \xleftarrow{\mathrm{compose}} \pi_m E(E(S^n)) \times \pi_n E(X).\]}
 \end{definition}
 
-\begin{remark}
-In the case that $E$ has K\"unneth isomorphisms, the ``backwards'' maps above become invertible, which is a kind of unstable analogue of the condition {\FH}.  This is the situation in which most of the classical work on this topic was done.\citeme{BCM, BJW, ...}\todo{Talk about how this motivates us to consider algebraically the $0$-- and $1$--simplices along, hoping that an eventual analogue of {\FH} will keep us from having to consider anything further.}
-\end{remark}
-
-\todo[inline]{I \emph{don't} really understand what sort of algebraic structure this gives us.  It would be nice to have an unstable scheme-theoretic analogue of the stable context, so that the homology of spaces gave us ``quasi-coherent sheaves'' over this unstable object (and, in good cases, the unstable Adams spectral sequence had its $E_2$--page computed by some homological algebra over this object; see BCM Section 6).}
-
-Ignoring for the moment what the correct scheme-theoretic analogue of this might be, we will press onward and record the algebraic objects appearing in the presence of the unstable analogue of {\FH}.
-
-\begin{definition}\todo{Can this definition be made without specifying the grading as such and instead using a $\G_m$--action?}
-A Hopf ring $A_{*, *}$ over a graded ring $R_*$ is itself a graded ring object in the category $\CatOf{Coalgebras}_{R_*}$, sometimes called an $R_*$--coalgebraic graded ring object.  It has the following structure maps:
+Under this condition, we again turn to studying the structure of $\sheaf{UD}_E(S^k)$ as $k$ ranges.  If we had a Segal condition, we would expect the structure present to be determined by $\pi_* \sheaf{UD}_E(S^*)[j]$ for $j \le 2$.  The data at $j = 0$ is largely redundant: \[\pi_* E(S^k) = \pi_* \OS{E}{k} = E_{*-k}\] is a shifted copy of the coefficient ring of $E$ for each $k$.  The data at $j = 1$ consists of the homology groups of the spaces in the $\Omega$--spectrum for $E$: \[\pi_* E(E(S^k)) = E_* \OS{E}{k}.\]  There are three pieces of structure present here: the augmentation map $E_* \OS{E}{k} \to E_* (\Susp^k E) \to E_{*-k}$, the left unit map $E_{*-k} \to E_{*-k} \OS{E}{0}$, and the right unit map $E_{*-k} \to E_* \OS{E}{k}$.\todo{Get this right.}  The assumption {\UFH} gives us a foothold on the case $j = 2$: a choice of basis for $E_* \OS{E}{k}$ gives an unstable isomorphism $E(E(S^k)) \simeq \prod_\ell \OS{E}{n_\ell}$, so that $\pi_* \sheaf{UD}_E(S^k)[2]$ splits as a tensor product of terms of the form $E_* \OS{E}{n_\ell}$.  Here, we find a lot of structure: the addition of cohomology classes induces a map \[\ast\co E_* \OS{E}{k} \otimes_{E_*} E_* \OS{E}{k} \to E_* \OS{E}{k};\] the multiplication induces a map \[\circ\co E_* \OS{E}{k} \otimes E_* \OS{E}{k'} \to E_* \OS{E}{k+k'};\] these are compatible with the images of unit classes $0, 1 \in \pi_0 E$ under the left- and right-units specified above; there is an additive inverse map \[\chi\co E_* \OS{E}{k} \to E_* \OS{E}{k}\] compatible with the $\ast$--product; there is a diagonal map \[\Delta\co E_* \OS{E}{k} \to E_* \OS{E}{k} \otimes_{E_*} E_* \OS{E}{k};\] each $E_* \OS{E}{k}$ becomes a Hopf algebra using $\chi$, $\ast$, and $\Delta$; and there is a distributivity condition pictured in \Cref{DistributivityDiagram} intertwining $\ast$, $\circ$, and $\Delta$.
+\todo{Make sure you have all of BJW's structure here: ``These are Hopf rings plus $[v] \in E_0 \OS{E}{*}$, the maps $r_*\co E_* \OS{E}{j} \to E_* \OS{E}{k}$ for $r\co E^k \OS{E}{j}$ a cohomology operation, and the ``augmentation'' (cf.\ BJW 10.42) $E_* \OS{E}{k} \to Q(E)^k_* \to E_* E \to E$.'' In particular, I do not understand this last piece, so I should make sure it's in here.)}
+\todo{I'm uncomfortable with all this graded stuff happening here.  I'd like to be able to make statements in terms of periodic cohomology theories, and I'd like to use the stable suspension operation to make things degree $0$ as needed.  What I'd \emph{really} like is to make the unstable Adams spectral sequence converge to a quasicoherent sheaf over $B\Gm$ (or $B\mathbb N$ or whatever), just like in Section 1.5.}
 \todo{So this is sort of like a Hopf algebra/algebroid except with an extra grading ($s$), which corresponds to the fact that elements of $E_*\underline{E}_m$ correspond to maps where the source has no grading/ has any grading (just like the elements in stable $E_*E$), but the target comes from a specific level in the $\Omega$-spectrum. Maybe mention something to this effect? -EB}
-\begin{align*}
-+ & \co A_{s, t} \times A_{s, t} \to A_{s, t} & \text{($A_{s, t}$ is an abelian group)} \\
-\cdot & \co R_{s'} \otimes_{R_*} A_{s, t} \to A_{s+s', t} & \text{($A_{*, t}$ is a $R_*$--module)} \\
-\Delta & \co A_{s, t} \to \bigoplus_{s' + s'' = s} A_{s', t} \otimes_{R_*} A_{s'', t} & \text{($A_{*, t}$ is a $R_*$--coalgebra)} \\
-\ast & \co A_{s, t} \otimes_{R_*} A_{s', t} \to A_{s + s', t} & \text{(addition for the ring in $R_*$--coalgebras)} \\
-\eta_\ast & \co R_* \to A_{*, 0} & \text{(null element for ring addition)} \\
-\chi & \co A_{s, t} \to A_{s, t} & \text{(negation for the ring in $R_*$--coalgebras)} \\
-\circ & \co A_{s, t} \otimes_{R_*} A_{s', t'} \to A_{s + s', t + t'} & \text{(multiplication map for the ring in $R_*$--coalgebras)} \\
-\eta_\circ & \co R_* \to A_{*, 0} & \text{(null element for ring multiplication)}.
-\end{align*}
-These are required to satisfy various commutative diagrams. The least obvious is displayed in \Cref{DistributivityDiagram}, encoding the distributivity of $\circ$--``multiplication'' over $\ast$--``addition''.
-\todo{I think that the ``skew--commutativity'' of $\circ$--multiplication is also worth mentioning.  This confused me for a good while, being most familiar with the material in Lecture 4.7.}
+\todo{I think that the ``skew--commutativity'' of $\circ$--multiplication (in particular: its intertwining with $\chi$!!) is also worth mentioning.  This confused me for a good while, being most familiar with the material in Lecture 4.7.}
+
 \begin{figure}
 \begin{center}
 \begin{tikzcd}
@@ -111,16 +90,206 @@ A_{s, t} \otimes_{R_*} (A_{s', t'} \otimes_{R_*} A_{s'', t'}) \arrow{r}{1 \otime
 \left(\bigoplus_{s_1 + s_2 = s} A_{s_1, t} \otimes_{R_*} A_{s_2, t} \right) \otimes_{R_*} (A_{s', t'} \otimes_{R_*} A_{s'', t'}) \arrow{d}{\simeq} \\
 \bigoplus_{s_1 + s_2 = s} \left(A_{s_1, t} \otimes_{R_*} A_{s_2, t}  \otimes_{R_*} A_{s', t'} \otimes_{R_*} A_{s'', t'} \right) \arrow{d}{1 \otimes \tau \otimes 1} \\
 \bigoplus_{s_1 + s_2 = s} \left(A_{s_1, t} \otimes_{R_*} A_{s', t'} \otimes_{R_*} A_{s_2, t} \otimes_{R_*} A_{s'', t'} \right) \arrow{d}{\circ \otimes \circ} \\
-\bigoplus_{s_1 + s_2 = s} \left(A_{s_1 + s', t + t'} \otimes_{R_*} A_{s_2 + s'', t + t'}\right) \arrow{r}{\ast} & A_{s + s' + s'', t + t'}, \\
+\bigoplus_{s_1 + s_2 = s} \left(A_{s_1 + s', t + t'} \otimes_{R_*} A_{s_2 + s'', t + t'}\right) \arrow{r}{\ast} & A_{s + s' + s'', t + t'}. \\
 \end{tikzcd}
 \end{center}
 \caption{The distributivity axiom for $\ast$ over $\circ$ in a Hopf algebra.}\label{DistributivityDiagram}
 \end{figure}
+
+\begin{definition}[{\cite[Summary 10.46]{BJW}}]
+A \textit{Hopf ring} is a bigraded module equipped with the structure maps $+$, $-$, $\cdot$, $\ast$, $\circ$, $\Delta$, and $\chi$ subject to the axioms declared above.  A Hopf ring becomes an \textit{enriched Hopf ring} when it is furthermore equippped with a right-unit, and augmentation, and maps \[E_* \OS{E}{k} \times (E_j \OS{E}{k})^\vee \to E_* \OS{E}{j}\] (determined by composition with the dual cohomology classes in the examples of interest).
 \end{definition}
 
-\begin{remark}\label{HopfRingFromOneRingSpectrum}
-A ring spectrum $E$ with K\"unneth isomorphisms \[E_*(\OS{E}{m} \times \OS{E}{n}) \cong E_*(\OS{E}{m}) \otimes_{E_*} E_*(\OS{E}{n})\] gives rise to a Hopf ring $E_* \OS{E}{n} = \pi_* \sheaf{UD}_E(S^n)[1]$.  For a space $X$, the homology groups $E_* X$ form a comodule for this Hopf ring.
+\begin{lemma}\label{HopfRingFromOneRingSpectrum}
+If $X$ is a space with $E_* X$ a free $E_*$--module, then $E_* X$ furthermore forms a coalgebra for the comonad $G$ associated to the enriched Hopf ring $\pi_* \sheaf{UD}_E(S^k)$.
+\end{lemma}
+\begin{proof}
+The proof is a matter of elucidating the last condition.  For $X$ satisfying this freeness condition, there is again a splitting $E(X) \simeq \prod_\ell \OS{E}{n_\ell}$.  We interpret this at the level of algebra by defining a functor \[G\co \CatOf{Modules}_{E_*}^{\mathrm{free}} \to \CatOf{Modules}_{E_*}\] which sends $\Susp^k E_*$ to $E_* \OS{E}{k}$ and which splits over direct sums.  The enriched Hopf ring structure of $\pi_* \sheaf{UD}_E(S^*)[\le 2]$ endows $G$ with a comonad structure, and the structure maps of $\pi_* \sheaf{UD}_E(X)[\le 2]$ endow $E_* X$ itself with the structure of a $G$--coalgebra.
+\end{proof}
+
+\begin{theorem}[{\cite[Theorem 6.17]{BCM}}]
+$\pi_* \sheaf{UD}_E(\Susp^k X)$ is the bar resolution for the free Hopf module comonad, and the $E_2$--page of the unstable descent spectral sequence is presented as\todo{To be clear about this ground category: the functor $G(M) = R_* \Loops^\infty R[M]$ determines a comonad on the category of free $R_*$--modules, and we refer to coalgebras for this comonad.} \[E_2^{s, t} = L^s\CatOf{Coalgebras}_G(E_* S^t, E_* X). \qed\]
+\end{theorem}
+
+At this point, it is instructive to work through an example to understand the kinds of objects we have constructed.  At first appraisal, these objects appear to be so bottomlessly complicated that it must be a hopeless enterprise to actually compute even just the enriched Hopf ring associated to a spectrum $E$.  In fact, the abundance of structure maps involved gives enough footholds that this is actually often feasible, provided we have sufficiently strong stomachs.  Our example will be $E = H\F_2$, and the place to start is with a very old lemma:
+\begin{lemma}
+If $E$ is a spectrum with $\pi_{-1} E = 0$, then $\OS{E}{1} \simeq B\OS{E}{0}$.  Consequentially, if $E$ is a connective spectrum then $\OS{E}{n} = B^n \OS{E}{0}$ for $n \ge 0$. \qed
+\end{lemma}
+\noindent This is useful to us because $B(-)$ comes with a natural skeletal filtration, which we can use to form a spectral sequence.
+\begin{lemma}[{\cite[Proposition 3.2]{Segal}, \cite[Theorem 2.1]{RavenelWilsonKthyOfEMSpaces}}]
+Let $G$ be a topological group.  There is a convergent spectral sequence of algebras of signature \[E^1_{*, j} = F_*(\Susp G)^{\sm j} \Rightarrow F_* BG.\]  In the case that $F$ has K\"unneth isomorphisms $F_*((\Susp G)^{\sm j}) \cong F_*(\Susp G)^{\otimes_{F_*} j}$, the $E^2$--page is identifiable as \[E^2_{*, *} \cong \Tor^{F_* G}_{*, *}(F_*, F_*)\] and the spectral sequence is one of Hopf algebras. \qed
+\end{lemma}
+\begin{corollary}
+\todo{Are you getting reduced and unreduced right in all these K\"unneth assumptions?}
+If $E$ is a connective spectrum and $F$ has K\"unneth isomorphisms $F_*(\OS{E}{j} \sm \OS{E}{j}) \cong F_* \OS{E}{j} \otimes_{F_*} F_* \OS{E}{j}$ for all $j$, then there is a family of spectral sequences of Hopf algebras with signatures \[E^2_{*, *} \cong \Tor^{F_* \OS{E}{j}}_{*, *}(F_*, F_*) \Rightarrow F_* \OS{E}{j+1}. \qed\]
+\end{corollary}
+
+That this spectral sequence is multiplicative for the $\ast$--product is useful enough, but the situation is actually much, much better than this:
+\begin{lemma}[{\cite[Equation 1.3]{ThomasonWilson}, \cite[Theorem 2.2]{RavenelWilsonKthyOfEMSpaces}}]\label{CircProductAndDifferentials}
+Denote by $E^r_{*, *}(F_* \OS{E}{j})$ the spectral sequence considered above whose $E^2$--term is constructed from $\Tor$ over $F_* \OS{E}{j}$.  There are maps \[E^r_{*, *}(F_* \OS{E}{j}) \otimes_{F_*} F_* \OS{E}{m} \to E^r_{*, *}(F_* \OS{E}{j+m})\] which agree with the map \[F_* \OS{E}{j+1} \otimes_{F_*} F_* \OS{E}{m} \xrightarrow{\circ} F_* \OS{E}{j+m+1}\] on the $E^\infty$--page and which satisfy \[d^r(x \circ y) = (d^r x) \circ y. \qed\]
+\end{lemma}
+\noindent This Lemma is obscenely useful: it means that differentials can be transported \emph{between spectral sequences} for classes which can be decomposed as $\circ$--products.  This means that the bottom spectral sequence (i.e., the case $j = 0$) exerts a large amount of control over the others --- and this spectral sequence often turns out to be very computable.
+
+We now turn to concrete computations for $E = H\F_2$ and $F = H\F_2$.  To ground the induction, we will consider the first spectral sequence \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) \Rightarrow H\F_2{}_* B\F_2.\]  Using that $\RP^\infty$ gives a model for $B\F_2$, we use \Cref{HF2RPinftyExample} to analyze the target of this spectral sequence: as an $\F_2$--module, we have already demonstrated an isomorphism \[H\F_2{}_* B\F_2 \cong \F_2\{a_j \mid j \ge 0\}.\]  Using our further computation in \Cref{RPExampleFaulty}, we can also give a presentation of the Hopf algebra structure on $H\F_2{}_* B\F_2$: it is dual to the primitively-generated polynomial algebra on a single class, so forms a divided power algebra on a single class which we will denote by $a_{()}$.  In characteristic $2$, this decomposes as \[H\F_2{}_* B\F_2 \cong \Gamma[a_{()}] \cong \bigotimes_{j=0}^\infty \F_2[a_{(j)}] / a_{(j)}^2,\] where we have written $a_{(j)}$ for $a_{()}^{[2^j]}$ in the divided power structure.
+
+\begin{corollary}
+This $\Tor$ spectral sequence collapses at the $E^2$--page.
+\end{corollary}
+\begin{proof}
+As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is presented by a group ring, which we can identify with a truncated polynomial algebra: \[H\F_2{}_*(\F_2) \cong \F_2[\F_2] \cong \F_2[[1]] / ([1]^{\ast 2} - [0]) \cong \F_2[[1] - [0]] / ([1] - [0])^{\ast 2}.\]  The $\Tor$--algebra of this is then divided power on a single class: \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) = \Gamma[a_{()}].\]  In order for the two computations to agree, there can therefore be no differentials in the spectral sequence.
+\end{proof}
+
+We now summarize the rest of the induction:
+\begin{theorem}\label{UnstableSteenrodInduction}
+$H\F_2{}_* \OS{H\F_2}{t}$ is the exterior $\ast$--algebra on the $t$--fold $\circ$--products of the generators $a_{(j)} \in H\F_2{}_* B\F_2$.
+\end{theorem}
+\begin{proof}
+Noting that the case $t = 0$ is what was proved above, make the inductive assumption that this is true for some fixed value of $t \ge 0$.  The $\Tor$ groups of the associated bar spectral sequence \[\Tor^{H\F_2{}_* \OS{H\F_2}{t}}_{*, *}(\F_2, \F_2) \Rightarrow H\F_2{}_* \OS{H\F_2}{t+1}\] form a divided power algebra generated by the same $t$--fold $\circ$--products.  An analogue of another Ravenel--Wilson lemma~(\cite[Lemma 9.5]{RavenelWilsonKthyOfEMSpaces}, \cite[Claim 8.16]{Wilson}) gives a congruence \[(a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]} \equiv a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})} \pmod{\text{$\ast$--decomposables}}.\]  It follows from \Cref{CircProductAndDifferentials} that the differentials vanish:
+\begin{align*}
+d((a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]}) & \equiv d(a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})}) & \text{(mod $\ast$--decomposables)} \\
+& = a_{(j_1)} \circ d(a_{(j_2)} \circ \cdots \circ a_{(j_{t+1})}) & \text{(\Cref{CircProductAndDifferentials})} \\
+& = 0. & \text{(inductive hyp.)}
+\end{align*}
+Hence, the spectral sequence collapses.  To see that there are no multiplicative extensions, note that the only potentially undetermined multiplications occur as $\ast$--squares of exterior classes.  However, the $\ast$--squaring map is induced by the topological map \[\OS{H\F_2}{t} \xrightarrow{\cdot 2} \OS{H\F_2}{t},\] which is already null on the level of spaces.  It follows that there are no extensions and the induction holds.
+\end{proof}
+
+\begin{corollary}
+It follows that $\circ$--product induces an isomorphism
+\begin{center}
+\begin{tikzcd}
+H\F_2{}_* \OS{H\F_2}{*} & \arrow["\simeq"']{l} \bigoplus_{t=0}^\infty (H_*(\RP^\infty; \F_2))^{\wedge t},
+\end{tikzcd}
+\end{center}
+where $(-)^{\wedge t}$ denotes the $t$\textsuperscript{th} exterior power in the category of Hopf algebras. \qed
+\end{corollary}
+
+\begin{remark}[{\cite[Theorems 8.5 and 8.11]{Wilson}}]
+The odd--primary analogue of this result appears in Wilson's book, where again the bar spectral sequences are collapsing.  The end result is \[H\F_p{}_* \OS{H\F_p}{*} \cong \frac{\bigotimes_{I, J} \F_p[e_1 \circ \alpha_I \circ \beta_J, \alpha_I \circ \beta_J]}{(e_1 \circ \alpha_I \circ \beta_J)^{\ast 2} = 0, (\alpha_I \circ \beta_J)^{\ast p} = 0, e_1 \circ e_1 = \beta_1},\] where $e_1 \in (H\F_p)_1 \OS{H\F_p}{1}$ is the homology suspension element, $\alpha_{(j)} \in (H\F_p)_{2p^j} \OS{H\F_p}{1}$ are the analogues of the elements considered above, and $\beta_{(j)} \in (H\F_p)_{2p^j} \CP^\infty$ are the algebra generators of the Hopf algebra dual of the ring of functions on the formal group $\CP^\infty_{H\F_p}$ associated to $H\F_p$ by its natural complex orientation.  In particular, the Hopf ring is \emph{free} on these Hopf algebras, subject to the single interesting relation $e_1 \circ e_1 = \beta_{(0)}$, essentially stemming from the equivalence $S^1 \sm S^1 \simeq \CP^1$.
 \end{remark}
+
+It is now instructive to try to relate this unstable computation to the stable one from \Cref{TheSteenrodAlgebraSection} (and, particularly, its algebro-geometric interpretation in \Cref{SteenrodAlgIdentifiedWithAutGa}).  Consider the situation of cohomology operations: each stable operation consists of a family of unstable operations intertwined by suspensions, each of which is additive and takes $0$ to $0$.  In terms of an element $\psi \in E^* \OS{E}{j}$, such an unstable operation takes $0$ to $0$ exactly when it lies in the augmentation ideal, and it is additive exactly when it satisfies Hopf algebra primitivity: \[\Delta^* \psi^* = (\psi \otimes \psi)^* \Delta^*.\]
+\begin{definition}
+In the setting of unstable homology cooperations, we define an \textit{additive unstable operation} to be one which lies in the $\ast$--indecomposable quotient $Q_* E_* \OS{E}{j}$.
+\end{definition}
+
+We now apply this philosophy to our example:
+\begin{corollary}[{cf.\ \Cref{StableSteenrodAlgebraQuote}, \cite[Theorem 8.15]{Wilson}}]\label{StarIndecompsInUDualSteenrodAlg}
+$\mathcal A_* = \F_2[\xi_0, \xi_1, \xi_2, \ldots][\xi_0^{-1}]$.
+\end{corollary}
+\begin{proof}
+First, we compute $\ast$--indecomposable quotient of the unstable dual Steenrod algebra to be
+\begin{align*}
+Q^\ast H\F_2{}_* \OS{H\F_2}{*} & \cong \F_2\left\{a_{I} \middle| \text{$I$ a multi-index}\right\} \\
+& = \F_2\left\{ a_{(I_0)} \circ a_{(I_1)} \circ \cdots \circ a_{(I_n)} \middle| \text{$I = (I_0, \ldots, I_n)$ a multi-index}\right\}. \\
+& \cong \F_2[\xi_0, \xi_1, \xi_2, \ldots],
+\end{align*}
+where we have translated to our previous notation by writing $\xi_j$ for $a_{(j)}$ and juxtaposition for $\circ$--product.  From here, sequences of additive unstable cooperations which are intertwined by suspension are exactly elements of the sequential colimit that inverts the homology suspension element.  We have already explicitly identified this element as $a_{(0)} = \xi_0$, and this yields the claim.
+\end{proof}
+
+Our last goal in this Lecture is to sketch a foothold that this example has furnished us with for the algebro-geometric interpretation of unstable cooperations.  First, we should remark that it has been shown that there is no manifestation of the homology of a space as any kind of classical comodule~\cite[Theorem 9.4]{BJW}, so we are unstable to directly pursue an analogue of \Cref{FHGivesComodules} presenting the homology of a space as a Cartesian quasicoherent sheaf over some object.  This no-go result is quite believable from the perspective of cohomology operations: we have calculated in the case of $E = H\F_2$ that a generic unstable cohomology operation takes the form \[x \mapsto \sum_{\text{$S$ a set of multi-indices}} \left(c_S \cdot \prod_{I \in S} \Sq^I(x)\right).\]  This inherently uses the multiplicative structure on $H\F_2^*(X)$, and the proof of the result of Boardman, Johnson, and Wilson rests entirely on the observation that decomposable elements cannot be mapped to indecomposable elements by maps of algebras, but maps of modules have no such control.\footnote{It is probably still possible to treat this carefully enough to cast the whole of unstable operations (and, in particular, the comonad $G$) into algebro-geometric language.}
+
+However, exactly this complaint is eliminated by passing to the additive unstable cooperations: all the product terms in the above formula vanish, and the homology of a space does indeed have the structure of a comodule for this Hopf algebra.  Still in the setting of our running example $E = H\F_2$, this makes $H\F_2{}_*(X)$ into a Cartesian quasicoherent sheaf for the simplicial scheme \[\Ucontext{H\F_2} = \Spec \F_2 \mmod \Spec Q^* H\F_2{}_* \OS{H\F_2}{*}.\]  In this specific example, we can even identify what this simplicial scheme is: using \Cref{SteenrodAlgIdentifiedWithAutGa}, we have already made the identification
+\begin{align*}
+\Spec H\F_2{}_* H\F_2 & \cong \InternalAut{\G_a} \\
+\left(f\co \F_2[\xi_0^\pm, \xi_1, \ldots] \to R \right) & \mapsto \left(x \mapsto \sum_{j=0}^\infty f(\xi_j) x^{2^j}\right),
+\end{align*}
+and the computation above presents $\Spec \mathcal A_*$ as the open subscheme of $\Spec \F_2[\xi_0, \xi_1, \ldots]$ determined by the invertibility of $\xi_0$.  Hence, the more general target is
+\begin{align*}
+\Spec Q^* H\F_2{}_* \OS{H\F_2}{*} & \cong \InternalEnd{\G_a} \\
+\left(f\co \F_2[\xi_0, \xi_1, \ldots] \to R \right) & \mapsto \left(x \mapsto \sum_{j=0}^\infty f(\xi_j) x^{2^j}\right).
+\end{align*}
+
+Some of the complexity here was eliminated by the smallness of $\Spec H\F_2{}_*$.  For a general ring spectrum $E$, we also have to account for $\Spec E_*$, but the end result is similar to that of \Cref{FHGivesComodules}:
+\todo{Consider elaborating on how $Q^*$ does not give a Hopf algebroid because it's missing a version of $\chi$ for $\circ$--multiplication.  It's kind of remarkable that inverting the homology suspension element automatically produces such a $\chi^{\circ}$.}
+\begin{lemma}
+For a ring spectrum $E$ satisfying {\UFH}, the additive unstable cooperations form rings of functions on the objects and morphisms of a category scheme, and homology is valued in Cartesian quasicoherent sheaves over its nerve. \qed
+\end{lemma}
+
+Although it seems like we have lost a lot of information in passing to $\ast$--indecomposables, it is a classical observation that in many cases this is actually enough to recover everything.  
+
+\begin{definition}[{\cite[Assumptions 7.1 and 7.7]{BCM}}]
+We say that a ring spectrum $E$ satisfying {\UFH} furthermore satisfies the \textbf{U}nstable \textbf{G}eneration \textbf{H}ypothesis, or {\UGH}, when the following conditions all hold:
+\todo{Make sure you got primitives vs indecomposables right.  Remember that you have to apply primitives to a \emph{comodule} in a moment, so maybe indecomposables don't even make sense.  If that's the case, you need to work out what the relationship is to the algebro-geometric story.}
+\begin{enumerate}
+    \item $Q^* E_* \OS{E}{j}$ is $E_*$--free.
+    \item The following composite $Q^* E_* \OS{E}{j} \to E_* \OS{E}{j} \to E_* E$ is injective.
+    \item $E_* \OS{E}{j} \to SQ^*E_* \OS{E}{j}$ is an isomorphism, where $S$ is the cofree (nonunital) coalgebra functor.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}[{\cite[Lemma 7.5]{BCM}}]
+Let $E$ be a ring spectrum satisfying {\UGH}, and let $G$ be the comonad from \Cref{HopfRingFromOneRingSpectrum}.  The composite functor $U = Q^* G$ extends from a functor on free $E_*$--modules to all $E_*$--modules by using $2$--stage free resolutions and enforcing exactness, and the result is a comonad.  Coalgebras for this comonad are exactly comodules for the Hopf algebra of additive unstable cooperations. \qed
+\end{lemma}
+
+\begin{corollary}[{\cite[Remark 7.8]{BCM}}]
+If $E$ satisfies {\UGH} and $X$ is a space with $E_* X = SN$ for some connective free $E_*$--module $N$, then the unstable $E$--Adams $E_2$--term is computed by \[E_2^{s, t} = \Ext^s_{\CatOf{Coalgebras}_U}(E_* S^t, Q^* E_* X).\]
+\end{corollary}
+\begin{proof}
+Under {\UGH}, we have a factorization \[\CatOf{Coalgebras}_{G}(E_* S^t, -) = \CatOf{Comodules}_{U}(E_* S^t, Q^*(-))\] and the injective objects intertwine to give a composite functor spectral sequence \[E_2^{r, s} = \Ext^r_{\CatOf{Coalgebras}_U}(E_* S^t, R^s_{\CatOf{Coalgberas}_G} Q^*(M)) \Rightarrow \Ext^{r+s}_{\CatOf{Coalgebras}_G}(E_* S^t, M).\]  If $M = E_* X = SN$ for some connective free $E_*$--module $N$, then $R^{q > 0}_{\CatOf{Coalgebras}_G} Q^*(E_* X) = 0$, the composite functor spectral sequence collapses, and $\Ext^s_{\CatOf{Coalgebras}_U}(E_* S^t, Q^* E_* X)$ computes the unstable Adams $E_2$--term as claimed.
+\end{proof}
+
+
+
+
+\todo{BJW: lemma 2.10, questions 2.22 seems relevant}
+\todo{Define what the homology suspension element $e$ is.  The point is that the equivalence $\OS{E}{n} \simeq \Loops \OS{E}{n+1}$ is adjoint to a map $\Susp \OS{E}{n} \to \OS{E}{n+1}$, and the effect of this map on $F$--homology is $\circ$--ing with $e$.}
+\todo{Neil wrote this to tell Chris Schommer--Pries how to compute $H_* K(\Z, 3)$ (http://mathoverflow.net/a/216041/1094), which I think should be included as an exercise here: Given a complex oriented cohomology theory $E$, one can define a formal scheme of Weil pairings on the associated formal group, as explained in the paper "Weil pairings and Morava $K$-theory" by Matthew Ando and me.  If we let $R_E$ denote the ring of functions on this scheme, then there is a natural map $R_E\to E^*K(\mathbb{Z},3)$.  This is an isomorphism if $E$ is Morava $K$-theory or Morava $E$-theory.  I think that it is also an isomorphism for $E=MU$ or $E=kU$ but not for $E=H$.  However, there is a natural short exact sequence
+$$ kU^*K(\mathbb{Z},3)/v \to H^*K(\mathbb{Z},3) \to \text{ann}(v,kU^*K(\mathbb{Z},3)) $$ (where $v$ is the standard generator of $\pi_2kU=kU^{-2}(\text{point})$).  I think that this is probably an effective way to understand $H^*K(\mathbb{Z},3)$. Some other things that are going on in the background here: - There is a fibration $K(\mathbb{Q}/\mathbb{Z},2)\to K(\mathbb{Z},3)\to K(\mathbb{Q},3)$.  Here $K(\mathbb{Q},3)$ is the rationalisation of $S^3$ and is not so hard to understand. - $K(\mathbb{Q}/\mathbb{Z},2)$ is the colimit of the spaces $K(\mathbb{Z}/n,2)$. - One can understand $K(\mathbb{Z}/n,2)$ using the multiplication map $K(\mathbb{Z}/n,1)\times K(\mathbb{Z}/n,1)\to K(\mathbb{Z}/n,2)$.}
+
+% \begin{definition}
+% We spell out some of the Hopf algebra constructions named above.  For a cocommutative $R$--coalgebra $C$, we define its free commutative and cocommutative Hopf $R$--algebra~\cite{Takeuchi} to have underlying algebra \[\frac{\operatorname{SymmetricAlgebra} \left(C \otimes_R (\chi C)\right)}{\left( \begin{array}{c} c \otimes \chi c = 1 \end{array} \right)}\] with diagonal \[\Delta(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \Delta c_1 \otimes \cdots \otimes \Delta c_k \otimes \chi (\Delta c'_1) \otimes \cdots \otimes \chi(\Delta c'_{k'})\] and antipode \[\chi(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \chi c_1 \otimes \cdots \otimes \chi c_k \otimes c'_1 \otimes \cdots \otimes c'_{k'}.\]  Then, given a Hopf $R$--algebra $A$, we define the free Hopf ring~\cite[Definition 4.2, Proposition 2.16]{HuntonTurner} to be \[\left. \bigoplus_{k=0}^\infty A^{\wedge_R k} \middle/ \left(x \wedge y = \sum_i (x'_i \ast y') \wedge (x''_i \ast y'') \middle| \begin{array}{c} y = y' \ast y'', \\ \Delta x = \sum_i x'_i \otimes x''_i \end{array} \right) \right.\] with $\circ$--product given by the natural maps $A^{\wedge_R n} \otimes_R A^{\wedge_R m} \to A^{\wedge_R (n+m)}$.
+% \end{definition}
+
+% I think we should be able to see what the relevant ``flatness'' hypothesis should be from here, and then even in the case $E = H\F_p$ I think it should be visibly unreasonable to expect this map to be sufficiently surjective so that passing to the associated map off of the tensor product induces an isomorphism.  Instead, we really do have to pass to the additive cooperations.
+
+
+
+
+
+
+
+
+
+
+
+\section{Mixed unstable cooperations and the algebraic approximation}
+
+
+
+\todo[inline]{
+What all needs to be mentioned in this Lecture:
+the meaning of mixed cooperations in terms of descent;
+mixed Hopf rings and the mixed unstable {\FH} condition;
+the complex-oriented algebraic approximation.
+}
+
+
+
+
+I think the relevant base-change diagram to consider is something like
+\begin{center}
+\begin{tikzcd}[column sep=2.2cm,row sep=2cm]
+\CatOf{Algebras}_E \arrow{r}{\eta_F} \arrow[leftarrow, shift left=0.20cm]{d}{\eta_E} & \text{$F \circ E$ algebras} \arrow{d} \\
+\CatOf{Spaces} \arrow[leftarrow,shift left=0.20cm]{u} \arrow[shift left=0.20cm]{r}{\eta_F} \arrow[leftarrow, shift right=0.20cm]{r} & \CatOf{Algebras}_F.
+\end{tikzcd}
+\end{center}
+A space $X$ gets pushed around this diagram like: up to $E \circ X$, over to $F \circ E \circ X$, down to $F \circ E \circ X$, where it receives a natural map \[F \circ X \to F \circ E \circ X.\]  In the case $E = F$, this is the interesting unit map, i.e., the coaction map.  Probably $\pi_* F \circ E \circ X$ is also the recipient of some map connected to the unstable version of \FH.
+
+
+
+
+I think that the unstable descent object along $E \vee F$ receives a map from a ``split descent object'', along the following lines.  Consider the $1$--simplices in $\sheaf{UD}_{E \vee F}(X)$:
+\begin{align*}
+(F \vee E) \circ (F \vee E) \circ X & \simeq F \circ (F \vee E) \circ X \times E \circ (F \vee E) \circ X \\
+& \simeq F \circ (F \circ X \times E \circ X) \times E \circ (F \circ X \times E \circ X) \\
+& \from (F \circ F \circ X \times F \circ E \circ X) \times (E \circ F \circ X \times E \circ E \circ X),
+\end{align*}
+where the last map is a K\"unneth-type map...?  (Actually, I'm not so sure about this now. I thought that having K\"unneth isomorphisms would mean that there would be an equivalence $E \circ (X \times Y) \simeq E \circ X \times E \circ Y$, but now I'm skeptical.  I think there's a map leftward of sets, but this isn't big enough: the Cartesian product of groups is (often) much smaller than the tensor product.)
+
+
+
+
+
 
 One can modify this story in a number of minor ways.
 
@@ -141,127 +310,9 @@ The procedure in \Cref{HopfRingFromOneRingSpectrum} can be generalized to the ca
 
 
 
-%I think we should be able to see what the relevant ``flatness'' hypothesis should be from here, and then even in the case $E = H\F_p$ I think it should be visibly unreasonable to expect this map to be sufficiently surjective so that passing to the associated map off of the tensor product induces an isomorphism.  Instead, we really do have to pass to the additive cooperations.  (I also think it should be visible what the $E_*$--action on the two sides should be.  On the left, it should come from the usual scaling.  On the right, it should come from acting by the Hopf ring elements ``$[e]$'' in Steve's notation (cf.\ Section 4.3).)
 
 
 
-
-% I think the relevant base-change diagram to consider is something like
-% \begin{center}
-% \begin{tikzcd}[column sep=2.2cm,row sep=2cm]
-% \CatOf{Algebras}_E \arrow{r}{\eta_F} \arrow[leftarrow, shift left=0.20cm]{d}{\eta_E} & \text{$F \circ E$ algebras} \arrow{d} \\
-% \CatOf{Spaces} \arrow[leftarrow,shift left=0.20cm]{u} \arrow[shift left=0.20cm]{r}{\eta_F} \arrow[leftarrow, shift right=0.20cm]{r} & \CatOf{Algebras}_F.
-% \end{tikzcd}
-% \end{center}
-% A space $X$ gets pushed around this diagram like: up to $E \circ X$, over to $F \circ E \circ X$, down to $F \circ E \circ X$, where it receives a natural map \[F \circ X \to F \circ E \circ X.\]  In the case $E = F$, this is the interesting unit map, i.e., the coaction map.  Probably $\pi_* F \circ E \circ X$ is also the recipient of some map connected to the unstable version of \FH.
-
-
-
-
-% I think that the unstable descent object along $E \vee F$ receives a map from a ``split descent object'', along the following lines.  Consider the $1$--simplices in $\sheaf{UD}_{E \vee F}(X)$:
-% \begin{align*}
-% (F \vee E) \circ (F \vee E) \circ X & \simeq F \circ (F \vee E) \circ X \times E \circ (F \vee E) \circ X \\
-% & \simeq F \circ (F \circ X \times E \circ X) \times E \circ (F \circ X \times E \circ X) \\
-% & \from (F \circ F \circ X \times F \circ E \circ X) \times (E \circ F \circ X \times E \circ E \circ X),
-% \end{align*}
-% where the last map is a K\"unneth-type map...?  (Actually, I'm not so sure about this now. I thought that having K\"unneth isomorphisms would mean that there would be an equivalence $E \circ (X \times Y) \simeq E \circ X \times E \circ Y$, but now I'm skeptical.  I think there's a map leftward of sets, but this isn't big enough: the Cartesian product of groups is (often) much smaller than the tensor product.)
-
-
-
-
-
-
-\section{Unstable cooperations in ordinary homology}\label{UnstableSteenrodCoops}
-
-The objects discussed in the previous Lecture appear to be almost bottomlessly complicated: there are so many groups and so many structure maps.  At first glance, it might seem like it's a hopeless enterprise to actually try to compute $\Ucontext{E}^*$ for any spectrum $E$, but in fact the plenty of structure maps give enough footholds that this is often feasible, provided we have sufficiently strong stomachs.  Today we will treat the case $E = H\F_2$, which requires us to introduce all of the relevant tools but whose computations turn out to be very straightforward.
-
-The place to start is with a very old lemma:
-\begin{lemma}
-\todo{clarification: should we specify $E$ to be an $\Omega$-spectrum so the condition gives us that it's connective?}
-If $E$ is a spectrum with $\pi_{-1} E = 0$, then $\OS{E}{1} \simeq B\OS{E}{0}$. \qed
-\end{lemma}
-\noindent The essential point is that $B$ gives the connective delooping of $\OS{E}{0}$, so if $E$ is connective then this will yield the spaces in the $\Omega$--spectrum of $E$.  This is useful to us because $B\OS{E}{0}$ comes with a natural skeletal filtration, and this gives rise to a spectral sequence:
-\begin{corollary}[{\cite[Theorem 2.1]{RavenelWilsonKthyOfEMSpaces}}]
-There is a convergent spectral sequence of Hopf algebras of signature \[E^1_{*, j} = F_*(\Susp \OS{E}{0})^{\sm j} \Rightarrow F_* \OS{E}{1}.\]  \todo{In class you didn't write any $\Susp$.} In the case that $F$ has K\"unneth isomorphisms of the form \[F((\Susp \OS{E}{0})^{\sm j}) \cong F(\Susp \OS{E}{0})^{\otimes j},\] the $E^2$--page is identifiable as \[E^2_{*, *} \cong \Tor^{F_* \OS{E}{0}}_{*, *}(F_*, F_*). \qed\]
-\end{corollary}
-\noindent In general, if $E$ is a connective spectrum, we get a family of spectral sequences of signature \[E^2_{*, *} \cong \Tor^{F_* \OS{E}{j}}_{*, *}(F_*, F_*) \Rightarrow F_* \OS{E}{j+1}.\]
-\todo{For this you'll want an analogue of the lemma, something like $\OS{E}{j} \simeq B\OS{E}{j-1}$.  What is the connective hypothesis for this?  It can't be something like $\pi_{j-2} E = 0$, because that won't be satisfied?}
-
-That this spectral sequence is multiplicative for the $\ast$--product is useful enough, but the situation is actually much, much better than this:
-\begin{lemma}[{\cite[Theorem 2.2]{RavenelWilsonKthyOfEMSpaces}}]\label{CircProductAndDifferentials}
-\citeme{This isn't the right citation. They blame this generality on a Thomason--Wilson article.}
-Denote by $E^r_{*, *}(F_* \OS{E}{j})$ the spectral sequence considered above whose $E^2$--term is constructed from $\Tor$ over $F_* \OS{E}{j}$.  There are maps \[E^r_{*, *}(F_* \OS{E}{j}) \otimes_{F_*} F_* \OS{E}{m} \to E^r_{*, *}(F_* \OS{E}{j+m})\] which agree with the map \[F_* \OS{E}{j+1} \otimes_{F_*} F_* \OS{E}{m} \xrightarrow{\circ} F_* \OS{E}{j+m+1}\] on the $E^\infty$--page and which satisfy \[d^r(x \circ y) = (d^r x) \circ y. \qed\]
-\end{lemma}
-\noindent This Lemma is obscenely useful: it means that differentials can be transported \emph{between spectral sequences} for classes which can be decomposed as $\circ$--products.  This means that the bottom spectral sequence (i.e., the case $j = 0$) exerts a large amount of control over the others --- and this spectral sequence often turns out to be very computable.
-
-We now turn to our example of $E = H\F_2$ and $F = H\F_2$.  To ground our induction, we will consider the first spectral sequence \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) \Rightarrow H\F_2{}_* B\F_2.\]  Using that $\RP^\infty$ gives a model for $B\F_2$, we use \Cref{HF2RPinftyExample} to analyze this spectral sequence: that Example states that as an $\F_2$--module, there is an isomorphism \[H\F_2{}_* B\F_2 \cong \F_2\{a_j \mid j \ge 0\}.\]  Using our further computation in \Cref{RPExampleFaulty}, we can also give a presentation of the Hopf algebra structure on $H\F_2{}_* B\F_2$: it is dual to the primitively-generated polynomial algebra on a single class, so forms a divided power algebra on a single class $a_\emptyset$ \todo{I don't understand why the notation is $\emptyset$.}.  In characteristic $2$, this decomposes as \[H\F_2{}_* B\F_2 \cong \Gamma[a_\emptyset] \cong \bigotimes_{j=0}^\infty \F_2[a_{(j)}] / a_{(j)}^2,\] where we have written $a_{(j)}$ for $a_\emptyset^{[2^j]}$ in the divided power structure.
-
-\begin{corollary}
-This $\Tor$ spectral sequence collapses at the $E^2$--page.
-\end{corollary}
-\begin{proof}
-As an algebra, the homology $H\F_2{}_*(\F_2)$ of the discrete space $\F_2$ is presented by the truncated polynomial algebra \[H\F_2{}_*(\F_2) \cong \F_2[\F_2] = \F_2[[1] - [0]] / ([1] - [0])^{\ast 2}.\]\todo{Danny found this line confusing. You explain it more elaborately in person, by carefully moving the $(-)^{\ast 2}$ around.}  The $\Tor$--algebra of this is then divided power on a single class: \[\Tor^{H\F_2{}_*(\F_2)}_{*, *}(\F_2, \F_2) = \Gamma[a_\emptyset].\]  In order for the two computations to agree, there can therefore be no differentials in the spectral sequence.
-\end{proof}
-
-Now we turn to the rest of the induction:
-\begin{theorem}\label{UnstableSteenrodInduction}
-$H\F_2{}_* \OS{H\F_2}{t}$ is the exterior $\ast$--algebra on the $t$--fold $\circ$--products of the generators $a_{(j)} \in H\F_2{}_* B\F_2$.
-\end{theorem}
-\begin{proof}
-Make the inductive assumption that this is true for some fixed value of $t$.  It follows that the $\Tor$ groups of the bar spectral sequence \[\Tor^{H\F_2{}_* \OS{H\F_2}{t}}_{*, *}(\F_2, \F_2) \Rightarrow H\F_2{}_* \OS{H\F_2}{t+1}\] form a divided power algebra generated by the same $t$--fold $\circ$--products.  An analogue of another Ravenel--Wilson lemma~\cite[Lemma 9.5]{RavenelWilsonKthyOfEMSpaces} gives a congruence\todo{It's conceivable that this congruence can be repaired to an equality, since the $2$--series for $\G_a$ is so abbreviated.  I have not worked this out.} \[(a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]} \equiv a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})} \pmod{\text{decomposables}}.\] \todo{I'm guessing you mean $*$-decomposables?  In the calculation of the differential below, you can then use multiplicativity to deal with the decomposable terms, right?} It follows from \Cref{CircProductAndDifferentials} that the differentials vanish:
-\begin{align*}
-d((a_{(j_1)} \circ \cdots \circ a_{(j_t)})^{[2^{j_{t+1}}]}) & \equiv d(a_{(j_1)} \circ \cdots \circ a_{(j_t)} \circ a_{(j_{t+1})}) \pmod{\text{decomposables}} \\
-& = a_{(j_1)} \circ d(a_{(j_2)} \circ \cdots \circ a_{(j_{t+1})}) = 0.
-\end{align*}
-Hence, the spectral sequence collapses.  To see that there are no multiplicative extensions, note that the only potentially undetermined multiplications occur as $\ast$--squares of exterior classes.  However, the $\ast$--squaring map is induced by the topological map \[\OS{H\F_2}{t} \xrightarrow{\cdot 2} \OS{H\F_2}{t},\] which is already null on the level of spaces.  It follows that there are no extensions and the induction holds.
-\end{proof}
-
-\begin{corollary}
-It follows that \[H\F_2{}_* \OS{H\F_2}{*} \stackrel\cong\leftarrow \bigoplus_{t=0}^\infty (H_*(\RP^\infty; \F_2))^{\wedge t},\] where $(-)^{\wedge t}$ denotes the $t$\textsuperscript{th} exterior power in the category of Hopf algebras.
-\end{corollary}
-\begin{proof}
-The leftward direction of this isomorphism is realized by the $\circ$--product.
-\end{proof}
-
-\begin{remark}\label{UnstableCoopnsForHF2AndGa}
-Our computation of the full Hopf ring of unstable cooperations can be winnowed down to give information about particular classes of cooperations.  For instance, the \emph{additive} unstable cooperations are given by passing to the $\ast$--indecomposable quotient\todo{Later you use $Q^*$ instead of $Q_*$ to denote $\ast$--indecomposables.  Settle on one of the two.  See also remark 4.16.}
-\begin{align*}
-Q_{\ast} H\F_2{}_* \OS{H\F_2}{*} & \cong \F_2\left\{a_{(I_0)} \circ \cdots \circ a_{(I_t)}\right\} \\
-& \cong \F_2[\xi_0, \xi_1, \xi_2, \ldots].
-\end{align*} \todo{What's $I_0, I_1, \ldots$?}
-In terms of \Cref{SteenrodAlgIdentifiedWithAutGa}, we have \[\Spec Q_{\ast} H\F_2{}_* \OS{H\F_2}{*} \cong \InternalEnd(\G_a).\]  One passes to the \emph{stable} cooperations by taking the colimit along the homology suspension element $a_{(0)} = \xi_0$.\todo{Define what the homology suspension element $e$ is.  The point is that the equivalence $\OS{E}{n} \simeq \Loops \OS{E}{n+1}$ is adjoint to a map $\Susp \OS{E}{n} \to \OS{E}{n+1}$, and the effect of this map on $F$--homology is $\circ$--ing with $e$.}  This has the effect of adjoining a $\circ$--product inverse to $a_{(0)}$, i.e.,\todo{Is this right? What happened to $\mathcal A_*$ versus $\mathcal AP_0$?}
-\begin{align*}
-(Q_{\ast} H\F_2{}_* \OS{H\F_2}{*})[a_{(0)}^{\circ(-1)}] & \cong \F_2[\xi_0^\pm, \xi_1, \xi_2, \ldots],
-\end{align*}
-which is exactly the ring of functions on $\InternalAut(\G_a)$ considered in \Cref{SteenrodAlgIdentifiedWithAutGa}.
-\end{remark}
-
-
-\begin{remark}[{\cite[Theorems 8.5 and 8.11]{Wilson}}]
-The odd--primary analogue of this result appears in Wilson's book.  In that situation, the bar spectral sequences do not degenerate\todo{Explain this. You messed it up in class.} but rather have a single family of differentials, and the result imposes a single relation on the free Hopf ring.  The end result is \[H\F_p{}_* \OS{H\F_p}{*} \cong \frac{\bigotimes_{I, J} \F_p[e_1 \circ \alpha_I \circ \beta^J, \alpha_I \circ \beta^J]}{(e_1 \circ \alpha_I \circ \beta^J)^{\ast 2} = 0, (\alpha_I \circ \beta^J)^{\ast p} = 0, e_1 \circ e_1 = \beta_1},\] where $e_1 \in (H\F_p)_1 \OS{H\F_p}{1}$ is the homology suspension element, $\alpha_{(j)} \in (H\F_p)_{2p^j} \OS{H\F_p}{1}$ are the analogues of the elements considered above, and $\beta_{(j)} \in (H\F_p)_{2p^j} \CP^\infty$ are the algebra generators of the Hopf algebra dual of the ring of functions on the formal group $\CP^\infty_{H\F_p}$ associated to $H\F_p$ by its natural complex orientation.  (In particular, the Hopf ring is \emph{free} on these Hopf algebras, subject to the single interesting relation $e_1 \circ e_1 = \beta_{(0)}$.)\todo{I think this relation is supposed to be analogous to $S^1 \sm S^1 \simeq S^2 = \CP^1$.} \todo{You wrote $\beta^J$ and $\beta_1$ in the display.  What is the relation between $\beta^J$ and $\beta_1$ and $\beta_{(j)}$?  Is $\beta_{(0)} = \beta_1$?}
-\end{remark}
-
-
-
-
-
-\todo{Neil's MO answer about $H_* K(\Z, 3)$: http://mathoverflow.net/a/216041/1094}
-
-%\begin{definition}
-%We spell out some of the Hopf algebra constructions named above.  For a cocommutative $R$--coalgebra $C$, we define its free commutative and cocommutative Hopf $R$--algebra~\cite{Takeuchi} to have underlying algebra \[\frac{\operatorname{SymmetricAlgebra} \left(C \otimes_R (\chi C)\right)}{\left( \begin{array}{c} c \otimes \chi c = 1 \end{array} \right)}\] with diagonal \[\Delta(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \Delta c_1 \otimes \cdots \otimes \Delta c_k \otimes \chi (\Delta c'_1) \otimes \cdots \otimes \chi(\Delta c'_{k'})\] and antipode \[\chi(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \chi c_1 \otimes \cdots \otimes \chi c_k \otimes c'_1 \otimes \cdots \otimes c'_{k'}.\]  Then, given a Hopf $R$--algebra $A$, we define the free Hopf ring~\cite[Definition 4.2, Proposition 2.16]{HuntonTurner} to be \[\left. \bigoplus_{k=0}^\infty A^{\wedge_R k} \middle/ \left(x \wedge y = \sum_i (x'_i \ast y') \wedge (x''_i \ast y'') \middle| \begin{array}{c} y = y' \ast y'', \\ \Delta x = \sum_i x'_i \otimes x''_i \end{array} \right) \right.\] with $\circ$--product given by the natural maps $A^{\wedge_R n} \otimes_R A^{\wedge_R m} \to A^{\wedge_R (n+m)}$.
-%\end{definition}
-
-
-
-
-
-
-
-
-
-
-
-\section{Algebraic unstable cooperations}
 
 One of our goals for this Case Study is to study the mixed unstable cooperations $E_* \OS{G}{2*}$ for complex-orientable cohomology theories $E$ and $G$.  These turn out to behave more regularly than one might expect, in the sense that there is a uniform algebraic model and a comparison map which is often an isomorphism.  In order to formulate what will become our main result, we will need to begin with some algebraic definitions.
 
@@ -350,10 +401,13 @@ Next time, we will investigate $F_* \OS{E}{*}$ in the more modest and concrete s
 
 
 
-\section{Complex-orientable cooperations}\label{COableCoopnsII}
+
+
+\section{Mixed and unmixed unstable cooperations in complex bordism}\label{COableCoopnsII}
 \todo{Jeremy found a paper (Chan's \textit{A simple proof that the unstable (co-)homology of the Brown--Peterson spectrum is torsion-free}, see also Wilson's Primer's Section 10) where $H_* \OS{BP}{2*}$ is proven to be bipolynomial (and even!) without any Hopf ring rigamarole. It looks like the method of proof is not very different from the Hopf ring one, but it's much shorter... and maybe the result will fall out of the Dieudonne module calculations anyhow?  Consider it as an option after you break this lecture in two.}
 \todo{Ravenel and Wilson also tell you how to get a basis of $\ast$--indecomposables, which they call ``allowable'' monomials.  Might be worth mentioning.}
 \citeme{Pages 266--270 of Ravenel--Wilson, especially the bottom of 268.}
+\todo{This section proves Wilson's Thesis Pt 1.  Maybe we should include a remark talking about the consequences he draws from it in Pt 2, including that all nice $p$--local $H$--spaces are actually infinite loopspaces.}
 
 \begin{center}
 \textbf{Convention: We will write $H$ for $H\F_p$ for the duration of the lecture.}
