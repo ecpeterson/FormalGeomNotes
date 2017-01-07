@@ -555,8 +555,7 @@ with $|\xi_j| = 2p^j-2$ and $|\tau_j| = 2p^j - 1$. \qed
 Because of this, we will not feel any guilt for taking a completely alternative approach to this calculation.  This other method, due to Quillen, has as its keystone a completely different kind of cohomology operation called a \textit{power operation}.  These operations are quite technical to describe, but at their core is taking the $n${\th} power of a cohomology class --- and hence they have a frustrating lack of properties, including failures to be additive and to be stable.  Our goal in this Lecture is just to define these cohomology operations, specialized to the particular setting we will need for Quillen's proof.  Unlike with Steenrod operations, their algebro-geometric interpretation will not be immediately accessible to us, and indeed their eventual reinterpretation in these terms will be one of our more hard-won pursuits in this book (cf.\ \Cref{PowerOpnsChapter}).
 
 Power operations arise not just from taking the $n${\th} power of a cohomology class but from also remarking on the natural symmetry of that operation.  We record this symmetry using the following technical apparatus:
-\begin{lemma}
-\citeme{Lurie must show that the monoidal structure on $\CatOf{Spectra}$ is symmetric}
+\begin{lemma}[{\cite[Examples 6.1.4.2 and 6.1.6.2]{LurieHA}}]
 Given a spectrum $E$, its $n$--fold smash power forms a \textit{$\Sigma_n$--spectrum}, in the sense that there is a natural diagram $* \mmod \Sigma_n \to \CatOf{Spectra}$ which selects $E^{\sm n}$ on objects. \qed
 \end{lemma}
 
@@ -567,12 +566,11 @@ Given a spectrum $E$, its $n$--fold smash power forms a \textit{$\Sigma_n$--spec
 (\Susp^\infty_+ X)^{\sm n}_{h\Sigma_n} \arrow["f^{\sm n}_{h\Sigma_n}"]{r} & E^{\sm n}_{h\Sigma_n} \arrow[densely dotted]{ur}[description]{\mu_n}.
 \end{tikzcd}
 \end{center}
-A ring spectrum $E$ equipped with the indicated factorizations $\mu_n$ of the multiplication map which are furthermore compatible with taking products and iterated powers is called an \textit{$H_\infty$ ring spectrum}.
+A ring spectrum $E$ equipped with the indicated factorizations $\mu_n$ of the multiplication map which are furthermore compatible with taking products and iterated powers is called an \textit{$H_\infty$ ring spectrum}~\cite[Definition I.3.1]{BMMS}.
 \todo{This is pretty much the definition of an $H_\infty$ ring spectrum, but this is not enough to extract power operations on positive-degree classes.  There, you want compatible systems of maps like $(\Susp^j E)^{\sm n}_{h\Sigma_n} \to \Susp^{nj} E$.  In general, you get such systems only for all $j$ which are divisible by some fixed $d$, and the resulting mess is called an $H_\infty^d$--structure.  For example, $KU$ has an $H_\infty^2$--structure and $KO$ has an $H_\infty^8$--structure.  My suspicion with Nat is that power operation maps come from applying the power operation functor to the identity class in $[E, E]$, and that the $H_\infty^d$--structures on these two spectra come from applying the power operation functor to the autoequivalence supplied by the relevant Bott element.  Meanwhile, Jeremy keeps telling us that this really has to do with representation spheres: the $n$--fold smash power of $S^j$ ought to be called $S^{j\rho}$ for $\rho$ the permutation representation of $\Sigma_n$.  Being able to identify $S^{j\rho}_{h\Sigma_n}$ with $S^{jn}$ is somehow the main input to an $H_\infty^n$--structure.}
-\citeme{where are $H_\infty$ ring spectra defined, BMMS?}
 The composite \[P^{\Sigma_n}_{\mathrm{ext}}f\co (\Susp^\infty_+ X)^{\sm n}_{h\Sigma_n} \xrightarrow{f^{\sm n}_{h\Sigma_n}} E^{\sm n}_{h\Sigma_n} \xrightarrow{\mu_n} E\] is called the \textit{external $\Sigma_n$--power operation} applied to $f$, and the restriction to the diagonal subspace \[P^{\Sigma_n}f \co \Susp^\infty_+ X \sm \Susp^\infty_+ B\Sigma_n \simeq (\Susp^\infty_+ X)_{h\Sigma_n} \xrightarrow{\Delta_{h\Sigma_n}} (\Susp^\infty_+ X)^{\sm n}_{h\Sigma_n} \xrightarrow{P^{\Sigma_n}_{\mathrm{ext}}f} E\] is called the \textit{(internal) $\Sigma_n$--power operation} applied to $f$.  We can consider it as a cohomology class lying in \[P^{\Sigma_n} f \in E^0(X \times B\Sigma_n).\]
 
-\begin{remark}
+\begin{remark}[{\cite[Definition IV.7.1]{BMMS}}]
 This construction is sometimes referred to as the \textit{total power operation}, since restriction along various classes in $MU_* BC_n$, thought of as functionals on $MU^* BC_n$, give rise to truly internal cohomology operations on $MU^* X$.  For instance, restriction to the basepoint in $BC_n$ gives the $n$--fold cup product $f^{n}$.  More generally, a class $\sigma \in MU_* BC_n$ gives rise to a \textit{restricted power operation} using the Kronecker pairing:
 \begin{center}
 \begin{tikzcd}
@@ -589,20 +587,20 @@ Some properties of this construction are immediately visible --- for instance, i
 \end{tikzcd}
 \end{center}
 This construction is useful when studying composites of power operations: the group $\Sigma_n \wr \Sigma_k$ acts naturally on $(E^{\sm k})^{\sm n}$, and indeed there is an equivalence \[P^{\Sigma_n} \circ P^{\Sigma_k} = P^{\Sigma_n \wr \Sigma_k}.\]  In order to understand these modified power operations more generally, we are motivated to study such maps $\phi$ more seriously.  Some basic constructions are summarized in the following definition:
-\begin{definition}
+\begin{definition}[{\cite[Sections XI.3 and XXV.3]{MayAlaskaNotes}}]
+\citeme{Find a blanket reference for all these cohomology maps.  The Alaska notes don't speak in terms of fancy diagram categories.  Maybe there's a Barwick reference?}
 Let $\phi\co G \to H$ be an inclusion of finite groups and let $F$ be an $H$--spectrum.  There is a natural map of homotopy colimits $\phi_*\co F_{hG} \to F_{hH}$ which induces a \textit{restriction map} on cohomology: \[\Res_G^H\co E^0 F_{hH} \to E^0 F_{hG}.\]  The spectrum $(H/G) \times F$ considered as a $G$--spectrum with the diagonal $G$--action has the property $((H/G) \times F)_{hH} = F_{hG}$, and the $G$--equivariant averaging map \[F \xrightarrow{\displaystyle \sum_{[h] \in H/G} [h] \times (-)} (H/G) \times F\] passes on homotopy orbits to the \textit{additive norm map} $N_G^H\co F_{hH} \to F_{hG}$, which again induces a map on cohomology classes \[\Tr_G^H\co E^0 F_{hG} \to E^0 F_{hH}\] called the \textit{transfer map}.  The composite $\phi_* \circ N_G^H$ acts by multiplication by the index $|H/G|$, and hence this is also true of $\Res^H_G \Tr^H_G$.
 \end{definition}
 
 The restriction and transfer maps appear prominently in the following formula, which measures the failure of the power operation construction to be additive:
-\begin{lemma}[{\cite[Corollary 1.6]{BMMS},~\cite[Proposition A.5, Equation 3.6]{AHSHinfty}}]
+\begin{lemma}[{\cite[Corollary II.1.6]{BMMS},~\cite[Proposition A.5, Equation 3.6]{AHSHinfty}}]
 For cohomology classes $f, g \in E^0 X$, there is a formula\footnote{This should be compared with the classical binomial formula $\frac{1}{n!} (x + y)^n = \sum_{i+j = n} \frac{1}{i!j!} x^i y^j$.} \[P^{\Sigma_n}(f + g) = \sum_{i + j = n} \Tr_{\Sigma_i \times \Sigma_j}^{\Sigma_n}\left(P^{\Sigma_i}(f) \cdot P^{\Sigma_j}(g)\right). \qed\]
 \end{lemma}
 
 \noindent To produce binomial formulas for the modified power operations, we use the following Lemma:
 
-\begin{lemma}
+\begin{lemma}[{\cite[p.\ 109-110]{AdamsInfiniteLoopSpaces}, \cite[Section 6.5]{HKR}}]
 \todo{Nat indicated that there is some kind of transitivity condition here that I am numb to.}
-\citeme{Adams's \textit{Infinite loop spaces}, p.\ 109-110. Also HKR proof of Theorem D}
 Let $G_1, G_2$ be subgroups of $H$, and consider the homotopy pullback diagram
 \begin{center}
 \begin{tikzcd}
@@ -622,7 +620,7 @@ Note that $P^G$ can be defined by means of restriction: $P^G = \Res^{\Sigma_n}_G
 
 Since the only operations we understand so far are stable operations, which are in particular additive, we are moved to find a target for the power operation $P^G$ which kills the ideal generated by the proper transfers yet which remains computable.
 
-\begin{definition}
+\begin{definition}[{\cite[Construction 6.1.6.4, Definition 6.1.6.24]{LurieHA}}]
 Again let $F$ be an $H$--spectrum, and define its \textit{homotopy fixed points} to be the homotopy limit spectrum $F^{hH}$.  The norm map $F_{hH} \to F$ witnesses the trivial $H$--spectrum $F_{hH}$ as a constant cone over the $H$--spectrum $F$, and hence gives a natural factorization $F_{hH} \to F^{hH} \to F$ of the norm.  The cofiber of this first map is denoted $F^{tH}$ and is called the \textit{Tate spectrum} of $F$.  This gives rise to a notion of Tate power operation via
 \begin{center}
 \begin{tikzcd}[row sep=0.2em]
