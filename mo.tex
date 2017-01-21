@@ -459,7 +459,7 @@ We see that mod--$2$ homology can immediately distinguish between the null map a
 \S^0 \arrow{r} & C(0) \arrow{r} & \S^1, & \S^0 \arrow{r} & C(2) \arrow{r} & \S^1.
 \end{tikzcd}
 \end{center}
-Applying homology, these again appear to be the same:
+The homology groups of these spectra $C(0)$ and $C(2)$ are more complicated than just that of $\S^0$, and we will draw them according to the following conventions: each ``$\bullet$'' in the row labelled ``$[j]$'' indicates an $\F_2$--summand in the $j${\th} $H\F_2$--homology of the spectrum.  Applying homology to these cofiber sequences and drawing the results, these again appear to be identical:
 \begin{center}
 \begin{tikzcd}[column sep=1.0em]
 {[1]} & & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet & \arrow[leftarrow]{l} \bullet \\
@@ -468,13 +468,13 @@ Applying homology, these again appear to be the same:
 \end{tikzcd}
 \end{center}
 \todo{It would be nice if the dots aligned directly beneath the spaces in the cofiber sequences above.  This can't be accomplished by a ``column sep'' attribute, since this doesn't control the width of a column but rather its literal separation from its neighbor.  This means finding some kind of ``intertext'' analogue for tikzcd.}
-where we have drawn a ``$\bullet$'' for a generator of an $\F_2$--vector space, graded vertically, and arrows indicating the behavior of each map.  However, if we enrich our picture with the data we discussed last time, we can finally see the difference.  Recall the topological equivalences \[C(0) \simeq \S^0 \vee \S^1, \quad C(2) \simeq \Susp^{-1} \RP^2.\]  In the two cases, the coaction map $\lambda_*$ is given by
+However, if we enrich our picture with the data we discussed in \Cref{TheSteenrodAlgebraSection}, we can finally see the difference.  Recall the topological equivalences \[C(0) \simeq \S^0 \vee \S^1, \quad C(2) \simeq \Susp^{-1} \Susp^\infty \RP^2.\]  In the two cases, the coaction map $\lambda_*$ is given by
 \begin{align*}
 \lambda_*: H\F_{2*} C(0) & \to H\F_{2*} C(0) \otimes \mathcal A_* & \lambda_*: H\F_{2*} C(2) & \to H\F_{2*} C(2) \otimes \mathcal A_* \\
 \lambda^*: e_0 & \mapsto e_0 \otimes 1 & \lambda^*: e_0 & \mapsto e_0 \otimes 1 + e_1 \otimes \xi_1 \\
 \lambda^*: e_1 & \mapsto e_1 \otimes 1, & \lambda^*: e_1 & \mapsto e_1 \otimes 1.
 \end{align*}
-We draw this into the diagram as
+We use a vertical line to indicate the nontrivial coaction involving $\xi_1$:
 \begin{center}
 \begin{tikzcd}[column sep=1.0em]
 {[1]} & & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet \arrow[-, "{\xi_1}" description]{d} & \arrow[leftarrow]{l} \bullet \\
@@ -482,7 +482,9 @@ We draw this into the diagram as
 & H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(0) & \arrow[leftarrow]{l} H\F_{2*} \S^1, & H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(2) & \arrow[leftarrow]{l} H\F_{2*} \S^1,
 \end{tikzcd}
 \end{center}
-where the vertical line indicates the nontrivial coaction involving $\xi_1$.  We can now see what trading maps for cofiber sequences has bought us: mod--$2$ homology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.\todo{Can this be phrased so as to indicate how this works for longer extensions? I've never tried to think about even what happens for $C(4)$.}  The Adams spectral sequence bundles this thought process into a single machine:
+We can now see what trading maps for cofiber sequences has bought us: mod--$2$ homology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.
+\todo{Can this be phrased so as to indicate how this works for longer extensions? I've never tried to think about even what happens for $C(4)$.}
+The Adams spectral sequence bundles this thought process into a single machine:
 \begin{theorem}[{\cite[Definition 2.1.8, Lemma 2.1.16]{RavenelGreenBook}, \cite[Chapter 18]{MosherTangora}}]
 There is a convergent spectral sequence of signature \[\Ext_{\mathcal A_*}^{*, *}(\F_2, \F_2) \Rightarrow (\pi_* \S^0)^\wedge_2. \qed\]
 \end{theorem}
