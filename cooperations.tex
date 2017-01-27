@@ -233,9 +233,9 @@ Under {\UGH}, we have a factorization \[\CatOf{Coalgebras}_{G}(E_* S^t, -) = \Ca
 
 
 
-\todo{BJW: lemma 2.10, questions 2.22 seems relevant}
-\todo{Define what the homology suspension element $e$ is.  The point is that the equivalence $\OS{E}{n} \simeq \Loops \OS{E}{n+1}$ is adjoint to a map $\Susp \OS{E}{n} \to \OS{E}{n+1}$, and the effect of this map on $F$--homology is $\circ$--ing with $e$.}
-\todo{Neil wrote this to tell Chris Schommer--Pries how to compute $H_* K(\Z, 3)$ (http://mathoverflow.net/a/216041/1094), which I think should be included as an exercise here: Given a complex oriented cohomology theory $E$, one can define a formal scheme of Weil pairings on the associated formal group, as explained in the paper "Weil pairings and Morava $K$-theory" by Matthew Ando and me.  If we let $R_E$ denote the ring of functions on this scheme, then there is a natural map $R_E\to E^*K(\mathbb{Z},3)$.  This is an isomorphism if $E$ is Morava $K$-theory or Morava $E$-theory.  I think that it is also an isomorphism for $E=MU$ or $E=kU$ but not for $E=H$.  However, there is a natural short exact sequence
+\todo[inline]{BJW: lemma 2.10, questions 2.22 seems relevant}
+\todo[inline]{Define what the homology suspension element $e$ is.  The point is that the equivalence $\OS{E}{n} \simeq \Loops \OS{E}{n+1}$ is adjoint to a map $\Susp \OS{E}{n} \to \OS{E}{n+1}$, and the effect of this map on $F$--homology is $\circ$--ing with $e$.}
+\todo[inline]{Neil wrote this to tell Chris Schommer--Pries how to compute $H_* K(\Z, 3)$ (http://mathoverflow.net/a/216041/1094), which I think should be included as an exercise here: Given a complex oriented cohomology theory $E$, one can define a formal scheme of Weil pairings on the associated formal group, as explained in the paper "Weil pairings and Morava $K$-theory" by Matthew Ando and me.  If we let $R_E$ denote the ring of functions on this scheme, then there is a natural map $R_E\to E^*K(\mathbb{Z},3)$.  This is an isomorphism if $E$ is Morava $K$-theory or Morava $E$-theory.  I think that it is also an isomorphism for $E=MU$ or $E=kU$ but not for $E=H$.  However, there is a natural short exact sequence
 $$ kU^*K(\mathbb{Z},3)/v \to H^*K(\mathbb{Z},3) \to \text{ann}(v,kU^*K(\mathbb{Z},3)) $$ (where $v$ is the standard generator of $\pi_2kU=kU^{-2}(\text{point})$).  I think that this is probably an effective way to understand $H^*K(\mathbb{Z},3)$. Some other things that are going on in the background here: - There is a fibration $K(\mathbb{Q}/\mathbb{Z},2)\to K(\mathbb{Z},3)\to K(\mathbb{Q},3)$.  Here $K(\mathbb{Q},3)$ is the rationalisation of $S^3$ and is not so hard to understand. - $K(\mathbb{Q}/\mathbb{Z},2)$ is the colimit of the spaces $K(\mathbb{Z}/n,2)$. - One can understand $K(\mathbb{Z}/n,2)$ using the multiplication map $K(\mathbb{Z}/n,1)\times K(\mathbb{Z}/n,1)\to K(\mathbb{Z}/n,2)$.}
 
 % \begin{definition}
@@ -250,57 +250,160 @@ $$ kU^*K(\mathbb{Z},3)/v \to H^*K(\mathbb{Z},3) \to \text{ann}(v,kU^*K(\mathbb{Z
 
 
 
-
-
-
-
-\section{Mixed unstable cooperations and the algebraic approximation}
+\section{Mixed unstable cooperations and their algebraic model}
 
 
 
 \todo[inline]{
 What all needs to be mentioned in this Lecture:
-the meaning of mixed cooperations in terms of descent;
-mixed Hopf rings and the mixed unstable {\FH} condition;
+the mixed unstable {\FH} condition;
 the complex-oriented algebraic approximation.
 }
 
-
-
-
-I think the relevant base-change diagram to consider is something like
+For simplicity, we return to the stable setting of \Cref{StableContextLecture} for a moment.  For an arbitrary spectrum $X$ and ring spectrum $E$, the completion $X^\wedge_E$ is typically a quite poor approximation to $X$ itself.  Though this can be partially mediated by placing hypotheses on $X$, the approximation can always be improved by ``enlarging'' the cohomology theory involved --- namely, selecting a second ring spectrum $F$ and forming the completion $X^\wedge_{E \vee F}$ at the wedge.  This has the following factorization property
 \begin{center}
-\begin{tikzcd}[column sep=2.2cm,row sep=2cm]
-\CatOf{Algebras}_E \arrow{r}{\eta_F} \arrow[leftarrow, shift left=0.20cm]{d}{\eta_E} & \text{$F \circ E$ algebras} \arrow{d} \\
-\CatOf{Spaces} \arrow[leftarrow,shift left=0.20cm]{u} \arrow[shift left=0.20cm]{r}{\eta_F} \arrow[leftarrow, shift right=0.20cm]{r} & \CatOf{Algebras}_F.
+\begin{tikzcd}[row sep=0.2em]
+& & X^\wedge_E \\
+X \arrow{r} \arrow[bend left]{rru} \arrow[bend right]{rrd} & X^\wedge_{E \vee F} \arrow{ru} \arrow{rd} \\
+& & X^\wedge_F,
 \end{tikzcd}
 \end{center}
-A space $X$ gets pushed around this diagram like: up to $E \circ X$, over to $F \circ E \circ X$, down to $F \circ E \circ X$, where it receives a natural map \[F \circ X \to F \circ E \circ X.\]  In the case $E = F$, this is the interesting unit map, i.e., the coaction map.  Probably $\pi_* F \circ E \circ X$ is also the recipient of some map connected to the unstable version of \FH.
-
-
-
-
-I think that the unstable descent object along $E \vee F$ receives a map from a ``split descent object'', along the following lines.  Consider the $1$--simplices in $\sheaf{UD}_{E \vee F}(X)$:
+so that homotopy classes visible in either of $X^\wedge_E$ or $X^\wedge_F$ are therefore also visible in the homotopy of $X^\wedge_{E \vee F}$.  Now consider the descent object $\mathcal D_{E \vee F}(X)$ and its layers $\mathcal D_{E \vee F}(X)[n]$:
 \begin{align*}
-(F \vee E) \circ (F \vee E) \circ X & \simeq F \circ (F \vee E) \circ X \times E \circ (F \vee E) \circ X \\
-& \simeq F \circ (F \circ X \times E \circ X) \times E \circ (F \circ X \times E \circ X) \\
-& \from (F \circ F \circ X \times F \circ E \circ X) \times (E \circ F \circ X \times E \circ E \circ X),
+\mathcal{UD}_{E \vee F}(X)[n] & = (E \vee F)^{\sm (n+1)} \sm (X) \\
+& \simeq (E^{\sm (n+1)} \sm X) \vee (F^{\sm (n+1)} \sm X) \vee \bigvee_{\substack{i+j=n+1 \\ i \ne 0 \ne j}} (E^{\sm i} \sm F^{\sm j} \sm X)^{\vee \binom{n}{i,j}}.
 \end{align*}
-where the last map is a K\"unneth-type map...?  (Actually, I'm not so sure about this now. I thought that having K\"unneth isomorphisms would mean that there would be an equivalence $E \circ (X \times Y) \simeq E \circ X \times E \circ Y$, but now I'm skeptical.  I think there's a map leftward of sets, but this isn't big enough: the Cartesian product of groups is (often) much smaller than the tensor product.)
+In the edge cases of $i = 0$ or $j = 0$, we can identify the descent objects $\mathcal D_E(X)$ and $\mathcal D_F(X)$ as sub-cosimplicial objects of $\mathcal D_{E \vee F}(X)$.  The role of the cross-terms at the end of the expression is to prevent the completion at $E \vee F$ from double-counting the parts of $X$ already simultaneously visible to the completions at $E$ and at $F$ --- i.e., the cross-terms handle communication between $E$ and $F$.\footnote{From the perspective of spectral shemes, you might think of the descent object for $E \vee F$ as that coming from the joint cover $\{\S \to E, \S \to F\}$, and these cross-terms correspond to the scheme-theoretic intersection of $E$ and $F$ over $\S$.}
+
+There is a similar (but algebraically murkier) story for the unstable descent object formed at a wedge of two ring spectra.  Let $X$ now be a space, and consider the first two layers of $\mathcal{UD}_{E \vee F}(X)$:
+\begin{align*}
+\mathcal{UD}_{E \vee F}(X)[0] & = (E \vee F)(X) = E(X) \times F(X), \\
+\mathcal{UD}_{E \vee F}(X)[1] & = (E \vee F)(E(X) \times F(X)) = E(E(X) \times F(X)) \times F(E(X) \times F(X)).
+\end{align*}
+Consider just first factor, $E(E(X) \times F(X))$.  The homotopy of this object receives a bilinear map from $\pi_* E(E(X)) \times \pi_* E(F(X))$, and if E has K\"unneth isomorphisms then the induced map off of the tensor product is an equivalence.  Again, we can identify the $E(E(X))$ part of this expression as belonging to $\mathcal{UD}_E(X)[1]$, and there is a cross-term $E(F(X))$ accounting for the shared information with $F$.  The other term also contains information present in $\mathcal{UD}_F(X)[1]$ and a cross-term $F(E(X))$ accounting for shared information with $E$.  In order to understand how these cross-terms affect the reconstruction process, it is useful to identify what they are at the level of the unstable context: \[\sheaf O(\Ucontext{E \vee F}(S^n)[1]) \leftarrow \pi_* F(E(S^n)) = F_* \OS{E}{n},\] and as $n$ ranges these again form a Hopf ring.
+
+\begin{definition}
+We will refer to $F_*(\OS{E}{*})$ as the \textit{Hopf ring of mixed unstable cooperations} (from $F$ to $E$) or the \textit{topological Hopf ring} (from $F$ to $E$).
+\end{definition}
+
+We thus set about trying to understand the Hopf rings $F_*(\OS{E}{*})$ in general.  In our computational example in \Cref{UnstableContextsSection}, we found that the topological Hopf ring $H\F_2{}_*(\OS{H\F_2}{*})$ modeled endomorphisms of the additive formal group after passing to a suitable quotient, and we will take this as inspiration to construct an algebraic model, or ``expected answer'', approximating the topological Hopf ring.
+
+We approach this problem in stages.  To start, note that homotopy elements both of $F$ and of $E$ can be used to contribute elements to the topological Hopf ring: an element $f \in F_n$ begets a family of natural elements $f_m \in F_n \OS{E}{m}$, and an element $e \in E^n = \pi_0 \OS{E}{n}$ begets an element $[e] \in F_0 \OS{E}{n}$ by Hurewicz.  The interaction of these rings $F_*$ and $E^*$ is captured in the following definition:
+
+\begin{definition}[{\cite[pg.\ 706]{RavenelWilsonKthyOfEMSpaces}}]
+Let $R$ and $S$ be graded rings.  The \textit{Hopf ring--ring} $R[S]$ forms a Hopf ring over $R$: as an $R$--module, it is free and generated by symbols $[s]$ for $s \in S$, and the ring structure on $S$ is promoted up a level to become the Hopf ring operations.  Explicitly, the Hopf ring structure maps $\ast$, $\circ$, $\chi$, and $\Delta$ are determined by the formulas
+\begin{align*}
+R[S] \otimes_R R[S] & \xrightarrow{\ast} R[S] & [s] \ast [s'] & = [s + s'], \\
+R[S] \otimes_R R[S] & \xrightarrow{\circ} R[S] & [s] \circ [s'] & = [s \cdot s'], \\
+R[S] & \xrightarrow{\chi} R[S] & \chi [s] & = [-s], \\
+R[S] & \xrightarrow{\Delta} R[S] \otimes_R R[S] & \Delta [s] & = [s] \otimes [s].
+\end{align*}
+\end{definition}
+
+\begin{lemma}[{\cite[pg.\ 706]{RavenelWilsonKthyOfEMSpaces}}]
+There are natural maps of Hopf rings \[F_*[E^*] \to F_*(\OS{E}{*}) \to F_*[E^*]\] augmenting the topological Hopf ring over the Hopf ring--ring. \qed
+\end{lemma}
+
+Supposing that $E$ and $F$ are complex-orientable, we now seek to involve their formal groups.  The construction we are about to undertake is a variation on the proof of \Cref{ConstructionTangentAffineScheme}, which is itself a variation of a more general result in the theory of formal schemes:
+\begin{lemma}[{\cite[Proposition 2.94]{StricklandFSFG}}]
+Let $X$ and $Y$ be schemes over $S = \Spec R$, such that $\sheaf O_X$ forms a finite and free $R$--module.  There is then a mapping scheme $M$, such that points $f \in M(A)$ naturally biject with maps $f\co X \times_S \Spec A \to Y \times_S \Spec A$. \qed
+\end{lemma}
+
+\noindent The mode of proof of this result is to form the symmetric $R$--algebra on the $R$--module $\sheaf O_Y \otimes_R \sheaf O_X^*$, then quotient by the relations encoding multiplicativity of functions.  These are the same steps we will take to form a Hopf ring embodying homomorphisms of formal groups $\CP^\infty_F \to \CP^\infty_E$.
+
+\begin{definition}\label{DefnAlgebraicModelOfCoopns}
+\todo[inline]{We want to define a variation of the free Hopf ring on a coalgebra construction~\cite[Equation 1.17]{RavenelWilsonHopfRingForMU} where two Hopf algebras (over $F_*$ and over $E^*$) are permitted.  Then, we want to impose the relations required to get a multiplicative and diagonal-preserving map.}
+\todo[inline]{Come up with a good name for this guy.  He's some kind of mapping scheme.  There's a better name than $F_*^R \OS{E}{*}$!!}
+\end{definition}
+
+\begin{lemma}
+There is a natural map \[F_*[E^*][F_* \CP^\infty, E^* \CP^\infty] \to F_*(\OS{E}{*}),\] and it factors through the equivalence relation imposed in \Cref{DefnAlgebraicModelOfCoopns}.
+\end{lemma}
+\begin{proof}
+The natural map arises as follows: for a class $f \in \pi_n F(\CP^\infty)$ and a class $e\co \CP^\infty \to \OS{E}{m}$, we can compose the two to produce an element $e_*(f) \in \pi_n F(\OS{E}{m})$.  Universality thus gives a map of Hopf rings $F_*[E^*][F_* \CP^\infty, E^* \CP^\infty] \to F_*(\OS{E}{*})$.
+
+\todo[inline]{Finish the second half of this proof.}
+\end{proof}
 
 
 
 
 
 
-One can modify this story in a number of minor ways.
+
+
+
+
+
+
+
+
+
+
+\todo[inline]{This following Lemma could use revision: somehow the real thing we want to do is check that this $\beta$--relation is the only thing left over after performing the algebra-map (but not yet coalgebra-map) relations from above.}
+\begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}, \cite[Theorem 9.7]{Wilson}}]\label{UnstableRWRelation}
+After choosing complex orientations of $E$ and $F$, there is a natural morphism of Hopf rings
+\todo{This equation is missing a left-hand side because we haven't settled on notation yet.}
+\[F_*[E^*][F_* \CP^\infty] / (\beta(s +_F t) = \beta(s) +_{[E]} \beta(t)) \to F_*(\OS{E}{*}),\] where the equation is of power series and the equality is imposed term-by-term on the Hopf ring.  The formal sum $\beta(s)$ is given by $\beta(s) = \sum_j \beta_j x^j$, where $\beta_j$ is dual to the $j${\th} power of the coordinate in $F^* \CP^\infty$, and the formal group law expressions expand to
+\begin{align*}
+\beta(s +_F t) & = \sum_n \beta_n \left(\sum_{i, j} a_{ij}^F s^i t^j \right)^n, \\
+\beta(s) +_{[E]} \beta(t) & = \bigast_{i, j} \left([a_{ij}^E] \circ \left( \sum_k \beta_k s^k \right)^{\circ i} \circ \left( \sum_\ell \beta_\ell t^\ell \right)^{\circ j} \right).
+\end{align*}
+\end{lemma}
+\begin{proof}[Proof sketch]
+This is a matter of calculating the behavior of \[\CP^\infty \times \CP^\infty \xrightarrow{\mu} \CP^\infty \xrightarrow{x} \OS{E}{2}\] in two different ways: using the effect of $\mu$ in $F$--homology and pushing forward in $x$, or using the effect of $\mu$ in $E$--cohomology and pushing forward along the Hurewicz map $\S \to F$.
+\end{proof}
+
+
+
+Finally, we are able to explain the phenomenon uncovered by computation in \Cref{UnstableContextsSection}, where we passed to the $\ast$--indecomposables to find the classical ring of functions on the endomorphism scheme of $\G_a$.  This arises out of two parallel questions:
+\begin{enumerate}
+	\item What does the Hopf ring above corepresent, considered as a functor on Hopf rings?
+	\item How does this functor interact with classical rings?
+\end{enumerate}
+There is in fact an embedding of $\CatOf{Rings}$ into $\CatOf{HopfRings}$, analogous to the square-zero extension functor sending an abelian group $A$ to the augmented algebra $Z \oplus A$ with trivial multiplication on $A$.
+
+\begin{definition}
+For a ring $R$, the $\ast$--square--zero Hopf ring $iR$ has underlying abelian group $\Z \oplus R$, and for an element $r \in R$ we write $[r] = (0, r)$ for the corresponding element in $iR$.  The Hopf ring structure maps are then determined by the formulas
+\begin{align*}
+\chi[r] & = [-r], &
+\eps([r]) & = 1, &
+\eta(1) & = 1, &
+\Delta [r] & = [r] \otimes 1 + 1 \otimes [r], \\
+[r] \ast [r'] & = 0, &
+[r] \circ [r'] & = [rr'], &
+[r] \ast 1 & = [r], &
+[r] \circ 1 & = [r].
+\end{align*}
+\end{definition}
+
+\begin{lemma}
+There is an adjunction \[\CatOf{Rings}(Q^* S, R) = \CatOf{HopfRings}(S, iR). \qed\]
+\end{lemma}
+
+\begin{corollary}
+Using $i$ to embed $\CatOf{Rings}$ into $\CatOf{HopfRings}$, the functor corepresented by the algebraic Hopf ring evaluates on classical rings to give \[\CatOf{HopfRings}(???, iR) = \CatOf{Rings}(Q^* ???, R) = \InternalHom{FormalGroups}(\CP^\infty_F, \CP^\infty_E)(R). \qed\]
+\end{corollary}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{remark}
 One can restrict to the \emph{additive} unstable cooperations by passing to the quotient $Q^\ast E_* \OS{E}{*}$.  These corepresent the morphisms in a cocategory object in $\CatOf{Rings}$ (using the $\circ$--product for multiplication, which descends to $\ast$--indecomposables).  The ring $E_*$ corepresents the objects in this cocategory object.\todo{A lot of the homological algebra of unstable comodules exists only after passing to this quotient.  Try to explain why.}\todo{Explain this Remark, really. (1) Why does passing to the indecomposables project onto the additive cooperations? This should be thought of as an operation dual to restricting to the primitive unstable \emph{operations}. (2) Why a cocategory object?}\todo{Maybe put in the unstable $\subseteq$ unstable additive $\subseteq$ stable diagram? Talk about examples of these three things in, say, mod--$2$ homology?  Talk about homology suspension on this day, and make clear the comparison to the stable situation.}
-\end{remark}
-
-\begin{remark}
-The procedure in \Cref{HopfRingFromOneRingSpectrum} can be generalized to the case of \emph{two} ring spectra, $E$ and $F$, equipped with K\"unneth isomorphisms \[E_*(\OS{F}{m} \times \OS{F}{n}) \cong E_*(\OS{F}{m}) \otimes_{E_*} E_*(\OS{F}{n}).\]  Again, the bigraded object $E_* \OS{F}{*}$ forms a Hopf ring.  These ``mixed cooperations'' appear as part of the cooperations for the ring spectrum $E \vee F$ --- or, from the perspective of spectral shemes, for the joint cover $\{\S \to E, \S \to F\}$.  The role of the mixed cooperations in this setting is to prevent the $(E \vee F)$--based unstable Adams spectral sequence from double-counting homotopy elements visible to both the unstable $E$-- and $F$--completions.\todo{I feel that this can be used to take an unstable comodule for $E$--theory and produce from it an unstable comodule for $F$--theory (up to a wrong-way map).  Martin Bendersky thought this was strange, but I don't think it's so odd, and I would like to understand how to straighten it out.}
 \end{remark}
 
 \todo{Does ``Cartesian'' mean anything in this setting?}
@@ -316,24 +419,8 @@ The procedure in \Cref{HopfRingFromOneRingSpectrum} can be generalized to the ca
 
 
 
-One of our goals for this Case Study is to study the mixed unstable cooperations $E_* \OS{G}{2*}$ for complex-orientable cohomology theories $E$ and $G$.  These turn out to behave more regularly than one might expect, in the sense that there is a uniform algebraic model and a comparison map which is often an isomorphism.  In order to formulate what will become our main result, we will need to begin with some algebraic definitions.
 
-\begin{definition}
-Let $R$ and $S$ be graded rings.  We can form a Hopf ring over $R$ by forming the ``ring--ring'' $R[S]$: as an $R$--module, this is free and generated by symbols $[s]$ for $s \in S$.  The Hopf ring maps $\ast$, $\circ$, and $\Delta$ are determined by the formulas
-\begin{align*}
-R[S] \otimes_R R[S] & \xrightarrow{\ast} R[S] & [s] \ast [s'] & = [s + s'], \\
-R[S] \otimes_R R[S] & \xrightarrow{\circ} R[S] & [s] \circ [s'] & = [s \cdot s'], \\
-R[S] & \xrightarrow{\Delta} R[S] \otimes_R R[S] & \Delta [s] & = [s] \otimes [s].
-\end{align*}
-For instance, the distributivity axiom is checked in the calculation
-\begin{align*}
-[s''] \circ ([s] \ast [s']) & = ([s''] \circ [s]) \ast ([s''] \circ [s']) \\
-[s''] \circ [s + s'] & = \\
-[s''(s + s')] & = \\
-& = [s'' s] \ast [s'' s'] \\
-& = [s'' s + s'' s'].
-\end{align*}
-\end{definition}
+
 
 \begin{definition}
 Let $C$ be an $R$--coalgebra, and let $S$ be an auxiliary ring.  We can form a free Hopf ring $R[S][C]$ on $C$ under $R[S]$, which has the property \[\CatOf{HopfRings}_{R[S]/}(R[S][C], T) \cong \CatOf{Coalgebras}_{R/}(C, T).\]  In terms of elements, it is an $R$--module spanned by $R[S]$ and $C$, as well as free $\ast$-- and $\circ$--products of elements of $C$, altogether subjected to the Hopf ring relations.
@@ -343,37 +430,16 @@ Let $C$ be an $R$--coalgebra, and let $S$ be an auxiliary ring.  We can form a f
 Given an $R$--coalgebra $C$, we can form the free commutative Hopf algebra on $C$ by taking its associated symmetric algebra.  This is a degenerate case of a free Hopf ring construction, where $S$ is taken to be the zero ring.
 \end{remark}
 
-Now we turn our eyes to topology.  Let $E$ and $F$ be two complex-orientable cohomology theories where $F$ has enough K\"unneth isomorphisms\todo{What does this mean specifically, again?}.  Set $R = F_*$, $S = E_*$, and $C = F_* \CP^\infty$ to form the free Hopf ring $R[S][C] = F_*[E_*][F_* \CP^\infty]$.
-\begin{lemma}
-Orientations of $E$ induce maps $F_*[E^*][F_* \CP^\infty] \to F_* \OS{E}{*}$. \todo{You're not very consistent with $F_*[E_*]$ vs.\ $F_*[E^*]$.}
-\end{lemma}
-\begin{proof}
-To construct this map using universal properties, we need to check that $F_* \OS{E}{*}$ is a Hopf ring under $F_*[E^*]$, and then we need to produce a map $F_* \CP^\infty \to F_*[E^*]$.  For the first task, $F_* \OS{E}{*}$ is already an $F_*$--module.  An element $v \in E^n$ \todo{This means $\pi_{-n} E$, right?} corresponds to a path component $[v] \in \pi_0 \OS{E}{n}$, which pushes forward along \[\pi_0 \OS{E}{n} \to F_0 \OS{E}{n}\] to give an element $[v] \in F_0 \OS{E}{n}$.  One can check that this determines a map of Hopf rings $F_*[E^*] \to F_* \OS{E}{*}$.
 
-Next, we will use our assumed data of orientations.  The complex-orientation of $E$ gives a preferred class $\CP^\infty \to \OS{E}{2}$, representing the coordinate $x \in E^2 \CP^\infty$.  By applying $F$--homology to this representing map, we get a map of $F_*$--coalgebras \[F_* \CP^\infty \to F_* \OS{E}{2} \subseteq F_* \OS{E}{*}.\]  Universality gives the desired map of Hopf rings.
-\end{proof}
 
-There is no reason to expect $F_* \OS{E}{*}$ to be a free Hopf ring, and so it would be naive to expect this map to be an equivalence.  Indeed, Ravenel and Wilson show that orientations of $E$ and $F$ together beget an interesting relation.  An orientation on $E$ gives us a comparison map as above, and an orientation on $F$ gives a collection of preferred elements $\beta_j \in F_{2j} \CP^\infty$.  Their result is to show that these elements are subject to the formal group laws \emph{both} of $F$ and of $E$:
-\begin{theorem}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}, \cite[Theorem 9.7]{Wilson}}]\label{UnstableRWRelation}
-Write $\beta(s)$ for the formal sum $\beta(s) = \sum_j \beta_j x^j$.  Then, in $F_* \OS{E}{*}\ps{s, t}$, there is an equation \[\beta(s +_F t) = \beta(s) +_{[E]} \beta(t),\] where
-\begin{align*}
-\beta(s +_F t) & = \sum_n \beta_n \left(\sum_{i, j} a_{ij}^F s^i t^j \right)^n, \\
-\beta(s) +_{[E]} \beta(t) & = \bigast_{i, j} \left([a_{ij}^E] \circ \left( \sum_k \beta_k s^k \right)^{\circ i} \circ \left( \sum_\ell \beta_\ell t^\ell \right)^{\circ j} \right).
-\end{align*}
-\end{theorem}
-\begin{proof}[Proof sketch]
-This is a matter of calculating the behavior of \[\CP^\infty \times \CP^\infty \xrightarrow{\mu} \CP^\infty \xrightarrow{x} \OS{E}{2}\] in two different ways: using the effect of $\mu$ in $F$--homology and pushing forward in $x$, or using the effect of $\mu$ in $E$--cohomology and pushing forward along the Hurewicz map $\S \to F$.
-\end{proof}
 
-Altogether, this motivates our algebraic model for the Hopf ring of unstable cooperations:
 
-\begin{definition}\label{ComparisonMapInCOUnstableCoopns}
-\todo{There is probably a natural map to the scheme of homomorphisms that doesn't require picking a coordinate.}
-\todo{I don't like the upper-$R$ notation.  Having a scheme theoretic description of this object should let us pick a better name.  I'm also unhappy that ``mixed unstable cooperations'' is an achiral name, meaning it doesn't indicate which object is the spectrum and which is the infinite loopspace.}
-Define $F_*^R \OS{E}{*}$ to be the quotient of $F_*[E^*][F_* \CP^\infty]$ by the relation above.  There is a natural \textit{comparison map} \[F_*^R \OS{E}{*} \to F_* \OS{E}{*}.\] 
-\end{definition}
 
-We will show that for many such $E$ and $G$ this map is an isomorphism.  Before embarking on this, however, we would like to explore the connection to formal groups suggested by the formula in \Cref{UnstableRWRelation}.  Note that the Hopf ring-ring $R[S]$ has a natural augmentation given by $[s] \mapsto 1$, so that $\<s\> = [s] - [0]$ form a generating set of the augmentation ideal.
+
+
+
+
+Note that the Hopf ring-ring $R[S]$ has a natural augmentation given by $[s] \mapsto 1$, so that $\<s\> = [s] - [0]$ form a generating set of the augmentation ideal.
 \begin{lemma}\label{ArithmeticInQAst}
 In the $\ast$--indecomposable quotient $Q^* R[S]$ \todo{I'm confused about the $\ast$--indecomposable quotient.  For example, is the expression $[s] \ast [s']$ you write below equal to zero?  In fact, why isn't everything zero: $[x] = [x - y] \ast [y] \equiv 0$?  Normally you look at products of elements of positive degree, but what does this mean in this case?}, there are the formulas
 \begin{align*}
