@@ -297,70 +297,127 @@ There are natural maps of Hopf rings \[F_*[E^*] \to F_*(\OS{E}{*}) \to F_*[E^*]\
 \end{lemma}
 
 Supposing that $E$ and $F$ are complex-orientable, we now seek to involve their formal groups.  The construction we are about to undertake is a variation on the proof of \Cref{ConstructionTangentAffineScheme}, which is itself a variation of a more general result in the theory of formal schemes:
-\begin{lemma}[{\cite[Proposition 2.94]{StricklandFSFG}}]
+\begin{lemma}[{\cite[Proposition 2.94]{StricklandFSFG}}]\label{MappingSchemeStatement}
 Let $X$ and $Y$ be schemes over $S = \Spec R$, such that $\sheaf O_X$ forms a finite and free $R$--module.  There is then a mapping scheme $M$, such that points $f \in M(A)$ naturally biject with maps $f\co X \times_S \Spec A \to Y \times_S \Spec A$ of $A$--schemes. \qed
 \end{lemma}
 
 \noindent The mode of proof of this result is to form the symmetric $R$--algebra on the $R$--module $\sheaf O_Y \otimes_R \sheaf O_X^*$, then quotient by the relations encoding multiplicativity of functions.  These are the same steps we will take to form a Hopf ring embodying homomorphisms of formal groups $\CP^\infty_F \to \CP^\infty_E$.
 
 \begin{definition}[{cf.\ \cite[Equation 1.17]{RavenelWilsonHopfRingForMU}}]\label{DefnAlgebraicModelOfCoopns}
-Given a coaugmented $R$--coalgebra $A$ and an augmented $S$--algebra $B$, we form the \textit{free relative Hopf $R[S]$--ring} $A_{R[S]}[B]$ generated under the Hopf ring operations by symbols $a[b]$ for $a \in A$, $b \in B$, according to the atomic rules
+Given a $R$--coalgebra $A$ and an $S$--algebra $B$, we form the \textit{free relative Hopf $R[S]$--ring} $A_{R[S]}[B]$ generated under the Hopf ring operations by symbols $a[b]$ for $a \in A$, $b \in B$, according to the atomic rules
 \begin{align*}
 A_{R[S]}[B] \otimes_R A_{R[S]}[B] & \xrightarrow{\ast} A_{R[S]}[B] &
 a[b] \ast a'[b'] & = (a \ast a') [b + b'], \\
 A_{R[S]}[B] \otimes_R A_{R[S]}[B] & \xrightarrow{\circ} A_{R[S]}[B] &
 a[b] \circ a'[b'] & = (a \circ a') [b b'], \\
 A_{R[S]}[B] & \xrightarrow{\chi} A_{R[S]}[B] &
-\chi(a[b]) & = (\chi a)[-b], \\
+\chi(a[b]) & = (\chi a)[b] = a[-b], \\
 A_{R[S]}[B] & \xrightarrow{\Delta} A_{R[S]}[B] &
-\Delta(a[b]) & = (\Delta a)([b] \otimes [b]).
+\Delta(a[b]) & = \sum_j (a'_j[b] \otimes a''_j[b]),
 \end{align*}
-Now assume further that $A$ is a Hopf $R$--algebra and $B$ is a Hopf $S$--algebra, so that the multiplication on $A$ and the comultiplication on $B$ have not yet been used in the formation of $A_{R[S]}[B]$.  We define $A_{R[S]}^{\circ = \Delta} B$ to be the quotient Hopf ring where for each $a', a'' \in A$ and $b \in B$ with $\Delta b = \sum_j b'_j \otimes_{E^*} b''_j$ we enforce the additional relation \[\bigast_j (a'[b'_j] \circ a''[b''_j]) = (a'a'')[b].\]
+where $\Delta(a) = \sum_j a'_j \otimes_{F_*} a''_j$.  There are two additional families of relations we might impose:
+\begin{enumerate}
+    \item For $a \in A$ and $b', b'' \in B$, we devise the relation \[\sum_j (a'_j[b'] \circ a''_j[b'']) = a[b'b'']\] as an analogue of the multiplicativity relation imposed in \Cref{MappingSchemeStatement}.
+    \item For $a \in A$, we devise the relation \[a[\eta(1)] = \eps(a)\] as an analogue of the unitality relation imposed in \Cref{MappingSchemeStatement}.
+    \item Assume further that the coalgebra $A$ is coaugmented and that the algebra $B$ is augmented.  We can then consider the pointedness relation \[(\eta(1))[b] = [\eps(b)].\]
+    \item Finally, assume the entire structure of a Hopf $R$--algebnra on $A$ and of a Hopf $S$--algebra on $B$.  For each $a', a'' \in A$ and $b \in B$ with diagonal $\Delta b = \sum_j b'_j \otimes b''_j$, we can consider the homomorphism relation \[(a'a'')[b] = \bigast_j (a'[b'_j] \circ a''[b''_j]).\]
+\end{enumerate}
+We denote the result of imposing all of these relations on $A_{R[S]}[B]$ as $A_{R[S]}^{\circulatearrows}[B]$.
 \end{definition}
 
 \begin{lemma}
-There is a natural map \[(F_* \CP^\infty)_{F_*[E^*]}[E^* \CP^\infty] \to F_*(\OS{E}{*}),\] and it factors through the equivalence relation imposed in \Cref{DefnAlgebraicModelOfCoopns}.
+There is a natural map \[(F_* \CP^\infty)_{F_*[E^*]}^{\circulatearrows}[E^* \CP^\infty] \to F_*(\OS{E}{*}).\]
 \end{lemma}
 \begin{proof}
-We construct a Kronecker-type pairing \[\<-,-\>\co F_n \CP^\infty \times E^m \CP^\infty \to F_n(\OS{E}{m})\] as follows: given a class $f \in \pi_n F(\CP^\infty)$ and a class $e\co \CP^\infty \to \OS{E}{m}$, we can compose the two to produce an element $e_*(f) \in \pi_n F(\OS{E}{m})$.  Universality thus gives a map of Hopf rings $(F_* \CP^\infty)_{F_*[E^*]}[E^* \CP^\infty] \to F_*(\OS{E}{*})$.  The second assertion follows the duality property of (the above enhanced version of) the Kronecker pairing: the map $\mu\co \CP^\infty \times \CP^\infty \to \CP^\infty$ induces two maps
+For any space $X$, we construct a Kronecker-type pairing \[\<-,-\>\co F_n Z \times E^m Z \to F_n(\OS{E}{m})\] as follows: given a class $f \in \pi_n F(X)$ and a class $e\co X \to \OS{E}{m}$, we can compose the two to produce an element $e_*(f) \in \pi_n F(\OS{E}{m})$.  This pairing is ``bilinear'' in the following senses:
 \begin{align*}
-\mu_*\co & (F_* \CP^\infty)^{\otimes_{F_*} 2} \to F_* \CP^\infty, \\
-\mu^*\co & E^* \CP^\infty \to (E^* \CP^\infty)^{\otimes_{E_*} 2},
+\<a' + a'', b\> & = \<a', b\> + \<a', b\>, &
+\<f \cdot a, b\> & = f \cdot \<a, b\>, \\
+\<a, b' + b''\> & = \<a, b'\> \ast \<a, b''\>, &
+\<a, e \cdot b\> & = [e] \circ \<a, b\>.
 \end{align*}
-and we have the identity \[\<\mu_* (a' \otimes a''), b\> = \<a \otimes a'', \mu^* b\>.\]  Rewriting this in the above language reveals exactly the equation \[(a' a'')[b] = \bigast_j (a'[b'_j] \circ a''[b''_j]). \qedhere\]
+Universality thus gives a map of Hopf rings $(F_* X)_{F_*[E^*]}[E^* X] \to F_*(\OS{E}{*})$.  Specializing to $X = \CP^\infty$, the factorization of this map through the indicated Hopf ring quotient follows the duality property of this enhanced Kronecker pairing.  Namely, the following four maps induce four commutative diagrams:
+\begin{align*}
+(\Delta\co \CP^\infty \to \CP^\infty \times \CP^\infty) & \leadsto
+\left(
+\begin{tikzcd}[ampersand replacement=\&]
+\& F(\CP^\infty \times \CP^\infty) \arrow["F(\omega)"]{r} \& F(\OS{E}{m}) \\
+S^n \arrow["\sigma"]{r} \arrow["F(\Delta)_* \sigma"]{ru} \& F(\CP^\infty) \arrow["F(\Delta)"]{u} \arrow["F(\Delta^* \omega)"']{ru}
+\end{tikzcd}
+\right), \\
+(\mu\co \CP^\infty \times \CP^\infty \to \CP^\infty) & \leadsto
+\left(
+\begin{tikzcd}[ampersand replacement=\&]
+S^n \arrow["\sigma"]{r} \arrow["F(\mu)_* \sigma"']{rd} \& F(\CP^\infty \times \CP^\infty) \arrow["F(\mu)"]{d} \arrow["F(\mu^* \omega)"]{rd} \\
+\& F(\CP^\infty) \arrow["F(\omega)"]{r} \& F(\OS{E}{m})
+\end{tikzcd}
+\right), \\
+(\eps\co \CP^\infty \to *) & \leadsto
+\left(
+\begin{tikzcd}[ampersand replacement=\&]
+\& F(*) \arrow["F(\omega)"]{r} \& F(\OS{E}{m}) \\
+S^n \arrow["\sigma"]{r} \arrow["F(\eps)_* \sigma"]{ru} \& F(\CP^\infty) \arrow["F(\eps)"]{u} \arrow["F(\eps^* \omega)"']{ru}
+\end{tikzcd}
+\right), \\
+(\eta\co * \to \CP^\infty) & \leadsto
+\left(
+\begin{tikzcd}[ampersand replacement=\&]
+S^n \arrow["\sigma"]{r} \arrow["F(\eta)_* \sigma"']{rd} \& F(*) \arrow["F(\eta)"]{d} \arrow["F(\eta^* \omega)"]{rd} \\
+\& F(\CP^\infty) \arrow["F(\omega)"]{r} \& F(\OS{E}{m})
+\end{tikzcd}
+\right),
+\end{align*}
+and these diagrams respectively witness the relations
+\begin{align*}
+\<\Delta_* a, b' \otimes b''\> & = \<a, \Delta^*(b' \otimes b'')\>, &
+\<\mu_*(a' \otimes a''), b\> & = \<a' \otimes a'', \mu^* b\>, \\
+\<\eps_* 1, b\> & = \<1, \eps^* b\>, &
+\<\eta_* 1, b\> & = \<1, \eta^* b\>. \\
+\intertext{The Kronecker pairings are related to the K\"unneth isomorphisms for $F_*(\CP^\infty \times \CP^\infty)$ and $E^*(\CP^\infty \times \CP^\infty)$ by the product formula \[\<a' \otimes a'', b' \otimes b''\> = \<a', b'\> \circ \<a'', b''\>.\]  Hence, writing $\Delta_* a = \sum_j a_j' \otimes a_j''$ and $\mu^* b = \sum_j b'_j \otimes b''_j$, these relations become exactly the equations}
+\sum_j (a'_j[b'] \circ a''_j[b'']) & = a[b'b''], &
+(a' a'')[b] & = \bigast_j (a'[b'_j] \circ a''[b''_j]), \\
+(\eta(1))[b] & = [\eps(b)], &
+a[\eta(1)] & = \eps(a).
+\qedhere
+\end{align*}
 \end{proof}
 
-The main theme of this Case Study is that this induced map off of the quotient is very often an isomorphism (and, in turn, that the theory of formal group laws also captures everything about the theory of unstable cooperations).  Because we will be carrying this algebraic model around with us, we will pause to give it a name.
+The main theme of this Case Study is that this induced map off of the quotient is very often an isomorphism (and, in turn, that the theory of formal groups also captures everything about the theory of unstable cooperations).  Because we will be carrying this algebraic model around with us, we pause to give it a name.
 
 \begin{definition}
-\todo{This notation is still bad.  So, possibly, is the ``${}^{\circ = \Delta}$'' notation used above.  That one at least suggests that it has something to do with homomorphisms (very vaguely), but this generic name doesn't do that at all.}
-For $F$ and $E$ ring spectra, we define their \textit{algebraic Hopf ring} $\AA(F, E)$ (or \textit{algebraic approximation}) by \[\AA(F, E) = (F_* \CP^\infty)_{F_*[E^*]}^{\circ = \Delta}[E^* \CP^\infty].\]
+For $F$ and $E$ ring spectra, we define their \textit{algebraic Hopf ring} $\AA(F, E)$ (or \textit{algebraic approximation}) by \[\AA(F, E) = (F_* \CP^\infty)_{F_*[E^*]}^{\circulatearrows}[E^* \CP^\infty].\]
 \end{definition}
 
 \begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}, \cite[Theorem 9.7]{Wilson}}]\label{UnstableRWRelation}
-After choosing complex orientations of $E$ and $F$, there is a natural morphism of Hopf rings \[\AA(F, E) \cong \frac{F_*[E^*][F_* \CP^\infty]}{\beta(s +_F t) = \beta(s) +_{[E]} \beta(t)},\] where the equation is of power series and the equality is imposed term-by-term on the Hopf ring.  The formal sum $\beta(s)$ is given by $\beta(s) = \sum_j \beta_j x^j$, where $\beta_j$ is dual to the $j${\th} power of the chosen coordinate in $F^* \CP^\infty$, and the formal group law expressions expand to
+After choosing complex orientations of $E$ and $F$, there is a natural isomorphism of Hopf rings \[\AA(F, E) \cong \frac{(F_* \CP^\infty)_{F_*[E^*]}[E^*]}{\beta(s +_F t) = \beta(s) +_{[E]} \beta(t)},\] where the equation is of power series and the equality is imposed term-by-term on the Hopf ring.  The formal sum $\beta(s)$ is given by $\beta(s) = \sum_j \beta_j x^j$, where $\beta_j$ is dual to the $j${\th} power of the chosen coordinate in $F^* \CP^\infty$, and the formal group law expressions expand to
 \begin{align*}
 \beta(s +_F t) & = \sum_n \beta_n \left(\sum_{i, j} a_{ij}^F s^i t^j \right)^n, \\
 \beta(s) +_{[E]} \beta(t) & = \bigast_{i, j} \left([a_{ij}^E] \circ \left( \sum_k \beta_k s^k \right)^{\circ i} \circ \left( \sum_\ell \beta_\ell t^\ell \right)^{\circ j} \right).
 \end{align*}
 \end{lemma}
-\todo[inline]{I think the stuff written above (i.e., the algebraic model presented here) is a little broken and so you can't actually prove this.  You are supposed to be imposing algebraic and coalgebraic behavior, one of which cuts down the size of $E^* \CP^\infty$ and the other of which imposes these $\beta$--relations.  You seem to be missing the algebraic relations.}
 \begin{proof}[Proof sketch]
-This is a matter of calculating the behavior of \[\CP^\infty \times \CP^\infty \xrightarrow{\mu} \CP^\infty \xrightarrow{x} \OS{E}{2}\] in two different ways: using the effect of $\mu$ in $F$--homology and pushing forward in $x$, or using the effect of $\mu$ in $E$--cohomology and pushing forward along the Hurewicz map $\S \to F$.
+The orientations of $E$ and $F$ beget classes $x^j \in E^{2j} \CP^\infty$ and $\beta_k \in F_{2k} \CP^\infty$, and hence classes $\beta_k[x^j] \in \AA(F, E)$.  The duality relations imposed on this Hopf ring give us three useful identities:
+\begin{enumerate}
+    \item The relation \[\beta_k[x^0] = \eps(\beta_k) = \begin{cases} 1 & \text{if $k = 0$}, \\ 0 & \text{if $k \ne 0$}\end{cases}\] eliminates all elements of this form except $\beta_0[x^0] = 1$.
+    \item The relation \[\beta_k[x^{j+1}] = \sum_{k' + k'' = k} \beta_{k'}[x^j] \circ \beta_{k''}[x]\] lets us rewrite these terms as $\circ$--products of terms of lower $j$--degree and no larger $k$--degree.
+    \item The relation \[\beta_0[x^j] = [\eps(x^j)] = \begin{cases} [1] & \text{if $j = 0$}, \\ [0] & \text{if $j \ne 0$}\end{cases}\] couples to the above relation to give \[\beta_k[x^{j+1}] = \sum_{\substack{k' + k'' = k \\ k', k'' \ne 0}} \beta_{k'}[x^j] \circ \beta_{k''}[x],\] so that the rewrite is in terms of both lower $j$--degree \emph{and} lower $k$--degree.
+\end{enumerate}
+By consequence, the surviving terms are all sums of $\circ$--products of terms of the form $\beta_k[x]$, so that imposing these three relations produces a surjection \[(F_* \CP^\infty)_{F_*[E^*]}[E^*] \to \AA(F, E).\]  The remaining assertion is a now a matter of imposing the fourth relation, i.e., of calculating the behavior of \[\CP^\infty \times \CP^\infty \xrightarrow{\mu} \CP^\infty \xrightarrow{x} \OS{E}{2}\] in two different ways: using the effect of $\mu$ in $F$--homology and pushing forward in $x$, or using the effect of $\mu$ in $E$--cohomology and pushing forward along the Hurewicz map $\S \to F$.
 \end{proof}
 
 
 
-Finally, we are able to explain the phenomenon uncovered by computation in \Cref{UnstableContextsSection}, where we passed to the $\ast$--indecomposables to find the classical ring of functions on the endomorphism scheme of $\G_a$.  This arises out of two parallel questions:
+Finally, we are able to explain the phenomenon uncovered by computation in \Cref{UnstableContextsSection}, where we passed to the $\ast$--indecomposables to find the classical ring of functions on the endomorphism scheme of $\G_a$.  Our explanation arises out of two parallel questions:
 \begin{enumerate}
-	\item What does the Hopf ring $\AA(F, E)$ corepresent, considered as a functor on Hopf rings?
+	\item What functor $\SpH \AA(F, E)$ does the Hopf ring $\AA(F, E)$ corepresent when evaluated on another Hopf ring?
 	\item How does this functor interact with classical rings?
 \end{enumerate}
 
-There is in fact an embedding of $\CatOf{Rings}$ into $\CatOf{HopfRings}$, analogous to the square-zero extension functor sending an abelian group $A$ to the augmented algebra $Z \oplus A$ with trivial multiplication on $A$.
+Towards the second, there is an embedding of $\CatOf{Rings}$ into $\CatOf{HopfRings}$, analogous to the square-zero extension functor sending an abelian group $A$ to the augmented algebra $\Z \oplus A$ with trivial multiplication on $A$.
 
 \begin{definition}
-For a ring $R$, the $\ast$--square--zero Hopf ring $iR$ has underlying abelian group $\Z \oplus R$, and for an element $r \in R$ we write $[r] = (0, r)$ for the corresponding element in $iR$.  The Hopf ring structure maps are then determined by the formulas
+\todo{There ought to be a version of this relative to $R[S]$, and it ought to play a role when mapping into augmented Hopf $R[S]$--rings.}
+For a ring $R$, the $\ast$--square--zero Hopf ring $iR$ has underlying abelian group $\Z \oplus R$.  For an element $r \in R$, we write $[r] = (0, r)$ for the corresponding element in $iR$, and in this notation the Hopf ring structure maps are set by the formulas
 \begin{align*}
 iR \otimes iR & \xrightarrow{\ast} iR, & [r] \ast [r'] & = 0, & [r] \ast 1 & = [r], \\
 iR \otimes iR & \xrightarrow{\circ} iR, & [r] \circ [r'] & = [rr'], & [r] \circ 1 & = [r], \\
@@ -372,10 +429,10 @@ iR & \xrightarrow{\eps} \Z, & \eps([r]) & = 1, & \eps(1) & = 1, \\
 \end{definition}
 
 \begin{lemma}
-We have $R \cong Q^* i R$, and moreover there is an adjunction \[\CatOf{Rings}(Q^* S, R) = \CatOf{HopfRings}(S, iR). \qed\]
+We have $R \cong Q^* i R$, and moreover there is an adjunction \[(\Spec Q^* S)(R) = \CatOf{Rings}(Q^* S, R) = \CatOf{HopfRings}(S, iR) = (\SpH S)(iR). \qed\]
 \end{lemma}
 
-We are thus algebraically motivated to understand the affine scheme $\Spec Q^* \AA(F, E)$, as this is what $\CatOf{HopfRings}(\AA(F, E), -)$ restricts to on the subcategory of classical rings.  Note that the Hopf ring-ring $R[S]$ and the free relative Hopf ring $A_{R[S]}[B]$ both have an augmentation given by $[x] \mapsto 1$, so that the elements $\<x\> = [x] - [0]$ form a generating set of the augmentation ideal.
+We are thus algebraically motivated to understand the affine scheme $\Spec Q^* \AA(F, E)$, as this is what $\SpH \AA(F, E)$ restricts to on the subcategory of classical rings.  Note that the Hopf ring-ring $R[S]$ and the free relative Hopf ring $A_{R[S]}[B]$ both have an augmentation given by $[x] \mapsto 1$, so that the elements $\<x\> = [x] - [0]$ form a generating set of the augmentation ideal.
 \begin{lemma}\label{ArithmeticInQAst}
 In the $\ast$--indecomposable quotient, there are the formulas
 \begin{align*}
@@ -401,7 +458,7 @@ This is a matter of calculating $Q^* \AA(F, E)$, which is possible to do coordin
 \todo[inline]{You could also include the odd part of the approximation, with $e \circ e = \beta_1$, and from that calculate the algebraic model of the stabilization.}
 
 \begin{remark}
-In the unmixed case of $E = F$, as we saw in the computational example in \Cref{UnstableContextsSection}, the algebraic Hopf ring $\AA(E, E)$ picks up an extra diagonal corresponding to the composition of formal group endomorphisms of $\CP^\infty_E$, and the resulting pair $(\Spec E_*, \underline{\operatorname{End}}(\CP^\infty_E))$ forms a category scheme.  These schemes act by pre- and post-composition on the mixed algebraic Hopf ring $\Spec Q^* \AA(F, E)$, and these actions are compatible with the structure maps in the unstable context $\Ucontext{E \vee F}$ described at the beginning of this Lecture.  This description is also compatible with passing to the stable context $\context{E \vee F}$: it is exactly the inclusion of the simplicial subobject consisting of the formal group isomorphisms and automorphisms.
+In the unmixed case of $E = F$, as we saw in the computational example in \Cref{UnstableContextsSection}, the algebraic Hopf ring $\AA(E, E)$ picks up an extra diagonal corresponding to the composition of formal group endomorphisms of $\CP^\infty_E$, and the resulting pair $(\Spec E_*, \underline{\operatorname{End}}(\CP^\infty_E))$ forms a category scheme.  These schemes act by pre- and post-composition on the mixed algebraic Hopf ring $\Spec Q^* \AA(F, E)$, and these actions are compatible with the structure maps in the unstable context $\Ucontext{E \vee F}$ described at the beginning of this Lecture.  This description is also compatible with pulling back to the stable context $\context{E \vee F}$: it is exactly the inclusion of the simplicial subobject consisting of the formal group isomorphisms and automorphisms.
 \end{remark}
 
 \todo{Section III.11 of Wilson's \textit{Primer} has a synopsis of how additive unstable operations should be treated.}
