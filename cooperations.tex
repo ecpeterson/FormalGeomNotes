@@ -325,7 +325,7 @@ where $\Delta(a) = \sum_j a'_j \otimes_{F_*} a''_j$.  There are two additional f
 We denote the result of imposing all of these relations on $A_{R[S]}[B]$ as $A_{R[S]}^{\circulatearrows}[B]$.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{HopfRingComparisonMap}
 There is a natural map \[(F_* \CP^\infty)_{F_*[E^*]}^{\circulatearrows}[E^* \CP^\infty] \to F_*(\OS{E}{*}).\]
 \end{lemma}
 \begin{proof}
@@ -444,7 +444,7 @@ In the $\ast$--indecomposable quotient, there are the formulas
 Modulo $\ast$--decomposables, we can write \[0 \equiv \<x\> \ast \<y\> = [x] \ast [y] - [x] - [y] + [0] = \<x + y\> - \<x\> - \<y\>.\]  We can also directly calculate \[\<x\> \circ \<y\> = [x y] - [0] - [0] + [0] = \<x y\>. \qedhere\]
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{QAstAndTensors}
 There is an isomorphism $Q^* R[S] \cong R \otimes S$. \qed
 \end{corollary}
 
@@ -475,62 +475,63 @@ In the unmixed case of $E = F$, as we saw in the computational example in \Cref{
 
 
 
-\section{Mixed and unmixed unstable cooperations in complex bordism}\label{COableCoopnsII}
-
-\todo[inline]{\textbf{\textit{BELOW THIS LINE THERE MAY STILL BE SOME PLACES WHERE $F_*^R \OS{E}{*}$ IS WRITTEN IN PLACE OF $\AA(F, E)$.  READER BEWARE!}}}
-
-\todo{Jeremy found a paper (Chan's \textit{A simple proof that the unstable (co-)homology of the Brown--Peterson spectrum is torsion-free}, see also Wilson's Primer's Section 10) where $H_* \OS{BP}{2*}$ is proven to be bipolynomial (and even!) without any Hopf ring rigamarole. It looks like the method of proof is not very different from the Hopf ring one, but it's much shorter... and maybe the result will fall out of the Dieudonne module calculations anyhow?  Consider it as an option after you break this lecture in two.}
-\todo{Ravenel and Wilson also tell you how to get a basis of $\ast$--indecomposables, which they call ``allowable'' monomials.  Might be worth mentioning.}
-\citeme{Pages 266--270 of Ravenel--Wilson, especially the bottom of 268.}
-\todo{This section proves Wilson's Thesis Pt 1.  Maybe we should include a remark talking about the consequences he draws from it in Pt 2, including that all nice $p$--local $H$--spaces are actually infinite loopspaces.}
+\section{Unstable cooperations for complex bordism}\label{COableCoopnsII}
 
 \begin{center}
 \textbf{Convention: We will write $H$ for $H\F_p$ for the duration of the lecture.}
 \end{center}
 
-Next time, we will investigate $F_* \OS{E}{*}$ in the more modest and concrete setting of $F = H\F_p$ and $E = BP$.  One might think that this is merely a first guess at a topological computation that seems accomplishable after \Cref{UnstableSteenrodCoops}, but we will quickly show that it plays the role of a universal example of this sort of calculation.
-
----------
-
-Today we are aiming for a proof of the following Theorem:
+Our theme for the rest of this Case Study is that the comparison map \[\AA(F, E) \to F_* \OS{E}{*}\] of \Cref{HopfRingComparisonMap} is often an isomorphism.  In this Lecture, we begin by investigating the very modest and concrete setting of $F = H = H\F_p$ and $E = BP$, simply because it is the least complicated choice after the unstable Steenrod algebra: the spectrum $H$ has K\"unneth isomorphisms, and the formal group law associated to $BP$ has a very understandable role.  We record our goal in the following Theorem statement:
 
 \begin{theorem}[{\cite[Theorem 4.2]{RavenelWilsonHopfRingForMU}}]\label{HFpBPCooperationsTheorem}
-The natural homomorphism \[H_*^R \OS{BP}{2*} \to H_* \OS{BP}{2*}\] is an isomorphism.  (In particular, $H_* \OS{BP}{2*}$ is even--concentrated.)
+The natural homomorphism \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  (In particular, $H_* \OS{BP}{2*}$ is even--concentrated.)
 \end{theorem}
 
-\noindent This is proved by a fairly elaborate counting argument, and as such our first move will be to produce an upper bound for the size of the source Hopf ring.  To begin, consider the following consequence of \Cref{ArithmeticInQAst}:
+\noindent This is proved by a fairly elaborate counting argument: the rough idea is to show that the topological Hopf ring is polynomial, the comparison map is surjective, and the degrees arrange themselves so that the map then has no choice but to be an isomorphism.  Our first move will thus be to produce an upper bound for the size of the source Hopf ring, so that surjectivity can be used to compare it with the size of the algebraic approximation.
+
+Crucially, polynomiality will often let us consider the ring of $\ast$--indecomposables rather than the full Hopf ring.  To begin, recall the following consequence of \Cref{QAstAndTensors}:
 
 \begin{corollary}
-As a $\circ$--algebra, \[Q^* H_0^R \OS{BP}{2*} \cong \F_p[[v_n] - [0_{-|v_n|}] \mid n \ge 1],\] where $0_{-|v_n|}$ denotes the null element of $BP^{|v_n|}(*)$. \qed
+As an algebra under the $\circ$--product, \[Q^* H_*[BP^*] \cong \F_p[[v_n] - [0] \mid n \ge 1]. \qed\]
 \end{corollary}
 
-Directly from the definition of $H_*^R \OS{BP}{2*}$, we now know that $Q^* H_*^R \OS{BP}{2*}$ is generated by $[v_n] - [0_{-|v_n|}]$ for $n \ge 1$ and $b_j$, $j \ge 0$. \todo{Is $b_j = \beta_j$?} In fact, $p$--typicality shows~\cite[Lemma 4.14]{RavenelWilsonHopfRingForMU} that it suffices to consider $b_{p^d} = b_{(d)}$ for $i \ge 0$.  Altogether, this gives a secondary comparison map \[A := \F_p[[v_n], b_{(d)} \mid n > 0, d \ge 0] \onto Q^* H_*^R \OS{BP}{2*}.\] \todo{I don't remember how $A$ is graded.} This map is not an isomorphism, as these elements are subject to the following relation:
+\noindent From \Cref{UnstableRWRelation}, we now know that $Q^* \AA(H, BP)$ is generated by $[v_n] - [0]$ for $n \ge 1$ and $\beta_j \in H_{2j} \OS{BP}{2}$, $j \ge 0$.  In fact, $p$--typicality shows~\cite[Lemma 4.14]{RavenelWilsonHopfRingForMU} that it suffices to consider $\beta_{p^d} = \beta_{(d)}$ for $i \ge 0$.  Altogether, this gives a secondary comparison map \[A := \F_p[[v_n], \beta_{(d)} \mid n > 0, d \ge 0] \onto Q^* \AA(H, BP).\]  Although this map is onto it is not an isomorphism, as these elements are subject to the following relation:
 
 \begin{lemma}[{\cite[Lemma 3.14]{RavenelWilsonHopfRingForMU}, \cite[Theorem 9.13]{Wilson}}]
-Write $I = ([p], [v_1], [v_2], \ldots)$, and work in $Q^* H_* \OS{BP}{2} / I^{\circ 2} \circ Q^* H_* \OS{BP}{2}$ \todo{Should this be $Q^* H_* \OS{BP}{2*} / I^{\circ 2} \circ Q^* H_* \OS{BP}{2*}$ instead?}.  For any $n$ we have \[\sum_{i=1}^n [v_i] \circ b_{(n-i)}^{\circ p^i} \equiv 0.\]
+Write $I = ([p], [v_1], [v_2], \ldots)$, and work in $Q^* \AA(H, BP) / I^{\circ 2} \circ Q^* \AA(H, BP)$.  For any $n$ we have \[\sum_{i=1}^n [v_i] \circ \beta_{(n-i)}^{\circ p^i} \equiv 0.\]
 \end{lemma}
 \begin{proof}
-Consider the series expansion of $\beta_0 = \beta(ps) = [p]_{[BP]}(\beta(s))$.
+Since the group law on $\CP^\infty_H$ is additive, the Ravenel--Wilson relation applied to the $p$--series\footnote{We are very sorry for the collision of $[p]_{BP}$ the $p$--series and $[p]$ the symbol in the Hopf ring induced from $p \in BP_0$.  The $p$--series won't linger, and we will always differentiate them with a subscript.} specializes to \[[p]_{[BP]}(\beta(s)) = \beta(ps).\]  If we work over the square-zero part of $BP_*$ to simplify its group law, we have the relation \[[p]_{BP}(s) \equiv \sum_{j \ge 0} v_j s^{p^j} \pmod{(p, v_1, v_2, \ldots)^2},\] which combines with the above to give \[\beta_0 = [p]_{[BP]}(\beta(s)) \equiv \bigast_{j \ge 0} ([v_j] \circ \beta(s)^{\circ p^j}) \pmod{I^{\circ 2}}.\]  Passing to $Q^*$, we have $[p] \circ \beta(s) \equiv \beta_0$ and hence \[0 \equiv \sum_{j > 0} [v_j] \circ \beta(s)^{\circ p^j}.\]  The coefficient of $s^{p^n}$ gives the identity claimed.
 \end{proof}
 
-Let $r_n$, the $n${\th} relation, denote the same sum taken in $A$ instead: \[r_n := \sum_{i=1}^n [v_i] \circ b_{(n-i)}^{\circ p^i}.\]  \todo{You write $\circ$.  Is $A$ a Hopf ring as well?} The Lemma then shows that the pushforward of $r_n$ into $Q^* H_* \OS{BP}{2*}$ is in the ideal generated by $I^{\circ 2}$.\todo{There's a missing thought here (which Hood caught in class): why does the death of this element under $I^{\circ 2}$ say anything about killing $r_n$ in the original algebra?}  Ravenel and Wilson show the following well-behavedness result about these relators, by a fairly tedious argument:\todo{I wonder if there is a better version of this argument where formal geometry gets involved.}
+Let $r_n$, the $n${\th} relation, denote the same sum taken in $A$ instead: \[r_n := \sum_{i=1}^n [v_i] \circ \beta_{(n-i)}^{\circ p^i} \in A.\]  The Lemma then shows that the image of $r_n$ in $Q^* \AA(H, BP)$ is a $\circ$--decomposable element.  Our goal is to show that enforcing these relations cuts $A$ down to exactly the right size, and the easiest way to track the size of a quotient is for the quotient to be by a regular ideal.
 
 \begin{lemma}[{\cite[Lemma 4.15.b]{RavenelWilsonHopfRingForMU}}]
-The sequence $(r_1, r_2, \ldots)$ is regular in $A$. \qedhere
-\end{lemma}
-
-\noindent This is exactly what we need to get our size bound.
-
-\begin{lemma}
-Set
-\begin{align*}
-c_{i,j} & = \dim_{\F_p} Q^* H_i^R \OS{BP}{2j}, &
-d_{i,j} & = \dim_{\F_p} \F_p[[v_n], b_{(0)}]_{i,j}.
-\end{align*}
-Then $c_{i,j} \le d_{i,j}$ and $d_{i,j} = d_{i+2,j+1}$.
+The sequence $(r_1, r_2, \ldots)$ is regular in $A$.
 \end{lemma}
 \begin{proof}
-We have seen that $c_{i,j}$ is bounded by the $\F_p$--dimension of \[\F_p[[v_n], b_{(d)} \mid d \ge 0]_{i,j} / (r_1, r_2, \ldots).\]  But, since this ideal is regular and $|r_j| = |b_{(j)}|$, this is the same count as $d_{i,j}$.  The other relation among the $d_{i,j}$ follows from multiplication by $b_{(0)}$, with $|b_{(0)}| = (2, 1)$.\todo{We also need that one of the bidegrees of $[v_n]$ is zero, right?}
+Our approach is intricate but standard.  We seek to show that $J = (r_1, r_2, \ldots, r_n)$ is regular for every $n$, and we accomplish this by interpolation.  Fixing a particular $n$, define the intermediate ideals \[J_j = (r_n, r_{n-1}, \ldots, r_{n-j+1}),\] as well as the intermediate rings
+\begin{align*}
+A_j & = A / (\beta_{(0)}, \ldots, \beta_{(n-j-1)}), &
+B_j & = \beta_{(n-j)}^{-1} A_j.
+\end{align*}
+Noting that $A_n = A$ and $J_n = J$, we will inductively show that $J_j$ is a regular ideal of $A_j$.  The case $j = 1$ is simple: $J_1$ is a nonzero principal ideal in a ring without zerodivisors, so it must be regular.
+
+Assume the inductive result holds below some index $j$.  In the quotient sequence \[0 \to \Susp^{|\beta_{(n-j)}|} A_j \xrightarrow{\beta_{(n-j)}} A_j \to A_{j-1} \to 0,\] the degree shift in the multiplication map (and induction on degree) shows that if $J_{j-1}$ is regular on $A_{j-1}$, then $J_{j-1}$ is automatically regular on $A_j$.  If we additionally prove that $J_{j-1}$ is prime on $A_j$ and that $r_{n-j+1} \ne 0$ in the quotient, then $A_j / A_{j-1}$ is an integral domain and multiplication by $r_{n-j+1}$ would be injective and we would be done.  In the degree $|r_{n-j+1}|$ of interest, there is an isomorphism $(A)_{|r_{n-j+1}|} \cong (A_j / J_{j-1})_{|r_{n-j+1}|}$, and hence $r_{n-j+1} \ne 0$ as desired.
+
+We thus turn to primality.  Note first that $J_{j-1}$ is automatically prime in $B_j$, since $B_j$ is a polynomial $\F_p[\beta_{(n-j)}^\pm]$--algebra and each of the generators of $J_{j-1}$ is one of these polynomial generators of $B_j$.  Suppose for contradiction that $J_{j-1}$ is not prime in $A_j$, as witnessed by some elements $x, y \not\in J_{j-1}$ satisfying $xy \in J_{j-1}$.  Since $J_{j-1}$ \emph{is} prime in $B_j$, (by perhaps trading $x$ and $y$) there is some minimum $k > 0$ such that \[\beta_{(n-j)}^{\circ k} \circ x \in J_{j-1}.\]  We may as well assume $k = 1$, which we can arrange by tucking the stray factors of $\beta_{(n-j)}$ into $x$.  Invoking the generators of $J_{j-1}$, we thus have an equation \[\beta_{(n-j)} \circ x = \sum_{i = 1}^{j-1} a_i \circ r_{n-i+1}\] with $a_i \in A_j$ not all divisible by $\beta_{(n-j)}$.  In fact, by moving elements onto the left-hand side we can assume that if $a_i \ne 0$ then $a_i \not\in J_{i-1}$.  In $A_{j-1}$, this equation becomes \[0 = \sum_{i=1}^{j-1} a_i \circ r_{n-i+1}\] with $a_i$ not all in $J_{i-1}$.  This is the desired contradiction, since $J_{j-1}$ is regular in $A_{j-1}$ by inductive hypothesis.
+\end{proof}
+
+\begin{corollary}
+Set
+\begin{align*}
+c_{i,j} & = \dim_{\F_p} Q^* \AA(H, BP)_{(2i, 2j)}, &
+d_{i,j} & = \dim_{\F_p} \F_p[[v_n], b_{(0)}]_{2i,2j}.
+\end{align*}
+Then $c_{i,j} \le d_{i,j}$ and $d_{i,j} = d_{i+2,j+2}$.
+\end{corollary}
+\begin{proof}
+We have seen that $c_{i,j}$ is bounded by the $\F_p$--dimension of \[\left[\F_p[[v_n], b_{(d)} \mid d \ge 0, n \ge 0] / (r_1, r_2, \ldots)\right]_{i,j}.\]  But, since this ideal is regular and $|r_j| = |b_{(j)}|$, this is the same value as $d_{i,j}$.  The other relation among the $d_{i,j}$ follows from multiplication by $b_{(0)}$, with $|b_{(0)}| = (2, 2)$.
 \end{proof}
 
 We now turn to showing that this estimate is \emph{sharp} and that the secondary comparison map is \emph{onto}, and hence an isomorphism, using the bar spectral sequence.  Recalling that the bar spectral sequence converges to a the homology of the \emph{connective} delooping, let $\OS{BP}{2*}'$ denote the connected component of $\OS{BP}{2*}$ containing $[0_{2*}]$.  We will then demonstrate the following theorem inductively:
@@ -543,39 +544,52 @@ The following hold for all values of the induction index $k$:
 \end{enumerate}
 \end{theorem}
 
-\noindent Before addressing the theorem, we show that this finishes our calculation:
+\noindent Before addressing the Theorem, we show that this finishes our calculation:
 \begin{proof}[{Proof of \Cref{HFpBPCooperationsTheorem}, assuming \Cref{HFpBPCooperationsInduction} for all $k$}]
-\todo{This could be typeset better, by numbering the parts of \Cref{HFpBPCooperationsTheorem} and just referring to numbered claims.}
-Recall that we are considering the natural map \[H_*^R \OS{BP}{2*} \to H_* \OS{BP}{2*}.\]  The first part of \Cref{HFpBPCooperationsInduction} shows that this map is a surjection.  The third part of \Cref{HFpBPCooperationsInduction} together with our counting estimate shows that the induced map \[Q^* H_*^R \OS{BP}{2*} \to Q^* H_* \OS{BP}{2*}\] is an isomorphism.  Finally, the second part of \Cref{HFpBPCooperationsInduction} says that the original map, before passing to $\ast$--indecomposables, must be an isomorphism as well.
+Recall that we are considering the natural map \[\AA(H, BP) \to H_* \OS{BP}{2*}.\]  The first part of \Cref{HFpBPCooperationsInduction} shows that this map is a surjection.  The third part of \Cref{HFpBPCooperationsInduction} together with our counting estimate shows that the induced map \[Q^* \AA(H, BP) \to Q^* H_* \OS{BP}{2*}\] is an isomorphism.  Finally, the second part of \Cref{HFpBPCooperationsInduction} says that the original surjective map, before passing to $\ast$--indecomposables, targets a polynomial algebra and is an isomorphism on indecomposables, hence must be an isomorphism as a whole.
 \end{proof}
 
 \begin{proof}[{Proof of \Cref{HFpBPCooperationsInduction}}]
-The infinite loopspaces in $\OS{BP}{2*}$ are related by $\Loops^2 \OS{BP}{2(*+1)}' = \OS{BP}{2*}$, so we will use two bar spectral sequences to extract information about $\OS{BP}{2(*+1)}'$ from $\OS{BP}{2*}$.  Since we have assumed that $H_{\le 2(k-1)} \OS{BP}{2*}$ is polynomial in the indicated range, we know that in the first spectral sequence \[E^2_{*, *} = \Tor^{H_* \OS{BP}{2*}}_{*, *}(\F_p, \F_p) \Rightarrow H_* \OS{BP}{2*+1}\] the $E^2$--page is, in the same range, exterior on generators in $\Tor$--degree $1$ and topological degree one higher than the generators in the polynomial algebra.  Since differentials lower $\Tor$--degree, the spectral sequence is multiplicative, and there are no classes on the $0$--line, it collapses in the range $[0, 2k-1]$.  Additionally, since all the classes are in odd topological degree, there are no algebra extension problems, and we conclude that $H_* \OS{BP}{2*+1}$ is indeed exterior up through degree $(2k-1)$.
+The infinite loopspaces in $\OS{BP}{2*}$ are related by $\Loops^2 \OS{BP}{2(*+1)}' = \OS{BP}{2*}$, so we will use two bar spectral sequences to extract information about $\OS{BP}{2(*+1)}'$ from $\OS{BP}{2*}$.  Since we have assumed that $H_{\le 2(k-1)} \OS{BP}{2*}$ is polynomial in the indicated triangular range near zero, we know that in the first spectral sequence \[E^2_{*, *} = \Tor^{H_* \OS{BP}{2*}}_{*, *}(\F_p, \F_p) \Rightarrow H_* \OS{BP}{2*+1}\] the $E^2$--page is, in the same range, exterior on generators in $\Tor$--degree $1$ and topological degree one higher than the generators in the polynomial algebra.  Since differentials lower $\Tor$--degree, the spectral sequence is multiplicative, and there are no classes on the $0$--line, it collapses in the range $[0, 2k-1]$.  Additionally, since all the classes are in odd topological degree, there are no algebra extension problems, and we conclude that $H_* \OS{BP}{2*+1}$ is indeed exterior up through degree $(2k-1)$.
 
-We now consider the second bar spectral sequence \[E^2_{*, *} = \Tor^{H_* \OS{BP}{2*+1}}_{*, *}(\F_p, \F_p) \Rightarrow H_* \OS{BP}{2(*+1)}.\]  The $\Tor$ algebra of an exterior algebra is divided power on a class of topological dimension one higher.  Since these classes are now all in even degrees, the spectral sequence collapses in the range $[0, 2k]$.  Additionally, these primitive classes are related to the original generating classes by double suspension, i.e., by circling with $b_{(0)}$.  This shows the first inductive claim on the \emph{primitive classes} through degree $2k$, and we must argue further to deduce our generation result for $x^{[p^j]}$ of degree $2k$ with $j > 0$.  By inductive assumption, we can write \[x = [y] \circ b_{(0)}^{\circ I_0} \circ b_{(1)}^{\circ I_1} \circ \cdots,\] and one may as well consider the element \[z := [y] \circ b_{(j)}^{\circ I_0} \circ b_{(j+1)}^{\circ I_1} \circ \cdots.\]  This element isn't $x^{[p^j]}$ on the nose, but the diagonal of $z - x^{[p^j]}$ lies in lower filtration degree --- i.e., it is primitive as far as the filtration is concerned --- and so we are again done.
+We now consider the second bar spectral sequence \[E^2_{*, *} = \Tor^{H_* \OS{BP}{2*+1}}_{*, *}(\F_p, \F_p) \Rightarrow H_* \OS{BP}{2(*+1)'}.\]  The $\Tor$ algebra of an exterior algebra is divided power on a class of topological dimension one higher.  Since these classes are now all in even degrees, the spectral sequence collapses in the range $[0, 2k]$.  Additionally, these primitive classes are related to the original generating classes by double suspension, i.e., by forming the $\circ$--product with $b_{(0)}$.  This shows the first inductive claim on the \emph{primitive classes} through degree $2k$, and we must argue further to deduce our generation result for $x^{[p^j]}$ of degree $2k$ with $j > 0$.  By inductive assumption, we can write \[x = [y] \circ b_{(0)}^{\circ I_0} \circ b_{(1)}^{\circ I_1} \circ \cdots,\] and one might be divinely inspired to consider the elemtn \[z := [y] \circ b_{(j)}^{\circ I_0} \circ b_{(j+1)}^{\circ I_1} \circ \cdots.\]  This element $z$ isn't equal to $x^{[p^j]}$ on the nose, but the diagonal of the difference $z - x^{[p^j]}$ lies in lower filtration degree --- i.e., it is primitive as far as the filtration is concerned --- and so we are again done.
 
-The remaining thing to do is to use the size bounds: the only way that the map \[H_*^R \OS{BP}{2*} \to H_* \OS{BP}{2*}\] could be surjective is if there were multiplicative extensions in the spectral sequence joining $x^{[p]}$ to $x^p$.  Granting this, we see that the module ranks of the algebra itself and of its indecomposables are exactly the right size to be a free (i.e., polynomial) algebra, and hence this must be the case.
+The remaining thing to do is to use the size bounds: the only way that the map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] could be surjective is if there were multiplicative extensions in the spectral sequence joining $x^{[p]}$ to $x^p$.  Granting this, we see that the module ranks of the algebra itself and of its indecomposables are exactly the right size to be a free (i.e., polynomial) algebra, and hence this must be the case.
 \end{proof}
 
-Having accomplished \Cref{HFpBPCooperationsTheorem}, we reduce a general computation to it:
+We have actually accomplished quite a lot in proving \Cref{HFpBPCooperationsTheorem}, as this forms the input to an Atiyah--Hirzebruch spectral sequence.
 
 \begin{corollary}[{\cite[Corollary 4.7]{RavenelWilsonHopfRingForMU}}]\label{HopfRingForEBP}
-For a complex-orientable cohomology theory $E$, the natural maps
+For any complex-orientable cohomology theory $E$, the natural approximation maps give isomorphisms of Hopf rings
 \begin{align*}
-E_*^R \OS{MU}{2*} & \to E_* \OS{MU}{2*}, &
-E_*^R \OS{BP}{2*} & \to E_* \OS{BP}{2*}
+\AA(E, MU)  & \xrightarrow{\simeq} E_* \OS{MU}{2*}, &
+\AA(E, BP) & \xrightarrow{\simeq} E_* \OS{BP}{2*}.
 \end{align*}
-are isomorphisms of Hopf rings.
 \end{corollary}
 \begin{proof}
-First, because $MU_{(p)}$ splits multiplicatively as a product of $BP$s, we deduce from \Cref{HFpBPCooperationsTheorem} the case of $E = H\F_p$.  Since $H\F_p{}_* \OS{BP}{2*}$ is even, it follows that $H\Z_{(p)}{}_* \OS{BP}{2*}$ is torsion--free on a lift of a basis, and similarly (working across primes) $H\Z_* \OS{MU}{2*}$ \todo{You changed from $BP$ to $MU$ -- is this intentional?} is torsion--free on a simultaneous lift of basis.  Next, using torsion--freeness, we conclude from an Atiyah--Hirzebruch spectral sequence that $MU_* \OS{MU}{2*}$ is even and torsion--free itself, and moreover that the comparison is an isomorphism.  Lastly, using naturality of Atiyah--Hirzebruch spectral sequences, given a complex--orientation $MU \to E$ we deduce that the spectral sequence \[E_* \otimes H_*(\OS{MU}{2*}; \Z) \cong E_* \otimes_{MU_*} MU_* \OS{MU}{2*} \Rightarrow E_* \OS{MU}{2*}\] collapses, and similarly for the case of $BP$.  The theorem follows.
+First, because $MU_{(p)}$ splits multiplicatively as a product of $BP$s, we deduce from \Cref{HFpBPCooperationsTheorem} the case of $E = H\F_p$.  Since $H\F_p{}_* \OS{BP}{2*}$ is even, it follows that $H\Z_{(p)}{}_* \OS{BP}{2*}$ is torsion--free on a lift of a basis, and similarly (working across primes) $H\Z_* \OS{MU}{2*}$ is torsion--free on a simultaneous lift of basis.  Next, using torsion--freeness, we conclude from an Atiyah--Hirzebruch spectral sequence that $MU_* \OS{MU}{2*}$ is even and torsion--free itself, and moreover that the comparison is an isomorphism.  Lastly, using naturality of Atiyah--Hirzebruch spectral sequences, given a complex--orientation $MU \to E$ we deduce that the spectral sequence \[E_* \otimes H_*(\OS{MU}{2*}; \Z) \cong E_* \otimes_{MU_*} MU_* \OS{MU}{2*} \Rightarrow E_* \OS{MU}{2*}\] collapses, and similarly for the case of $BP$.
 \end{proof}
 
-This is an impressively broad theorem: the loopspaces $\OS{MU}{2*}$ are quite complicated, and that any general statement can be made about them is remarkable.  That this fact follows from a calculation in $H\F_p$--homology and some niceness observations is meant to showcase the density of $\CP^\infty_{H\F_p} \cong \G_a$ inside of $\moduli{fg}$.  However, \Cref{UnstableCoopnsForHF2AndGa} indicates that this Corollary does not cover all possible cases that the comparison map in \Cref{ComparisonMapInCOUnstableCoopns} becomes an isomorphism.  In the remainder of the Case Study, we will investigate two other classes of $E$ and $G$ where this holds.
+This is an impressively broad claim: the loopspaces $\OS{MU}{2*}$ are quite complicated, and that any general statement can be made about them is remarkable.  That this fact follows from a calculation in $H\F_p$--homology and some niceness observations is meant to showcase the density of $\CP^\infty_H \cong \G_a$ inside of $\moduli{fg}$.
 
-\todo{Should you mention the odd--dimensional stuff? You passed through it in the course of the proof anyway: you can see that $H_* \OS{BP}{2*+1}$ is exterior on homology suspensions of algebra generators on degree below.  This comports with what you already suspected about these unstable algebras.}
-\todo{It is also the case that the $\Z_{(p)}$-- and $\F_p$--cohomology of $\OS{BP}{2k}$ is polynomial, and it's proved in basically the same way.  This is the first half of Wilson's thesis: Theorem 3.3.  As a consequence, you know that the co/homology is \emph{bipolynomial}, which means that it splits as a tensor product of the usual ``singly generated'' bipolynomial Hopf algebras.  This leads into the discussion of the Witt Hopf algebras in the next section.}
-\todo{Homology of truncated Brown--Peterson spectra: Wilson's thesis, part 2, Prop 1.7.  The goal of Part 2 is to gain access to the cohomologies of the loopspaces in the truncated Brown--Peterson spectra as modules over the Steenrod algebra, so that they can be split apart into prime factors using Adams spectral sequence arguments.  One of the main consequences of the calculation is that some of the bottommost loopspaces have such small cohomology modules that they themselves must be exactly the prime factors we are looking for.}
+\begin{remark}
+The analysis of the first bar spectral sequence in the proof of \Cref{HFpBPCooperationsInduction} also gave us a description of $H_* \OS{BP}{2*+1}$, which is not directly visible to $\AA(H, BP)$.  Namely, the Hopf ring $H_* \OS{BP}{*}$ can be presented as \[H_* \OS{BP}{*} \xleftarrow{\simeq} \AA(H, BP)[e] / (e^{\circ 2} = \beta_{(0)}),\] with $e$ of degree $1$.  Additionally, analyzing the cohomological bar spectral sequence (and noting that the dual of a divided power algebra is a polynomial algebra) shows that each $H_* \OS{BP}{2*}$ forms a \textit{bipolynomial Hopf algebra} --- i.e., both it and its dual are polynomial algebras.
+\end{remark}
+
+\begin{remark}[{\cite{Chan}, \cite[Section 10]{Wilson}}]
+There is an alternative proof, due to Chan, that $H_* \OS{BP}{2j}$ forms a bipolynomial Hopf algebra for each choice of $j$ that makes no reference to Hopf rings.  It proceeds along very similar lines, as it also studies the iterated bar spectral sequence, but it proceeds entirely by counting: the elements in the spectral sequence are never given explicit names, and hence there is no real hope of understanding the functor $\SpH H_* \OS{BP}{2*}$ using these methods.  By contrast, the Ravenel--Wilson method can be used to give an explicit enumeration of these classes~\cite[Section 5]{RavenelWilsonHopfRingForMU}.  Our presentation here is something of a compromise.
+\end{remark}
+
+\begin{remark}
+The identification of the $p$--local and mod--$p$ homology and cohomology of $\OS{BP}{2k}$ as a bipolynomial Hopf algebra was first accomplished by Wilson in his PhD thesis~\cite[Theorem 3.3]{WilsonThesisI}.  He deduces quite a lot of interesting results from this observation.  For instance, each bipolynomial Hopf algebra can be shown to split as a tensor product of indecomposable such~\cite[Proposition 3.5]{WilsonThesisI}, and this splitting is reflected by a splitting of $\OS{BP}{2k}$ into a product of indecomposable $H$--spaces.
+
+Remarkably, these indecomposable spaces can themselves be identified.  For each $n$ there is a ring spectrum $BP\<n\>$ over $BP$ with homotopy presented by the subalgebra $\pi_* BP\<n\> = \Z_{(p)}[v_1, \ldots, v_n]$.  This spectrum is \emph{not} uniquely specified, a reflection of the algebraic failure of the ideal $(v_{n+1}, v_{n+2}, \ldots)$ to be invariant, and so this resists formal-geometric interpretation (cf., however, \cite{LawsonNaumann}, \cite{StricklandProductsOnModules}, \ldots).  Nonetheless, using Steenrod module techniques Wilson shows~\cite[Section 6]{WilsonThesisII} that every simply-connected $p$--local $H$--space with torsion-free homology and ($p$--local ordinary) homology splits into a product of spaces $Y_k$, and that $Y_k = \OS{BP\<n\>}{k}$ for $|v_n| < k(p-1) \le |v_{n+1}|$.
+
+In particular, the spaces $\OS{BP\<n\>}{k}$ in these bands \emph{are} independent of choice of parent spectrum $BP\<n\>$, and all $p$--local $H$--spaces satisfying these freeness properties are automatically infinite loopspaces --- both extremely surprising results.
+\end{remark}
+
+These bipolynomial algebras also play a critical role in the next section.
+
 
 
 
