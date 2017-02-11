@@ -237,6 +237,7 @@ Under {\UGH}, we have a factorization \[\CatOf{Coalgebras}_{G}(E_* S^t, -) = \Ca
 \todo[inline]{Define what the homology suspension element $e$ is.  The point is that the equivalence $\OS{E}{n} \simeq \Loops \OS{E}{n+1}$ is adjoint to a map $\Susp \OS{E}{n} \to \OS{E}{n+1}$, and the effect of this map on $F$--homology is $\circ$--ing with $e$.}
 \todo[inline]{Neil wrote this to tell Chris Schommer--Pries how to compute $H_* K(\Z, 3)$ (http://mathoverflow.net/a/216041/1094), which I think should be included as an exercise here: Given a complex oriented cohomology theory $E$, one can define a formal scheme of Weil pairings on the associated formal group, as explained in the paper "Weil pairings and Morava $K$-theory" by Matthew Ando and me.  If we let $R_E$ denote the ring of functions on this scheme, then there is a natural map $R_E\to E^*K(\mathbb{Z},3)$.  This is an isomorphism if $E$ is Morava $K$-theory or Morava $E$-theory.  I think that it is also an isomorphism for $E=MU$ or $E=kU$ but not for $E=H$.  However, there is a natural short exact sequence
 $$ kU^*K(\mathbb{Z},3)/v \to H^*K(\mathbb{Z},3) \to \text{ann}(v,kU^*K(\mathbb{Z},3)) $$ (where $v$ is the standard generator of $\pi_2kU=kU^{-2}(\text{point})$).  I think that this is probably an effective way to understand $H^*K(\mathbb{Z},3)$. Some other things that are going on in the background here: - There is a fibration $K(\mathbb{Q}/\mathbb{Z},2)\to K(\mathbb{Z},3)\to K(\mathbb{Q},3)$.  Here $K(\mathbb{Q},3)$ is the rationalisation of $S^3$ and is not so hard to understand. - $K(\mathbb{Q}/\mathbb{Z},2)$ is the colimit of the spaces $K(\mathbb{Z}/n,2)$. - One can understand $K(\mathbb{Z}/n,2)$ using the multiplication map $K(\mathbb{Z}/n,1)\times K(\mathbb{Z}/n,1)\to K(\mathbb{Z}/n,2)$.}
+\todo[inline]{Tilman Bauer is proving results about the homological algebra of these things using weird plethory structures.  He deserves a mention here as part of the developing body of literature.}
 
 % \begin{definition}
 % We spell out some of the Hopf algebra constructions named above.  For a cocommutative $R$--coalgebra $C$, we define its free commutative and cocommutative Hopf $R$--algebra~\cite{Takeuchi} to have underlying algebra \[\frac{\operatorname{SymmetricAlgebra} \left(C \otimes_R (\chi C)\right)}{\left( \begin{array}{c} c \otimes \chi c = 1 \end{array} \right)}\] with diagonal \[\Delta(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \Delta c_1 \otimes \cdots \otimes \Delta c_k \otimes \chi (\Delta c'_1) \otimes \cdots \otimes \chi(\Delta c'_{k'})\] and antipode \[\chi(c_1 \otimes \cdots \otimes c_k \otimes \chi c'_1 \otimes \cdots \otimes \chi c'_{k'}) = \chi c_1 \otimes \cdots \otimes \chi c_k \otimes c'_1 \otimes \cdots \otimes c'_{k'}.\]  Then, given a Hopf $R$--algebra $A$, we define the free Hopf ring~\cite[Definition 4.2, Proposition 2.16]{HuntonTurner} to be \[\left. \bigoplus_{k=0}^\infty A^{\wedge_R k} \middle/ \left(x \wedge y = \sum_i (x'_i \ast y') \wedge (x''_i \ast y'') \middle| \begin{array}{c} y = y' \ast y'', \\ \Delta x = \sum_i x'_i \otimes x''_i \end{array} \right) \right.\] with $\circ$--product given by the natural maps $A^{\wedge_R n} \otimes_R A^{\wedge_R m} \to A^{\wedge_R (n+m)}$.
@@ -600,23 +601,25 @@ These bipolynomial algebras also play a critical role in the next section.
 
 \section{Dieudonn\'e modules}\label{SectionDieudonneModules}
 
-Our goal today is strictly algebraic.  Because the category of finite type commutative and cocommutative Hopf algebras over a ground field $k$ is an abelian category, it admits a presentation as the module category for some (possibly noncommutative) ring.  The description of this ring and of the explicit assignment from a group scheme to linear algebraic data is the subject of \textit{Dieudonn\'e theory}.  We will give a survey of some of the results of Dieudonn\'e theory today, including three different presentations of the equivalence.\footnote{Emphasis on ``\emph{some of the results}''.  Dieudonn\'e theory is an enormous subject with many interesting results both internal and connected to arithmetic geometry, which we'll explore almost none of.}
+Our goal in this Lecture is to give a compact presentation of what a formal group is based on the following observation: the category of commutative cocommutative Hopf algebras of finite type over a ground field $k$ forms an abelian category.  It follows abstractly that this category admits a presentation as the module category for some (possibly noncommutative) ring, but in fact this ring and the assignment from a group scheme to linear algebraic data can both be described explicitly.  This is the subject of \textit{Dieudonn\'e theory}, and our goal is to give an overview of some of its main results, including three different presentations of the equivalence.\footnote{Emphasis on ``\emph{some of its results}''.  Dieudonn\'e theory is an enormous subject with many interesting results both internal and connected to arithmetic geometry and the theory of abelian varieties.  We will explore almost none of this.}
 
 \citeme{Weinstein's geometry of Lubin--Tate spaces notes}
-Start with a formal line $V$ over a ground ring $A$, let $\G$ denote $V$ equipped with a group structure, and let $\Omega^1_{V/A}$ be the module of K\"ahler differentials on $V$.  We have previously been interested in the \textit{invariant differentials} $\omega_{\G} \subseteq \Omega^1_{V/A}$ on $V$, back when we first discussed logarithms in \Cref{RationalFGLsHaveLogarithms}.  Such a differential gave rise to a logarithm through integration, in the case that $A$ was a $\Q$--algebra.  However, if $A$ had positive characteristic $p$ then there would be an obstruction to integrating terms with exponents of the form $-1 \pmod p$, which in turn led us to the notion of $p$--height explored in \Cref{MfgII:LargeScales}.
+Begin with a $1$--dimensional formal group $\G$ over a ring $A$.  Our first avenue into Dieudonn\'e theory is to recall that we have previously been interested in the invariant differentials $\omega_{\G} \subseteq \Omega^1_{\G/A}$ on $\G$.  As explored in \Cref{RationalFGLsHaveLogarithms}, when $A$ is a $\Q$--algebra such differentials give rise to logarithms through integration.  On the other hand, if $A$ has positive characteristic $p$ then there is a potential obstruction to integrating terms with exponents of the form $-1 \pmod p$, and in \Cref{MfgII:LargeScales} we used this to lead us to the notion of $p$--height.  We now explore a third twist on this set-up.  Recall that $\Omega^1_{\G/A}$ forms the first level of the \textit{algebraic de Rham complex} $\Omega^*_{\G/A}$.  The de Rham complex only uses the underlying formal variety of $\G$ and not its group structure, but the product map \[\mu\co \G \times \G \to \G\] and the two projection maps \[\pi_1, \pi_2\co \G \times \G \to \G\] induce maps \[\mu^*, \pi_1^*, \pi_2^*\co C_{dR}^1(\G/A) \to C_{dR}^1(\G \times \G / A).\]  The translation invariant differentials are exactly those in the kernel of $\mu^* - \pi_1^* - \pi_2^*$, as considered at the chain level.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the de Rham complex.
 
-A slightly different twist on this set-up leads to a new story entirely.  Recall that $\Omega^1_{V/A}$ forms the first level of the \textit{algebraic de Rham complex} $\Omega^*_{V/A}$.  The translation invariant differentials studied in the theory of the logarithm are those differentials so that the identity $\mu^* - \pi_1^* - \pi_2^* = 0$ \todo{What are $\mu$, $\pi_1$ and $\pi_2$?} holds \emph{at the chain level}.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the algebraic de Rham complex.  This condition begets a sub--$A$--module $D(\G/A)$ of $H^1_{dR}(\G/A)$ consisting of those $1$--forms which are cohomologically translation invariant.
+\begin{definition}
+The \textit{cohomologically translation invariant differentials} is the $A$--submodule $PH^1_{dR}(\G/A) \subseteq H^1_{dR}(\G/A)$ defined as the kernel of $\mu^* - \pi_1^* - \pi_2^*$.
+\end{definition}
 
-\begin{example}
-Let $A$ be a $\Z$--flat ring, let $\G$ be a formal group over $A$, and let $x$ be a coordinate on $\G$.  Set $K = A \otimes \Q$, so that $A \to K$ is an injection.  There is then a diagram of exact rows \todo{question: so here, the point is that you are restricting to integrals with no constant term, and that is the same as taking the quotient of the actual differentials, since the map $A\ps{x} -> \Omega^1_{A\ps{x}/A}$ is injective on that submodule? AY}
+\begin{example}{\cite[Lemma 5.1.2]{Katz}}
+Consider the case that $A$ is torsion-free (or ``$\Z$--flat'', if you like), and set $K = A \otimes \Q$ so that $A \to K$ is an injection.  In this case the differentiation map $x A\ps{x} \to A\ps{x}$ is an injection and integration of power series is possible in $K$, so we can re-express first the definition of $H^1_{dR}$ and second the conditions on our algebraic differentials in the following diagram of exact rows:
 \begin{center}
 \begin{tikzcd}[column sep=0.5em]
-0 \arrow{r} & \left\{\begin{array}{c}\text{integrals with} \\ \text{$A$ coefficients}\end{array}\right\} \arrow{r} \arrow[equal]{d} & \{\text{all conceivable integrals}\} \arrow{r} \arrow[equal]{d} & \{\text{missing integrals}\} \arrow{r} \arrow[equal]{d} & 0 \\
-0 \arrow{r} & x A\ps{x} \arrow{r} & \left\{ f \in x K\ps{x} \middle| f' \in A\ps{x} \right\} \arrow{r}{d} & H^1_{dR}(\G/A) \arrow{r} & 0 \\
-0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[equal]{u} & \left\{ f \in x K\ps{x} \middle| \begin{array}{c}f' \in A\ps{x}, \\ \delta f \in A\ps{x,y} \end{array} \right\} \arrow{u} \arrow{r}{d} & D(\G/A) \arrow{r} \arrow{u} & 0,
+0 \arrow{r} & \left\{\begin{array}{c}\text{integrals with} \\ \text{$A$ coefficients}\end{array}\right\} \arrow{r} \arrow[equal]{d} & \left\{\begin{array}{c}\text{all conceivable integrals} \\ \text{of differentials defined over $A$}\end{array}\right\} \arrow{r} \arrow[equal]{d} & \{\text{missing integrals}\} \arrow{r} \arrow[equal]{d} & 0 \\
+0 \arrow{r} & x A\ps{x} \arrow{r} & \{f \in x K\ps{x} \mid df \in A\ps{x}dx\} \arrow{r}{d} & H^1_{dR}(\G/A) \arrow{r} & 0 \\
+0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[equal]{u} & \left\{ f \in x K\ps{x} \middle| \begin{array}{c}df \in A\ps{x}dx, \\ \delta f \in A\ps{x,y} \end{array} \right\} \arrow{u} \arrow{r}{d} & PH^1_{dR}(\G/A) \arrow{r} \arrow{u} & 0,
 \end{tikzcd}
-\end{center} \todo{This is just the definition of $H^1_{dR}$ in terms of cocycles and coboundaries, right?}
-where $\delta$ \todo{What's $\delta$?}is induced by $\delta [\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
+\end{center}
+where $x$ is a coordinate on $\G$, and $\delta$ is defined by $\delta [\omega] = (\mu^* - \pi_1^* - \pi_2^*)[\omega]$.
 \end{example}
 
 % \begin{lemma}
@@ -627,10 +630,10 @@ where $\delta$ \todo{What's $\delta$?}is induced by $\delta [\omega] = (\mu^* - 
 % Let $A$ be a complex abelian variety, in which case there is a classical Hodge decomposition \[0 \to H^0(A; \Omega^1) \to H^1_{dR}(A; \C) \to H^1(A; \sheaf O_A) \to 0.\]  The first term agrees with invariant differentials, and the second term agrees with $\operatorname{Lie} A^\vee$.
 % \end{remark}
 
-The flatness condition in the Example is important to getting the calculation to work out right, and of course it is not satisfied when working over a perfect field of positive characteristic $p$ --- our favorite setting in \Cref{MfgII:LargeScales} and \Cref{ChapterFiniteSpectra} more generally.  However, de Rham cohomology has the following remarkable lifting property (which we have specialized to $H^1_{dR}$):
+The flatness condition is not satisfied when working over a perfect field of positive characteristic $p$ --- our favorite setting in \Cref{MfgII:LargeScales} and \Cref{ChapterFiniteSpectra} more generally.  However, de Rham cohomology has the following remarkable lifting property (which we have written here after specializing to $H^1_{dR}$):
 
-\begin{theorem}
-Let $A$ be a $\Z_{(p)}$--flat ring, let $f_1(x), f_2(x) \in A\ps{x}$ be power series without constant term.  If $f_1 \equiv f_2 \pmod{p}$, then for any differential $\omega \in A\ps{x} dx$ the difference $f_1^*(\omega) - f_2^*(\omega)$ is exact.
+\begin{theorem}{\cite[Key Lemma 5.1.3]{Katz}}
+Let $A$ be a $p$--local torsion-free ring, and let $f_1(x), f_2(x) \in x A\ps{x}$ be power series without constant term.  If $f_1 \equiv f_2 \pmod{p}$, then for any differential $\omega \in A\ps{x} dx$ the difference $f_1^*(\omega) - f_2^*(\omega)$ is exact.
 \end{theorem}
 \begin{proof}
 Write $\omega = dg$ for $g \in K\ps{x}$, and write $f_2 = f_1 + p\Delta$.  Then
@@ -638,137 +641,229 @@ Write $\omega = dg$ for $g \in K\ps{x}$, and write $f_2 = f_1 + p\Delta$.  Then
 \int \left( f_2^* \omega - f_1^* \omega \right) & = g(f_2) - g(f_1) = g(f_1 + p\Delta) - g(f_1) \\
 & = \sum_{n = 1}^\infty \frac{(p\Delta)^n}{n!} g^{(n)}(f_1).
 \end{align*}
-Since $g' = \omega$ has coefficients in $A$, so does $g^{(n)}$ for all $n$, and the fraction $p^n/n!$ lies in the $\Z_{(p)}$--algebra $A$.
+Since $g' = \omega$ has coefficients in $A$, so does the iterated derivative $g^{(n)}$ for all $n$, and hence the fraction $p^n/n!$ lies in the $\Z_{(p)}$--algebra $A$.
 \end{proof}
 
 \begin{corollary}[{$H^1_{dR}$ is ``crystalline''}]\label{H1dRIsCrystalline}
 If $f_1, f_2\co V \to V'$ are maps of pointed formal varieties which agree mod $p$, then they induce the same map on $H^1_{dR}$. \qed
 \end{corollary}
 
-Several well--behavedness results of the functor $D$ follow directly from \Cref{H1dRIsCrystalline}.  For instance, any map $f\co \G' \to \G$ of pointed varieties which is a group homomorphism mod $p$ restricts to give a map $f^*\co D(\G/A) \to D(\G'/A)$.  Additionally, if $f_1$, $f_2$, and $f_3$ are three such maps of pointed varieties with $f_3 \equiv f_1 + f_2 \pmod{p}$ in $\CatOf{FormalGroups}(\G'/p, \G/p)$, then $f_3^* = f_1^* + f_2^*$ as maps $D(\G/A) \to D(\G'/A)$.
+\begin{corollary}[{\cite[Theorem 5.1.4]{Katz}}]
+Any map $f\co \G' \to \G$ of pointed varieties which is a group homomorphism mod $p$ restricts to give a map $f^*\co PH^1_{dR}(\G/A) \to PH^1_{dR}(\G'/A)$.  Additionally, if $f_1$, $f_2$, and $f_3$ are three such maps of pointed varieties satisfying \[f_3 \equiv f_1 + f_2 \in \CatOf{FormalGroups}(\G'/p, \G/p),\] then $f_3^* = f_1^* + f_2^*$ as maps $PH^1_{dR}(\G/A) \to PH^1_{dR}(\G'/A)$. \qed
+\end{corollary}
 
-In the case that $k$ is a \emph{perfect} field, the ring $\W_p(k)$ of $p$--typical Witt vectors on $k$ is simultaneously torsion-free and universal among nilpotent thickenings of the residue field $k$.  This emboldens us to make the following definition:\footnote{There is a better definition one might hope for, which instead assigns to each potential thickening and lift a ``Dieudonne module'', and then work to show that they all arise as base-changes of this universal one.  This is possible and technically superior to the approach we are taking here.}\todo{Maybe cite a reference that does this?}
+In the case that $k$ is a \emph{perfect} field, the ring $\W_p(k)$ of $p$--typical Witt vectors on $k$ is simultaneously torsion-free and universal among nilpotent thickenings of the residue field $k$.  This emboldens us to make the following definition:\footnote{There is a better definition one might hope for, which instead assigns to each potential thickening and lift a ``Dieudonne module'', and then work to show that they all arise as base-changes of this universal one.  This is possible and technically superior to the approach we are taking here~\cite[Theorem 5.1.6]{Katz},~\cite[Chapter 4]{Messing},~\cite{Grothendieck}.}
 
-\begin{definition}
-Let $k$ be a perfect field of characteristic $p > 0$, and let $\G_0$ be a formal group over $k$.  Then, choose a lift $\G$ of $\G_0$ to $\W_p(k)$, and define the \textit{(contravariant) Dieudonn\'e module} of $\G_0$ by $M(\G_0) := D(\G / W(k))$.\todo{This functor is best adapted to $p$--divisible groups, so typically $\G_0 = \G_a$ is disallowed. The definition and the most basic properties seem to work OK though...}
+\begin{definition}{\cite[Section 5.5]{Katz}}
+Let $k$ be a perfect field of characteristic $p > 0$, and let $\G_0$ be a ($1$--dimensional) formal group over $k$.  Then, choose a lift $\G$ of $\G_0$ to $\W_p(k)$, and define the \textit{(contravariant) Dieudonn\'e module} of $\G_0$ by $D^*(\G_0) := PH^1_{dR}(\G / \W_p(k))$.
 \end{definition}
 
 \begin{remark}
-This is independent of choice of lift up to coherent isomorphism.  Given any other lift $\G'$ of $\G_0$ to $\W_p(k)$, we can find \emph{some} power series --- not necessarily a group homomorphism --- covering the identity on $\G_0$.  \Cref{H1dRIsCrystalline} then shows that this map induces a canonical isomorphism between the two potential definitions of $M(\G_0)$.
+This is independent of choice of lift up to coherent isomorphism.  Given any other lift $\G'$ of $\G_0$ to $\W_p(k)$, we can find \emph{some} power series --- not necessarily a group homomorphism --- covering the identity on $\G_0$.  \Cref{H1dRIsCrystalline} then shows that this map induces a canonical isomorphism between the two potential definitions of $D^*(\G_0)$.
 \end{remark}
 
-Note that the module $M(\G_0)$ carries some natural operations:
+Note that the module $D^*(\G_0)$ carries some natural operations:
 \begin{itemize}
-\item Arithmetic: $M(\G_0)$ is naturally a $\W_p(k)$--module, with the action by $\ell$ corresponding to multiplication--by--$\ell$ on $\G_0$. \todo{well, $\G_0$ is a formal group over $k$, so maybe it would be better to write $\ell \pmod{p}$ or action on $\G$? AY}
-\item Frobenius: The map $x \mapsto x^p$ is a group homomorphism mod $p$, so it induces a $\phi$--semilinear map $F\co M(\G_0) \to M(\G_0)$.  That is, $F(\alpha v) = \alpha^\phi F(v)$, where $\phi$ is a lift of the Frobenius on $k$ to $\W_p(k)$.
-\item Verschiebung: The Verschiebung map is given by the mysterious formula \[V\co \sum_{n=1}^\infty a_n x^n \mapsto p \sum_{n=1}^\infty a_{pn}^{\phi^{-1}} x^n.\] It satisfies anti-semilinearity, $aV(v) = V(a^\phi v)$, and also $FV = p$.
+\item Arithmetic: $D^*(\G_0)$ is naturally a $\W_p(k)$--module, with the action by $\ell$ corresponding to multiplication--by--$\ell$ internal to $\G_0$.
+\item Frobenius: The map $x \mapsto x^p$ is a homomorphism of formal groups modulo $p$, so it induces a $\phi$--semilinear map $F\co D^*(\G_0) \to D^*(\G_0)$.  That is, $F(\alpha v) = \alpha^\phi F(v)$, where $\phi$ is a lift of the Frobenius on $k$ to $\W_p(k)$.
+\item Verschiebung: Inspired by \Cref{EveryLogHaspTypification}, we might also seek a Verschiebung operator $V$ satisfying $FV = p$.  Our explicit formula for $F$ lets us guess such a map: \[V\co \sum_{n=1}^\infty a_n x^n \mapsto p \sum_{n=1}^\infty a_{pn}^{\phi^{-1}} x^n.\]  It satisfies $FV = p$ and anti-semilinearity: $aV(v) = V(a^\phi v)$.
 \end{itemize}
 With this, we come to the main theorem of this Lecture:
 
-\begin{theorem}
-The functor $M$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$, called \textit{Dieudonn\'e modules}. \qed \todo{Add in words about being uniform and reduced?}
-\end{theorem} \todo{You never define the Dieudonn\'{e} ring explicitly.  I think the statement of this theorem and some later statements (e.g., $\W_p(k)\{x\}$) can be made more clear by giving notation to the Dieudonn\'{e} ring.}
+\begin{theorem}[{\cite[Th\'eor\`eme 4.2]{Grothendieck}, \cite[Sections III.8-9]{Demazure}}]\label{MainContraDieudonneThm}
+The functor $D^*$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups $\G_0$ over $k$ of finite $p$--height and \textit{Dieudonn\'e modules}, which are modules $M$ over the Cartier--Dieudonn\'e ring \[\Cart_p = \left. \W_p(k)\<F,V\> \middle/ \left( \begin{array}{c} FV = VF = p, \\ Fw = w^\phi F, \\ wV = Vw^\phi \end{array} \right) \right.\] which furthermore satisfy the following three technical conditions:
+\todo{Are these the correct technical conditions for the \emph{contravariant} Dieudonn\'e module?}
+\begin{itemize}
+    \item Finiteness: $M$ is a finite-dimensional free $\W_p(k)$--module.
+    \item Reduced: $M \cong \lim_r M / V^r M$.
+    \item Uniform: $M/VM \to V^r M / V^{r+1} M$ is an isomorphism.
+    \qed
+\end{itemize}
+\end{theorem}
 
 \begin{remark}
-Several invariants of the formal group associated to a Dieudonn\'e module can be read off from the functor $M$.  For example, the $\W_p(k)$--rank of $M$ is equal to the $p$--height of $\G_0$.  Additionally, the quotient $M / FM$ is canonically isomorphic to the cotangent space $T_0^* \G_0 \cong \omega_{\G_0}$.
+Several invariants of the formal group associated to a Dieudonn\'e module can be read off from the functor $D^*$.  For example, the $\W_p(k)$--rank of $D^*(\G_0)$ computes the height of $\G_0$.  Additionally, the quotient $D^*(\G_0) / FD^*(\G_0)$ is canonically isomorphic to the cotangent space $T_0^* \G_0 \cong \omega_{\G_0}$.
 \end{remark}
 
 \begin{example}
-The Dieudonn\'e module associated to $\G_m$ is the easiest to compute.  For $x$ the usual coordinate, we have $[p](x) = x^p$, and hence the Frobenius $F$ acts on $M(\G_m)$ by $Fx = px$.  It follows that $Vx = x$ and $M(\G_m) \cong \W_p(k)\{x\}$ with this action.
+Consider $\G_0 = \G_m$.  For $x$ the usual coordinate, we have $[p](x) = x^p$, and hence the Frobenius $F$ acts on $D^*(\G_m)$ by $Fx = px$.  It follows that $Vx = x$ and $D^*(\G_m) \cong \W_p(k)\{x\}$ with this $\Cart_p$--module structure.
+\end{example}
+
+\begin{example}
+We also give a kind of non-example: $\G_a$ is \emph{not} a finite height formal group, and its Dieudonn\'e module is correspondingly strangely behaved: \[D^*(\G_a) = \F_2\{x, Fx, F^2x, \ldots\} / (V = 0).\]
 \end{example}
 
 \begin{example}[{cf.\ \Cref{Alpha2Example}}]\label{WorkedAlpha2Example}
-\todo[inline]{This example is not done.}
-Dieudonn\'e theory admits an extension to finite (flat) group schemes as well, and the torsion quotient of the Dieudonn\'e module of a formal group agrees with the Dieudonn\'e module associated to its torsion subscheme: \[M(\G_0[p^j]) = M(\G_0) / p^j.\]  The \todo{Start by calculating $V$ for $\G_a$, use this to motivate the presence of torsion.} Dieudonn\'e module associated to $\G_a$ is the infinite--dimensional torsion $\W_p(k)$--module $M(\G_a) = k\{x, Fx, F^2 x, \ldots\}$.  Set $p = 2$, and consider the subgroup scheme $\alpha_2 \subseteq \G_a$ with Dieudonn\'e module \[M(\alpha_2) = M(\G_a) / F^2 = k\{x, Fx\}.\]  We can now verify the four claims from \Cref{Alpha2Example}:
+Dieudonn\'e theory admits an extension to finite (flat) group schemes as well, and the torsion quotient of the Dieudonn\'e module of a formal group agrees with the Dieudonn\'e module associated to its torsion subscheme: \[D^*(\G_0[p^j]) = D^*(\G_0) / p^j.\]  For example, this gives \[D^*(\G_m[p]) = \left.\F_p\{x\} \middle/\left(\begin{array}{c} Fx = 0, \\ Vx = x \end{array}\right)\right. .\]  We extract the subgroup scheme $\alpha_2$ as the finite Dieudonn\'e quotient module $D^*(\alpha_2) = \F_2\{x\} \leftarrow D^*(\G_a)$ of the Dieudonn\'e module associated to $\G_a$ above.  We can now verify the four claims from \Cref{Alpha2Example}:
 \begin{itemize}
-\item \textit{The group scheme $\alpha_2$ has the same underlying structure ring as $\mu_2 = \mathbb{G}_m[2]$ but is not isomorphic to it.}  This follows from calculating the Dieudonn\'e module of homomorphisms:
-% The easiest way to see this is that $\mathrm{Hom}(\mu_2, \mu_2) = \mathbb{Z}/2\mathbb{Z}$ but $\mathrm{Hom}(\alpha_2, \mu_2) = \alpha_2$ (these homs are in the category of affine group schemes and give out an affine group scheme).
-\item \textit{There is no commutative group scheme $G$ of rank four such that $\alpha_2 = G[2]$.}  This follows from calculating the space of rank four objects and noticing that $VF = 2$ gets you into trouble.
-\item \textit{If $E/\mathbb{F}_2$ is the supersingular elliptic curve, then there is a short exact sequence \[0 \rightarrow \alpha_2 \rightarrow E[2] \rightarrow \alpha_2 \rightarrow 0.\]  However, this short exact sequence doesn't split (even after making a base change).}  This follows from calculating the action of $F$ and $V$: the exact sequence is split as modules, of course, but not as Dieudonn\'e modules.
-\item \textit{The subgroups of $\alpha_2 \times \alpha_2$ of order two are parameterized by $\mathbb{P}^1$.}  This follows from calculating the Dieudonn\'e module of the product, as well as its space of projections of the appropriate rank.
+\item \textit{The group scheme $\alpha_2$ has the same underlying structure ring as $\mu_2 = \mathbb{G}_m[2]$ but is not isomorphic to it.}  There are now several ways to see this, the simplest of which is that the Verschiebung operator acts nontrivially on $D^*(\mu_2)$ but wholly trivially on $D^*(\alpha_2)$.
+\item \textit{There is no commutative group scheme $G$ of rank four such that $\alpha_2 = G[2]$.}  Suppose that $G$ were such a group scheme, so that $D^*(G) / 2$ would give $D^*(\alpha_2)$.  It can't be the case that $D^*(G)$ has only $2$--torsion, since then this quotient would be a null operation, so it must be the case that $D^*(G) = \Z/4\{x\}$.  The action of both $F$ and $V$ on $x$ must vanish after quotienting by $2$, so it must be the case that $Fx = 2cx$ and $Vx = 2dx$ for some constants $c$ and $d$ --- but this violates $FVx = 2x$.
+\item \textit{If $E/\mathbb{F}_2$ is the supersingular elliptic curve, then there is a short exact sequence \[0 \rightarrow \alpha_2 \rightarrow E[2] \rightarrow \alpha_2 \rightarrow 0.\]  However, this short exact sequence doesn't split (even after making a base change).}  This follows from calculating the action of $F$ and $V$ to get a short exact sequence of Dieudonn\'e modules: \[0 \to \left.\F_2\{Fx\}\middle / \left(\begin{array}{c} F = 0, \\ V = 0 \end{array}\right)\right. \to \left.\F_2\{x, Fx\} \middle/ \left( \begin{array}{c} F^2x = 0, \\ V = 0 \end{array}\right) \right. \to \left.\F_2\{x\}\middle / \left(\begin{array}{c} F = 0, \\ V = 0 \end{array}\right)\right. \to 0.\]  The exact sequence is split as $\F_2$--modules, but not as Dieudonn\'e modules.
+\item \textit{The subgroups of $\alpha_2 \times \alpha_2$ of rank two are parameterized by $\mathbb{P}^1$.}  The Dieudonn\'e module of the product is quickly computed: \[D^*(\alpha_2 \times \alpha_2) = D^*(\alpha_2) \oplus D^*(\alpha_2) = \left.\F_2\{x_1, x_2\} \middle/ \left( \begin{array}{c} F = 0, \\ V = 0 \end{array} \right) \right. .\]  An inclusion of a rank $2$ subgroup scheme corresponds to a projection of this Dieudonn\'e module onto a $1$--dimensional quotient module, and the ways to choose the kernel of this projection encompass a $\P^1$.
 \end{itemize}
 \end{example}
 
-We can also use Dieudonn\'e theory to compute the automorphism group of a fixed Honda formal group, which is information we wanted back in \Cref{ChromaticLocalizationSection}:
+\begin{example}\label{FormOfStabilizerGroup}
+We can also use Dieudonn\'e theory to compute the automorphism group of a fixed Honda formal group, which is information we wanted back in \Cref{ChromaticLocalizationSection}.  Take $\Gamma_d$ to be Honda formal group law of height $d$ over $\F_{p^d}$, which has Dieudonn\'e module \[D^*(\Gamma_d) = \Cart_p / (F^d = p).\]  The endomorphism ring of a quotient module of its parent ring is canonically isomorphic to the module itself, giving \[\End \Gamma_d \cong \left. \W_p(\F_{p^d}) \<F\> \middle/ \left( \begin{array}{c} Fw = w^\phi F, \\ F^d = p \end{array} \right) \right.\] and hence \[\Aut \Gamma_d \cong \left(\left. \W_p(\F_{p^d}) \<F\> \middle/ \left( \begin{array}{c} Fw = w^\phi F, \\ F^d = p \end{array} \right) \right.\right)^\times.\]
+\end{example}
 
-\begin{corollary}\label{FormOfStabilizerGroup}
-For $\Gamma_d$ the Honda formal group law of height $d$ over $\F_{p^d}$, we compute \[\Aut \Gamma_d \cong \left. \W_p(\F_{p^d}) \<F\> \middle/ \left( \begin{array}{c} Fw = w^\phi F, \\ F^d = p \end{array} \right) \right.^\times.\]
-\end{corollary}
-\begin{proof}
-The Dieudonn\'e module associated to $\Gamma_d$ satisfies $F^d = p$, and hence $M(\Gamma_d/k)$ is presented as a \emph{quotient} of the ring of operators on Dieudonn\'e modules.  The endomorphism ring of such a module is canonically isomorphic to the module itself.
-\end{proof}
-
-We now turn to alternative presentations of the Dieudonn\'e module functor, which have their own advantages and disadvantages.  Let $\G$ again be a formal Lie group over a field $k$ of positive characteristic $p$, and consider Cartier's \textit{functor of curves} \[C\G = \CatOf{FormalSchemes}(\A^1, \G).\]  This is, again, a kind of relaxing of familiar data from Lie theory: rather than studying exponential curves, $C\G$ tracks all possible curves.  In \Cref{MfgII:LargeScales}, we considered three kinds of operations on a given curve $\gamma\co \A^1 \to \G$:
-\begin{itemize}
-\item Homothety: given a scalar $a \in A$, we define $[a] \cdot \gamma(t) = \gamma(at)$.
-\item Verschiebung: given an integer $n \ge 1$, we define $V_n \gamma(t) = \gamma(t^n)$.
-\item Arithmetic: given two curves $\gamma_1$ and $\gamma_2$, we can use the group law on $\G$ to define $\gamma_1 +_{\G} \gamma_2$.  Moreover, given $\ell \in \Z$, the $\ell$--fold sum in $\G$ gives an operator \[\ell \cdot \gamma = \overset{\text{$\ell$ times}}{\overbrace{\gamma +_{\G} \cdots +_{\G} \gamma}}.\]  This extends to an action by $\ell \in \W_p(k)$.
-\item Frobenius: given an integer $n \ge 1$, we define \[F_n \gamma(t) = \sum_{i=1}^n{}_{\G} \gamma(\zeta_n t^{1/n}),\] where $\zeta_{n}$ is an $n${\th} root of unity.  (This formula is invariant under permuting the root of unity chosen, so determines a curve defined over the original ground ring.)
-\end{itemize}
-
-\begin{definition}
-A curve $\gamma$ on a formal group is $p$--typical when $F_n \gamma = 0$ for $n \ne p^j$.  Write $D_p\G \subseteq C\G$ for the subset of $p$--typical curves.  In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D_p \G$, and there is a natural section $C\G \to D_p \G$ called $p$--typification, given by the same formula as in \Cref{EveryLogHaspTypification}.
-\end{definition}
-
-\begin{remark}
-Precomposing with a coordinate $\A^1 \cong \G$ allows us to think of a logarithm $\log\co \G \to \G_a$ as a curve on $\G_a$.  The definition of $p$--typicality given in \Cref{DefnpTypicalLog} coincides with the one given here.
+\begin{remark}[{\cite[Theorem 5.2.1]{Katz}}]\label{ExtensionsPresentationOfDieudonne}
+There is also a relationship between this representation of the Dieudonn\'e functor and the deformation theory of formal groups from \Cref{SectionMfgSmallScales}: a class $[f(x)dx] \in D^*(\G_0)$ begets a class in $e(f) \in \Ext^1(\G, \G_a)$ given by the cobar $1$--cocycle $f(x +_{\G} y) - f(x) - f(y)$.  In fact, this assignment is surjective, and the additional information lost in the kernel is a trivialization of the Lie algebra extension
+\begin{center}
+\begin{tikzcd}
+0 \arrow{r} & \Lie(\G_a) \arrow{r} & \Lie(E) \arrow{r} & \Lie(\G) \arrow{r} \arrow[bend right, densely dotted]{l} & 0
+\end{tikzcd}
+\end{center}
+associated to the group scheme extension $E$ classified by $e(f)$.
 \end{remark}
 
-Surprisingly, this construction captures the same data as the previous one.
-
-\begin{theorem}
-The functor $D_p$ determines a \emph{covariant} equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and finite free $\W_p(k)$--modules equipped with appropriate operations $F$ and $V$.  In fact, $D_p(\G) \cong M(\G/k)^*$. \qed \todo{Add in words about being uniform and reduced?}
-\end{theorem}
-\todo{Can you give more intuition about how these two presentations are related, for example from Lie theory?  Somehow (integral) curves (through a point) should correspond to the tangent space, while left-invariant forms correspond to the cotangent space.  Is ``cohomologically-invariant'' analogous to ``$p$-typification'', perhaps along the lines of the ``crystalline''-ness of $H^1_{dR}$?}  
-Finally, we turn to a third presentation of Dieudonn\'e theory using more pedestrian methods, with the aim of developing a theory more directly adapted to algebraic topology.  One can show that the category of \emph{finite--type} graded \todo{I would've thought that the important word to emphasize here is ``graded'', not ``finite-type'', since we've been assuming finite-type throughout this lecture.} connected Hopf algebras is an abelian category, and hence must admit a presentation as modules over some (perhaps noncommutative) ring.  The first step to accessing this presentation is to find a collection of projective generators for this category.
-
-\begin{theorem}[{\cite{Schoeller}}]
-Let $S(n)$ denote the free graded-commutative Hopf algebra on a single generator in degree $n$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
+Having gotten some feel for the behavior and the usefulness of the Dieudonn\'e functor, we now turn our attention to some alternative presentations of it.  In this next presentation we will not have to worry about lifts to $\W_p(k)$, so we take $\G$ itself to be a formal group over a perfect field $k$ of positive characteristic $p$.  Cartier's \textit{functor of curves} is defined by the formula \[C\G = \CatOf{FormalSchemes}(\A^1, \G).\]  This is, again, a kind of relaxing of familiar data from Lie theory, taken from a different direction: rather than studying just the exponential curves, $C\G$ tracks all possible curves.  In \Cref{MfgII:LargeScales}, we considered three kinds of operations on a given curve $\gamma\co \A^1 \to \G$:
 \begin{itemize}
-\item If either $p = 2$ and $n = 2^m k$ for $2 \nmid k$ and $m > 0$ \emph{or} $p \ne 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$, then $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the Witt vector diagonal.\todo{Put in a citation about what ``the Witt vector diagonal'' means: the elements $w_i = x_0^{p^i} + p x_1^{p^{i-1}} + \cdots + x_i$ are primitive.}
+\item Homothety: given a scalar $a \in A$, we define $\theta_a \gamma(t) = \gamma(a \cdot t)$.
+\item Verschiebung: given an integer $n \ge 1$, we define $V_n \gamma(t) = \gamma(t^n)$.
+\item Arithmetic: given two curves $\gamma_1$ and $\gamma_2$, we can use the group law on $\G$ to define $\gamma_1 +_{\G} \gamma_2$.  Moreover, given $\ell \in \Z$, the $\ell$--fold sum in $\G$ gives an operator \[\ell \cdot \gamma = \overset{\text{$\ell$ times}}{\overbrace{\gamma +_{\G} \cdots +_{\G} \gamma}}.\]  This extends to an action by $\ell \in \W_p(k)$.
+\item Frobenius: given an integer $n \ge 1$, we define \[F_n \gamma(t) = \sum_{i=1}^n{}_{\G} \gamma(\zeta_n t^{1/n}),\] where $\zeta_{n}$ is an $n${\th} root of unity.  (This formula is invariant under permuting the root of unity chosen, so determines a curve defined over the original ground ring by Galois descent.)
+\end{itemize}
+
+\begin{definition}[{cf.\ \Cref{DefnpTypicalLog}, \Cref{pTypicalityInGeneral}}]
+A curve $\gamma$ on a formal group is $p$--typical when $F_n \gamma = 0$ for $n \ne p^j$.  Write $D_*\G \subseteq C\G$ for the subset of $p$--typical curves.
+\end{definition}
+
+\begin{lemma}[{\cite[Equation 4.13]{ZinkCartierTheory}}]
+In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D_* \G$.  There is a natural section $C\G \to D_* \G$ called $p$--typification, given by the same formula as in \Cref{EveryLogHaspTypification}. \qed
+\end{lemma}
+
+This construction also plays the role of a Dieudonn\'e functor:
+
+\begin{theorem}{\cite[Theorem 3.5 and Theorem 3.28]{ZinkCartierTheory}}\label{CurveDieudonneTheorem}
+The functor $D_*$ determines a \emph{covariant} equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and Dieudonn\'e modules satisfying the three technical conditions of \Cref{MainContraDieudonneThm}. \qed
+\end{theorem}
+
+One of the main ingredients in the proof of \Cref{CurveDieudonneTheorem} is a representability result, which comes out of the following interesting construction.  The \textit{Witt scheme} $\W$ represents power series of the form $\prod_{j=1}^\infty (1 - a_j x^j)$, and it carries the structure of a group scheme by re-factoring the product of two such power series.  Using a rational exponential and logarithm, we also have \[\prod_{j=1}^\infty (1 - a_j x^j) = \exp \log \prod_{j=1}^\infty (1 - a_j x^j) = \exp \sum_{j=1}^\infty \left(-\sum_{k=1}^\infty \frac{1}{k} (a_j x^j)^k\right) = \exp \sum_{n=1}^\infty \frac{-t^n}{n} \sum_{m \mid n} m a_m^{n/m}.\]  These polynomials $w_n$, called \textit{ghost polynomials}, describe an injective logarithmic map \[(w_1, w_2, \ldots) \co \W \to \Ga^\infty,\] the image of which is characterized by the property $w_n(a) \equiv w_{n/p}(a)^p \pmod{p^j}$ for $p^j$ the maximum power of $p$ dividing $n$.  Over a $\Z_{(p)}$--algebra, there is a natural map on ghost components \[t(w_*(a_*))_{n'p^j} = (w_*(a_{p^j})),\] witnessing a decomposition $\W \times \Spec_{(p)} \cong \prod_{p \nmid n} \W_p$.  Both of these objects are natural limits of their truncations to finitely many power series product terms, and hence they both admit natural \emph{formal} objects, $\widehat{\W}$ and $\widehat{\W}_p$, by taking colimits of the formal completions of these truncations.
+
+\begin{lemma}[{\cite[Chapter 3]{ZinkCartierTheory}}]
+There are natural correspondences
+\begin{align*}
+\CatOf{FormalGroups}(\widehat{\W}, \G) & \cong \CatOf{FormalSchemes}(\A^1, \G) = C\G, \\
+\CatOf{FormalGroups}(\widehat{\W}_p, \G) & \cong D_*(\G),
+\end{align*}
+where the universal curve is specified by \todo[inline]{FINISH ME} \qed
+\end{lemma}
+
+This Lemma induces quite a lot of structure on $\widehat{\W}_p$: the Frobenius and Verschiebung operators on curves become operators acting on the formal Witt scheme, which on ghost components have the following behavior:
+\begin{align*}
+w_n(V_m a_*) & = m w_{nm}(a_*), &
+w_n(F_m a_*) & = \begin{cases} x_{n/m} & \text{if $m \mid n$}, \\ 0 & \text{otherwise}. \end{cases}
+\end{align*}
+One can use this to give an explicit description of the inverse to the covariant Dieudonn\'e functor whose existence is asserted by \Cref{CurveDieudonneTheorem}: the idea is that the evaluation map $\widehat{\W}_p \times C\G \to \G$ is surjective, and so we can recover $\G$ by imposing intertwining relations stemming from the evaluation map.  Following this through results in the following presentation: \[{D_*}^{-1}(M)(T) = \left. (\widehat{W}_p(T) \otimes_{\W_p(k)} M) \middle/ \left( \begin{array}{c} Va \otimes m = a \otimes Fm, \\ Fa \otimes m = a \otimes Vm \end{array} \right) \right. .\]
+
+We now seek to compare our two Dieudonn\'e functors.  In some sense, the comparison is inspired by an integration pairing: $D_*(\G)$ is populated by curves $\gamma$ on $\G$ and $D^*(\G)$ is populated by $1$--forms $\omega$ on $\G$, which we would like to sew together to form \[D_*(\G) \times D^*(\G) \xrightarrow{(\gamma, \omega) \mapsto \text{``$\int_\gamma \omega$''}} \W_p(k).\]
+\todo[inline]{There is probably more to say here.}
+
+This can be made rigorous by noting the following basic but ultra-important fact about the Witt scheme:
+\begin{lemma}
+\todo{Sure seems to me like $\widehat{C\W}_p$ is (canonically, even??) isomorphic to $\widehat{\W}_p$.  It would be nice to sort this out.}
+There is a formal group scheme $\widehat{C\W}_p$ with the property \[\CatOf{FormalGroups}(\widehat{\W}_p, \G)^* \cong \CatOf{FormalGroups}(\G, \widehat{C\W}_p). \qed\]
+\end{lemma}
+
+\begin{corollary}[{\cite[Section II.15]{MazurMessing}, \cite[Equation 5.5.2]{Katz}}]
+There is an isomorphism $(D_* \G)^* \xrightarrow\cong D^* \G$.
+\end{corollary}
+\begin{proof}[Construction]
+There is a canonical short exact sequence \[0 \to \G_a \to \widehat{C\W}_p \xrightarrow{V} \widehat{C\W}_p \to 0,\] and a co-curve $\gamma^*\co \G \to \widehat{C\W}_p$ gives a pullback sequence
+\begin{center}
+\begin{tikzcd}
+0 \arrow{r} & \G_a \arrow{r} & \widehat{\W}_p \arrow["V"]{r} & \widehat{\W}_p \arrow{r} & 0 \\
+0 \arrow{r} & \G_a \arrow{r} \arrow[equal]{u} & E \arrow{r} \arrow{u} & \G \arrow{r} \arrow["\gamma^*"]{u} & 0.
+\end{tikzcd}
+\end{center}
+This latter sequence is a rigidified extension of $\G$ by $\G_a$, as in \Cref{ExtensionsPresentationOfDieudonne}.  The conclusion of Mazur and Messing is that this is an isomorphism.
+\end{proof}
+
+\todo{Can you give more intuition about how these two presentations are related, for example from Lie theory?  What curve does a cohomologically left-invariant form get sent to?  Is ``cohomologically-invariant'' analogous to ``$p$-typification'', perhaps along the lines of the ``crystalline''-ness of $H^1_{dR}$?  Can these primitives be furthermore related to the idea that taking primitive cooperations selects the additive ones?}
+
+
+
+
+
+
+
+
+In the next Lecture we will return to applications to algebraic topology, and in that setting it will be useful to also have a version of Dieudonn\'e theory that is well-adapted to working with formal groups whose coordinate ring forms a \emph{graded} Hopf algebra.  Using as inspiration our previous identification \[C(\G) = \CatOf{FormalSchemes}(\A^1, \G) \cong \CatOf{FormalGroups}(\G, \widehat{C\W}_p) \cong \CatOf{HopfAlgebras}(\sheaf O_{\widehat{C\W}_p}, \sheaf O_{\G}),\] we are moved to form graded versions of the Witt Hopf algebra.  More precisely, the following theorem says that there are graded versions of the Witt Hopf algebra that give a sequence of projective generators for the category of connected graded Hopf algebras over $\F_p$:
+
+\begin{theorem}[{\cite[Section 3.2]{Schoeller}, \cite[Proposition 1.6]{GLM}}]
+Let $S(n)$ denote the free graded-commutative Hopf algebra over $\F_p$ on a single generator in degree $n > 0$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
+\begin{itemize}
+\item If either of the following conditions hold...
+\begin{itemize}
+\item $p = 2$ and $n = 2^m k$ for $2 \nmid k$ and $m > 0$, \emph{or}
+\item $p \ne 2$ and $n = 2p^m k$ for $p \nmid k$ and $m > 0$,
+\end{itemize}
+then $H(n) = \F_p[x_0, x_1, \ldots, x_k]$ with the Witt vector diagonal, i.e., the diagonal is arranged so that the elements $w_j = x_0^{p^j} + p x_1^{p^{j-1}} + \cdots + x_j$ are primitive.
 \item Otherwise, $H(n) = S(n)$ is the identity.
 \qed
 \end{itemize}
 \end{theorem}
 
 \begin{corollary}
-The category $\CatOf{HopfAlgebras}^{> 0, \fin}_{\F_p/}$ of finite--type graded connected Hopf algebras is a full subcategory of modules over \[\bigoplus_{n, m} \CatOf{HopfAlgebras}^{> 0, \fin}_{\F_p/}(H(n), H(m)).\]
+The category $\CatOf{GradedHopfAlgebras}^{> 0, \fin}_{\F_p/}$ of finite--type graded connected Hopf $\F_p$--algebras is a full subcategory of modules over \[\bigoplus_{n, m} \CatOf{GradedHopfAlgebras}(H(n), H(m)).\]
 \end{corollary}
+\begin{proof}[Proof sketch]
+This is a general nonsense consequence of having found a set of projective generators.  The functor presenting the inclusion is \[M \mapsto \bigoplus_{n=0}^\infty \CatOf{GradedHopfAlgebras}(H(n), M),\] and since this functor is corepresented its automorphisms are encoded by the indicated ring.
+\end{proof}
 
-\begin{definition}
-Let $\CatOf{GradedDMods}$ denote the category of graded abelian groups $M$ satisfying
+We would also like to give a set of conditions, analogous to the technical conditions appearing in the previous two presentations, which select this full subcategory out from all possible modules over this endomorphism ring.
+
+\begin{definition}[{\cite[pg.\ 116]{GLM}}]
+Let $\CatOf{GradedDMods}$ denote the category of graded abelian groups $M$ equipped with maps $V\co M_{pn} \to M_n$ and $F\co M_n \to M_{pn}$ (where $n$ is even if $p \ne 2$) satisfying
 \begin{enumerate}
 \item $M_{< 1} = 0$.
 \item If $n$ is odd, then $pM_n = 0$.
-\item There are homomorphisms $V\co M_{pn} \to M_n$ and $F\co M_n \to M_{pn}$ (where $n$ is even if $p \ne 2$), together satisfying $FV = p = VF$.  (These are induced by the inclusion $H(n) \subseteq H(pn)$ and by the map $H(pn) \to H(n)$ sending $x_n$ to $x_{n-1}^p$.)
+\item The composites are controlled by $FV = p$ and $VF = p$.\footnote{These are induced by the inclusion $H(n) \subseteq H(pn)$ and by the map $H(pn) \to H(n)$ sending $x_n$ to $x_{n-1}^p$.}
 \end{enumerate}
 \end{definition}
 
 \begin{remark}
-Combining these, if $n$ is even, taking the form $n = 2p^m k$ with $p \nmid k$ at odd primes $p$ or $n = 2^m k$ with $2 \nmid k$ at $p = 2$, then $p^{m+1} M_n = F^{m+1} V^{m+1} M_n = 0$.
+Suppose that $n$ is even, written at odd primes in the form $n = 2p^m k$ with $p \nmid k$ or at $p = 2$ in the form $n = 2^m k$ with $2 \nmid k$ at $p = 2$.  Then, combining the above relations, we get the torsion condition $p^{m+1} M_n = F^{m+1} V^{m+1} M_n = 0$.
 \end{remark}
 
-\begin{theorem}
-The functor $D_*\co \CatOf{HopfAlgebras}^{>0, \fin}_{\F_p/} \to \CatOf{GradedDMods}$ defined by \[D_*(H) = \bigoplus_n D_n(H) = \bigoplus_n \CatOf{HopfAlgebras}^{>0, \fin}_{\F_p/}(H(n), H)\] is an exact equivalence of categories.  Moreover, $D_* H(n)$ is characterized by the equation \[\CatOf{GradedDMods}(D_* H(n), M) = M_n. \qed\]
+\begin{theorem}[{\cite[Section 5]{Schoeller}, \cite[Theorem 1.11]{GLM}}]
+The functor
+\begin{align*}
+D_*\co \CatOf{GradedHopfAlgebras}^{>0, \fin}_{\F_p/} & \to \CatOf{GradedDMods}, \\
+D_*(H) = \bigoplus_n D_n(H) & = \bigoplus_n \CatOf{GradedHopfAlgebras}^{>0, \fin}_{\F_p/}(H(n), H)
+\end{align*}
+is an exact equivalence of categories.  Moreover, $D_* H(n)$ is characterized by the equation \[\CatOf{GradedDMods}(D_* H(n), M) = M_n. \qed\]
 \end{theorem}
 
 
-\todo[inline]{It would be nice to tie these presentations together, at least with unjustified claims.  What curve does a cohomologically left-invariant form get sent to?  What does the appearance of the Witt scheme in the third presentation tell you about the relationship to the second presentation?}
-
-\todo{This last presentation could use some examples too.}
 
 
 
 
 
+\begin{remark}[{\cite[Remark 18.1]{StricklandFPFP}}]
+A coordinate $x$ on $\CP^\infty_E$ induces a sequence of isomorphisms \[\CatOf{FormalGroups}(BU_E, \G) \cong \CatOf{FormalSchemes}(\CP^\infty_E, \G) \stackrel{x}{\cong} \CatOf{FormalSchemes}(\A^1, \G) = C\G,\] which presents $E^* BU$ as the Witt Hopf algebra.  However, this isomorphism is not especially interesting: for one, it is \emph{highly} dependent upon the choice of coordinate, but also the far right-hand object has no dependence on $\CP^\infty_E$, and so the operations we have been studying --- formal group auto- and endomorphisms of $\CP^\infty_E$, mainly --- do not act, and this isomorphism cannot be equivariant in any useful sense.
+\end{remark}
+
+\begin{remark}[{\cite[Chapitre VI]{Grothendieck}}]
+The contravariant Dieudonn\'e functor described above has a natural extension by choosing lifts over other pro-Artinian $k$--algebras, like the Lubin--Tate moduli stack of \Cref{LubinTateDefn}.  The resulting network of objects most naturally organizes into a sheaf over the \textit{crystalline site}, but it is possible in this setting to re-express such a sheaf as a quasi-coherent sheaf over the Lubin--Tate stack which is equipped with a flat connection, and it is additionally acted upon by the familiar operators $F$ and $V$.
+\end{remark}
+
+\begin{remark}
+Dieudonn\'e theory gives rise to an important function called the \textit{period map}.  Although the crystalline nature of the cohomology group $H^1_{dR}$ makes our definition of $D^*$ invariant of choice of lift, the underlying chain complex is \emph{not} invariant of choice of lift.  In turn, the subsheaf of honestly invariant differentials $\omega_{\G}$ selects an interesting $1$--dimensional vector subspace of $PH^1_{dR}(\G)$.  Thinking of $\G$ as a point in $(\moduli{fg})^\wedge_{\G_0}(\W_p(k))$, this observation gives rise to an interesting function
+\begin{align*}
+\pi_{GH}\co (\moduli{fg})^\wedge_{\G_0}(\W_p(k)) & \to \P(D^*(\G)), \\
+\G & \mapsto [\omega_{\G} \subseteq \P(D^*(\G))].
+\end{align*}
+This map has incredibly good properties.  It is equivariant for the action of $\Aut \G_0$~\cite[Theorem 1]{HopkinsGrossAnnouncement}, and with enough work one can use this to extract explicit (recursive) formulas expressing the action~\cite{DevinatzHopkins}, \cite[Section 24]{StricklandFPFP}, \cite[Section 22]{HopkinsGrossEquivVBs}, bringing some relief to the problem of \Cref{StablizerRepIsComplicated}.  Also, in a suitable context it becomes an \'etale morphism with identifiable fibers~\cite[Theorem 1]{HopkinsGrossAnnouncement}, \cite[Sections 23-4]{HopkinsGrossEquivVBs}.
+\end{remark}
+
+\begin{remark}
+It is also possible to build versions of Dieudonn\'e theory over still more exotic rings.  The most successful such version is Zink's theory of Dieudonn\'e displays~\cite{ZinkDisplays}.
+\end{remark}
 
 
-\todo{Dieudonn\'e theory is also about taking primitives in some sort of cohomology.  Can this be connected to the additivity condition on unstable operations?}
-\todo{Weinstein's Section 1 also ends with a discussion of the Dieudonn\'e functor extended to the crystalline site.  This is necessary to get access to the period map.}
-\todo{Definition of the inverse functor to the Dieudonn\'e module functor?  I think this appears in the formal groups notes.}
-\todo{We know of a connection between $H_* BU$ and the Witt scheme.  Is there a connection between $E_* MU$ and curves, or $E_* BP$ and $p$--typical curves, which is visible from this perspectve?  Almost definitely!  Also, a connection between curves and divisors: the zero locus of a given curve...  ---  Actually, Remark 18.1 in FPFP says that this is an unhealthy way to think about $H_* BU$.  Very interesting.}
-\todo{You could also try to give the Devinatz--Hopkins formula for the stabilizer action.  It's entirely a matter of different presentations of the Dieudonn\'e module... although it may require you to understand Dieudonn\'e crystals, which you are \emph{not} up for.}
-\todo{Include this remark:  However, the subspace of $M$ spanned by $\omega_{\G}$ is \emph{sensitive to choice of lift}, unlike the rest of this construction.  This observation is the wellspring of the Gross--Hopkins period map.}
 
 
 
