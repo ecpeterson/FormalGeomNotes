@@ -33,6 +33,7 @@
     iso'/.style="\cong"{/utils/exec=\isop@which,#1},
     equiv/.style="\simeq"{#1},
     equiv'/.style="\simeq"{/utils/exec=\isop@which,#1},
+    % XXX: equal really breaks if you pair it with leftarrow.
     equal/.style={double distance=2pt,-}
 }
 
@@ -100,6 +101,8 @@
 
 \setlength{\marginparwidth}{1in-\marginparsep} % fullpage sets margins to 1in
 
+\setcounter{tocdepth}{1} % don't print subsections in the table of contents
+
 % todonotes definitions
 
 \newcommand{\oweproof}[1]{\todo[color=red]{\textbf{You owe a proof of: } #1.}}
@@ -121,10 +124,14 @@
 \newcommand{\CP}{\C\mathrm P}
 \newcommand{\HP}{\mathbb H\mathrm P}
 \newcommand{\FH}{\textbf{FH}}
+\newcommand{\UFH}{\textbf{UFH}}
+\newcommand{\UGH}{\textbf{UGH}}
 \newcommand{\CH}{\textbf{CH}}
 \renewcommand{\t}{\mathbf t}
 \newcommand{\Gm}{\mathbb G_m}
+\newcommand{\Ga}{\mathbb G_a}
 \newcommand{\ThomDivisor}{\mathbb D}
+\renewcommand{\AA}{A\!\!\!A} % the right join of the leg and bar on the left letter should meet the left join of the leg and bar of the right letter
 
 \newcommand{\<}{\langle}
 \renewcommand{\>}{\rangle}
@@ -147,7 +154,12 @@
 \newcommand{\st}{\textsuperscript{st}}
 \def\Cech{\v{C}ech}
 
-\newcommand{\bigast}{\mathop{\vcenter{\hbox{$\mathlarger{\mathlarger{\ast}}$}}}}
+% from http://tex.stackexchange.com/questions/41186/big-asterisk-bigast-symbol
+% these are magic numbers that depend upon the other geometry options
+\newcommand{\bigast}{\mathop{\scalebox{2.5}{\raisebox{-0.35ex}{$\ast$}}}}
+
+% cf http://tex.stackexchange.com/questions/286050/rotated-math-with-correct-font-size for sizing instructions
+\newcommand{\circulatearrows}{\text{$\curvearrowleft$\hspace{-0.95em}\rotatebox[origin=bl]{180}{$\curvearrowleft$}}}
 
 \newcommand{\context}[1]{\mathcal{M}_{#1}}
 \newcommand{\Ucontext}[1]{\mathcal{UM}_{#1}}
@@ -178,6 +190,9 @@
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\FGps}{\mathrm{FGps}}
 \newcommand{\fin}{\mathrm{fin}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\Cart}{\mathrm{Cart}}
 
 \DeclareMathOperator{\Ind}{Ind}
 \DeclareMathOperator{\Spec}{Spec}
@@ -209,6 +224,8 @@
 \DeclareMathOperator{\Isog}{Isog}
 \DeclareMathOperator{\Td}{Td}
 \DeclareMathOperator{\cofib}{cofib}
+\DeclareMathOperator{\SpH}{SpH}
+\DeclareMathOperator{\Lie}{Lie}
 \let\div\undefined\DeclareMathOperator{\div}{div}
 
 % theorem environments
@@ -293,3 +310,9 @@
     \ifx\footnote\nextToken\textsuperscript{,}%
     \else\ifx\footnotemark\nextToken\textsuperscript{,}\fi%
     \fi}
+
+% from hood chatham: an \HFp macro that deals with subsequent subscripts intelligently
+
+\makeatletter
+\protected\def\HFp{H\mathbb{F}_p\@ifnextchar_{{}}{}}
+\makeatother
