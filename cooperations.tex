@@ -787,11 +787,44 @@ This latter sequence is a rigidified extension of $\G$ by $\G_a$, as in \Cref{Ex
 
 
 
+\begin{remark}[{\cite[Remark 18.1]{StricklandFPFP}}]
+A coordinate $x$ on $\CP^\infty_E$ induces a sequence of isomorphisms \[\CatOf{FormalGroups}(BU_E, \G) \cong \CatOf{FormalSchemes}(\CP^\infty_E, \G) \stackrel{x}{\cong} \CatOf{FormalSchemes}(\A^1, \G) = C\G,\] which presents $E^* BU$ as the Witt Hopf algebra.  However, this isomorphism is not especially interesting: for one, it is \emph{highly} dependent upon the choice of coordinate, but also the far right-hand object has no dependence on $\CP^\infty_E$, and so the operations we have been studying --- formal group auto- and endomorphisms of $\CP^\infty_E$, mainly --- do not act, and this isomorphism cannot be equivariant in any useful sense.
+\end{remark}
+
+\begin{remark}[{\cite[Chapitre VI]{Grothendieck}}]
+The contravariant Dieudonn\'e functor described above has a natural extension by choosing lifts over other pro-Artinian $k$--algebras, like the Lubin--Tate moduli stack of \Cref{LubinTateDefn}.  The resulting network of objects most naturally organizes into a sheaf over the \textit{crystalline site}, but it is possible in this setting to re-express such a sheaf as a quasi-coherent sheaf over the Lubin--Tate stack which is equipped with a flat connection, and it is additionally acted upon by the familiar operators $F$ and $V$.
+\end{remark}
+
+\begin{remark}
+Dieudonn\'e theory gives rise to an important function called the \textit{period map}.  Although the crystalline nature of the cohomology group $H^1_{dR}$ makes our definition of $D^*$ invariant of choice of lift, the underlying chain complex is \emph{not} invariant of choice of lift.  In turn, the subsheaf of honestly invariant differentials $\omega_{\G}$ selects an interesting $1$--dimensional vector subspace of $PH^1_{dR}(\G)$.  Thinking of $\G$ as a point in $(\moduli{fg})^\wedge_{\G_0}(\W_p(k))$, this observation gives rise to an interesting function
+\begin{align*}
+\pi_{GH}\co (\moduli{fg})^\wedge_{\G_0}(\W_p(k)) & \to \P(D^*(\G)), \\
+\G & \mapsto [\omega_{\G} \subseteq \P(D^*(\G))].
+\end{align*}
+This map has incredibly good properties.  It is equivariant for the action of $\Aut \G_0$~\cite[Theorem 1]{HopkinsGrossAnnouncement}, and with enough work one can use this to extract explicit (recursive) formulas expressing the action~\cite{DevinatzHopkins}, \cite[Section 24]{StricklandFPFP}, \cite[Section 22]{HopkinsGrossEquivVBs}, bringing some relief to the problem of \Cref{StablizerRepIsComplicated}.  Also, in a suitable context it becomes an \'etale morphism with identifiable fibers~\cite[Theorem 1]{HopkinsGrossAnnouncement}, \cite[Sections 23-4]{HopkinsGrossEquivVBs}.
+\end{remark}
+
+\begin{remark}
+It is also possible to build versions of Dieudonn\'e theory over still more exotic rings.  The most successful such version is Zink's theory of Dieudonn\'e displays~\cite{ZinkDisplays}, which has found some application in algebraic topology~\cite{LawsonDisplays}.
+\end{remark}
 
 
 
 
-In the next Lecture we will return to applications to algebraic topology, and in that setting it will be useful to also have a version of Dieudonn\'e theory that is well-adapted to working with formal groups whose coordinate ring forms a \emph{graded} Hopf algebra.  Using as inspiration our previous identification \[C(\G) = \CatOf{FormalSchemes}(\A^1, \G) \cong \CatOf{FormalGroups}(\G, \widehat{C\W}_p) \cong \CatOf{HopfAlgebras}(\sheaf O_{\widehat{C\W}_p}, \sheaf O_{\G}),\] we are moved to form graded versions of the Witt Hopf algebra.  More precisely, the following theorem says that there are graded versions of the Witt Hopf algebra that give a sequence of projective generators for the category of connected graded Hopf algebras over $\F_p$:
+
+
+
+
+
+\section{Ordinary cooperations for Landweber flat theories}\label{LEFTCooperations}
+
+\begin{center}
+\textbf{Convention: We will write $H$ for $H\F_p$ for the duration of the lecture.}
+\end{center}
+
+Our goal in this Lecture is to put Dieudonn\'e modules to work for us in algebraic topology.  The executive summary of Dieudonn\'e theory is that it gives a \emph{linear} presentation of the theory of Hopf algebras.  From the perspective of algebraic topology, functors sending cofiber sequences to exact sequences in a linear category are precisely the homology functors.  Tying these two ideas together, if we can find a functor that sends exact sequences of spaces (or spectra) to exact sequences of Hopf algebras, we can post-compose it with a suitable version of the Dieudonn\'e functor to get a homology functor and hence a \emph{spectrum}.
+
+To meet algebraic topology in its natural setting, it will be useful to also have a version of Dieudonn\'e theory that is well-adapted to working with formal groups whose coordinate ring forms a \emph{graded} Hopf algebra.  Using as inspiration our previous identification \[C(\G) = \CatOf{FormalSchemes}(\A^1, \G) \cong \CatOf{FormalGroups}(\G, \widehat{C\W}_p) \cong \CatOf{HopfAlgebras}(\sheaf O_{\widehat{C\W}_p}, \sheaf O_{\G}),\] we are thus moved to form graded versions of the Witt Hopf algebra.  More precisely, the following theorem says that there are graded versions of the Witt Hopf algebra that give a sequence of projective generators for the category of connected graded Hopf algebras over $\F_p$:
 
 \begin{theorem}[{\cite[Section 3.2]{Schoeller}, \cite[Proposition 1.6]{GLM}}]
 Let $S(n)$ denote the free graded-commutative Hopf algebra over $\F_p$ on a single generator in degree $n > 0$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
@@ -838,53 +871,7 @@ D_*(H) = \bigoplus_n D_n(H) & = \bigoplus_n \CatOf{GradedHopfAlgebras}^{>0, \fin
 is an exact equivalence of categories.  Moreover, $D_* H(n)$ is characterized by the equation \[\CatOf{GradedDMods}(D_* H(n), M) = M_n. \qed\]
 \end{theorem}
 
-
-
-
-
-
-
-\begin{remark}[{\cite[Remark 18.1]{StricklandFPFP}}]
-A coordinate $x$ on $\CP^\infty_E$ induces a sequence of isomorphisms \[\CatOf{FormalGroups}(BU_E, \G) \cong \CatOf{FormalSchemes}(\CP^\infty_E, \G) \stackrel{x}{\cong} \CatOf{FormalSchemes}(\A^1, \G) = C\G,\] which presents $E^* BU$ as the Witt Hopf algebra.  However, this isomorphism is not especially interesting: for one, it is \emph{highly} dependent upon the choice of coordinate, but also the far right-hand object has no dependence on $\CP^\infty_E$, and so the operations we have been studying --- formal group auto- and endomorphisms of $\CP^\infty_E$, mainly --- do not act, and this isomorphism cannot be equivariant in any useful sense.
-\end{remark}
-
-\begin{remark}[{\cite[Chapitre VI]{Grothendieck}}]
-The contravariant Dieudonn\'e functor described above has a natural extension by choosing lifts over other pro-Artinian $k$--algebras, like the Lubin--Tate moduli stack of \Cref{LubinTateDefn}.  The resulting network of objects most naturally organizes into a sheaf over the \textit{crystalline site}, but it is possible in this setting to re-express such a sheaf as a quasi-coherent sheaf over the Lubin--Tate stack which is equipped with a flat connection, and it is additionally acted upon by the familiar operators $F$ and $V$.
-\end{remark}
-
-\begin{remark}
-Dieudonn\'e theory gives rise to an important function called the \textit{period map}.  Although the crystalline nature of the cohomology group $H^1_{dR}$ makes our definition of $D^*$ invariant of choice of lift, the underlying chain complex is \emph{not} invariant of choice of lift.  In turn, the subsheaf of honestly invariant differentials $\omega_{\G}$ selects an interesting $1$--dimensional vector subspace of $PH^1_{dR}(\G)$.  Thinking of $\G$ as a point in $(\moduli{fg})^\wedge_{\G_0}(\W_p(k))$, this observation gives rise to an interesting function
-\begin{align*}
-\pi_{GH}\co (\moduli{fg})^\wedge_{\G_0}(\W_p(k)) & \to \P(D^*(\G)), \\
-\G & \mapsto [\omega_{\G} \subseteq \P(D^*(\G))].
-\end{align*}
-This map has incredibly good properties.  It is equivariant for the action of $\Aut \G_0$~\cite[Theorem 1]{HopkinsGrossAnnouncement}, and with enough work one can use this to extract explicit (recursive) formulas expressing the action~\cite{DevinatzHopkins}, \cite[Section 24]{StricklandFPFP}, \cite[Section 22]{HopkinsGrossEquivVBs}, bringing some relief to the problem of \Cref{StablizerRepIsComplicated}.  Also, in a suitable context it becomes an \'etale morphism with identifiable fibers~\cite[Theorem 1]{HopkinsGrossAnnouncement}, \cite[Sections 23-4]{HopkinsGrossEquivVBs}.
-\end{remark}
-
-\begin{remark}
-It is also possible to build versions of Dieudonn\'e theory over still more exotic rings.  The most successful such version is Zink's theory of Dieudonn\'e displays~\cite{ZinkDisplays}, which has found some application in algebraic topology~\cite{LawsonDisplays}.
-\end{remark}
-
-
-
-
-
-
-
-
-
-\section{Ordinary cooperations for Landweber flat theories}\label{LEFTCooperations}
-
-\begin{center}
-\textbf{Convention: We will write $H$ for $H\F_p$ for the duration of the lecture.}
-\end{center}
-
-Our goal in this Lecture is to put Dieudonn\'e modules to work for us in algebraic topology.  We will prove the following Theorem:
-\begin{theorem}
-For $F = H$ and $E$ a Landweber flat homology theory, the comparison map \[\AA(H, E) \to H_* \OS{E}{2*}\] is an isomorphism of Hopf rings.
-\end{theorem}
-
-\noindent The two simultaneous observations leading into this Theorem are that the Dieudonn\'e functor gives a \emph{linear} presentation of the theory of Hopf algebras and that homology functors are precisely those functors sending cofiber sequences to exact sequences in a linear category.  So, if we can find a functor that sends exact sequences of spaces (or spectra) to exact sequences of Hopf algebras, we can chain these ideas to recognize it as a homology theory.  This is the thrust of the following result of Goerss--Lannes--Morel:
+Having produced our desired graded Dieudonn\'e theory, we now need some topological input.  We are by now well aware that the homology of an $H$--space forms a Hopf algebra, and the Serre spectral sequence for a fibration of $H$--spaces \[F \to E \to B\] takes the form \[E_2^{*, *} = H^* B \otimes H^* F \Rightarrow H^* E.\]  The following result of Goerss--Lannes--Morel says that in the case that the fibration is one of \emph{infinite loopspaces}, we have the exactness property we need:
 
 \begin{theorem}[{\cite[Lemma 2.8]{GLM}}]
 Let $X \to Y \to Z$ be a cofiber sequence of spectra.  Then, provided $n > 1$ satisfies $n \not\equiv \pm 1 \pmod{2p}$, there is an exact sequence \[D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z. \qed\]
@@ -947,7 +934,11 @@ For $X$ a space, there is a natural surjection \[B(n)_n X \to H_n X. \qed\]
 
 
 
-Let's now work toward using the $B(n)$ spectra to analyze the Hopf rings arising from unstable cooperations.  We have previously computed that the comparison map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  We will reimagine this statement in terms of Dieudonn\'e theory, but in order to do this we first have to reimagine some of Dieudonn\'e theory itself, as our description of it is concerned with \emph{Hopf algebras} rather than \emph{Hopf rings}.  A Hopf ring is not much structure on top of an (externally) graded system of (internally) graded Hopf algebras $A_*$: it is a multiplication map \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``$\boxtimes$'' is a kind of graded tensor product of externally graded Hopf algebras~\cite[Proposition 2.6]{HuntonTurner}, \cite[Definition 2.2]{BuchstaberLazarev}, \cite[Section 5]{GoerssDieudonne}.  Since $D_*$ gives an equivalence of categories between internally graded Hopf algebras and internally graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of Dieudonn\'e modules.
+Let's now work toward using the $B(n)$ spectra to analyze the Hopf rings arising from unstable cooperations.  Our intention is to prove the following:
+\begin{theorem}
+For $F = H$ and $E$ a Landweber flat homology theory, the comparison map \[\AA(H, E) \to H_* \OS{E}{2*}\] is an isomorphism of Hopf rings.
+\end{theorem}
+\noindent We have previously computed that the comparison map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  We will now reimagine this statement in terms of Dieudonn\'e theory, but in order to do this we first have to reimagine some of Dieudonn\'e theory itself, as our description of it is concerned with \emph{Hopf algebras} rather than \emph{Hopf rings}.  A Hopf ring is not much structure on top of an (externally) graded system of (internally) graded Hopf algebras $A_*$: it is a multiplication map \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``$\boxtimes$'' is a kind of graded tensor product of externally graded Hopf algebras~\cite[Proposition 2.6]{HuntonTurner}, \cite[Definition 2.2]{BuchstaberLazarev}, \cite[Section 5]{GoerssDieudonne}.  Since $D_*$ gives an equivalence of categories between internally graded Hopf algebras and internally graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of Dieudonn\'e modules.
 
 \begin{definition}{\cite[pg.\ 154]{GoerssDieudonne}}
 The naive tensor product $M \otimes N$ of Dieudonn\'e modules $M$ and $N$ receives the structure of a $\W(k)[V]$--module, where $V(x \otimes y) = V(x) \otimes V(y)$.  We define the \textit{tensor product of Dieudonn\'e modules}\footnote{This definition is specialized to $\F_p$, where we don't have to worry about Frobenius semi-linearity.} by \[M \boxtimes N = \left.\frac{\W(k)[F, V]}{(VF = p)} \otimes_{\W(k)[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
