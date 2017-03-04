@@ -251,7 +251,7 @@ $$ kU^*K(\mathbb{Z},3)/v \to H^*K(\mathbb{Z},3) \to \text{ann}(v,kU^*K(\mathbb{Z
 
 
 
-\section{Mixed unstable cooperations and their algebraic model}
+\section{Mixed unstable cooperations and their algebraic model}\label{UnstableAlgebraicModelSection}
 
 For simplicity, we return to the stable setting of \Cref{StableContextLecture} for a moment.  For an arbitrary spectrum $X$ and ring spectrum $E$, the completion $X^\wedge_E$ is typically a quite poor approximation to $X$ itself.  Though this can be partially mediated by placing hypotheses on $X$, the approximation can always be improved by ``enlarging'' the cohomology theory involved --- namely, selecting a second ring spectrum $F$ and forming the completion $X^\wedge_{E \vee F}$ at the wedge.  This has the following factorization property
 \begin{center}
@@ -760,7 +760,7 @@ w_n(F_m a_*) & = \begin{cases} x_{n/m} & \text{if $m \mid n$}, \\ 0 & \text{othe
 One can use this to give an explicit description of the inverse to the covariant Dieudonn\'e functor whose existence is asserted by \Cref{CurveDieudonneTheorem}: the idea is that the evaluation map $\widehat{\W}_p \times C\G \to \G$ is surjective, and so we can recover $\G$ by imposing intertwining relations stemming from the evaluation map.  Following this through results in the following presentation: \[{D_*}^{-1}(M)(T) = \left. (\widehat{W}_p(T) \otimes_{\W_p(k)} M) \middle/ \left( \begin{array}{c} Va \otimes m = a \otimes Fm, \\ Fa \otimes m = a \otimes Vm \end{array} \right) \right. .\]
 
 We now seek to compare our two Dieudonn\'e functors.  In some sense, the comparison is inspired by an integration pairing: $D_*(\G)$ is populated by curves $\gamma$ on $\G$ and $D^*(\G)$ is populated by $1$--forms $\omega$ on $\G$, which we would like to sew together to form \[D_*(\G) \times D^*(\G) \xrightarrow{(\gamma, \omega) \mapsto \text{``$\int_\gamma \omega$''}} \W_p(k).\]
-\todo[inline]{There is probably more to say here.}
+\todo[inline]{There is more to say here.  Erick Knight suggested that there should be an alternative definition of covariant Dieudonn\'e theory also expressed by the cohomology of some sheaf, and that this will give rise to the desired duality pairing with values in some Tate-twisted ground object, which is precisely what we are looking for.}
 
 This can be made rigorous by noting the following basic but ultra-important fact about the Witt scheme:
 \begin{lemma}
@@ -783,6 +783,7 @@ This latter sequence is a rigidified extension of $\G$ by $\G_a$, as in \Cref{Ex
 \end{proof}
 
 \todo{Can you give more intuition about how these two presentations are related, for example from Lie theory?  What curve does a cohomologically left-invariant form get sent to?  Is ``cohomologically-invariant'' analogous to ``$p$-typification'', perhaps along the lines of the ``crystalline''-ness of $H^1_{dR}$?  Can these primitives be furthermore related to the idea that taking primitive cooperations selects the additive ones?}
+\todo{It would be nice to talk a little bit about connected and non-connected Hopf algebras and how Dieudonn\'e theory extends across them.  This is something Goerss takes the time to compensate for and it's something that Jacob bothers with in the Hopkins--Lurie manuscript (it's the difference between $DM$ and $DM_+$ in the language of 1.4.15).}
 
 
 
@@ -989,140 +990,149 @@ The results of this Lecture are accessed from a different perspective by Hopkins
 
 
 
-\section{Cooperations and geometric points on \texorpdfstring{$\moduli{fg}$}{Mfg}}\label{CoopnsForMoravaKandHA}
+\section{Cooperations among geometric points on \texorpdfstring{$\moduli{fg}$}{Mfg}}\label{CoopnsForMoravaKandHA}
 
-\todo{Theorem 8.1.3 of Ravenel-Wilson-Yagita says that the even collapse at $j = \infty$ was already known to them, and indeed it appears in Ravenel-Wilson Theorem 12.3 on page 743.}
+Our discussion of unstable cooperations has touched on each of the families of chromatic homology theories described in \Cref{DefnChromaticHomologyThys} except one: the Morava $K$-- and $E$--theories.  Our final goal before moving on to other subjects is to describe some of the mixed unstable cooperations for $(K_\Gamma)_* \OS{K_{\Gamma'}}{*}$.  In complete generality, this seems like a difficult problem: our algebraic model is rooted in formal group homomorphisms, and we have not proven any theorems about the moduli of such for arbitrary finite-height formal groups.  However, the landscape brightens considerably in the case where we pick $\Gamma' = \G_a$, as this is the sort of calculation we considered in \Cref{LazarevComparisonOfCplxes} and \Cref{CalculationOfLTTangentSpace}.  In light of this, we specialize $\Gamma'$ to $\G_a$ (and hence $K_{\Gamma'}$ to an Eilenberg--Mac Lane spectrum $H$), and we abbreviate $K_\Gamma$ to just $K$.
 
-Throughout today, we will write $K$ for a Morava $K$--theory $K_\Gamma$ (which, if you like, you can take to be $K(d)$) and $A$ for a finitely generated abelian group, and $H$ for the associated Eilenberg--Mac Lane spectrum.  Our goal is to study the unstable mixed cooperations $K_* \OS{H}{*}$, which we expect to be connected to formal group homomorphisms $\Gamma \to \G_a$ but which isn't covered by any of the cases studied thus far.  This calculation is interesting to us for two reasons:
-\begin{enumerate}
-\item These cooperations appear naturally when pursuing a ``fiberwise analysis'' of cooperations, or a chromatic analysis of unstable homotopy theory, along the lines of \Cref{ChapterFiniteSpectra}.
-\item The Eilenberg--Mac Lane spaces $\OS{H}{*}$ appear as the layers of Postnikov towers.  If we were to want to analyze the $K$--homology of a Postnikov tower (as we will in \Cref{ChapterSigmaOrientation}), we will naturally encounter pieces of $K_* \OS{H}{*}$, and we would be wise to have a firm handle on these objects.  It is a tribute to the perspective offered here that the successful way to approach this computation is not one-at-a-time, handicrafted for each possible Eilenberg--Mac Lane space, but rather all-at-once, as suggested by the unstable cooperations picture.
-\end{enumerate}
+As with all the other major results of this Case Study, our approach will rest on the bar spectral sequence \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}.\]  The analysis of this spectral sequence was first accomplished by Ravenel and Wilson~\cite{RavenelWilsonKthyOfEMSpaces}, but has since been re-envisioned by Hopkins and Lurie~\cite[Section 2]{HopkinsLurie}.  In order to give an effective analysis of this spectral sequence in line with the theme of this book, we will endeavor to give algebro-geometric interpretations of its input and its output, beginning with the case $q = 0$ and $H = H(S^1[p^j])$ for some $1 \le j \le \infty$.  This task itself begins with giving just \emph{algebraic} descriptions of the input and output.  For $j < \infty$, we have essentially already computed the output by other means:
 
-Unsurprisingly, our analysis will rest on the bar spectral sequence \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}.\]  However, because $K$--theory is naturally a $2$--periodic theory, our method in \Cref{COableCoopnsII} of inducting on homological degree and working with a triangular corner of the spectral sequence will fail because it is not a first-quadrant spectral sequence.  Instead, we will induct on the Eilenberg--Mac Lane index $q$ as in \Cref{UnstableSteenrodCoops}, and as such we will begin with analyzing the base case of $q = 0$ where we are interested in manually computing $K_* BA$ for a reasonable abelian group $A$.  Since $K$--theory has K\"unneth isomorphisms and $B(A_1 \times A_2) \simeq BA_1 \times BA_2$, it suffices to do the computation just for $A = C_{p^j}$. \todo{This only takes care of finite abelian groups $A$.  Is this what reasonable means?}
-
-\begin{theorem}[{\cite[Theorem 5.7]{RavenelWilsonKthyOfEMSpaces}, \cite[Proposition 2.4.4]{HopkinsLurie}}]\label{KtheoryConvertsTorsionToTorsion}
-There is an isomorphism \[BS^1[p^j]_K \cong BS^1_K[p^j].\] \todo{I'm a little confused about the objects in this definition.  Does the RHS mean take the scheme and then take p-torsion in the ring, then go back to the scheme?  And the LHS is K theory of the cofiber of multiplication by $p^j$? Maybe would help if this was slightly explained}
+\begin{theorem}[{\cite[Theorem 5.7]{RavenelWilsonKthyOfEMSpaces}, \cite[Proposition 2.4.4]{HopkinsLurie}, cf.\ \Cref{MUConvertsTorsionPointsToTorsionPoints}}]\label{KtheoryConvertsTorsionToTorsion}
+There is an isomorphism \[BS^1[p^j]_K \cong BS^1_K[p^j].\]
 \end{theorem}
-\begin{proof}
-Consider the diagram of spherical fibrations:\todo{Put in a pullback corner here.}
-\begin{center}
-\begin{tikzcd}
-S^1 \arrow{r} \arrow[equal]{d} & B(S^1[p^j]) \arrow{r} \arrow{d} & BS^1 \arrow{d}{p^j} \\
-S^1 \arrow{r} & ES^1 \arrow{r} & BS^1.
-\end{tikzcd}
-\end{center}
-The induced long exact sequence (known as the Gysin sequence, or as the couple in the Serre spectral sequence for the first fibration) takes the form
-\begin{center}
-\begin{tikzcd}
-& K^* BS^1 \arrow[leftarrow]{rd}{- \smile [p^j](x)} \\
-K^*(BS^1[p^j]) \arrow[leftarrow]{ru} & & K^* BS^1 \arrow[leftarrow]{ll}{\partial}
-\end{tikzcd}\todo{One of the stars on the right half of the diagram needs a dimension shift.  The bottom $\partial$ arrow should be dotted.}
-\end{center}
-where $x$ is a coordinate \todo{You should explain how you're using the map of spherical fibrations to give this.}on $BS^1_K$.  Because $BS^1_K$ is of finite height\todo{I'm confused: does it make sense to say that $BS^1_K$ is of finite height?  It seems like what you're really using is that the formal group $\Gamma$ associated to $K$ has finite height.}, the right diagonal map is injective.  It follows that $\partial = 0$, and so this gives a short exact sequence of Hopf algebras, which we can reinterpret as a short exact sequence of group schemes \[B(S^1[p^j])_K \to BS^1_K \xrightarrow{p^j} BS^1_K. \qedhere\]
+\begin{proof}[Remarks on proof]
+We have already proven a very similar theorem as \Cref{MUConvertsTorsionPointsToTorsionPoints}.  The crux of that argument was to show that multiplication by the $p$--series in $MU^* \CP^\infty$ was injective without knowing very much about the ground ring $MU^*$.  Here our task is even easier: any $p$--series for $\Gamma$ takes the form $[p](x) = c x^{p^d} + \cdots$ for $c$ a unit.  Such an element is certainly not a zero-divisor.
 \end{proof}
 
 \begin{remark}\label{KHomologyOfClassifyingSpace}
-Dually, there is also an exact sequence of Hopf algebras
+In the proof of the homological statement dual to \Cref{KtheoryConvertsTorsionToTorsion}, there is a corresponding exact sequence of Hopf algebras
 \begin{center}
 \begin{tikzcd}
 & K_* BS^1 \arrow{rd}{- \frown [p^j](x)} \\
 K_*(BS^1[p^j]) \arrow{ru} & & K_* BS^1, \arrow{ll}{\partial}
 \end{tikzcd}
 \end{center}
-where again $\partial = 0$ and hence $K_*(BS^1[p^j])$ is presented as the kernel of the map ``cap with $[p^j](x)$''.  We will revisit the duality next time.
+where again $\partial = 0$ and hence $K_*(BS^1[p^j])$ is presented as the kernel of the map ``cap with $[p^j](x)$''.  We will revisit this duality in the next Case Study.
 \end{remark}
 
-There are a couple of approaches to the rest of this calculation, i.e., $K_* \OS{H}{q}$ for $q > 1$.  The original, due to Ravenel and Wilson~\cite{RavenelWilsonKthyOfEMSpaces}, is to complete the calculation for the smallest abelian group $C_p$ and then induct upward toward more complicated groups like $C_{p^j}$ and $C_{p^\infty}$.  More recently, there is also a preprint of Hopkins and Lurie~\cite{HopkinsLurie} that begins with $A = C_{p^\infty}$ and then works downward.  We will do the \emph{easy} parts of both calculations, to give a feel for their relative strengths and deficiencies.
-
-The Ravenel--Wilson version of the calculation proceeds much along the same lines as \Cref{UnstableSteenrodCoops}.  Setting $H = H\Z/p$, we will study the bar spectral sequences \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}\] for different indices $q$ and use the $\circ$--product to push differentials around among them.  Our first move, as in \Cref{UnstableSteenrodCoops}, is to study the bar spectral sequence \[\Tor^{K_* \Z/p}_{*, *}(K_*, K_*) \Rightarrow K_* B\Z/p\] and analyze what \emph{must} happen in order to reach the conclusion of \Cref{KtheoryConvertsTorsionToTorsion}.  In the input to this spectral sequence, the ground algebra is given by\todo{Did you also use angle brackets to denote ideals in the rest of the document? Do you care to? Probably not.} \[K_* \OS{H\Z/p}{0} = K_*[[1]] / \<[1]^{p} - 1\> = K_*[[1] - [0]] / \<[1] - [0]\>^{p}.\]  The $\Tor$--algebra for this truncated polynomial algebra $K_*[a_\emptyset] / a_\emptyset^{p}$ is then given by the formula \[\Tor^{K_*[a_\emptyset] / a_\emptyset^{p}}_{*, *}(K_*, K_*) = \Lambda[\sigma a_\emptyset] \otimes \Gamma[\phi a_\emptyset],\] \todo{What is the reason for the $\sigma$ and $\phi$ notation?}the combination of an exterior algebra and a divided power algebra.  We know which classes are supposed to survive this spectral sequence, and hence we know where the differentials must be:
+With this in hand, the analysis of the bar spectral sequence proceeds very much analogously to the example of the unstable dual Steenrod algebra of \Cref{UnstableContextsSection}.  We will analyze what \emph{must} happen in the bar spectral sequence \[\Tor^{K_* S^1[p^j]}_{*, *}(K_*, K_*) \Rightarrow K_* BS^1[p^j]\] in order to reach the conclusion of \Cref{KtheoryConvertsTorsionToTorsion}.  In the input to this spectral sequence, the ground algebra is given by a noncanonical isomorphism \[K_* \OS{H(S^1[p^j])}{0} \cong K_* \OS{H\Z/p^j}{0} = K_*[[1]] / ([1]^{p^j} - 1) = K_*[[1] - [0]] / \<[1] - [0]\>^{p^j}.\]  The $\Tor$--algebra for this truncated polynomial algebra $K_*[a_\emptyset] / a_\emptyset^{p}$ is then given by the formula \[\Tor^{K_*[a_\emptyset] / a_\emptyset^{p^j}}_{*, *}(K_*, K_*) = \Lambda[a'_\emptyset] \otimes \Gamma[a_\emptyset],\] the combination of an exterior algebra and a divided power algebra.\footnote{In Ravenel--Wilson~\cite[Lemma 6.6]{RavenelWilsonKthyOfEMSpaces}, the elements $a_\emptyset$ and $a'_\emptyset$ are identified as a \textit{transpotence} and a \textit{homology suspension} respectively.}  We know which classes are supposed to survive this spectral sequence, and hence we know where the differentials must be:
 \begin{align*}
-d(\phi a_\emptyset)^{[p^d]} & = \sigma a_\emptyset, \\
-\Rightarrow d(\phi a_\emptyset)^{[i + p^d]} & = \sigma a_\emptyset \cdot (\phi a_\emptyset)^{[i]}.
+d(a_\emptyset)^{[p^{jd}]} & = a'_\emptyset, \\
+\Rightarrow d(a_\emptyset)^{[i + p^{jd}]} & = a'_\emptyset \cdot a_\emptyset^{[i]}.
 \end{align*}
-The spectral sequence collapses after this differential.\footnote{In the $j > 1$ version of this analysis, there are some multiplicative extensions to sort out.  Of course, these are all determined by already knowing the multiplicative structure on $K_* \OS{H\Z/p^j}{1}$.}
+The spectral sequence collapses after this differential.  In the case $1 < j < \infty$, there are some hidden multiplicative extensions in the spectral sequence, but these too are all determined by already knowing the multiplicative structure on $K_* \OS{H(S^1[p^j])}{1}$.
 
+However, the case of $j = \infty$ is a bit different, beginning with the following Lemma:
 
-With the base case analysis completed, we turn to the induction on $q$:
-\begin{theorem}[{\cite[Theorem 9.2 and Theorem 11.1]{RavenelWilsonKthyOfEMSpaces}}]
-Using the $\circ$--product, \[K_* \OS{H\Z/p}{q} = \Alt^q \OS{H\Z/p}{1}.\]
-\end{theorem}
-\begin{proof}[Proof sketch]
-The inductive step turns out to be extremely index-rich, so I won't be so explicit or complete, but I'll point out the major landmarks.  It will be useful to use the shorthand $a_{(i)} = a_\emptyset^{[p^i]}$, where $(i)$ is thought of as a multi-index with one entry.
-
-We proceed by induction, assuming that $K_* \OS{H\Z/p}{q} = \Alt^q \OS{H\Z/p}{1}$ for a fixed $q$.  Computing the $\Tor$--algebra of $K_* \OS{H\Z/p^j}{q}$ again yields a tensor of divided power and exterior classes, a pair for each algebra generator of $K_* \OS{H\Z/p^j}{q}$.  In analogy to the rewriting formula used in \Cref{UnstableSteenrodInduction}, there is also a rewriting formula in this context~\cite[Lemmas 9.5-6]{RavenelWilsonKthyOfEMSpaces}\todo{Did you get this citation right? It doesn't look like I remember.}: \[(\phi a_{(i_1, \ldots, i_q)})^{[p^n]} \equiv (\phi a_{(i_1, \ldots, i_{q-1})})^{[p^n]} \circ a_{(i_q + n)} \mod *\text{--decomposables}.\]  Since every class can be so decomposed, all the differentials are determined by the previous spectral sequence.  In particular, classes are hit by differentials exactly when $i_q + n$ is large enough.  Chasing this through shows that the inductive assumption that $K_* \OS{H\Z/p}{q+1}$ is an exterior power holds, and the class $(\phi a_{(i_1, \ldots, i_q)})^{[p^n]}$ represents $a_{(n, i_1 + n, \ldots, i_q + n)}$.
+\begin{lemma}
+For $q \ge 1$, there is a $p$--adic equivalence of $K(\Q/\Z_{(p)}, q)$ with $K(\Z, q+1)$.
+\end{lemma}
+\begin{proof}
+This is a consequence of the fiber sequence \[K(\Q, q) \to K(\Q/\Z_{(p)}, q) \to K(\Z_{(p)}, q+1).\]  The first term has vanishing mod--$p$ homology, forcing the $H\F_p$--Serre spectral sequence of the fibration to collapse and for the edge homomorphism to be an isomorphism.  Similarly, the map $K(\Z, q+1) \to K(\Z_{(p)}, q+1)$ is an equivalence on mod--$p$ homology.
 \end{proof}
 
 \begin{remark}
-When reworking this computation for the case \[\Tor^{K_* \OS{H\Z/p^j}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H\Z/p^j}{q+1},\] the main difference is that there are various algebra extensions to keep track of.  These are controlled using the group maps
-\todo{These are Erick's suggestions of how to denote these group maps, so that it's clearer which is the projection and which is the inclusion. I should go back through the rest of the notes and enforce this notation elsewhere too.}
-\begin{align*}
-\Z/p^{j+1} & \to \Z/p^j, &
-\left(\frac{1}{p^j}\Z\right)/\Z & \to \left(\frac{1}{p^{j+1}} \Z\right) / \Z,
-\end{align*}
-together with knowledge of how the extensions strung together at the previous $j$--stage.  Then, these tools are revisited~\cite[Theorem 12.4]{RavenelWilsonKthyOfEMSpaces} to give a computation in the limiting case $A = C_{p^\infty}$, where there's a $p$--adic equivalence $HC_{p^\infty} \simeq^\wedge_p \Susp H\Z$.\todo{Mike has said something about the pairing $C_{p^j} \times C_{p^j}^* \to \Q/\Z$ not being functorial in $j$ (so as to pass to the direct limit) which gave me pause.  I should make sure I'm not messing something up here.}  The calculation in this setting is the most interesting one of all --- after all, it contains the case $BS^1_K$, which is of special interest to us.
+Thinking of $K(\Z, q+1)$ as $B^q S^1$, one can also think of this theorem as giving a $p$--adic equivalence between $B^q(S^1[p^\infty])$ and $B^q S^1$ --- i.e., the prime--to--$p$ parts of $S^1$ do not matter for $p$--adic homotopy theory.
 \end{remark}
 
-\todo{Expand out the ``limiting case as $j \to \infty$'' of the differentials in the earlier spectral sequences that you talked about in class.}
-Remarkably, this maximally interesting case is easier to access directly than passing through all of this intermediate work, and this is the perspective of Hopkins and Lurie.  We will pursue an inductive calculation of the formal group schemes $(\OS{HC_{p^\infty}}{q})_K$ by iterating the cohomological bar spectral sequence, culminating in the following Theorem:
-\begin{theorem}
-There is an isomorphism of formal group schemes \[(\OS{HC_{p^\infty}}{q})_K \cong (\CP^\infty_K)^{\wedge q}.\]  In particular, $(\OS{HC_{p^\infty}}{q})_K$ is a ``$p$--divisible formal group'' of dimension $\binom{d-1}{q-1}$ and height $\binom{d}{q}$.
-\end{theorem}
+We use this to continue the analysis of the case $q = 1$ and $j = \infty$, where the Lemma gives $B(S^1[p^\infty]) = \CP^\infty$.  The bar spectral sequence of interest then takes the form \[\Tor^{K_* S^1}_{*, *}(K_*, K_*) \Rightarrow K_* \CP^\infty.\]  The input algebra $K_* S^1$ is exterior on a single generator in odd degree, and so its $\Tor$--algebra is linearly dual to a power series algebra on a single generator in even degree.  Since all of its input is even, this spectral sequence collapses immediately.
 
-\noindent Assume that this Theorem is true for a fixed value of $q$.  First, the cohomological bar spectral sequence lets us calculate just the \emph{formal scheme} structure of $(\OS{HC_{p^\infty}}{q+1})_K$, using the \emph{formal group} structure of $(\OS{HC_{p^\infty}}{q})_K$.  It has signature~(\cite{LazarevDeformations}, \cite[Example 2.3.5]{HopkinsLurie}) \[H^*((\OS{HC_{p^\infty}}{q})_K; \G_a) \otimes_{K_0} K_* \Rightarrow K^* \OS{HC_{p^\infty}}{q+1},\] and hence we are moved to calculate the formal group cohomology of $(\OS{HC_{p^\infty}}{q})_K$.   The following Lemma furthers the calculations of formal group cohomology in \Cref{Symmetric2CocycleLemma} and \Cref{CalculationOfLTTangentSpace} to the situation of connected $p$--divisible groups of higher dimension:
+There is a lot of structure visible in this collection of spectral sequences, as considered simultaneously.  Without further inspection, the spectral sequence at $j = \infty$ records that $\CP^\infty_K$ is a formal variety, and the spectral sequences at the finite values $1 \le j < \infty$ encode in their differentials the behavior of the map $p^j\co \Gamma \to \Gamma$ on functions --- indeed, this appears to be the entire job of $a'_\emptyset$.  Lastly, we notice that the $E_\infty$ page of each finite-range spectral sequence includes into the spectral sequence at $j = \infty$, and moreover this filtration is exhaustive: every term in the $j = \infty$ spectral sequence appears at some $j < \infty$ stage.  Since this last property is about the $E_\infty$ pages, it is really a property of the formal group $\Gamma$, which we record in a definition:
 
-\begin{lemma}[{\cite[Theorem 2.2.10 and Example 2.2.12]{HopkinsLurie}}]
-If $\G$ is a connected $p$--divisible group over a field $k$, then $H^*(\G; \G_a)$ is isomorphic to the symmetric algebra on $\Susp H^1(\G[p^j]; \G_a)$\todo{$j$ is a positive integer}, with generators concentrated in degree $2$. \qed
-\end{lemma}
-
-\begin{corollary}[{\cite[Proposition 2.4.11]{HopkinsLurie}}]
-As a formal scheme, $(\OS{HC_{p^\infty}}{q+1})_K$ is a formal variety of dimension $\binom{d-1}{q}$.
-\end{corollary}
-\begin{proof}
-By setting $\G = (\OS{HC_{p^\infty}}{q})_K$, the Lemma gives us access to the $E^2$--page of our cohomological bar spectral sequence.  We can calculate the dimension of $H^1$ to be\todo{I have tried several times to figure out where this comes from, using tools from the beginning of H--L Section 2.2, but I haven't really convinced myself.  It must have something to do with the dimension of the Dieudonn\'e module of $\G$ minus the dimension of the image of $F$ --- or something?}\todo{I think I see how this is supposed to work out, do you think the detail is worth adding? In any case maybe we can talk about it since I'm not sure I'm right -AY} \[\dim_k H^1((\OS{H\C_p}{q})_K; \G_a) = \height (\OS{HC_{p^\infty}}{q})_K - \dim (\OS{HC_{p^\infty}}{q})_K = \binom{d}{q-1} - \binom{d-1}{q-1} = \binom{d-1}{q}.\]  It follows that the $E_2$--page of this spectral sequence is a polynomial $k$--algebra on $\binom{d-1}{q}$ generators, concentrated in even degrees, so that the spectral sequence collapses and $K^0 \OS{HC_{p^\infty}}{q+1}$ is a power series algebra on as many generators.
-\end{proof}
-
-In order to continue the induction, we now have to identify the group structure on $(\OS{HC_{p^\infty}}{q+1})_K$.  This is done using the theory of Dieudonn\'e modules:
-
-\begin{theorem}[{\cite[Proposition 2.4.12]{HopkinsLurie}}]
-
-Let $q \ge 1$ be an integer.  Suppose, in addition to the inductive hypotheses above, that the sequence of group schemes\todo{Figure out this formatting. I should be able to just set the fraction to be ``inline'' rather than displaymode, but I don't know how to do that.} \[(\OS{H(\frac{1}{p}\Z_p / \Z_p)}{q})_K \to (\OS{H(\Q_p/\Z_p)}{q})_K \to (\OS{H(\Q_p / \frac{1}{p}\Z_p)}{q})_K \to K_0\] is exact, and that the map \[\theta^q\co \Q_p / \Z_p \otimes M(\CP^\infty_K)^{\wedge q} \to M((\OS{H(\Q_p/\Z_p)}{q})_K)\] is an isomorphism.  Then $\theta^{q+1}$ is an isomorphism and the formal group $\OS{H(\Q_p/\Z_p)}{q+1}$ is a connected $p$--divisible group with height $\binom{d}{q+1}$ and dimension $\binom{d-1}{q}$.
-\todo{At one point this statement contained the phrase ``$K(n)$-good'' whose meaning I do not know.}
-\todo{my understanding: in their induction, they need two properties of the EM spaces which together they call K(n)-good: first it means that the K(n) homology is in even degrees, so that the $K(n)_0$ determines the $K(n)_*$.  Second, it means that $K(n)_0(X)$ is the union of its $p^t$ torsion over all $t$.  It seems like this allows them to define the Dieudonne module on $K(n)_0(X)$, since DM is originally defined for connected Hopf algebras, and then it gets extended to p-nilpotent ones via a general construction (see section 1.4 of ambidexterity).  I'm sort of curious why they use $K(n)$-homology throughout the paper though. -AY}
-\end{theorem}
-\begin{proof}[Proof sketch]
-\todo{Jay asked about the edge case of $\theta^1$, where the only interesting thing happening is the $p$--adic equivalence.  That might be worth expanding in a Remark.}
-By applying the snake lemma to the diagram
+\begin{definition}
+\citeme{You can find a definition for this too}
+A \textit{$p$--divisible group}\footnote{Some like to call these \textit{Barsotti--Tate groups}, which is probably the better name, since ``$p$--divisible group'' sounds like a property rather than all this data.} over a field $k$ is a system $\mathbb G_j$ of finite group schemes and inclusions $i_j\co \mathbb G_j \to \mathbb G_{j+1}$ which participate in maps of exact sequences
 \begin{center}
 \begin{tikzcd}
-0 \arrow{r} & M^{\wedge (q+1)} \arrow{r} \arrow{d}{V} & \Q \otimes M^{\wedge (q+1)} \arrow{r} \arrow{d}{V} & \Q_p / \Z_p \otimes M^{\wedge (q+1)} \arrow{r} \arrow{d}{V} & 0 \\
-0 \arrow{r} & M^{\wedge (q+1)} \arrow{r} & \Q \otimes M^{\wedge (q+1)} \arrow{r} & \Q_p / \Z_p \otimes M^{\wedge (q+1)} \arrow{r} & 0
+0 \arrow{r} & \mathbb G_1 \arrow{r} \arrow{d} & \mathbb G_j \arrow["p"]{r} \arrow{d} & \mathbb G_j \arrow{d} \\
+0 \arrow{r} & \mathbb G_1 \arrow{r} & \mathbb G_{j+1} \arrow{r} & \mathbb G_{j+1}.
 \end{tikzcd}
-\end{center} \todo{The $\Q$s in the middle should be $\Q_p$, right?}
-and knowing that the middle map is an isomorphism, we learn that $V$ is a surjective endomorphism of $M^{\wedge (q+1)} M \otimes \Q_p/\Z_p$ and that there is an isomorphism \[\ker(V\co \Q_p/\Z_p \otimes M^{\wedge (q+1)} \to \Q_p/\Z_p \otimes M^{\wedge (q+1)}) \cong \operatorname{coker}(V\co M^{\wedge (q+1)} \to M^{\wedge (q+1)}).\]  The right-hand side is spanned by elements $V^I x$ with $I_1 = 0$ \todo{Why is the first component singled out?  Also, what's $m$? What's $Y$?}, and hence the left-hand side has $k$--vector--space dimension $\binom{d-1}{q}$.  By very carefully studying the bar spectral sequence, one can learn that $\theta^m$ induces a surjection \[\ker V|_{\Q_p / \Z_p \otimes M^{\wedge m}} \to \ker V|_{D(Y)}.\]  In fact, since these two have the same rank, $\theta^m$ is an isomorphism on these subspaces.  Since the action of $V$ is locally nilpotent, this is enough to show that $\theta^m$ is an isomorphism, without restriction to subspaces: if it failed to be an injection, we could apply $V$ enough times to get an example of a nontrivial element in $\ker V|_{\Q_p / \Z_p \otimes M^{\wedge m}}$ mapping to zero, and we can manually construct preimages through successive approximation.
+\end{center}
+In particular, this identifies $\mathbb G_j$ as the subgroup of $p^j$--torsion of the system $\mathbb G$.  A $p$--divisible group is said to be \textit{connected} when its constituent subgroups $\mathbb G_j$ are infinitesimal thickenings of $\Spec k$.
+\end{definition}
+
+\begin{lemma}
+\citeme{Hazewinkel presumably}
+Over a perfect field of positive characteristic $p$, a connected $p$--divisible group is equivalent to a smooth formal group of finite height.
+\end{lemma}
+\begin{proof}[Correspondence]
+The maps in both directions are easy: a $p$--divisible group is sent to its colimit, and a formal group of finite height is sent to its system of $p^j$--torsion subgroups.  In both directions there is something mild to check: that the colimit gives a formal variety, and that the system of $p^j$--torsion subgroups has the indicated exactness properties.
 \end{proof}
 
-\begin{remark}[{\cite[Proposition 2.4.13]{HopkinsLurie}}]
-With this in hand, you now have to pull apart the full $p$--divisible group to get a calculation of $(\OS{H\Z/p^j}{q})_K$.  From this perspective, this is the hardest part with the longest, most convoluted proof.
-\end{remark}
+We will soon see that these interrelations among the bar spectral sequences for the different Eilenberg--Mac Lane spaces, as well as the special behavior of the spectral sequence at $j = \infty$, are generic phenomena in $q$.  We record the steps in our upcoming induction in the following Theorem:
 
-\begin{remark}[{\cite[Section 3]{HopkinsLurie}}]
-\citeme{You could also cite the alternating powers guy~\cite{HedayatzadehGeneralCase,HedayatzadehFieldCase} and a source for Dieudonn\'e crystals}
-Because $K_\Gamma^* \OS{H\Z/p^j}{q}$ is even, you can hope to augment this to a calculation of $E_\Gamma^* \OS{H\Z/p^j}{q}$.  This is indeed possible, and the analogous formula is true at the level of Hopf algebras: \[(E_\Gamma)_* \OS{HC_{p^j}}{q} \cong \Alt^q (E_\Gamma)_* \OS{HC_{p^j}}{1}.\] However, the attendant algebraic geometry is quite complicated: you either need a form of Dieudonn\'e theory that functions over $\context{E_\Gamma}$ (and then attempt to drag the proof above through that setting), or you need to directly confront what ``alternating power of a $p$--divisible group'' means at the level of $p$--divisible groups (and forego all of the time-saving help afforded to you by Dieudonn\'e theory).\todo{Actually say ``Dieudonn\'e crystal''.}
-\end{remark}
+\begin{theorem}[{\cite[Theorems 2.4.11--13]{HopkinsLurie}}]\label{MainKThyOfEMSpacesTheorem}
+The following claims give a complete description of the Morava $K$--theory schemes associated to Eilenberg--Mac Lane spaces.
+\begin{enumerate}
+    \item The formal scheme $(\OS{H(S^1[p^\infty])}{q})_K$ is a formal variety of dimension $\binom{d-1}{q-1}$.
+    \item Suppose that $(\OS{H(S^1[p^\infty])}{q-1})_K$ is a $p$--divisible formal group of height $\binom{d}{q-1}$ and dimension $\binom{d-1}{q-1}$, that $(\OS{H(S^1[p])}{q-1})_K$ models its $p$--torsion, and that the cup product induces an isomorphism \[\theta^{q-1}\co \Q / \Z_{(p)} \otimes D(\OS{H(S^1[p^\infty])}{1})^{\wedge (q-1)} \to D(\OS{H(S^1[p^\infty])}{q-1}),\] where $D(G)$ denotes the Dieudonn\'e module associated to $K_0(G)$ for $K_*(G) = K_0(G) \otimes_k K_*$ a $p$--divisible Hopf algebra.  The same claims are then true with $q-1$ replaced everywhere by $q$.
+    \todo{Look into whether you \emph{really} need this funny system (cf.\ Notation 2.4.3) and this tensor with $\Q / \Z_{(p)}$.}
+    \item Consider the model $\Q / \Z_{(p)} \cong S^1[p^\infty]$ for the $p$--primary part of the circle group.  Suppose that for each $j$, the short exact sequence of groups \[0 \to \frac{1/p^j \cdot \Z_{(p)}}{\Z_{(p)}} \to \frac{\Q}{\Z_{(p)}} \to \frac{\Q}{1/p^j \cdot \Z_{(p)}} \to 0\] induces a short exact sequence of group-schemes upon applying $(\OS{H(-)}{q-1})_K$.  The sequence of group schemes under $(\OS{H(-)}{q})_K$ is then also short-exact.
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof of Part 1]\renewcommand{\qedsymbol}{\relax}
+This claim turns out to be entirely algebraic and a matter of being able to compute $H^*(\mathbb G; \G_a)$ for $\mathbb G$ a connected $p$--divisible group.  This is expressed in the main algebraic result of Hopkins--Lurie:
+\end{proof}
 
+\begin{theorem}[{\cite[Theorem 2.2.10]{HopkinsLurie}}]
+Let $\mathbb G$ be a $p$--divisible group over a perfect field $k$ of positive characteristic $p$.  There is then an isomorphism \[H^*(\mathbb G; \G_a) \cong \Sym^*(\Susp H^1(\mathbb G[p], \G_a)),\] where ``$\Susp$'' indicates that the classes are taken to lie in degree $2$. \qed
+\end{theorem}
 
-
-
-
-
-
-
-
-
+\begin{lemma}[{\cite[Remark 2.2.5]{HopkinsLurie}}]
+If $\mathbb G$ is a connected $p$--divisible group of height $d$ and of dimension $n$ as a formal variety, then \[\operatorname{rank}\left(H^1(\mathbb G[p]; \G_a)\right) = d - n. \qed\]
+\end{lemma}
 
 \begin{remark}
-You'll notice that in $K_* \OS{H}{q+1}$ if we let the $q$--index tend to $\infty$, we get the $K$--homology of a point.  This is another way to see that the stable cooperations $K_* H$ vanish, meaning that the \emph{only} information present comes from unstable cooperations.\todo{We could even provide a quick proof of the stable calculation?  Cf.\ http://mathoverflow.net/questions/220952/localization-at-the-johnson-wilson-spectrum-and-rationalization, http://mathoverflow.net/a/99211/1094 .}
+In the case where $\mathbb G = \Gamma$ is the original height $d$ formal group of dimension $1$, this computes $H^*(\Gamma; \G_a)$ to be a power series algebra on $(d-1)$ generators.  This is precisely the result we recorded by hand in \Cref{CalculationOfLTTangentSpace}.
+\end{remark}
+
+\noindent Returning to the task at hand, we assume inductively that $(\OS{H(S^1[p^\infty])}{q-1})_K$ is a connected $p$--divisible group of height $\binom{d}{q-1}$ and dimension $\binom{d-1}{q-1}$.  Since the input to the bar spectral sequence is computed by formal group cohomology (\cite{LazarevDeformations}, \cite[Example 2.3.5]{HopkinsLurie}, Proof of \Cref{Symmetric2CocycleLemma}), it follows that the instance computing $K^* \OS{H(S^1[p^\infty])}{q}$ has $E_2$--page an even-concentrated power series algebra of dimension \[\binom{d}{q-1} - \binom{d-1}{q-1} = \binom{d-1}{q}.\]  The spectral sequence therefore collapses at this page, so that $(\OS{H(S^1[p^\infty])}{q})_K$ is a formal variety of the dimension claimed.
+
+\begin{proof}[Proof of Part 2, with a gap]\renewcommand{\qedsymbol}{\relax}
+The other claims in Part 2 are formal after we check that $\theta^q$ is an isomorphism, since the $p$--power--torsion structure of $(\OS{H(S^1[p^\infty])}{q})_K$ can be read off from its Dieudonn\'e module, as can its height.  We introduce notation to analyze this statement: set $M$ to be the Dieudonn\'e module associated to $K_* \CP^\infty$, i.e., \[M = D(\OS{H(S^1[p^\infty])}{1}).\]  In the following diagram
+\begin{center}
+\begin{tikzcd}
+0 \arrow{r} & M^{\wedge q} \arrow{r} \arrow{d}{V} & \Q \otimes M^{\wedge q} \arrow{r} \arrow{d}{V} & \Q / \Z_{(p)} \otimes M^{\wedge q} \arrow{r} \arrow{d}{V} & 0 \\
+0 \arrow{r} & M^{\wedge q} \arrow{r} & \Q \otimes M^{\wedge q} \arrow{r} & \Q / \Z_{(p)} \otimes M^{\wedge q} \arrow{r} & 0
+\end{tikzcd}
+\end{center}
+the middle map is an isomorphism.  This forces $V$ to be a surjective endomorphism of $M^{\wedge q} \otimes \Q/\Z_{(p)}$, and the snake lemma shows that there is an isomorphism \[\ker(V\co \Q/\Z_{(p)} \otimes M^{\wedge q} \to \Q/\Z_{(p)} \otimes M^{\wedge q}) \cong \operatorname{coker}(V\co M^{\wedge q} \to M^{\wedge q}).\]  Picking any coordinate $x$ and considering it as an element in the curves model of the Dieudonn\'e functor, we see that the right-hand side is spanned by elements $x \sm V^{\sm I} x$, and hence the left-hand side has $k$--vector--space dimension $\binom{d-1}{q}$.
+
+By very carefully studying the bar spectral sequence, one can learn that $\theta^q$ induces a surjection\footnote{The proof of this is quite complicated, and it rests on a pairing between the spectral sequence for $q = 1$ and the spectral sequence at $q - 1$, mapping to the spectral sequence for $q$.  Remarkably, this same pairing is the main tool that powers the original approach of  Ravenel--Wilson~\cite{RavenelWilsonKthyOfEMSpaces}.  There, their program is to fix $j = 1$ and inductively analyze $q$ using this same pairing, then use these base cases to ground a strong induction on $j$ and $q$, and then finally to fix $q$ and take the limit as $j \to \infty$.} \[\ker V|_{\Q / \Z_{(p)} \otimes M^{\wedge q}} \to \ker V|_{D(\OS{H(S^1[p^\infty])}{q})}.\]  In fact, since these two have the same rank, $\theta^q|_{\ker V}$ is an isomorphism on these subspaces.  This is enough to conclude that $\theta^q$ is an injection: since the action of $V$ is locally nilpotent, if $\theta^q$ ever failed to be an injection then we could apply $V$ enough times to get an example of a nontrivial element in $\ker V|_{\Q / \Z_{(p)} \otimes M^{\wedge q}}$ mapping to zero.  Finally, to show that $\theta^q$ is surjective, we again use the local nilpotence of $V$ to filter $\Q / \Z_{(p)} \otimes M^{\sm q}$ by the subspaces $\ker V^\ell$, $\ell \ge 1$, and it is then possible (though we admit the proof) to use our understanding of $\ker V$ to form preimages.
+\end{proof}
+
+\begin{proof}[Proof of Part 3, mostly omitted]
+This proof is quite complicated, but it is, in spirit, a generalization of the observation at $q = 1$ that the role of the odd-degree classes in the bar spectral sequence is to pair up with those classes in the image of the $[p^j]$--map.  In fact, their main assertion is:
+\begin{quote}
+We give notation for the following rings:
+\begin{align*}
+A & = K_0 \OS{H(S^1[p^\infty])}{q-1}, &
+A' & = K_0 \OS{H(S^1[p^j])}{q-1}, &
+R & = K_0 \OS{H(S^1[p^\infty])}{q}.
+\end{align*}
+Let $x' \in E_2^{1, 0}$ be an element, and let $y' \in \mathfrak m_R$ satisfy \[y' = \psi(x') \otimes v \in \Ext^2_A \otimes_k \pi_2 K \cong \mathfrak m_R / \mathfrak m_R^2.\]  Suppose that the Hopf algebra homomorphism $[p^j]\co R \to R$ carries $y'$ to an element $y \in \mathfrak m_R^s$, and let $x \in E_2^{2s, 2s-2}$ denote the image of $y$ under the composite \[\mathfrak m_R^s / \mathfrak m_R^{s+1} \cong \Ext_A^{2s} \otimes_k \pi_{2s} K \to \Ext_{A'}^{2s} \otimes_k \pi_{2s} K = E_2^{2s, 2s} \xrightarrow{-v^{-1}} E_2^{2s, 2s-2}.\]  Then $x$ and $x'$ survive to the $(2s - 1)${\th} page of the bar spectral sequence, and there we have \[d_{2s-1} x' = x.\]
+\end{quote}
+From here, it is a matter of \emph{very} carefully pairing elements up (cf.\ \cite[pg.\ 60]{HopkinsLurie}).
+\end{proof}
+
+\begin{remark}
+\Cref{MainKThyOfEMSpacesTheorem} admits a restatement purely in terms of Hopf algebras, although Dieudonn\'e theory was essential in its proof.  The cup product gives a natural map \[\Alt^q K_* \OS{H(S^1[p^j])}{1} \to K_* \OS{H(S^1[p^j])}{q},\] where ``$\Alt$'' refers to the alternating Hopf algebra.\footnote{Note that this alternation condition becomes dramatically more complicated in the case that the formal group law and its formal group inverse series become more complicated than that of $\G_a$.}  The main result of this section is that this map is an isomorphism for all $q$, and indeed that the map from the free alternating Hopf \emph{ring} maps isomorphically to the topological Hopf ring.
+\end{remark}
+
+\begin{remark}[{\cite[Section 3]{HopkinsLurie}, \cite{HedayatzadehGeneralCase}, \cite{HedayatzadehFieldCase}}]
+Because $K^* \OS{H\Z/p^j}{q}$ is even, you can hope to augment this to a calculation of $E^* \OS{H\Z/p^j}{q}$ for $E = E_\Gamma$ the associated Morava $E$--theory.  This is indeed possible, and the analogous formula is true at the level of Hopf algebras: \[E_* \OS{H(S^1[p^j])}{q} \cong \Alt^q E_* \OS{H(S^1[p^j])}{1}.\] However, the attendant algebraic geometry is quite complicated: you either need a form of Dieudonn\'e theory that functions over $\context{E_\Gamma}$ (and then attempt to drag the proof above through that setting), or you need to directly confront what ``alternating power of a $p$--divisible group'' means at the level of $p$--divisible groups (and forego all of the time-saving help afforded to you by Dieudonn\'e theory).
+\end{remark}
+
+\begin{remark}[{cf.\ \Cref{StableMixedKthyCoopnsVanish}}]
+You'll notice that in $K_* \OS{H}{q+1}$ if we let the $q$--index tend to $\infty$, we get the $K$--homology of a point.  This is another way to see that the stable cooperations $K_* H$ vanish, meaning that the \emph{only} information present comes from unstable cooperations.
+\end{remark}
+
+\begin{remark}
+Although the method of starting with the $j = \infty$ case and deducing from it the $1 \le j < \infty$ cases is due to Hopkins and Lurie, the observation that the spectral sequence at $j = \infty$ is remarkably simple had already been made by Ravenel and Wilson~\cite[Theorem 12.3]{RavenelWilsonKthyOfEMSpaces},~\cite[Theorem 8.1.3]{RWY}.
+\end{remark}
+
+\begin{remark}
+\Cref{MainKThyOfEMSpacesTheorem} has a statement in the language of \Cref{UnstableAlgebraicModelSection}.  Rather than forming the algebraic approximation $\AA(K, H) = K_*(\CP^\infty)_{K_*[H_*]}^{\circulatearrows}[H_* \CP^\infty]$ as usual, we form the modified version \[\AA_{p^j}(K, H) = K_*(\OS{H(S^1[p^j])}{1})_{K_*[H_*]}^{\circulatearrows}[H_* \OS{H(S^1[p^j])}{1}].\]  Using the same unstable Kronecker pairing, this supports a natural map to $K_* \OS{H}{*}$, and a summary of this Lecture's results is that it is an isomorphism.
+\todo{Is this really right? I want this remark to explain the presence of odd-degree E--M spaces in this calculation, and I don't think I've exactly done that.}
 \end{remark}
 
 
