@@ -25,96 +25,107 @@ We also give a short r\'esum\'e on the theory of elliptic curves in \Cref{Sectio
 
 \section{Coalgebraic formal schemes}
 
-Today we will discuss an elephant that has been lingering in our room: we began the class talking about the formal scheme associated to the \emph{cohomology} of a space, but we have since become primarily interested in a construction converting the \emph{homology} of a spectrum to a sheaf over a context.  Our goal for today is to, when possible, put these on even footing.  Our motivation for finally addressing this lingering discrepancy is more technical than aesthetic: we have previously wanted access to certain colimits of formal schemes (e.g., in \Cref{DivConstructionsAreFree}).  While such colimits are generally forbidding, similarly to colimits of manifolds, we will produce certain conditions under which they are accessible.
+We will now finally address an elephant that has been lingering in our metaphorical room: in the first third of this book we were primarily interested in thje formal scheme associated to the \emph{cohomology} of a space, but in the second this we were primarily interested in a construction converting the \emph{homology} of a spectrum to a sheaf over a context.  Our goal for today is to, when possible, put these two variances on even footing.  Our motivation for putting this lingering discrepancy to rest is more technical than aesthetic: we have previously wanted access to certain colimits of formal schemes (e.g., in \Cref{DivConstructionsAreFree}).  While such colimits are generally forbidding, similarly to colimits of manifolds, we will produce certain conditions under which they are accessible.
 
-Suppose that $E$ is a ring spectrum, and recall the usual way to produce the structure of an $E^*$--algebra on $E^* X$ for $X$ a space.  The space $X$ has a diagonal map $\Delta\co X \to X \times X$, which on $E$--cohomology induces a multiplication map \[E^* X \otimes_{E^*} E^* X \xrightarrow{\mu_E} E^*(X \times X) \xrightarrow{E^* \Delta} E^* X.\]  Dually, applying $E$--homology, we have a pair of maps \[E_* X \xrightarrow{E_* \Delta} E_*(X \times X) \xleftarrow{\text{K\"unneth}} E_* X \otimes_{E_*} E_* X.\]  In the case that the K\"unneth map is an isomorphism, the right--hand map is invertible, and the long composite induces the structure of an $E_*$--coalgebra on $E_* X$.  In the most generous case that $E$ is a field spectrum (in the sense of \Cref{FieldSpectraAreKTheories}), $E^* X$ is functorially the linear dual of $E_* X$, which motivates us to consider the following purely algebraic construction:
+For $E$ a ring spectrum and $X$ a space, the diagonal map $\Delta\co X \to X \times X$ induces a multiplication map on $E$--cohomology via the composite \[E^* X \otimes_{E^*} E^* X \xrightarrow{\text{K\"unneth}} E^*(X \times X) \xrightarrow{E^* \Delta} E^* X.\]  Dually, applying $E$--homology, we have a pair of maps \[E_* X \xrightarrow{E_* \Delta} E_*(X \times X) \xleftarrow{\text{K\"unneth}} E_* X \otimes_{E_*} E_* X,\] where, remarkably, the K\"unneth map goes the wrong way to form a composite.  In the case that that map is an isomorphism, the long composite induces the structure of an $E_*$--coalgebra on $E_* X$.  In the most generous case that $E$ is a field spectrum (in the sense of \Cref{FieldSpectraAreKTheories}), the K\"unneth map is always invertible and, moreover, $E^* X$ is functorially the linear dual of $E_* X$.  This motivates us to consider the following purely algebraic construction:
 
 \begin{definition}
-Let $C$ be a coalgebra over a field $k$.  The scheme \emph{$\Sch C$ associated to $C$} is defined by \[(\Sch C)(T) = \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps f = 1 \end{array} \right\}.\]
+Let $C$ be a coalgebra over a field $k$.  We define a functor
+\begin{align*}
+\Sch C\co \CatOf{Algebras}_{k/} & \to \CatOf{Sets}, \\
+T & \mapsto \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps f = 1 \end{array} \right\}.
+\end{align*}
 \end{definition}
 
 \begin{lemma}
-For $A$ a $k$--algebra, finite--dimensional as a $k$--module, one has $\Spec A \cong \Sch A^*$.
+For a $k$--algebra $A$ which is finite--dimensional as a $k$--module, there is a natural isomorphism $\Spec A \cong \Sch A^*$.
 \end{lemma}
 \begin{proof}[Proof sketch]
-A point $f \in (\Sch A^*)(T) \subseteq A^* \otimes T$ gives rise to a map $f_*\co A \to T$ by the duality pairing, which is a ring homomorphism by the condition.  The finiteness assumption is present exactly so that $A$ is its own double--dual, giving an inverse assignment.
+A point $f \in (\Sch A^*)(T) \subseteq A^* \otimes T$ gives rise to a $k$--module map $f_*\co A \to T$, which the extra conditions in the formation of $(\Sch C)(T)$ force to be a ring homomorphism.  The finiteness assumption is present exactly so that $A$ is its own double--dual, giving an inverse assignment.
 \end{proof}
 
-If we drop the finiteness assumption, then a lot can go wrong.  For instance, the multiplication on our $k$--algebra $A$ gives rise only to maps \[A^* \to (A \otimes_k A)^* \from A^* \otimes_k A^*,\] which is not enough to make $A^*$ into a $k$--coalgebra.  However, if we start instead with a $k$--coalgebra $C$ of infinite dimension, the following result is very telling:
+If we drop the finiteness assumption, then this comparison proof fails entirely.  Indeed, even picking a predual $A$ of $C$, the multiplication on $A$ gives rise only to maps \[A^* \to (A \otimes_k A)^* \from A^* \otimes_k A^*,\] which is not enough to make $A^*$ into a $k$--coalgebra.  However, if we start instead with a $k$--coalgebra $C$ of infinite dimension, the following result is very telling:
 
-\begin{lemma}\label{kCoalgebrasAreIndFinite}\citeme{Demazure's book has this somewhere in it, also see your thesis for a more modern reference; also the ambidexterity paper section 1.1 treats this issue}
+\begin{lemma}[{\cite[pg.\ 12]{Demazure}, \cite[Appendix 5.3]{Michaelis}, \cite[Remark 1.1.8]{HopkinsLurie}}]\label{kCoalgebrasAreIndFinite}
 For $C$ a coalgebra over a field $k$, any finite--dimensional $k$--linear subspace of $C$ can be finitely enlarged to a subcoalgebra of $C$.  Accordingly, taking the colimit gives a canonical equivalence \[\Ind(\CatOf{Coalgebras}_k^{\mathrm{fin}}) \xrightarrow{\simeq} \CatOf{Coalgebras}_k. \qed\]
 \end{lemma}
 
 \noindent This result allows us to leverage our duality Lemma pointwise: for an arbitrary $k$--coalgebra, we break it up into a lattice of finite $k$--coalgebras, and take their linear duals to get a reversed lattice of finite $k$--algebras.  Altogether, this indicates that $k$--coalgebras generally want to model \emph{formal schemes}.
 
 \begin{corollary}\label{CoalgsAndFSchsAgreeOverk}
-For $C$ a coalgebra over a field $k$ expressed as a colimit $C = \colim_k C_k$ of finite subcoalgebras, there is an equivalence \[\Sch C \cong \{\Spec C_k^*\}_k.\]  This induces a \emph{covariant} equivalence of categories \[\CatOf{Coalgebras}_k \cong \CatOf{FormalSchemes}_{/k}. \qed\]
+For $C$ a coalgebra over a field $k$ expressed as a colimit $C = \colim_k C_k$ of finite subcoalgebras, there is an equivalence \[\Sch C \cong \{\Spec C_k^*\}_k.\]  This induces a \emph{covariant} equivalence of categories \[\CatOf{Coalgebras}_k \cong \CatOf{FormalSchemes}_{/k}.\]  This equivalence translates between the product of formal schemes, the tensor product of pro-algebras, and the tensor product of coalgebras. \qed
 \end{corollary}
 
-This covariant algebraic model for formal schemes is very useful.  \todo{Do you also need to compare the (Cartesian) monoidal structures?}  For instance, this equivalence makes the following calculation trivial:
-\begin{lemma}[{(cf.\ \Cref{DivConstructionsAreFree} and )}]\todo{Backreference the relevance of the $\Div$ construction to homotopy theory.}
-Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal monoid on the pointed formal scheme $\Sch k \to \Sch C$ is given by \todo{Describe the diagonal map on this guy.} \[F(\Sch k \to \Sch C) = \Sch \Sym^* M. \qed\]
+This covariant algebraic model for formal schemes is very useful.  For instance, this equivalence makes the following calculation trivial:
+\begin{lemma}[{(cf.\ \Cref{HF2BOIsSymAlg}, \Cref{DivConstructionsAreFree}, and \Cref{ECohomBUIsFree})}]
+Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal monoid on the pointed formal scheme $\Sch k \to \Sch C$ is given by \[F(\Sch k \to \Sch C) = \Sch \Sym^* M.\]  Writing $\Delta c = \sum_j \ell_j \otimes r_j$ for the diagonal on $C$, the diagonal on $\Sym^* C$ is given by \[ \Delta(c_1 \cdots c_n) = \sum_{j_1, \ldots, j_n} (\ell_{1,j_1} \cdots \ell_{n, j_n}) \otimes (r_{1, j_1} \cdots r_{n, j_n}). \qed\]
 \end{lemma}
 
-It is unfortunate, then, that when working over an object more general than a field \Cref{kCoalgebrasAreIndFinite} fails.\todo{Include (a reference to) an example.}  Nonetheless, it is possible to bake into the definitions the machinery needed to get a good-enough analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
+It is unfortunate, then, that when working over an object more general than a field \Cref{kCoalgebrasAreIndFinite} fails.\citeme{Include (a reference to) an example.}  Nonetheless, it is possible to bake into the definitions the machinery needed to get a good-enough analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
 
 \begin{definition}\label{DefnCoalgebraicFormalScheme}
 Let $C$ be an $R$--coalgebra which is free as an $R$--module.  A basis $\{x_j\}$ of $C$ is said to be a \textit{good basis} when any finite subcollection of $\{x_j\}$ can be finitely enlarged to a subcollection that spans a subcoalgebra.  The coalgebra $C$ is itself said to be \textit{good} when it admits a good basis.  A formal scheme $X$ is said to be \textit{coalgebraic} when it is isomorphic to $\Sch C$ for a good coalgebra $C$.
 \end{definition}
 
+\begin{example}\label{FVarsAreCoalgebraic}
+The formal scheme $\A^n$ is coalgebraic.  Beginning with the presentation \[\A^n = \Spf R\ps{x_1, \ldots, x_n} = \colim_J \Spec R[x_1, \ldots, x_n] / (x_1^{j_1}, \ldots, x_n^{j_n}),\] write $A_J$ for the algebra on the right-hand side.  Each $A_J$ is a free $R$--module, and we write \[C_J = A_J^* = R\{\beta_K \mid K < J\}\] for the dual coalgebra, with \[\beta_K(x^L) = \begin{cases} 1 & \text{if $K = L$}, \\ 0 & \text{otherwise}. \end{cases}\]  The elements $\beta_K$ form a good basis for the full coalgebra $C = \colim_J C_J$: any finite collection of them $\{\beta_K\}_{K \in \mathcal K}$ is contained inside any $C_J$ satisfying $K < J$ for all $K \in \mathcal K$.  As an additional consequence, all formal varieties are coalgebraic.
+\end{example}
+
+The main utility of this condition is that it gives us access to colimits of formal schemes:
+
 \begin{theorem}[{\cite[Proposition 4.64]{StricklandFSFG}}]\label{CoalgebraicColimitsExist}
-Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram, including the colimit point, is a good coalgebra.  Then \[\Sch \circ F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
+Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of coalgebras such that each object in the diagram, including the colimit point, is a good coalgebra.  Then \[\Sch \circ \, F\co \CatOf I \to \CatOf{FormalSchemes}\] is a colimit diagram of formal schemes. \qed
 \end{theorem}
 
-This Theorem gives us access to many constructions on formal schemes, provided we assume that the input is coalgebraic.  This covers many of the cases of interest to us, as every formal variety is coalgebraic\todo{I guess you would prove this by first d\'{e}vissaging to the case of $\A^n$.  How does this work?  Then you'd just need to prove it for $\A^n$ -- Jay asked you how to do this for $\A^1$, and I think you should include the argument here.}.  For an example of the sort of constructions that become available, one can prove the following Corollary by analyzing the symmetric power of coalgebras:
+\noindent For an example of the sort of constructions that become available via this Theorem, we prove the following Corollary by analyzing the symmetric power of coalgebras:
 
-\begin{corollary}[{\cite[Proposition 6.4]{StricklandFSFG}}]
-For $X$ a coalgebraic formal scheme, $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$.  If $\Spec k \to X$ is a pointing, then $\colim_n \{X^{\times n}_{\Sigma_n}\}_n$ models the free formal monoid on the pointed formal scheme. \qed
-\end{corollary}
-
-In the specific case that $\Spec k \to X$ is a formal \emph{curve}, we can prove something more:
-\begin{corollary}[{\cite[Proposition 6.13]{StricklandFSFG}}]\label{FreeFormalGroupOnACurve}
-For $\Spec k \to X$ a pointed formal curve, the free formal monoid is automatically an abelian group. \qed
+\begin{corollary}[{\cite[Example 4.65 and Proposition 6.4]{StricklandFSFG}}]
+When a formal scheme $X$ is coalgebraic, the symmetric power $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$.  Given an additional pointing $\Spec R \to X$, the colimit of the induced system \[\colim \left(\cdots \to X^{\times n}_{\Sigma_n} = \Spec R \times X^{\times n}_{\Sigma_n} \to X \times X^{\times n}_{\Sigma_n} \to X^{\times(n+1)}_{\Sigma_{n+1}} \to \cdots\right)\] models the free formal monoid on the pointed formal scheme.
 \end{corollary}
 \begin{proof}[Proof sketch]
-The idea is that the symmetric algebra on the coalgebra associated to a formal curve admits a sufficiently nice filtration that one can iteratively solve for a Hopf algebra antipode.
+The main points entirely mirror the case over a field: the symmetric power construction gives models for $X^{\times n}_{\Sigma_n}$, the symmetric algebra construction gives a model for the free formal monoid, and the stabilization against the pointing is modeled by inverting an element in the symmetric algebra.  In each case, choosing a good basis for the coalgebra underlying $X$ yields choices of good bases for the coalgebras arising from these constructions, essentially because their elements are crafted out of finite combinations of the elements of the original.
+\end{proof}
+
+In the specific case that $\Spec R \to X$ is a pointed formal \emph{curve}, we can prove something more:
+\begin{corollary}[{\cite[Proposition 6.12]{StricklandFSFG}}]\label{FreeFormalGroupOnACurve}
+For $\Spec R \to X$ a pointed formal curve, the free formal monoid is automatically an abelian group.
+\end{corollary}
+\begin{proof}[Proof sketch]
+The main idea is that the coalgebra associated to a formal curve admits an increasing filtration $F_k$ so that the reduced diagonal $\overline \Delta = \Delta - (1 \otimes \eta) - (\eta \otimes 1)$ reduces filtration degree: \[\overline \Delta|_{F_k}\co F_k \to \sum_{\substack{i,j > 0 \\ i+j=k}} F_i \otimes F_j.\]  In turn, the symmetric algebra on the coalgebra associated to a formal curve inherits enough of this filtration that one can iteratively solve for a Hopf algebra antipode.
 \end{proof}
 
 We now reconnect this algebraic discussion with the algebraic topology that spurred it.
 
 \begin{lemma}
-If $E$ and $X$ are such that $E_* X$ is an $E_*$--coalgebra and \[E^* X = \CatOf{Modules}_{E_*}(E_* X, E_*),\] then there is an equivalence \[\Sch E_* X \cong X_E. \qed\]
+If $E$ and $X$ are such that $E_* X$ is an $E_*$--coalgebra and \[E^* X = \CatOf{Modules}_{E_*}(E_* X, E_*),\] then there is an equivalence \[\Sch E_* X \cong X_E.\]
 \end{lemma}
-\begin{proof}[Proof sketch]
-The main point is that the formal topology on $X_E$ is induced by the compactly generated topology of $X$, and this same topology can also be used to write $\Sch E_* X$ as the colimit of finite $E_*$--coalgebras.
+\begin{proof}
+We have defined $X_E$ to have formal topology induced by the compactly generated topology of $X$, and this same topology can also be used to write $\Sch E_* X$ as the colimit of finite $E_*$--coalgebras.
 \end{proof}
 
-\begin{example}[{\Cref{KtheoryConvertsTorsionToTorsion} and \Cref{KHomologyOfClassifyingSpace}}]
-For a Morava $K$--theory $K_\Gamma$ associated to a formal group $\Gamma$ of finite height, we have seen that there is an exact sequence of Hopf algebras \[K_\Gamma^0(BS^1) \xrightarrow{[p^j]} K_\Gamma^0(BS^1) \to K_\Gamma^0(BS^1[p^j]),\] presenting $(BS^1[p^j])_K$ as the $p^j$--torsion formal subscheme $BS^1_K[p^j]$.  The Hopf algebra calculation also holds in $K$--homology, where there is instead the following exact sequence \[(K_\Gamma)_0 B(S^1[p^j]) \to (K_\Gamma)_0 BS^1 \xrightarrow{(-)^{\ast p^j}} (K_\Gamma)_0 BS^1,\] presenting $(K_\Gamma)_0 B(S^1[p^j])$ as the $p^j$--order $\ast$--nilpotence in the middle Hopf algebra.  Applying $\Sch$ to this last line covariantly converts this second statement about Hopf algebras to the corresponding statement above about the associated formal schemes---i.e., the behavior of the homology coalgebra is a direct reflection of the behavior of the formal schemes.
+\begin{example}[{cf.\ \Cref{KtheoryConvertsTorsionToTorsion} and \Cref{KHomologyOfClassifyingSpace}}]
+For a Morava $K$--theory $K_\Gamma$ associated to a formal group $\Gamma$ of finite height, we have seen that there is an exact sequence of Hopf algebras \[K_\Gamma^0(BS^1) \xrightarrow{[p^j]} K_\Gamma^0(BS^1) \to K_\Gamma^0(BS^1[p^j]),\] presenting $(BS^1[p^j])_K$ as the $p^j$--torsion formal subscheme $BS^1_K[p^j]$.  The Hopf algebra calculation also holds in $K$--homology, where there is instead the exact sequence \[(K_\Gamma)_0 B(S^1[p^j]) \to (K_\Gamma)_0 BS^1 \xrightarrow{(-)^{\ast p^j}} (K_\Gamma)_0 BS^1\] presenting $(K_\Gamma)_0 B(S^1[p^j])$ as the $p^j$--order $\ast$--nilpotence in the middle Hopf algebra.  Applying $\Sch$ to this last line covariantly converts this second statement about Hopf algebras to the corresponding statement above about the associated formal schemes---i.e., the behavior of the homology coalgebra is a direct reflection of the behavior of the formal schemes.
 \end{example}
 
 The example above also spurs us to consider an intermediate operation.  We have seen that the algebra structure of the $K$--cohomology of a space and the coalgebra structure of the $K$--homology of the same space contain equivalent data: they both give rise to the same formal scheme.  However, in the case at hand, $BS^1$ and $BS^1[p^j]$ are commutative $H$--spaces and hence give rise to \emph{commutative and cocommutative Hopf algebras} on both $K$--cohomology and $K$--homology.  Hence, in addition to considering the coalgebraic formal scheme $\Sch (K_\Gamma)_0 B(S^1[p^j])$, we can also consider the affine scheme $\Spec (K_\Gamma)_0 B(S^1[p^j])$.  This, too, should contain identical information, and this is the subject of Cartier duality.
 
-\begin{definition}[{\cite[Section 6.4]{StricklandFSFG}}]
-The \textit{Cartier dual} of a finite group scheme $G$ is defined by \[DG = \InternalHom{GroupSchemes}(G, \Gm).\]
+\begin{definition}[{\cite[Sections 6.3--4]{StricklandFSFG}}]
+The \textit{Cartier dual} of a commutative finite group scheme $G$ is defined by the formula \[DG = \InternalHom{GroupSchemes}(G, \Gm),\] itself a finite group scheme.  More generally, the Cartier dual of a commutative \emph{coalgebraic} formal group $\G$ can also be defined by \[D\G = \InternalHom{GroupSchemes}(\G, \Gm).\]
 \end{definition}
 
 \begin{lemma}[{\cite[Proposition 6.19]{StricklandFSFG}}]
-On the level of Hopf algebras $A = \sheaf O_G$, this has the effect \[DG = \Sch A = \Spec A^*. \qed\]
+Let $\G$ be a coalgebraic commutative formal group over a formal scheme $X$, and write $\mathbb H = \Spec \sheaf O_{\G}^*$ for the group scheme associated to its dual Hopf algebra.  Cartier duality then has the effects $D\G = \mathbb H$ and $D\mathbb H = \G$.
 \end{lemma}
-\todo{You could stand to include a proof of this.  It's been a while since you actually proved something serious with formal schemes, and this is pretty nice.}
-
-\todo{You could also include mention of the motivation: $C_k \G$ is hard to exhibit, but $(C_k \G)^\vee$ is easy.  It's not clear how to do this without leaping too far ahead, though.}
-
-\todo{Your definition is for finite group schemes, but then you use it for formal groups.  One way to extend the definition is by $\InternalHom{FormalGroups}(G,\G_m)$.  Another is to take the limit of the objectwise duals in the direct system defining the formal group.  Are they the same?  Perhaps you should assure the reader that nothing goes wrong?}
+\begin{proof}
+We show that the first two objects, $D\G$ and $\mathbb H$, represent the same object.  A point $(u, f) \in D\G(T)$ is specified by a pair of functions \[\left(u\co \Spec T \to X, f\co u^* \G \to u^*(\Gm \times X)\right).\]  The map $f$ is equivalent to a map of Hopf algebras $f^*\co T[u^\pm] \to \sheaf O_{\G} \otimes_{\sheaf O_X} T$, which is determined by its value $f^*(u) \in \sheaf O_{\G} \otimes_{\sheaf O_X} T$, which must satisfy the two relations $\Delta(f^* u) = f^* u \otimes f^* u$ and $\eps(f^* u) = 1$.  Invoking linear duality, $f^* u$ can also be considered as an element of $\CatOf{Modules}_{\sheaf O_X}(\sheaf O_{\G}^*, T)$, and the two relations on $f^* u$ show that it lands in the subset \[f^* u \in \CatOf{Algebras}_{\sheaf O_X /}(\sheaf O_{\G}^*, T) \subseteq \CatOf{Modules}_{\sheaf O_X}(\sheaf O_{\G}^*, T).\]  This assignment is invertible, and the proof is entirely similar for $D \mathbb H \cong \G$.
+\end{proof}
 
 \begin{remark}
-The effect of Cartier duality on the Dieudonn\'e module of a formal group is linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} are related by Cartier duality.
+The effect of Cartier duality on the Dieudonn\'e module of a formal group is \emph{also} described by linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} can be taken to be related by Cartier duality.
 \end{remark}
 
 \begin{remark}\label{TopologicalCartierDuality}
-The topological summary of Cartier duality is that, when $X$ is a free even commutative $H$--space, \[DX_E = \InternalHom{GroupSchemes}(X_E, \Gm) = \Spec E_0 X.\]
+Cartier duality intertwines the homological and cohomological formal schemes assigned to a commutative $H$--space.  When such a commutative $H$--space $X$ has free and even $E$--homology, there is an isomorphism \[DX_E = \InternalHom{GroupSchemes}(X_E, \Gm) \cong \Spec E_0 X.\]
 \end{remark}
 
 
