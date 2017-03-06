@@ -298,117 +298,6 @@ In the next interesting case of $\OS{kU}{6} = BU[6, \infty)$, there is not an ac
 
 
 
-
-
-\section{Elliptic curves and \texorpdfstring{$\theta$}{theta}--functions}\label{SectionEllipticCurvesAndThetaFunctions}
-
-\todo{The goal of this lecture should be to set up all the algebraic geometry we'll need, in a coherent-enough way that the students will be able to think back and at least mumble ``yeah, ok, reasonable''.}
-\todo{I wonder if $\theta$--functions can be built \emph{after} the basics of $MU[6, \infty)$--orientations have been set up, so that this section doesn't come out of the blue.}
-
-Today will constitute something of a r\'esum\'e on elliptic curves.  We'll hardly prove anything, and we also won't cover many topics that a sane introduction to elliptic curves would make a point to cover.  Instead, we'll try to restrict attention to those concepts which will be of immediate use to us in the coming couple of lectures---in particular, we will discover a place where ``$C_3 \G$'' appears internally to the theory of elliptic curves.
-
-To begin with, recall that an elliptic curve in the complex setting is a torus, and it admits a presentation by selecting a lattice $\Lambda$ of full rank in $\C$ and forming the quotient \[\C \xrightarrow{\pi_\Lambda} E_\Lambda = \C / \Lambda.\]  The meromorphic functions $f$ on $E_\Lambda$ pull back to give meromorphic functions $\pi_\Lambda^* f$ on $\C$ satisfying a periodicity constraint in the form of the functional equation \[\pi_\Lambda^* f(z + \Lambda) = \pi_\Lambda^* f(z).\]  From this, it follows that there are no holomorphic such functions, save the constants---such a function would be bounded, and Liouville's theorem would apply.  It is, however, possible to build the following meromorphic special function, which has poles of order $2$ at the lattice points: \[\wp_\Lambda(z) = \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \{0\}} \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2}.\]  Its derivative is also a meromorphic function satisfying the periodicity constraint: \[\wp_\Lambda'(z) = -2 \sum_{\omega \in \Lambda} \frac{1}{(z - \omega)^3}.\]  In fact, these two functions generate all other meromorphic functions on $E_\Lambda$, in the sense that the subsheaf spanned by the algebra generators $\wp_\Lambda$ and $\wp_\Lambda'$ is exactly $\pi_\Lambda^* \sheaf M_{E_\Lambda}$.  This algebra is subject to the following relation, in the form of a differential equation: \[\wp_\Lambda'(z)^2 = 4 \wp_\Lambda(z)^3 - g_2(\Lambda) \wp_\Lambda(z) - g_3(\Lambda),\] for some special values $g_2(\Lambda)$ and $g_3(\Lambda)$.  Accordingly, writing $C \subseteq \CP^2$ for the projective curve $wy^2 = 4x^3 - g_2(\Lambda) w^2 x - g_3(\Lambda) w^3$, there is an analytic group isomorphism
-\begin{align*}
-E_\Lambda & \to C, \\
-z \pmod \Lambda & \mapsto [1: \wp_\Lambda(z): \wp_\Lambda'(z)].
-\end{align*}
-This is sometimes referred to as the Weierstrass presentation of $E_\Lambda$.
-
-There is a second standard embedding of a complex elliptic curve into projective space, using \textit{$\theta$--functions}, which are most naturally expressed \emph{multiplicatively}.  To begin, select a lattice $\Lambda$ and a basis for it, and rescale the lattice so that the basis takes the form $\{1, \tau\}$ with $\tau$ in the upper half-plane.  Then, the normalized exponential function $z \mapsto \exp(2 \pi i z)$ has $1 \cdot \Z$ as its kernel, and setting $q = \exp(2 \pi i \tau)$ we get a second presentation of $E_\Lambda$ as $\C^\times / q^{\Z}$.\todo{I think it's helpful to draw a picture here of an annulus with some identification made.}
-
-The associated $\theta$--function is defined by \[\theta_q(u) = \prod_{m \ge 1} (1 - q^m) (1 + q^{m-\frac{1}{2}}u) (1 + q^{m-\frac{1}{2}}u^{-1}) = \sum_{n \in \Z} u^n q^{\frac{1}{2} n^2}.\]  It vanishes on the set $\{\exp(2 \pi i (\frac{1}{2}m + \frac{\tau}{2}n))\}$, i.e., at the center of the fundamental annulus.  However, since it has no poles it cannot descend to give a function on $\C^\times / q^{\Z}$.  A different obstruction to this descent is its imperfect periodicity relation: \[\theta_q(qu) = u^{-1} q^{\frac{-1}{2}} \theta_q(u).\]  We can also shift the zero-set of $\theta_q$ by rational rescalings $a$ of $q$ and $b$ of $1$:\todo{This isn't stated well.} \[\theta_q^{a,b}(u) = q^{\frac{a^2}{2}} \cdot u^a \cdot \exp(2 \pi i a b) \theta_q(u q^a \exp(2 \pi i b)).\]
-
-\begin{remark}[{\cite[Proposition 10.2.6]{Husemoller}}]
-For any $N > 0$, define $V_\tau[N]$ to be the space of entire functions $f$ with $f(z + N) = f(z)$ and $f(z + \tau) = e^{-2 \pi i N z - \pi i N^2 \tau} f(z)$.  Then, $V_\tau[N]$ has $\C$--dimension $N^2$, and the functions $\theta_\tau^{a, b}$ \todo{At this point you swapped notation from $\theta_q$ to $\theta_\tau$.}give a basis by picking representatives $(a_i, b_i)$ of the classes in $((1/N)\Z / \Z)^2$.
-\end{remark}
-
-Even though these functions do not themselves descend to $\C^\times / q^{\Z}$, we can collectively use them to construct a map to complex projective space, where the quasi-periodicity relations will mutually cancel in homogeneous coordinates.
-\begin{theorem}[{\cite[Proposition 10.3.2]{Husemoller}}]
-Consider the map
-\begin{align*}
-\C / N(\Lambda) & \xrightarrow{f_{(N)}} \P^{N^2-1}(\C), \\
-z & \mapsto [\cdots : \theta_\tau^{i/N, j/N}(z) : \cdots].
-\end{align*}\todo{What's $N(\Lambda)$?}
-For $N > 1$, this map is an embedding. \qed
-\end{theorem}
-
-\begin{example}
-One can work out how it goes for $N = 2$, which will cause some of our pesky $\frac{1}{2}$'s to cancel.  The four functions there are $\theta_q^{0,0}$ with zeroes on $\Lambda + \frac{\tau + 1}{2}$, $\theta_q^{0,1/2}$ with zeroes on $\Lambda + \frac{\tau}{2}$, $\theta_q^{1/2,0}$ with zeroes on $\Lambda + \frac{1}{2}$, and $\theta_q^{1/2,1/2}$ with zeroes on $\Lambda$ exactly.  The image of $f_{(2)}$ in $\P^{2^2 - 1}(\C)$ is cut out by the equations
-\begin{align*}
-A^2 x_0^2 & = B^2 x_1^2 + C^2 x_2^2, &
-A^2 x_3^2 & = C^2 x_1^2 - B^2 x_2^2,
-\end{align*}
-where
-\begin{align*}
-x_0 & = \theta_\tau^{0, 0}(2z), &
-x_1 & = \theta_\tau^{0, 1/2}(2z), &
-x_2 & = \theta_\tau^{1/2, 0}(2z), &
-x_3 & = \theta_\tau^{1/2, 1/2}(2z)
-\end{align*}
-and
-\begin{align*}
-A & = \theta_\tau^{0, 0}(0) = \sum_n q^{n^2}, &
-B & = \theta_\tau^{0, 1/2}(0) = \sum_n (-1)^n q^{n^2}, &
-C & = \theta_\tau^{1/2, 0}(0) = \sum_n q^{(n + 1/2)^2}
-\end{align*}
-upon which there is the additional ``Jacobi'' relation \[A^4 = B^4 + C^4.\]
-\end{example}
-
-\begin{remark}
-This embedding of $E_\Lambda$ as an intersection of quadric surfaces in $\CP^3$ is quite different from the Weierstrass embedding.  Nonetheless, the embeddings are analytically related.  Namely, there is an equality \[\frac{d^2}{dz^2} \log \theta_{\exp{2 \pi i \tau}}(\exp{2 \pi i z}) = \wp_\Lambda(z).\]  Separately, Weierstrass considered a function $\sigma_\Lambda$, defined by \[\sigma_\Lambda(z) = z \prod_{\omega \in \Lambda \setminus 0} \left( 1 - \frac{z}{\omega} \right) \cdot \exp \left[ \frac{z}{\omega} + \frac{1}{2} \left( \frac{z}{\omega} \right)^2 \right],\] which also has the property that its second logarithmic derivative is $\wp$ and so is ``basically $\theta_q^{1/2,1/2}$''.  In fact, any elliptic function can be written in the form \[c \cdot \prod_{i=1}^n \frac{\sigma_\Lambda(z - a_i)}{\sigma_\Lambda(z - b_i)}.\]
-\end{remark}
-
-The $\theta$--functions version of the story has two main successes\todo{Two successes: (1) abelian variety $A$ rather than elliptic curve $C$; (2) whatever field $K$ rather than the complex numbers $\C$.}.  One is that there is a version of this story for an arbitrary abelian variety.  It turns out that all abelian varieties are projective\citeme{Milne's abelian varieties, Theorem 7.1}, and the theorem sitting at the heart of this claim is\todo{Several people wanted some sketch of how to use this theorem to prove the projectivity thing. I don't have any good sketch, and neither did Erick (offhand).}\todo{Mike summarizes the Theorem of the Cube in his \textit{The $\String$ orientation of $\tmf$} talk notes (pg.\ 113) as: a weight zero divisor $D$ on an abelian variety is principal (i.e., it is the zeroes and poles set of a meromorphic function) if and only if its nodes sum to zero.  The meromorphic function is unique up to scale, so it's actually unique if you require a compatible trivialization at the identity point (i.e., if you divide by $\pi^* e^* \sheaf O$).}
-\begin{corollary}[Theorem of the cube]\label{Theta3IsTrivial}\citeme{Milne's Abelian Varieties chapter, Corollary 6.4 and Theorem 7.1}
-Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the projection onto the $i${\th} factor, and let $p_{ij} = p_i +_A p_j$, $p_{ijk} = p_i +_A p_j +_A p_k$.  Then for any invertible sheaf $\L$ on $A$, the sheaf \[\Theta^3(\L) := \frac{p_{123}^* \L \otimes p_1^* \L \otimes p_2^* \L \otimes p_3^* \L}{p_{12}^* \L \otimes p_{23}^* \L \otimes p_{31}^* \L \otimes p_\emptyset^* \L} = \bigotimes_{I \subseteq \{1, 2, 3\}} (p_I^* \L)^{(-1)^{|I| - 1}}\] on $A \times A \times A$ is trivial.  If $\L$ is rigid, then $\Theta^3(\L)$ is canonically trivialized by a section $s(A; \L)$. \qed
-\end{corollary}
-
-\begin{remark}
-The section $s(A; \L)$ satisfies three familiar properties:
-\begin{itemize}
-\item It is symmetric: pulling back $\Theta^3 \L$ along a shuffle automorphism of $A^3$ yields $\Theta^3 \L$ again, and the pullback of the section $s(A; \L)$ along this shuffle agrees with the original $s(A; \L)$ across this identification.
-\item It is rigid: by restricting to $* \times A \times A$, the tensor factors in $\Theta^3 \L$ cancel out to give the trivial bundle over $A \times A$.  The restriction of the section $s(A; \L)$ to this pullback bundle agrees with the extension of the rigidifying section\todo{What is the rigidifying section?}.
-\item It satisfies a $2$--cocycle condition: in general, we define \[\Theta^k \L := \bigotimes_{I \subseteq \{1, \ldots, k\}} (p_I^* \L)^{(-1)^{|I| - 1}}.\]  In fact, $\Theta^{k+1} \L$ can be written as a pullback of $\Theta^k \L$: \[\Theta^{k+1} \L = \frac{(p_{12} \times \id_{A^{k-1}})^* \L}{(p_1 \times \id_{A^{k-1}})^* \L \otimes (p_2 \times \id_{A^{k-1}})^* \L},\] and pulling back a section $s$ along this map gives a new section \[(\delta s)(x_0, x_1, \ldots, x_k) := \frac{s(x_0 +_A x_1, x_2, \ldots, x_k)}{s(x_0, x_2, \ldots, x_k) \cdot s(x_1, x_2, \ldots, x_k)}.\]  Performing this operation on the first and second factors yields the defining equation of a $2$--cocycle.\todo{You should write this equation out -- it never hurts to see it again.}
-\end{itemize}
-\end{remark}
-
-\begin{remark}
-The proof of projectivity arising from this method rests on choosing an ample line bundle on $A$ \todo{This is a little strange to say: the existence of an ample line bundle is by definition equivalent to projectivity, so we're not so much ``choosing'' as we are ``constructing'' such a line bundle using the theorem of the cube.} and constructing some generating global sections to get an embedding into $\P(\L^{\oplus n})$.  Mumford showed that a choice of ``$\theta$--structure'' on $A$, which is only slightly more data given in terms of Heisenberg representations\todo{I think.}, gives a canonical identification of $\P(\L^{\oplus n})$ with a \emph{fixed} projective space.  This is suitable for studying how these equations change as one considers different points in the \emph{moduli} of abelian varieties.  Separately, Breen\citeme{Breen} showed that if $\L$ is a line bundle on $A$ with a chosen trivialization of $\Theta^3 \L$ and $\pi\co A' \to A$ is an epimorphism that trivializes $\L$, then one can also associate to this a theory of $\theta$--functions.\todo{You could expand on what this is supposed to mean.}
-\end{remark}
-
-
-
-
-
-
-
-
-% \begin{theorem}\citeme{Strip out the easy parts of Milne's Theorem 7.1}
-% Every elliptic curve is projective.
-% \end{theorem}
-% \begin{proof}
-% First, assume that the ground field $k$ is algebraically closed.  We aim to construct a very ample linear system, meaning that it separates points (for every pair $a, b$ of distinct closed points on the variety, there is a $D$ in the system with $a \in D$ but $b \not\in D$) and it separates tangent vectors (for every closed point $a$ and tangent vector $t$ at $a$, there is a $D$ in the system with $a \in D$ but $t \not\in T_a D$).  Consider just the condition that a linear system separates the origin point from all other closed points in $A$; the case of a curve is too low-dimensional for this is to be interesting, as we can pick our linear system to consist of only the point divisor $D = \{0\}$.  If $a$ and $b$ are any two points in $A(k)$, then one can always find a third point $c$ so that $D_a + D_c + D_{-c-a}$ misses $b$---that is, the duplicated and translated system of divisors separates $a$ from $b$.  The theorem of the cube shows that $D_a + D_c + D_{-c-a} = 3D$, regardless of $a$ and $c$, so we take $3D$ as the basic unit of our system of divisors.  Finally, looking around II.7.8.2 of Hartshorne\todo{Expand this out.} shows that this gives rise to the appropriate projective embedding.
-
-% Finally, one can show that the projectivity of $A_{\bar k}$ entails the projectivity of $A_k$.\todo{Expand me?}
-% \end{proof}
-
-% Corollary 7.2 of Milne's chapter is that every abelian variety has a \emph{symmetric} ample invertible sheaf.  (Remarks after that say that any ample sheaf becomes very ample after cubing it. That's really what the theorem of the cube's use in the above proof is saying.)
-
-% The theorem of the cube: $\Theta^3 \L$ is canonically trivial for any rigidified line bundle $\L$ on an abelian scheme $A$.  You can find this in Olsson Thm 2.2.  Or, Akhil Mathew has notes from an algebraic geometry class ( https://math.berkeley.edu/{\textasciitilde}amathew/232b.pdf ) where lectures 3--5 address the theorem of the cube.
-
-% ------
-
-% Take $S = \Spec \bar k$, let $E/S$ be an elliptic curve, and let $\L = \sheaf O_E(ne)$ for an integer $n \ge 1$.  Then for a point $a \in E(\bar k)$ \[t_a^* \L \otimes \L^{-1} \simeq \sheaf O_E(n(-a) -n(e))\] which is trivial if and only if $na = e$, hence $K_{(E, \L)} \cong E[n]$.  The $\Theta$--group $\sheaf G_{(E, \L)}$ consists of the set of points $(a, f)$ where $a \in E[n]$ and $f \in \bar k(E)$ is a function with $\div(f) = n(-a) - n(e)$.  There is a natural antisymmetric pairing, called the Weil pairing, coming from the central extension \[1 \to \Gm \to \sheaf G_{(E, \L)} \to E[n] \to 1.\]
-
-% (See Olsson 3.5, 3.11.  You can also see Mumford's \textit{Abelian varieties} p.\ 222.)
-
-\todo{Akhil's class notes mention a ``very easy'' proof for the theorem of the cube for complex varieties at the end of lecture 5.  Consider fleshing out that argument and see whether it does what you need.}
-
-
-
-
-
-
 \section{Unstable chromatic cooperations for \texorpdfstring{$kU$}{kU}}\label{ChromaticKUCoopnsSection}
 
 Let $\Gamma$ be a formal group of finite $p$--height of a field $k$ of positive characteristic $p$, and let $E = E_\Gamma$ denote the associated Morava $E$--theory.  Our goal in this section is to get a partial description of the Hopf ring of unstable cooperations $(E_\Gamma)_* \OS{kU}{2*}$.  Our results in previous sections give a foothold into this analysis by computing \[E_0 (BU \times \Z),\; E_0 BU,\; E_0 BSU\] in terms of the affine schemes they represent.  We also saw that these results were the cornerstone for accessing descriptions of the schemes \[\Spec E_0 MUP,\; \Spec E_0 MU,\; \Spec E_0 MSU.\]  In particular, the next step is to understand $E_0 BU[6, \infty)$, and our main tool for doing this will be the Postnikov fibration \[\OS{H\Z}{3} \to BU[6, \infty) \to BSU.\]  Our main goals are to construct a model sequence of formal schemes, then show that $E$--theory is well-behaved enough that the formal schemes it constructs exactly match the model.
@@ -954,6 +843,119 @@ is isomorphic to the affine scheme $\Spec E_0 MU[6, \infty)$.  Moreover, the $E_
 
 % I think the manual construction in Equation 3.7 of AHS shows that this map is surjective for the additive group law on any ring.  That may well entail it for any group law on any ring.
 % \end{remark}
+
+
+
+
+
+
+
+
+
+
+\section{Elliptic curves and \texorpdfstring{$\theta$}{theta}--functions}\label{SectionEllipticCurvesAndThetaFunctions}
+
+\todo{The goal of this lecture should be to set up all the algebraic geometry we'll need, in a coherent-enough way that the students will be able to think back and at least mumble ``yeah, ok, reasonable''.}
+\todo{I wonder if $\theta$--functions can be built \emph{after} the basics of $MU[6, \infty)$--orientations have been set up, so that this section doesn't come out of the blue.}
+
+Today will constitute something of a r\'esum\'e on elliptic curves.  We'll hardly prove anything, and we also won't cover many topics that a sane introduction to elliptic curves would make a point to cover.  Instead, we'll try to restrict attention to those concepts which will be of immediate use to us in the coming couple of lectures---in particular, we will discover a place where ``$C_3 \G$'' appears internally to the theory of elliptic curves.
+
+To begin with, recall that an elliptic curve in the complex setting is a torus, and it admits a presentation by selecting a lattice $\Lambda$ of full rank in $\C$ and forming the quotient \[\C \xrightarrow{\pi_\Lambda} E_\Lambda = \C / \Lambda.\]  The meromorphic functions $f$ on $E_\Lambda$ pull back to give meromorphic functions $\pi_\Lambda^* f$ on $\C$ satisfying a periodicity constraint in the form of the functional equation \[\pi_\Lambda^* f(z + \Lambda) = \pi_\Lambda^* f(z).\]  From this, it follows that there are no holomorphic such functions, save the constants---such a function would be bounded, and Liouville's theorem would apply.  It is, however, possible to build the following meromorphic special function, which has poles of order $2$ at the lattice points: \[\wp_\Lambda(z) = \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \{0\}} \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2}.\]  Its derivative is also a meromorphic function satisfying the periodicity constraint: \[\wp_\Lambda'(z) = -2 \sum_{\omega \in \Lambda} \frac{1}{(z - \omega)^3}.\]  In fact, these two functions generate all other meromorphic functions on $E_\Lambda$, in the sense that the subsheaf spanned by the algebra generators $\wp_\Lambda$ and $\wp_\Lambda'$ is exactly $\pi_\Lambda^* \sheaf M_{E_\Lambda}$.  This algebra is subject to the following relation, in the form of a differential equation: \[\wp_\Lambda'(z)^2 = 4 \wp_\Lambda(z)^3 - g_2(\Lambda) \wp_\Lambda(z) - g_3(\Lambda),\] for some special values $g_2(\Lambda)$ and $g_3(\Lambda)$.  Accordingly, writing $C \subseteq \CP^2$ for the projective curve $wy^2 = 4x^3 - g_2(\Lambda) w^2 x - g_3(\Lambda) w^3$, there is an analytic group isomorphism
+\begin{align*}
+E_\Lambda & \to C, \\
+z \pmod \Lambda & \mapsto [1: \wp_\Lambda(z): \wp_\Lambda'(z)].
+\end{align*}
+This is sometimes referred to as the Weierstrass presentation of $E_\Lambda$.
+
+There is a second standard embedding of a complex elliptic curve into projective space, using \textit{$\theta$--functions}, which are most naturally expressed \emph{multiplicatively}.  To begin, select a lattice $\Lambda$ and a basis for it, and rescale the lattice so that the basis takes the form $\{1, \tau\}$ with $\tau$ in the upper half-plane.  Then, the normalized exponential function $z \mapsto \exp(2 \pi i z)$ has $1 \cdot \Z$ as its kernel, and setting $q = \exp(2 \pi i \tau)$ we get a second presentation of $E_\Lambda$ as $\C^\times / q^{\Z}$.\todo{I think it's helpful to draw a picture here of an annulus with some identification made.}
+
+The associated $\theta$--function is defined by \[\theta_q(u) = \prod_{m \ge 1} (1 - q^m) (1 + q^{m-\frac{1}{2}}u) (1 + q^{m-\frac{1}{2}}u^{-1}) = \sum_{n \in \Z} u^n q^{\frac{1}{2} n^2}.\]  It vanishes on the set $\{\exp(2 \pi i (\frac{1}{2}m + \frac{\tau}{2}n))\}$, i.e., at the center of the fundamental annulus.  However, since it has no poles it cannot descend to give a function on $\C^\times / q^{\Z}$.  A different obstruction to this descent is its imperfect periodicity relation: \[\theta_q(qu) = u^{-1} q^{\frac{-1}{2}} \theta_q(u).\]  We can also shift the zero-set of $\theta_q$ by rational rescalings $a$ of $q$ and $b$ of $1$:\todo{This isn't stated well.} \[\theta_q^{a,b}(u) = q^{\frac{a^2}{2}} \cdot u^a \cdot \exp(2 \pi i a b) \theta_q(u q^a \exp(2 \pi i b)).\]
+
+\begin{remark}[{\cite[Proposition 10.2.6]{Husemoller}}]
+For any $N > 0$, define $V_\tau[N]$ to be the space of entire functions $f$ with $f(z + N) = f(z)$ and $f(z + \tau) = e^{-2 \pi i N z - \pi i N^2 \tau} f(z)$.  Then, $V_\tau[N]$ has $\C$--dimension $N^2$, and the functions $\theta_\tau^{a, b}$ \todo{At this point you swapped notation from $\theta_q$ to $\theta_\tau$.}give a basis by picking representatives $(a_i, b_i)$ of the classes in $((1/N)\Z / \Z)^2$.
+\end{remark}
+
+Even though these functions do not themselves descend to $\C^\times / q^{\Z}$, we can collectively use them to construct a map to complex projective space, where the quasi-periodicity relations will mutually cancel in homogeneous coordinates.
+\begin{theorem}[{\cite[Proposition 10.3.2]{Husemoller}}]
+Consider the map
+\begin{align*}
+\C / N(\Lambda) & \xrightarrow{f_{(N)}} \P^{N^2-1}(\C), \\
+z & \mapsto [\cdots : \theta_\tau^{i/N, j/N}(z) : \cdots].
+\end{align*}\todo{What's $N(\Lambda)$?}
+For $N > 1$, this map is an embedding. \qed
+\end{theorem}
+
+\begin{example}
+One can work out how it goes for $N = 2$, which will cause some of our pesky $\frac{1}{2}$'s to cancel.  The four functions there are $\theta_q^{0,0}$ with zeroes on $\Lambda + \frac{\tau + 1}{2}$, $\theta_q^{0,1/2}$ with zeroes on $\Lambda + \frac{\tau}{2}$, $\theta_q^{1/2,0}$ with zeroes on $\Lambda + \frac{1}{2}$, and $\theta_q^{1/2,1/2}$ with zeroes on $\Lambda$ exactly.  The image of $f_{(2)}$ in $\P^{2^2 - 1}(\C)$ is cut out by the equations
+\begin{align*}
+A^2 x_0^2 & = B^2 x_1^2 + C^2 x_2^2, &
+A^2 x_3^2 & = C^2 x_1^2 - B^2 x_2^2,
+\end{align*}
+where
+\begin{align*}
+x_0 & = \theta_\tau^{0, 0}(2z), &
+x_1 & = \theta_\tau^{0, 1/2}(2z), &
+x_2 & = \theta_\tau^{1/2, 0}(2z), &
+x_3 & = \theta_\tau^{1/2, 1/2}(2z)
+\end{align*}
+and
+\begin{align*}
+A & = \theta_\tau^{0, 0}(0) = \sum_n q^{n^2}, &
+B & = \theta_\tau^{0, 1/2}(0) = \sum_n (-1)^n q^{n^2}, &
+C & = \theta_\tau^{1/2, 0}(0) = \sum_n q^{(n + 1/2)^2}
+\end{align*}
+upon which there is the additional ``Jacobi'' relation \[A^4 = B^4 + C^4.\]
+\end{example}
+
+\begin{remark}
+This embedding of $E_\Lambda$ as an intersection of quadric surfaces in $\CP^3$ is quite different from the Weierstrass embedding.  Nonetheless, the embeddings are analytically related.  Namely, there is an equality \[\frac{d^2}{dz^2} \log \theta_{\exp{2 \pi i \tau}}(\exp{2 \pi i z}) = \wp_\Lambda(z).\]  Separately, Weierstrass considered a function $\sigma_\Lambda$, defined by \[\sigma_\Lambda(z) = z \prod_{\omega \in \Lambda \setminus 0} \left( 1 - \frac{z}{\omega} \right) \cdot \exp \left[ \frac{z}{\omega} + \frac{1}{2} \left( \frac{z}{\omega} \right)^2 \right],\] which also has the property that its second logarithmic derivative is $\wp$ and so is ``basically $\theta_q^{1/2,1/2}$''.  In fact, any elliptic function can be written in the form \[c \cdot \prod_{i=1}^n \frac{\sigma_\Lambda(z - a_i)}{\sigma_\Lambda(z - b_i)}.\]
+\end{remark}
+
+The $\theta$--functions version of the story has two main successes\todo{Two successes: (1) abelian variety $A$ rather than elliptic curve $C$; (2) whatever field $K$ rather than the complex numbers $\C$.}.  One is that there is a version of this story for an arbitrary abelian variety.  It turns out that all abelian varieties are projective\citeme{Milne's abelian varieties, Theorem 7.1}, and the theorem sitting at the heart of this claim is\todo{Several people wanted some sketch of how to use this theorem to prove the projectivity thing. I don't have any good sketch, and neither did Erick (offhand).}\todo{Mike summarizes the Theorem of the Cube in his \textit{The $\String$ orientation of $\tmf$} talk notes (pg.\ 113) as: a weight zero divisor $D$ on an abelian variety is principal (i.e., it is the zeroes and poles set of a meromorphic function) if and only if its nodes sum to zero.  The meromorphic function is unique up to scale, so it's actually unique if you require a compatible trivialization at the identity point (i.e., if you divide by $\pi^* e^* \sheaf O$).}
+\begin{corollary}[Theorem of the cube]\label{Theta3IsTrivial}\citeme{Milne's Abelian Varieties chapter, Corollary 6.4 and Theorem 7.1}
+Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the projection onto the $i${\th} factor, and let $p_{ij} = p_i +_A p_j$, $p_{ijk} = p_i +_A p_j +_A p_k$.  Then for any invertible sheaf $\L$ on $A$, the sheaf \[\Theta^3(\L) := \frac{p_{123}^* \L \otimes p_1^* \L \otimes p_2^* \L \otimes p_3^* \L}{p_{12}^* \L \otimes p_{23}^* \L \otimes p_{31}^* \L \otimes p_\emptyset^* \L} = \bigotimes_{I \subseteq \{1, 2, 3\}} (p_I^* \L)^{(-1)^{|I| - 1}}\] on $A \times A \times A$ is trivial.  If $\L$ is rigid, then $\Theta^3(\L)$ is canonically trivialized by a section $s(A; \L)$. \qed
+\end{corollary}
+
+\begin{remark}
+The section $s(A; \L)$ satisfies three familiar properties:
+\begin{itemize}
+\item It is symmetric: pulling back $\Theta^3 \L$ along a shuffle automorphism of $A^3$ yields $\Theta^3 \L$ again, and the pullback of the section $s(A; \L)$ along this shuffle agrees with the original $s(A; \L)$ across this identification.
+\item It is rigid: by restricting to $* \times A \times A$, the tensor factors in $\Theta^3 \L$ cancel out to give the trivial bundle over $A \times A$.  The restriction of the section $s(A; \L)$ to this pullback bundle agrees with the extension of the rigidifying section\todo{What is the rigidifying section?}.
+\item It satisfies a $2$--cocycle condition: in general, we define \[\Theta^k \L := \bigotimes_{I \subseteq \{1, \ldots, k\}} (p_I^* \L)^{(-1)^{|I| - 1}}.\]  In fact, $\Theta^{k+1} \L$ can be written as a pullback of $\Theta^k \L$: \[\Theta^{k+1} \L = \frac{(p_{12} \times \id_{A^{k-1}})^* \L}{(p_1 \times \id_{A^{k-1}})^* \L \otimes (p_2 \times \id_{A^{k-1}})^* \L},\] and pulling back a section $s$ along this map gives a new section \[(\delta s)(x_0, x_1, \ldots, x_k) := \frac{s(x_0 +_A x_1, x_2, \ldots, x_k)}{s(x_0, x_2, \ldots, x_k) \cdot s(x_1, x_2, \ldots, x_k)}.\]  Performing this operation on the first and second factors yields the defining equation of a $2$--cocycle.\todo{You should write this equation out -- it never hurts to see it again.}
+\end{itemize}
+\end{remark}
+
+\begin{remark}
+The proof of projectivity arising from this method rests on choosing an ample line bundle on $A$ \todo{This is a little strange to say: the existence of an ample line bundle is by definition equivalent to projectivity, so we're not so much ``choosing'' as we are ``constructing'' such a line bundle using the theorem of the cube.} and constructing some generating global sections to get an embedding into $\P(\L^{\oplus n})$.  Mumford showed that a choice of ``$\theta$--structure'' on $A$, which is only slightly more data given in terms of Heisenberg representations\todo{I think.}, gives a canonical identification of $\P(\L^{\oplus n})$ with a \emph{fixed} projective space.  This is suitable for studying how these equations change as one considers different points in the \emph{moduli} of abelian varieties.  Separately, Breen\citeme{Breen} showed that if $\L$ is a line bundle on $A$ with a chosen trivialization of $\Theta^3 \L$ and $\pi\co A' \to A$ is an epimorphism that trivializes $\L$, then one can also associate to this a theory of $\theta$--functions.\todo{You could expand on what this is supposed to mean.}
+\end{remark}
+
+
+
+
+
+
+
+
+% \begin{theorem}\citeme{Strip out the easy parts of Milne's Theorem 7.1}
+% Every elliptic curve is projective.
+% \end{theorem}
+% \begin{proof}
+% First, assume that the ground field $k$ is algebraically closed.  We aim to construct a very ample linear system, meaning that it separates points (for every pair $a, b$ of distinct closed points on the variety, there is a $D$ in the system with $a \in D$ but $b \not\in D$) and it separates tangent vectors (for every closed point $a$ and tangent vector $t$ at $a$, there is a $D$ in the system with $a \in D$ but $t \not\in T_a D$).  Consider just the condition that a linear system separates the origin point from all other closed points in $A$; the case of a curve is too low-dimensional for this is to be interesting, as we can pick our linear system to consist of only the point divisor $D = \{0\}$.  If $a$ and $b$ are any two points in $A(k)$, then one can always find a third point $c$ so that $D_a + D_c + D_{-c-a}$ misses $b$---that is, the duplicated and translated system of divisors separates $a$ from $b$.  The theorem of the cube shows that $D_a + D_c + D_{-c-a} = 3D$, regardless of $a$ and $c$, so we take $3D$ as the basic unit of our system of divisors.  Finally, looking around II.7.8.2 of Hartshorne\todo{Expand this out.} shows that this gives rise to the appropriate projective embedding.
+
+% Finally, one can show that the projectivity of $A_{\bar k}$ entails the projectivity of $A_k$.\todo{Expand me?}
+% \end{proof}
+
+% Corollary 7.2 of Milne's chapter is that every abelian variety has a \emph{symmetric} ample invertible sheaf.  (Remarks after that say that any ample sheaf becomes very ample after cubing it. That's really what the theorem of the cube's use in the above proof is saying.)
+
+% The theorem of the cube: $\Theta^3 \L$ is canonically trivial for any rigidified line bundle $\L$ on an abelian scheme $A$.  You can find this in Olsson Thm 2.2.  Or, Akhil Mathew has notes from an algebraic geometry class ( https://math.berkeley.edu/{\textasciitilde}amathew/232b.pdf ) where lectures 3--5 address the theorem of the cube.
+
+% ------
+
+% Take $S = \Spec \bar k$, let $E/S$ be an elliptic curve, and let $\L = \sheaf O_E(ne)$ for an integer $n \ge 1$.  Then for a point $a \in E(\bar k)$ \[t_a^* \L \otimes \L^{-1} \simeq \sheaf O_E(n(-a) -n(e))\] which is trivial if and only if $na = e$, hence $K_{(E, \L)} \cong E[n]$.  The $\Theta$--group $\sheaf G_{(E, \L)}$ consists of the set of points $(a, f)$ where $a \in E[n]$ and $f \in \bar k(E)$ is a function with $\div(f) = n(-a) - n(e)$.  There is a natural antisymmetric pairing, called the Weil pairing, coming from the central extension \[1 \to \Gm \to \sheaf G_{(E, \L)} \to E[n] \to 1.\]
+
+% (See Olsson 3.5, 3.11.  You can also see Mumford's \textit{Abelian varieties} p.\ 222.)
+
+\todo{Akhil's class notes mention a ``very easy'' proof for the theorem of the cube for complex varieties at the end of lecture 5.  Consider fleshing out that argument and see whether it does what you need.}
 
 
 
