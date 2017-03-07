@@ -79,7 +79,7 @@ Suppose that $F\co \CatOf I \to \CatOf{Coalgebras}_R$ is a colimit diagram of co
 
 \noindent For an example of the sort of constructions that become available via this Theorem, we prove the following Corollary by analyzing the symmetric power of coalgebras:
 
-\begin{corollary}[{\cite[Example 4.65 and Proposition 6.4]{StricklandFSFG}}]
+\begin{corollary}[{\cite[Example 4.65 and Proposition 6.4]{StricklandFSFG}}]\label{ProofOfFreeFormalMonoids}
 When a formal scheme $X$ is coalgebraic, the symmetric power $X^{\times n}_{\Sigma_n}$ exists.  In fact, $\coprod_{n \ge 0} X^{\times n}_{\Sigma n}$ models the free formal monoid on $X$.  Given an additional pointing $\Spec R \to X$, the colimit of the induced system \[\colim \left(\cdots \to X^{\times n}_{\Sigma_n} = \Spec R \times X^{\times n}_{\Sigma_n} \to X \times X^{\times n}_{\Sigma_n} \to X^{\times(n+1)}_{\Sigma_{n+1}} \to \cdots\right)\] models the free formal monoid on the pointed formal scheme.
 \end{corollary}
 \begin{proof}[Proof sketch]
@@ -109,7 +109,7 @@ For a Morava $K$--theory $K_\Gamma$ associated to a formal group $\Gamma$ of fin
 
 The example above also spurs us to consider an intermediate operation.  We have seen that the algebra structure of the $K$--cohomology of a space and the coalgebra structure of the $K$--homology of the same space contain equivalent data: they both give rise to the same formal scheme.  However, in the case at hand, $BS^1$ and $BS^1[p^j]$ are commutative $H$--spaces and hence give rise to \emph{commutative and cocommutative Hopf algebras} on both $K$--cohomology and $K$--homology.  Hence, in addition to considering the coalgebraic formal scheme $\Sch (K_\Gamma)_0 B(S^1[p^j])$, we can also consider the affine scheme $\Spec (K_\Gamma)_0 B(S^1[p^j])$.  This, too, should contain identical information, and this is the subject of Cartier duality.
 
-\begin{definition}[{\cite[Sections 6.3--4]{StricklandFSFG}}]
+\begin{definition}[{\cite[Sections 6.3--4]{StricklandFSFG}}]\label{DefnCartierDual}
 The \textit{Cartier dual} of a commutative finite group scheme $G$ is defined by the formula \[DG = \InternalHom{GroupSchemes}(G, \Gm),\] itself a finite group scheme.  More generally, the Cartier dual of a commutative \emph{coalgebraic} formal group $\G$ can also be defined by \[D\G = \InternalHom{GroupSchemes}(\G, \Gm).\]
 \end{definition}
 
@@ -141,16 +141,14 @@ Cartier duality intertwines the homological and cohomological schemes assigned t
 
 \section{Special divisors and the special splitting principle}\label{MSUDay}
 
-\todo{You should be a little careful here: are the Triumvirate theorems a little stronger than the culmination of (1), (2), and (3)? I think the proof of the equivalence of (2) and (3) on $T$--points rather than on $E_0$--points is something slightly harder than the most basic equivalence between (2) and (3) (which concerns only $E_0$--points).}
-
-Starting today, after our extended interludes on chromatic homotopy theory and cooperations, we are going to return to thinking about bordism orientations directly.  To begin, we will recall the various perspectives adopted in \Cref{ComplexBordismChapter} when we were studying complex--orientations of ring spectra.
+Starting today, after our extended interludes on chromatic homotopy theory and cooperations, we are going to return to thinking about bordism orientations directly.  To begin, we will summarize the various perspectives already adopted in \Cref{ComplexBordismChapter} when we were studying complex orientations of ring spectra.\todo{These references aren't totally right: \#3 is just off, and then there's some confusion about $MU$ versus $MUP$.}
 \begin{enumerate}
-\item A complex--orientation of $E$ is, definitionally, a map $MUP \to E$ of ring spectra in the homotopy category.
-\item A complex--orientation of $E$ is also equivalent to a multiplicative system of Thom isomorphisms for complex vector bundles.  Such a system is determined by its value on the universal line bundle $\L$ over $\CP^\infty$.  We can also phrase this algebro-geometrically: such a Thom isomorphism is the data of a trivialization of the Thom sheaf $\ThomSheaf{\L}$ over $\CP^\infty_E$.
-\item Ring spectrum maps $MUP \to E$ induce on $E$--homology maps $E_0 MUP \to E_0$ of $E_0$--algebras.  This, too, can be phrased algebro-geometrically: these are elements of $(\Spec E_0 MUP)(E_0)$.
+\item (\Cref{DefnComplexOrientation}:) A complex--orientation of $E$ is, definitionally, a map $MUP \to E$ of ring spectra in the homotopy category.
+\item (\Cref{ComplexOrientationsInTermsOfTrivs}:) A complex--orientation of $E$ is also equivalent to a multiplicative system of Thom isomorphisms for complex vector bundles.  Such a system is determined by its value on the universal line bundle $\L$ over $\CP^\infty$.  We can also phrase this algebro-geometrically: such a Thom isomorphism is the data of a trivialization of the Thom sheaf $\ThomSheaf{\L}$ over $\CP^\infty_E$.
+\item (\Cref{OrientationsOnEAndMU}:) Ring spectrum maps $MUP \to E$ induce on $E$--homology maps $E_0 MUP \to E_0$ of $E_0$--algebras.  This, too, can be phrased algebro-geometrically: these are elements of $(\Spec E_0 MUP)(E_0)$.
 \end{enumerate}
 We can summarize our main result about these perspectives as follows:
-\begin{theorem}[{\cite[Example 2.53]{AHSTheoremOfTheCube}}]\label{BUZTriumvirate}\citeme{Put in cross references}
+\begin{theorem}[{\cite[Example 2.53]{AHSTheoremOfTheCube}}]\label{BUZTriumvirate}
 Take $E$ to be \emph{complex--orientable}.  The functor
 \begin{align*}
 \CatOf{AffineSchemes}_{/\Spec E_0} & \to \CatOf{Sets}, \\
@@ -159,75 +157,126 @@ Take $E$ to be \emph{complex--orientable}.  The functor
 is isomorphic to the affine scheme $\Spec E_0 MUP$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MUP \to E$.
 \end{theorem}
 \begin{proof}[Proof summary]
-The equivalence between (1) and (2) is given by the splitting principle for complex line bundles.  The equivalence between (1) and (3) follows from calculating that $E_0 MUP$ is a free $E_0$--module.
+The equivalence between (1) and (3)---i.e., between complex-orientations and $E_0$--points of $\Spec E_0 MUP$---follows from calculating that $E_0 MUP$ is a free $E_0$--module, so that there is a collapse in the universal coefficient theorem.  Then, the equivalence between (1) and (2) follows from the splitting principle for complex line bundles, which says that the first Chern class of $\L$---i.e., a trivialization of $\ThomSheaf{\L}$---determines the rest of the map $MUP \to E$.
 \end{proof}
 
-An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $\L - 1$, and it is proven in analogous way.  In particular, we will want a version of the splitting principle for virtual vector bundles of virtual rank $0$.  Given a finite complex $X$ and such a rank $0$ virtual vector bundle, write \[\tilde V \co X \to BU\] for the classifying map.  Because $X$ is a finite complex, there exists an integer $n$ so that $\tilde V = V - n \cdot 1$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ gives a trivialization of $\tilde V$ \emph{internally to $BU$} as \[\tilde V = V - n \cdot 1 = \bigoplus_{i=1}^n (\L_i - 1),\] as each bundle $\L_i - 1$ itself has the natural structure of a rank $0$ virtual vector bundle.  This begets the following analogue of the previous result:
-\begin{theorem}[{\cite[Example 2.54]{AHSTheoremOfTheCube}}]\label{BUTriumvirate}\citeme{Put in cross references}
+An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $1 - \L$, and it is proven in analogous way.  In particular, we will want a version of the splitting principle for virtual vector bundles of virtual rank $0$.  Given a finite complex $X$ and such a rank $0$ virtual vector bundle, write $\tilde V \co X \to BU$ for the classifying map.  Because $X$ is a finite complex, there exists an integer $n$ so that $\tilde V = -(n \cdot 1 - V)$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ gives a presentation of $\tilde V$ as \[\tilde V = -(n \cdot 1 - V) = -\bigoplus_{i=1}^n (1 - \L_i).\]  Crucially, we have organized this sum \emph{entirely in terms of bundles classified by $BU$}, as each bundle $1 - \L_i$ itself has the natural structure of a rank $0$ virtual vector bundle.  This version of the splitting principle, together with our extended discussion of formal geometry, begets the following analogue of the previous result:
+\begin{theorem}[{\cite[Example 2.54]{AHSTheoremOfTheCube}}]\label{BUTriumvirate}
 Take $E$ to be complex--orientable.  The functor
 \begin{align*}
 \CatOf{AffineSchemes}_{/\Spec E_0} & \to \CatOf{Sets}, \\
-(\Spec T \xrightarrow{u} \Spec E_0) & \mapsto \left\{ \text{trivializations of $u^* \ThomSheaf{\L - 1}$ over $u^* \CP^\infty_E$} \right\}
+(\Spec T \xrightarrow{u} \Spec E_0) & \mapsto \left\{ \text{trivializations of $u^* \ThomSheaf{1 - \L}$ over $u^* \CP^\infty_E$} \right\}
 \end{align*}
 is isomorphic to the affine scheme $\Spec E_0 MU$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MU \to E$. \qed
-\todo{Identify this bundle $\ThomSheaf{\L - 1}$ as $\omega \otimes \sheaf I(0)^{-1}$, we can think of sections as elements of $E^0 T(\L - 1 \to \CP^\infty)$ which restrict to the identity under the inclusion \[S^0 \to P^{\L-1}.\]}
 \end{theorem}
 
-\begin{remark}
-The map $BU \to BU \times \Z$ induces a map $MU \to MUP$.  The induced map on schemes is normalization:\todo{Justify this.}
-\begin{align*}
-\Spec E_0 MUP & \to \Spec E_0 MU, \\
-f & \mapsto \frac{f'(0)}{f}.
-\end{align*}
-\end{remark}
-
-These two Thom spectra are the beginning of a larger pattern.  Their base spaces $BU \times \Z$ and $BU$ are both infinite loopspaces: they are $\OS{kU}{0}$ and $\OS{kU}{2}$ respectively, where $kU$ is the connective complex $K$--theory spectrum.  In general, the space $\OS{kU}{2k}$ is given as a connective cover\todo{Justify this as a Lemma.}: \[\OS{kU}{2k} = BU[2k, \infty),\] and so the next Thom spectrum in the sequence is $MSU$, the bordism theory of $SU$--structured manifolds.  The special unitary group $SU$ is explicit enough that these orientations can be fully understood along similar lines to what we have done so far.  Our jumping off point for that story will be, again, an extension of the splitting principle.
-\begin{lemma}\label{SplittingPrincipleForBSU}
-\todo{Hood had a question here: what symmetry group acts on this splitting? I think it's possible to show that the full symmetric group action on the $BU \times \Z$ splitting induces a full symmetric group action on the $BSU$ splitting. I don't know if there's any more or any less.}
-Let $X$ be a finite complex, and let $\tilde V\co X \to BU$ classify a virtual vector bundle of rank $0$ over $X$.  Select a factorization $\tilde{\tilde V}\co X \to BSU$ of $\tilde V$ through $BSU$.  Then, there is a space $f\co Y \to X$, where $f_E\co Y_E \to X_E$ is finite and flat, as well as a collection of line bundles $\sheaf H_j$, $\sheaf H'_j$ expressing a $BSU$--internal decomposition \[\tilde{\tilde V} = -\bigoplus_{j=1}^n (\sheaf H_j - 1)(\sheaf H'_j - 1).\] \todo{The minus sign: I understand mechanically where it comes from, but I still find it odd.  Can we recover the $BU$-splitting principle from this splitting principle -- and what happens to the signs?}
+In \Cref{ProjectivizationLecture}, we preferred to think of the cohomology of a Thom spectrum as a sheaf over the formal scheme associated to its base space.  This extra structure has not evaporated in the homological context---it just takes a different form.
+\begin{lemma}
+For $\xi\co G \to BGL_1 \S$ a group map, the Thom spectrum $T\xi$ is a $(\Susp^\infty_+ G)$--cotorsor.
 \end{lemma}
-\begin{proof}
-Begin by using \Cref{OriginalSplittingPrinciple} on $V$ to get an equality of $BU$--bundles \[\tilde{\tilde V} = V' + \L_1 + \L_2 - n \cdot 1.\]  Adding $(\L_1 - 1)(\L_2 - 1)$ to both sides, this gives
-\begin{align*}
-\tilde{\tilde V} + (\L_1 - 1)(\L_2 - 1) & = V' + \L_1 + \L_2 + (\L_1 - 1)(\L_2 - 1) - n \cdot 1 \\
-& = V' + \L_1\L_2 - (n-1) \cdot 1.
-\end{align*}
-By thinking of $(\L_j - 1)$ as an element of $kU^2(Y) = \CatOf{Spaces}(Y, BU)$, we see that the product element $(\L_1 - 1)(\L_2 - 1) \in kU^4(Y) = \CatOf{Spaces}(Y, BSU)$ has the natural structure of a $BSU$--bundle and hence so does the sum on the left-hand side\footnote{In the language of last section, we are making use of the Hopf ring $\circ$--product.}.  The right-hand side is the rank $0$ virtualization of a rank $(n-1)$ vector bundle, hence succumbs to induction.  Finally, because $SU(1)$ is the trivial group, there are no nontrivial complex line bundles with structure group $SU(1)$, grounding the induction.
+\begin{proof}[Construction]
+The Thom isomorphism $T\xi \sm T\xi \simeq T\xi \sm \Susp^\infty_+ G$ composes with the unit map $\S \to T\xi$ to give the \textit{Thom diagonal} \[T\xi \to T\xi \sm \Susp^\infty_+ G. \qedhere\]
 \end{proof}
 
-\begin{corollary}
-Ring spectrum maps $MSU \to E$ biject with trivializations of \[\ThomSheaf{(\L_1 - 1)(\L_2 - 1)} \downarrow (\CP^\infty)^{\times 2}_E. \qed \]
-\end{corollary}
-
-\begin{remark}\label{TwoCocycleConditionForBSUBundles}
-Since we used the product map \[kU^2(Y) \otimes kU^2(Y) \to kU^4(Y)\] in the course of the proof, it is also interesting to consider the product map \[kU^4(Y) \otimes kU^0(Y) \to kU^4(Y).\]  Taking one of our splitting summands $(\L_1 - 1)(\L_2 - 1)$ and acting by some line bundle $\sheaf H$ gives
+\noindent Applying $\Spec E_0(-)$, the Thom diagonal is translated into the structure of a free and transitive action map \[\Spec E_0 T(\xi) \times \Spec E_0 G \to \Spec E_0 T(\xi).\]  This construction is natural in the formation of $G$ or $\xi$, and so we are also moved to specialize to the cases of $G = \Z \times BU$ and $G = BU$ and to understand $\Spec E_0 G$ in those contexts.  Again, this is a matter of chaining together results we have already proven:
 \begin{align*}
-(\L_1-1)\sheaf H(\L_2 - 1) & = \\
-(\sheaf H \L_1 - \sheaf H)(\L_2 - 1) & = (\L_1-1)(\sheaf H \L_2 - \sheaf H) \\
-(\sheaf H \L_1 - 1)(\L_2 - 1) - (\sheaf H - 1)(\L_2 - 1) & = (\L_1 - 1)(\sheaf H \L_2 - 1) - (\L_1 - 1)(\sheaf H - 1).
-\end{align*}\todo{I think it's more symmetric if you write $\L_1 \sheaf H$ instead of $\sheaf H \L_1$.}
-This ``$kU^0$--linearity'' is sometimes called a ``$2$--cocycle condition'', in reference to the similarity with the formula in \Cref{DefinitionSymmetric2Cocycle}.
+\Spec E_0(\Z \times BU) & = D((\Z \times BU)_E) & \text{(\Cref{TopologicalCartierDuality})} \\
+& = D(\Div \CP^\infty_E) & \text{(\Cref{ECohomBUIsFree})} \\
+& = \InternalHom{FormalGroups}(\Div \CP^\infty_E, \Gm) & \text{(\Cref{DefnCartierDual})} \\
+& = \InternalHom{FormalSchemes}(\CP^\infty_E, \Gm), & \text{(\Cref{ProofOfFreeFormalMonoids})} \\
+\intertext{and similarly}
+\Spec E_0(BU) & = \InternalHom{FormalSchemes}_{*/}(\CP^\infty_E, \Gm)
+\end{align*}
+is the subscheme of those maps sending the identity point of $\CP^\infty_E$ to the identity point of $\Gm$.  Such functions can be identified with trivializations of the trivial sheaf over $\CP^\infty_E$, and the action map induced by the Thom diagonal belongs to a commuting square
+\begin{center}
+\begin{tikzcd}
+\Spec E_0 MU \times \Spec E_0 BU \arrow{r} \arrow[equal]{d} & \Spec E_0 MU \arrow[equal]{d} \\
+\{\text{triv\textsuperscript{ns} of $\ThomSheaf{1 - \L}$}\} \times \{\text{triv\textsuperscript{ns} of $1$}\} \arrow{r} & \{\text{triv\textsuperscript{ns} of $\ThomSheaf{1 - \L} \otimes 1$}\}.
+\end{tikzcd}
+\end{center}
+
+\begin{remark}
+\todo{Despite some effort, this remark is still quite unclear.}
+The topological maps
+\begin{align*}
+BU & \to \Z \times BU, &
+MU & \to MUP
+\end{align*}
+induce recognizable algebro-geometric maps upon application of $\Spec E_0(-)$, which are baked into our identifications.  The comparison map \[(\Spec E_0(\Z \times BU))(T) \to \InternalHom{FormalSchemes}(\CP^\infty_E, \Gm)\] reads off the image of a map $f\co E_0(\Z \times BU) \cong E_0[b_0^\pm, b_1, \ldots] \to T$ as the components of a function $\sum_j f(b_0^j b_j) x^j \in T \otimes \sheaf O_{\CP^\infty_E}$, whereas the comparison map for $BU$ reads off the image of a map $g\co E_0(BU) \cong E_0[b_0^\pm, b_1, b_2, \ldots] / (b_0 = 1) \to T$ as the components of a function $\sum_j g(b_j)$, effecting a normalizing division by $b_0$, itself the image of $\CP^0_E \subseteq \CP^\infty_E$ in $\Gm$.  Geometrically, this gives the commuting square
+\begin{center}
+\begin{tikzcd}
+\Spec E_0(\Z \times BU) \arrow{r} \arrow[equal]{d} & \Spec E_0(BU) \arrow[equal]{d} \\
+\InternalHom{FormalSchemes}(\CP^\infty_E, \Gm) \arrow{r} & \InternalHom{FormalSchemes}_{*/}(\CP^\infty_E, \Gm) \\
+f(t) \arrow[|->]{r} & f(t) / f(0).
+\end{tikzcd}
+\end{center}
+
+At the level of Thom spectra, these identifications are controlled by the Chern classes associated to these bundles, and the briefest way to summarize their relationship is this.  The spaces $\Z \times BU$ and $BU$ are the $0${\th} and $2${\nd} spaces in the $\Omega$--spectrum for connective complex $K$--theory, and since connective complex $K$--theory is complex-orientable, we have $kU^*(\CP^\infty) = \Z[\beta]\ps{c_1}$.  Inside this ring there is the relation \[\beta c_1 = (1 - \L).\]  Recognizing $\beta$ as the restriction of the tautological bundle on $\CP^\infty$ to $S^2 \simeq \CP^1$ and employing \Cref{Pi2AndInvariantDiffls}, this says that the trivialization $f$ of $\ThomSheaf{u^* \L}$, corresponding to a point in $(\Spec E_0 MUP)(T)$ and to $(1 - \L) \in kU^0(\CP^\infty) = [\CP^\infty, \Z \times BU]$, is sent to the trivialization $f'(0) / f$ of $\ThomSheaf{u^*(1 - \L)}$, corresponding to the induced point in $(\Spec E_0 MU)(T)$ and to $c_1 \in kU^2(\CP^\infty) = [\CP^\infty, BU]$.
 \end{remark}
 
-If we can show that $E_* BSU$ is even--concentrated and free as an $E_0$--module, then this will complete the $BSU$--analogue of \Cref{BUZTriumvirate,BUTriumvirate}.  This is quite easy, following directly from the Serre spectral sequence:
+
+This last remark indicates a direction of possible generalization to the other spaces in the $\Omega$--spectrum for connective complex $K$--theory, which have the following polite description:
+\begin{lemma}
+There is an equivalence \[\OS{kU}{2k} = BU[2k, \infty).\]
+\end{lemma}
+\begin{proof}
+Consider the element $\beta^k \in kU_* = \Z[\beta]$.  The source of the induced map $\beta^k\co \Susp^{2k} kU \to kU$ is $2k$--connective, and hence there is a factorization \[\Susp^{2k} kU \to kU[2k, \infty) \to kU.\]  Then, the structure of the homotopy ring $kU_*$ shows that this is an equivalence: every class of degree at least $2k$ can be uniquely written as a $\beta^k$--multiple.\footnote{Similarly, there is an equivalence $\OS{kO}{8k} = BO[8k, \infty)$, and this \emph{does not hold} for indices which are not precise multiples of $8$.}  Applying $\Loops^\infty$ gives the desired statement: \[\OS{kU}{2k} = \Loops^\infty \Susp^{2k} kU \simeq \Loops^\infty kU[2k, \infty) = BU[2k, \infty). \qedhere\]
+\end{proof}
+
+The next space and Thom spectrum in the sequence are thus $BSU$ and $MSU$.  This case will be wholly amenable to analysis through methods we have developed so far, which is now our stated goal for the rest of this Lecture.  Our jumping off point for that story will be, again, a partial extension of the splitting principle.
+\begin{lemma}\label{SplittingPrincipleForBSU}
+Let $X$ be a finite complex, and let $\tilde V\co X \to BU$ classify a virtual vector bundle of rank $0$ over $X$.  Select a factorization $\tilde{\tilde V}\co X \to BSU$ of $\tilde V$ through $BSU$.  Then, there is a space $f\co Y \to X$, where $f_E\co Y_E \to X_E$ is finite and flat, as well as a collection of line bundles $\sheaf H_j$, $\sheaf H'_j$ expressing a $BSU$--internal decomposition \[\tilde{\tilde V} = -\bigoplus_{j=1}^n (1 - \sheaf H_j)(1 - \sheaf H'_j).\]
+\end{lemma}
+\begin{proof}
+Begin by using \Cref{OriginalSplittingPrinciple} on $V$ to get an equality of $BU$--bundles \[\tilde{\tilde V} = V' + \L_1 + \L_2 - n \cdot 1.\]  Adding $(1 - \L_1)(1 - \L_2)$ to both sides, this gives
+\begin{align*}
+\tilde{\tilde V} + (1 - \L_1)(1 - \L_2) & = V' + \L_1 + \L_2 + (1 - \L_1)(1 - \L_2) - n \cdot 1 \\
+& = V' + \L_1\L_2 - (n-1) \cdot 1.
+\end{align*}
+By thinking of $(1 - \L_j)$ as an element of $kU^2(Y) = [Y, BU]$, we see that the product element $(1 - \L_1)(1 - \L_2) \in kU^4(Y) = [Y, BSU]$ has the natural structure of a $BSU$--bundle and hence so does the sum on the left-hand side\footnote{In the language of the previous Case Study, we are making use of a certain Hopf ring $\circ$--product on $\OS{kU}{2*}$.}.  The right-hand side is the rank $0$ virtualization of a rank $(n-1)$ vector bundle, hence succumbs to induction.  Finally, because $SU(1)$ is the trivial group, there are no nontrivial complex line bundles with structure group $SU(1)$, grounding the induction.
+\end{proof}
+
+From this, we would like to directly conclude an equivalence between trivializations of the Thom sheaf $\ThomSheaf{(\L_1 - 1)(\L_2 - 1)} \downarrow (\CP^\infty)^{\times 2}_E$ and multiplicative maps $MSU \to E$, but we are not quite yet ready to do so.  Certainly an $MSU$--orientation of $E$ gives such a trivialization, but it is not clear that all possible trivializations of that universal Thom sheaf give consistent trivializations of other Thom sheaves---that is, the decomposition in \Cref{SplittingPrincipleForBSU} may admit unexpected symmetries which, in turn, place requirements on our universal trivialization so that these symmetric decompositions all result in the same restricted trivialization.\footnote{By contrast, our splitting principle for ordinary complex vector bundles was completely deterministic, since a given line bundle admits no other expression as a line bundle.}
+
+\begin{example}
+There is an equivalence of $SU$--bundles \[(1 - \L_1)(1 - \L_2) \cong (1 - \L_2)(1 - \L_1).\]  Correspondingly, the trivializations of $\ThomSheaf{(1 - \L_1)(1 - \L_2)}$ which respect this twist are the \emph{symmetric} sections.
+\end{example}
+
+\begin{example}
+There is an equivalence of $SU$--bundles \[(1 - 1)(1 - \L_2) \cong 0.\]  Correspondingly, the trivializations of $\ThomSheaf{(1 - \L_1)(1 - \L_2)}$ which respect this degeneracy are the \emph{rigid} sections, meaning they trivialize the Thom sheaf of the trivial bundle using the trivial section $1$.
+\end{example}
+
+\begin{example}\label{TwoCocycleConditionForBSUBundles}
+There is another less obvious symmetry, inspired by our use of the product map \[kU^2(Y) \otimes kU^2(Y) \to kU^4(Y)\] in the course of the proof.  There is also a product map \[kU^2(Y) \otimes kU^0(Y) \times kU^2(Y) \to kU^4(Y).\]  Taking one of our splitting summands $(1 - \L_1)(1 - \L_2)$ and acting by some line bundle $\sheaf H \in kU^0(Y)$ gives
+\begin{align*}
+(1 - \L_1)\sheaf H(1 - \L_2) & = (1 - \L_1)\sheaf H(1 - \L_2) \\
+(\sheaf H - \L_1 \sheaf H)(1 - \L_2) & = (1 - \L_1)(\sheaf H - \sheaf H \L_2) \\
+(1 - \L_1 \sheaf H)(1 - \L_2) - (1 - \sheaf H)(1 - \L_2) & = (1 - \L_1)(1 - \sheaf H \L_2) - (1 - \L_1)(1 - \sheaf H).
+\end{align*}
+This ``$kU^0$--linearity'' is sometimes called a ``$2$--cocycle condition'', in reference to the similarity with the formula in \Cref{DefinitionSymmetric2Cocycle}.
+\end{example}
+
+We would like to show that these observations suffice, as in the following version of \Cref{BUZTriumvirate} and \Cref{BUTriumvirate}:
+\begin{theorem}\label{BSUTriumvirate}
+The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \begin{array}{c} \text{trivializations of $u^* \ThomSheaf{(1 - \L_1)(1 - \L_2)}$ over $u^* (\CP^\infty)^{\times 2}_E$} \\ \text{which are symmetric, rigid, and $kU^0$--linear} \end{array} \right\}\] is isomorphic to the affine scheme $\Spec E_0 MSU$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MSU \to E$.
+\end{theorem}
+
+\noindent In pursuit of this, we will show rather manually that $BSU_E$ represents an object subject to exactly such symmetries, hence $\Spec E_0 BSU$ represents the scheme of such symmetric functions, and hence conclude that $\Spec E_0 MSU$ represents the scheme of such symmetric trivializations.  The place to begin is with a Serre spectral sequence:
 \begin{lemma}[{\cite[Lemma 6.1]{AndoStrickland}}]\label{BSUtoBUtoCPinftyIsSexseq}
 The Postnikov fibration \[BSU \to BU \xrightarrow{B\det} BU(1)\] induces a short exact sequence of Hopf algebras \[E^0 BSU \from E^0 BU \xleftarrow{c_1 \mapsfrom c_1} E^0 BU(1). \qed\]
 \end{lemma}
-\begin{corollary}\label{BSUTriumvirate}
-The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \text{trivializations of $u^* \ThomSheaf{(\L_1 - 1)(\L_2 - 1)}$ over $u^* \CP^\infty_E$} \right\}\] is isomorphic to the affine scheme $\Spec E_0 MSU$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MSU \to E$. \qed
-\end{corollary}
 
-However, the use of \Cref{BSUtoBUtoCPinftyIsSexseq} inspires us to spend a moment longer with the associated formal schemes.  An equivalent statement is that there is a short exact sequence of formal group schemes
+\noindent An equivalent statement is that there is a short exact sequence of formal group schemes
 \begin{center}
 \begin{tikzcd}
-BSU_E \arrow{r} \arrow[equal]{d} & BU_E \arrow{r}{B\det} \arrow[equal]{d} & BU(1) \arrow[equal]{d} \\
+BSU_E \arrow{r} \arrow[equal]{d} & BU_E \arrow{r}{B\det} \arrow[equal]{d} & BU(1)_E \arrow[equal]{d} \\
 \SDiv_0 \CP^\infty_E \arrow{r} & \Div_0 \CP^\infty_E \arrow{r}{\mathrm{sum}} & \CP^\infty_E,
 \end{tikzcd}
 \end{center}
-where the scheme ``$\SDiv_0 \CP^\infty_E$'' of ``special divisors'' consists of those divisors which vanish under the summation map\todo{Is the sum map induced by the diagonal on $\mathbb{C}P^\infty$ or the multiplication on $E$ -- does it matter?  Also, is it clear why the right square in the diagram commutes?  Does summation mean anything geometrically?  What does having zero sum mean?  The group of divisors is free abelian (before inverting the pointing), so wouldn't each point in the divisor have to be the basepoint in order for the sum to be zero?}.  However, where the comparison map $BU(1)_E \to BU_E$ has an identifiable universal property---it presents $BU_E$ as the universal formal group on the pointed curve $BU(1)_E$---the description of $BSU_E$ as a scheme of special divisors does not bear much immediate resemblance to a free object on the special divisor $([a] - [0])([b] - [0])$\todo{$[0] = 1$?} classified by \[(\CP^\infty)^{\times 2}_E \xrightarrow{(\L_1 - 1)(\L_2 - 1)_E} BSU_E \to BU_E = \Div_0 \CP^\infty_E.\]  It would be wise of us to straighten this out before moving on.
+where the scheme ``$\SDiv_0 \CP^\infty_E$'' of \textit{special divisors} is defined to parametrized those divisors which vanish under the summation map.  However, whereas the map $BU(1)_E \to BU_E$ has an identifiable universal property---it presents $BU_E$ as the universal formal group on the pointed curve $BU(1)_E$---the description of $BSU_E$ as a scheme of special divisors does not bear much immediate resemblance to a free object on the special divisor $(1 - [a])(1 - [b])$ classified by \[(\CP^\infty)^{\times 2}_E \xrightarrow{(1 - \L_1)(1 - \L_2)_E} BSU_E \to BU_E = \Div_0 \CP^\infty_E.\]  Our task is exactly to justify this statement.
 
 \begin{definition}\label{DefinitionOfC2G}
-If it exists, let $C_2 \G$ denote the symmetric square of $\Div_0 \G$, thought of as a module over $\Div \G$.  This scheme has the property that a formal group homomorphism $\phi\co C_2 \G \to H$ is equivalent data to a symmetric function $\psi\co \G \times \G \to H$ satisfying a rigidity condition ($\psi(x, 0) = 0$)\todo{Allen wanted to know why this deserved to be called ``rigid''.} and a $2$--cocycle condition as in \Cref{TwoCocycleConditionForBSUBundles}.
+If it exists, let $C_2 \G$ denote the symmetric square of $\Div_0 \G$, thought of as a module over $\Div \G$.  This scheme has the property that a formal group homomorphism $\phi\co C_2 \G \to H$ is equivalent data to a symmetric function $\psi\co \G \times \G \to H$ satisfying a rigidity condition ($\psi(x, 0) = 0$) and a $2$--cocycle condition as in \Cref{TwoCocycleConditionForBSUBundles}.
 \end{definition}
 
 \begin{theorem}[{Ando--Hopkins--Strickland, unpublished}]\label{SDivModelsC2}\citeme{This is Prop 3.2 of the AHS preprint or Prop 2.13 of Strickland's FSKS preprint}
@@ -237,7 +286,7 @@ $\SDiv_0 \G$ is a model for $C_2 \G$.
 Consider the map
 \begin{align*}
 \G \times \G & \to \Div_0 \G, \\
-(a, b) & \mapsto ([a] - [0])([b] - [0])
+(a, b) & \mapsto (1 - [a])(1 - [b])
 \end{align*}
 for which there is a factorization of formal schemes
 \begin{center}
@@ -246,50 +295,130 @@ for which there is a factorization of formal schemes
 F \arrow{r}{\ker} & \Div_0 \G \arrow{r}{\sigma} & \G
 \end{tikzcd}
 \end{center}
-because \[\sigma(([a] - [0])([b] - [0])) = (a + b) - a - b + 0 = 0.\]  One can check that a homomorphism $F \to H$ pulls back to a function $\G \times \G \to H$ satisfying the properties of \Cref{DefinitionOfC2G}.  To go the other way\footnote{To get insight into how this part of the proof works, actually write out the expressions for $\tilde{\tilde{V}} = \bigoplus_{i=1}^6 \L_i - 6 \cdot 1 = \bigoplus_{i=1}^3 (\L_i - 1) \oplus \bigoplus_{j=4}^6 (\L_j - 1)$ and see what happens.}, we select a function $\psi\co \G \times \G \to H$ and mimic the construction in \Cref{SplittingPrincipleForBSU}.  Expanding the definition of $\Div_0 \G$, we are moved to consider the object $\G^{\times k}$ parametrizing weight $k$ divisors with a full set of sections\todo{You can say this better, right? Do you need the thing to have a full set of sections to define this map? Probably not...}, where we define a map
+because \[\sigma((1 - [a])(1 - [b])) = (a + b) - a - b + 0 = 0.\]  One can check that a homomorphism $\phi\co F \to H$ pulls back to a function $\psi\co \G \times \G \to H$ satisfying the properties of \Cref{DefinitionOfC2G}:
+\begin{itemize}
+    \item To check rigidity, we have \[\psi(a, 0) = \phi((1 - [a])(1 - [0])) = \phi((1 - [a])(1 - 1)) = \phi(0) = 0.\]
+    \item To check symmetry, we have \[\psi(a, b) = \phi((1 - [a])(1 - [b])) = \phi((1 - [b])(1 - [a])) = \psi(b, a).\]
+    \item To check $kU^0$--linearity, we have
+    \begin{align*}
+    \psi(ac, b) - \psi(c, b) & = \phi((1 - [a][c])(1 - [b])) - \phi((1 - [c])(1 - [b])) \\
+    & = \phi((1 - [a][c])(1 - [b]) - (1 - [c])(1 - [b])) \\
+    & = \phi((1 - [a])(1 - [c][b]) - (1 - [a])(1 - [c])) \\
+    & = \phi((1 - [a])(1 - [c][b])) - \phi((1 - [a])(1 - [c])) \\
+    & = \psi(a, cb) - \psi(a, c).
+    \end{align*}
+\end{itemize}
+
+The other direction is more obnoxious, so we give only a sketch.  Begin by selecting a function $\psi\co \G \times \G \to H$, then mimic the construction in \Cref{SplittingPrincipleForBSU}.  Expanding the definition of $\Div_0 \G$, we are moved to consider the object $\G^{\times k}$, where we define a map
 \begin{align*}
 \G^{\times k} & \to H, \\
 (a_1, \ldots, a_k) & \mapsto -\sum_{j=2}^k \psi\left(\sum_{i=1}^{j-1} a_i, a_j \right).
 \end{align*}
-This gives a compatible system of symmetric maps and hence bundles together to give a map $\tilde\phi\co\Div_0 \G \to H$ off of the colimit.  In general, this map is not a homomorphism, but it is a homomorphism when restricted to $\phi\co F \to \Div_0 \G \to H$.  Finally, one checks that any homomorphism $F \to H$ of formal groups restricting to the zero map $\G \times \G \to H$ was already the zero map, and this gives the desired identification of $F$ with the universal property of $C_2 \G$.
+This gives a compatible system of symmetric maps, and hence altogether this gives a map $\tilde\phi\co\Div_0 \G \to H$ off of the colimit.  In general, this map is not a homomorphism, but it is a homomorphism when restricted to \[\phi\co F \to \Div_0 \G \xrightarrow{\tilde\phi} H.\]  Finally, one checks that any homomorphism $F \to H$ of formal groups restricting to the zero map $\G \times \G \to H$ was already the zero map, and this gives the desired identification of $F$ with the universal property of $C_2 \G$.
+\todo{Building the homomorphism seems boring, but possibly checking that it's zero is interesting --- this is kind of what was confounding us from just using the topological $SU$--splitting principle outright.  Somehow working in algebra must make this more evident, and if it's so evident then we should write it out.}
 \end{proof}
 
-In the next interesting case of $\OS{kU}{6} = BU[6, \infty)$, there is not an accessible splitting principle.  This not only makes the topology harder, but it also makes proving the existence of the symmetric cube $C_3 \G$ harder, as there is no model to work from.  Nonetheless, there is a $BU[6, \infty)$--analogue of \Cref{BUZTriumvirate}, \Cref{BUTriumvirate}, and \Cref{BSUTriumvirate}.  In order to prove it, since we don't have access to an equivalence between viewpoints (1) and (2), we will have to instead prove an equivalence between (2) and (3) directly.
+\begin{corollary}
+There is an isomorphism \[\Spec E_0 BSU = \left\{\begin{array}{c} \text{functions $f\co u^* (\CP^\infty_E)^{\times 2} \to \Gm$} \\ \text{which are symmetric, rigid, and $kU^0$--linear} \end{array}\right\}.\]
+\end{corollary}
+\begin{proof}
+Follow the sequence of isomorphisms
+\begin{align*}
+\Spec E_0 BSU & = D(BSU_E) & \text{(\Cref{TopologicalCartierDuality})} \\
+& = D(\SDiv_0 \CP^\infty_E) & \text{(\Cref{BSUtoBUtoCPinftyIsSexseq})} \\
+& = D(C_2 \CP^\infty_E) & \text{(\Cref{SDivModelsC2})} \\
+& = \InternalHom{FormalGroups}(C_2 \CP^\infty_E, \Gm), & \text{(\Cref{DefnCartierDual})}
+\end{align*}
+and then use the universal property in \Cref{DefinitionOfC2G}.
+\end{proof}
+
+In order to lift this analysis to $\Spec E_0 MSU$, we again appeal to the torsor structure.  At this point, it will finally be useful to introduce some notation:
+\begin{definition}[{\cite[Definition 2.39]{AHSTheoremOfTheCube}}]
+For a sheaf $\sheaf L$ over a formal group $\G$, we introduce the schemes
+\begin{align*}
+C^0(\G_E; \L)(T) & = \{\text{triv\textsuperscript{ns} of $u^* \L \downarrow u^* \G$}\} , \\
+C^1(\G_E; \L)(T) & = \left\{\text{triv\textsuperscript{ns} of $u^* \left( \frac{e^* \L}{\L} \right) \downarrow u^* \G$ which are rigid}\right\} \\
+C^2(\G_E; \L)(T) & = \left\{\begin{array}{c}\text{triv\textsuperscript{ns} of $u^*\left(\frac{e^* \sheaf L \otimes \mu^* \sheaf L}{\pi_1^* \sheaf L \otimes \pi_2^* \sheaf L}\right) \downarrow u^* \G^{\times 2}$} \\ \text{which are rigid, symmetric, and $kU^0$--linear} \end{array}\right\}.
+\end{align*}
+\end{definition}
+
+\noindent Thus far, we have established the following isomorphisms:
+\begin{align*}
+\Spec E_0(\Z \times BU) & \cong C^0(\CP^\infty_E; \Gm), &
+\Spec E_0(MUP) & \cong C^0(\CP^\infty_E; \sheaf I(0)), \\
+\Spec E_0(BU) & \cong C^1(\CP^\infty_E; \Gm), &
+\Spec E_0(MU) & \cong C^1(\CP^\infty_E; \sheaf I(0)), \\
+\Spec E_0(BSU) & \cong C^2(\CP^\infty_E; \Gm),
+\end{align*}
+where we have abusively abbreviated the sheaf of functions on $\CP^\infty_E$ to $\Gm$.
+
+In order to fill in the missing piece, we exploit the torsor structure on Thom spectra discussed earlier.
+\begin{lemma}[{\cite[Theorem 2.50]{AHSTheoremOfTheCube}}]
+There is a system of compatible maps
+\begin{center}
+\begin{tikzcd}
+\Spec E_0 BSU \times \Spec E_0 MSU \arrow{r} \arrow[shift left=3em]{d} \arrow[shift right=3em,equal]{d} & \Spec E_0 MSU \arrow{d} \\
+C^2(\CP^\infty_E; \Gm) \times C^2(\CP^\infty_E; \sheaf I(0)) \arrow{r} & C^2(\CP^\infty_E; \sheaf I(0)),   
+\end{tikzcd}
+\end{center}
+where the horizontal maps are the action maps defining torsors, and the vertical maps are those described above.
+\end{lemma}
+\begin{proof}[Proof sketch]
+Recall the isomorphism $T(\L \downarrow \CP^\infty) \simeq \Susp^\infty \CP^\infty$.  The main point of this claim is that the Thom diagonal for $MU[2k, \infty)$ restricts to a very familiar diagonal:
+\begin{center}
+\begin{tikzcd}
+(\Susp^\infty \CP^\infty)^{\sm k} \arrow["\Delta"]{r} \arrow{d} & (\Susp^\infty \CP^\infty)^{\sm k} \sm \Susp^\infty_+ (\CP^\infty)^{\times k} \arrow{d} \\
+MU[2k, \infty) \arrow["\Delta"]{r} & MU[2k, \infty) \times BU[2k, \infty).
+\end{tikzcd}
+\end{center}(
+The diagonal at the level of $(\CP^\infty)^{\times k}$ is responsible for the cup product, so that the classes in the cohomology of projective space which induce the maps
+\begin{align*}
+\Spec E_0 MU[2k, \infty) & \to C^k(\CP^\infty_E; \sheaf I(0)), &
+\Spec E_0 BU[2k, \infty) & \to C^k(\CP^\infty_E; \Gm)
+\end{align*}
+literally multiply together to give the description of the action.  This multiplication of sections is exactly the action claimed in the model.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{BSUTriumvirate}]
+The claim of this Theorem is that the map \[\Spec E_0 MSU \to C^2(\CP^\infty_E; \sheaf I(0))\] studied above is an isomorphism.  Any map of torsors over a fixed base is automatically an isomorphism.
+\end{proof}
+
+
+
+\begin{remark}
+We can also analyze the map $\Spec E_0 BSU \to \Spec E_0 BU$ in terms of these models of functions to $\Gm$.  Again, the analysis passes through a computation in connective $K$--theory, using the identification \[kU^*(\CP^\infty)^{\times 2} = \Z[\beta]\ps{x_1, x_2},\] where $x_1 = \pi_1^* x$ and $x_2 = \pi_2^* x$ are the Chern classes associated to the tautological bundle pulled back along projections to the first and second factors
+\begin{align*}
+\pi_1\co (\CP^\infty)^{\times 2} & \to \CP^\infty \times *, &
+\pi_2\co (\CP^\infty)^{\times 2} & \to * \times \CP^\infty,
+\end{align*}
+Inside of this ring, we have the equations
+\begin{align*}
+\beta^2 x_1 x_2 & = (1 - \L_1)(1 - \L_2) \\
+& = (1 - \L_1) - (1 - \L_1 \L_2) + (1 - \L_2) \\
+& = \beta\left(\pi_1^*(x) - \mu^*(x) + \pi_2^*(x) \right),
+\end{align*}
+where $\mu\co \CP^\infty \times \CP^\infty \to \CP^\infty$ is the tensor product map.  Since the orientation schemes are governed as torsors over these base schemes, we automatically get a description
+\begin{center}
+\begin{tikzcd}[row sep=0.1em]
+\Spec E_0 MU \arrow{r} & \Spec E_0 MSU, \\
+f(x) \arrow[|->]{r} & \frac{f(x_1) \cdot f(x_2)}{f(x_1 +_{\CP^\infty_E} x_2)}
+\end{tikzcd}
+\end{center}
+as a section of
+\todo{There's an obnoxious sign here error here.}
+\[\pi_1^* \left(\frac{e^* \sheaf I(0)}{\sheaf I(0)}\right) \otimes \pi_2^* \left(\frac{e^* \sheaf I(0)}{\sheaf I(0)}\right) \otimes \left(\mu^* \left(\frac{e^* \sheaf I(0)}{\sheaf I(0)}\right) \right)^{-1} = \frac{e^* \sheaf I(0) \otimes \mu^* \sheaf I(0)}{\pi_1^* \sheaf I(0) \otimes \pi_2^* \sheaf I(0)}.\]
+\end{remark}
+
+\begin{remark}[{\cite[Remark 2.32]{AHSTheoremOfTheCube}}]
+The published proofs of Ando, Hopkins, and Strickland differ substantially from the account given here.  The primary difference is that ``$C_2 \G$'' does not even get mention, essentially because it is a fair amount of technical work to show that such a scheme even exists (especially in the case to come of $BU[6, \infty)$).  On the other hand, it is very easy to demonstrate the existence of its Cartier dual: this is a scheme parametrizing certain bivariate power series subject to certain algebraic conditions, hence exists for the same reason that $\moduli{fgl}$ existed (cf.\ \Cref{MfglDefn}).  The compromise for this is that they then have to analyze the scheme $\Spec E_0 BSU$ directly, through considerably more computational avenues.  This is not too high of a price: the analysis of the $BU[6, \infty)$ case turns out to be primarily computational anyhow, so this manner of approach is inevitable.
+\end{remark}
+
+The next case in our project is $\OS{kU}{6} = BU[6, \infty)$, and its main wrinkle is that there is not an accessible splitting principle, whether topological or algebraic.  This not only makes the study of $BU[6, \infty)$--lifted bundles harder, but it also makes proving the existence of the symmetric cube $C_3 \G$ harder, as there is no model to work from in the ``inverse'' step.  Nonetheless, we will find that there is a $BU[6, \infty)$--analogue of \Cref{BUZTriumvirate}, \Cref{BUTriumvirate}, and \Cref{BSUTriumvirate}.
 
 
 
 
-\todo{There's some stuff buried here about moving to the Thom spectrum after doing the analysis of the classifying space.  I'm not sure where it lives just yet.}
 
-% Before embarking on this much harder case, we would be wise to investigate how such an equivalence works in the case of $MSU$.
-
-
-% \citeme{Ando--Hopkins--Strickland 2.4.5}
-% There is a map of schemes \[\Spec E_0 MSU \xrightarrow{g_2} C^2(\G; \sheaf I(0))\] which is a map of torsors compatible with the action maps
-% \begin{center}
-% \begin{tikzcd}
-% \Spec E_0 MSU \times_{S_E} \Spec E_0 BSU \arrow{r} \arrow{d} & \Spec E_0 MSU \arrow{d} \\
-% C^2(\G_E; \sheaf I(0)) \times C^2(\G_E; \sheaf O) \arrow{r} & C^2(\G_E; \sheaf I(0) \otimes_{\sheaf O} \sheaf O).
-% \end{tikzcd}
-% \end{center}
-% The net effect is that this map $g_2$ is automatically an isomorphism.
-
-% \todo{Write these elements of $C^2$ as sections of the bundle $\Theta^2 \L$.  Note that this construction is monoidal.}
-
-% \begin{remark}
-% Even without access to $C_2 \G$, the scheme \[C^2(\G; \sheaf O) = \InternalHom{FormalSchemes}(C_2 \G, \Gm) = (C_2 \G)^\vee\] is directly accessible.  By picking a coordinate on $\G$, points of the middle scheme have presentations of power series satisfying particular identities, hence immediately exist as an affine scheme.
-% \end{remark}
-
-% \begin{remark}
-% The map $MSU \to MU$ on affine schemes is given by
-% \begin{align*}
-% \Spec E_0 MU & \to \Spec E_0 MSU, \\
-% f(x) & \mapsto \frac{f(x + y)}{f(x) \cdot f(y)}.
-% \end{align*}
-% \end{remark}
-
-
-% Identify the Thom sheaf of the universal bundle on $BSU$ as $C^2(\G; \sheaf I(0))$, together with its $C^2(\G, \Gm)$--torsor structure, and note that this automatically promotes the classifying map $MSU^E \to C^2(\G; \sheaf I(0))$ to an isomorphism.
 
 
 
@@ -786,16 +915,15 @@ We proceed to test this rationally: over $\Spec \Q$ we can use the logarithm to 
 
 Our second task today is to address the gap between $\OS{kU}{2k}$ and its Thom spectrum $T(\OS{kU}{2k})$.  After all, our motivation for all of this algebraic geometry is to give a description to the set \[(\Spec E_0 MU[6, \infty))(E_0),\] but what we have done so far is describe the scheme $\Spec E_0 BU[6, \infty)$.  Since these two spectra are related by a Thom construction, we should be able to deduce the description that we want by thinking about Thom sheaves.  We now straighten this out.  The place to start is with a construction:
 
-\begin{lemma}
-For $\xi\co G \to BGL_1 \S$ a group map, the Thom spectrum $T\xi$ is a $(\Susp^\infty_+ G)$--cotorsor.
-\end{lemma}
-\begin{proof}[Proof sketch]
-The Thom isomorphism $T\xi \sm T\xi \simeq T\xi \sm \Susp^\infty_+ G$ composes with the unit map $\S \to T\xi$ \todo{Which factor are we composing into? Does it matter?} to give the \textit{Thom diagonal} \[T\xi \to T\xi \sm \Susp^\infty_+ G. \qedhere\]
-\end{proof}
 
-\begin{corollary}
-In addition to our interpretation of $\ThomSheaf{\xi}$ as a $\Gm$--torsor over $G_E$, $\ThomSheaf{\xi}^{-1}$ is furthermore a $(G_E \times \Gm)$--torsor over $S_E$\todo{$S_E$ vs.\ $\S_E$, and how does this follow?}. \qed
-\end{corollary}
+
+
+
+
+
+
+
+
 
 We expand this idea out in our situation.  A morphism $MU[6, \infty) \to E$ produces a trivialization of $\ThomSheaf{\bigotimes_{j=1}^3 (\L_j - 1)}$ over $(\CP^\infty_E)^{\times 3}$, and the associated trivializing section is symmetric and rigid\citeme{Lemma 2.49 of AHS}.  This prompts us to make the following definition:
 
