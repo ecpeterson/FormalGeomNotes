@@ -195,7 +195,7 @@ is the subscheme of those maps sending the identity point of $\CP^\infty_E$ to t
 \end{tikzcd}
 \end{center}
 
-\begin{remark}
+\begin{remark}\label{BUtoBUZ}
 \todo{Despite some effort, this remark is still quite unclear.}
 The topological maps
 \begin{align*}
@@ -318,7 +318,7 @@ This gives a compatible system of symmetric maps, and hence altogether this give
 \todo{Building the homomorphism seems boring, but possibly checking that it's zero is interesting --- this is kind of what was confounding us from just using the topological $SU$--splitting principle outright.  Somehow working in algebra must make this more evident, and if it's so evident then we should write it out.}
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{CharacterizationOfBSUUpperE}
 There is an isomorphism \[\Spec E_0 BSU = \left\{\begin{array}{c} \text{functions $f\co u^* (\CP^\infty_E)^{\times 2} \to \Gm$} \\ \text{which are symmetric, rigid, and $kU^0$--linear} \end{array}\right\}.\]
 \end{corollary}
 \begin{proof}
@@ -387,7 +387,7 @@ The claim of this Theorem is that the map \[\Spec E_0 MSU \to C^2(\CP^\infty_E; 
 
 
 
-\begin{remark}
+\begin{remark}\label{BSUToBU}
 We can also analyze the map $\Spec E_0 BSU \to \Spec E_0 BU$ in terms of these models of functions to $\Gm$.  Again, the analysis passes through a computation in connective $K$--theory, using the identification \[kU^*(\CP^\infty)^{\times 2} = \Z[\beta]\ps{x_1, x_2},\] where $x_1 = \pi_1^* x$ and $x_2 = \pi_2^* x$ are the Chern classes associated to the tautological bundle pulled back along projections to the first and second factors
 \begin{align*}
 \pi_1\co (\CP^\infty)^{\times 2} & \to \CP^\infty \times *, &
@@ -411,8 +411,12 @@ as a section of
 \[\pi_1^* \left(\frac{e^* \sheaf I(0)}{\sheaf I(0)}\right) \otimes \pi_2^* \left(\frac{e^* \sheaf I(0)}{\sheaf I(0)}\right) \otimes \left(\mu^* \left(\frac{e^* \sheaf I(0)}{\sheaf I(0)}\right) \right)^{-1} = \frac{e^* \sheaf I(0) \otimes \mu^* \sheaf I(0)}{\pi_1^* \sheaf I(0) \otimes \pi_2^* \sheaf I(0)}.\]
 \end{remark}
 
-\begin{remark}[{\cite[Remark 2.32]{AHSTheoremOfTheCube}}]
+\begin{remark}[{\cite[Remark 2.32]{AHSTheoremOfTheCube}}]\label{CUpper3Exists}
 The published proofs of Ando, Hopkins, and Strickland differ substantially from the account given here.  The primary difference is that ``$C_2 \G$'' does not even get mention, essentially because it is a fair amount of technical work to show that such a scheme even exists (especially in the case to come of $BU[6, \infty)$).  On the other hand, it is very easy to demonstrate the existence of its Cartier dual: this is a scheme parametrizing certain bivariate power series subject to certain algebraic conditions, hence exists for the same reason that $\moduli{fgl}$ existed (cf.\ \Cref{MfglDefn}).  The compromise for this is that they then have to analyze the scheme $\Spec E_0 BSU$ directly, through considerably more computational avenues.  This is not too high of a price: the analysis of the $BU[6, \infty)$ case turns out to be primarily computational anyhow, so this manner of approach is inevitable.
+\end{remark}
+
+\begin{remark}
+The scheme $C_2 \G$ might also be written as \[C_2 \G = \Sym^2_{\Div \G} \Div_0 \G,\] where we are thinking of of $\Div_0 \G \subseteq \Div \G$ as the augmentation ideal inside of an augmented ring.
 \end{remark}
 
 
@@ -426,73 +430,96 @@ The published proofs of Ando, Hopkins, and Strickland differ substantially from 
 
 
 
-\section{Unstable chromatic cooperations for \texorpdfstring{$kU$}{kU}}\label{ChromaticKUCoopnsSection}
+\section{Chromatic analysis of \texorpdfstring{$BU[6, \infty)$}{BU[6, oo)}}\label{ChromaticKUCoopnsSection}
 
+We now embark on an analysis of $MU[6, \infty)$--orientations in earnest.  As in the case of $MSU$, it is fruitful to first study the behavior of vector bundles with structure map lifted through $\OS{kU}{6} = BU[6, \infty)$ and to analyze the schemes $BU[6, \infty)_E$ and $\Spec E_0 BU[6, \infty)$.  In the previous case, we studied a particular bundle \[\Pi_2\co \CP^\infty \times \CP^\infty \xrightarrow{(1 - \L_1)(1 - \L_2)} BSU,\] which controlled much of the geometry through our splitting principle for $BSU$--bundles, recorded as \Cref{SplittingPrincipleForBSU}.  Analogously, we can construct a naturally occurring such bundle as the product \[\Pi_3\co \CP^\infty \times \CP^\infty \times \CP^\infty \xrightarrow{(1 - \L_1)(1 - \L_2)(1 - \L_3)} BU[6, \infty),\] but the proof of \Cref{SplittingPrincipleForBSU} falls apart almost immediately---there does not appear to be a splitting principle for bundles lifted through $BU[6, \infty)$.  This is quite worrying, and it dampens our optimism across the board: about the behavior of $\Pi_3$ exerting enough control over $BU[6, \infty)$, about the existence of ``$C_3 \G$'', and about $C_3 \CP^\infty_E$ serving as a good model for $BU[6, \infty)_E$.
 
+\emph{Nevertheless}, we will show that this algebraic model is still precise by exhaustive topological calculation.  Our approach is divided between two fronts.
+\begin{enumerate}
+    \item If we specialize to a particularly nice cohomology theory---such as $E = E_\Gamma$ a Morava $E$--theory---then we can use our extensive body of knowledge about finite height formal groups and their relationship to algebraic topology in order to force nice behavior into the story.
+    \item If we specialize to a particularly simple formal group---such as $\G_a$ and its associated cohomology theory $H\F_p$---then we can use our talent for performing computations in algebraic topology to completely exhaust the problem.
+\end{enumerate}
 
+In this Lecture, we will pursue the first avenue.  We begin by setting $\Gamma$ to be a formal group of finite $p$--height of a field $k$ of positive characteristic $p$, and we let $E = E_\Gamma$ denote the associated Morava $E$--theory.  Our main tool will be the Postnikov fibration \[\OS{H\Z}{3} \to BU[6, \infty) \to BSU,\] and our main goals are to construct a model sequence of formal schemes, then show that $E$--theory is well-behaved enough that the formal schemes it constructs exactly match the model.
 
-The next case in our project is $\OS{kU}{6} = BU[6, \infty)$, and its main wrinkle is that there is not an accessible splitting principle, whether topological or algebraic.  This not only makes the study of $BU[6, \infty)$--lifted bundles harder, but it also makes proving the existence of the symmetric cube $C_3 \G$ harder, as there is no model to work from in the ``inverse'' step.  Nonetheless, we will find that there is a $BU[6, \infty)$--analogue of \Cref{BUZTriumvirate}, \Cref{BUTriumvirate}, and \Cref{BSUTriumvirate}.
-
-
-
-
-
-
-
-
-Let $\Gamma$ be a formal group of finite $p$--height of a field $k$ of positive characteristic $p$, and let $E = E_\Gamma$ denote the associated Morava $E$--theory.  Our goal in this section is to get a partial description of the Hopf ring of unstable cooperations $(E_\Gamma)_* \OS{kU}{2*}$.  Our results in previous sections give a foothold into this analysis by computing \[E_0 (BU \times \Z),\; E_0 BU,\; E_0 BSU\] in terms of the affine schemes they represent.  We also saw that these results were the cornerstone for accessing descriptions of the schemes \[\Spec E_0 MUP,\; \Spec E_0 MU,\; \Spec E_0 MSU.\]  In particular, the next step is to understand $E_0 BU[6, \infty)$, and our main tool for doing this will be the Postnikov fibration \[\OS{H\Z}{3} \to BU[6, \infty) \to BSU.\]  Our main goals are to construct a model sequence of formal schemes, then show that $E$--theory is well-behaved enough that the formal schemes it constructs exactly match the model.
-
-The main tool used to build the model is the following construction:
+In the previous setting of $MSU$, we gained indirect access to the algebraic model $C_2 \G$ by separately proving that it was modeled by $\SDiv_0 \G$ and that this had a good comparison map to $BSU_E$.  This time, since we do not have access to $C_3 \G$ or anything like it, we proceed by much more indirect means, along the lines of \Cref{CUpper3Exists}: we know that $C^3(\G; \Gm)$ exists as an affine scheme, since we can explicitly construct it as a closed subscheme of the scheme of trivariate power series, and so we seek a map \[\Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm)\] that does not pass through any intermediate cohomological construction.  Our main tool for accomplishing this is as follows:
 \begin{definition}
 A map $f\co X \to Y$ of spaces induces a map $f_E \co X_E \to Y_E$ of formal schemes.  In the case that $Y$ is a commutative $H$--space and $Y_E$ is connected, we can construct a map according to the composite
 \begin{center}
 \begin{tikzcd}
 X_E \times \InternalHom{GroupSchemes}(Y_E, \Gm) \arrow[equal]{d} \arrow[densely dotted]{rr} & & \A^1 \\
-X_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["f \times 1"]{r} & Y_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["\operatorname{ev}"]{r} & \G_m. \arrow{u}
+X_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["f_E \times 1"]{r} & Y_E \times \InternalHom{FormalGroups}(Y_E, \G_m) \arrow["\operatorname{ev}"]{r} & \G_m. \arrow["\simeq"]{u}
 \end{tikzcd}
 \end{center}
-This is called \textit{the adjoint map}, and we write $\hat f$ for the version of this map valued variously in $\G_m$, $\Gm$, and $\A^1$.  It encodes equivalent information \todo{How do you recover the adjoint map and vice versa?}to the map of $E_*$--modules \[E_* \to E_* Y \widehat\otimes_{E_*} E^* X\] \todo{What's with the completed tensor product?  Also, this is just the dual of the map $E_* X \to E_* Y$?}by applying the map to $1 \in E_*$.
+This is called \textit{the adjoint map}, and we write $\hat f$ for any of the above versions of this map, whether valued in $\G_m$, $\Gm$, or $\A^1$.  It encodes equivalent information to the map of $E_0$--linear map \[E_0 \to E_0 Y \widehat\otimes_{E_0} E^0 X\] dual to the map $E_0 X \to E_0 Y$ induced on $E$--homology.
 \end{definition}
 
-\begin{lemma}\todo{I think this could be connected more strongly to the cooperations stuff in the previous Chapter.}
-This construction converts many properties of $f$ into corresponding properties of this adjoint element.  For instance:\todo{Expand on these, perhaps.}
+\begin{remark}
+This construction converts many properties of $f$ into corresponding properties of this adjoint element.  For instance:
 \begin{itemize}
-\item It is natural in the source: for $w \in F^n(X)$ and $\gamma\co \OS{F}{n} \to \OS{D}{n}$, there is \[(1 \times \Spec E_0 \gamma) \circ \hat w = \widehat{\gamma_* w}.\] \todo{This is confusing.  You write $\hat w$, but this is not the adjoint map $X_E \times \InternalHom{GroupSchemes}((\OS{F}{n})_E, \Gm) \to \Gm$, but rather the ``equivalent'' map $E_* \to E_* \OS{F}{n} \otimes E^* X$.  In that case, moreover, the formula should be $(\Spec E_* \gamma \otimes 1) \circ \hat w = \widehat{\gamma_* w}.$}
-\item It converts sums of classes to products of maps to $\Gm$. \todo{What about naturality in the target?}
-\qed
+    \item It is natural in the source: for $f\co X \to Y$ and $g\co W \to X$, we have \[\widehat{fg} = \widehat{f} \circ (g_E \times \id_{Y_E})\co W_E \times D(Y_E) \to \Gm.\]
+    \item It is natural in the target: for $f\co X \to Y$ and $h\co Y \to Z$ a map of $H$--spaces, we have \[\widehat{hf} = \widehat{f} \circ (\id_{X_E} \times D(h_E))\co X_E \times D(Z_E) \to \Gm.\]
+    \item It converts sums of classes to products of maps to $\Gm$.
 \end{itemize}
-\end{lemma}
+\end{remark}
 
-In \Cref{MSUDay}, we became interested in the class $\Pi_2$, defined by \[\CP^\infty \times \CP^\infty \xrightarrow{\Pi_2 := (\L_1 - 1)(\L_2 - 1)} \OS{kU}{4} = BSU.\]  The adjoint to this cohomology class is a map of formal schemes \[\hat \Pi_2\co (\CP^\infty_E)^{\times 2} \times_{\S_E} \Spec E_0 BSU \to \Gm,\] \todo{$\S_E$ is just $\Spec E_*$?} which using the exponential adjunction can be interpreted as a map \[\Spec E_0 BSU \to \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm).\]  Because the adjoint construction preserves properties of the class $\Pi_2$, we learn that this map factors through a particular closed subscheme \[C^2(\CP^\infty_E; \Gm) \subseteq \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm)\] of symmetric, rigid functions satisfying the $2$--cocycle condition.  By careful manipulation of divisors in \Cref{SDivModelsC2}, we showed that $BSU_E \cong \SDiv_0 \CP^\infty_E$, which on applying Cartier duality \todo{Cartier duality seems quite important to these examples.  Could you say more about this construction, either here or on the day about Dieudonn\'{e} modules?} shows that our induced map \[\Spec E_0 BSU \to C^2(\CP^\infty_E; \Gm)\] is an isomorphism.
-
-\begin{definition}\todo{This is not really a definition\ldots}
-Similarly, we define a cohomology class \[\Pi_3 = (\L_1 - 1)(\L_2 - 1)(\L_3 - 1) \in kU^6(\CP^\infty)^{\times 3}.\]  It induces an adjoint map\todo{Is this bad notation?} \[\hat \Pi_3\co \Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm),\] where $C^3(\CP^\infty_E; \Gm)$ is the scheme of $\Gm$--valued trivariate functions on $\CP^\infty_E$ satisfying symmetry, rigidity, and a $2$--cocycle condition.  (If $C_3 \CP^\infty_E := \Sym^3_{\Div \CP^\infty_E} \Div_0 \CP^\infty_E$ were to exist, this would be its Cartier dual.)
-\end{definition}
-
-\begin{lemma}[{\cite[Lemma 7.1]{AndoStrickland}}]
-There is a commutative square\todo{Where did $\delta$ come from? A previous day? Talk about this some, probably.}\todo{Jun Hou asked if this map fits into a larger chain complex---presumably because of the name ``$\delta$''.  The problem is that $\delta$ is always bound to moving from $1$--cocycles to $2$--cocycles.  But maybe ``$\tau$'' is worth mentioning further on...}
+\begin{example}
+Recall the vector bundle $\Pi_2$, defined at the top of this Lecture but of great interest to us in \Cref{MSUDay}.  The adjoint to the classifying map of $\Pi_2$ is a map of formal schemes \[\hat \Pi_2\co (\CP^\infty_E)^{\times 2} \times \Spec E_0 BSU \to \Gm,\] which passes through the exponential adjunction to become a map \[\Spec E_0 BSU \to \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm).\]  Because the adjoint construction preserves properties of the class $\Pi_2$, we learn that this map factors through the closed subscheme
 \begin{center}
 \begin{tikzcd}
-\Spec E_0 BSU \arrow{d}{\Pi_2} \arrow{r} & \Spec E_0 BU[6, \infty) \arrow{d}{\Pi_3} \\
+\Spec E_0 BSU \arrow[densely dotted]{r} \arrow[bend left=10]{rr} & C^2(\CP^\infty_E; \Gm) \arrow{r} & \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm)
+\end{tikzcd}
+\end{center}
+of symmetric, rigid functions satisfying $kU^0$--linearity.  By careful manipulation of divisors in \Cref{SDivModelsC2}, we showed that $BSU_E \cong \SDiv_0 \CP^\infty_E$, which on applying Cartier duality showed the factorized map $\Spec E_0 BSU \to C^2(\CP^\infty_E; \Gm)$ to be an isomorphism.
+\end{example}
+
+\begin{example}
+Similarly, we have defined a cohomology class \[\Pi_3 = (\L_1 - 1)(\L_2 - 1)(\L_3 - 1) \in kU^6(\CP^\infty)^{\times 3} = [(\CP^\infty)^{\times 3}, BU[6, \infty)].\]  As above, its adjoint induces a map (which we abusively also denote by $\widehat{\Pi_3}$) \[\widehat \Pi_3\co \Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm),\] where $C^3(\CP^\infty_E; \Gm)$ is the scheme of $\Gm$--valued trivariate functions on $\CP^\infty_E$ satisfying symmetry, rigidity, and $kU^0$--linearity.\footnote{If $C_3 \CP^\infty_E := \Sym^3_{\Div \CP^\infty_E} \Div_0 \CP^\infty_E$ were to exist, this scheme $C^3(\CP^\infty_E; \Gm)$ would be its Cartier dual.}
+\end{example}
+
+We also have the following analogue of the compatibility results \Cref{BUtoBUZ} and \Cref{BSUToBU} of the previous section:
+\begin{lemma}[{\cite[Lemma 7.1]{AndoStrickland}, \cite[Proposition 2.27, Corollary 2.30]{AHSTheoremOfTheCube}}]
+There is a commutative square
+\begin{center}
+\begin{tikzcd}
+\Spec E_0 BSU \arrow{d}{\widehat \Pi_2} \arrow{r} & \Spec E_0 BU[6, \infty) \arrow{d}{\widehat \Pi_3} \\
 C^2(\CP^\infty_E; \Gm) \arrow{r}{\delta} & C^3(\CP^\infty_E; \Gm),
 \end{tikzcd}
-\end{center}\todo{You wrote $\Pi_2$ and $\Pi_3$, but these are not exactly the maps $\Pi_2$ and $\Pi_3$.  They're not even the adjoint maps $\hat{\Pi}_2$ and $\hat{\Pi}_3$.  I don't think you have any other options since introducing even more notation would be cumbersome, but perhaps you could make a small remark when you write down the induced maps that you're also calling them $\Pi_2$ and $\Pi_3$.}
-where \[\delta(f)(x_1, x_2, x_3) := \frac{f(x_1 +_E x_2, x_3)}{f(x_1, x_3) f(x_2, x_3)}.\]
+\end{center}
+where\footnote{Despite its name and its formula, this map $\delta$ does not really belong to a cochain complex from our perspective.  \emph{All} of the functions we are considering, no matter how many inputs they take, are always object to a \emph{$2$}--cocycle condition.} \[\delta(f)(x_1, x_2, x_3) := \frac{f(x_1, x_3) f(x_2, x_3)}{f(x_1 +_E x_2, x_3)}.\]
 \end{lemma}
 \begin{proof}
-This is checked by calculating $\Pi_3 = (\mu_{12}^* - \pi_1^* - \pi_2^*)\Pi_2$\todo{The notation $\mu$ and $\pi$ does not comport with that from the previous lecture.}.
+As in the proofs of \Cref{BUtoBUZ} and \Cref{BSUToBU}, this is checked by performing a calculation in $kU$--cohomology of projective space, where we have the relation
+\begin{align*}
+\Pi_3 & = (1 - \L_1)(1 - \L_2)(1 - \L_3) \\
+& = ((1 - \L_1) - (1 - \L_1 \L_2) + (1 - \L_2))(1 - \L_3) \\
+& = ((\pi_1 \times 1)^* - (\mu \times 1)^* + (\pi_2 \times 1)^*)((1 - \L_1)(1 - \L_3)) \\
+& = ((\pi_1 \times 1)^* - (\mu \times 1)^* + (\pi_2 \times 1)^*)\Pi_2. \qedhere
+\end{align*}
 \end{proof}
 
-With this now in hand, we have constructed the solid maps in the following diagram:
+Thus far, we have constructed the solid maps in the following commutative diagram:
 \begin{center}
 \begin{tikzcd}
 \Spec E_0 BSU \arrow{r} \arrow["\Pi_2","\cong"']{d} & \Spec E_0 BU[6, \infty) \arrow{r} \arrow["\Pi_3"]{d} & \Spec E_0 \OS{H\Z}{3} \arrow["\cong"']{d} \\
-C^2(\CP^\infty_E; \Gm) \arrow["\delta"]{r} & C^3(\CP^\infty_E; \Gm) \arrow[densely dotted, "e_*"]{r} & \InternalHom{FormalGroups}((\CP^\infty_E)^{\wedge 2}, \G_m)
+C^2(\CP^\infty_E; \Gm) \arrow["\delta"]{r} & C^3(\CP^\infty_E; \Gm) \arrow[densely dotted, "e"]{r} & \InternalHom{FormalGroups}((\CP^\infty_E)^{\wedge 2}, \G_m),
 \end{tikzcd}
-\end{center}\todo{You haven't said anything about why the rightmost vertical map is an isomorphism.}
-We would like to prove enough about this diagram to show that is an isomorphism of short exact sequences.
+\end{center}
+where the left-most vertical map is an isomorphism by \Cref{CharacterizationOfBSUUpperE} and right-most vertical map is an isomorphism by \Cref{EThyOfEMSpaces}.  We would like to enrich this diagram to an isomorphism of short exact sequences, beginning with constructing a horizontal map $e$ making the diagram commute.
 
-Before we begin testing exactness, we first need a pair of sequences---i.e., we must construct the map $e$.  There is a candidate construction, coming from the theory of $\theta$--functions\todo{Was there any motivation or reason why one might look to elliptic function theory to supply this map?}:
+
+
+
+\textbf{XXXXX BELOW THIS LINE LECTURE GETS GARBLED XXXXX}
+
+
+
+
+
+
+
+There is a candidate construction, coming from the theory of $\theta$--functions
+\todo{Was there any motivation or reason why one might look to elliptic function theory to supply this map?}:
 \begin{definition}
 Let $A$ be an abelian variety equipped with a line bundle $\L$.  Suppose that $s$ is a symmetric, rigid section of $\Theta^3 \L$, i.e., a \textit{cubical structure on $\L$}.  This induces the structure of a \textit{symmetric biextension} on $\Theta^2 \L$ by furnishing compatible multiplication maps\todo{Hood wanted me to write out what the relevant pullbacks were, and I pretty well refused.  We should here, at least. The point is that $(p_{12} - p_1 - p_2)^* \Theta^2 \L = \Theta^3 \L$.}\todo{You might also want to give a second definition to the alternating-fraction one, using something like the tensor product of reduced line bundles, so that the link to the topology is more directly understood.}
 \begin{align*}
@@ -643,113 +670,62 @@ This is a direct consequence of the $5$--lemma.
 
 
 
-% We begin with the fiber:
-
-% \begin{lemma}[{\cite[Lemma 4.5]{AndoStrickland}}]\label{EasyCompatibilityWithdn}
-% Write
-% \begin{align*}
-% d_n(\L_1, \L_2) & := \sum_{k=1}^{p^j-1} \left( (\L_1 - 1)(\L_1^k - 1)(\L_2 - 1) - (\L_1 - 1)(\L_2^k - 1)(\L_2 - 1)\right).
-% \end{align*}
-% There is a unique $\lambda \in \Z/n$ such that the following triangle commutes:
-% \begin{center}
-% \begin{tikzcd}
-% (B\Z/p^j)^{\times 2} \arrow{d}{\lambda \beta \mu} \arrow{rd}{d_n(\L_1, \L_2)} \\
-% K(\Z, 3) \arrow{r}{i} & BU[6, \infty).
-% \end{tikzcd}
-% \end{center}
-% \end{lemma}
-% \begin{proof}
-% Forgetting down to $BU$ and working with just virtual bundles rather than lifts of virtual bundles to elements of $kU^6$, the definition of $d_n(\L_1, \L_2)$ gives
-% \begin{align*}
-% d_n(\L_1, \L_2) & = (\L_1 - 1)(\L_2^{p^j} - 1) - (\L_1^{p^k} - 1)(\L_2 - 1).
-% \end{align*}
-% Since we have restricted to $(B\Z/p^j)^{\times 2}$, $\L_1^{p^k} = 1$ and $\L_2^{p^k} = 1$, so this formula collapses and the composite map \[(B\Z/p^j)^{\times 2} \xrightarrow{d_n} BU[6, \infty) \xrightarrow{\pi_2} BSU \xrightarrow{\pi_2} BU\] is null.  We now study the lifting problem across the two maps:
-% \begin{enumerate}
-% \item[$\pi_1$:] Since the long composite is null, it follows that the shorter composite $\pi_2 \circ d_n$ factors through the fiber of $\pi_2$.  But, the fiber of $\pi_2$ is $S^1$, and there are no maps \[\{(B\Z/p^j)^{\times 2} \to S^1\} \cong H^1((B\Z/p^j)^{\times 2}; \Z) = 0.\]  It follows that $\pi_2 \circ d_n$ is itself null.
-% \item[$\pi_2$:] Since $\pi_2 \circ d_n$ is null, $d_n$ must factor through the fiber of $\pi_2$, which is $K(\Z, 3)$.  With identical motives, one considers $H^3((B\Z/p^j)^{\times 2}; \Z)$, which is cyclic of order $n$ and generated by $\beta \circ \mu$. \qedhere
-% \end{enumerate}
-% \end{proof}
-
-% \noindent This Lemma was missing a nontriviality statement, which turns out to be much harder:\todo{You could probably abbreviate the proof of this and include it.}
-
-% \begin{theorem}[{\cite[Theorem 4.2, Section 5]{AndoStrickland}}]
-% The value of $\lambda$ in \Cref{EasyCompatibilityWithdn} can be taken to be $\pm 1$. \qed
-% \end{theorem}
-
-% We now play one of our main cards: our willingness to work with cooperations means that we can pass from the hard task of checking facts about our formal schemes to the generally easier task of checking facts about their Cartier duals.  Because the formal schemes themselves are designed to have universal properties, their Cartier duals have points which are specified by these universal properties, and we win a considerable increase in tangibility.  In order to make full use of this, we record a mechanism of translation between these perspectives:
-
-
-% These ideas power the following Lemma:
-
-% \begin{proof}
-% The target scheme $\Weil(\CP^\infty_E)$ is a subscheme of $\InternalHom{FormalGroups}((\CP^\infty_E)^{\times 2}, \Gm)$.  Since $\CP^\infty_E$ is finite height it satisfies $\CP^\infty_E = \colim_j \CP^\infty_E[p^j]$, which, coupled with the exponential adjunciton, reduces us to showing the agreement of the pair of composite maps \[\Spec E_0 BU[6, \infty) \times_{\S_E} \CP^\infty_E[p^j]^{\times 2} \to \Gm.\]  We will express these maps in terms of the adjoint map construction, starting with the clockwise composite.  The class $\beta \mu \in H\Z^3 BC_{p^j}^{\times 2}$ gives rise to an adjoint map \[\widehat{\beta \mu}\co \G_E[p^j]^{\times 2} \times (\OS{H\Z}{3})_E^\vee \to \Gm,\] which pulls back along $i\co \OS{H\Z}{3} \to \OS{kU}{6}$ to give \[(1 \times \Spec E_0 i) \circ \widehat{\beta \mu} = \widehat{i \beta \mu} = \widehat{d_n(\L_1, \L_2)}\] by the previous Theorem.
-
-% We now try to calculate this adjoint, which will lead us to the counterclockwise composite.  First, the bundle $\bigotimes_{j=1}^3 (\L_j - 1) \in kU^6 (\CP^\infty)^{\times 3}$ gives rise to an adjoint map satisfying the following compatibility:
-% \begin{center}
-% \begin{tikzcd}
-% (\CP^\infty_E)^{\times 3} \times \Spec E_0 BU[6, \infty) \arrow["\widehat{\bigotimes_{j=1}^3 (\L_j - 1)}"]{r} \arrow{d} & \Gm \\
-% (\CP^\infty_E)^{\times 3} \times C^3(\CP^\infty_E; \Gm) \arrow{r} & (\CP^\infty_E)^{\times 3} \times \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 3}, \Gm) \arrow["\text{eval}"]{u}.
-% \end{tikzcd}
-% \end{center}
-% The effect of postcomposing with the Weil pairing map can be viewed instead as precomposing the bottom-right corner with the
 
 
 
 
 
 
-% \todo[inline]{This proof is unclear to the point of being broken.  How does the middle paragraph address the bottom-left arm of the square?}
-% We will check compatibility on $\Weil_n(\CP^\infty_E)$ for arbitrary $n$, and so restrict from $i$ to $i \circ \lambda \beta \mu = d_n(\L_1, \L_2)$.
-% % (Note: the sign can't bounce with $n$ because $\CP^\infty_E$ is $p$--divisible.)
-% Since $\Weil_n(\CP^\infty_E)$ is a subscheme \[\Weil_n(\CP^\infty_E) \subseteq \InternalHom{FormalSchemes}(\CP^\infty_E[n]^{\times 2}, \Gm),\] we can push forward to checking equality here, i.e., of the two maps \[\Spec E_0 BU[6, \infty) \times_{\S_E} \CP^\infty_E[n]^{\times 2} \to \Gm.\]
 
-% Writing $z = \prod_{i=1}^3 (1 - \L_i) \in kU^6 (\CP^\infty)^{\times 3}$, properties of the adjoint construction $\hat z$ show that it is given by the composite \[\hat z \co \Spec E_0 BU[6, \infty) \times_{\S_E} (\CP^\infty_E)^{\times 3} \to C^3(\CP^\infty_E; \Gm) \times_{\S_E} (\CP^\infty_E)^{\times 3} \xrightarrow{\operatorname{eval}} \Gm.\]  By specializing to $z = (1 - \L_1)(1 - \L_1^k)(1 - \L_2) \in kU^6 (\CP^\infty)^{\times 2}$, we see that $\hat z$ acts by\todo{Do I mean to be writing $k$--series here? I think I do.} \[\hat z \co (f, (g_1, g_2)) \mapsto f(g_1, [k](g_1), g_2),\] and continuing along these lines we see \[\widehat{d_n(\L_1, \L_2)} \co (f, (g_1, g_2)) \mapsto \prod_{k=1}^{n-1} \frac{f(g_1, [k](g_1), g_2)}{f(g_1, [k](g_2), g_2)} = e_n(f)(g_1, g_2).\]
+We begin with the fiber:
 
-% That described the bottom-left arm of the square.  The other way around the square is easier: take $w = \beta \circ \mu \in H^3(B\Z/p^j)^{\times 2}$ with adjoint $\hat w \co \CP^\infty_E[p^j]^{\times 2} \times K(\Z, 3)^E \to \Gm$.  Naturality shows $\hat w \circ \gamma^E = \widehat{\gamma_* w}$, and the theorem shows $\gamma_* w = \pm d_n(\L_1, \L_2)$, hence $\widehat{\gamma_* w} = (\pm d_n(\L_1, \L_2))\hat{}$, which is adjoint to $(e_n \Pi_3)^\pm$.
-% \end{proof}
+\begin{lemma}[{\cite[Lemma 4.5]{AndoStrickland}}]\label{EasyCompatibilityWithdn}
+Write
+\begin{align*}
+d_n(\L_1, \L_2) & := \sum_{k=1}^{p^j-1} \left( (\L_1 - 1)(\L_1^k - 1)(\L_2 - 1) - (\L_1 - 1)(\L_2^k - 1)(\L_2 - 1)\right).
+\end{align*}
+There is a unique $\lambda \in \Z/n$ such that the following triangle commutes:
+\begin{center}
+\begin{tikzcd}
+(B\Z/p^j)^{\times 2} \arrow{d}{\lambda \beta \mu} \arrow{rd}{d_n(\L_1, \L_2)} \\
+K(\Z, 3) \arrow{r}{i} & BU[6, \infty).
+\end{tikzcd}
+\end{center}
+\end{lemma}
+\begin{proof}
+Forgetting down to $BU$ and working with just virtual bundles rather than lifts of virtual bundles to elements of $kU^6$, the definition of $d_n(\L_1, \L_2)$ gives
+\begin{align*}
+d_n(\L_1, \L_2) & = (\L_1 - 1)(\L_2^{p^j} - 1) - (\L_1^{p^k} - 1)(\L_2 - 1).
+\end{align*}
+Since we have restricted to $(B\Z/p^j)^{\times 2}$, $\L_1^{p^k} = 1$ and $\L_2^{p^k} = 1$, so this formula collapses and the composite map \[(B\Z/p^j)^{\times 2} \xrightarrow{d_n} BU[6, \infty) \xrightarrow{\pi_2} BSU \xrightarrow{\pi_2} BU\] is null.  We now study the lifting problem across the two maps:
+\begin{enumerate}
+\item[$\pi_1$:] Since the long composite is null, it follows that the shorter composite $\pi_2 \circ d_n$ factors through the fiber of $\pi_2$.  But, the fiber of $\pi_2$ is $S^1$, and there are no maps \[\{(B\Z/p^j)^{\times 2} \to S^1\} \cong H^1((B\Z/p^j)^{\times 2}; \Z) = 0.\]  It follows that $\pi_2 \circ d_n$ is itself null.
+\item[$\pi_2$:] Since $\pi_2 \circ d_n$ is null, $d_n$ must factor through the fiber of $\pi_2$, which is $K(\Z, 3)$.  With identical motives, one considers $H^3((B\Z/p^j)^{\times 2}; \Z)$, which is cyclic of order $n$ and generated by $\beta \circ \mu$. \qedhere
+\end{enumerate}
+\end{proof}
 
-% \todo{There's a nice construction of the $\Pi_k$ maps in the AHS preprint where the ``$C_k$'' constructions are performed directly on the spectra, then applying $(-)_E$ carries those constructions to relevant constructions on group schemes, and finally Cartier duality gives the maps $\Pi_k$ of the sort described above.  This is superior to saying ``adjoint'', in my opinion, though it could be remarked that these are equivalent.}
-% \todo{Consider including Lemma 6.2 and so on, the $BSU \to BU$ equivalents of the later statements you need.}
+\noindent This Lemma was missing a nontriviality statement, which turns out to be much harder:\todo{You could probably abbreviate the proof of this and include it.}
 
-% % \begin{lemma}[{\cite[Lemma 6.2]{AndoStrickland}}]
-% % The adjoint of the map $E_0 \CP^\infty \to E_0 BU$ induces a map $\Pi_1: BU^E \to C^1(\CP^\infty_E; \mathbb G_m)$ which is an isomorphism.  In fact, the Cartier duality isomorphism $(\CP^\infty)^E \cong \InternalHom{FormalGroups}(\CP^\infty_E, \mathbb G_m)$ fits into a commuting square
-% % \begin{center}
-% % \begin{tikzcd}
-% % (\CP^\infty)^E \arrow{r} \arrow{d} & \InternalHom{FormalGroups}(\CP^\infty_E, \Gm) \arrow{d}{\begin{array}{c} \text{natural} \\ \text{inclusion} \end{array}} \\
-% % BU^E \arrow{r}{\Pi_1} & C^1(\CP^\infty_E; \Gm).
-% % \end{tikzcd}
-% % \end{center}
-% % \end{lemma}
-% % \begin{proof}
-% % \todo{Include this.}
-% % \end{proof}
+\begin{theorem}[{\cite[Theorem 4.2, Section 5]{AndoStrickland}}]
+The value of $\lambda$ in \Cref{EasyCompatibilityWithdn} can be taken to be $\pm 1$. \qed
+\end{theorem}
 
-% % \begin{theorem}\label{BUBSUandC1C2Commute}
-% % The following square commutes:
-% % \begin{center}
-% % \begin{tikzcd}
-% % BU^E \arrow{d}{\Pi_1} \arrow{r} & BSU^E \arrow{d}{\Pi_2} \\
-% % C^1(\CP^\infty_E; \Gm) \arrow{r}{\delta} & C^2(\CP^\infty_E; \Gm).
-% % \end{tikzcd}
-% % \end{center}
-% % \end{theorem}
-% % \begin{proof}
-% % \citeme{Lemma 6.4 of AS}
-% % This is a matter of expanding definitions and using \[(\L_1 - 1)(\L_2 - 1) = \mu^*(\L - 1) - \pi_1^*(\L - 1) - \pi_2(\L - 1).\]
-% % \end{proof}
+We now play one of our main cards: our willingness to work with cooperations means that we can pass from the hard task of checking facts about our formal schemes to the generally easier task of checking facts about their Cartier duals.  Because the formal schemes themselves are designed to have universal properties, their Cartier duals have points which are specified by these universal properties, and we win a considerable increase in tangibility.  In order to make full use of this, we record a mechanism of translation between these perspectives:
 
-% % \begin{theorem}
-% % The following is a map of short exact sequences:
-% % \begin{center}
-% % \begin{tikzcd}
-% % 0 \arrow{r} & (\CP^\infty)^E \arrow{d} \arrow{r} & BU^E \arrow{r} \arrow{d} & BSU^E \arrow{r} \arrow{d} & 0 \\
-% % 0 \arrow{r} & \InternalHom{FormalGroups}(\CP^\infty_E; \Gm) \arrow{r} & C^1(\CP^\infty; \Gm) \arrow{r} & C^2(\CP^\infty; \Gm) \arrow{r} & 0.
-% % \end{tikzcd}
-% % \end{center}
-% % \end{theorem}
-% % \begin{proof}
-% % \citeme{Prop 6.5 of AS. They reference a superior alternate argument in the AHS preprint though\ldots}
-% % \end{proof}
+
+These ideas power the following Lemma:
+
+\begin{proof}
+The target scheme $\Weil(\CP^\infty_E)$ is a subscheme of $\InternalHom{FormalGroups}((\CP^\infty_E)^{\times 2}, \Gm)$.  Since $\CP^\infty_E$ is finite height it satisfies $\CP^\infty_E = \colim_j \CP^\infty_E[p^j]$, which, coupled with the exponential adjunciton, reduces us to showing the agreement of the pair of composite maps \[\Spec E_0 BU[6, \infty) \times_{\S_E} \CP^\infty_E[p^j]^{\times 2} \to \Gm.\]  We will express these maps in terms of the adjoint map construction, starting with the clockwise composite.  The class $\beta \mu \in H\Z^3 BC_{p^j}^{\times 2}$ gives rise to an adjoint map \[\widehat{\beta \mu}\co \G_E[p^j]^{\times 2} \times (\OS{H\Z}{3})_E^\vee \to \Gm,\] which pulls back along $i\co \OS{H\Z}{3} \to \OS{kU}{6}$ to give \[(1 \times \Spec E_0 i) \circ \widehat{\beta \mu} = \widehat{i \beta \mu} = \widehat{d_n(\L_1, \L_2)}\] by the previous Theorem.
+
+We now try to calculate this adjoint, which will lead us to the counterclockwise composite.  First, the bundle $\bigotimes_{j=1}^3 (\L_j - 1) \in kU^6 (\CP^\infty)^{\times 3}$ gives rise to an adjoint map satisfying the following compatibility:
+\begin{center}
+\begin{tikzcd}
+(\CP^\infty_E)^{\times 3} \times \Spec E_0 BU[6, \infty) \arrow["\widehat{\bigotimes_{j=1}^3 (\L_j - 1)}"]{r} \arrow{d} & \Gm \\
+(\CP^\infty_E)^{\times 3} \times C^3(\CP^\infty_E; \Gm) \arrow{r} & (\CP^\infty_E)^{\times 3} \times \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 3}, \Gm) \arrow["\text{eval}"]{u}.
+\end{tikzcd}
+\end{center}
+The effect of postcomposing with the Weil pairing map can be viewed instead as precomposing the bottom-right corner with the
 
 
 
@@ -758,7 +734,81 @@ This is a direct consequence of the $5$--lemma.
 
 
 
-\section{Unstable additive cooperations for \texorpdfstring{$kU$}{kU}}
+
+
+
+
+\todo[inline]{This proof is unclear to the point of being broken.  How does the middle paragraph address the bottom-left arm of the square?}
+We will check compatibility on $\Weil_n(\CP^\infty_E)$ for arbitrary $n$, and so restrict from $i$ to $i \circ \lambda \beta \mu = d_n(\L_1, \L_2)$.
+% (Note: the sign can't bounce with $n$ because $\CP^\infty_E$ is $p$--divisible.)
+Since $\Weil_n(\CP^\infty_E)$ is a subscheme \[\Weil_n(\CP^\infty_E) \subseteq \InternalHom{FormalSchemes}(\CP^\infty_E[n]^{\times 2}, \Gm),\] we can push forward to checking equality here, i.e., of the two maps \[\Spec E_0 BU[6, \infty) \times_{\S_E} \CP^\infty_E[n]^{\times 2} \to \Gm.\]
+
+Writing $z = \prod_{i=1}^3 (1 - \L_i) \in kU^6 (\CP^\infty)^{\times 3}$, properties of the adjoint construction $\hat z$ show that it is given by the composite \[\hat z \co \Spec E_0 BU[6, \infty) \times_{\S_E} (\CP^\infty_E)^{\times 3} \to C^3(\CP^\infty_E; \Gm) \times_{\S_E} (\CP^\infty_E)^{\times 3} \xrightarrow{\operatorname{eval}} \Gm.\]  By specializing to $z = (1 - \L_1)(1 - \L_1^k)(1 - \L_2) \in kU^6 (\CP^\infty)^{\times 2}$, we see that $\hat z$ acts by\todo{Do I mean to be writing $k$--series here? I think I do.} \[\hat z \co (f, (g_1, g_2)) \mapsto f(g_1, [k](g_1), g_2),\] and continuing along these lines we see \[\widehat{d_n(\L_1, \L_2)} \co (f, (g_1, g_2)) \mapsto \prod_{k=1}^{n-1} \frac{f(g_1, [k](g_1), g_2)}{f(g_1, [k](g_2), g_2)} = e_n(f)(g_1, g_2).\]
+
+That described the bottom-left arm of the square.  The other way around the square is easier: take $w = \beta \circ \mu \in H^3(B\Z/p^j)^{\times 2}$ with adjoint $\hat w \co \CP^\infty_E[p^j]^{\times 2} \times K(\Z, 3)^E \to \Gm$.  Naturality shows $\hat w \circ \gamma^E = \widehat{\gamma_* w}$, and the theorem shows $\gamma_* w = \pm d_n(\L_1, \L_2)$, hence $\widehat{\gamma_* w} = (\pm d_n(\L_1, \L_2))\hat{}$, which is adjoint to $(e_n \Pi_3)^\pm$.
+\end{proof}
+
+\todo{There's a nice construction of the $\Pi_k$ maps in the AHS preprint where the ``$C_k$'' constructions are performed directly on the spectra, then applying $(-)_E$ carries those constructions to relevant constructions on group schemes, and finally Cartier duality gives the maps $\Pi_k$ of the sort described above.  This is superior to saying ``adjoint'', in my opinion, though it could be remarked that these are equivalent.}
+\todo{Consider including Lemma 6.2 and so on, the $BSU \to BU$ equivalents of the later statements you need.}
+
+
+
+
+
+
+
+
+
+
+
+\begin{lemma}[{\cite[Lemma 6.2]{AndoStrickland}}]
+The adjoint of the map $E_0 \CP^\infty \to E_0 BU$ induces a map $\Pi_1: BU^E \to C^1(\CP^\infty_E; \mathbb G_m)$ which is an isomorphism.  In fact, the Cartier duality isomorphism $(\CP^\infty)^E \cong \InternalHom{FormalGroups}(\CP^\infty_E, \mathbb G_m)$ fits into a commuting square
+\begin{center}
+\begin{tikzcd}
+(\CP^\infty)^E \arrow{r} \arrow{d} & \InternalHom{FormalGroups}(\CP^\infty_E, \Gm) \arrow{d}{\begin{array}{c} \text{natural} \\ \text{inclusion} \end{array}} \\
+BU^E \arrow{r}{\Pi_1} & C^1(\CP^\infty_E; \Gm).
+\end{tikzcd}
+\end{center}
+\end{lemma}
+\begin{proof}
+\todo{Include this.}
+\end{proof}
+
+\begin{theorem}\label{BUBSUandC1C2Commute}
+The following square commutes:
+\begin{center}
+\begin{tikzcd}
+BU^E \arrow{d}{\Pi_1} \arrow{r} & BSU^E \arrow{d}{\Pi_2} \\
+C^1(\CP^\infty_E; \Gm) \arrow{r}{\delta} & C^2(\CP^\infty_E; \Gm).
+\end{tikzcd}
+\end{center}
+\end{theorem}
+\begin{proof}
+\citeme{Lemma 6.4 of AS}
+This is a matter of expanding definitions and using \[(\L_1 - 1)(\L_2 - 1) = \mu^*(\L - 1) - \pi_1^*(\L - 1) - \pi_2(\L - 1).\]
+\end{proof}
+
+\begin{theorem}
+The following is a map of short exact sequences:
+\begin{center}
+\begin{tikzcd}
+0 \arrow{r} & (\CP^\infty)^E \arrow{d} \arrow{r} & BU^E \arrow{r} \arrow{d} & BSU^E \arrow{r} \arrow{d} & 0 \\
+0 \arrow{r} & \InternalHom{FormalGroups}(\CP^\infty_E; \Gm) \arrow{r} & C^1(\CP^\infty; \Gm) \arrow{r} & C^2(\CP^\infty; \Gm) \arrow{r} & 0.
+\end{tikzcd}
+\end{center}
+\end{theorem}
+\begin{proof}
+\citeme{Prop 6.5 of AS. They reference a superior alternate argument in the AHS preprint though\ldots}
+\end{proof}
+
+
+
+
+
+
+
+
+\section{Additive analysis of \texorpdfstring{$BU[6, \infty)$}{BU[6, \infty)}}
 
 \todo{In the AHR appendix, we briefly use the rational version of this problem.  It belongs here, and we may as well do it, since it's quick and easy.}
 
