@@ -161,7 +161,7 @@ The equivalence between (1) and (3)---i.e., between complex-orientations and $E_
 \end{proof}
 
 An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $1 - \L$, and it is proven in analogous way.  In particular, we will want a version of the splitting principle for virtual vector bundles of virtual rank $0$.  Given a finite complex $X$ and such a rank $0$ virtual vector bundle, write $\tilde V \co X \to BU$ for the classifying map.  Because $X$ is a finite complex, there exists an integer $n$ so that $\tilde V = -(n \cdot 1 - V)$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ gives a presentation of $\tilde V$ as \[\tilde V = -(n \cdot 1 - V) = -\bigoplus_{i=1}^n (1 - \L_i).\]  Crucially, we have organized this sum \emph{entirely in terms of bundles classified by $BU$}, as each bundle $1 - \L_i$ itself has the natural structure of a rank $0$ virtual vector bundle.  This version of the splitting principle, together with our extended discussion of formal geometry, begets the following analogue of the previous result:
-\begin{theorem}[{\cite[Example 2.54]{AHSTheoremOfTheCube}}]\label{BUTriumvirate}
+\begin{theorem}[{\cite[Example 2.54]{AHSTheoremOfTheCube}, cf.\ also \cite[Lemma 6.2]{AndoStrickland}}]\label{BUTriumvirate}
 Take $E$ to be complex--orientable.  The functor
 \begin{align*}
 \CatOf{AffineSchemes}_{/\Spec E_0} & \to \CatOf{Sets}, \\
@@ -262,7 +262,7 @@ The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \begin{array}{c}
 \end{theorem}
 
 \noindent In pursuit of this, we will show rather manually that $BSU_E$ represents an object subject to exactly such symmetries, hence $\Spec E_0 BSU$ represents the scheme of such symmetric functions, and hence conclude that $\Spec E_0 MSU$ represents the scheme of such symmetric trivializations.  The place to begin is with a Serre spectral sequence:
-\begin{lemma}[{\cite[Lemma 6.1]{AndoStrickland}}]\label{BSUtoBUtoCPinftyIsSexseq}
+\begin{lemma}[{\cite[Lemma 6.1]{AndoStrickland}, cf.\ also \cite[Proposition 6.5]{AndoStrickland}}]\label{BSUtoBUtoCPinftyIsSexseq}
 The Postnikov fibration \[BSU \to BU \xrightarrow{B\det} BU(1)\] induces a short exact sequence of Hopf algebras \[E^0 BSU \from E^0 BU \xleftarrow{c_1 \mapsfrom c_1} E^0 BU(1). \qed\]
 \end{lemma}
 
@@ -387,7 +387,7 @@ The claim of this Theorem is that the map \[\Spec E_0 MSU \to C^2(\CP^\infty_E; 
 
 
 
-\begin{remark}\label{BSUToBU}
+\begin{remark}[{\cite[Lemma 6.4]{AndoStrickland}}]\label{BSUToBU}
 We can also analyze the map $\Spec E_0 BSU \to \Spec E_0 BU$ in terms of these models of functions to $\Gm$.  Again, the analysis passes through a computation in connective $K$--theory, using the identification \[kU^*(\CP^\infty)^{\times 2} = \Z[\beta]\ps{x_1, x_2},\] where $x_1 = \pi_1^* x$ and $x_2 = \pi_2^* x$ are the Chern classes associated to the tautological bundle pulled back along projections to the first and second factors
 \begin{align*}
 \pi_1\co (\CP^\infty)^{\times 2} & \to \CP^\infty \times *, &
@@ -486,7 +486,7 @@ There is a commutative square
 C^2(\CP^\infty_E; \Gm) \arrow{r}{\delta} & C^3(\CP^\infty_E; \Gm),
 \end{tikzcd}
 \end{center}
-where\footnote{Despite its name and its formula, this map $\delta$ does not really belong to a cochain complex from our perspective.  \emph{All} of the functions we are considering, no matter how many inputs they take, are always object to a \emph{$2$}--cocycle condition.} \[\delta(f)(x_1, x_2, x_3) := \frac{f(x_1, x_3) f(x_2, x_3)}{f(x_1 +_E x_2, x_3)}.\]
+where the map\footnote{Despite its name and its formula, this map $\delta$ does not really belong to a cochain complex from our perspective.  \emph{All} of the functions we are considering, no matter how many inputs they take, are always subject to a \emph{$2$}--cocycle condition.} $\delta$ is specified by \[\delta(f)(x_1, x_2, x_3) := \frac{f(x_1, x_3) f(x_2, x_3)}{f(x_1 +_E x_2, x_3)}.\]
 \end{lemma}
 \begin{proof}
 As in the proofs of \Cref{BUtoBUZ} and \Cref{BSUToBU}, this is checked by performing a calculation in $kU$--cohomology of projective space, where we have the relation
@@ -501,167 +501,173 @@ As in the proofs of \Cref{BUtoBUZ} and \Cref{BSUToBU}, this is checked by perfor
 Thus far, we have constructed the solid maps in the following commutative diagram:
 \begin{center}
 \begin{tikzcd}
-\Spec E_0 BSU \arrow{r} \arrow["\Pi_2","\cong"']{d} & \Spec E_0 BU[6, \infty) \arrow{r} \arrow["\Pi_3"]{d} & \Spec E_0 \OS{H\Z}{3} \arrow["\cong"']{d} \\
+\Spec E_0 BSU \arrow{r} \arrow["\widehat \Pi_2","\cong"']{d} & \Spec E_0 BU[6, \infty) \arrow{r} \arrow["\widehat \Pi_3"]{d} & \Spec E_0 \OS{H\Z}{3} \arrow["\cong"']{d} \\
 C^2(\CP^\infty_E; \Gm) \arrow["\delta"]{r} & C^3(\CP^\infty_E; \Gm) \arrow[densely dotted, "e"]{r} & \InternalHom{FormalGroups}((\CP^\infty_E)^{\wedge 2}, \G_m),
 \end{tikzcd}
 \end{center}
-where the left-most vertical map is an isomorphism by \Cref{CharacterizationOfBSUUpperE} and right-most vertical map is an isomorphism by \Cref{EThyOfEMSpaces}.  We would like to enrich this diagram to an isomorphism of short exact sequences, beginning with constructing a horizontal map $e$ making the diagram commute.
+where the left-most vertical map is an isomorphism by \Cref{CharacterizationOfBSUUpperE} and right-most vertical map is an isomorphism by \Cref{EThyOfEMSpaces}.  We would like to enrich this diagram to an isomorphism of short exact sequences, and to do so we need to finish constructing the sequences themselves---we need a horizontal map $e$ making the diagram commute.
 
-
-
-
-\textbf{XXXXX BELOW THIS LINE LECTURE GETS GARBLED XXXXX}
-
-
-
-
-
-
-
-There is a candidate construction, coming from the theory of $\theta$--functions
-\todo{Was there any motivation or reason why one might look to elliptic function theory to supply this map?}:
-\begin{definition}
-Let $A$ be an abelian variety equipped with a line bundle $\L$.  Suppose that $s$ is a symmetric, rigid section of $\Theta^3 \L$, i.e., a \textit{cubical structure on $\L$}.  This induces the structure of a \textit{symmetric biextension} on $\Theta^2 \L$ by furnishing compatible multiplication maps\todo{Hood wanted me to write out what the relevant pullbacks were, and I pretty well refused.  We should here, at least. The point is that $(p_{12} - p_1 - p_2)^* \Theta^2 \L = \Theta^3 \L$.}\todo{You might also want to give a second definition to the alternating-fraction one, using something like the tensor product of reduced line bundles, so that the link to the topology is more directly understood.}
-\begin{align*}
-(\Theta^2 \L)_{x, y} \otimes (\Theta^2 \L)_{x', y} & \to (\Theta^2 \L)_{x + x', y}, &
-(\Theta^2 \L)_{x, y} \otimes (\Theta^2 \L)_{x, y'} & \to (\Theta^2 \L)_{x, y + y'}.
-\end{align*}
-\begin{figure}[htp]
-\begin{center}
-\begin{tikzpicture}[x  = {(-0.707cm,-0.707cm)},
-                    y  = {(0.9659cm,-0.25882cm)},
-                    z  = {(0cm,1cm)},
-                    scale = 1.8,
-                    color = {lightgray}]
-% style of faces
-\tikzset{facestyle/.style={fill=black!25,draw=black,very thin,line join=round,opacity=.4},slicestyle/.style={fill=black!25,draw=black,very thin,line join=round,opacity=.8}}
-%\tikzset{facestyle/.style={fill=cyan,draw=blue,very thin,line join=round,opacity=.4},slicestyle/.style={fill=cyan,draw=blue,very thin,line join=round,opacity=.7}}
-% face "back" 
-\begin{scope}[canvas is zy plane at x=0]
-  \path[facestyle,shade] (0,0) rectangle (2,2);
-\end{scope}
-% face  "left"
-\begin{scope}[canvas is zx plane at y=0]
-  \path[facestyle,shade] (0,0) rectangle (2,2);
-\end{scope}
-% face "down"
-\begin{scope}[canvas is yx plane at z=0]
-  \path[facestyle,color=lightgray] (0,0) rectangle (2,2);
-\end{scope}
-% face "red slice back"
-\begin{scope}[canvas is zy plane at x=1.5]
-  \path[slicestyle,color=black!50] (0,0) rectangle (2,0.5);
-\end{scope}
-% face "green slice back"
-\begin{scope}[canvas is zx plane at y=0.5]
-  \path[slicestyle,color=black] (0,0) rectangle (2,1.5);
-\end{scope}
-% face "red slice front"
-\begin{scope}[canvas is zy plane at x=1.5]
-  \path[slicestyle,color=black!50] (0,0.5) rectangle (2,2);
-\end{scope}
-% face "green slice front"
-\begin{scope}[canvas is zx plane at y=0.5]
-  \path[slicestyle,color=black] (0,1.5) rectangle (2,2);
-\end{scope}
-% face "front"
-\begin{scope}[canvas is zy plane at x=2]
-  \path[facestyle] (0,0) rectangle (2,2);
-\end{scope}
-% face  "right"
-\begin{scope}[canvas is zx plane at y=2]
-  \path[facestyle] (0,0) rectangle (2,2);
-\end{scope}
-% face "up" 
-\begin{scope}[canvas is yx plane at z=2]
-  \path[facestyle] (0,0) rectangle (2,2);
-\end{scope}
-% labels
-\draw[very thin,black,line join=round]
-     (2,0,0) -- node [below,black] {$A$} (2,2,0);
-\draw[very thin,black,line join=round]
-     (2,2,0) -- node [right,black] {$A$} (0,2,0);
-\draw[very thin,black,line join=round]
-     (0,2,0) -- node [right,black] {$\Gm$} (0,2,2);
-\draw[very thin,black,line join=round]
-     (2,0.5,0) -- node [below,black] {$a_1$} (2,0.5,0);
-\draw[very thin,black,line join=round]
-     (1.5,2,0) -- node [right,black] {$a_2$} (1.5,2,0);
-\end{tikzpicture}
-\hspace{0.5em}
-\begin{tikzpicture}
-    \draw[very thin,black,line join=round,fill=black!30]
-        (0,1) -- node [below,black] {$A \times \{a_2\}$} (3,1) -- node[right,black] {$\Gm$} (3,4) -- (0,4) -- (0,1);
-    \draw[very thin,black,line join=round,fill=black!70]
-        (0,5) -- node [below,black] {$\{a_1\} \times A$} (3,5) -- node[right,black] {$\Gm$} (3,8) -- (0,8) -- (0,5);
-    \node[anchor=east] at (-0.5,4) {\Huge $\Rightarrow$};
-\end{tikzpicture}
-\end{center}
-\caption{Extensions contained in a biextension.}
-\end{figure}
-There is a canonical piece of gluing data on this biextension, in the form of an isomorphism of pullback bundles
-\begin{align*}
-e_{p^j}\co (p^j \times 1)^* \L|_{A[p^j] \times A[p^j]} & \cong (1 \times p^j)^* \L|_{A[p^j] \times A[p^j]}, \\
-(\ell, x, y) & \mapsto \left(\ell \cdot \prod_{k=1}^{p^j-1} \frac{s(x, [k]x, y)}{s(x, [k]y, y)} \right).
-\end{align*}
-This function $e_{p^j}$ is called the \textit{($p^j${\th}) Weil pairing}.
-\end{definition}\todo{Can you prove some parts of this more carefully?}
-
-\begin{remark}
-In the case that $A$ is an elliptic curve, this agrees with the usual definition of its ``Weil pairing''. % In the case of an elliptic curve, this lines up with more traditional definitions---for instance, using the isogeny $n: C \to C$.  In the case of a \emph{complex} elliptic curve $\C / (1, \tau)$, this degenerates further to the assignment \[\left( \frac{a}{n}, \frac{b}{n} \tau \right) \mapsto \exp\left(-2\pi i \frac{ab}{n}\right).\]
-\end{remark}
-
-\begin{lemma}\citeme{AS, I guess}
-The Weil pairings assemble into a total Weil pairing on the $p$--divisible group associated to $A$.  Together, the total Weil pairing is alternating and biexponential\todo{What does biexponential mean?}. \qed
-\end{lemma}
-
-We can use the same formula in the setting of a cubical structure on a line bundle over a finite height formal group $\G$ to produce the desired map \[e_*\co C^3(\G; \Gm) \to \InternalHom{FormalGroups}(\G^{\wedge 2}, \Gm).\] \todo{How? What is $\ell$?} In fact, this is the right map:
-\begin{lemma}[{\cite[Theorem 4.2, Corollary 4.4]{AndoStrickland}}]
-The square commutes (up to sign):
+The idea behind the construction of $e$ is to pretend that $\widehat \Pi_3$ is an isomorphism, so that we could completely detect $e$ by comparing the image of the identity point on $\Spec E_0 BU[6, \infty)$ through $\widehat \Pi_3$ to the image of the same identity point through the maps \[\Spec E_0 BU[6, \infty) \to \Spec E_0 \OS{H\Z}{3} \to \CatOf{FormalGroups}((\CP^\infty_E)^{\sm 2}, \Gm).\]  Using our calculation that $(\CP^\infty_E)^{\sm 2}$ is a $p$--divisible group, we see that we can further restrict attention to the torsion subgroups $(\CP^\infty_E)^{\sm 2}[p^j] = (BS^1[p^j]_E)^{\sm 2}$ which filter it, corresponding to analyzing the bundle classified by the restriction \[BS^1[p^j]^{\sm 2} \xrightarrow{\mu} \OS{HS^1[p^j]}{2} \xrightarrow{\beta} \OS{H\Z}{3} \xrightarrow{\gamma} \OS{kU}{6}.\]  Using the abbreviation $B_j = BS^1[p^j]$, our summary goal is to find an express description of a map $d$ making the following square commute:
 \begin{center}
 \begin{tikzcd}
-\Spec E_0 BU[6, \infty) \arrow{r} \arrow{d}{\Pi_3} & \Spec E_0 K(\Z, 3) \arrow{d}{b_*} \\
-C^3(\CP^\infty_E; \mathbb G_m) \arrow{r}{e} & \Weil(\CP^\infty_E).
+B_j \sm B_j \arrow{r} \arrow["\beta\mu(a \sm a)"]{d} & \CP^\infty \sm \CP^\infty \arrow[densely dotted, "d"]{d} \\
+\Susp^3 H\Z \arrow["\gamma"]{r} & \Susp^6 kU,
 \end{tikzcd}
 \end{center}
-\todo{You have not introduced the notation $\Weil$.}
+where we have quietly replaced spaces by their suspension spectra, and where $\beta \mu(a \sm a)$ denotes the composite \[B_j^{\sm 2} \xrightarrow{a \sm a} (\Susp H\Z/n)^{\sm 2} \xrightarrow{\mu} \Susp^2 H\Z/n \xrightarrow{\beta} \Susp^3 H\Z.\]  Our strategy is to extend this putative square to a map of putative cofiber sequences
+\begin{center}
+\begin{tikzcd}
+(\CP^\infty)^{\sm 2} / B_j^{\sm 2} \arrow["\Delta"]{r} \arrow["f", densely dotted]{d} & \Susp B_j \sm B_j \arrow{r} \arrow["\beta\mu(a \sm a)"]{d} & \Susp \CP^\infty \sm \CP^\infty \arrow[densely dotted, "d"]{d} \arrow{r} & \Susp (\CP^\infty)^{\sm 2} / (B_j)^{\sm 2} \arrow["f", densely dotted]{d} \\
+\Susp^4 kU \arrow["\sigma"]{r} & \Susp^4 H\Z \arrow["\gamma"]{r} & \Susp^7 kU \arrow{r} & \Susp^5 kU,
+\end{tikzcd}
+\end{center}
+and thereby trade the task of constructing $d$ for the task of constructing $f$.  This is a gain because $\sigma\co kU \to H\Z$, the standard $kU$--orientation of $H\Z$, is a considerably simpler map to understand than $\gamma$.
+
+\begin{lemma}[{\cite[Section 5]{AndoStrickland}}]
+Make the definitions
+\begin{itemize}
+\item $x\co \CP^\infty \to \Susp^2 kU$ is the $kU$--Euler class for $(1 - \L)$.
+\item $u\co T(\L^{\otimes p^j}) \to kU^2$ is the $kU$--Thom class for $T(\L^{\otimes p^j}) = \CP^\infty / B_j$.
+\item $A_1$ is the projection $\frac{\CP^\infty \sm \CP^\infty}{B_j \sm B_j} \to \frac{\CP^\infty \sm \CP^\infty}{B_j \sm \CP^\infty} = (\CP^\infty / B_j) \sm \CP^\infty = T(\L^{\otimes p^j}) \sm \CP^\infty$.
+\item Similarly, $A_2$ is the swapped projection $(\CP^\infty)^{\sm 2} / B_j^{\sm 2} \to \CP^\infty \sm T(\L^{\otimes p^j})$.
+\end{itemize}
+Setting $f = \mu(u \sm x) A_1 - \mu(x \sm u) A_2$ gives the desired commuting square: \[\sigma \circ f = \beta \mu(a \sm a) \circ \Delta.\]
 \end{lemma}
-\begin{proof}[Proof sketch]
-This is reasonably difficult.  The main points are to show that the restriction \[d_{p^j}\co BC_{p^j}^{\times 2} \xrightarrow{\beta \circ \mu} \OS{H\Z}{3} \to BU[6, \infty)\] can be expressed by the Weil pairing formula: \[d_{p^j} = \bigoplus_{k=1}^{p^j-1} \left((\L_1 - 1)(\L_1^{\otimes k} - 1)(\L_2 - 1) - (\L_1 - 1)(\L_2^{\otimes k} - 1)(\L_2 - 1)\right).\]  \todo{Where does $d_{p^j}$ appear in the diagram above?} After this is accomplished, what's left is to use naturality properties of the adjoint construction to compute the clockwise and counterclockwise composites.
+\begin{proof}
+The idea is to gain control of the cohomology group $H\Z^4((\CP^\infty)^{\sm 2}, B_j^{\sm 2})$ by Mayer-Vietoris, which is rendered complicated by our simultaneous use of the cofiber sequence \[B_j \to \CP^\infty \to T(\L^{\otimes p^j})\] in \emph{two} factors of a smash product.  Toward this end, consider the maps
+\begin{align*}
+B_1\co B_j \sm T(\L^{\otimes p^j}) & \to (\CP^\infty)^{\sm 2} / B_j^{\sm 2}, &
+B_2\co T(\L^{\otimes p^j}) \sm B_j & \to (\CP^\infty)^{\sm 2} / B_j^{\sm 2},
+\end{align*}
+which have cofibers $A_1$ and $A_2$ respectively.  Direct calculation~\cite[Lemma 5.6]{AndoStrickland} shows that $(\ker B_1^*) \cap (\ker B_2^*)$ is torsion-free, so if we can identify $B_1^*(\beta \mu \circ \Delta)$ and $B_2^*(\beta \mu \circ \Delta)$, we will be most of the way there.  We pick $B_1$ to consider, as $B_2$ is similar, and we start computing, beginning with
+\begin{align*}
+B_1^*(\beta \mu (a \sm a) \circ \Delta) & = \beta \mu (a \sm a) \circ \Delta B_1. \\
+\intertext{Writing $\delta\co T(\L^{\otimes p^j}) \to \Susp B_j$ for the going-around map in that cofiber sequence, we have
+\begin{center}
+\begin{tikzcd}[ampersand replacement=\&]
+\Susp B_j^{\sm 2} \& \arrow["\beta \sm \delta"']{l} B_j \sm T(\L^{\otimes p^j}) \arrow["B_1"]{d} \\
+\& (\CP^\infty)^{\sm 2} / B_j^{\sm 2} \arrow["\Delta"]{ul},
+\end{tikzcd}
+\end{center}
+and hence}
+\beta \mu (a \sm a) \circ \Delta B_1 & = \beta \mu (a \sm a) \circ (1_B \sm \delta) \\
+& = \beta \mu (a \sm a\delta). \\
+\intertext{
+The maps $a$ and $\delta$ appear in the following map of cofiber sequences:
+\begin{center}
+\begin{tikzcd}[ampersand replacement=\&]
+B \arrow["j"]{r} \arrow["a"]{d} \& P \arrow["q"]{r} \arrow["y"]{d} \& T \arrow["\delta"]{r} \arrow["w"]{d} \& \Susp B \arrow["a"]{d} \\
+\Susp H\Z/p^j \arrow["\beta"]{r} \& \Susp^2 H\Z \arrow["p^j"]{r} \& \Susp^2 H\Z \arrow["\rho"]{r} \& \Susp^2 H\Z/p^j,
+\end{tikzcd}
+\end{center}
+where $y$ is the standard Euler class in $H^2 \CP^\infty$ and the first block commutes because the bottom row is the stabilization of the top row; $w$ is the Thom class associated to $T(\L^{\otimes p^j})$ and the middle block commutes because it witnesses the $H\Z$--analogue of the statements expressed by \Cref{MUConvertsTorsionPointsToTorsionPoints} and \Cref{KtheoryConvertsTorsionToTorsion}; and the last block commutes because the other two do.  In particular, an application of the right-most block gives}
+\beta \mu (a \sm a\delta) & = \beta \mu (a \sm \rho w). \\
+\intertext{Using the fact that $\beta$ is the cofiber of the ring map $\rho$, there is a juggle}
+\beta \mu (a \sm \rho w) & = \mu(\beta a \sm w), \\
+\intertext{and then we use the first block in the above map of cofiber sequences to conclude}
+\mu(\beta a \sm w) & = \mu(yj \sm w).
+\end{align*}
+Finally, we can use this to guess a formula for our desired map $f$: we set \[f = \mu(u \sm x) A_1 + \mu(x \sm u) A_2,\] because, for instance,
+\begin{align*}
+B_1^*(\sigma f) & = \sigma (\mu(u \sm x) A_1 + \mu(x \sm u) A_2) B_1 \\
+& = \sigma \mu(x \sm u) (j \sm \id_T),
+\intertext{where we used $A_1 B_1 = 0$ and $A_2 B_1 = (j \sm \id_T)$, a calculation similar to the calculation involving $\delta$ earlier in the proof.  Then, because $\sigma\co kU \to H\Z$ sends Euler classes to Euler classes, we have}
+\sigma \mu(x \sm u) (j \sm \id_T) & = \mu(y \sm w)(j \sm \id_T) \\
+& = \mu(yj \sm w).
+\end{align*}
+Hence, we have crafted a class $f$ with $\sigma f - \beta \mu(a \sm a) \in (\ker B_1^*) \cap (\ker B_2^*)$.
+
+What remains is to show that this class is torsion, hence identically zero.  Half of this is obvious: $p^j \beta \mu(a \sm a) = 0$, since $p^j \beta = 0$ on its own.  For $p^j \sigma f$, we make an explicit calculation:
+\begin{align*}
+p^j \sigma f & = p^j(\mu(w \sm y) A_1 - \mu(y \sm w) A_2) \\
+& = \mu(w \sm p^j y) A_1 - \mu(p^j y \sm w) A_2 \\
+& = \mu(w \sm q^* w) A_1 - \mu(q^* w \sm w) A_2 \\
+& = \mu(w \sm w) \circ ((1 \sm q)A_1 - (q \sm 1) A_2) = 0. \qedhere
+\end{align*}
 \end{proof}
 
-This fills out the diagram we are considering.  We now assemble just enough exactness results:
+The upshot of all of this is that we have our desired calculation of the map $e$:
+\begin{corollary}[{\cite[Lemma 5.4 and Subsection ``Modelling {$d_n(L_1, L_2)$}'']{AndoStrickland}}]
+There is a commuting triangle
+\begin{center}
+\begin{tikzcd}
+(\Susp^\infty BS^1[p^j])^{\sm 2} \arrow["\beta"]{d} \arrow["d_j"]{rd} \\
+\OS{H\Z}{3} \arrow["\gamma"]{r} & \OS{kU}{6},
+\end{tikzcd}
+\end{center}
+where $d_j$ classifies the bundle \[d_j = \sum_{k=1}^{p^j-1}\left((1 - \L_1)(1 - \L_1^{\otimes k})(1 - \L_2) - (1 - \L_1)(1 - \L_2^{\otimes k})(1 - \L_2)\right).\]
+\end{corollary}
+\begin{proof}
+We return to our putative map of cofiber sequences, and in particular to the right-most block
+\begin{center}
+\begin{tikzcd}
+\CP^\infty \sm \CP^\infty \arrow["r"]{r} \arrow["d", densely dotted]{d} & (\CP^\infty)^{\sm 2} / B_j^{\sm 2} \arrow["f"]{d} \\
+\Susp^6 kU \arrow{r} & \Susp^4 kU.
+\end{tikzcd}
+\end{center}
+This expresses $d$ in terms of $f$ in the cohomology ring $kU^*(\CP^\infty)^{\times 2}$, a by-now familiar situation.  Namely, we have
+\begin{align*}
+\beta d & = (\mu(u \sm x) A_1 - \mu(x \sm u) A_2)r \\
+& = \mu(u \sm x)(q \sm \id_{\CP^\infty}) - \mu(x \sm u)(\id_{\CP^\infty} \sm q) \\
+& = \mu(q^* u \sm x) - \mu(x \sm q^* u). \\
+\intertext{At this point, we need to make an actual identification: $u$ is a Thom class associated to the line bundle $\L^{\oplus p^j}$, hence $q^* u$ is its associated Euler class, which we compute in terms of $x$ to be $q^* u = [p^j]_{\CP^\infty_{kU}}(x)$, where the $n$--series on $\CP^\infty_{kU}$ expressed in terms of the coordinate $x$ is given by $[n]_{\CP^\infty_{kU}}(x) = \beta^{-1}(1 - (1 - \beta x)^n)$.  We use this formula to continue the calculation:}
+\mu(q^* u \sm x) - \mu(x \sm q^* u) & = [p^j]_{\CP^\infty_{kU}}(x_1) \cdot x_2 - x_1 \cdot [p^j]_{\CP^\infty_{kU}}(x_2) \\
+& = x_1 x_2 \left( \frac{1 - (1 - \beta x_1)^{p^j}}{\beta x_1} - \frac{1 - (1 - \beta x_2)^{p^j}}{\beta x_2} \right) \\
+& = \sum_{k=1}^{p^j-1} (x_1 [k](x_1) x_2 - x_1 [k](x_2) x_2).
+\qedhere
+\end{align*}
+\end{proof}
+
+\begin{definition}
+Let $\G$ be a connected $p$--divisible group of dimension $1$.  Given a point $f \in C^3(\G; \Gm)(T)$, we construct the function
+\begin{align*}
+e_{p^j}(f)\co \G[p^j]^{\sm 2} & \to \Gm, \\
+e_{p^j}(f)(x_1, x_2) & = \prod_{k=1}^{p^j} \frac{f(x_1, kx_1, x_2)}{f(x_1, kx_2, x_2)}.
+\end{align*}
+As $j$ ranges, this assembles into a map \[e\co C^3(\G; \Gm) \to \InternalHom{FormalGroups}(\G^{\sm 2}, \Gm),\] called the \textit{Weil pairing} associated to $f$.
+\end{definition}
+
+
+
+By design, the map $e$ participates in a commuting square with $\Spec E_0 BU[6, \infty) \to \Spec E_0 \OS{H\Z}{3}$, so that this fills out the map of sequences we were considering before we got involved in this analysis of vector bundles.  What remains, then, is to assemble enough exactness results to apply the $5$--lemma.
 
 \begin{lemma}[{\cite[Lemma 7.2]{AndoStrickland}}]
-The map $\delta\co C^2 \to C^3$ is injective for $\CP^\infty_E$ a finite height formal group.
+For $\G$ a connected $p$--divisible group of dimension $1$, the map $\delta\co C^2(\G; \Gm) \to C^3(\G; \Gm)$ is injective.
 \end{lemma}
 \begin{proof}
-Being finite height means that the multiplication-by-$p$ map of $\CP^\infty_E$ is fppf--surjective.  The kernel of $\delta$ consists of alternating, biexponential maps $(\CP^\infty_E)^{\times 2} \to \Gm$.  By restricting such a map $f$ to \[f \co \CP^\infty_E[p^j] \times \CP^\infty_E \to \Gm,\] we can calculate \[f(x, p^j y) = f(p^j x, y) = f(0, y) = 1.\]  But since $p^j$ is surjective on $\CP^\infty_E$, every point on the right-hand side can be so written, so at every left-hand stage the map is trivial.  Finally, $\CP^\infty_E = \colim_j \CP^\infty_E[p^j]$, so this filtration is exhaustive and we conclude that the kernel is trivial.
-\end{proof}\todo{This doesn't sound like the proof that you and Hood gave in class?  Is that a different proof?}
-
-\begin{lemma}[{\cite[Lemma 7.3]{AndoStrickland}}]
-In fact, the following sequence is exact \[0 \to C^2(\CP^\infty_E; \Gm) \xrightarrow\delta C^3(\CP^\infty_E; \Gm) \to \Weil(\CP^\infty_E).\]
-\end{lemma}
-\begin{proof}
-This is hard work.  Breen's idea is to show that picking a preimage under $\delta$ is the same as picking a trivialization of the underlying symmetric biextension of the cubical structure.  Then (following Mumford), one shows that the underlying symmetric biextension is trivial exactly if the Weil pairing is trivial.\todo{You could put in references here. AS gives them.}
+Being finite height means that the multiplication-by-$p$ map of $\G$ is fppf--surjective.  The kernel of $\delta$ consists of symmetric, biexponential maps $\G^{\times 2} \to \Gm$.\footnote{The condition $f \in \ker \delta$ gives $f(x, y+z) = f(x, y)f(x, z)$, so that the $kU^0$--linearity condition becomes redundant: \[\frac{f(x, y) f(t, x+y)}{f(t+x, y) f(t, x)} = \frac{f(x, y) [f(t, x) f(t, y)]}{[f(t, y) f(x, y)] f(t, x)} = 1.\]}  By restricting such a map $f$ to \[f \co \G[p^j] \times \G \to \Gm,\] we can calculate \[f(x, p^j y) = f(p^j x, y) = f(0, y) = 1.\]  But since $p^j$ is surjective on $\G$, every point on the right-hand side can be so written (after perhaps passing to a flat cover of the base), so at every left-hand stage the map is trivial.  Finally, $\G = \colim_j \G[p^j]$, so this filtration is exhaustive and we conclude that the kernel is trivial.
 \end{proof}
 
-Finally, the top row falls quickly:
+\begin{lemma}[{\cite[Lemma 7.3]{AndoStrickland}}]
+More generally, the following sequence is exact \[0 \to C^2(\G; \Gm) \xrightarrow\delta C^3(\G; \Gm) \xrightarrow{e} \InternalHom{FormalGroups}(\G^{\sm 2}, \Gm).\]
+\end{lemma}
+\begin{proof}[Remarks on proof]
+The previous Lemma demonstrates exactness at the first node.  Showing that $e \circ \delta = 0$ is simple enough, but constructing preimages of $\ker \delta$ through $e$ is hard work.  The main tool, again, is $p$--divisibility: given a point $(g_1, g_2) \in \G[p^j]^{\sm 2}$, over some flat base extension we can find $g'_2$ satisfying $p^j g'_2 = g_2$.  With significant effort, the assignment $(g_1, g_2) \mapsto \{e_{p^j}(f)(g_1, g'_2)^{-1}\}$ as $j$ ranges can be shown to be independent of the choices $g'_2$ and which, if $e(f) = 1$, determines an element of $C^2(\G; \Gm)$.
+\end{proof}
 
-\begin{lemma}[{\cite[Lemma 7.5]{AndoStrickland}}]
-\todo{Remark: This proof also shows that the $E$--theory of $\OS{kU}{8}$ fits into a sexseq.}
+Luckily, the remaining bit of topology is very easy:
+
+\begin{lemma}[{\cite[Lemma 7.5]{AndoStrickland}}]\label{ASTopologyExactSequence}
 The top row of the main diagram is a short exact sequence of group schemes.
 \end{lemma}
 \begin{proof}
-This is easiest proved by considering the sequence of homology Hopf algebras instead.  Since the integral homology of $BSU$ and the $E$--homology of $\OS{H\Z}{3}$ are both free and even, the Atiyah--Hirzebruch spectral sequence for $E_* BU[6, \infty)$ collapses.
+Consider the sequence of homology Hopf algebras, before applying $\Spec$.  Since the integral homology of $BSU$ and the $E$--homology of $\OS{H\Z}{3}$ are both free and even, the Atiyah--Hirzebruch spectral sequence for $E_* BU[6, \infty)$ collapses to their tensor product over $E_*$.
 \end{proof}
 
-\begin{corollary}
-The map \[\Pi_3\co \Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm)\] is an isomorphism, and the map \[e_*\co C^3(\CP^\infty_E; \Gm) \to \InternalHom{FormalGroups}((\CP^\infty_E)^{\wedge 2}, \Gm)\] is a surjection.
+\begin{corollary}[{\cite[Theorem 1.4]{AndoStrickland}}]
+The map \[\Pi_3\co \Spec E_0 BU[6, \infty) \to C^3(\CP^\infty_E; \Gm)\] is an isomorphism.
 \end{corollary}
 \begin{proof}
-This is a direct consequence of the $5$--lemma.
-\end{proof}
+This is now a direct consequence of the $5$--lemma.
+\end{proof} 
+
+\begin{remark}[{cf.\ \Cref{HF2BU6Calculation}}]
+We will soon show that $H_* BU[6, \infty)$ is also free and even.  The proof of \Cref{ASTopologyExactSequence} thus also shows that the $E$--theory of $\OS{kU}{8}$ fits into a similar short exact sequence.
+\end{remark}
+
+\begin{remark}[{\cite[Corollary 7.6]{AndoStrickland}}]
+The topological input to the $5$--lemma also gave us a purely algebraic result for free: the map $e$ is a surjective map of group schemes.
+\end{remark}
 
 
 
@@ -677,129 +683,7 @@ This is a direct consequence of the $5$--lemma.
 
 
 
-We begin with the fiber:
 
-\begin{lemma}[{\cite[Lemma 4.5]{AndoStrickland}}]\label{EasyCompatibilityWithdn}
-Write
-\begin{align*}
-d_n(\L_1, \L_2) & := \sum_{k=1}^{p^j-1} \left( (\L_1 - 1)(\L_1^k - 1)(\L_2 - 1) - (\L_1 - 1)(\L_2^k - 1)(\L_2 - 1)\right).
-\end{align*}
-There is a unique $\lambda \in \Z/n$ such that the following triangle commutes:
-\begin{center}
-\begin{tikzcd}
-(B\Z/p^j)^{\times 2} \arrow{d}{\lambda \beta \mu} \arrow{rd}{d_n(\L_1, \L_2)} \\
-K(\Z, 3) \arrow{r}{i} & BU[6, \infty).
-\end{tikzcd}
-\end{center}
-\end{lemma}
-\begin{proof}
-Forgetting down to $BU$ and working with just virtual bundles rather than lifts of virtual bundles to elements of $kU^6$, the definition of $d_n(\L_1, \L_2)$ gives
-\begin{align*}
-d_n(\L_1, \L_2) & = (\L_1 - 1)(\L_2^{p^j} - 1) - (\L_1^{p^k} - 1)(\L_2 - 1).
-\end{align*}
-Since we have restricted to $(B\Z/p^j)^{\times 2}$, $\L_1^{p^k} = 1$ and $\L_2^{p^k} = 1$, so this formula collapses and the composite map \[(B\Z/p^j)^{\times 2} \xrightarrow{d_n} BU[6, \infty) \xrightarrow{\pi_2} BSU \xrightarrow{\pi_2} BU\] is null.  We now study the lifting problem across the two maps:
-\begin{enumerate}
-\item[$\pi_1$:] Since the long composite is null, it follows that the shorter composite $\pi_2 \circ d_n$ factors through the fiber of $\pi_2$.  But, the fiber of $\pi_2$ is $S^1$, and there are no maps \[\{(B\Z/p^j)^{\times 2} \to S^1\} \cong H^1((B\Z/p^j)^{\times 2}; \Z) = 0.\]  It follows that $\pi_2 \circ d_n$ is itself null.
-\item[$\pi_2$:] Since $\pi_2 \circ d_n$ is null, $d_n$ must factor through the fiber of $\pi_2$, which is $K(\Z, 3)$.  With identical motives, one considers $H^3((B\Z/p^j)^{\times 2}; \Z)$, which is cyclic of order $n$ and generated by $\beta \circ \mu$. \qedhere
-\end{enumerate}
-\end{proof}
-
-\noindent This Lemma was missing a nontriviality statement, which turns out to be much harder:\todo{You could probably abbreviate the proof of this and include it.}
-
-\begin{theorem}[{\cite[Theorem 4.2, Section 5]{AndoStrickland}}]
-The value of $\lambda$ in \Cref{EasyCompatibilityWithdn} can be taken to be $\pm 1$. \qed
-\end{theorem}
-
-We now play one of our main cards: our willingness to work with cooperations means that we can pass from the hard task of checking facts about our formal schemes to the generally easier task of checking facts about their Cartier duals.  Because the formal schemes themselves are designed to have universal properties, their Cartier duals have points which are specified by these universal properties, and we win a considerable increase in tangibility.  In order to make full use of this, we record a mechanism of translation between these perspectives:
-
-
-These ideas power the following Lemma:
-
-\begin{proof}
-The target scheme $\Weil(\CP^\infty_E)$ is a subscheme of $\InternalHom{FormalGroups}((\CP^\infty_E)^{\times 2}, \Gm)$.  Since $\CP^\infty_E$ is finite height it satisfies $\CP^\infty_E = \colim_j \CP^\infty_E[p^j]$, which, coupled with the exponential adjunciton, reduces us to showing the agreement of the pair of composite maps \[\Spec E_0 BU[6, \infty) \times_{\S_E} \CP^\infty_E[p^j]^{\times 2} \to \Gm.\]  We will express these maps in terms of the adjoint map construction, starting with the clockwise composite.  The class $\beta \mu \in H\Z^3 BC_{p^j}^{\times 2}$ gives rise to an adjoint map \[\widehat{\beta \mu}\co \G_E[p^j]^{\times 2} \times (\OS{H\Z}{3})_E^\vee \to \Gm,\] which pulls back along $i\co \OS{H\Z}{3} \to \OS{kU}{6}$ to give \[(1 \times \Spec E_0 i) \circ \widehat{\beta \mu} = \widehat{i \beta \mu} = \widehat{d_n(\L_1, \L_2)}\] by the previous Theorem.
-
-We now try to calculate this adjoint, which will lead us to the counterclockwise composite.  First, the bundle $\bigotimes_{j=1}^3 (\L_j - 1) \in kU^6 (\CP^\infty)^{\times 3}$ gives rise to an adjoint map satisfying the following compatibility:
-\begin{center}
-\begin{tikzcd}
-(\CP^\infty_E)^{\times 3} \times \Spec E_0 BU[6, \infty) \arrow["\widehat{\bigotimes_{j=1}^3 (\L_j - 1)}"]{r} \arrow{d} & \Gm \\
-(\CP^\infty_E)^{\times 3} \times C^3(\CP^\infty_E; \Gm) \arrow{r} & (\CP^\infty_E)^{\times 3} \times \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 3}, \Gm) \arrow["\text{eval}"]{u}.
-\end{tikzcd}
-\end{center}
-The effect of postcomposing with the Weil pairing map can be viewed instead as precomposing the bottom-right corner with the
-
-
-
-
-
-
-
-
-
-
-
-
-\todo[inline]{This proof is unclear to the point of being broken.  How does the middle paragraph address the bottom-left arm of the square?}
-We will check compatibility on $\Weil_n(\CP^\infty_E)$ for arbitrary $n$, and so restrict from $i$ to $i \circ \lambda \beta \mu = d_n(\L_1, \L_2)$.
-% (Note: the sign can't bounce with $n$ because $\CP^\infty_E$ is $p$--divisible.)
-Since $\Weil_n(\CP^\infty_E)$ is a subscheme \[\Weil_n(\CP^\infty_E) \subseteq \InternalHom{FormalSchemes}(\CP^\infty_E[n]^{\times 2}, \Gm),\] we can push forward to checking equality here, i.e., of the two maps \[\Spec E_0 BU[6, \infty) \times_{\S_E} \CP^\infty_E[n]^{\times 2} \to \Gm.\]
-
-Writing $z = \prod_{i=1}^3 (1 - \L_i) \in kU^6 (\CP^\infty)^{\times 3}$, properties of the adjoint construction $\hat z$ show that it is given by the composite \[\hat z \co \Spec E_0 BU[6, \infty) \times_{\S_E} (\CP^\infty_E)^{\times 3} \to C^3(\CP^\infty_E; \Gm) \times_{\S_E} (\CP^\infty_E)^{\times 3} \xrightarrow{\operatorname{eval}} \Gm.\]  By specializing to $z = (1 - \L_1)(1 - \L_1^k)(1 - \L_2) \in kU^6 (\CP^\infty)^{\times 2}$, we see that $\hat z$ acts by\todo{Do I mean to be writing $k$--series here? I think I do.} \[\hat z \co (f, (g_1, g_2)) \mapsto f(g_1, [k](g_1), g_2),\] and continuing along these lines we see \[\widehat{d_n(\L_1, \L_2)} \co (f, (g_1, g_2)) \mapsto \prod_{k=1}^{n-1} \frac{f(g_1, [k](g_1), g_2)}{f(g_1, [k](g_2), g_2)} = e_n(f)(g_1, g_2).\]
-
-That described the bottom-left arm of the square.  The other way around the square is easier: take $w = \beta \circ \mu \in H^3(B\Z/p^j)^{\times 2}$ with adjoint $\hat w \co \CP^\infty_E[p^j]^{\times 2} \times K(\Z, 3)^E \to \Gm$.  Naturality shows $\hat w \circ \gamma^E = \widehat{\gamma_* w}$, and the theorem shows $\gamma_* w = \pm d_n(\L_1, \L_2)$, hence $\widehat{\gamma_* w} = (\pm d_n(\L_1, \L_2))\hat{}$, which is adjoint to $(e_n \Pi_3)^\pm$.
-\end{proof}
-
-\todo{There's a nice construction of the $\Pi_k$ maps in the AHS preprint where the ``$C_k$'' constructions are performed directly on the spectra, then applying $(-)_E$ carries those constructions to relevant constructions on group schemes, and finally Cartier duality gives the maps $\Pi_k$ of the sort described above.  This is superior to saying ``adjoint'', in my opinion, though it could be remarked that these are equivalent.}
-\todo{Consider including Lemma 6.2 and so on, the $BSU \to BU$ equivalents of the later statements you need.}
-
-
-
-
-
-
-
-
-
-
-
-\begin{lemma}[{\cite[Lemma 6.2]{AndoStrickland}}]
-The adjoint of the map $E_0 \CP^\infty \to E_0 BU$ induces a map $\Pi_1: BU^E \to C^1(\CP^\infty_E; \mathbb G_m)$ which is an isomorphism.  In fact, the Cartier duality isomorphism $(\CP^\infty)^E \cong \InternalHom{FormalGroups}(\CP^\infty_E, \mathbb G_m)$ fits into a commuting square
-\begin{center}
-\begin{tikzcd}
-(\CP^\infty)^E \arrow{r} \arrow{d} & \InternalHom{FormalGroups}(\CP^\infty_E, \Gm) \arrow{d}{\begin{array}{c} \text{natural} \\ \text{inclusion} \end{array}} \\
-BU^E \arrow{r}{\Pi_1} & C^1(\CP^\infty_E; \Gm).
-\end{tikzcd}
-\end{center}
-\end{lemma}
-\begin{proof}
-\todo{Include this.}
-\end{proof}
-
-\begin{theorem}\label{BUBSUandC1C2Commute}
-The following square commutes:
-\begin{center}
-\begin{tikzcd}
-BU^E \arrow{d}{\Pi_1} \arrow{r} & BSU^E \arrow{d}{\Pi_2} \\
-C^1(\CP^\infty_E; \Gm) \arrow{r}{\delta} & C^2(\CP^\infty_E; \Gm).
-\end{tikzcd}
-\end{center}
-\end{theorem}
-\begin{proof}
-\citeme{Lemma 6.4 of AS}
-This is a matter of expanding definitions and using \[(\L_1 - 1)(\L_2 - 1) = \mu^*(\L - 1) - \pi_1^*(\L - 1) - \pi_2(\L - 1).\]
-\end{proof}
-
-\begin{theorem}
-The following is a map of short exact sequences:
-\begin{center}
-\begin{tikzcd}
-0 \arrow{r} & (\CP^\infty)^E \arrow{d} \arrow{r} & BU^E \arrow{r} \arrow{d} & BSU^E \arrow{r} \arrow{d} & 0 \\
-0 \arrow{r} & \InternalHom{FormalGroups}(\CP^\infty_E; \Gm) \arrow{r} & C^1(\CP^\infty; \Gm) \arrow{r} & C^2(\CP^\infty; \Gm) \arrow{r} & 0.
-\end{tikzcd}
-\end{center}
-\end{theorem}
-\begin{proof}
-\citeme{Prop 6.5 of AS. They reference a superior alternate argument in the AHS preprint though\ldots}
-\end{proof}
 
 
 
@@ -1145,6 +1029,108 @@ The proof of projectivity arising from this method rests on choosing an ample li
 % (See Olsson 3.5, 3.11.  You can also see Mumford's \textit{Abelian varieties} p.\ 222.)
 
 \todo{Akhil's class notes mention a ``very easy'' proof for the theorem of the cube for complex varieties at the end of lecture 5.  Consider fleshing out that argument and see whether it does what you need.}
+
+
+
+
+
+\textbf{OLD WEIL PAIRING STUFF FROM THE OLD CHROMATIC ANALYSIS SECTION}
+
+There is a candidate construction, coming from the theory of $\theta$--functions:
+\begin{definition}
+Let $A$ be an abelian variety equipped with a line bundle $\L$.  Suppose that $s$ is a symmetric, rigid section of $\Theta^3 \L$, i.e., a \textit{cubical structure on $\L$}.  This induces the structure of a \textit{symmetric biextension} on $\Theta^2 \L$ by furnishing compatible multiplication maps\todo{Hood wanted me to write out what the relevant pullbacks were, and I pretty well refused.  We should here, at least. The point is that $(p_{12} - p_1 - p_2)^* \Theta^2 \L = \Theta^3 \L$.}\todo{You might also want to give a second definition to the alternating-fraction one, using something like the tensor product of reduced line bundles, so that the link to the topology is more directly understood.}
+\begin{align*}
+(\Theta^2 \L)_{x, y} \otimes (\Theta^2 \L)_{x', y} & \to (\Theta^2 \L)_{x + x', y}, &
+(\Theta^2 \L)_{x, y} \otimes (\Theta^2 \L)_{x, y'} & \to (\Theta^2 \L)_{x, y + y'}.
+\end{align*}
+\begin{figure}[htp]
+\begin{center}
+\begin{tikzpicture}[x  = {(-0.707cm,-0.707cm)},
+                    y  = {(0.9659cm,-0.25882cm)},
+                    z  = {(0cm,1cm)},
+                    scale = 1.8,
+                    color = {lightgray}]
+% style of faces
+\tikzset{facestyle/.style={fill=black!25,draw=black,very thin,line join=round,opacity=.4},slicestyle/.style={fill=black!25,draw=black,very thin,line join=round,opacity=.8}}
+%\tikzset{facestyle/.style={fill=cyan,draw=blue,very thin,line join=round,opacity=.4},slicestyle/.style={fill=cyan,draw=blue,very thin,line join=round,opacity=.7}}
+% face "back" 
+\begin{scope}[canvas is zy plane at x=0]
+  \path[facestyle,shade] (0,0) rectangle (2,2);
+\end{scope}
+% face  "left"
+\begin{scope}[canvas is zx plane at y=0]
+  \path[facestyle,shade] (0,0) rectangle (2,2);
+\end{scope}
+% face "down"
+\begin{scope}[canvas is yx plane at z=0]
+  \path[facestyle,color=lightgray] (0,0) rectangle (2,2);
+\end{scope}
+% face "red slice back"
+\begin{scope}[canvas is zy plane at x=1.5]
+  \path[slicestyle,color=black!50] (0,0) rectangle (2,0.5);
+\end{scope}
+% face "green slice back"
+\begin{scope}[canvas is zx plane at y=0.5]
+  \path[slicestyle,color=black] (0,0) rectangle (2,1.5);
+\end{scope}
+% face "red slice front"
+\begin{scope}[canvas is zy plane at x=1.5]
+  \path[slicestyle,color=black!50] (0,0.5) rectangle (2,2);
+\end{scope}
+% face "green slice front"
+\begin{scope}[canvas is zx plane at y=0.5]
+  \path[slicestyle,color=black] (0,1.5) rectangle (2,2);
+\end{scope}
+% face "front"
+\begin{scope}[canvas is zy plane at x=2]
+  \path[facestyle] (0,0) rectangle (2,2);
+\end{scope}
+% face  "right"
+\begin{scope}[canvas is zx plane at y=2]
+  \path[facestyle] (0,0) rectangle (2,2);
+\end{scope}
+% face "up" 
+\begin{scope}[canvas is yx plane at z=2]
+  \path[facestyle] (0,0) rectangle (2,2);
+\end{scope}
+% labels
+\draw[very thin,black,line join=round]
+     (2,0,0) -- node [below,black] {$A$} (2,2,0);
+\draw[very thin,black,line join=round]
+     (2,2,0) -- node [right,black] {$A$} (0,2,0);
+\draw[very thin,black,line join=round]
+     (0,2,0) -- node [right,black] {$\Gm$} (0,2,2);
+\draw[very thin,black,line join=round]
+     (2,0.5,0) -- node [below,black] {$a_1$} (2,0.5,0);
+\draw[very thin,black,line join=round]
+     (1.5,2,0) -- node [right,black] {$a_2$} (1.5,2,0);
+\end{tikzpicture}
+\hspace{0.5em}
+\begin{tikzpicture}
+    \draw[very thin,black,line join=round,fill=black!30]
+        (0,1) -- node [below,black] {$A \times \{a_2\}$} (3,1) -- node[right,black] {$\Gm$} (3,4) -- (0,4) -- (0,1);
+    \draw[very thin,black,line join=round,fill=black!70]
+        (0,5) -- node [below,black] {$\{a_1\} \times A$} (3,5) -- node[right,black] {$\Gm$} (3,8) -- (0,8) -- (0,5);
+    \node[anchor=east] at (-0.5,4) {\Huge $\Rightarrow$};
+\end{tikzpicture}
+\end{center}
+\caption{Extensions contained in a biextension.}
+\end{figure}
+There is a canonical piece of gluing data on this biextension, in the form of an isomorphism of pullback bundles
+\begin{align*}
+e_{p^j}\co (p^j \times 1)^* \L|_{A[p^j] \times A[p^j]} & \cong (1 \times p^j)^* \L|_{A[p^j] \times A[p^j]}, \\
+(\ell, x, y) & \mapsto \left(\ell \cdot \prod_{k=1}^{p^j-1} \frac{s(x, [k]x, y)}{s(x, [k]y, y)} \right).
+\end{align*}
+This function $e_{p^j}$ is called the \textit{($p^j${\th}) Weil pairing}.
+\end{definition}\todo{Can you prove some parts of this more carefully?}
+
+\begin{remark}
+In the case that $A$ is an elliptic curve, this agrees with the usual definition of its ``Weil pairing''. % In the case of an elliptic curve, this lines up with more traditional definitions---for instance, using the isogeny $n: C \to C$.  In the case of a \emph{complex} elliptic curve $\C / (1, \tau)$, this degenerates further to the assignment \[\left( \frac{a}{n}, \frac{b}{n} \tau \right) \mapsto \exp\left(-2\pi i \frac{ab}{n}\right).\]
+\end{remark}
+
+\begin{lemma}\citeme{AS, I guess}
+The Weil pairings assemble into a total Weil pairing on the $p$--divisible group associated to $A$.  Together, the total Weil pairing is alternating and biexponential\todo{What does biexponential mean?}. \qed
+\end{lemma}
 
 
 
