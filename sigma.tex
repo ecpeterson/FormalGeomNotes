@@ -827,6 +827,10 @@ where the horizontal maps are the action maps defining torsors and the vertical 
 Take $E$ to be \emph{complex--orientable}.  The functor $C^3(\CP^\infty_E; \sheaf I(0))$ is isomorphic to the affine scheme $\Spec E_0 MU[6, \infty)$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MU[6, \infty) \to E$. \qed
 \end{corollary}
 
+\begin{lemma}\label{MSUToMU6}
+The ring map $MU[6, \infty) \to MSU$ is controlled on orientations by the map \[C^2(\CP^\infty_E; \sheaf I(0)) \xrightarrow{\delta} C^3(\CP^\infty_E; \sheaf I(0)). \qed\]
+\end{lemma}
+
 \begin{remark}
 The rational conclusion of this analysis admits a very mild reformulation: there is always a natural $MU[6, \infty)$--orientation of a rational spectrum $E$ given by the composite \[MU[6, \infty) \to MU[6, \infty) \otimes \Q \to H\Q = \S \otimes \Q \xrightarrow{\eta_E} E \otimes \Q = E.\]  This canonical point turns the $C^3(\CP^\infty_E; \Gm)$--torsor structure of $C^3(\CP^\infty_E; \sheaf I(0))$ into an isomorphism $C^3(\CP^\infty_E; \sheaf I(0)) \cong C^3(\CP^\infty_E; \Gm)$.  In sum, an arbitrary $MU[6, \infty)$--orientation of $E$ is witnessed by a symmetric rigid trivariate power series satisfying $kU^0$--linearity.
 \end{remark}
@@ -1123,20 +1127,17 @@ In the case that $A$ is an elliptic curve, this agrees with the usual definition
 
 \section{Modular forms from \texorpdfstring{$MU[6, \infty)$}{MU[6, oo)}--manifolds}
 
-\todo{Charles's Felix Klein's Section 1.5 talks about why the $p_1/2 = 0$ condition is reasonable from the perspective of Witten's formulas. This is worth digesting.}
-
-Our goal today is to actually leverage the arithmetic geometry in \Cref{Theta3IsTrivial}, rather than just using the body of results about $\theta$--functions as inspiration.  In order to do this, we need to place ourselves in a situation where algebraic topology is directly linked to abelian varieties.
+We now actually leverage the arithmetic geometry in \Cref{Theta3IsTrivial} by placing ourselves in a situation where algebraic topology is directly linked to abelian varieties.
 
 \begin{definition}\label{DefnEllipticSpectrum}
-An \textit{elliptic spectrum} consists of a even--periodic ring spectrum $E$, a (generalized) elliptic curve $C$ over $\Spec E_0$, and a fixed isomorphism \[\phi\co C^\wedge_0 \xrightarrow{\cong} \CP^\infty_E.\]  A map among such spectra consists of a map of ring spectra $f\co E \to E'$ together with a specified isomorphism of elliptic curves $\psi\co f^* C \to C'$.
-\todo{Mention that elliptic curves and cohomology theories can be brought together more closely, as in \cite[Sections 4 and 5.3]{LurieSurveyOfEll}.}
+An \textit{elliptic spectrum} consists of a even--periodic ring spectrum $E$, a (generalized) elliptic curve $C$ over $\Spec E_0$, and a fixed isomorphism \[\phi\co C^\wedge_0 \xrightarrow{\cong} \CP^\infty_E.\]  A map among such spectra consists of a map of ring spectra $f\co E \to E'$ together with a specified isomorphism of elliptic curves $\psi\co f^* C \to C'$.\footnote{Elliptic curves and cohomology theories can be brought much closer together still, as in Lurie's framework~\cite[Sections 4 and 5.3]{LurieSurveyOfEll}.}
 \end{definition}
 
 \begin{remark}
 We have chosen to consider \emph{isomorphisms} of elliptic curve rather than general homomorphisms because this is what algebraic topology suggests that we do.  After all, the mixed cooperations of complex-oriented ring spectra are modeled by the isomorphisms of the associated formal groups.  In the next Case Study, we will develop a theory (with an attendant notion of a ``context'') which incorporates isogenies of elliptic curves in addition to isomorphisms.
 \end{remark}
 
-Coupling \Cref{DefnEllipticSpectrum} to \Cref{BU6Triumvirate} and \Cref{Theta3IsTrivial}, we learn the following result:
+Coupling \Cref{DefnEllipticSpectrum} to \Cref{BU6Triumvirate} and \Cref{Theta3IsTrivial}, we conclude the following:
 \begin{corollary}\label{EllipticSpectraAreOriented}
 An elliptic spectrum $(E, C, \phi)$ receives a canonical map of ring spectra \[MU[6, \infty) \to E.\]  This map is natural in choice of elliptic spectrum: if $(E, C, \phi) \to (E', C', \phi')$ is a map of elliptic spectra, then the triangle
 \begin{center}
@@ -1149,7 +1150,14 @@ commutes. \qed
 \end{corollary}
 
 \begin{example}
-Our basic example of an elliptic curve was $E_\Lambda = \C / \Lambda$, with $\Lambda$ a complex lattice.  The projection $\C \to \C / \Lambda$ has a local inverse which defines an isomorphism of formal groups \[\phi\co (E_\Lambda)^\wedge_0 \xrightarrow{\cong} \G_a \otimes \C.\]  Accordingly, we define an elliptic spectrum $HE_\Lambda P$ whose underlying ring spectrum is $H\C P$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to HE_\Lambda P,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n \in HE_\Lambda P_{2n}$ \todo{What is $u_\Lambda^n$?  How is it normalized?} for some $\Phi_\Lambda(M) \in \C$.
+Our basic example of an elliptic curve was $E_\Lambda = \C / \Lambda$, with $\Lambda$ a complex lattice.  The projection $\C \to \C / \Lambda$ has a local inverse which defines an isomorphism of formal groups \[\phi\co (E_\Lambda)^\wedge_0 \xrightarrow{\cong} \G_a \times \Spec \C,\] as well as an isomorphism of cotangent spaces
+\begin{center}
+\begin{tikzcd}
+T^0 (E_\Lambda)^\wedge_0 \arrow[iso]{r} \arrow[iso, leftarrow]{d} & \C \arrow[equal]{d} \\
+T^0 (\G_a \times \Spec \C) \arrow[iso]{r} & \C.
+\end{tikzcd}
+\end{center}
+Accordingly, we define an elliptic spectrum $HE_\Lambda P$ whose underlying ring spectrum is $H\C P$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to HE_\Lambda P,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n \in HE_\Lambda P_{2n}$, where $u_\Lambda$ is the canonical element of $\pi_2 HE_\Lambda P = \Gamma(\omega_{\CP^\infty_{HE_\Lambda P}})$ and $\Phi_\Lambda(M) \in \C$ is some complex number.
 \end{example}
 
 \begin{example}
@@ -1157,29 +1165,28 @@ The naturality of the $MU[6, \infty)$--orientation moves us to consider more tha
 \end{example}
 
 \begin{example}\label{OrdinaryHomologyInUpperHalfPlaneEx}
-This equation leads us to consider all curves $E_\Lambda$ simultaneously---or, equivalently, to consider modular forms.  The lattice $\Lambda$ can be put into a standard form, by picking a basis and scaling it so that one vector lies at $1$ and the other vector lies in the upper half-plane.  This gives a cover \[\h \to \moduli{ell} \times \Spec \C\] \todo{Is the notation $\h$ for the upper half plane standard here?  Usually it's denoted $\mathbb{H}$?}which is well-behaved\todo{You probably mean ``unramified''.} away from the special points $i$ and $e^{2 \pi i / 6}$.  A \textit{complex modular form of weight $k$} is an analytic function $\h \to \C$ which satisfies a certain decay condition and which is quasi-periodic for the action of $SL_2(\Z)$, i.e.,\footnote{That is, for the action of change of basis vectors.} \[f\left(M; \frac{a \tau + b}{c \tau + d} \right) = (c \tau + d)^n f(M; \tau).\]
+This equation leads us to consider all curves $E_\Lambda$ simultaneously---or, equivalently, to consider modular forms.  The lattice $\Lambda$ can be put into a standard form, by picking a basis and scaling it so that one vector lies at $1$ and the other vector lies in the upper half-plane.  This gives a cover \[\h \to \moduli{ell} \times \Spec \C\] which is well-behaved (i.e., unramified) away from the special points $i$ and $e^{2 \pi i / 6}$.  A \textit{complex modular form of weight $k$} is an analytic function $\h \to \C$ which satisfies a certain decay condition and which is quasi-periodic for the action of $SL_2(\Z)$, i.e.,\footnote{That is, for the action of change of basis vectors.} \[f\left(M; \frac{a \tau + b}{c \tau + d} \right) = (c \tau + d)^n f(M; \tau).\]
 
 Using these ideas, we construct a cohomology theory $H \sheaf O_{\h} P$, where $\sheaf O_{\h}$ is the ring of complex-analytic functions on the upper half-plane.  The $\h$--parametrized family of elliptic curves \[\h \times \C / (1, \tau) \to \h,\] together with the logarithm, present $H \sheaf O_{\h} P$ as an elliptic spectrum $H\h P$.  The canonical map $\Phi\co MU[6, \infty) \to H\h P$ specializes at a point to give the functions $\Phi(-; \Lambda)$ considered above, and hence $\Phi(M)$ is itself a complex modular form of weight $k$.
 \end{example}
 
-In fact, this is a ghost of Ochanine and Witten's modular genus from \Cref{OchanineWittenTheorem}, as a bordism class in $MU[6, \infty)_{2n}$ is, in particular, a bordism class in $M\String_{2n}$.  However, they know more about this function than we can presently see: they claim that it has an integral $q$--expansion.  In terms of the modular form, its $q$--expansion is given by building the Taylor expansion ``at $\infty$'' (using that unspoken decay condition).  In order to use our topological methods, it would be nice to have an elliptic spectrum embodying these $q$--expansions in the same way that $H\h P$ embodied holomorphic functions, together with a comparison map that trades a modular form for its $q$--expansion.  The main ideas leading to such a spectrum come from considering the behavior of $E_\Lambda$ as $\tau$ tends to $i \cdot \infty$.
+In fact, this totalized map $\Phi$ is a ghost of Ochanine and Witten's modular genus from \Cref{OchanineWittenTheorem}, as a bordism class in $MU[6, \infty)_{2n}$ is, in particular, a bordism class in $M\String_{2n}$.  However, they know more about this function than we can presently see: for instance, they claim that it has an integral $q$--expansion.  In terms of the modular form, its $q$--expansion is given by building the Taylor expansion ``at $\infty$'' (using that unspoken decay condition).  In order to use our topological methods, it would be nice to have an elliptic spectrum embodying these $q$--expansions in the same way that $H\h P$ embodied holomorphic functions, together with a comparison map that trades a modular form for its $q$--expansion.  The main ideas leading to such a spectrum come from considering the behavior of $E_\Lambda$ as $\tau$ tends to $i \cdot \infty$.
 
 \begin{definition}
 Note that as $\tau \to i \cdot \infty$, the parameter $q = \exp(2 \pi i \tau)$ tends to $0$.  In the multiplicative model of \Cref{SectionEllipticCurvesAndThetaFunctions}, we considered $D'$ the punctured complex disk with associated family of elliptic curves \[C'_{\mathrm{an}} = \C^\times \times D' / (u, q) \sim (qu, q).\]  The fiber of $C'$ over a particular point $q \in D'$ is the curve $\C^\times / q^{\Z}$. %  , and $\theta$ determines a holomorphic function on the total space $\C^\times \times D'$.
-The Weierstrass equations give an embedding of $C'_{\mathrm{an}}$ into $D' \times \CP^2$ described by \[wy^2 + wxy = x^3 - 5 \alpha_3 w^2 x + -\frac{5 \alpha_3 + 7 \alpha_5}{12}w^3\] for certain functions\todo{Do these have weights?} $\alpha_3$ and $\alpha_5$ of $q$.  At $q = 0$, these curve collapses to the twisted cubic \[wy^2 + wxy = x^3,\] and over the whole open unit disc $D$ we call this extended family $C_{\mathrm{an}}$.
+The Weierstrass equations give an embedding of $C'_{\mathrm{an}}$ into $D' \times \CP^2$ described by \[wy^2 + wxy = x^3 - 5 \alpha_3 w^2 x + -\frac{5 \alpha_3 + 7 \alpha_5}{12}w^3\] for certain functions\todo{Do these have weights?} $\alpha_3$ and $\alpha_5$ of $q$.  At $q = 0$, this curve collapses to the twisted cubic \[wy^2 + wxy = x^3,\] and over the whole open unit disc $D$ we call this extended family $C_{\mathrm{an}}$.
 
-Now let $A \subseteq \Z\ps{q}$ by the subring of power series which converge absolutely on the open unit disk.  It turns out that the coefficients of the Weierstrass cubic (i.e., $5\alpha_3$ and $\frac{1}{12}(5\alpha_3+7\alpha_5)$) lie in $A$, so it determines a generalized elliptic curve $C$ over $\Spec A$, and $C_{\mathrm{an}}$ is the curve given by base-change from $A$ to the ring of holomorphic functions on $D$.\citeme{Find a reference for this. You may be able to look in Morava's Section 5}  The \textit{Tate curve} $C_{\Tate}$ is defined to be the family over the intermediate object $D_{\Tate} = \Spec \Z\ps{q}$ base-changed from $A$.
+Now let $A \subseteq \Z\ps{q}$ be the subring of power series which converge absolutely on the open unit disk.  It turns out that the coefficients of the Weierstrass cubic (i.e., $5\alpha_3$ and $\frac{1}{12}(5\alpha_3+7\alpha_5)$) lie in $A$, so it determines a generalized elliptic curve $C$ over $\Spec A$, and $C_{\mathrm{an}}$ is the curve given by base-change from $A$ to the ring of holomorphic functions on $D$.\citeme{Find a reference for this. You may be able to look in Morava's Section 5}  The \textit{Tate curve} is the intermediate family $C_{\Tate}$ over the intermediate base $D_{\Tate} = \Spec \Z\ps{q}$, as base-changed from $A$.
 \end{definition}
 
 The singular fiber at $q = 0$ prompts us to enlarge our notion of elliptic curve slightly.
 
-\begin{definition}[{\cite[Definitions B.1-2]{AHSTheoremOfTheCube}}]\citeme{Is this right? Check the published AHS to make sure}
-\todo{Erick didn't like the name ``generalized elliptic curve'', which already means something else in arithmetic (disallowing cuspidal singularities and also allowing other funny behavior). He didn't have a second suggestion, though.}
-A \textit{Weierstrass curve} is \emph{any} curve of the form\todo{You use $w$s above but $z$s here.} \[C(a_1, a_2, a_3, a_4, a_6) := \left\{ ([x : y : z], s) \in \mathbb P^2 \times S \middle| \begin{array}{c} y^2 z + a_1(s) xyz + a_3(s) yz^2 = \\ x^3 + a_2(s) x^2 z + a_4(s) x z^2 + a_6(s) z^3 \end{array} \right\}.\]  A \textit{generalized elliptic curve} over $S$ is a scheme $C$ equipped with maps \[S \xrightarrow{0} C \xrightarrow{\pi} S\] such that $C$ is Zariski--locally isomorphic to a system of Weierstrass curves (in a way preserving $0$ and $\pi$).\footnote{An elliptic curve in the usual sense turns out to be a generalized elliptic curve which is smooth, i.e., the discriminant of the Weierstrass equations is a unit.}
+\begin{definition}[{\cite[Definitions B.1-2]{AHSTheoremOfTheCube}}]
+A \textit{Weierstrass curve} is \emph{any} curve of the form \[C(a_1, a_2, a_3, a_4, a_6) := \left\{ ([x : y : w], s) \in \mathbb P^2 \times S \middle| \begin{array}{c} y^2 w + a_1(s) xyw + a_3(s) yw^2 = \\ x^3 + a_2(s) x^2 w + a_4(s) x w^2 + a_6(s) w^3 \end{array} \right\}.\]  A \textit{generalized elliptic curve} over $S$ is a scheme $C$ equipped with maps \[S \xrightarrow{0} C \xrightarrow{\pi} S\] such that $C$ is Zariski--locally isomorphic to a system of Weierstrass curves (in a way preserving $0$ and $\pi$).\footnote{An elliptic curve in the usual sense turns out to be a generalized elliptic curve which is smooth, i.e., the discriminant of the Weierstrass equations is a unit.}\footnote{Unfortunately, ``generalized elliptic curve'' already means something in number theory, but Ando, Hopkins, and Strickland reused this phrase for this definition in their published article.  In a number theorist's language, these are ``stable curves of genus $1$ with specified section in the smooth locus''.  No adjective other than ``generalized'' seems to be much better: singular, for instance, evokes the right idea but is also already taken.}
 \end{definition}
 
-\begin{remark}\label{TwistedCubicGivesGm}\citeme{Some kind of reference would be appreciated}
-The singularities of a degenerate Weierstrass equation always occur outside of a formal neighborhood of the marked identity point, which in fact still carries the structure of a formal group.  The formal group associated to the twisted cubic is the multiplicative group\todo{The smooth locus of the twisted cubic is actually also the \emph{informal} multiplicative group.  The $\theta$--function we're going to describe below also has the property that it specializes at $q = 0$ to the usual coordinate $(1 - u)$ on $\Gm$, which is nice.  This degeneracy to honest--$\Gm$ is probably also related to the use of the Todd orientation further down.}, and the isomorphism making the identification extends a family of such isomorphisms $\phi$ over the nonsingular part of the Tate curve.
+\begin{remark}[{\cite[pg.\ 670]{AHSTheoremOfTheCube}}]\label{TwistedCubicGivesGm}
+The singularities of a degenerate Weierstrass equation always occur outside of a formal neighborhood of the marked identity point, which in fact still carries the structure of a formal group.  The formal group associated to the twisted cubic is the formal multiplicative group (indeed, the smooth locus of the twisted cubic \emph{is the multiplicative group}), and the isomorphism making the identification extends a family of such isomorphisms $\phi$ over the nonsingular part of the Tate curve.
 \end{remark}
 
 \begin{definition}[{\cite[Section 5]{MoravaFormsOfKthy}, \cite[Section 2.7]{AHSTheoremOfTheCube}}]
@@ -1189,14 +1196,18 @@ The elliptic spectrum $K_{\Tate}$, called \textit{Tate $K$--theory}, has as its 
 \noindent The trade for the breadth of this definition is that theorems pulled from the study of abelian varities have to be shown to extend uniquely to those generalized elliptic curves which are not smooth curves.
 
 \begin{theorem}[{\cite[Propositions 2.57 and B.25]{AHSTheoremOfTheCube}}]\label{GeneralizedTheta3IsTrivial}
-For a generalized elliptic curve $C$, there is a canonical\todo{You should compare this with the unicity statement in the previous iteration of this theorem, plus how it's \emph{not} unique at these singular points.} trivialization $s$ of $\Theta^3 \sheaf I(0)$ which is compatible with change of base and with isomorphisms.  If $C$ is a smooth elliptic curve, then $s$ agrees with that of \Cref{Theta3IsTrivial}. \qed
+For a generalized elliptic curve $C$, there is a canonical\footnote{Canonical, with a unique continuous extension from the smooth bulk of the moduli of generalized elliptic curves, but \emph{not} actually unique over the singular locus.} trivialization $s$ of $\Theta^3 \sheaf I(0)$ which is compatible with change of base and with isomorphisms.  If $C$ is a smooth elliptic curve, then $s$ agrees with that of \Cref{Theta3IsTrivial}. \qed
 \end{theorem}
 
 \begin{corollary}\label{D3thetaTrivializes}
-The trivializing section $s$ associated to $C_{\Tate}$ is given by $\delta^{\circ 3} \theta$, where\todo{This is a little funny, because this is \emph{not} one of the usual $\theta$--functions from \Cref{SectionEllipticCurvesAndThetaFunctions}.  I think we should state its quasiperiodicity relation again, since it doesn't agree with the old one.} \[\theta_q(u) = (1 - u)\prod_{n > 0}(1 - q^n u)(1 - q^n u^{-1}).\]
+The trivializing section $s$ associated to $C_{\Tate}$ is given by $\delta^{\circ 3} \tilde \theta$, where $\tilde \theta_q$ is a slight modification of the classical $\theta$--function:
+\begin{align*}
+\tilde \theta_q(u) & = (1 - u)\prod_{n > 0}(1 - q^n u)(1 - q^n u^{-1}), &
+\tilde \theta_q(qu) & = -u^{-1} \tilde\theta_q(u).
+\end{align*}
 \end{corollary}
 \begin{proof}
-Even though $\theta$ is not a function on $C_{\Tate}$ because of quasiperiodicity, it does trivialize both $\pi^* \sheaf I(0)$ for $\pi\co \C^\times \times D \to C_{\Tate}$ and $\sheaf I(0)$ for $(C_{\Tate})^\wedge_0$.  Moreover, the quasiperiodicities in the factors in the formula defining $\delta^3 \theta|_{(C_{\Tate})^\wedge_0}$ cancel each other out, and the function does descend to give a trivialization of $\Theta^3 \sheaf I(0)$.  By the unicity clause in \Cref{GeneralizedTheta3IsTrivial}, it must give a formula expressing $s$.\todo{This use of unicity is a little opaque to me.  I guess we're using that $\delta^3 \theta$ is ``obviously'' the natural trivializing section for nonsingular values of $q$?  Or maybe we just mean that the Tate curve covers much of $\moduli{ell} \times \Spec \C$.}
+Even though $\theta$ is not a function on $C_{\Tate}$ because of its quasiperiodicity, it does trivialize both $\pi^* \sheaf I(0)$ for $\pi\co \C^\times \times D \to C_{\Tate}$ and $\sheaf I(0)$ for $(C_{\Tate})^\wedge_0$.  Moreover, the quasiperiodicities in the factors in the formula defining $\delta^3 \tilde \theta|_{(C_{\Tate})^\wedge_0}$ cancel each other out, and the resulting function \emph{does} descend to give a trivialization of $\Theta^3 \sheaf I(0)$.  By the unicity clause in \Cref{GeneralizedTheta3IsTrivial}, it must give a formula expressing $s$.
 \end{proof}
 
 \begin{definition}
@@ -1217,25 +1228,30 @@ K_{\Tate} \arrow{r} & K_{\Tate} \otimes \C & H\h P \arrow{l}
 models $q$--expansion.  The arrow $K_{\Tate} \to K_{\Tate} \otimes \C$ is injective on homotopy, which shows that the $q$--expansion of $\Phi(M)$ lands in the subring of integral power series.
 \end{proof}
 
-\todo{Erick asked whether these are cusp forms (i.e., vanishing to first order at $i \cdot \infty$) or not. They aren't: the spectrum $\tmf$ has homotopy starting in degree $0$, with no serious gaps toward $\infty$, and the fiber of the evaluation map to $KO$ ``has homotopy starting in degree $24$'', ignoring some low--dimensional phenomena.  So, you need to know that $\S \to M\String \to \tmf$ is nonzero a little ways above degree $3$ to conclude nontriviality, but that is the case, since $\S[0, 7) \to M\String[0, 7)$ is an equivalence.}
-
-In fact, \Cref{D3thetaTrivializes} gives us access to a formula for $\sigma_{\Tate} = \delta^3 \theta$, where $\theta$ here is interpreted as a coordinate on $(C_{\Tate})^\wedge_0$.  This means that $\sigma_{\Tate}$ belongs to the commutative triangle
+We can use the formula $\sigma_{\Tate} = \delta^3 \tilde \theta$ appearing in \Cref{D3thetaTrivializes} to explicitly understand the genus associated to $\sigma_{\Tate}$ by passing to homotopy groups.  To begin, the appearances of the map $\delta$ in \Cref{BUtoBUZ}, \Cref{BSUToBU}, and \Cref{MSUToMU6} show that $\sigma_{\Tate}$ belongs to the commutative triangle
 \begin{center}
 \begin{tikzcd}
-MU[6, \infty) \arrow["\delta"']{d} \arrow["\sigma_{\Tate}"]{drrr} \\
-MSU \arrow["\delta"']{r} & MU \arrow["\delta"']{r} & MUP \arrow["\theta"']{r} & KU\ps{q}.
+MU[6, \infty) \arrow["\delta"]{r} \arrow["\sigma_{\Tate}"']{drrr} & MSU \arrow["\delta"]{r} & MU \arrow["\delta"]{r} & MUP \arrow["\tilde \theta"]{d} \\
+& & & KU\ps{q}.
 \end{tikzcd}
 \end{center}
-To begin, the usual map $MUP \to KU$ selects the coordinate $f(u) = 1 - u$ on the formal completion of $\Gm = \Spec \Z[u^\pm]$.  The induced map \[MU \xrightarrow{\delta} MUP \to KU\] sends $f$ to the rigid section $\delta f$ of \[\Theta^1 \sheaf I(0) = \sheaf I(0)_0 \otimes \sheaf I(0)^{-1} \cong \omega \otimes \sheaf I(0),\] and in terms of the right-hand side, \[\delta f = \frac{f'(0)}{f(u)} Du = \frac{1}{1 - u} \left( - \frac{du}{u} \right),\] where $Du$ is the invariant differential.  We can augment this to a calculation of $\delta \theta$ by considering the composite \todo{This first map is one of the units.  Which is it?} \[\delta \theta\co MU \xrightarrow{\eta_R} MU \sm MU \simeq MU \sm BU_+ \xrightarrow{\delta(1 - u) \sm \theta'} K_{\Tate}\] where $\theta'$ is the element of $BU^{K_{\Tate}} \cong C^1(\widehat C_{\Tate}; \Gm)$ given by the formula\todo{I'm confused.  Where did this class come from? Is it the derivative of $\theta$?  The $\delta$--derivative of $\theta$?  Something else? Actually, it sort of looks like $(1 - u) \cdot \theta(1) / \theta(u)$...?} \[\theta' = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}.\]  This means that its effect on a line bundle is determined by \[\theta'(1 - \L) = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n \L)(1 - q^n \L^{-1})},\] and its effect on vector bundles in general is determined by the splitting principle and an exponential law.  In fact, one can work this exponential law out to mean \[\theta'(\dim V \cdot 1 - V) = \bigotimes_{n \ge 1} \bigoplus_{j \ge 0} \Sym^j(\dim V \cdot 1 - V \otimes_{\R} \C) q^{jn} =: \bigotimes_{n \ge 1} \Sym_{q^n}(- \bar V_{\C}).\]
-
-Knowing that $(\eta_R)_*\co MU_* \to \pi_*(MU \sm \Susp^\infty_+ BU)$ sends a manifold $M$ with stable normal bundle $\nu$ to the pair $(M, \nu)$, we compute the composite on homotopy to be
+We will analyze this triangle by comparing $\tilde\theta$ to the usual $MUP$--orientation of $KU$, which selects the coordinate $f(u) = 1 - u$ on the formal completion of $\Gm = \Spec \Z[u^\pm]$.  Appealing to \Cref{BUtoBUZ}, the induced $MU$--orientation \[MU \xrightarrow{\delta} MUP \xrightarrow{\Td} KU\] sends $f$ to the rigid section $\delta f$ of \[\Theta^1 \sheaf I(0) = \sheaf I(0)_0 \otimes \sheaf I(0)^{-1} \cong \omega \otimes \sheaf I(0)\] given by \[\delta f = \frac{1}{1 - u} \left( - \frac{du}{u} \right).\]  The difference between $\delta \Td$ and $\delta \tilde\theta$ is expressed by an element $\psi \in C^1(\widehat C_{\Tate}; \Gm)$, given explicitly by the quotient formula \[\psi = \left(\frac{\Td(1)}{\Td(u)}\right)^{-1} \cdot \frac{\theta_q(1)}{\theta_q(u)} = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}.\]  This gives a re-expression of $\delta \tilde\theta$ as the composite \[\delta \theta\co MU \xrightarrow{\eta_R} MU \sm MU \simeq MU \sm BU_+ \xrightarrow{\delta(1 - u) \sm \psi} K_{\Tate},\] and hence its effect on a line bundle is determined by the evaluation of this characteristic series: \[\psi(1 - \L) = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n \L)(1 - q^n \L^{-1})}.\]  Its effect on vector bundles in general is determined by the splitting principle and an exponential law, which after some computation gives the generic formula \[\psi(\dim V \cdot 1 - V) = \bigotimes_{n \ge 1} \bigoplus_{j \ge 0} \Sym^j(\dim V \cdot 1 - V \otimes_{\R} \C) q^{jn} =: \bigotimes_{n \ge 1} \Sym_{q^n}(- \bar V_{\C}).\]  Finally, the map $(\eta_R)_*\co MU_* \to \pi_*(MU \sm \Susp^\infty_+ BU)$ sends a manifold $M$ with stable normal bundle $\nu$ to the pair $(M, \nu)$, so we at last compute
 \begin{align*}
 \sigma_{\Tate}(M \in \pi_{2n} MU[6, \infty)) & = (\delta(1-u) \sm \theta')(M, \nu) \\
 & =: \Td\left(M; \bigotimes_{n \ge 1} \Sym_{q^n}(\bar \tau_{\C}) \right).
 \end{align*}
 This is exactly Witten's formula for his genus, as applied to complex manifolds with first two Chern classes trivialized.
 
-\todo[inline]{This is missing something.  We have written $\Td(M) (-du/u)^n$ for $MU_{2n} \to KU_{2n}$, the effect in homotopy of the usual coordinate on $KU$.  You can also think of this as $p_! 1$ for $1 \in K^{2n} M$ and $p\co M \to *$.  More generally, then, $\Td(M; V) := p_! V$.  But, also, we did describe pushforwards earlier... maybe we can make use of this?}
+\begin{remark}[{\cite[Section 1.5]{RezkFelixKlein}}]
+Witten defines his characteristic series for \emph{oriented} manifolds by the formula
+\begin{align*}
+K_{\mathrm{Witten}}(x) & = \exp\left( \sum_{k=2}^\infty 2 G_{2k}(\tau) \cdot \frac{x^{2k}}{(2k)!} \right) \\
+& = \frac{x/2}{\sinh(x/2)} \cdot \left(\prod_{n=1}^\infty \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}\right) \cdot e^{-G_2(\tau) x^2},
+\end{align*}
+where $G_{2k}$ is the $2k${\th} Eisenstein series.  Noting that $G_2$ is \emph{not} a modular form, the condition that $p_1(M) / 2$ vanish is precisely the condition that $G_2$ contribute nothing to the sum, so that the remainder \emph{is} a modular form.
+\end{remark}
+
+
 
 
 
