@@ -1248,7 +1248,7 @@ MU[6, \infty) \arrow["\delta"]{r} \arrow["\sigma_{\Tate}"']{drrr} & MSU \arrow["
 \end{center}
 We will analyze this triangle by comparing $\tilde\theta$ to the usual $MUP$--orientation of $KU$, which selects the coordinate $f(u) = 1 - u$ on the formal completion of $\Gm = \Spec \Z[u^\pm]$.  Appealing to \Cref{BUtoBUZ}, the induced $MU$--orientation \[MU \xrightarrow{\delta} MUP \xrightarrow{\Td} KU\] sends $f$ to the rigid section $\delta f$ of \[\Theta^1 \sheaf I(0) = \sheaf I(0)_0 \otimes \sheaf I(0)^{-1} \cong \omega \otimes \sheaf I(0)\] given by \[\delta f = \frac{1}{1 - u} \left( - \frac{du}{u} \right).\]  The difference between $\delta \Td$ and $\delta \tilde\theta$ is expressed by an element $\psi \in C^1(\widehat C_{\Tate}; \Gm)$, given explicitly by the quotient formula \[\psi = \left(\frac{\Td(1)}{\Td(u)}\right)^{-1} \cdot \frac{\tilde \theta_q(1)}{\tilde \theta_q(u)} = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}.\]  This gives a re-expression of $\delta \tilde\theta$ as the composite \[\delta \tilde\theta\co MU \xrightarrow{\eta_R} MU \sm MU \simeq MU \sm BU_+ \xrightarrow{\delta\Td \sm \psi} K_{\Tate},\] and hence its effect on a line bundle is determined by the evaluation of this characteristic series: \[\psi(1 - \L) = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n \L)(1 - q^n \L^{-1})}.\]  Its effect on vector bundles in general is determined by the splitting principle and an exponential law, which after some computation\citeme{AHS} gives the generic formula \[\psi(\dim V \cdot 1 - V) = \bigotimes_{n \ge 1} \bigoplus_{j \ge 0} \Sym^j(\dim V \cdot 1 - V \otimes_{\R} \C) q^{jn} =: \bigotimes_{n \ge 1} \Sym_{q^n}(- \bar V_{\C}).\]  Finally, the map $(\eta_R)_*\co MU_* \to \pi_*(MU \sm \Susp^\infty_+ BU)$ sends a manifold $M$ with stable normal bundle $\nu$ to the pair $(M, \nu)$, so we at last compute
 \begin{align*}
-\sigma_{\Tate}(M \in \pi_{2n} MU[6, \infty)) & = (\delta(1-u) \sm \theta')(M, \nu) \\
+\sigma_{\Tate}(M \in \pi_{2n} MU[6, \infty)) & = (\delta \Td \sm \theta')(M, \nu) \\
 & =: \Td\left(M; \bigotimes_{n \ge 1} \Sym_{q^n}(\bar \tau_{\C}) \right).
 \end{align*}
 This is exactly Witten's formula for his genus, as applied to complex manifolds with first two Chern classes trivialized.
@@ -1260,6 +1260,10 @@ K_{\mathrm{Witten}}(x) & = \exp\left( \sum_{k=2}^\infty 2 G_{2k}(\tau) \cdot \fr
 & = \frac{x/2}{\sinh(x/2)} \cdot \left(\prod_{n=1}^\infty \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}\right) \cdot e^{-G_2(\tau) x^2},
 \end{align*}
 where $G_{2k}$ is the $2k${\th} Eisenstein series.  Noting that $G_2$ is \emph{not} a modular form, the condition that $p_1(M) / 2$ vanish is precisely the condition that $G_2$ contribute nothing to the sum, so that the remainder \emph{is} a modular form.
+\end{remark}
+
+\begin{remark}[{\cite{AndoMorava}}]
+Another location where this series $\psi$ appears is in the theory of Tate $p$--divisible groups of Ando and Morava (and, in some sense, in the sense of Katz and Mazur).  For a formal group $\G$ over $\Spf R$ with group law $+_\phi$, they consider the Weierstrass product \[\Theta_{\phi}(x; q) = x \cdot \prod_{\substack{k \in \Z \\ k \ne 0}} \frac{(x +_\phi [k]_\phi(q))}{[k]_\phi(q)} \in R\ps{x,q},\] which plays the role of a kind of $\theta$--function for $\G$.  They also connect this series the quotient function mapping to the group scheme $\G / q^{\Z}$ (in the sense of \todo{CITE ME OUT OF CHAPTER 6}), which they further identify as the universal extension of $\G$ by a constant $p$--divisible group of dimension $1$.  In the presense of a global object $\mathbb G$ specializing to $\G$ (as in the case of $\G_a$ or $\G_m$), they show how to modify this product to an analytically convergent power series, recovering the characteristic series for the $\widehat A$--genus and the $L$--genus.  The higher height analogues of these results seem very mysterious and very interesting.
 \end{remark}
 
 
@@ -1425,9 +1429,24 @@ Applying the Thom spectrum functor to the fiber square gives the pushout diagram
 \S \arrow{r} & M\String,
 \end{tikzcd}
 \end{center}
-or, equivalently, an equivalence \[M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S.\] \todo{It seems that this approach, which I presume is the one that ultimately works, is independent of all the earlier work involving $B\Spin$.} This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures \todo{You have not introduced $\Sigma$--structures yet.}.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
+or, equivalently, an equivalence \[M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S.\]
+\todo{This approach is \emph{not} independent of all the previous fuss with $B\Spin$.  We still need all of that to conclude that $B\Spin \to BU[6, \infty)$ induces an inclusion of formal schemes, which identifies the formal scheme associated to $\Spin/SU$ with $\ker \tau$.}
+\todo{There's a gap here. I think that we learn that $\Spin/SU \to BU[6, \infty)$ is an inclusion, and showing that that includes to the right thing along the zero-section is an additional argument.}
+This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures \todo{You have not introduced $\Sigma$--structures yet.}.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
 
 \todo{Mike thinks that $K(2)_* \Spin / SU \to K(2)_* BU[6, \infty)$ follows from this being a map of co/commutative Hopf algebras which is injective on indecomposables. I don't know how to prove this hypothesis condition and I also don't know how to prove the reduction.  Bousfield's paper \textit{On $\lambda$--rings and the $K$--theory of infinite loopspaces} in Theorem 10.8 gives a description of flat Hopf algebras in the setting of periodic $K$--theory (or, rather, a reference).  It looks like his conclusion is that flat maps are \emph{precisely} the inclusions of Hopf algebras.  If we could adapt something like this to our situation, we would immediately learn that $K(2)_* \Spin / SU \to K(2)_* BU[6, \infty)$ is flat from Kitchloo--Laures--Wilson.}
+
+
+
+
+\begin{center}
+\begin{tikzcd}[column sep=0em]
+& \Spin / SU \arrow[equal]{ld} \arrow{rr} \arrow[equal]{dd} & & BU[6, \infty) \arrow[equal]{ld} \arrow{rr} \arrow{dd} & & B\String \arrow[equal]{ld} \arrow{dd} \\
+\OS{kO[8, \infty)}{-2} \arrow[crossing over]{rr} & & \OS{kU[8, \infty)}{-2} \arrow[crossing over]{rr} & & \OS{(\Susp^2 kO)[8, \infty)}{-2} \\
+& \Spin/SU \arrow[equal]{ld} \arrow{rr} & & BSU \arrow[equal]{ld} \arrow{rr} & & B\Spin \arrow[equal]{ld} \\
+\OS{kO[6, \infty)}{-2} \arrow{rr} \arrow[equal]{uu} & & \OS{kU[6, \infty)}{-2} \arrow{rr} \arrow[leftarrow,crossing over]{uu} & & \OS{(\Susp^2 kO)[6, \infty)}{-2} \arrow[leftarrow,crossing over]{uu}
+\end{tikzcd}
+\end{center}
 
 
 
