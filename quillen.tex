@@ -64,7 +64,13 @@ Harkening back to \Cref{FirstAppearanceOfInternalAut}, the definition of the $R$
 There is an affine scheme $T_x X$ defined by \[(T_x X)(T) := \left\{ (u, f) \middle| \begin{array}{c} u\co \Spec T \to S, \\ f \in T_{u^* x} u^* X \end{array} \right\}.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
-We specialize an argument of Strickland~\cite[Proposition 2.94]{StricklandFSFG} to the case at hand.\footnote{Strickland also shows that mapping schemes between formal schemes exist considerably more generally~\cite[Theorem 4.69]{StricklandFSFG}.  The source either has to be ``finite'' in some sense, in which case the proof proceeds along the lines presented here, or it has to be \textit{coalgebraic}, which is an important technical tool that we discuss much later in \Cref{DefnCoalgebraicFormalScheme}.}  We start by seeking an $R$--algebra $B$ such that $R$--algebra maps $B \to T$ biject with pairs of maps $u\co R \to T$ and $T$--algebra maps \[f\co A \otimes_R T \to R[\eps] / \eps^2 \otimes_R T.\]  Such maps $f$ biject with $R$--algebra maps \[A \to R[\eps] / \eps^2 \otimes_R T.\]  Noting that $R[\eps] / (\eps)^2$ is free and finite--dimensional as an $R$--module\todo{Seriously consider just writing out what you mean here in symbols.}, we forget from $R$--algebra maps down to just $R$--module maps, use $R$--linear duality to move it to the domain, promote it back to an $R$--algebra by forming the symmetric algebra, then finally try to pick out the maps of interest by imposing a quotient.  By expanding Strickland's formulas, we arrive at the equation \[\InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) = \Spec \left. A\{1, da \mid a \in A\} \middle/ \left( \begin{array}{c} \text{$dr = 0$ for $r \in R$}, \\ d(a_1 a_2) = da_1 \cdot a_2 + a_1 \cdot da_2 \end{array} \right) \right. .\]  To extract the scheme $T_x X$ from this, we construct the pullback \[T_x X := \InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) \times_X S,\] where the structure maps are given on the left by setting $\eps = 0$ and on the right using the point $x$.  Expanding the formulas again shows that the coordinate ring of this affine scheme is given by \[\sheaf O_{T_x X} = A / I^2 \cong R \oplus T^*_x X. \qedhere\]
+We specialize an argument of Strickland~\cite[Proposition 2.94]{StricklandFSFG} to the case at hand.\footnote{Strickland also shows that mapping schemes between formal schemes exist considerably more generally~\cite[Theorem 4.69]{StricklandFSFG}.  The source either has to be ``finite'' in some sense, in which case the proof proceeds along the lines presented here, or it has to be \textit{coalgebraic}, which is an important technical tool that we discuss much later in \Cref{DefnCoalgebraicFormalScheme}.}  We start by seeking an $R$--algebra $B$ such that $R$--algebra maps $B \to T$ biject with pairs of maps $u\co R \to T$ and $T$--algebra maps \[f\co A \otimes_R T \to R[\eps] / \eps^2 \otimes_R T.\]  Such maps $f$ biject with $R$--algebra maps \[A \to R[\eps] / \eps^2 \otimes_R T.\]  Using the sequence of inclusions
+\begin{align*}
+\CatOf{Algebras}_{R/}(A, R[\eps] / \eps^2 \otimes_R T) & \subseteq \CatOf{Modules}_R(A, R[\eps] / \eps^2 \otimes_R T) \\
+& \cong \CatOf{Modules}_R(A \otimes_R (R[\eps] / \eps^2)^*, T) \\
+& \cong \CatOf{Algebras}_{R/}(\Sym_R(A \otimes_R (R[\eps] / \eps^2)^*), T),
+\end{align*}
+we see that we can pick out the original mapping set by passing to a quotient of the domain.  After some thought, we arrive at the equation \[\InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) = \Spec \left. A\{1, da \mid a \in A\} \middle/ \left( \begin{array}{c} \text{$dr = 0$ for $r \in R$}, \\ d(a_1 a_2) = da_1 \cdot a_2 + a_1 \cdot da_2 \end{array} \right) \right. .\]  To extract the scheme $T_x X$ from this, we construct the pullback \[T_x X := \InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) \times_X S,\] where the structure maps are given on the left by setting $\eps = 0$ and on the right using the point $x$.  Expanding the formulas again shows that the coordinate ring of this affine scheme is given by \[\sheaf O_{T_x X} = A / I^2 \cong R \oplus T^*_x X. \qedhere\]
 \end{proof}
 
 \begin{definition}
@@ -83,56 +89,47 @@ Fix a scheme $S$.  A \textit{formal $S$--scheme} $X = \{X_\alpha\}_\alpha$ is an
 
 Although we will make use of these definitions generally, the following ur-example captures the most geometrically-intuitive situation.
 
-\begin{example}
-Picking the affine scheme $X = \Spec R[x_1, \ldots, x_n] = \mathbb A^n$ and the point $x = (x_1 = 0, \ldots, x_n = 0)$ gives a formal scheme known as \textit{formal affine $n$--space}, given explicitly by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  Evaluated on a test algebra $T$, $\A^1(T)$ yields the ideal of nilpotent elements in $T$ and $\A^n(T)$ its $n$--fold Cartesian power.
+\begin{example}\label{MapsOfFVarsArePowerSeries}
+Picking the affine scheme $X = \Spec R[x_1, \ldots, x_n] = \mathbb A^n$ and the point $x = (x_1 = 0, \ldots, x_n = 0)$ gives a formal scheme known as \textit{formal affine $n$--space}, given explicitly by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  Evaluated on a test algebra $T$, $\A^1(T)$ yields the ideal of nilpotent elements in $T$ and $\A^n(T)$ its $n$--fold Cartesian power.  Pointed maps $\A^n \to \A^m$ naturally biject with $m$--tuples of $n$--variate power series with no constant term.\footnote{In some sense, this Lemma is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology have long been expressed in terms of power series rings, and with this Lemma we are provided geometric interpretations for such statements.}
 \end{example}
-
-\begin{lemma}\label{MapsOfFVarsArePowerSeries}
-Pointed maps $\A^n \to \A^m$ naturally biject with $m$--tuples of $n$--variate power series with no constant term. \qed
-\end{lemma}
-
-The preceding Lemma shows how formal varieties are especially nice, because maps between them can be boiled down to statements about power series.\footnote{In some sense, this Lemma is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology have long been expressed in terms of power series rings, and with this Lemma we are provided geometric interpretations for such statements.}  In particular, this allows local theorems from analytic differential geometry to be imported, including a version of the inverse function theorem.
-
-\begin{theorem}\label{InverseFunctionTheoremForFVars}\citeme{This is 3.1.8 in the Crystals notes.}
-\todo{Wait a second, have you introduced this terminology yet?}
-A pointed map $f\co V \to W$ of finite--dimensional formal varieties is an isomorphism if and only if the induced map $T_0 f\co T_0 V \to T_0 W$ is an isomorphism of $R$--modules.
-\end{theorem}
-\begin{proof}
-\todo{Consider deleting this proof? Who cares?}
-First, reduce to the case where $V \cong \A^n$ and $W \cong \A^n$ have the same dimension, and select charts for both.  Then, $T_0 f$ is a matrix of dimension $n \times n$.  If $T_0 f$ fails to be invertible, we are done, and if it is invertible, we replace $f$ by $f \circ (T_0 f)^{-1}$ so that $T_0 f$ is the identity matrix.
-
-We now construct the inverse function by induction on degree.  Set $g^{(1)}$ to be the identity function, so that $f$ and $g^{(1)}$ are mutual inverses when restricted to the first-order neighborhood.  So, suppose that $g^{(r-1)}$ has been constructed, and consider its interaction with $f$ on the $r${\th} order neighborhood: \[g_i^{(r-1)}(f(x)) = x_i + \sum_{|J| = r} c_J x_1^{J_1} \cdots x_n^{J_n} + o(r+1). \]  By adding in the correction term \[g_i^{(r)} = g_i^{(r-1)} - \sum_{|J| = r} c_J x_1^{J_1} \cdots x_n^{J_n},\] we have $g_i^{(r)}(f(x)) = x_i + o(r)$.
-\end{proof}
 
 Part of the point of the geometric language is to divorce abstract rings (e.g., $E^0 \CP^\infty$) from concrete presentations (e.g., $E^0\ps{x}$), so we additionally reserve some vocabulary for the property of being isomorphic to $\A^n$:
 \begin{definition}\label{DefnFormalVariety}
 A \textit{formal affine variety} (of dimension $n$) is a formal scheme $V$ which is (noncanonically) isomorphic to $\A^n$.  The two maps in an isomorphism pair \[V \xrightarrow{\simeq} \A^n, \quad V \xleftarrow{\simeq} \A^n\] are called a \textit{coordinate (system)} and a \textit{parameter (system)} respectively.  Finally, an $S$--point $x\co S \to X$ is called \textit{formally smooth} when $X^\wedge_x$ gives a formal variety.
 \end{definition}
 
-\todo[inline]{Work this in, comparing property with structure.}
-\begin{theorem}\label{DetectingFormalVarieties}
-\todo{Get rid of this obnoxious auxiliary module $M$ and just call $I \otimes_R M$ by its real name: $I^n$.}
-Let $R$ be a Noetherian ring and $F\co \CatOf{Algebras}_{R/} \to \CatOf{Sets}$ be a functor such that $F(R) = 0$, $F$ takes surjective maps to surjective maps, and there is a fixed finite free $R$--module $M$ such that $F$ carries square-zero extensions of $R$--algebras $I \to B \to B'$ to product sequences \[I \otimes_R M \to G(B) \to G(B').\]  Then, $V \cong \A^n$, where $n = \dim M$.
+This definition allows local theorems from analytic differential geometry to be imported in coordinate-free language.  For instance, there is the following version of the inverse function theorem:
+\begin{theorem}\label{InverseFunctionTheoremForFVars}\citeme{This is 3.1.8 in the Crystals notes.}
+A pointed map $f\co V \to W$ of finite--dimensional formal varieties is an isomorphism if and only if the induced map $T_0 f\co T_0 V \to T_0 W$ is an isomorphism of $R$--modules. \qed
 \end{theorem}
-\begin{proof}
+
+Coordinate-free theorems are only really useful if we can verify their hypotheses by coordinate-free methods as well.  The following two results are indispensible in this regard:
+\begin{theorem}\label{DetectingFormalVarieties}
 \citeme{This is 9.6.4 in the Crystals notes}
+Let $R$ be a Noetherian ring and $F\co \CatOf{Algebras}_{R/} \to \CatOf{Sets}_{*/}$ be a functor such that $F(R) = *$, $F$ takes surjective maps to surjective maps, and there is a fixed finite free $R$--module $M$ such that $F$ carries square-zero extensions of Noetherian $R$--algebras $I \to B \to B'$ to product sequences \[* \to I \otimes_R M \to F(B) \to F(B') \to *.\]  Then, a basis $M \cong R^n$ determines an isomorphism $F \cong \A^n$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+In the motivating case where $F \cong \A^n$ is given, we can define $M$ to be \[M := F(R[\eps] / \eps^2) = (\eps)^{\times n} = R\{\eps_1, \ldots, \eps_n\}.\]  In fact, this is always the case: the square-zero extension \[(\eps) \to R[\eps] / \eps^2 \to R\] induces a product sequence and hence an isomorphism \[* \to (\eps) \otimes_R M \xrightarrow{\cong} F(R[\eps] / \eps^2) \to * \to *.\]  A choice of basis $M \cong R^{\times n}$ thus induces an isomorphism \[F(R[\eps] / \eps^2) = (\eps) \otimes_R M = M \cong R^{\times n} = \A^n(R[\eps] / \eps^2).\]  Lastly, induction shows that if the maps between the outer terms of the set-theoretic product sequence exist, then so must the middle:
+\begin{center}
+\begin{tikzcd}
+* \arrow{r} & I \otimes_R M \arrow{r} & F(B) \arrow{r} & F(B') \arrow{r} & * \\
+* \arrow{r} & I \otimes_R M \arrow[equal]{u} \arrow{r} & \A^n(B) \arrow{r} \arrow[densely dotted, "\simeq"]{u} & \A^n(B') \arrow{r} \arrow["\simeq"]{u} & *.
+\end{tikzcd}
+\end{center}
+\vspace{-\baselineskip}
 \end{proof}
 
 \begin{corollary}
-An $S$--point $x\co S \to X$ is formally smooth exactly when for any nilpotent thickenings $S \to \Spec B \to \Spec B'$ and any solid diagram
+\todo{I think this is right.}
+An $S$--point $x\co S \to X$ of a Noetherian scheme is formally smooth exactly when $T_x X$ is a free $S$--module and for any nilpotent thickenings $S \to \Spec B \to \Spec B'$ and any solid diagram
 \begin{center}
 \begin{tikzcd}
 S \arrow{r} \arrow["x"]{rd} & \Spec B \arrow{r} \arrow{d} & \Spec B' \arrow[densely dotted]{ld} \\
 & X
 \end{tikzcd}
 \end{center}
-there exists a dotted arrow extending the diagram.
+there exists a dotted arrow extending the diagram. \qed
 \end{corollary}
-\begin{proof}
-\todo{Prove me.}
-\end{proof}
-
-\todo[inline]{Below this, things are figured out.}
 
 With all this algebraic geometry in hand, we now return to our original motivation: extracting formal schemes from the rings appearing in algebraic topology.
 
@@ -175,9 +172,9 @@ The induced map $T_0 \sigma$ on tangent spaces is evidently invertible, so by \C
 Let $\G$ be a formal group.  In the presence of a coordinate $\phi \co \G \cong \A^n$, the addition law on $\G$ begets a map
 \begin{center}
 \begin{tikzcd}
-\G \times \G \arrow{r} \arrow[equal]{d} & \G \arrow[equal]{d} \\
+\G \times \G \arrow{r} \arrow["\simeq"']{d} & \G \arrow["\simeq"]{d} \\
 \A^n \times \A^n \arrow{r} & \A^n,
-\end{tikzcd} \todo{Again, the vertical arrows should be arrows, not equal signs?}
+\end{tikzcd}
 \end{center}
 and hence a $n$-tuple of $(2n)$-variate power series ``$+_\phi$'', satisfying
 \begin{align*}
@@ -185,7 +182,7 @@ and hence a $n$-tuple of $(2n)$-variate power series ``$+_\phi$'', satisfying
 \underline{\smash x} +_\phi \underline{\smash 0} & = \underline{\smash x}, & \text{(unitality)} \\
 \underline{\smash x} +_\phi (\underline{\smash y} +_\phi \underline{\smash z}) & = (\underline{\smash x} +_\phi \underline{\smash y}) +_\phi \underline{\smash z}. & \text{(associativity)}
 \end{align*}
-Such a tuple $+_\phi$ is called a \textit{formal group law}, and it is the concrete data associated for a formal group.
+Such a tuple $+_\phi$ is called a \textit{formal group law}, and it is the concrete data associated to a formal group.
 \end{definition}
 
 Let's now consider two examples of $E$ which are complex-orientable and describe these invariants for them.
@@ -208,15 +205,16 @@ x_1(t_1) +_{\Gm} x_2(t_2) & = 1 - (1 - t_1)(1 - t_2) \\
 \end{align*}
 \end{example}
 
-As an application of all these tools, we will show that the rational theory of formal groups is highly degenerate: every rational formal group is isomorphic to $\G_a$.  Suppose now that $R$ is a $\Q$--algebra and that $A = R\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $R$.  What's special about this rational curve case is that differentiation gives an isomorphism between the K\"ahler differentials $\Omega^1_{A/R}$ and the ideal $(x)$ of functions vanishing at the origin (i.e., the ideal sheaf selecting the closed subscheme $0\co \Spec R \to \Spf A$).  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]
+As an application of all these tools, we will show that the rational theory of formal groups is highly degenerate: every rational formal group is isomorphic to $\G_a$.  Suppose now that $R$ is a $\Q$--algebra and that $A = R\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $R$.  What's special about this rational curve case is that differentiation gives an isomorphism between the K\"ahler differentials $\Omega^1_{A/R}$ and the ideal $(x)$ of functions vanishing at the origin (i.e., the ideal sheaf selecting the closed subscheme $0\co \Spec R \to \Spf A$).  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]  In pursuit of the construction of an \textit{exponential} and a \textit{logarithm} for a formal group $\G$ over $R$, we now take a cue from classical Lie theory:
+\begin{definition}
+A $1$--form $\omega \in \Omega^1_{A/R}$ is said to be \textit{invariant (under a group law $+_\phi$)} when $\omega = T_y^* \omega$ for all translations $T_y(x) = x +_\phi y$.
+\end{definition}
 
-\todo{Maybe move the definition of invariant differentials out to its own environment.}
 \begin{theorem}\label{RationalFGLsHaveLogarithms}
 For $R$ a $\Q$--algebra, there is a canonical isomorphism of formal groups \[\log\co \G \to T_0 \G \otimes \G_a.\]
 \end{theorem}
 \begin{proof}
-\todo{Consider rewriting this to use $x_1$ and $x_2$ rather than $x$ and $y$.}
-Taking a cue from classical Lie theory, we attempt to use integration to define exponential and logarithm functions for a given formal group law $F$.  This is typically accomplished by studying invariant differentials: a $1$--form $\omega \in \Omega^1_{A/R}$ is said to be \textit{invariant (under $F$)} when $\omega = T_y^* \omega$ for all translations $T_y(x) = x +_F y$.  In terms of a coordinate $\omega = f(x) dx$, this condition becomes \[f(x) dx = f(y +_F x) d(y +_F x) = f(y +_F x) \frac{\partial(y +_F x)}{\partial x} dx.\]  Restricting to the origin by setting $x = 0$, we deduce the condition \[f(0) = f(y) \cdot \left. \frac{\partial(y +_F x)}{\partial x} \right|_{x=0}.\]  Since $R$ is a $\Q$--algebra, integrating against $y$ yields \[\log_F(y) = \int f(y) \, dy = f(0) \int \left( \left. \frac{\partial(y +_F x)}{\partial x} \right|_{x=0} \right)^{-1} dy.\]  To see that the series $\log_F$ has the claimed homomorphism property, note that \[\frac{\partial \log_F(y +_F x)}{\partial x} dx = f(y +_F x) d(y +_F x) = f(x) dx = \frac{\partial \log_F(x)}{\partial x} dx,\] so $\log_F(y +_F x)$ and $\log_F(x)$ differ by a constant.  Checking at $y = 0$ shows that the constant is $\log_F(x)$, hence \[\log_F(x +_F y) = \log_F(x) + \log_F(y).\]  The choice of boundary value $f(0)$ corresponds to the choice of vector in $T_0 \G$.
+In terms of a coordinate $\omega = f(x) dx$, the definition above becomes \[f(x) dx = f(y +_\phi x) d(y +_\phi x) = f(y +_\phi x) \frac{\partial(y +_\phi x)}{\partial x} dx.\]  Restricting to the origin by setting $x = 0$, this yields the condition \[f(0) = f(y) \cdot \left. \frac{\partial(y +_\phi x)}{\partial x} \right|_{x=0}.\]  Since $R$ is a $\Q$--algebra, integrating against $y$ yields \[\log_\phi(y) = \int f(y) \, dy = f(0) \int \left( \left. \frac{\partial(y +_\phi x)}{\partial x} \right|_{x=0} \right)^{-1} dy.\]  To see that the series $\log_\phi$ has the claimed homomorphism property, note that \[\frac{\partial \log_\phi(y +_\phi x)}{\partial x} dx = f(y +_\phi x) d(y +_\phi x) = f(x) dx = \frac{\partial \log_\phi(x)}{\partial x} dx,\] so $\log_\phi(y +_\phi x)$ and $\log_\phi(x)$ differ by a constant.  Checking at $y = 0$ shows that the constant is $\log_\phi(x)$, hence \[\log_\phi(x +_\phi y) = \log_\phi(x) + \log_\phi(y).\]  The choice of boundary value $f(0)$ corresponds to the choice of vector in $T_0 \G$.
 \end{proof}
 
 \begin{example}\label{GmAndItsLogExample}
