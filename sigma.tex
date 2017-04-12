@@ -47,7 +47,10 @@ A point $f \in (\Sch A^*)(T) \subseteq A^* \otimes T$ gives rise to a $k$--modul
 If we drop the finiteness assumption, then this comparison proof fails entirely.  Indeed, the multiplication on $A$ gives rise only to maps \[A^* \to (A \otimes_k A)^* \from A^* \otimes_k A^*,\] which is not enough to make $A^*$ into a $k$--coalgebra.  However, if we start instead with a $k$--coalgebra $C$ of infinite dimension, the following result is very telling:
 
 \begin{lemma}[{\cite[pg.\ 12]{Demazure}, \cite[Appendix 5.3]{Michaelis}, \cite[Remark 1.1.8]{HopkinsLurie}}]\label{kCoalgebrasAreIndFinite}
-For $C$ a coalgebra over a field $k$, any finite--dimensional $k$--linear subspace of $C$ can be finitely enlarged to a subcoalgebra of $C$.  Accordingly, taking the colimit gives a canonical equivalence \[\Ind(\CatOf{Coalgebras}_k^{\mathrm{fin}}) \xrightarrow{\simeq} \CatOf{Coalgebras}_k. \qed\]
+For $C$ a coalgebra over a field $k$, any finite--dimensional $k$--linear subspace of $C$ can be finitely enlarged to a subcoalgebra of $C$.  Accordingly, taking the colimit gives a canonical equivalence
+\[\pushQED{\qed}
+\Ind(\CatOf{Coalgebras}_k^{\mathrm{fin}}) \xrightarrow{\simeq} \CatOf{Coalgebras}_k. \qedhere
+\popQED\]
 \end{lemma}
 
 \noindent This result allows us to leverage our duality Lemma pointwise: for an arbitrary $k$--coalgebra, we break it up into a lattice of finite $k$--coalgebras, and take their linear duals to get a reversed lattice of finite $k$--algebras.  Altogether, this indicates that $k$--coalgebras generally want to model \emph{formal schemes}.
@@ -58,7 +61,10 @@ For $C$ a coalgebra over a field $k$ expressed as a colimit $C = \colim_k C_k$ o
 
 This covariant algebraic model for formal schemes is very useful.  For instance, this equivalence makes the following calculation trivial:
 \begin{lemma}[{cf.\ \Cref{HF2BOIsSymAlg}, \Cref{DivConstructionsAreFree}, and \Cref{ECohomBUIsFree}}]
-Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal monoid on the pointed formal scheme $\Sch k \to \Sch C$ is given by \[F(\Sch k \to \Sch C) = \Sch \Sym^* M.\]  Writing $\Delta c = \sum_j \ell_j \otimes r_j$ for the diagonal on $C$, the diagonal on $\Sym^* C$ is given by \[ \Delta(c_1 \cdots c_n) = \sum_{j_1, \ldots, j_n} (\ell_{1,j_1} \cdots \ell_{n, j_n}) \otimes (r_{1, j_1} \cdots r_{n, j_n}). \qed\]
+Select a coalgebra $C$ over a field $k$ together with a pointing $k \to C$.  Write $M$ for the coideal $M = C / k$.  The free formal monoid on the pointed formal scheme $\Sch k \to \Sch C$ is given by \[F(\Sch k \to \Sch C) = \Sch \Sym^* M.\]  Writing $\Delta c = \sum_j \ell_j \otimes r_j$ for the diagonal on $C$, the diagonal on $\Sym^* C$ is given by
+\[\pushQED{\qed}
+\Delta(c_1 \cdots c_n) = \sum_{j_1, \ldots, j_n} (\ell_{1,j_1} \cdots \ell_{n, j_n}) \otimes (r_{1, j_1} \cdots r_{n, j_n}). \qedhere
+\popQED\]
 \end{lemma}
 
 It is unfortunate, then, that when working over a ring rather than a field \Cref{kCoalgebrasAreIndFinite} fails.\citeme{Include (a reference to) an example.}  Nonetheless, it is possible to bake into the definitions the machinery needed to get a good-enough analogue of \Cref{CoalgsAndFSchsAgreeOverk}.
@@ -267,7 +273,10 @@ The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \begin{array}{c}
 
 \noindent In pursuit of this, we will show rather manually that $BSU_E$ represents an object subject to exactly such symmetries, hence $\Spec E_0 BSU$ represents the scheme of such symmetric functions, and finally conclude that $\Spec E_0 MSU$ represents the scheme of such symmetric trivializations.  The place to begin is with a Serre spectral sequence:
 \begin{lemma}[{\cite[Lemma 6.1]{AndoStrickland}, cf.\ also \cite[Proposition 6.5]{AndoStrickland}}]\label{BSUtoBUtoCPinftyIsSexseq}
-The Postnikov fibration \[BSU \to BU \xrightarrow{B\det} BU(1)\] induces a short exact sequence of Hopf algebras \[E^0 BSU \from E^0 BU \xleftarrow{c_1 \mapsfrom c_1} E^0 BU(1). \qed\]
+The Postnikov fibration \[BSU \to BU \xrightarrow{B\det} BU(1)\] induces a short exact sequence of Hopf algebras
+\[\pushQED{\qed}
+E^0 BSU \from E^0 BU \xleftarrow{c_1 \mapsfrom c_1} E^0 BU(1). \qedhere
+\popQED\]
 \end{lemma}
 
 \noindent An equivalent statement is that there is a short exact sequence of formal group schemes
@@ -717,7 +726,10 @@ Our task, as then, is to discern as much about these nodes as possible, as well 
 We begin with the topological sequence.  The Serre spectral sequence \[E_2^{*, *} = H^* BSU \otimes H^* \OS{H\Z}{3} \Rightarrow H^* BU[6, \infty)\] gives us easy access to the middle node, and we will recount the case of $p = 2$ in detail.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = H\F_2^* BSU \otimes H\F_2^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ > 1 \end{array}\right].\]  Because the target is $6$--connective, we must have the transgressive differential $d_4 \iota_3 = c_2$, which via the Kudo transgression theorem spurs the much larger family of differentials \[d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2.\]  This necessitates understanding the action of the Steenrod operations on the cohomology of $BSU$, which is due to Wu~\cite[Section 23.6]{MayConciseCourse}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 \equiv c_{1 + 2^j} \pmod{\text{decomposables}}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:\todo{This spectral sequence can be drawn in using Hood's package.}
 
 \begin{theorem}\label{HF2BU6Calculation}
-There is an isomorphism \[H\F_2^* BU[6, \infty) \cong \frac{H\F_2^* BU}{(c_j \mid j \ne 2^k + 1, j \ge 3)} \otimes F_2[\iota_3^2, (\Sq^2 \iota_3)^2, \ldots]. \qed\]
+There is an isomorphism
+\[\pushQED{\qed}
+H\F_2^* BU[6, \infty) \cong \frac{H\F_2^* BU}{(c_j \mid j \ne 2^k + 1, j \ge 3)} \otimes F_2[\iota_3^2, (\Sq^2 \iota_3)^2, \ldots]. \qedhere
+\popQED\]
 \end{theorem}
 
 \begin{remark}[{\cite{Singer,Stong}}]
@@ -733,7 +745,10 @@ From the edge homomorphisms in \Cref{HF2BU6Calculation}, we can already see that
 Ever the optimists, we turn to the algebra.  We begin by reusing a strategy previously employed in \Cref{CalculationOfLTTangentSpace}: first perform a tangent space calculation \[T_0 C^k(\G_a; \Gm) \cong C^k(\G_a; \G_a),\] then study the behavior of the different tangent directions to determine the full object $C^k(\G_a; \Gm)$.  As a warm-up to the case $k = 3$ of interest, we will first consider the case $k = 2$.  We have already performed the tangent space calculation:
 
 \begin{corollary}[{cf.\ \Cref{Symmetric2CocycleLemma}}]
-The unique symmetric additive $2$--cocycle of homogeneous degree $n$ has the form \[c_n(x, y) = \begin{cases} (x + y)^n - x^n - y^n & \text{if $n \ne p^j$}, \\ \frac{1}{p} \left( (x + y)^n - x^n - y^n \right) & \text{if $n = p^j$}. \end{cases} \qed\]
+The unique symmetric additive $2$--cocycle of homogeneous degree $n$ has the form
+\[\pushQED{\qed}
+c_n(x, y) = \begin{cases} (x + y)^n - x^n - y^n & \text{if $n \ne p^j$}, \\ \frac{1}{p} \left( (x + y)^n - x^n - y^n \right) & \text{if $n = p^j$}. \end{cases} \qedhere
+\popQED\]
 \end{corollary}
 
 Our goal, then, is to select such an $f_+ \in C^2(\G_a; \G_a)$ and study the minimal conditions needed on a symbol $a$ to produce a point in $C^2(\G_a; \Gm)$ of the form $1 + af_+ + \cdots$.  Since $c_n = \frac{1}{d_n} \delta(x^n)$ is itself produced by an additive formula, life would be easiest if we had access to an exponential, so that we could build \[\text{``$ \delta_{(\G_a; \Gm)} \exp(a_n x^n)^{1/d_n} = \exp(\delta_{(\G_a; \G_a)} a_n x^n / d_n) = \exp(a_n c_n). $''}\]  However, the existence of an exponential series is equivalent to requiring that $a_n$ carry a divided-power structure, which turns out not to be minimal.  In fact, we can show that \emph{no} conditions on $a_n$ are required \emph{at all}.
@@ -762,7 +777,10 @@ The case $k = 3$ is similar, with one important new wrinkle: over an $\F_p$--alg
 \end{align*}
 The following Lemma states that this is the only new feature of the trivariate setting:
 \begin{lemma}[{\cite[Proposition 3.20, Proposition A.12]{AHSTheoremOfTheCube}}]
-The $p$--primary residue of the scheme of trivariate symmetric $2$--cocycles is presented by \[\Spec \F_p[a_d \mid d \ge 3] \times \Spec \F_p[b_d \mid d = p^j(1 + p^k)] \xrightarrow{\cong} C^3(\G_a; \G_a) \times \Spec \F_p. \qed\]
+The $p$--primary residue of the scheme of trivariate symmetric $2$--cocycles is presented by
+\[\pushQED{\qed}
+\Spec \F_p[a_d \mid d \ge 3] \times \Spec \F_p[b_d \mid d = p^j(1 + p^k)] \xrightarrow{\cong} C^3(\G_a; \G_a) \times \Spec \F_p. \qedhere
+\popQED\]
 \end{lemma}
 
 \noindent Similar juggling of the Artin--Hasse exponential yields the following multiplicative classification:
@@ -837,7 +855,10 @@ Take $E$ to be \emph{complex--orientable}.  The functor $C^3(\CP^\infty_E; \shea
 \end{corollary}
 
 \begin{lemma}\label{MSUToMU6}
-The ring map $MU[6, \infty) \to MSU$ is controlled on orientations by the map\todo{Expand this with a formula?} \[C^2(\CP^\infty_E; \sheaf I(0)) \xrightarrow{\delta} C^3(\CP^\infty_E; \sheaf I(0)). \qed\]
+The ring map $MU[6, \infty) \to MSU$ is controlled on orientations by the map\todo{Expand this with a formula?}
+\[\pushQED{\qed}
+C^2(\CP^\infty_E; \sheaf I(0)) \xrightarrow{\delta} C^3(\CP^\infty_E; \sheaf I(0)). \qedhere
+\popQED\]
 \end{lemma}
 
 \begin{remark}
@@ -1290,10 +1311,10 @@ In the previous Lecture, we proved that elliptic spectra receive canonical $MU[6
 
 Fix a formal group $\Gamma$ of finite height $d$, and write $K = K_\Gamma$ for the associated Morava $K$--theory.  We will start with the more modest goal of understanding the bottom few layers of the Postnikov tower for $\OS{kO}{0} \simeq BO \times \Z$, which have the names
 \begin{align*}
-BO[2, \infty) & := BSO, &
-BO[4, \infty) & := B\Spin, &
-BO[8, \infty) & := B\String.
-\end{align*}\todo{The $:=$ should be $=:$ perhaps?}
+BSO & := BO[2, \infty), &
+B\Spin & := BO[4, \infty), &
+B\String & := BO[8, \infty).
+\end{align*}
 
 \begin{remark}
 Unlike $kU$, there is \emph{not} an equivalence \[\OS{kO}{n} \not\simeq (BO \times \Z)[n, \infty),\] unless $n$ happens to take the form $n = 8k$ for a nonnegative integer $k$.  The reasoning for this stray equivalence is similar to that for $kU$: the homotopy ring of $kO$ has a polynomial factor of degree $8$, and the other elements lie in a band of dimensions smaller than $8$.  Otherwise, other things happen---for instance,
@@ -1358,7 +1379,7 @@ There is a bi-Cartesian square
 \end{center}
 \end{corollary}
 \begin{proof}[Proof sketch]
-The fibration $BSO \to BO \to BO(1)$ gives a short exact sequence of Hopf algebras \todo{after applying $K$-homology -- what is the argument for this? Do I need to look at some spectral sequence?}, so using \Cref{FormalSchemeForBO} we are in the situation of \Cref{CubeOfFibers}.  To compute the pointwise kernels, begin by considering the commuting square of Postnikov sections
+The fibration $BSO \to BO \to BO(1)$ gives a short exact sequence of Hopf algebras, \todo{after applying $K$-homology -- what is the argument for this? Do I need to look at some spectral sequence?} so using \Cref{FormalSchemeForBO} we are in the situation of \Cref{CubeOfFibers}.  To compute the pointwise kernels, begin by considering the commuting square of Postnikov sections
 \begin{center}
 \begin{tikzcd}
 BO_K \arrow{r} \arrow{d} & BU_K \arrow{d} \\

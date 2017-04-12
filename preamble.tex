@@ -48,6 +48,7 @@
 \makeatother
 
 
+
 \usepackage[textsize=tiny]{todonotes}
 \usepackage[missing={See gitinfo2 instructions},dirty={(*)}]{gitinfo2}
 
@@ -97,6 +98,8 @@
 \setcounter{tocdepth}{1} % don't print subsections in the table of contents
 
 % todonotes definitions
+\usepackage{xpatch}
+\xpretocmd{\todo}{ }{}{} % fixes the \todo command gobbling a space
 
 \newcommand{\oweproof}[1]{\todo[color=red]{\textbf{You owe a proof of: } #1.}}
 \newcommand{\citeme}[1]{\todo[color=green]{\textbf{Cite me: } #1.}}
@@ -137,7 +140,7 @@
 \newcommand{\mmod}{/\!\!/}
 \newcommand{\co}{\colon\thinspace}
 \newcommand{\into}{\hookrightarrow}
-\newcommand{\cotensor}{\square}
+\newcommand{\cotensor}{\mathbin\square}
 \newcommand{\from}{\leftarrow}
 \newcommand{\onto}{\twoheadrightarrow}
 \newcommand{\mhyphen}{\text{-}}
