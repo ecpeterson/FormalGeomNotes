@@ -86,9 +86,9 @@ MU \arrow[densely dotted, "D"]{r} \arrow{rd} & \Q \otimes R \\
 \end{center}
 constructed out of the unit map $\S \to MU$, the unit map $\S \to \Q \otimes R$, the rationalization map $S \to \Q \otimes \S \cong H\Q$, and the standard additive orientation $MU \to H\Q$ of an Eilenberg--Mac Lane spectrum.  When $E_\infty(MU, T)$ is nonempty, it is a torsor for $[bu, \gl_1 T]$, and since we have a preferred orientation $D$ we thus have isomorphisms \[\pi_0 E_\infty(MU, \Q \otimes R) \xleftarrow{\cong} [bu, \gl_1 \Q \otimes R] \xleftarrow{\cong} [bu, \Q \otimes \gl_1 R] \xrightarrow{\cong} [\Q \otimes bu, \Q \otimes \gl_1 R],\] the last of which is specified by a sequence of rational numbers $(t_{2k})_{k \ge 1}$.  The role played by the sequence $(t_{2k})$ is to perturb the Thom class.
 
-\begin{proposition}
+\begin{lemma}
 Write $x$ for the Thom class of $\L$ on $\CP^\infty$ in $(\Q \otimes R)$--cohomology as furnished by the automatic orientation $D$.  The Thom class associated to some other orientation of $\Q \otimes R$ is tracked by a difference series $x / \exp_F(x)$, and the sequence $(t_k)$ above is expressed by $x / \exp_F(x) = \exp(\sum_k t_k/k! \cdot x^k)$.\todo{This is confused.}
-\end{proposition}
+\end{lemma}
 \begin{proof}[Proof sketch]
 Let $v^k\co S^{2k} \to BU$ be the $k${\th} power of the class $\L$, so that it comes from a restriction \[S^{2k} \to (\CP^\infty)^{\sm k} \xrightarrow{\L^{\boxtimes k}} BU.\]  The Thom class for this bundle comes from the top Chern class, which is the top coefficient in the product of total Chern classes applied to the individual bundles.  Following the usual formulas shows the map $v^k$ to behave on homotopy by multiplication by $(-1)^k t_k$.
 \end{proof}
@@ -100,7 +100,7 @@ Now we move away from $MU$.  There are three directions for generalization: conn
 \item This same cofiber sequence and idempotent splitting also tells us that rational $KU$--cohomology classes in the image of $KO$--cohomology are $\chi$--invariant, i.e., they belong to the $-$ factor.
 \end{enumerate}
 
-Our main example is the usual orientation $MU \to KU$ that selects the formal group law $x + y - xy$.  This is associated to the difference Thom class $x / (e^x - 1) = x / \exp_{\G_m}(x)$.  To make this difference $[-1]$--invariant (and hence give a complex-orientation of $KO$), we use the averaged exponential class $(e^{x/2} - 1) - (e^{-x/2} - 1)$.\footnote{Incidentally, this is equal to $2\operatorname{sinh}(x/2)$.}  In turn, we use the Proposition to calculate the behavior on homotopy of the associated orientation:\footnote{This comes out of applying $d\log$ to the fraction.} \[\frac{x}{e^{x/2} - e^{-x/2}} = \exp\left(-\sum_{k=2}^\infty \frac{B_k}{k} \cdot \frac{x^k}{k!}\right).\]  Finally, we calculate the effect of the orientation on the second half of the factorization \[MSU \to M\Spin \to KO,\] again using the relevant idempotent, which has the effect of halving the coefficients in the characteristic series: $-\frac{B_k}{2k}$.\footnote{While we're here, you might want to observe that elements in $[bu, \gl_1 R]$ push forward to elements in $[bu, \gl_1 \Q \otimes R]$ which do not disturb the denominators of the elements $t_k$.  (On the other hand, the ``Miller invariant'' associated to a rational ring spectrum is \emph{zero}, because arbitrary elements in $[bu, \gl_1 \Q \otimes R]$ can completely destroy the denominators.)}
+Our main example is the usual orientation $MU \to KU$ that selects the formal group law $x + y - xy$.  This is associated to the difference Thom class $x / (e^x - 1) = x / \exp_{\G_m}(x)$.  To make this difference $[-1]$--invariant (and hence give a complex-orientation of $KO$), we use the averaged exponential class $(e^{x/2} - 1) - (e^{-x/2} - 1)$.\footnote{Incidentally, this is equal to $2\operatorname{sinh}(x/2)$.}  In turn, we use the Lemma to calculate the behavior on homotopy of the associated orientation:\footnote{This comes out of applying $d\log$ to the fraction.} \[\frac{x}{e^{x/2} - e^{-x/2}} = \exp\left(-\sum_{k=2}^\infty \frac{B_k}{k} \cdot \frac{x^k}{k!}\right).\]  Finally, we calculate the effect of the orientation on the second half of the factorization \[MSU \to M\Spin \to KO,\] again using the relevant idempotent, which has the effect of halving the coefficients in the characteristic series: $-\frac{B_k}{2k}$.\footnote{While we're here, you might want to observe that elements in $[bu, \gl_1 R]$ push forward to elements in $[bu, \gl_1 \Q \otimes R]$ which do not disturb the denominators of the elements $t_k$.  (On the other hand, the ``Miller invariant'' associated to a rational ring spectrum is \emph{zero}, because arbitrary elements in $[bu, \gl_1 \Q \otimes R]$ can completely destroy the denominators.)}
 
 This discussion accounts for both $E_\infty(M\Spin, \Q \otimes KO)$ and $E_\infty(M\Spin, \Q \otimes KO_p)$: the set of rational characteristic series includes into the set of ad\`elic characteristic series as the subset with rational coefficients.
 
@@ -249,12 +249,12 @@ The easy initial calculation is $K^\vee K = \cts(\Z_p^\times, \Z_p)$, the ring o
 \end{enumerate}
 
 \noindent These last two facts mean that the behavior of a stable operation on homotopy is identical information to the values of a functional $f$ on the standard polynomial functions $x^k$.  We record this algebraic model as follows:
-\begin{proposition}
+\begin{lemma}
 For any $N \ge 0$, the assignment \[\Hom(\cts(\Z_p^\times, \Z_p), \Z_p) \xrightarrow{(f(x \mapsto x^k))_k} \prod_{k \ge N} \Z_p\] is injective.  A sequence $(x_k)$ is said to be a \emph{K\"ummer sequence} when it lies in this image.\footnote{A bit more explicitly: $(x_k)$ is K\"ummer when for all $h(x) = \sum_{k=N}^n a_k x^k \in \Q[x]$ we have $\sum_{k=N}^m a_k x_k \in \Z_p$.} \qed
-\end{proposition}
+\end{lemma}
 
 \begin{remark}
-An interesting feature of the Proposition is the auxiliary index $N$, which is \emph{not} part of the property of being K\"ummer.  In $p$--adic geometry, this is reflected by the $p$--adic convergence of the sequence \[d + (p-1)p^r \xrightarrow{r \to \infty} d,\] and hence the continuous reconstruction property \[x_d = \lim_{r \to \infty} x_{d + (p-1)p^r}.\]  In homotopy theory, this is reflected by the reconstruction property $K \sm K[2k, \infty) \simeq K \sm K$.
+An interesting feature of the Lemma is the auxiliary index $N$, which is \emph{not} part of the property of being K\"ummer.  In $p$--adic geometry, this is reflected by the $p$--adic convergence of the sequence \[d + (p-1)p^r \xrightarrow{r \to \infty} d,\] and hence the continuous reconstruction property \[x_d = \lim_{r \to \infty} x_{d + (p-1)p^r}.\]  In homotopy theory, this is reflected by the reconstruction property $K \sm K[2k, \infty) \simeq K \sm K$.
 \end{remark}
 
 \begin{remark}
