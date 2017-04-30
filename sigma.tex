@@ -706,7 +706,7 @@ The topological input to the $5$--lemma also gave us a purely algebraic result f
 
 
 
-\section{Analysis of \texorpdfstring{$BU[6, \infty)$}{BU[6, \infty)} at infinite height}
+\section{Analysis of \texorpdfstring{$BU[6, \infty)$}{BU[6, \infty)} at infinite height}\label{SectionBU6AtInfiniteHeight}
 
 \begin{center}
 \textbf{Convention: We will write $H$ for $H\F_p$ for the duration of the lecture.}
@@ -1301,32 +1301,250 @@ Another location where this series $\psi$ appears is in the theory of Tate $p$--
 
 \section{Chromatic \texorpdfstring{$\Spin$}{Spin} and \texorpdfstring{$\String$}{String} orientations}
 
+We now turn to understanding $M\String$--orientations in turns of $MU[6, \infty)$--orientations.  We will approach this in successive passes, keeping the desired picture sharp the entire time but introducing generality slowly.  Unfortunately, most of the original source material~\cite{HAS,StricklandFSKS} for this has not been published, and hence it is difficult to give references.  We have gone to some lengths to prepare the reader for the sorts of arguments that appear here: they are not so different from the arguments appearing elsewhere in this chapter.
+
+We begin at the maximally simple situation, where $2$ is inverted.  In this case, the Wood cofiber sequence \[\Susp kO \xrightarrow{\eta} kO \xrightarrow{c} kU \xrightarrow{\lambda} \Susp^2 kO\] becomes split, since $\eta$ is a $2$--torsion element.  By considering different underlying infinite-loopspaces, this gives a number of identifications:
 \begin{center}
-\textbf{\Large This is under construction.  The stuff here is correct, but it didn't turn into a super coherent lecture, and I have an idea for something better to say.}
+\begin{tikzcd}[row sep=0em]
+\OS{(-)}{0}: & BO \times \Z \arrow{r} & BU \times \Z \arrow{r} & \OS{kO}{2}, \\
+\OS{(-)}{2}: & \OS{kO}{2} \arrow{r} & BU \arrow{r} & \OS{kO}{4}, \\
+\OS{(-)}{4}: & \OS{kO}{4} \arrow{r} & BSU \arrow{r} & \OS{kO}{6}, \\
+\OS{(-)}{6}: & \OS{kO}{6} \arrow{r} & BU[6, \infty) \arrow{r} & B\String.
+\end{tikzcd}
 \end{center}
-
-\todo[inline]{A different approach to this is to work through the $p \ne 2$ case, since you can totally, correctly work it out and see the $\Sigma$--structure relation get imposed. That's kind of attractive.  Too bad you had this thought after the class was complete.  Maybe \emph{start} this section with the odd-primary case.  ------  We might also try to understand the extension problem of orientations across $MU \to MSO$ for spectra which are local away from $2$.  It seems like some juggling of the complex-conjugation idempotents could give you access to $BSO$ information in terms of $BU$, which would be satisfying.  Compare with Neil's response at \texttt{http://mathoverflow.net/questions/123958/a-formal-group-law-over-oriented-bordism}. Hood also points out that the usual ``$\operatorname{tanh}^{-1}$'' equation for the $L$--genus has an expansion in terms of the usual logarithm: it's an averaging between the positive and negative logarithmic series.  Hood also points out that the mysterious series $x / (1 - e^{-x})$ occurs as $\exp_{\G_a} / \exp_{\G_m}$.  Also, Section 3 of Ando--Hopkins--Rezk sets up a bunch of the rational Hirzebruch genera stuff in a way that extends to $MO\<8\>$\ldots which I guess now appears in Appendix A.1.}
-
-In the previous Lecture, we proved that elliptic spectra receive canonical $MU[6, \infty)$--orientations, that complex elliptic spectra collectively give rise to a genus valued in modular forms, and that the $q$--expansions of these modular forms are integral.  However, the original \Cref{OchanineWittenTheorem} of Ochanine and Witten claimed to describe a genus on $\Spin$-- and $\String$--manifolds, which we have only managed to approximate with our study of $MU[6, \infty)$--orientations.  Our last goal for this Case Study is to show that the chromatic formal schemes associated to spaces like $B\String$ are somewhat accessible, and so chromatically-amenable elliptic spectra receive canonical $M\String$--orientations.
-
-Fix a formal group $\Gamma$ of finite height $d$, and write $K = K_\Gamma$ for the associated Morava $K$--theory.  We will start with the more modest goal of understanding the bottom few layers of the Postnikov tower for $\OS{kO}{0} \simeq BO \times \Z$, which have the names
+Next, by recognizing $c\co kO \to kU$ as the complexification map, we note that it lies in fixed points for complex-conjugation on $kU$.  The other gain that inverting $2$ gets us is an idempotent selecting this fixed point subspectrum: there are a pair of orthogonal idempotents
 \begin{align*}
-BSO & := BO[2, \infty), &
-B\Spin & := BO[4, \infty), &
-B\String & := BO[8, \infty).
+P_+ & = \frac{1 + \xi}{2}, &
+P_- & = \frac{1 - \xi}{2},
 \end{align*}
+which reidentify the splitting $kU \simeq kO \vee \Susp^2 kO$ in various equivalent ways: \[kU \simeq kO \vee \Susp^2 kO \simeq \im P_- \vee \im P_+ \simeq \ker P_+ \vee \ker P_- \simeq \left( \frac{kU}{\im P_+} \right) \vee \left( \frac{kU}{\im P_-} \right).\]  This last identification immediately gives access to the following result:
+\begin{lemma}
+For $E$ a complex-orientable ring spectrum with $1/2 \in \pi_0 E$, we have
+\begin{align*}
+B\String_E & = C_3(\CP^\infty_E) / ([a, b, c] = -[-a, -b, -c]), \\
+\Spec E_0 B\String & = \left\{ f \in C^3(\CP^\infty_E; \Gm) \middle| f(a, b, c) = \frac{1}{f(-a, -b, -c)} \right\} \subseteq C^3(\CP^\infty_E; \Gm).
+\end{align*}
+\end{lemma}
+\begin{proof}[Proof sketch]
+This is a matter of translating the splittings above across \Cref{BU6Triumvirate}.  The complex-conjugation map $\xi$ acts on $C_k(\G)$ according to \[\xi[a_1, \ldots, a_n] = (-1)^n [-a_1, \ldots, -a_n],\] which encodes $B\String_E$ as the quotient of $BU[6, \infty)_E$ by $\im P_-$.  Finally, the claim about the homological scheme follows from the description of the cohomological formal scheme by Cartier duality.
+\end{proof}
+
+The repeated appearances of the terms in the above splittings suggest that the composite \[\tau\co kU \xrightarrow{\lambda} \Susp^2 kO \xrightarrow{\Susp^2 c} \Susp^2 kU\] of the maps in two adjacent cofiber sequences itself plays an interesting role.  This is the map that encodes surjecting onto one factor in the preceding splitting, then reincluding it into the next splitting.
+\begin{lemma}
+At the level of formal schemes, the map $\tau$ acts by
+\begin{align*}
+\tau\co C_k(\G) & \to C_{k+1}(\G) \\
+[a_1, \ldots, a_k] & \mapsto [a_1, \ldots, a_k, -(a_1 + \cdots + a_k)].
+\end{align*}
+\end{lemma}
+\begin{proof}
+We are in pursuit of the following calculation in $kU^* (\CP^\infty)^{\times (k+1)}$ encoding complexification after decomplexification:
+\begin{align*}
+\beta^k x_1 \cdots x_k + \beta^k \overline{x_1} \cdots \overline{x_k} & = (1 - \L_1) \cdots (1 - \L_k) + (1 - \overline \L_1) \cdots (1 - \overline \L_k) \\
+& = (1 - \L_1) \cdots (1 - \L_k) + \overline \L_1 \cdots \overline \L_k (\L_1 - 1) \cdots (\L_k - 1) \\
+& = (1 - \L_1) \cdots (1 - \L_k) (1 - (-1)^{k+1} \overline \L_1 \cdots \overline \L_k) \\
+& = \beta^{k+1} x_1 \cdots x_k \cdot \xi^* \mu^*(x_1, \ldots, x_k). \qedhere
+\end{align*}
+\end{proof}
+Still in the case where $E$ is local away from $2$, we can use this alternative description of the inclusion of the $P_-$ factor to deduce an alternative description of the formal scheme associated to $B\String$:
+\begin{corollary}
+For $E$ a complex-orientable ring spectrum with $1/2 \in \pi_0 E$, we have
+\begin{align*}
+B\String_E & = C_3(\CP^\infty_E) / ([a, b, -a-b] = 0), \\
+\Spec E_0 B\String & = \left\{ f \in C^3(\CP^\infty_E; \Gm) \middle| f(a, b, -a-b) = 1 \right\} \subseteq C^3(\CP^\infty_E; \Gm). \qed
+\end{align*}
+\end{corollary}
+
+\begin{definition}
+We denote this last functor by $\Sigma^3(\CP^\infty_E; \Gm)$, and more generally if $\L$ is a line bundle on $\CP^\infty_E$ then $\Sigma^3(\CP^\infty_E; \L)$ will denote the subscheme of $C^3(\CP^\infty_E; \L)$ of those trivializations which restrict to the rigidifying trivialization of $\Theta^3 \L$ on the subscheme of $(\CP^\infty)^{\times 3}$ specified by $[a, b, -a-b]$.  Such trivializations are referred to as \textit{$\Sigma$--structures on $\L$}, following Breen~\cite[Section 5]{Breen}.
+\end{definition}
+
+\begin{corollary}\label{OddPrimaryMStringTriumvirate}
+For $E$ a complex-orientable ring spectrum with $1/2 \in \pi_0 E$, the functor $\Sigma^3(\CP^\infty_E; \sheaf I(0))$ is isomorphic to the affine scheme $\Spec E_0 M\String$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $M\String \to E$. \qed
+\end{corollary}
 
 \begin{remark}
-Unlike $kU$, there is \emph{not} an equivalence \[\OS{kO}{n} \not\simeq (BO \times \Z)[n, \infty),\] unless $n$ happens to take the form $n = 8k$ for a nonnegative integer $k$.  The reasoning for this stray equivalence is similar to that for $kU$: the homotopy ring of $kO$ has a polynomial factor of degree $8$, and the other elements lie in a band of dimensions smaller than $8$.  Otherwise, other things happen---for instance,
-\begin{align*}
-\OS{kO}{1} & \simeq O/U, &
-\OS{kO}{6} & \simeq \Spin / SU.
-\end{align*}
+One of the most pleasant features of the case where $2$ is inverted is that real orientations can not only be identified, but the projection idempotents mean that they can be \emph{crafted} from complex orientations, and the idempotents have a recognizable effect on the traditional mechanisms for specifying orientations.  For instance, the Conner--Floyd orientation on $K$--theory is specified by the classical logarithm, and the associated real orientation formed by projection to the positive idempotent has logarithm \[\operatorname{tanh}^{-1}(x) = \frac{-\ln(1 - x) + \ln(1 + x)}{2},\] i.e., the average of the logarithm and its conjugate.  The resulting orientation is commonly referred to as the \textit{Atiyah--Bott--Shapiro orientation}, whose associated genus is the \textit{$\widehat A$--genus}.  Similar techniques give access to connective real orientations associated to preexisting connective complex orientations.
+\citeme{Ahat genus?}
 \end{remark}
 
-\begin{remark}[{\cite[Section 5.2]{KLW}}]
-We may as well take the ground field of our Morava $K$--theory to have characteristic $p = 2$, since at odd characteristics there is little distinction between $kO$ and $kU$, owing to the fiber sequence \[\Susp kO \xrightarrow{\cdot \eta = 0} kO \to kU.\] \todo{The way you wrote this fiber sequence doesn't show why $p=2$ is special.} However, this reveals a disadvantage of Morava $K$--theory that will finally cause us real consternation: Morava $K$--theories at the prime $2$ are not commutative ring spectra.  Accordingly, $(K_\Gamma)_* G$ for a commutative $H$--group $G$ may fail to give a commutative algebra.  Luckily, \Cref{MoravaKIsNotCommutative} tells us that if $(K_\Gamma)_* G$ happens to be even-concentrated, then the obstructions to commutativity identically vanish.  So, we can be somewhat indelicate about this noncommutativity issue, provided that we continually check that the algebras we are forming are even-concentrated.
-\end{remark}
+We now turn to the \emph{much} more complicated setting where $2$ is not invertible, where we again aim to identify $M\String$--orientations of a complex-orientable cohomology theory with certain $\Sigma$--structures.  This is not possible in much generality, a situation which is hinted by the analogous lower-order case: complex-orientability is flatly \emph{not enough} to conclude anything about whether a cohomology theory admits an $MO$--orientation, which we saw in \Cref{MOSplitsIntoHF2s} to be actually equivalent to admitting an $H\F_2$--algebra structure.  In order to get a handle on the task in front of us, consider the following diagram of fiber sequences of infinite loopspaces:
+\begin{center}
+\begin{tikzcd}[column sep=0em]
+& \Spin / SU \arrow[equal]{ld} \arrow{rr} \arrow[equal]{dd} & & BU[6, \infty) \arrow[equal]{ld} \arrow{rr} \arrow{dd} & & B\String \arrow[equal]{ld} \arrow{dd} \\
+\OS{kO[8, \infty)}{-2} \arrow[crossing over]{rr} & & \OS{kU[8, \infty)}{-2} \arrow[crossing over]{rr} & & \OS{(\Susp^2 kO)[8, \infty)}{-2} \\
+& \Spin/SU \arrow[equal]{ld} \arrow{rr} & & BSU \arrow[equal]{ld} \arrow{rr} & & B\Spin \arrow[equal]{ld} \\
+\OS{kO[6, \infty)}{-2} \arrow{rr} \arrow[equal]{uu} & & \OS{kU[6, \infty)}{-2} \arrow{rr} \arrow[leftarrow,crossing over]{uu} & & \OS{(\Susp^2 kO)[6, \infty)}{-2}. \arrow[leftarrow,crossing over]{uu}
+\end{tikzcd}
+\end{center}
+Our program is to analyze the chromatic homology of $\Spin/SU$ as well as the maps to $BU[6, \infty)$ and $BSU$.  We hope to show that the scheme associated to $\Spin/SU$ selects exactly the relations defining $\Sigma$--structures \emph{and} that the map is flat, so that the associated bar spectral sequences
+\begin{align*}
+\Tor^{E_* \Spin/SU}_{*, *}(E_*, E_* BSU) & \Rightarrow E_* B\Spin, &
+\Tor^{E_* \Spin/SU}_{*, *}(E_*, E_* BU[6, \infty)) & \Rightarrow E_* B\String
+\end{align*}
+collapse to give short exact sequences of Hopf algebras.
+
+\todo[inline,color=red]{This is the wrong order.  You should start by justifying the algebraic model, then show that the algebraic model has the flatness property.  This should amount to calculating the even-periodic cohomology of $\Spin/SU$ in general, then identifying $E_* \Spin/SU$ as particular subs of the even-periodic cohomology of $BU\<2k\>$.}
+We embark on this project by analyzing the algebraic model and, in particular, ensuring that it has the desired flatness property.  Our models for the maps
+\begin{align*}
+BSU & \from \Spin/SU, &
+BU[6, \infty) & \from \Spin/SU
+\end{align*}
+will be
+\begin{align*}
+C^2(\G; \Gm) & \to \Sigma^2(\G; \Gm), &
+C^3(\G; \Gm) & \to \Sigma^2(\G; \Gm), \\
+f(x, y) & \mapsto \frac{f(x, y)}{f(-x, -y)}, &
+f(x, y, z) & \mapsto f(x, y, -x-y).
+\end{align*}
+
+Our main tool for addressing flatness is the following theorem, strongly related to the Milnor--Moore classification of Hopf algebras over a field of positive characteristic:
+
+\begin{lemma}
+Let $k$ be a field, and let $G$ and $H$ be group schemes over $\Spec k$.  A map $f\co G \to H$ of group schemes is faithfully flat if and only if for every test $k$--algebra $T$ and $T$--point $a \in H(T)$ there is a faithfully flat $T$--algebra $S$ and an $S$--point $b \in G(S)$ covering $a$. \qed
+\citeme{HAS cites [?, III, Section 3, n.\ 7]}
+\end{lemma}
+
+\noindent Based on this Lemma, we see that if we had a sufficiently strong understanding of the possible points of $\Sigma^2(\CP^\infty_E; \Gm)$, we could manually check this condition by constructing preimages for these points.  This becomes a manageable task after we note the following reductions:
+\begin{enumerate}
+    \item Because of the equation $\lambda_2 = \delta \circ \lambda_3$ and because $\delta$ is surjective, checking that $\lambda_2$ is (faithfully) flat will automatically entail that $\lambda_3$ is (faithfully) flat.
+    \item We do not actually need \emph{faithful} flatness to control the bar spectral sequence, but merely flatness.  Accordingly, note that a map $f\co G \to H$ of commutative affine group schemes is flat if and only if the map $f^\circ\co G^\circ \to H^\circ$ on connected components of the identity is flat.  Hence, we can reduce to checking faithful flatness on the identity component if necessary.  In fact, because $E_0 BSU$ is polynomial, we have $(\Spec E_0 BSU)^\circ = \Spec E_0 BSU$.
+    \item A map of affine algebraic group schemes is flat if and only if the induced map on tangent spaces is surjective.  Although $E_0 BSU$ is \emph{infinite} polynomial, and hence not algebraic, this technicality can be overcome and the same condition applies.
+\end{enumerate}
+
+We thus set about studying the points of $\Sigma^2(\G; \Gm)$.  As in \Cref{SectionBU6AtInfiniteHeight}, we begin with the special case $\G = \G_a$ and understand the generic case in terms of a tangent space calculation.
+
+\begin{lemma}
+The map \[\Spec \Gamma_{\Z_{(2)}}[a_{2n + 1} \mid n \ge 1] \to \Sigma^2(\G_a; \Gm) \times \Spec \Z_{(2)}\] classifying the product \[\prod_{n \ge 1} \exp(a_{2n+1} c_{2n+1})\] is an isomorphism.  In turn, there is an isomorphism \[\Sigma^2(\G_a; \Gm) \times \Spec \F_2 \cong \Spec \left.\F_2\left[a_{2n+1}^{[2^j]} \middle| n \ge 1, j \ge 0\right] \middle/ \left(\left(a_{2n+1}^{[2^j]}\right)^2 = 0\right)\right. . \qed\]
+\end{lemma}
+
+In general, after picking a coordinate on $\G$ any function $f \in \Sigma^2(\G; \Gm)$ must thus have the form $1 + a c_{2n+1} + \cdots$ for some coefficient $a$.  There are three calculations:
+\begin{lemma}\label{SigmaNonexistenceLemma}
+Let $\G$ be a formal group of height $1$ or $2$ over an $\F_2$--algebra.  For $f \in \Sigma^2(\G; \Gm)$ of the form $1 + a c_n + \cdots$, \ldots
+\begin{enumerate}
+    \item \ldots if $n = 2^m$ then $a = 0$.
+    \item \ldots if $n > 3$, $n$ is odd, and $n \ne 2^m - (2^d - 1)$, then $a = 0$.
+    \item \ldots if $d = 2$ and $n = 3$, then $a^2 - a = 0$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\todo[color=red,inline]{This cuts down the $\Sigma^2$ space.}
+\end{proof}
+
+\begin{lemma}\label{SigmaArrowLemma}
+Let $f = 1 + a c_n + \cdots \in C^2(\G; \Gm)$.  If $2n+1 \ge 3$ is not of the form $2^r - (2^d - 1)$ for any $r$, then $\lambda_2 f = 1 + a c_{n + 2^d - 1} + \cdots$.
+\end{lemma}
+\begin{proof}[Proof sketch]
+This requires calculation in a coordinate.  Since $\G$ is of height $d$, it admits a coordinate where the negation series takes the form \[[-1]_{\G}(x) = -x + cx^{2^d} + \cdots.\]  Substituting this into the definition of $\lambda_2$ and tracking the computation gives the result.
+\end{proof}
+
+\begin{lemma}\label{SigmaSpecialCaseLemma}
+There exists a function $f \in C^2(\G; \Gm)$ with $\lambda_2 f = 1 + (a^2 + \eps a + \delta) c_{2^r + (2^d - 1)}$.
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\fill node[circle,draw=black] (1-2) {2};
+\fill node[draw, right of=1-2] (1-3) {3};
+\fill node[circle,draw=black, right of=1-3] (1-4) {4};
+\fill node[circle,draw=black, right of=1-4] (1-5) {5};
+\fill node[right of=1-5] (1-6) {6};
+\fill node[draw, right of=1-6] (1-7) {7};
+\fill node[circle,draw=black, right of=1-7] (1-8) {8};
+\fill node[circle,draw=black, right of=1-8] (1-9) {9};
+\fill node[right of=1-9] (1-10) {10};
+\fill node[circle,draw=black, right of=1-10] (1-11) {11};
+\fill node[right of=1-11] (1-12) {12};
+\fill node[circle,draw=black, right of=1-12] (1-13) {13};
+\fill node[right of=1-13] (1-14) {14};
+\fill node[draw, right of=1-14] (1-15) {15};
+\fill node[circle,draw=black, right of=1-15] (1-16) {16};
+\fill node[right of=1-16] {$\cdots$};
+
+\draw[->, bend left=40] (1-5) to (1-6);
+\draw[->, bend left=40] (1-9) to (1-10);
+\draw[->, bend left=40] (1-11) to (1-12);
+\draw[->, bend left=40] (1-13) to (1-14);
+
+\fill node[circle,draw=black, below of=1-2] (2-2) {2};
+\fill node[circle,draw=blue, right of=2-2] (2-3) {3};
+\fill node[circle,draw=black, right of=2-3] (2-4) {4};
+\fill node[draw, right of=2-4] (2-5) {5};
+\fill node[right of=2-5] (2-6) {6};
+\fill node[circle,draw=black, right of=2-6] (2-7) {7};
+\fill node[circle,draw=black, right of=2-7] (2-8) {8};
+\fill node[circle,draw=black, right of=2-8] (2-9) {9};
+\fill node[right of=2-9] (2-10) {10};
+\fill node[circle,draw=black, right of=2-10] (2-11) {11};
+\fill node[right of=2-11] (2-12) {12};
+\fill node[draw, right of=2-12] (2-13) {13};
+\fill node[right of=2-13] (2-14) {14};
+\fill node[circle,draw=black, right of=2-14] (2-15) {15};
+\fill node[circle,draw=black, right of=2-15] (2-16) {16};
+\fill node[right of=2-16] {$\cdots$};
+
+\draw[->, bend right=40] (2-3) to (2-6);
+\draw[->, bend right=40] (2-7) to (2-10);
+\draw[->, bend right=40] (2-9) to (2-12);
+\draw[->, bend right=40] (2-11) to (2-14);
+\end{tikzpicture}
+\caption{Application of the three Lemmas in a small range.  Circles denote prohibitions of $\Sigma^2$--structures by \Cref{SigmaNonexistenceLemma}, arrows denote $\Sigma^2$--structures constructed by \Cref{SigmaArrowLemma}, and squares denote exceptional $\Sigma^2$--structures constructed by \Cref{SigmaSpecialCaseLemma}.}
+\end{figure}
+
+\begin{corollary}
+The map $\lambda_2$ is flat.
+\end{corollary}
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\begin{corollary}
+If $E$ is a finite height Morava $K$-- or $E$--theory considered as an elliptic spectrum, the complex $\sigma$--orientation of \Cref{EllipticSpectraAreOriented} lifts uniquely to a ring map $M\String \to E$.
+\end{corollary}
+\begin{proof}
+\todo[inline]{The cubical structure had something to do with the Abel's Theorem method of constructing the elliptic curve multiplication.}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+more kitchloo-laures-wilson results---maybe just a remark?
+
+remark: Compare with Neil's response at \texttt{http://mathoverflow.net/questions/123958/a-formal-group-law-over-oriented-bordism}.
+
+remark: the $K$--theory results are supposed to entail results about general elliptic cohomology theories
+
+
+
+
+
+
+
+
+
+
 
 In order to get off the ground, we will need the following Lemma about the behavior of the Atiyah--Hirzebruch spectral sequence for a Morava $K$--theory:
 \begin{lemma}[{\cite[Lemma 2.1]{Yagita}}]\label{MoravaKThyAHSS}
@@ -1428,7 +1646,6 @@ and this is forced null in $C_3 \G$, as it looks like a $2$--cocycle shuffle.
 
 
 
-\textbf{Ideally, we would use this presentation of $B\Spin_K$ to say something about $M\Spin$--orientations.  I just realized I don't know how, though!}
 
 
 
@@ -1464,14 +1681,12 @@ This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}
 
 
 I've been looking at this again, and I think $B\String$ can be successfully analyzed at low heights using the $B\Spin$ analysis, which is height-independent, and the following diagram of fibrations:
-\begin{center}
-\begin{tikzcd}[column sep=0em]
-& \Spin / SU \arrow[equal]{ld} \arrow{rr} \arrow[equal]{dd} & & BU[6, \infty) \arrow[equal]{ld} \arrow{rr} \arrow{dd} & & B\String \arrow[equal]{ld} \arrow{dd} \\
-\OS{kO[8, \infty)}{-2} \arrow[crossing over]{rr} & & \OS{kU[8, \infty)}{-2} \arrow[crossing over]{rr} & & \OS{(\Susp^2 kO)[8, \infty)}{-2} \\
-& \Spin/SU \arrow[equal]{ld} \arrow{rr} & & BSU \arrow[equal]{ld} \arrow{rr} & & B\Spin \arrow[equal]{ld} \\
-\OS{kO[6, \infty)}{-2} \arrow{rr} \arrow[equal]{uu} & & \OS{kU[6, \infty)}{-2} \arrow{rr} \arrow[leftarrow,crossing over]{uu} & & \OS{(\Susp^2 kO)[6, \infty)}{-2} \arrow[leftarrow,crossing over]{uu}
-\end{tikzcd}
-\end{center}
+
+
+
+
+
+
 KLW show that these fibrations induce short exact sequences of group schemes at heights bounded by $2$.  This identifies $\Spin/SU_K \to BSU_K$ with the inclusion of $\ker \tau$ and $\Spin/SU_K \to BU[6, \infty)_K$ with the inclusion of $\ker(\tau \delta) = \ker(1 + \xi)$, using the KLW facts that $B\Spin_K$ and $B\String_K$ themselves inject compatibly into $BU[6, \infty)_K$ (see e.g.\ 2.3.6 of KLW).  The trick is then to identify these kernel subgroups with image subgroups of different maps---we want to do this because kernel subgroups do not (seem to?) describe testable conditions for descending maps, whereas if we knew (for instance) $\ker(1 + \xi) = (\im (1 - \xi)) + (\im \tau)$, then we could show that a function in $C^3(\G; \Gm)$ descends to a function on $B\String_K$ if and only if it vanishes on points in the images of these maps, themselves easily described since $C_2$ and $C_3$ are fppf-locally generated by point-divisors.
 
 Another fact from the diagram is that the inclusion of $\ker(1 + \xi)$ into $BU[6, \infty)_K$ remains an inclusion after projection along $\delta$.  Another fact is that there is a sequence of inclusions \[\im(1 - \xi) \subseteq \ker(1 + \xi) \supseteq 2 \cdot \ker(1 + \xi) \subseteq \im(1 - \xi).\]  This string is enough to show that the Hopkins condition is \emph{necessary} to get a $\String$--orientation, but perhaps not sufficient due to some $2$--torsion points in $C_3$.  Another fact KLW show is that $(\OS{BSO}{2})_K$ models $\im \tau$.  This doesn't seem compatible with the identification of $\Spin/SU$ as $\OS{kO}{6}$.  Another fact is that I \emph{think} that $\tau$ is not a $kU^0$--linear map.  I wonder if we can use divisibility to gain some traction: away from $2$ multiplication by $2$ is an isomorphism and at $2$ multiplication by $2$ is an fppf-surjection, so we can assume any given sum in $\ker(1 + \xi)$ admit componentwise square roots...  KLW also show that $B\Spin_K$ can be modeled by $\ker \tau$ (and this is the same place where they identify $BSO_2$ as $\im \tau$).  A routinely useful computational trick seems to be $[x] = -\<x\>[-x]$.
