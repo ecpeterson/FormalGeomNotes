@@ -484,7 +484,7 @@ This construction converts many properties of $f$ into corresponding properties 
 \end{itemize}
 \end{remark}
 
-\begin{example}
+\begin{example}\label{AdjointBSUExample}
 Recall the vector bundle $\Pi_2$ lifted through $BSU$, defined at the top of this Lecture and of great interest to us in \Cref{MSUDay}.  The adjoint to the classifying map of $\Pi_2$ is a map of formal schemes \[\widehat \Pi_2\co (\CP^\infty_E)^{\times 2} \times \Spec E_0 BSU \to \Gm,\] which passes through the exponential adjunction to become a map \[\Spec E_0 BSU \to \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm).\]  Because the adjoint construction preserves properties of the class $\Pi_2$, we learn that this map factors through the closed subscheme
 \begin{center}
 \begin{tikzcd}
@@ -1384,21 +1384,54 @@ Our program is to analyze the chromatic homology of $\Spin/SU$ as well as the ma
 \end{align*}
 collapse to give short exact sequences of Hopf algebras.
 
-\todo[inline,color=red]{This is the wrong order.  You should start by justifying the algebraic model, then show that the algebraic model has the flatness property.  This should amount to calculating the even-periodic cohomology of $\Spin/SU$ in general, then identifying $E_* \Spin/SU$ as particular subs of the even-periodic cohomology of $BU\<2k\>$.}
-We embark on this project by analyzing the algebraic model and, in particular, ensuring that it has the desired flatness property.  Our models for the maps
-\begin{align*}
-BSU & \from \Spin/SU, &
-BU[6, \infty) & \from \Spin/SU
-\end{align*}
-will be
-\begin{align*}
-C^2(\G; \Gm) & \to \Sigma^2(\G; \Gm), &
-C^3(\G; \Gm) & \to \Sigma^2(\G; \Gm), \\
-f(x, y) & \mapsto \frac{f(x, y)}{f(-x, -y)}, &
-f(x, y, z) & \mapsto f(x, y, -x-y).
-\end{align*}
+We embark on this project with an analysis of the natural bundles classified by the topological objects, so that we can guess the relevant algebraic model.  We have the following complexification and decomplexification maps:
+\begin{center}
+\begin{tikzcd}
+& & \OS{kU}{6} \arrow["\delta"]{d} \\
+\OS{kU}{4} \arrow["j"]{r} & \OS{kO}{6} \arrow["\lambda"]{ru} \arrow["i"]{r} & \OS{kU}{4}.
+\end{tikzcd}
+\end{center}
 
-Our main tool for addressing flatness is the following theorem, strongly related to the Milnor--Moore classification of Hopf algebras over a field of positive characteristic:
+\begin{lemma}\label{SpinSUComparisonMapIsInj}
+Let $E$ be a complex-orientable cohomology theory.  The map $j$ induces an injection \[\Spec E_0(\Spin/SU) \to \Sigma^2(\CP^\infty_E; \Gm).\]
+\end{lemma}
+\begin{proof}[Proof, with some details omitted]
+Recall that our reinterpretation of \Cref{CharacterizationOfBSUUpperE} in \Cref{AdjointBSUExample} passed through the adjoint map $\widehat \Pi_2$ of the natural product bundle $\Pi_2\co (\CP^\infty)^{\times 2} \to BSU$.  We extend the map $\Pi_2$ in two directions: \[\CP^\infty \xrightarrow{(1 - \L)(1 - \overline{\L})} \CP^\infty \times \CP^\infty \xrightarrow{\Pi_2} BSU \xrightarrow{j} \Spin/SU.\]  Checking that this composite is zero on $E$--homology will give a factorization
+\begin{center}
+\begin{tikzcd}
+\Spec E_0 \Spin/SU \arrow["E_0 j"]{r} \arrow[densely dotted]{d} & \Spec E_0 BSU \arrow[equal]{d} \\
+\Sigma^2(\CP^\infty_E; \Gm) \arrow{r} & C^2(\CP^\infty_E; \Gm),
+\end{tikzcd}
+\end{center}
+since $\Sigma^2(\CP^\infty_E; \Gm)$ is defined to be the closed subscheme of $C^2(\CP^\infty_E; \Gm)$ of those functions satisfying $f(x, -x) = 1$.
+
+The ordinary homology of $\Spin/SU$ is free and even, so it suffices to check that this map is null in the case $E = H\Z_{(2)}$, since one can then conclude the general case by the Atiyah--Hirzebruch spectral sequence.  Manual calculation in a Serre spectral sequence shows gives the calculation $H\Z_{(2)}{}_*(\Spin/SU) \cong \Gamma_{\Z_{(2)}}[a_{2n+1} \mid n \ge 1]$ as well as that the homological maps induced by $i$ and $j$ are respectively injective and surjective.  In particular, we need only check that the above composite is zero on $H\Z_{(2)}$--homology after postcomposition with $H_*(i)$.  The $SU$--bundle classified by postcomposition with $i$ is \[(1 - \L)(1 - \overline \L) - (1 - \overline \L)(1 - \L),\] which is itself trivial, hence the classifying map is null and so must be the map on homology.
+
+We are left with showing that the factorized map is an isomorphism, and again appealing to Atiyah--Hirzebruch spectral sequences it suffices to show this in the case $E = H\F_2$.  The diagram considered above extends as follows:
+\begin{center}
+\begin{tikzcd}
+\Spec H\F_2P_0 BSU \arrow["H\F_2P_0 i"]{r} \arrow[equal]{d} & \Spec H\F_2P_0 \Spin/SU \arrow["H\F_2P_0 j"]{r} \arrow[densely dotted]{d} & \Spec H\F_2P_0 BSU \arrow[equal]{d} \\
+C^2(\G_a; \Gm) \arrow["\lambda_2"]{r} & \Sigma^2(\G_a; \Gm) \arrow{r} & C^2(\G_a; \Gm),
+\end{tikzcd}
+\end{center}
+where \[\lambda_2(f)\co (x, y) \mapsto \frac{f(x, y)}{f(-_{\G} x, -_{\G} y)}.\]  Since the bottom-right map is definitionally injective and the outer rectangle commutes, it follows that the left-hand square commutes.  The Serre spectral sequence calculation in integral homology indicated above shows that the top-right map is an injection, so the dotted comparison map is automatically an injection.
+\end{proof}
+
+\begin{lemma}
+The above comparison map also belongs to a commuting diagram
+\begin{center}
+\begin{tikzcd}
+\Spec E_0 BU[6, \infty) \arrow[equal]{d} \arrow{r} & \Spec E_0 \Spin/SU \arrow{d} \arrow{r} & \Spec E_0 BSU \arrow{d} \\
+C^3(\CP^\infty_E; \Gm) \arrow["\lambda_3"]{r} & \Sigma^2(\CP^\infty_E; \Gm) \arrow{r} & C^2(\CP^\infty_E; \Gm),
+\end{tikzcd}
+\end{center}
+where \[\lambda_3(f)\co (x, y) \mapsto f(x, y, -_{\G}(x +_{\G} y)).\]
+\end{lemma}
+\begin{proof}
+This is again a matter of checking that the outer rectangle commutes.
+\end{proof}
+
+This is as much as we can discern without delving into the analysis of the algebraic model.  Our primary concern in that respect is to show that the algebraic map has the desired flatness property---we will actually quickly show that our comparison map is an isomorphism in our pursuit of this.  Our main tool for addressing flatness is the following theorem, strongly related to the Milnor--Moore classification of Hopf algebras over a field of positive characteristic:
 
 \begin{lemma}
 Let $k$ be a field, and let $G$ and $H$ be group schemes over $\Spec k$.  A map $f\co G \to H$ of group schemes is faithfully flat if and only if for every test $k$--algebra $T$ and $T$--point $a \in H(T)$ there is a faithfully flat $T$--algebra $S$ and an $S$--point $b \in G(S)$ covering $a$. \qed
@@ -1408,18 +1441,34 @@ Let $k$ be a field, and let $G$ and $H$ be group schemes over $\Spec k$.  A map 
 \noindent Based on this Lemma, we see that if we had a sufficiently strong understanding of the possible points of $\Sigma^2(\CP^\infty_E; \Gm)$, we could manually check this condition by constructing preimages for these points.  This becomes a manageable task after we note the following reductions:
 \begin{enumerate}
     \item Because of the equation $\lambda_2 = \delta \circ \lambda_3$ and because $\delta$ is surjective, checking that $\lambda_2$ is (faithfully) flat will automatically entail that $\lambda_3$ is (faithfully) flat.
-    \item We do not actually need \emph{faithful} flatness to control the bar spectral sequence, but merely flatness.  Accordingly, note that a map $f\co G \to H$ of commutative affine group schemes is flat if and only if the map $f^\circ\co G^\circ \to H^\circ$ on connected components of the identity is flat.  Hence, we can reduce to checking faithful flatness on the identity component if necessary.  In fact, because $E_0 BSU$ is polynomial, we have $(\Spec E_0 BSU)^\circ = \Spec E_0 BSU$.
-    \item A map of affine algebraic group schemes is flat if and only if the induced map on tangent spaces is surjective.  Although $E_0 BSU$ is \emph{infinite} polynomial, and hence not algebraic, this technicality can be overcome and the same condition applies.
+    \item We do not actually need \emph{faithful} flatness to control the bar spectral sequence, but merely flatness.  Accordingly, note that a map $f\co G \to H$ of commutative affine group schemes is flat if and only if the map $f^\circ\co G^\circ \to H^\circ$ on connected components of the identity is flat.  Hence, we can reduce to checking (faithful) flatness on the identity component if necessary.  In fact, because $E_0 BSU$ is polynomial, we have $(\Spec E_0 BSU)^\circ = \Spec E_0 BSU$.
+    \item This last condition can be reduced further: a map of affine algebraic group schemes is flat if and only if the induced map on tangent spaces is surjective.  Although $E_0 BSU$ is \emph{infinite} polynomial, and hence not algebraic, this technicality can be overcome by means of the grading and the same condition applies.
 \end{enumerate}
 
-We thus set about studying the points of $\Sigma^2(\G; \Gm)$.  As in \Cref{SectionBU6AtInfiniteHeight}, we begin with the special case $\G = \G_a$ and understand the generic case in terms of a tangent space calculation.
+We thus set about studying the points of $\Sigma^2(\G; \Gm)$ up to first order.  As in \Cref{SectionBU6AtInfiniteHeight}, we begin with the special case $\G = \G_a$ and understand the generic case in terms of perturbation.
 
 \begin{lemma}
-The map \[\Spec \Gamma_{\Z_{(2)}}[a_{2n + 1} \mid n \ge 1] \to \Sigma^2(\G_a; \Gm) \times \Spec \Z_{(2)}\] classifying the product \[\prod_{n \ge 1} \exp(a_{2n+1} c_{2n+1})\] is an isomorphism.  In turn, there is an isomorphism \[\Sigma^2(\G_a; \Gm) \times \Spec \F_2 \cong \Spec \left.\F_2\left[a_{2n+1}^{[2^j]} \middle| n \ge 1, j \ge 0\right] \middle/ \left(\left(a_{2n+1}^{[2^j]}\right)^2 = 0\right)\right. . \qed\]
+The map \[\Spec \Gamma_{\Z_{(2)}}[a_{2n + 1} \mid n \ge 1] \to \Sigma^2(\G_a; \Gm) \times \Spec \Z_{(2)}\] classifying the product \[\prod_{n \ge 1} \exp(a_{2n+1} c_{2n+1})\] is an isomorphism.  In turn, there is an isomorphism \[\Sigma^2(\G_a; \Gm) \times \Spec \F_2 \cong \Spec \left.\F_2\left[a_{2n+1}^{[2^j]} \middle| n \ge 1, j \ge 0\right] \middle/ \left(\left(a_{2n+1}^{[2^j]}\right)^2 = 0\right)\right. .\]
 \end{lemma}
+\begin{proof}[Proof sketch]
+This is a combination of three observations:
+\begin{enumerate}
+    \item For $\G$ arbitrary and $f \in \Sigma^2(\G; \Gm)$ which expands in a coordinate to $1 + b c_{2^m} + \cdots$, then $b = 0$ as an element of $B[1/2]$ and of $B/2$.
+    \item For any $f \in \Sigma^2(\G_a; \Gm)$ with expansion $1 + b c_n + \cdots$, $b^2 \equiv 0 \pmod{2}$.
+    \item Modulo $2$, the putative universal product series above decomposes further as \[\prod_{n \ge 1} \left(\prod_{j \ge 0} (1 + a_{2n+1}^{[2^j]} \cdot c_{(2n+1)2^j})\right). \qedhere\]
+\end{enumerate}
+\end{proof}
 
-In general, after picking a coordinate on $\G$ any function $f \in \Sigma^2(\G; \Gm)$ must thus have the form $1 + a c_{2n+1} + \cdots$ for some coefficient $a$.  There are three calculations:
-\begin{lemma}\label{SigmaNonexistenceLemma}
+\begin{corollary}
+The injective comparison map \[\Spec E_0 \Spin/SU \to \Sigma^2(\CP^\infty_E; \Gm)\] of \Cref{SpinSUComparisonMapIsInj} is an isomorphism.
+\end{corollary}
+\begin{proof}
+The same Serre spectral sequence calculation as in the proof of \Cref{SpinSUComparisonMapIsInj} shows that the source and target of the factorization have the same Poincar\'e series, and we are done.
+\end{proof}
+
+From here, the work gets considerably more technical.  In particular, we will only be able to conclude flatness in the case $\height \G \le 2$, and then only through explicit calculation.  The results cleave into the following three pieces:
+
+\begin{lemma}[Nonexistence lemma]\label{SigmaNonexistenceLemma}
 Let $\G$ be a formal group of height $1$ or $2$ over an $\F_2$--algebra.  For $f \in \Sigma^2(\G; \Gm)$ of the form $1 + a c_n + \cdots$, \ldots
 \begin{enumerate}
     \item \ldots if $n = 2^m$ then $a = 0$.
@@ -1428,20 +1477,33 @@ Let $\G$ be a formal group of height $1$ or $2$ over an $\F_2$--algebra.  For $f
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-\todo[color=red,inline]{This cuts down the $\Sigma^2$ space.}
+We address the claims in turn.
+\begin{enumerate}
+    \item This is a generic claim that does not rely on the height of $\G$.  The $2$--cocycle $c_{2^m}$ takes the form $c_{2^m}(x, y) = x^{2^{m-1}} y^{2^{m-1}}$, so that $f(x, -_{\G} x) = 1 + a x^{2^m} + \cdots$.  The expected value is $f(x, -_{\G} x) = 1$, hence $a = 0$.\footnote{One can show by almost identical calculation that $a = 0$ in this case if $2$ is invertible.}
+    \item This is again an explicit calculation of the leading term.  Since $\G$ is of height $d$, it admits a coordinate where the negation series takes the form \[[-1]_{\G}(x) = -x + cx^{2^d} + \cdots\] for some $c$ not a zero divisor.  In the case that $n$ is as described, one can then calculate \[c_n(-_{\G} x, -_{\G} y) + c_n(x, y) = c_{n + (2^d-1)}(x, y) + \cdots,\] from which we make a trio of calculations:
+    \begin{align*}
+    \lambda_2 f & = f^2, & \text{(uses $f \in \Sigma^2(\G; \Gm)$)} \\
+    \lambda_2 f & = 1 + ac_{n + (2^d-1)}(x, y) + \cdots, & \text{(above observation)} \\
+    f^2 & = 1 + a^2 c_{2n}(x, y) + \cdots. & \text{(characteristic $2$)}
+    \end{align*}
+    For $n \ge 2^d$, this forces $a = 0$.
+    \item In the case $d = 2$ of the previous statement, this leaves one case open: $n = 3$.  Equating the two sides then gives $a^2 = a$.
+    \qedhere
+\end{enumerate}
 \end{proof}
 
-\begin{lemma}\label{SigmaArrowLemma}
+\begin{lemma}[Generic existence lemma]\label{SigmaArrowLemma}
 Let $f = 1 + a c_n + \cdots \in C^2(\G; \Gm)$.  If $2n+1 \ge 3$ is not of the form $2^r - (2^d - 1)$ for any $r$, then $\lambda_2 f = 1 + a c_{n + 2^d - 1} + \cdots$.
 \end{lemma}
 \begin{proof}[Proof sketch]
-This requires calculation in a coordinate.  Since $\G$ is of height $d$, it admits a coordinate where the negation series takes the form \[[-1]_{\G}(x) = -x + cx^{2^d} + \cdots.\]  Substituting this into the definition of $\lambda_2$ and tracking the computation gives the result.
+This is also a consequence of the same manipulation of the negation series.
 \end{proof}
 
-\begin{lemma}\label{SigmaSpecialCaseLemma}
+\begin{lemma}[Special existence lemma]\label{SigmaSpecialCaseLemma}
 There exists a function $f \in C^2(\G; \Gm)$ with $\lambda_2 f = 1 + (a^2 + \eps a + \delta) c_{2^r + (2^d - 1)}$.
 \end{lemma}
-\begin{proof}
+\begin{proof}[Indication of proof]
+This, finally, makes explicit use of height $1$ and $2$ formal group laws.  The starting point is to set $g = \delta_{(\G_a, \Gm)}E_2(ax^{2^{r-1} + (2^d-1)})$ and then to carefully cancel low-order terms by multiplying in other known $\Sigma^2$--structures.
 \end{proof}
 
 \begin{figure}
@@ -1494,30 +1556,64 @@ There exists a function $f \in C^2(\G; \Gm)$ with $\lambda_2 f = 1 + (a^2 + \eps
 \caption{Application of the three Lemmas in a small range.  Circles denote prohibitions of $\Sigma^2$--structures by \Cref{SigmaNonexistenceLemma}, arrows denote $\Sigma^2$--structures constructed by \Cref{SigmaArrowLemma}, and squares denote exceptional $\Sigma^2$--structures constructed by \Cref{SigmaSpecialCaseLemma}.}
 \end{figure}
 
-\begin{corollary}
-The map $\lambda_2$ is flat.
+\begin{corollary}\label{LambdasAreFlat}
+For $\G$ a formal group over $\Spec \F_2$ with $\height \G \le 2$, the maps $\lambda_2$ and $\lambda_3$ are flat.
 \end{corollary}
 \begin{proof}
-
+This is a culmination of the above calculations.  As argued at the beginning of our algebraic analysis, it suffices to show just that $\lambda_2^\circ$ is faithfully flat to make the cocnclusion.  Flatness follows by showing that the map is surjective on tangent spaces, which is exactly the content of \Cref{SigmaNonexistenceLemma}, \Cref{SigmaArrowLemma}, and \Cref{SigmaSpecialCaseLemma}.
 \end{proof}
 
-
-
-
-
-
-
-
-
-
+\begin{theorem}\label{MStringTriumvirate}
+Let $\G$ be a formal group over a perfect field of characteristic $2$, and assume $\height \G \le 2$.  For $E$ the associated Morava $K$--theory or $E$--theory, there are isomorphisms
+\begin{align*}
+\Spec E_0 M\String & \xrightarrow\cong \Sigma^3(\CP^\infty_E; \sheaf I(0)), &
+\Spec E_0 M\Spin & \xrightarrow\cong C^2_{\mathrm{is}}(\CP^\infty_E; \sheaf I(0)),
+\end{align*}
+where $C^2_{\mathrm{is}}(\CP^\infty_E; \sheaf I(0))$ is the subscheme of $C^2(\CP^\infty_E; \sheaf I(0))$ consisting of those \textit{inverse-symmetric} functions satisfying $f(x, y) / f(-_{\G} x, -_{\G} y) = 1$.  Moreover, the $E_0$--points of these schemes biject with ring spectrum maps $M\String \to E$ and $M\Spin \to E$ respectively. \qed
+\end{theorem}
+\begin{proof}
+Our goal all along was to use the algebraic model to govern the bar spectral sequences 
+\begin{align*}
+\Tor^{E_* \Spin/SU}_{*, *}(E_*, E_* BSU) & \Rightarrow E_* B\Spin, &
+\Tor^{E_* \Spin/SU}_{*, *}(E_*, E_* BU[6, \infty)) & \Rightarrow E_* B\String. \\
+\intertext{Our conclusion from \Cref{LambdasAreFlat} is that they are both concentrated on the $0$--line and isomorphic to the respective Hopf algebra quotients}
+E_0 BSU \mmod (E_0 \Spin/SU) & \cong E_0 B\Spin, &
+E_0 BU[6, \infty) \mmod (E_0 \Spin/SU) & \cong E_0 B\String.
+\end{align*}
+Our algebraic models furthermore explicitly identify these quotients on homological schemes as those subschemes on which the stated algebraic identities hold.  The final claim of the theorem follows from even-ness and the universal coefficient spectral sequence.
+\end{proof}
 
 \begin{corollary}
 If $E$ is a finite height Morava $K$-- or $E$--theory considered as an elliptic spectrum, the complex $\sigma$--orientation of \Cref{EllipticSpectraAreOriented} lifts uniquely to a ring map $M\String \to E$.
 \end{corollary}
 \begin{proof}
-\todo[inline]{The cubical structure had something to do with the Abel's Theorem method of constructing the elliptic curve multiplication.}
+A remarkable feature of the canonical cubical structure associated to an abelian variety is that it automatically satisfies the extra condition required to be a $\Sigma^3$--structure.
+\citeme{Someone must state this how you want}
 \end{proof}
 
+\begin{remark}[{\cite[Theorem 7.2]{HopkinsICMZurich}}]
+More generally, the $\sigma$--orientation associated to a elliptic spectrum which either has $1/2 \in \pi_0 E$ or which has $\pi_* E$ torsion--free is supposed to lift through $M\String$.  Flatness in this setting is supposed to be approached via a fiber-by-fiber criterion, but here the grading tricked used above are less visibly helpful in lifting the classical algebraic result to the periodic one we require to make this work.  Rather than pursue this, we will give a sketch of the construction of the $\String$--orientation of $\tmf$ in \Cref{JuvitopTalkSection}, which automatically gives this much stronger result.
+\end{remark}
+
+\begin{remark}[{\cite{KLW,StricklandFSKS}}]
+A the cohomology formal schemes of a number of other infinite loopspaces related to real $K$--theory admit reasonable descriptions, often even independent of height.  A routinely useful result in this arena is due to Yagita~\cite[Lemma 2.1]{Yagita}: for $k_\Gamma$ the connective cover of the Morava $K$--theory $K_\Gamma$, in the Atiyah--Hirzebruch spectral sequence \[E_2^{*, *} = Hk^* X \otimes_k k_\Gamma^* \Rightarrow k_\Gamma^* X,\] the differentials are given by \[d_r(x) = \begin{cases} 0 & \text{if $r \le 2(p^d - 1)$}, \\ \lambda Q_d x \otimes v_d & \text{if $r = 2(p^d - 1) + 1$} \end{cases}\] where $\lambda \ne 0$ and $Q_d$ is the $d${\th} Milnor primitive.  For instance, this shows that $K_* BO$ decomposes as \[K_* BO \cong K_*[b_2, b_4, b_{2^{d+1}-2}] \underset{K_*[b_{2j}^2 \mid j < 2^d]}{\otimes} K_*[b_{2j}^2].\]  This, coupled to a theorem governing the result of the double bar spectral sequence, powers most of the results of Kitchloo, Laures, and Wilson~\cite[Section 4]{KLW}.  Their stronger results on the connective covers of $BO \times \Z$ are summarized in \Cref{MoravaKthyOfBO}.  The remaining formal scheme $B\String_K$, our prized object, is harder to access by these means: the sequence $(\OS{HS^1}{2})_K \to B\String_K \to B\Spin_K$ is exact in the middle, but neither left- nor right-exact~\cite[Proof of Theorem 1.13 (iv)-(vi)]{KLW}, causing significant headache.  Satisfyingly, their methods also tell us that our analysis fails at higher heights: the formal scheme $\Spin/SU_K$ contains $\coprod_{j \ge 3} (\OS{HS^1[2]}{j})_K$ as a subscheme, and it accounts for the kernel of the map to $B\Spin_K$.  Once $\height \Gamma \ge 3$ is satisfied, this kernel is nonzero.
+\end{remark}
+
+\begin{figure}
+\begin{center}
+\begin{tikzcd}
+& \Div_0 \overline \Gamma[2] \arrow{rr} \arrow{ld} \arrow[equal]{dd} & & \Div_0 \overline \Gamma \arrow{ld} \arrow[equal]{dd} \\
+\ker \omega \arrow[crossing over]{rr} \arrow{dd} & & B\Spin_K \\
+& \Div_0 \overline \Gamma[2] \arrow{rr} \arrow{ld} \arrow[equal]{dd} & & \Div_0 \overline \Gamma \arrow{ld} \arrow[equal]{dd} \\
+\SDiv_0 \Gamma[2] \arrow[crossing over]{rr} \arrow{dd} & & BSO_K \arrow[crossing over, "\omega" near end]{rr} \arrow[crossing over, leftarrow]{uu} & & \Gamma[2]^{\sm 2} \\
+& \Div_0 \overline \Gamma[2] \arrow{rr} \arrow{ld} \arrow{dd} & & \Div_0 \overline \Gamma \arrow{ld} \arrow{dd} \\
+\Div_0 \Gamma[2] \arrow[crossing over]{rr} \arrow{dd} & & BO_K \arrow[crossing over, "\sigma" near end]{rr} \arrow[crossing over, leftarrow]{uu} & & \Gamma[2] \\
+& \Div \overline \Gamma[2] \arrow{rr} \arrow{ld} & & \Div \overline{\Gamma} \arrow{ld} \\
+\Div \Gamma[2] \arrow{rr} & & (BO \times \Z)_K \arrow{rr} \arrow[leftarrow, crossing over]{uu} & & \underline{\Z}.
+\end{tikzcd}
+\end{center}
+\caption{Presentations of the Morava $K$--theoretic cohomological formal schemes associated to connective covers of $BO \times \Z$.  Each level in the prism is a bi-Cartesian square in the category of formal group schemes, and each level is the fiber of the maps off of the previous level to the Postnikov section.  The formal curve $\overline \Gamma$ is $\HP^\infty_K$, which is the fiber of $\sigma\co \Div_2^+ \Gamma \to \Gamma$, and $\overline \Gamma[2]$ is the fiber of the lift of the endo-isogeny $2\co \Gamma \to \Gamma$ to $\overline \Gamma$.  The map $\sigma$ vanishes on $\Div_0 \overline \Gamma$ and acts by summation on $\Div_0 \Gamma[2]$.  The map $\omega$ vanishes on $\Div_0 \overline \Gamma$ and acts on $\SDiv_0 \Gamma[2] \cong C_2 \Gamma[2]$ by $[a, b] \mapsto a \wedge b$.}\label{MoravaKthyOfBO}
+\end{figure}
 
 
 
@@ -1526,198 +1622,15 @@ If $E$ is a finite height Morava $K$-- or $E$--theory considered as an elliptic 
 
 
 
-
-
-
-
-more kitchloo-laures-wilson results---maybe just a remark?
 
 remark: Compare with Neil's response at \texttt{http://mathoverflow.net/questions/123958/a-formal-group-law-over-oriented-bordism}.
 
-remark: the $K$--theory results are supposed to entail results about general elliptic cohomology theories
 
 
 
 
-
-
-
-
-
-
-
-In order to get off the ground, we will need the following Lemma about the behavior of the Atiyah--Hirzebruch spectral sequence for a Morava $K$--theory:
-\begin{lemma}[{\cite[Lemma 2.1]{Yagita}}]\label{MoravaKThyAHSS}
-\todo{Does this Lemma admit a coordinate-free statement? They probably aren't all identically controlled by $Q_d$, but rather by $Q_d$ plus decomposables.}
-Let $k_\Gamma$ be the connective cover of the Morava $K$--theory $K_\Gamma$.  In the Atiyah--Hirzebruch spectral sequence \[E_2^{*, *} = Hk^* X \otimes_k k_\Gamma^* \Rightarrow k_\Gamma^* X,\] the differentials are given by \[d_r(x) = \begin{cases} 0 & \text{if $r \le 2(p^d - 1)$}, \\ \lambda Q_d x \otimes v_d & \text{if $r = 2(p^d - 1) + 1$} \end{cases}\] where $\lambda \ne 0$ and $Q_d$ is the $d${\th} Milnor primitive. \qed
-\end{lemma}
-
-\begin{corollary}[{\cite[Section 2.5]{RWY}, \cite[Equation 3.1]{KLW}}]\label{FormalSchemeForBO}
-There is a bi-Cartesian square of coalgebraic formal schemes
-\begin{center}
-\begin{tikzcd}
-& \Div_0 \barG[2] \arrow{rr} \arrow{ld} & & \Div_0 \G[2] \arrow{ld} \\
-\Div_0 \barG \arrow{rr} & & BO_K.
-\end{tikzcd}
-\end{center}
-\end{corollary}
-\begin{proof}
-We apply \Cref{MoravaKThyAHSS} to the analysis of the spectral sequence of Hopf algebras \[H\F_2{}_* BO \otimes (K_\Gamma)_* \Rightarrow (K_\Gamma)_* BO.\]  \citeme{I don't know where these Milnor primitives are calculated. I guess we could have done them using formal geometry} We have $H\F_2{}_* BO \cong \F_2[b_1, b_2, \ldots]$ and \[Q_d b_{2^{d+1} + 2j} = b_{2j + 1},\] from which it follows that all the odd generators are killed, all their squares survive \todo{Only the squares of even generators survive.}, and only the even generators of low degree are permanent cycles.  This results in a decomposition \[(K_\Gamma)_* BO \cong (K_\Gamma)_*[b_2, b_4, b_{2^{d+1}-2}] \underset{(K_\Gamma)[b_{2j}^2 \mid j < 2^d]}{\otimes} (K_\Gamma)_*[b_{2j}^2],\] and so we are tasked with assigning names to the coalgebraic formal schemes appearing in this formula.
-
-The left-hand factor is the free Hopf algebra on the coalgebra determined by the $2$--torsion in the formal group $\Gamma$ \todo{You write $\Gamma$ but also $\G$.}.  The right-hand factor is the free Hopf algebra on the formal curve $\barG := \HP^\infty_K$, using the isogeny
-\begin{align*}
-\HP^\infty_K & \to \CP^\infty_K \\
-y & \mapsto x \cdot [-1](x)
-\end{align*}
-induced by desymplectification.  Because $\H^\times$ is not commutative, $\barG$ is not a formal group, but we pull back the multiplication-by-$2$ isogeny from $\G$ to $\barG$ and define the subscheme $\barG[2]$ of points mapping to zero. \todo{It would be nice if you could put in a bit more detail about why these formal schemes correspond to the coalgebras from above.}
-\end{proof}
-
-Suppose that the Postnikov sections \[X(n, \infty) \to X[n, \infty) \to X[n, n]\] induce short exact sequences of formal groups.  A presentation of $X_K$ as a bi-Cartesian square then acquires value via the following algebraic Lemma:
-
-\begin{lemma}\label{CubeOfFibers}
-Consider the cube of formal group schemes constructed by taking pointwise fibers of the composite to $G$:
-\begin{center}
-\begin{tikzcd}
-& A' \arrow{rr} \arrow{ld} \arrow{dd} & & B' \arrow{ld} \arrow{dd} \\
-C' \arrow[crossing over]{rr} \arrow{dd} & & D' \\
-& A \arrow{rr} \arrow{ld} & & B \arrow{ld} \\
-C \arrow{rr} & & D \arrow{rr} \arrow[leftarrow, crossing over]{uu} & & G.
-\end{tikzcd}
-\end{center}
-If the bottom face is bi-Cartesian, then so is the top. \qed
-\end{lemma}
-
-\begin{corollary}\label{BSpinAnalysis}
-There is a bi-Cartesian square
-\begin{center}
-\begin{tikzcd}
-& \Div_0 \barG[2] \arrow{rr} \arrow{ld} & & \SDiv_0 \G[2] \arrow{ld} \\
-\Div_0 \barG \arrow{rr} & & BSO_K.
-\end{tikzcd}
-\end{center}
-\end{corollary}
-\begin{proof}[Proof sketch]
-The fibration $BSO \to BO \to BO(1)$ gives a short exact sequence of Hopf algebras, \todo{after applying $K$-homology -- what is the argument for this? Do I need to look at some spectral sequence?} so using \Cref{FormalSchemeForBO} we are in the situation of \Cref{CubeOfFibers}.  To compute the pointwise kernels, begin by considering the commuting square of Postnikov sections
-\begin{center}
-\begin{tikzcd}
-BO_K \arrow{r} \arrow{d} & BU_K \arrow{d} \\
-\G[2] \arrow{r} & \G.
-\end{tikzcd}
-\end{center}
-\todo{This diagram seems to be missing $\Div_0 \bar{G}$ and $\Div \bar{G}$.  Also, you are identifying $K(\mathbb{Z}/2.1)_K$ with $\G[2]$.  You argue using $BU$, but it also seems that whatever argument you are using to show that the right vertical arrows have null composite should also just work for $BO$.} Both horizontal maps are injections.  Since $\Div \barG \to BU_K \cong \Div_0 \G \to \G$ is null, the composite $\Div_0 \barG \to \G[2]$ is null.  Similarly, the composite $\Div \G[2] \to \G[2]$ acts by summation, and its kernel is $\SDiv_0 \G[2]$.
-\end{proof}
-
-From here, the computation gets harder.  
-
-\begin{corollary}[{\cite[Section 5.3]{KLW}}]
-There is a bi-Cartesian square
-\begin{center}
-\begin{tikzcd}
-& \Div_0 \barG[2] \arrow{rr} \arrow{ld} & & \ker \omega \arrow{ld} \\
-\Div_0 \barG \arrow{rr} & & B\Spin_K,
-\end{tikzcd}
-\end{center}
-where $\omega\co C_2 \G \to \G[2]^{\wedge 2}$ is the map $([a] - [0])([b] - [0]) \mapsto a \wedge b$.
-\end{corollary}
-\begin{proof}
-This goes similarly to \Cref{BSpinAnalysis}, once you know that the Postnikov section induces a short exact sequence of formal groups\citeme{Cite the relevant part of KLW}.  The composite $\Div \barG \to \G[2]^{\wedge 2}$ is shown to be zero using an identical technique\todo{Really? This is what I have written down in my notes, but I can't expand it out.}.  To identify the behavior on the other factor, we need the following diagram of exact sequences of Hopf algebras from Kitchloo, Laures, and Wilson~\cite[Theorem 6.4]{KLW}:
-\begin{center}
-\begin{tikzcd}
-& & & K_* \arrow{d} \\
-& K_* \arrow{d} & & K_* K(\Z, 3) \arrow{d} \arrow[leftarrow, in=0, out=180, densely dotted]{llddd} \\
-K_* \arrow{r} & K_* B\Spin \arrow{r} \arrow{d} & K_* BSU \arrow{r}{\tau} \arrow[equal]{d} & K_* BU[6, \infty) \arrow{d}{\delta} \\
-K_* \arrow{r} & K_* BSO \arrow{r}{i} \arrow{d} & K_* BSU \arrow{r}{1 - \xi} & K_* BSU \arrow{d} \\
-& K_* K(C_2, 2) \arrow{d} & & K_* \\
-& K_*,
-\end{tikzcd}
-\end{center}
-where $\tau\co C_2 \G \to C_3 \G$ is specified at the level of formal schemes by \[\tau\co ([a] - [0])([b] - [0]) \mapsto ([a] - [0])([b] - [0])([-a-b] - [0]).\]  Since $(1 - \xi) \circ i = 0$, we have that $\delta \circ \tau \circ i = 0$ and hence that $\tau \circ i$ lifts to $K_* K(\Z, 3)$.  Identifying $\SDiv_0 \G[2]$ with $C_2 \G[2]$, we check that the composites \[C_2 \G[2] \xrightarrow{\omega} \G[2]^{\wedge 2} \xrightarrow{\eps} C_3 \G\] and \[C_2 \G[2] \to C_2 \G \xrightarrow{\tau} C_3 \G\] agree.  For a point $[a, b] \in C_2 \G$, this is the claim
-\begin{align*}
-0 & = \eps(a \wedge b) - \tau[a, b] \\
-& = [a, a, b] - [b, a, b] - [-a - b, a, b] \\
-& = [a, a, b] - [b + a, a, b] + [b, a + a, b] - [b, a, b],
-\end{align*}
-and this is forced null in $C_3 \G$, as it looks like a $2$--cocycle shuffle. 
-
-\todo{Where is $\G[2]^{\wedge 2}$ in the diagram?  What is $\xi$? What is $\epsilon$? Is the dotted arrow the Bockstein? In the diagram you wrote $K_* K(C_2,2)$, but I think we already have too many $C_2$'s.  I'm also confused about the appearances of all the symmetric powers $C_2$ and $C_3$.  Where do they appear in the diagram?}
-
-\todo[inline]{I'm a little fuzzy on the coherence of this with the Bockstein: this computes the lift of $\tau \circ f$ into $K(\Z, 3)_K$, and it does happen to factor through the subscheme $K(\Z/2, 2)_K$ determined by the Bockstein. However, I don't immediately see why this agrees with the bottom Postnikov section of $BSO$: that's a map off of $BSO$ and this is a rotated map into $BU[6, \infty)$, so it's not an immediate consequence of naturality.  It has to do with rotating the Wood cofiber sequence just right, and in particular where the horizontal sequences come from: they're stitched-together from two consecutive Wood cofiber sequences.}
-\end{proof}
-
-
-
-
-
-
-\begin{remark}
-This computation becomes almost unfeasible for $B\String$, but we will sketch two approaches.  One is that the sequence \[\OS{HC_2}{2} \to \OS{HC_{2^\infty}}{2} \to B\String \to B\Spin \to \OS{HC_{2^\infty}}{4} \xrightarrow{2} \OS{HC_{2^\infty}}{4}\] induces an exact sequence of group schemes.  The other avenue of access is the pair of fiber sequences
-\begin{align*}
-\OS{H\Z}{3} & \to \widetilde{B\Spin} \to B\Spin, &
-B\String & \to \widetilde{B\Spin} \to \OS{HC_2}{3},
-\end{align*}
-formed by considering the pullback of the corner \[B\Spin \to \OS{H\Z}{4} \from \OS{HC_2}{3}.\]  Both of these fibrations induce short exact sequences of Hopf algebras.
-\end{remark}
-
-However, since we are specifically interested in $M\String$--orientations, there is an alternative approach that avoids describing the formal scheme $B\String_K$.  Again appealing to results of Kitchloo, Laures, and Wilson, we find that the sequence \[K_* \Spin/SU \to K_* BU[6, \infty) \to K_* B\String\] is exact and right-exact\citeme{KLW}.  The kernel of the map $K_* \Spin/SU \to K_* BU[6, \infty)$ is a Hopf algebra they call ``$CK_3$'' \citeme{Theorem 2.3.5.vi of KLW}, where \[CK_j = \bigoplus_{k=j}^\infty K_* K(\Z/2, k).\]  More than that, KLW even say where the polynomial and nonpolynomial parts of $K_* \Spin/SU$ land inside of $K_* BU[6, \infty)$.  I think\todo{But I have not checked!} that this means that $K_* BU[6, \infty)$ is a flat $K_* \Spin/SU$--module at heights $d \le 2$.
-
-Applying the Thom spectrum functor to the fiber square gives the pushout diagram
-\begin{center}
-\begin{tikzcd}
-\Susp^\infty_+ \Spin/SU \arrow{r} \arrow{d} & MU[6, \infty) \arrow{d} \\
-\S \arrow{r} & M\String,
-\end{tikzcd}
-\end{center}
-or, equivalently, an equivalence \[M\String \simeq MU[6, \infty) \sm_{\Susp^\infty_+ \Spin/SU} \S.\]
-\todo{This approach is \emph{not} independent of all the previous fuss with $B\Spin$.  We still need all of that to conclude that $B\Spin \to BU[6, \infty)$ induces an inclusion of formal schemes, which identifies the formal scheme associated to $\Spin/SU$ with $\ker \tau$.}
-\todo{There's a gap here. I think that we learn that $\Spin/SU \to BU[6, \infty)$ is an inclusion, and showing that that includes to the right thing along the zero-section is an additional argument.}
-This in turn gives a $\Tor$ spectral sequence of signature \[\Tor^{K_* \Spin/SU}_{*, *}(K_* MU[6, \infty), K_*) \Rightarrow K_* M\String.\]  So, under the flatness hypothesis above, there are no higher $\Tor$ terms so the spectral sequence collapses to give \[K_* M\String \cong K_* MU[6, \infty) \mmod K_* \Spin/SU.\]  So, what remains to be shown is that $K_* \Spin/SU$ picks out the correct extra relation for $\Sigma$--structures \todo{You have not introduced $\Sigma$--structures yet.}.  Then, we need a density argument to show that this handles all of the at-a-point cases of elliptic cohomology.
-
-\todo{Mike thinks that $K(2)_* \Spin / SU \to K(2)_* BU[6, \infty)$ follows from this being a map of co/commutative Hopf algebras which is injective on indecomposables. I don't know how to prove this hypothesis condition and I also don't know how to prove the reduction.  Bousfield's paper \textit{On $\lambda$--rings and the $K$--theory of infinite loopspaces} in Theorem 10.8 gives a description of flat Hopf algebras in the setting of periodic $K$--theory (or, rather, a reference).  It looks like his conclusion is that flat maps are \emph{precisely} the inclusions of Hopf algebras.  If we could adapt something like this to our situation, we would immediately learn that $K(2)_* \Spin / SU \to K(2)_* BU[6, \infty)$ is flat from Kitchloo--Laures--Wilson.}
-
-
-
-
-
-
-
-I've been looking at this again, and I think $B\String$ can be successfully analyzed at low heights using the $B\Spin$ analysis, which is height-independent, and the following diagram of fibrations:
-
-
-
-
-
-
-KLW show that these fibrations induce short exact sequences of group schemes at heights bounded by $2$.  This identifies $\Spin/SU_K \to BSU_K$ with the inclusion of $\ker \tau$ and $\Spin/SU_K \to BU[6, \infty)_K$ with the inclusion of $\ker(\tau \delta) = \ker(1 + \xi)$, using the KLW facts that $B\Spin_K$ and $B\String_K$ themselves inject compatibly into $BU[6, \infty)_K$ (see e.g.\ 2.3.6 of KLW).  The trick is then to identify these kernel subgroups with image subgroups of different maps---we want to do this because kernel subgroups do not (seem to?) describe testable conditions for descending maps, whereas if we knew (for instance) $\ker(1 + \xi) = (\im (1 - \xi)) + (\im \tau)$, then we could show that a function in $C^3(\G; \Gm)$ descends to a function on $B\String_K$ if and only if it vanishes on points in the images of these maps, themselves easily described since $C_2$ and $C_3$ are fppf-locally generated by point-divisors.
-
-Another fact from the diagram is that the inclusion of $\ker(1 + \xi)$ into $BU[6, \infty)_K$ remains an inclusion after projection along $\delta$.  Another fact is that there is a sequence of inclusions \[\im(1 - \xi) \subseteq \ker(1 + \xi) \supseteq 2 \cdot \ker(1 + \xi) \subseteq \im(1 - \xi).\]  This string is enough to show that the Hopkins condition is \emph{necessary} to get a $\String$--orientation, but perhaps not sufficient due to some $2$--torsion points in $C_3$.  Another fact KLW show is that $(\OS{BSO}{2})_K$ models $\im \tau$.  This doesn't seem compatible with the identification of $\Spin/SU$ as $\OS{kO}{6}$.  Another fact is that I \emph{think} that $\tau$ is not a $kU^0$--linear map.  I wonder if we can use divisibility to gain some traction: away from $2$ multiplication by $2$ is an isomorphism and at $2$ multiplication by $2$ is an fppf-surjection, so we can assume any given sum in $\ker(1 + \xi)$ admit componentwise square roots...  KLW also show that $B\Spin_K$ can be modeled by $\ker \tau$ (and this is the same place where they identify $BSO_2$ as $\im \tau$).  A routinely useful computational trick seems to be $[x] = -\<x\>[-x]$.
-
-
-
-
-
-
-
-
-
-
-
-\begin{remark}
-However, the spectra $HE_\Lambda P$ do not qualify as ``chromatically amenable'' from the perspective of this last argument, and so we lose access to our genus valued in modular forms.  Additionally, $K_{\Tate}$ does not qualify, essentially because it is integral rather than $p$--adic.  The methods described here give rise to putative $p$--adic $q$--expansions of modular forms, but we have not been able to check that they satisfy the modularity condition, nor that they assemble into a single, integral object.  Amazingly, such theorems are achievable, and they are the impetus for the study of topological modular forms and algebraic geometry done with $E_\infty$--rings.\todo{Expand this last sentence.  Point to the Appendix, or cite the $\TMF$ book, or idk.}
-\end{remark}
-
-
-
-
-
-
-
-
-
-\todo{The Atiyah--Bott--Shapiro orientation and the fibration $BSU \to B\Spin$.  This is possibly somewhere around Theorem 2.3.5.iv in KLW, the last fibration in 2.3.2 at $k=-2$, and sections 5.3 and 5.13}
 
 \todo{Cite Kitchloo--Laures's ``Real structures and Morava $K$--theories''}
-
-\todo{What follows is the analysis for $M\String$.  Is the one for $M\Spin$ analogous and do-able?  Does it involve $CK_2$ and maybe a clever choice of $MSU$--orientation?}
 
 \todo{If you managed to get all this to work, you could try to understand the $M\Spin$--orientation of $K_{\Tate}$, as in page 628 of the published AHS.}
 
@@ -1730,8 +1643,6 @@ However, the spectra $HE_\Lambda P$ do not qualify as ``chromatically amenable''
 
 
 \subsection*{Some other things that might belong in this chapter}
-
-The cubical structure on a singular (generalized) elliptic curve is not unique, but (published) AHS has an argument showing that the unicity of the choice on the nonsingular ``bulk'' extends to a unique choice on the ``boundary'' of the compactified moduli too.
 
 There's also the work of Ando--French--Ganter on factorized / iterated $\Theta$ structures and how they give rise to the ``two--variable Jacobi genus''.
 
