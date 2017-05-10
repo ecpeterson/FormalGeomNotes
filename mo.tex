@@ -20,7 +20,7 @@ Our goal is a sequence of theorems about the unoriented bordism spectrum $MO$.  
 For a spherical bundle $S^{n-1} \to \xi \to X$, its Thom space is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T_n(\xi).\]
 \end{definition}
 \begin{proof}[``Proof'' of definition]
-There is a more classical construction of the Thom space: take the associated disk bundle by gluing an $n$--disk fiberwise, and add a point at infinity by collapsing $\xi$: \[T_n(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ to an $n$--disk bundle is the same thing as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
+There is a more classical construction of the Thom space: take the associated disk bundle by gluing an $n$--disk fiberwise, and add a point at infinity by collapsing $\xi$:\todo{What is this $\sqcup'$ notation?} \[T_n(\xi) = (\xi \sqcup'_{S^{n-1}} D^n)^+.\]  To compare this with the cofiber definition, recall that the thickening of $\xi$ to an $n$--disk bundle is the same as taking the mapping cylinder on $\xi \to X$.  Since the inclusion into the mapping cylinder is now a cofibration, the quotient by this subspace agrees with both the cofiber of the map and the introduction of a point at infinity.
 \end{proof}
 
 Before proceeding, here are two important examples:
@@ -92,7 +92,7 @@ BO \times BO \rar["\sigma",equiv'] \arrow[bend right]{rrd} & BO \times BO \arrow
 We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.
 \todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}
 It is evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little lifting triangle it forms.}  We are now in a position to see the Thom isomorphism:
-\begin{lemma}[Thom isomorphism, universal example]
+\begin{lemma}[{Thom isomorphism, universal example, cf.\ \cite{Mahowald}}]
 As $MO$--modules, \[MO \sm MO \simeq MO \sm \Susp^\infty_+ BO.\]
 \end{lemma}
 \begin{proof}
@@ -149,18 +149,17 @@ One of the tentpoles of the theory of Thom spectra is that \Cref{GeneralThomIsom
 \end{remark}
 
 \begin{remark}\label{CohomologicalThomIso}
-\todo{Have you really proved this? It should be easy, but I don't think ``this just works'' alone suffices.}
-There is also a cohomological version of the Thom isomorphism.  Suppose that $E$ is a ring spectrum under $MO$ and let $\xi$ be the spherical bundle of a vector bundle on a space $X$.  The spectrum $F(\Susp^\infty_+ X, E)$ is a ring spectrum under $E$ (hence under $MO$), so there is a Thom isomorphism as well as an evaluation map \[F(\Susp^\infty_+ X, E) \sm T(\xi) \xrightarrow{\simeq} F(\Susp^\infty_+ X, E) \sm \Susp^\infty_+ X \xrightarrow{\operatorname{eval}} E.\]  Passing through the exponential adjunction, the map \[F(\Susp^\infty_+ X, E) \xrightarrow{\simeq} F(T(\xi), E)\] gives the cohomological Thom isomorphism \[E^* X \cong E^* T(\xi).\]
+There is also a cohomological version of the Thom isomorphism.  Suppose that $E$ is a ring spectrum under $MO$ and let $\xi$ be the spherical bundle of a vector bundle on a space $X$.  The spectrum $F(\Susp^\infty_+ X, E)$ is a ring spectrum under $E$ (hence under $MO$), so there is a Thom isomorphism as well as an evaluation map \[F(\Susp^\infty_+ X, E) \sm T(\xi) \xrightarrow{\simeq} F(\Susp^\infty_+ X, E) \sm \Susp^\infty_+ X \xrightarrow{\operatorname{eval}} E.\]  Passing through the exponential adjunction, the map \[F(\Susp^\infty_+ X, E) \xrightarrow{\simeq} F(T(\xi), E)\] can be seen to give the cohomological Thom isomorphism \[E^* X \cong E^* T(\xi).\]
 \end{remark}
 
 \begin{example}\label{HF2RPinftyExample}
-We will close out this section by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  Because $MO$ is a connective spectrum, the truncation map \[MO \to MO(-\infty, 0] = H\pi_0 MO = H\F_2\] is a map of ring spectra\citeme{Find a reference for this, which I actually am not sure how to prove. Allen said Corollary 6.6 of https://arxiv.org/pdf/0806.3983v1.pdf is relevant}.  Hence, we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
+We will close out this section by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  Because $MO$ is a connective spectrum, the truncation map \[MO \to MO(-\infty, 0] = H\pi_0 MO = H\F_2\] is a map of ring spectra.  Hence, we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
 \begin{align*}
 \pi_* (H\F_2 \sm T(\L - 1)) & \cong \pi_* (H\F_2 \sm T(0)) & \text{(Thom isomorphism)} \\
 \pi_* (H\F_2 \sm \Susp^{-1} \Susp^\infty \RP^{n+1}) & \cong \pi_* (H\F_2 \sm \Susp^\infty_+ \RP^n) & \text{(\Cref{RPnThomExample})} \\
 \widetilde{H\F_2}_{*+1} \RP^{n+1} & \cong H\F_2{}_* \RP^n. & \text{(generalized homology)}
 \end{align*}
-This powers an induction that shows $H\F_2{}_* \RP^\infty$ has a single class in every degree.  The cohomological version of the Thom isomorphism in \Cref{CohomologicalThomIso}, together with the $H\F_2^* \RP^n$--module structure of $H\F_2^* T(\L-1)$, also gives the ring structure: \[H\F_2^* \RP^n = \F_2[x] / x^{n+1}.\]
+This powers an induction that shows that $H\F_2{}_* \RP^\infty$ has a single class in every degree.  The cohomological version of the Thom isomorphism in \Cref{CohomologicalThomIso}, together with the $H\F_2^* \RP^n$--module structure of $H\F_2^* T(\L-1)$, also gives the ring structure: \[H\F_2^* \RP^n = \F_2[x] / x^{n+1}.\]
 \end{example}
 
 
