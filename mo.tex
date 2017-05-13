@@ -169,7 +169,7 @@ This powers an induction that shows that $H\F_2{}_* \RP^\infty$ has a single cla
 
 \section{Cohomology rings and affine schemes}\label{SectionSchemesOverF2}
 
-An abbreviated summary of this book is that we are going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before doing any algebraic topology, let me remind you what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents, $\Spec R$.  For any ``test $\F_2$--algebra'' $T$, we set \[(\Spec R)(T) := \CatOf{Algebras}_{\F_2/}(R, T) \cong \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R).\]  More generally, we have the following definition:
+An abbreviated summary of this book is that we are going to put ``$\Spec$'' in front of rings appearing in algebraic topology and see what happens.  Before actually doing any algebraic topology, we should recall what this means on the level of algebra.  The core idea is to replace a ring $R$ by the functor it corepresents, which we will denote by $\Spec R$.  For any ``test $\F_2$--algebra'' $T$, we set \[(\Spec R)(T) := \CatOf{Algebras}_{\F_2/}(R, T) \cong \CatOf{Schemes}_{/\F_2}(\Spec T, \Spec R).\]  More generally, we have the following definition:
 \begin{definition}\label{DefnAffineF2Scheme}
 An \textit{affine $\F_2$--scheme} is a functor $X: \CatOf{Algebras}_{\F_2/} \to \CatOf{Sets}$ which is (noncanonically) isomorphic to $\Spec R$ for some $\F_2$--algebra $R$.  Given such an isomorphism, we will refer to $\Spec R \to X$ as a \textit{parameter} for $X$ and its inverse $X \to \Spec R$ as a \textit{coordinate} for $X$.
 \end{definition}
@@ -185,14 +185,14 @@ There is an equivalence of categories
 
 The centerpiece of thinking about rings in this way, for us and for now, is to translate between a presentation of $R$ as a quotient of a free algebra and a presentation of $(\Spec R)(T)$ as selecting tuples of elements in $T$ subject to certain conditions.  Consider the following example:
 \begin{example}\label{FiniteOrderAffineSpaceDefn}
-Set $R_1 = \F_2[x]$.  Then \[(\Spec R_1)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x], T)\] is determined by where $x$ is sent---i.e., this Hom--set is naturally isomorphic to $T$ itself.  Consider also what happens when we impose a relation by passing to $R_2 = \F_2[x] / (x^{n+1})$.  The value \[(\Spec R_2)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x] / (x^{n+1}), T)\] of the associated affine scheme is again determined by where $x$ is sent, but now $x$ can only be sent to elements which are nilpotent of order $n+1$.  These schemes are both important enough that we give them special names:
+Set $R_1 = \F_2[x]$.  Then elements of $(\Spec R_1)(T)$ can be reconsidered as functions by \[(\Spec R_1)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x], T),\] and such a function is entirely determined by where $x$ is sent.  By consequence, this Hom--set is naturally isomorphic to $T$ itself.  Consider also what happens when we impose a relation by passing to $R_2 = \F_2[x] / (x^{n+1})$.  A function in \[(\Spec R_2)(T) = \CatOf{Algebras}_{\F_2/}(\F_2[x] / (x^{n+1}), T)\] is again determined by where $x$ is sent, but now $x$ can only be sent to elements which are nilpotent of order $n+1$.  These schemes are both important enough that we give them special names:
 \begin{align*}
 \mathbb A^1 & := \Spec \F_2[x], & \mathbb A^{1, (n)} & := \Spec \F_2[x] / (x^{n+1}).
 \end{align*}
 The symbol ``$\mathbb A^1$'' is pronounced ``the affine line''---reasonable, since the value $\mathbb A^1(T)$ is, indeed, a single $T$'s worth of points.  Note that the quotient map $R_1 \to R_2$ induces an inclusion $\mathbb A^{1, (n)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we pronounce ``$\mathbb A^{1, (0)}$'' as ``the origin on the affine line'' and ``$\mathbb A^{1, (n)}$'' as ``the $(n+1)${\st} order (nilpotent) neighborhood of the origin in the affine line''.
 \end{example}
 
-We can also use this language to re-express another common object arising in algebraic topology: the Hopf algebra, which appears when taking the mod--$2$ cohomology of an $H$--group.  In addition to the usual ring structure on cohomology groups, the $H$--group multiplication, unit, and inversion maps induce an additional diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
+We can also use this language to re-express another common object arising in algebraic topology: the Hopf algebra, which appears when taking the mod--$2$ cohomology of an $H$--group.  In addition to the usual ring structure on cohomology groups, the $H$--group multiplication, unit, and inversion maps additionally induce a diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
 \begin{lemma}
 For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \textit{group schemes}.  Conversely, a choice of group structure on $\Spec R$ endows $R$ with the structure of a Hopf algebra.
 \end{lemma}
@@ -368,7 +368,7 @@ Having produced the action map $\alpha$, we are now moved to study $\alpha$ as w
 \end{align*}
 from which it follows that \[\Delta \xi_m = \sum_{i+j=m} \xi_i^{2^j} \otimes \xi_j.\]  Finally, Milnor shows that this is the complete story:
 \begin{theorem}[{Milnor~\cite[Theorem 2]{Milnor}, \cite[Chapter 6]{MosherTangora}}]\label{StableSteenrodAlgebraQuote}
-$\mathcal A_* = \F_2[\xi_1, \xi_2, \ldots, \xi_j, \ldots]$.
+There is an isomorphism \[\mathcal A_* = \F_2[\xi_1, \xi_2, \ldots, \xi_j, \ldots].\]
 \end{theorem}
 \begin{proof}[Flippant proof]
 There is at least a map $\F_2[\xi_1, \xi_2, \ldots] \to \mathcal A_*$ given by the definition of the elements $\xi_j$ above.  This map is injective, since these elements are distinguished by how they coact on $H\F_2^* \RP^\infty$.  Then, since these rings are of graded finite type, Milnor can conclude his argument by counting how many elements he has produced, comparing against how many Adem and Cartan found (which we will do ourselves in \Cref{UnstableSteenrodCoops}), and noting that he has exactly enough.
@@ -455,40 +455,36 @@ Throughout this Lecture, we will work with graded homology groups, rather than w
 \end{remark}
 
 With this caveat out of the way, begin by considering the following three self-maps of the stable sphere:
-\begin{align*}
-\S^0 & \xrightarrow{0} \S^0, & \S^0 & \xrightarrow{1} \S^0, & \S^0 & \xrightarrow{2} \S^0.
-\end{align*}
-If we apply mod--$2$ homology to each line, the induced maps are
-\begin{align*}
-\F_2 & \xrightarrow{0} \F_2, & \F_2 & \xrightarrow{\id} \F_2, & \F_2 & \xrightarrow{0} \F_2.
-\end{align*}
-We see that mod--$2$ homology can immediately distinguish between the null map and the identity map just by its behavior on morphisms, but it cannot distinguish between the null map and the multiplication-by-$2$ map.  To try to distinguish between these two, we use the only other tool available to us: homology theories send cofiber sequences to long exact sequences, and moreover the data of a map $f$ and the data of the inclusion map $\S^0 \to C(f)$ into its cone are equivalent in the stable category.  So, we trade our maps $0$ and $2$ for the following cofiber sequences:
 \begin{center}
 \begin{tikzcd}
-\S^0 \arrow{r} & C(0) \arrow{r} & \S^1, & \S^0 \arrow{r} & C(2) \arrow{r} & \S^1.
+\S^0 \arrow["0"]{r} & \S^0, &
+\S^0 \arrow["1"]{r} & \S^0, &
+\S^0 \arrow["2"]{r} & \S^0.
+\intertext[12pt]{If we apply mod--$2$ homology to each line, the induced maps are}
+\F_2 \arrow["0"]{r} & \F_2, &
+\F_2 \arrow["1"]{r} & \F_2, &
+\F_2 \arrow["0"]{r} & \F_2.
 \end{tikzcd}
 \end{center}
-The homology groups of these spectra $C(0)$ and $C(2)$ are more complicated than just that of $\S^0$, and we will draw them according to the following conventions: each ``$\bullet$'' in the row labelled ``$[j]$'' indicates an $\F_2$--summand in the $j${\th} $H\F_2$--homology of the spectrum.  Applying homology to these cofiber sequences and drawing the results, these again appear to be identical:
+We see that mod--$2$ homology can immediately distinguish between the null map and the identity map just by its behavior on morphisms, but it cannot distinguish between the null map and the multiplication-by-$2$ map.  To try to distinguish between these two, we use the only other tool available to us: homology theories send cofiber sequences to long exact sequences, and moreover the data of a map $f$ and the data of the inclusion map $\S^0 \to C(f)$ into its cone are equivalent in the stable category.  So, we trade our maps $0$ and $2$ for the following cofiber sequences:
 \begin{center}
-\begin{tikzcd}[column sep=1.0em]
-{[1]} & & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet & \arrow[leftarrow]{l} \bullet \\
-{[0]} & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet & \arrow[leftarrow]{l} \bullet \\
-& H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(0) & \arrow[leftarrow]{l} H\F_{2*} \S^1, & H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(2) & \arrow[leftarrow]{l} H\F_{2*} \S^1,
-\end{tikzcd}
-\end{center}
-\todo{It would be nice if the dots aligned directly beneath the spaces in the cofiber sequences above.  This can't be accomplished by a ``column sep'' attribute, since this doesn't control the width of a column but rather its literal separation from its neighbor.  This means finding some kind of ``intertext'' analogue for tikzcd.}
-However, if we enrich our picture with the data we discussed in \Cref{TheSteenrodAlgebraSection}, we can finally see the difference.  Recall the topological equivalences \[C(0) \simeq \S^0 \vee \S^1, \quad C(2) \simeq \Susp^{-1} \Susp^\infty \RP^2.\]  In the two cases, the coaction map $\lambda_*$ is given by
+\begin{tikzcd}[column sep=1.0em, ampersand replacement=\&]
+\& \S^0 \arrow{r} \& C(0) \arrow{r} \& \S^1, \&
+\S^0 \arrow{r} \& C(2) \arrow{r} \& \S^1.
+\intertext[12pt]{The homology groups of these spectra $C(0)$ and $C(2)$ are more complicated than just that of $\S^0$, and we will draw them according to the following conventions: each ``$\bullet$'' in the row labelled ``$[j]$'' indicates an $\F_2$--summand in the $j${\th} $H\F_2$--homology of the spectrum.  Applying homology to these cofiber sequences and drawing the results, these again appear to be identical:}
+{[1]} \& \& \bullet \& \arrow[leftarrow]{l} \bullet \& \& \bullet \& \arrow[leftarrow]{l} \bullet \\
+{[0]} \& \bullet \& \arrow[leftarrow]{l} \bullet \& \& \bullet \& \arrow[leftarrow]{l} \bullet \\
+\& H\F_{2*} \S^0 \& \arrow[leftarrow]{l} H\F_{2*} C(0) \& \arrow[leftarrow]{l} H\F_{2*} \S^1, \& H\F_{2*} \S^0 \& \arrow[leftarrow]{l} H\F_{2*} C(2) \& \arrow[leftarrow]{l} H\F_{2*} \S^1,
+\intertext[12pt]{However, if we enrich our picture with the data we discussed in \Cref{TheSteenrodAlgebraSection}, we can finally see the difference.  Recall the topological equivalences \[C(0) \simeq \S^0 \vee \S^1, \quad C(2) \simeq \Susp^{-1} \Susp^\infty \RP^2.\]  In the two cases, the coaction map $\lambda_*$ is given by
 \begin{align*}
 \lambda_*: H\F_{2*} C(0) & \to H\F_{2*} C(0) \otimes \mathcal A_* & \lambda_*: H\F_{2*} C(2) & \to H\F_{2*} C(2) \otimes \mathcal A_* \\
 \lambda^*: e_0 & \mapsto e_0 \otimes 1 & \lambda^*: e_0 & \mapsto e_0 \otimes 1 + e_1 \otimes \xi_1 \\
 \lambda^*: e_1 & \mapsto e_1 \otimes 1, & \lambda^*: e_1 & \mapsto e_1 \otimes 1.
 \end{align*}
-We use a vertical line to indicate the nontrivial coaction involving $\xi_1$:
-\begin{center}
-\begin{tikzcd}[column sep=1.0em]
-{[1]} & & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet \arrow[-, "{\xi_1}" description]{d} & \arrow[leftarrow]{l} \bullet \\
-{[0]} & \bullet & \arrow[leftarrow]{l} \bullet & & \bullet & \arrow[leftarrow]{l} \bullet \\
-& H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(0) & \arrow[leftarrow]{l} H\F_{2*} \S^1, & H\F_{2*} \S^0 & \arrow[leftarrow]{l} H\F_{2*} C(2) & \arrow[leftarrow]{l} H\F_{2*} \S^1,
+We use a vertical line to indicate the nontrivial coaction involving $\xi_1$:}
+{[1]} \& \& \bullet \& \arrow[leftarrow]{l} \bullet \& \& \bullet \arrow[-, "{\xi_1}" description]{d} \& \arrow[leftarrow]{l} \bullet \\
+{[0]} \& \bullet \& \arrow[leftarrow]{l} \bullet \& \& \bullet \& \arrow[leftarrow]{l} \bullet \\
+\& H\F_{2*} \S^0 \& \arrow[leftarrow]{l} H\F_{2*} C(0) \& \arrow[leftarrow]{l} H\F_{2*} \S^1, \& H\F_{2*} \S^0 \& \arrow[leftarrow]{l} H\F_{2*} C(2) \& \arrow[leftarrow]{l} H\F_{2*} \S^1.
 \end{tikzcd}
 \end{center}
 We can now see what trading maps for cofiber sequences has bought us: mod--$2$ homology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.

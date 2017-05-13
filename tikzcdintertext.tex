@@ -1,0 +1,51 @@
+\RequirePackage{tikz-cd}
+\RequirePackage{etoolbox}
+
+\usetikzlibrary{calc}
+\edef\mytikzcdrestoreat{\catcode`@=\the\catcode`@\let\noexpand\mytikzcdrestoreat\noexpand\undefined}
+\makeatletter
+\newbox\mytikzcd@trialbox
+
+\patchcmd\tikzcd@{#1]}{remember picture,#1]\let\intertext\mytikzcd@intertext}{}{\errorfailedtopatch}
+
+
+
+\def\mytikzcd@addtosavedpaths#1{\xdef\tikzcd@savedpaths{\unexpanded\expandafter{\tikzcd@savedpaths}#1}}
+\def\mytikzcd@intertext{
+	\@ifnextchar[{\mytikzcd@intertext@}{\mytikzcd@intertext@[0pt]}
+}
+
+\def\mytikzcd@intertext@[#1]#2{
+	\setbox\mytikzcd@trialbox=\vbox{\hsize\textwidth #2}
+	\expandafter\\\expandafter[\the\dimexpr\ht\mytikzcd@trialbox+\dp\mytikzcd@trialbox+#1]
+    \edef\mytikzcd@lmargin{\if@mparswitch\ifodd\thepage\space \Gm@lmargin\else \Gm@rmargin\fi\else \Gm@lmargin\fi}
+    \@xp\mytikzcd@findcolumn\@xp{\tikzcd@savedpaths}{1}
+	\mytikzcd@addtosavedpaths{\unexpanded{\path[overlay] let \p1=(current page.west), \p2 =} (\noexpand\tikzcdmatrixname-\the\numexpr\pgfmatrixcurrentrow-1\relax-\mytikzcd@column), \noexpand\p3 = (\noexpand\tikzcdmatrixname-\the\pgfmatrixcurrentrow-1) in
+	node[anchor=west,text width=\textwidth,xshift=\mytikzcd@lmargin-2pt] at \unexpanded{(\x1,0.5*\y2+0.5*\y3)  {#2};}
+	}
+}
+
+
+\def\mytikzcd@findcolumn#1#2{
+    \def\mytikzcd@targetrow{#2}
+    \expandafter\mytikzcd@findcolumn@\detokenize{#1\def\tikzcd@currentcolumn{x}\def\tikzcd@currentrow{6}}\@nil
+}
+\bgroup\lccode`\(=`\{\lccode`\)=`\}\lowercase{\egroup
+\edef\mytikzcd@findcolumn@argspec{\unexpanded{#1}\detokenize{\def\tikzcd@currentcolumn}\unexpanded{(#2)}\detokenize{\def\tikzcd@currentrow}\unexpanded{(#3)}}
+}
+
+\@xp\def\@xp\mytikzcd@findcolumn@\mytikzcd@findcolumn@argspec{
+    \expandafter\ifx\detokenize{x}#2
+        \ifnum\mytikzcd@row<\the\numexpr\pgfmatrixcurrentrow-1\relax\def\mytikzcd@column{1}\fi
+        \@xp\@gobbletonil
+    \else
+        \def\mytikzcd@column{#2}
+        \def\mytikzcd@row{#3}
+        \@xp\mytikzcd@findcolumn@
+    \fi
+}
+
+
+
+\def\@gobbletonil#1\@nil{}
+\mytikzcdrestoreat 
