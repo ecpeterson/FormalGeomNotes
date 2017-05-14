@@ -145,7 +145,7 @@ Our introduction of $E_\infty$ rings also automatically introduces a few interes
 & \CatOf{Spectra} \arrow[shift left=0.4em, "(-) \sm E"]{u} \arrow["\P", shift left=0.4em]{r} & \EinftyRings. \arrow[shift left=0.4em, "(-) \sm E"]{u} \arrow[shift left=0.4em]{l}
 \end{tikzcd}
 \end{center}
-The first functor sends a space $X$ to its spectrum of $E$--cochains $E^X$, and the other two functors form a free/forgetful monad approximating $\EinftyRings_E$ by $\CatOf{Modules}_E$.  These kinds of functors are familiar to us from the discussion of contexts in \Cref{StableContextLecture} and \Cref{UnstableContextsSection}, and the recipe applied in those situations gives an analogous story here.  First, there is a natural map \[\CatOf{Spaces}(*, X) \to \EinftyRings_E(E^X, E),\] which one hopes is an equivalence under (often very strong) hypotheses on $E$ and on $X$.  Second, the adjunction gives a mechanism for resolving $E^X$, which feeds into a spectral sequence computing this mapping space.  The functors $\P$ and $\P_E$ can be given by explicit formula:
+The first functor sends a space $X$ to its spectrum of $E$--cochains $E^X$, and the other two functors form a free/forgetful monad approximating $\EinftyRings_E$ by $\CatOf{Modules}_E$.  These kinds of functors are familiar to us from the discussion of contexts in \Cref{StableContextLecture} and \Cref{UnstableContextsSection}, and the recipe applied in those situations gives an analogous story here.  First, there is a natural map \[\CatOf{Spaces}(*, X) \to \EinftyRings_E(E^X, E),\] which one hopes is an equivalence under (often very strong) hypotheses on $E$ and on $X$.\footnote{It is an unpublished theorem of Hopkins and Lurie that if $X$ is a space admitting a finite Postnikov system with at most $\height \Gamma$ stages and involving only finite groups, then the natural map $F(*, X) \to \EinftyRings_{E_\Gamma/}(E_\Gamma^X, E_\Gamma)$ is an equivalence.}  Second, the adjunction gives a mechanism for resolving $E^X$, which feeds into a spectral sequence computing this mapping space.  The functors $\P$ and $\P_E$ can be given by explicit formula:
 \begin{align*}
 \P(X) & = \bigvee_{j=0}^\infty X^{\sm j}_{h\Sigma_j}, &
 \P_E(M) & = \bigvee_{j=0}^\infty M^{\sm_E j}_{h\Sigma_j}.
@@ -185,70 +185,93 @@ In general, if $E^* B\Sigma_j$ is sufficiently nice, then the the $E^2$--page of
 
 \subsection*{Strickland's theorems}
 
-We thus set out to understand the cohomological formal schemes $(B\Sigma_j)_E$ in the case where $E$ is a Morava $E$--theory.
+We thus set out to understand the cohomological formal schemes $(B\Sigma_j)_E$ in the case where $E$ is a Morava $E$--theory.  We first remark that an immediate effect of the $d^1$--differential in the descent spectral sequence is to pass to ``$\ast$--decomposables'', which in this setting amounts to killing all of the proper transfers.  We can therefore restrict attention to the following closed subschemes: \[(B\Sigma_j)_E^{/\Tr} := \Spf E^0 B\Sigma_j / I_{\Tr} := \Spf \left( \frac{E^0 B\Sigma_j}{\im(\Tr_{\Sigma_i \times \Sigma_j-i}^{\Sigma_j}\co E^0 B\Sigma_i \times E^0 B\Sigma_{j-i} \to E^0 B\Sigma_j)_{i=1}^{j-1}} \right).\]
 
 \begin{example}
-It is helpful to consider a low-index example to begin.
+It is helpful to consider a low-index example to begin: $(B\Sigma_p)_E$.  In light of the results of \Cref{CharacterTheorySection}, we might begin by analyzing the (maximal) abelian subgroups of $\Sigma_p$.  There is only one: the transitive subgroup $C_p \subseteq \Sigma_p$.  In \Cref{KtheoryConvertsTorsionToTorsion}, we calculated $BS^1[p]_E = \CP^\infty_E[p]$, and we make the further observation that the regular representation map $BS^1[p] \to BU(p)$ induces the following map on cohomological formal schemes:
+\begin{center}
+\begin{tikzcd}
+BS^1[p]_E \arrow{r} & BU(p)_E \\
+\InternalHom{FormalGroups}(\Z/p, \CP^\infty_E) \arrow{r} \arrow[equal]{u} & \Div_n^+ \CP^\infty_E \arrow[equal]{u},
+\end{tikzcd}
+\end{center}
+where the bottom arrow sends such a homomorphism to its image divisor.  This map belongs to a larger diagram of schemes:
+\begin{center}
+\begin{tikzcd}
+(B\Sigma_p)_E^{/\Tr} \arrow{r} & (B\Sigma_p)_E \arrow{r} & BU(p) \\
+(BC_p)_E^{/\Tr} \arrow{r} \arrow{u} & (BC_p)_E \arrow{u} \arrow{ru}.
+\end{tikzcd}
+\end{center}
+The effect of killing the transfer ideal in $(BC_p)_E$ is to force the image divisor to be a subdivisor of $\CP^\infty_E[p]$.\todo{Explain why.}  Finally, passing to $B\Sigma_p$ from $BC_p$ exactly destroys the choice of generator of $\Z/p$, i.e., it encodes passing from the homomorphism to the image divisor.  This winds up giving an isomorphism \[(B\Sigma_p)_E^{/\Tr} \cong \Sub_p \CP^\infty_E,\] where $\Sub_p$ denotes the scheme of subgroup divisors of rank $p$.
 \end{example}
 
-We also remark that an immediate effect of the $d^1$--differential in the descent spectral sequence is to pass to ``$\ast$--decomposables'', which in this setting amounts to killing all of the proper transfers.  We can therefore restrict attention to the following closed subschemes: \[(B\Sigma_j)_E^{/\tr} := \Spf E^0 B\Sigma_j / I_{\tr} := \Spf \left( E^0 B\Sigma_j / \im(\tr\co E^0 B\Sigma_i \times E^0 B\Sigma_{j-i} \to E^0 B\Sigma_j)_{i=1}^{j-1} \right).\]
-
-
-
-
-
-
-
-I think these are some relevant \textit{contexts}:
+In light of this example, there are several further variants of the $E_\infty$ context which one might consider:
 \begin{itemize}
-    \item The natural $E_\infty$ context: comes out of considering $DS^0 = \bigvee_k B\Sigma_k$.
-    \item The abelian $E_\infty$ context: comes out of considering all the abelian subgroups $\bigvee_k \bigvee_{A_k} BA_k$.  The formal scheme associated to this object by $E$--theory is $\coprod_k \coprod_{A_k} \InternalHom{FormalGroups}(A_k, \G)$.
-    \item The unstable context: comes out of considering $E^\vee \OS{E}{0}$,.
-
-    --- One then passes to the nondegenerate simplices, which I think is identical to modding out by the transfer ideal. ---
-    \item The natural $E_\infty$ context then has associated formal scheme $\coprod_k \Sub_k(\G)$.
-    \item The abelian $E_\infty$ context then has associated formal scheme $\coprod_k \coprod_{A_k} \Level(A_k, \G)$.
-    \item The unstable context then has associated formal scheme $\InternalHom{FormalGroups}(\G, \G)$.
+    \item The natural $E_\infty$ context: By this, we mean the context constructed in the previous subsection, whose $1$--simplices are given by $\prod_j (B\Sigma_j)_E$.
+    \item The abelian $E_\infty$ context: A consequence of \Cref{CharacterTheorySection} is that we can fully understand the behavior of the natural context by embedding the rings $E^0 B\Sigma_j$ into the cohomology of the maximal abelian subgroups of $\Sigma_j$.  A benefit to this context is that it has predictable behavior in Morava $E$--theory: the cohomological formal scheme associated to an abelian group can be presented as an internal scheme of group homomorphisms.
+    \item The unstable context: Every power operation can be considered as a family of unstable operations, giving a natural map to the unstable context considered in \Cref{UnstableContextsSection}.
 \end{itemize}
+We also saw in the example that it was profitable, from the perspective of cohomologial formal schemes, to preempt the $d^1$--differential and pass to the $\ast$--indecomposables.  In order,\footnote{\ldots i.e., in the order listed above, but not at all in logical order of proof.} Strickland has proven the following results about each of these reduced contexts:
+
+\begin{theorem}[{\cite[Theorem 1.1]{StricklandEthyOfBSigma}}]
+There is an isomorphism \[(B\Sigma_j)_E^{/\Tr} \cong \Sub_j \CP^\infty_E.\]  If $j$ is not a power of $p$, this is the terminal scheme. \qed
+\end{theorem}
+
+\begin{theorem}\citeme{Strickland somewhere}
+There is an isomorphism \[BA_E^{/\Tr} \cong \Level(A^*, \CP^\infty_E),\] where $\Level(A^*, \CP^\infty_E)$ denotes the subscheme of $\InternalHom{FormalGroups}(A^*, \CP^\infty_E)$ subject to the condition that $A^*[n]$ forms a subdivisor of $\CP^\infty_E[n]$. \qed
+\end{theorem}
+
+\begin{lemma}[{mild extension of \Cref{UnstableCooperationsChapter}}]
+There is an isomorphism \[\Spec Q^* \pi_* L_\Gamma(E \sm E) \cong \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_E). \qed\]
+\end{lemma}
+
+\begin{remark}
+An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is that they form a kind of replacement for the nonexistent ``scheme of monomorphisms''.  Specifically, the $p$--series for a Lubin--Tate universal deformation group is only once $x$--divisible, and hence the divisor $\G[p]$ only contains the divisor $[0]$ with multiplicity one.  This excludes noninjective morphisms in this case.  On the other hand, the only subgroups of the formal group restricted to the special fiber are of the form $p^m \cdot [0]$.  In particular, any level structure on $\G$ restricts to a morphism with this image divisor at the special fiber, and hence functoriality considerations force us to count these---which are \emph{not} images of monomorphisms---as level structures as well.
+\end{remark}
 
 
-\subsection*{Norm-coherence and the Lubin--Tate moduli}
+
+
+
+
+\subsection*{Isogenies and the Lubin--Tate moduli}
+
+% Describe the topological effect of a power operation on $\CP^\infty_E$
+% Isogenies of formal curves
+% Weierstrass preparation
+% Quotient formal groups and factorization
+% Isogenies versus subgroups (+ isomorphisms), the (F-)isogenies pile
+% The regular representation, Strickland’s theorems
+% The Drinfel’d ring and Galois descent
+
+
+
+
+
 
 
 \subsection*{$H_\infty$ orientations}
 
-
-
-
-
-
-
-% E_∞ mapping spectral sequence
-% The natural E_∞ context
-% The additive E_∞ context (as a semisimplicial object, or as C/B, or…?)
-
-% Isogenies of formal curves
-% Weierstrass preparation
-
-% Subgroup divisors, the scheme of subgroups
-% Quotient formal groups and factorization
-% Isogenies versus subgroups (+ isomorphisms), the (F-)isogenies pile
-% The regular representation, Strickland’s theorems
-
-% The abelian E_∞ context
-% Level structures
-% The Drinfel’d ring and Galois descent
-% (Observation: subgroup divisors of the Lubin-Tate formal group have weight 1 everywhere)
-
 % McClure’s theorems
 % Norm-coherence
 % Matt’s theorem about norm-coherent sections of line bundles
+% Section 2.7 of Matt's thesis works the example of a norm-coherent coordinate for $\G_m$. It's \emph{not} the $p$--typical coordinate. It \emph{is} the standard one! Cool.
 % Identification of H_∞ orientations of E-theory by MU, MSU, MU[6, ∞)
+% Projective geometry to check that the $\sigma$--orientation satisfies this. ($E_2$. $K^\Tate$? $Ell$?)
 % Indication about H_∞ orientations of Tate K-theory (need power operations internal to it)
 
 
 
-The stuff around 4.3.1-2 of Matt's published thesis talks about $H_\infty$--maps being determined by their values on $*$ and $\CP^\infty$, which is an interesting result.  You might also compare with Butowiez--Turner.
+
+
+
+
+
+
+
+
+
+
 
 Work in height $1$ (and height $2$??) examples through this?  $K$--theory is pretty accessible, and the height $2$ examples are somewhat understood (Charles, Yifei), and they're both relevant for the elliptic $M\String$ story.  (There's also the pile of elliptic curves with isogenies...)
 
@@ -263,38 +286,21 @@ Baker's POWER OPERATIONS AND COACTIONS IN HIGHLY COMMUTATIVE HOMOLOGY THEORIES s
 
 ------------
 
-We could try to understand Matt's thesis's Section 4.2.  It identifies the action of the internal power operation on $E_n$ using the internal theory of quotient isogenies to the Lubin--Tate deformation problem (2.5.4).  Conditions 1 and 3 of 4.2.1 are easy to verify: they are 4.2.3 (evaluate on a point) and 4.2.4 (the power operation does raise things to a power) respectively.  Condition 2 takes more work, and it's about identifying the divisor associated to the isogeny granted by Condition 1.  It's worked out in 4.2.5, which is not very hard, and 4.2.6, which shows that \emph{the} Thom class associated to a vector bundle is sent under a power operation to \emph{some} Thom class.  4.2.5 then uses that the quotient of \emph{some} Thom classes has to be a unit in the underlying ring.
-
-(Q: Can 4.2.5 be phrased about two coordinates on the same formal group, rather than two presentations of the same divisor?  There's a comparison between functions on the quotient with invariant functions on the original group---and perhaps with functions invariant by pulling back along the isogeny?)
-
 FPFP Example 4.6 is a nice summary of a main result of HKR character theory.  Compare also Example 4.8.
 
 ------------
 
 
-
---------
-
-
-As usual, we begin by introducing a notion of context that scaffolds the entire problem.
-
-
-
-
-
-The $E_\infty$ context, localization, power operations.  Modding out by transfers vs the ``normalized'' semisimplicial object coming from the simplicial object.  The map to the unstable moduli in the presence of K\"unneth isomorphisms for $B\Sigma_k$.
-
 Jeremy pointed out that $\beta \in E_* QS^n$ comes up when considering a class $\alpha \in \pi_n R$ for a commutative $E$--algebra, which we promote to a class $E \sm QS^n \to R$, and then precompose with the homotopy class $\beta$.
 
 This is also related to recent work of Behrens--Rezk on the Bousfield--Kuhn functor...
 
-\begin{theorem}[{Hopkins--Lurie, unpublished; cf.\ \Cref{MainKThyOfEMSpacesTheorem}}]
-Let $\Gamma$ be a formal group over a perfect field of characteristic $p$, and let $X$ be a space admitting a finite Postnikov system with at most $\height \Gamma$ stages and involving only finite groups.  The natural map \[X = F(*, X) \to \EinftyRings_{E_\Gamma/}(E_\Gamma^X, E_\Gamma)\] is then an equivalence. \qed
-\end{theorem}
+
+
+
+
 
 If you can figure out what Hood was doing with Dyer--Lashof operations in $H\F_2$ and the logarithm/exponential coordinates, that'd be pretty cool to include.  (Neil has a Steenrod Algebra note that brushes against this.)
-
-Matt's Section 4 talks about the $E_\infty$ structure on $E_n$ and compatibility with his power operations.  It's not clear how this doesn't immediately follow from the stuff he proves in Section 3, but I think I'm just running out of stream in reading this thesis.  One of the neat features of this later section is that it relies on calculations in $E_n D_\pi \OS{MU}{2*}$, which is an interesting way to mix operations coming from instability and from an $H_\infty$--structure.  This is yet another clue about what the relevant picture of a context should look like.  He often cites VIII.7 of BMMS.
 
 Barry's description of the image of \[E_\infty(A, B) \to \CatOf{Spaces}(\Loops^\infty A, \Loops^\infty B)\] for $K(1)$--local $A$ and $B$ using $p$--adic moments is pretty digestable.  That might belong in here, or at least it could be referenced.  (I guess it didn't ever get published??)  (Maybe just cite it and give also a reference to the Appendix A.1 stuff.)
 
@@ -312,27 +318,12 @@ Barry's description of the image of \[E_\infty(A, B) \to \CatOf{Spaces}(\Loops^\
 
 \subsection*{Subgroups and level structures}
 
-Algebraic geometry of $BC_p$, injection of $B\Sigma_p$.
-Definition of level structures.
-Remarks on the Drinfel'd ring.
-Morava $E$--theory of symmetric groups.
 
 Prop 8.3 in ``Character of the Total Power Operation'' provides an algebro-geometric proof of something in AHS04, using the fact that for $R$ a nice complete local ring and $G$, $G'$ $p$--divisible groups over $R$, there is an injection \[\Isog_R(G, G') \into \Isog_{R/\m}(G, G').\]
 
 \todo[color=red,inline]{Matt in and before Theorem 3.3.2 describes the ring $D_k$ as the \emph{image} of the localization map $E_n(B\Lambda_k) \to S^{-1} E_n(B\Lambda_k)$ rather than as the whole target.  Why??  He cites HKR for this, but the citation is meaningless because the theorem numbering scheme is so old.  Ah, comparing with Lemma 3.3.3 yields a clue: $D_k$ has a universal property as it sits under $E_n$, rather than under $E_n(B\Lambda_k)$...}
 
 
-
-
-\begin{theorem}[{\cite[Theorem 1.1]{StricklandEthyOfBSigma}}]
-The stable transfer maps $B\Sigma_{k + \ell} \to B\Sigma_k \times B\Sigma_\ell$, the diagonal maps $B\Sigma_k \to B\Sigma_k \times B\Sigma_k$, and the partition maps $B\Sigma_k \times B\Sigma_\ell \to B\Sigma_{k + \ell}$ give rise to a Hopf ring structure on $E^0 DS^0$ written $\times$, $\bullet$, and $\psi$.  The $\times$--indecomposables are $Q^\times E^0 DS^0 = \prod_{k \ge 0} (E^0 B\Sigma_{p^k} / I_{tr})$, and each such factor is isomorphic to $\sheaf O_{\Sub_{p^k} \G}$. \qed
-\end{theorem}
-
-
-
-------Here's a bunch of junk to sort through------
-
-On the Lubin--Tate formal group, a necessary condition for a divisor to be a subgroup divisor is that it contains the identity point \emph{once}.  On any finite height formal group, a subgroup divisor is contained in the $p^k$--torsion for some $k \gg 0$, and so its defining polynomial equation divides the $p^k$--series associated to the formal group.  Since $[p^k]_{LT}(x) = px + \cdots$ is only once-divisible by $x$, $x = 0$ cannot be a repeated root.  (This is \emph{not} true for the formal group over the special fiber, where $x = 0$ can certainly be a repeated root.)
 
 ------
 
@@ -358,11 +349,6 @@ Write out isogenies of the additive formal group, note that you just get the uns
 Push and pull maps for divisor schemes
 
 
-Moduli of subgroup divisors
-
-
-The Drinfel'd moduli ring, level structures
-
 ----
 
 \begin{lemma}\citeme{Prop 6.2 of HKR}
@@ -382,10 +368,6 @@ Let $\L_r(R)$ be the set of all group homomorphism \[\phi: \Lambda_r^* \to F[p^r
 Section 2: complete local rings
 
 ``Galois'' means $R \to S$ a finite extension of integral domains has $R$ as the fixed subring for $\operatorname{Aut}_R(S)$ and $S$ is free over $R$.  Galois extension of rings implies the extension of fraction fields is Galois.  The converse holds for finite (finitely generated as a module) dominant (kernel of $f$ is nilpotent) maps of smooth (regular local ring) schemes.
-
-Section 3: basic facts about formal groups
-
-definition of height
 
 Section 4: basic facts about divisors
 
@@ -519,28 +501,6 @@ Section 16: examples
 
 ------
 
-\begin{theorem}\citeme{See Theorem 2.4.1 of Ando's thesis, though he just cites other people}
-Let $R$ be a complete local domain with positive residue characteristic $p$, and let $F$ be a formal group of finite height $d$ over $R$.  If $\sheaf O$ is the ring of integers in the algebraic closure of the fraction field of $R$, then $F(\sheaf O)[p^k] \cong (\Z/p^k)^d$ and $F(\sheaf O)_{\mathrm{tors}} \cong (\Q_p / \Z_p)^d$. \qed
-\end{theorem}
-
-------
-
-Section 20 of FPFP is about ``full sets of points'' and the comparison with the cohomology of the flag variety of a vector bundle.
-
-------
-
-Talk with Nat:
-\begin{itemize}
-\item Definitions in terms of divisors.
-\item Equalizer diagram for quotients by finite subgroups.
-\item The image of a level structure $\ell$ is a subgroup divisor.
-\item The schemes classifying subgroups and level structures (which are hard and easy respectively, and which have hard and easy connections to topology respectively).
-\item It's easy to give explicit examples of the behavior of level structures based on cyclic groups.
-\item Galois actions on the rings of level structures.
-\end{itemize}
-
-------
-
 Talk with Nat:
 \begin{itemize}
 \item Recall the Lubin--Tate moduli problem.
@@ -593,44 +553,6 @@ where the product is now over all transitive Abelian $p$-subgroups. This implies
 
 
 
-
-
-
-
-\subsection*{Isogeny stability of the Lubin--Tate moduli}
-
-Isogenies, kernels, and quotients.
-Stability of the Lubin--Tate moduli under quotients.
-Power operations and deformations of Frobenius.
-The isogenies pile and the $E_\infty$--context for $E_\Gamma$.
-
-
-All of this rests, most importantly, on how a quotient of the Lubin--Tate universal deformation by a subgroup still gives a Lubin--Tate universal deformation.  This is Section 12.3 of AHS04, and it's Section 9 of Neil's Finite Subgroups paper.  (Nat says there's something to look out for in here.  Watch where they say they have $E_0$--algebra maps versus ring maps.)
-
-Charles's Sections 2.10,12 of the Felix Klein notes has a nice, compact exposition of power operations for $K(n)$--local $E_\infty$--ring spectra (using, in particular, $R^{B\Sigma_m} \simeq R \sm_E E^{B\Sigma_m}$) as well as a discussion of ``descent for isogenies'' generally and Koszul-ality in Section 3.
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection*{Norm coherence and \texorpdfstring{$\Theta$}{Theta}--structures}
-
-Necessary and sufficient conditions.
-The algebraic claim about sections over the special fiber.
-Projective geometry to check that the $\sigma$--orientation satisfies this.
-Conclude that the $\sigma$--orientation is an $H_\infty$ map.  (AHS do this for $E_2$ in Section 15. Can it also be done for $K^{\Tate}$?)
-
-The final chapter of Matt's thesis has never really been published, where he investigates power operations on elliptic cohomology theories.  That might belong in this chapter as an example of the techinques, since we've already defined elliptic cohomology theories.
-
-Section 2.7 of Matt's thesis works the example of a norm-coherent coordinate for $\G_m$. It's \emph{not} the $p$--typical coordinate. It \emph{is} the standard one! Cool.
 
 ------Stuff cribbed directly from AHS------
 
