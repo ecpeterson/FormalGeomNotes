@@ -141,10 +141,16 @@ Now, apply the genuine $G$-equivariant Chern character to the $K_G$ factor to ge
 Our introduction of $E_\infty$ rings also automatically introduces a few interesting accompanying functors:
 \begin{center}
 \begin{tikzcd}
-\CatOf{Spaces} \arrow["E^{(-)_+}", bend left]{rr} & \CatOf{Modules}_E \arrow["\P_E", shift left=0.4em]{r} & \EinftyRings_E. \arrow[shift left=0.4em]{l}
+\CatOf{Spaces} \arrow["E^{(-)_+}", bend left]{rr} & \CatOf{Modules}_E \arrow["\P_E", shift left=0.4em]{r} \arrow[shift left=0.4em]{d} & \EinftyRings_E \arrow[shift left=0.4em]{l} \arrow[shift left=0.4em]{d} \\
+& \CatOf{Spectra} \arrow[shift left=0.4em, "(-) \sm E"]{u} \arrow["\P", shift left=0.4em]{r} & \EinftyRings. \arrow[shift left=0.4em, "(-) \sm E"]{u} \arrow[shift left=0.4em]{l}
 \end{tikzcd}
 \end{center}
-The first functor sends a space $X$ to its spectrum of $E$--cochains $E^X$, and the other two functors form a free/forgetful monad approximating $\EinftyRings_E$ by $\CatOf{Modules}_E$.  These kinds of functors are familiar to us from the discussion of contexts in \Cref{StableContextLecture} and \Cref{UnstableContextsSection}, and the recipe applied in those situations gives an analogous story here.  First, there is a natural map \[\CatOf{Spaces}(*, X) \to \EinftyRings_E(E^X, E),\] which one hopes is an equivalence under (often very strong) hypotheses on $E$ and on $X$.  Second, the adjunction gives a mechanism for resolving $E^X$, which feeds into a spectral sequence computing this mapping space.  Finally, we expect the homotopy groups of this resolution to form a quasicoherent sheaf over a suitable \emph{$E_\infty$ context}, which forms the case where $X$ is a point.
+The first functor sends a space $X$ to its spectrum of $E$--cochains $E^X$, and the other two functors form a free/forgetful monad approximating $\EinftyRings_E$ by $\CatOf{Modules}_E$.  These kinds of functors are familiar to us from the discussion of contexts in \Cref{StableContextLecture} and \Cref{UnstableContextsSection}, and the recipe applied in those situations gives an analogous story here.  First, there is a natural map \[\CatOf{Spaces}(*, X) \to \EinftyRings_E(E^X, E),\] which one hopes is an equivalence under (often very strong) hypotheses on $E$ and on $X$.  Second, the adjunction gives a mechanism for resolving $E^X$, which feeds into a spectral sequence computing this mapping space.  The functors $\P$ and $\P_E$ can be given by explicit formula:
+\begin{align*}
+\P(X) & = \bigvee_{j=0}^\infty X^{\sm j}_{h\Sigma_j}, &
+\P_E(M) & = \bigvee_{j=0}^\infty M^{\sm_E j}_{h\Sigma_j}.
+\end{align*}
+Finally, we expect the homotopy groups of this resolution to form a quasicoherent sheaf over a suitable \emph{$E_\infty$ context}, which forms the case where $X$ is a point.
 
 In the case where we are resolving a point, we can explicitly name some of the terms in this resolution, which will help us better understand what we are studying.  To begin, the bottom two stages of the resolution take the form
 \begin{center}
@@ -180,6 +186,12 @@ In general, if $E^* B\Sigma_j$ is sufficiently nice, then the the $E^2$--page of
 \subsection*{Strickland's theorems}
 
 We thus set out to understand the cohomological formal schemes $(B\Sigma_j)_E$ in the case where $E$ is a Morava $E$--theory.
+
+\begin{example}
+It is helpful to consider a low-index example to begin.
+\end{example}
+
+We also remark that an immediate effect of the $d^1$--differential in the descent spectral sequence is to pass to ``$\ast$--decomposables'', which in this setting amounts to killing all of the proper transfers.  We can therefore restrict attention to the following closed subschemes: \[(B\Sigma_j)_E^{/\tr} := \Spf E^0 B\Sigma_j / I_{\tr} := \Spf \left( E^0 B\Sigma_j / \im(\tr\co E^0 B\Sigma_i \times E^0 B\Sigma_{j-i} \to E^0 B\Sigma_j)_{i=1}^{j-1} \right).\]
 
 
 
