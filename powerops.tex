@@ -236,6 +236,12 @@ There is an isomorphism \[\Spec Q^* \pi_* L_\Gamma(E \sm E) \cong \InternalHom{F
 An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is that they form a kind of replacement for the nonexistent ``scheme of monomorphisms''.  Specifically, the $p$--series for a Lubin--Tate universal deformation group is only once $x$--divisible, and hence the divisor $\G[p]$ only contains the divisor $[0]$ with multiplicity one.  This excludes noninjective morphisms in this case.  On the other hand, the only subgroups of the formal group restricted to the special fiber are of the form $p^m \cdot [0]$.  In particular, any level structure on $\G$ restricts to a morphism with this image divisor at the special fiber, and hence functoriality considerations force us to count these---which are \emph{not} images of monomorphisms---as level structures as well.
 \end{remark}
 
+\todo{The Drinfel'd ring? Galois descent for level structures?}
+
+
+
+
+
 
 
 
@@ -243,40 +249,37 @@ An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is
 
 \subsection*{Isogenies and the Lubin--Tate moduli}
 
-In this subsection, we seek an algebraic comparison of the different sorts of contexts previously considered.
+In this subsection, we seek an algebraic comparison of the different sorts of contexts previously considered.  It will be useful to phrase our ideas in the language of \emph{isogenies}.
+
+\begin{remark}[{\cite[Definition 5.17]{StricklandFSFG}}]
+Take $C$ and $D$ to be formal curves over $X$.  A map $f\co C \to C'$ is an \textit{isogeny} when the induced map $C \to C \times_X C'$ exhibits $C$ as a divisor on $C \times_X C'$ as $C'$--schemes.  In this case, a divisor $D$ on $C'$ gives rise to a divisor $f^* D$ on $C$ by scheme-theoretic pullback.  Isogenies of formal groups are maps with finite kernels.  Every nonzero map of formal groups in perfect positive characteristic can be factored as a coordinate change and a Frobenius iterate.  In general, Weierstrass preparation says that any isogeny of curves can be factored as a coordinate change and a standard isogeny: a polynomial.
+\end{remark}
+
+Given a level structure $\ell\co A \to \G$, there is a function $N_\ell\co \sheaf O_{\G} \to \sheaf O_{\G}$ given by \[N_\ell(x) = \sum_{a \in A}{}_{\G} (x +_{\G} \ell(a)).\]  Also, given an isogeny $q\co C \to C'$, there is a construction $N_q\co \sheaf O_C \to \sheaf O_{C'}$ given by determinant.  The formal group $\G/A$ defined by coequalizer is set up so that these constructions agree.
 
 
 
-% Describe the topological effect of a power operation on $\CP^\infty_E$
-% Isogenies of formal curves
-% Weierstrass preparation
-% Quotient formal groups and factorization
-% Isogenies versus subgroups (+ isomorphisms), the (F-)isogenies pile
-% The regular representation, Strickland’s theorems
-% The Drinfel’d ring and Galois descent
+\begin{lemma}
+There is a unique sequence of maps \[q_{p^k}\co \G \times \Sub_{p^k} \G \to \G\] determined by the following properties:
+\begin{enumerate}
+    \item The kernel of $q_{p^k}$ is exactly the universal subgroup.
+    \item At the special fiber, $q_{p^k}$ reduces to the $k${\th} Frobenius iterate.  (There is \emph{one} of these in each star-isomorphism class.)
+    \qedhere
+\end{enumerate}
+\end{lemma}
+
+The power operation for $E$--theory has this description.
+
+This construction gives a kind of section to the map from isogenies to subgroup divisors given by kernel.
+
+The coequalizer definition comes equipped with a third isomorphism theorem: if $\G \to \H$ has kernel $K$, then there is an isomorphism $\G/K \xrightarrow{\simeq} \H$.  In particular, this gives isomorphisms $\G/K \to \G$ in the case of the maps $q_{p^k}$, witnessing the quotients of the Lubin--Tate formal group as, again, universal deformations.  Draw the norm-coherence triangle.
 
 
 
 
-% Here's a definition of an isogeny.  Weierstrass preparation can be phrased as saying that a Weierstrass map is a coordinate change and a standard isogeny.
-% \begin{definition}[{\cite[Definition 5.17]{StricklandFSFG}}]
-% Take $C$ and $D$ to be formal curves over $X$.  A map $f: C \to D$ is an \textit{isogeny} when the induced map $C \to C \times_X D$ exhibits $C$ as a divisor on $C \times_X D$ as $D$--schemes.
-% \end{definition}
-% \todo{Be sure to compare this definition with the usual one for formal groups: surjections with finite cokernel.  These are easy to come up with lots of examples for!  (Don't ditch this definition, though, since it's the one that lets you prove something about Weierstrass preparation geometrically.)}
 
 
 
-
-% In fact, every map in positive characteristic can be factored as a coordinate change and an isogeny, which is a weak form of preparation.
-
-
-% Lubin's finite quotients of formal groups. (Interaction with the Lubin--Tate moduli problem?  Or does this belong in the next day?)
-
-
-% Write out isogenies of the additive formal group, note that you just get the unstable Steenrod algebra again.  This is a remarkable accident.
-
-
-% Push and pull maps for divisor schemes
 
 
 
@@ -286,16 +289,52 @@ In this subsection, we seek an algebraic comparison of the different sorts of co
 
 \subsection*{$H_\infty$ orientations}
 
-% McClure’s theorems
-% Norm-coherence
-% Matt’s theorem about norm-coherent sections of line bundles
-% Section 2.7 of Matt's thesis works the example of a norm-coherent coordinate for $\G_m$. It's \emph{not} the $p$--typical coordinate. It \emph{is} the standard one! Cool.
-% Identification of H_∞ orientations of E-theory by MU, MSU, MU[6, ∞)
-% Projective geometry to check that the $\sigma$--orientation satisfies this. ($E_2$. $K^\Tate$? $Ell$?)
-% Indication about H_∞ orientations of Tate K-theory (need power operations internal to it)
+\begin{theorem}[{\cite[Proposition VIII.7.2]{BMMS}}]
+Let $E$ and $F$ be $H_\infty$ ring spectra with power operations $P_E$ and $P_F$.  Suppose that $F$ is $p$--local.  Let $f\co E \to F$ be a ring map such that the equation $f_* \circ P^{\Sigma_p}_E = P^{\Sigma_p}_F \circ f_*$ holds; then $f$ is an $H_\infty$ map. \qed
+\end{theorem}
+
+\begin{theorem}[{\cite[Proposition VIII.7.3]{BMMS}}]
+Let $F$ be a $p$--local spectrum such that $\pi_* F$ is free over $\Z_{(p)}$ in even dimensions and zero in odd dimensions.  Let $X$ be a space such that $H_*(X; \Z)$ is free abelian in even dimensions and zero in odd dimensions.  If $X$ and $F$ are additionally finite type, then the map \[\iota^* \otimes \Delta^*\co \widetilde F^* X^{\sm G}_{hG} \to \widetilde F^* X^{\sm G} \oplus \widetilde F^*(X \sm BG_+)\] is injective. \qed
+\end{theorem}
 
 
 
+
+Do the calculation in the case of $MUP \to E$.  Conclude that $H_\infty$ maps are exactly norm-coherent coordinates.
+
+
+
+
+
+\begin{theorem}
+Let $\L$ be a line bundle on $\G$ a Lubin--Tate formal group, and let $s_0 \in \Gamma(\L_0 \downarrow \Gamma)$ be a section over the special fiber.  Then there exists exactly one section $s \in \Gamma(\L \downarrow \G)$ restricting to $s_0$ on the special fiber and satisfying the norm-coherence condition above.
+\end{theorem}
+\begin{proof}[Proof sketch]
+
+\end{proof}
+
+
+
+
+\begin{theorem}
+$H_\infty$ orientations $MU[6, \infty) \to E_\Gamma$ are norm-coherent cubical structures.
+\end{theorem}
+
+
+\begin{example}[{\cite[Section 2.7]{Ando}, cf.\ \Cref{ArtinHasseExponential}}]
+The norm-coherent coordinate on $\G_m$ is $x + y - \beta x y$.
+\end{example}
+
+
+\begin{example}
+The $\sigma$--orientation is norm-coherent by the unicity clause in \Cref{Theta3IsTrivial}.
+\end{example}
+
+
+
+\begin{remark}
+Power operations in Tate $K$--theory vs this story.
+\end{remark}
 
 
 
@@ -1088,7 +1127,7 @@ Some more open questions about this can be found in
 \end{remark}
 
 \todo{$KU$ is known to have a unique $E_\infty$ structure by work of Baker--Richter.  Is this also true of $K^{\Tate}$?  If so, it lends a lot of credibility to this Miller invariant calculation and its relation to $\tmf$.}
-
+\todo{I think it's possible to show, as a side-example, that the total exterior power operation $\lambda^q\co K \to K\ps{q}$ is an $E_\infty$ map where $K\ps{q}$ is $K^{\Tate}$ and \emph{not}, e.g., $K^{\CP^\infty}$.}
 
 
 
