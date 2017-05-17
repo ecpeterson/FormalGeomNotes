@@ -233,7 +233,7 @@ There is an isomorphism \[\Spec Q^* \pi_* L_\Gamma(E \sm E) \cong \InternalHom{F
 \end{lemma}
 
 \begin{remark}
-An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is that they form a kind of replacement for the nonexistent ``scheme of monomorphisms''.  Specifically, the $p$--series for a Lubin--Tate universal deformation group is only once $x$--divisible, and hence the divisor $\G[p]$ only contains the divisor $[0]$ with multiplicity one.  This excludes noninjective morphisms in this case.  On the other hand, the only subgroups of the formal group restricted to the special fiber are of the form $p^m \cdot [0]$.  In particular, any level structure on $\G$ restricts to a morphism with this image divisor at the special fiber, and hence functoriality considerations force us to count these---which are \emph{not} images of monomorphisms---as level structures as well.
+An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is that they form a kind of replacement for the nonexistent ``scheme of monomorphisms''.  Specifically, the $p$--series for a Lubin--Tate universal deformation group is only once $x$--divisible, and hence the divisor $\G[p]$ only contains the divisor $[0]$ with multiplicity one.  This excludes noninjective morphisms in this case.  On the other hand, the only subgroups of the formal group restricted to the special fiber are of the form $p^m \cdot [0]$.  In particular, any level structure on $\G$ restricts to a morphism with this image divisor at the special fiber, and hence functoriality considerations force us to count these---which are \emph{not} images of monomorphisms---as level structures as well.\todo{This kind of reasoning applies to domains of characteristic $0$.}
 \end{remark}
 
 \todo{The Drinfel'd ring? Galois descent for level structures?}
@@ -251,31 +251,137 @@ An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is
 
 In this subsection, we seek an algebraic comparison of the different sorts of contexts previously considered.  It will be useful to phrase our ideas in the language of \emph{isogenies}.
 
-\begin{remark}[{\cite[Definition 5.17]{StricklandFSFG}}]
-Take $C$ and $D$ to be formal curves over $X$.  A map $f\co C \to C'$ is an \textit{isogeny} when the induced map $C \to C \times_X C'$ exhibits $C$ as a divisor on $C \times_X C'$ as $C'$--schemes.  In this case, a divisor $D$ on $C'$ gives rise to a divisor $f^* D$ on $C$ by scheme-theoretic pullback.  Isogenies of formal groups are maps with finite kernels.  Every nonzero map of formal groups in perfect positive characteristic can be factored as a coordinate change and a Frobenius iterate.  In general, Weierstrass preparation says that any isogeny of curves can be factored as a coordinate change and a standard isogeny: a polynomial.
+\begin{definition}[{\cite[Definition 5.17]{StricklandFSFG}}]
+Take $C$ and $D$ to be formal curves over $X$.  A map $f\co C \to C'$ is an \textit{isogeny} (of degree $d$) when the induced map $C \to C \times_X C'$ exhibits $C$ as a divisor (of rank $d$) on $C \times_X C'$ as $C'$--schemes.
+\end{definition}
+
+\begin{remark}
+In this case, a divisor $D$ on $C'$ gives rise to a divisor $f^* D$ on $C$ by scheme-theoretic pullback:
+\begin{center}
+\begin{tikzcd}
+f^* D \arrow{r} \arrow{d} & D \arrow{d} \\
+C \arrow["f"]{r} & C',
+\end{tikzcd}
+\end{center}
+altogether inducing a map \[f^*\co \Div_n^+ C' \to \Div_{nd}^+ C.\]  This map interacts with pushforward by $f_* f^* D = d \cdot D$, where $d$ is the degree of the isogeny.
 \end{remark}
 
-Given a level structure $\ell\co A \to \G$, there is a function $N_\ell\co \sheaf O_{\G} \to \sheaf O_{\G}$ given by \[N_\ell(x) = \sum_{a \in A}{}_{\G} (x +_{\G} \ell(a)).\]  Also, given an isogeny $q\co C \to C'$, there is a construction $N_q\co \sheaf O_C \to \sheaf O_{C'}$ given by determinant.  The formal group $\G/A$ defined by coequalizer is set up so that these constructions agree.
+The usual source of examples of isogenies are polynomial maps between curves.  In fact, this is close to the general case, and the following result is the source of much intuition:
+\begin{lemma}[Weierstrass preparation]
+Let $R$ be a complete local ring.  Every isogeny $f\co \A^1 \to \A^1$ can be factored uniquely as a coordinate change and a monic polynomial. \qed
+\end{lemma}
+
+In the case of formal groups over a perfect field $k$ of positive characteristic, this reduces to two familiar structural results:
+
+\begin{corollary}
+Every nonzero map of formal groups over $k$ can be factored as an iterate of Frobenius and a coordinate change. \qed
+\end{corollary}
+
+\begin{corollary}
+A map of ($1$--dimensional, smooth) formal groups over a complete local ring with residue field $k$ is an isogeny if and only if the kernel subscheme of the map is a divisor. \qed
+\end{corollary}
+
+\begin{remark}
+The Frobenius iterate appearing in the Weierstrass factorization of the multiplication-by-$p$ isogeny $p\co \G \to \G$ is another definition of the height of $\G$.
+\end{remark}
+
+Isogenies of formal groups are also automatically (fppf-)surjective, and accordingly it is a good idea to address quotients of formal groups as well as the basic isomorphism theorems.
+
+\begin{definition}
+For $i\co K \subseteq \G$ be a subgroup divisor, we define the quotient group $\G/K$ to be the formal scheme whose ring of functions appears as the coequalizer
+\begin{center}
+\begin{tikzcd}
+\sheaf O_{\G/K} \arrow{r} & \sheaf O_{\G} \arrow[shift left=0.4em, "\mu^*"]{r} \arrow[shift right=0.4em, "1 \otimes i^*"']{r} & \sheaf O_{\G} \otimes \sheaf O_K.
+\end{tikzcd}
+\end{center}
+\end{definition}
+
+\begin{lemma}
+\citeme{Strickland}
+The functor $\G/K$ is again a $1$--dimensional smooth commutative formal group. \qed
+\end{lemma}
+
+The inclusion of rings of functions determines an isogeny $q\co \G \to \G/K$ of degree $|K|$.  In this particular case, the induced pullback map $q^*$ of divisor schemes has an especially easy formulation:
+\begin{lemma}
+Pullback along the isogeny $q\co \G \to \G/K$ is computed by \[q^* \co D \mapsto D * K,\] where $*\co \Div_n^+ \G \times \Div_d^+ \G \to \Div_{nd}^+ \G$ is the convolution product of divisors on formal groups described in \Cref{ProductMapOfDivisorSchemes}. \qed
+\end{lemma}
+
+In the case that $K$ is specified by a level structure, this admits a further refinement:
+\begin{corollary}
+Let $\ell\co A \to \G$ be a level structure parametrizing a subgroup divisor $K$.  The divisor pullback map can then be computed by the expansion \[q^* D = \sum_{a \in A} \tau_{\ell(a)}^* D,\] where $\tau_g\co \G \to \G$ is the translation by $g$ map. \qed
+\end{corollary}
+
+\begin{remark}
+This second construction can be upgraded to an assignment from \emph{functions} on $\G$ to \emph{functions} on $\G/K$, rather than just the ideals that they generate.  Specifically, we define the \textit{norm} of $\phi \in \sheaf O_{\G}$ along a level structure $\ell\co A \to \G$ by the formula \[N_\ell \phi = \prod_{a \in A} (\phi \circ \tau_{\ell(a)}).\]  An often useful special case of this norm construction is that if $\phi$ is a coordinate on $\G$, then $N_\ell \phi$ is a coordinate on $\G/K$.
+\end{remark}
+
+\begin{remark}
+In general, the pullback map $q^*$ admits the following description: an isogeny $q\co C \to C'$ gives a presentation of $\sheaf O_C$ as a finite free $\sheaf O_{C'}$--module.  A function $\phi \in \sheaf O_C$ therefore begets an element $\phi \cdot (-) \in \operatorname{GL}_{\sheaf O_{C'}}(\sheaf O_C)$, and the determinant of this element gives an element of $q^* \phi \in \sheaf O_{C'}$.  Letting $\phi$ range, this gives a multiplicative (but not typically additive) map $\sheaf O_C \to \sheaf O_{C'}$.  If a divisor $D$ is specified as the zero-locus of a function $\phi_D$, the divisor $q^* D$ is specified as the zero-locus of $q^* \phi_D$.
+\end{remark}
+
+\begin{lemma}[Third isomorphism theorem for formal groups]
+If $f\co \G \to \mathbb H$ is any isogeny with kernel divisor $K$, then there is a uniquely specified commuting triangle
+\begin{center}
+\begin{tikzcd}
+& \G \arrow["q"']{ld} \arrow["f"]{rd} \\
+\G/K \arrow["{g \quad \simeq}"]{rr} & & \mathbb H.
+\end{tikzcd}
+\end{center}
+\end{lemma}
 
 
+
+Finally, we note that these constructions interact with the Lubin--Tate moduli problem in an exceptionally interesting way.  This begins with the observation that multiplication by $p$ is an endo-isogeny of any Lubin--Tate group, so that the Lemma above gives rise to an isomorphism
+\begin{center}
+\begin{tikzcd}
+& \G \arrow["q"']{ld} \arrow["p"]{rd} \\
+\G/\G[p] \arrow["{g \quad \simeq}"]{rr} & & \G.
+\end{tikzcd}
+\end{center}
+This diagram expresses the observation that $\G / \G[p]$ is again a universal deformation, as witnessed by a preferred isomorphism to $\G$.
+\todo{You're missing something here: you need to suck the Frobenius into the deformation data to get the map $\psi$.}
+In turn, this observation shows that there is some automorphism of Lubin--Tate space\footnote{An obvious but common point of confusion is that the map $\psi_{\G[p]}$ is \emph{not} an $LT_\Gamma$--algebra map.} \[\psi_{\G[p]}\co (\moduli{fg})^\wedge_\Gamma \to (\moduli{fg})^\wedge_\Gamma\] over which $g\co \G[p] \cong \psi_{\G[p]}^* \G$ covers the identity.
+
+The main observation powering this is that the subgroup structure of $\Gamma$ is extremely simple: every subgroup finds expression as a $p^j$--multiple of the zero-point.  This also means that every quotient isogeny, not just the multiplication-by-$p$ endoisogeny, acquires a similar expression as a deformation.
 
 \begin{lemma}
 There is a unique sequence of maps \[q_{p^k}\co \G \times \Sub_{p^k} \G \to \G\] determined by the following properties:
 \begin{enumerate}
     \item The kernel of $q_{p^k}$ is exactly the universal subgroup.
-    \item At the special fiber, $q_{p^k}$ reduces to the $k${\th} Frobenius iterate.  (There is \emph{one} of these in each star-isomorphism class.)
+    \item (\textit{Deformation of Frobenius}:) At the special fiber, $q_{p^k}$ reduces to the $k${\th} Frobenius iterate.  (There is \emph{one} of these in each star-isomorphism class.)
     \qedhere
 \end{enumerate}
 \end{lemma}
 
-The power operation for $E$--theory has this description.
+\begin{corollary}
+There is there a family of commuting triangles
+\begin{center}
+\begin{tikzcd}
+& \G \arrow["N_K"']{ld} \arrow["q_K"]{rd} \\
+\G / K \arrow["{g_K \quad \simeq}"]{rr} & & \psi_K^* \G
+\end{tikzcd}
+\end{center}
+indexed on subgroups $K \subseteq \G$. \qed
+\end{corollary}
 
-This construction gives a kind of section to the map from isogenies to subgroup divisors given by kernel.
-
-The coequalizer definition comes equipped with a third isomorphism theorem: if $\G \to \H$ has kernel $K$, then there is an isomorphism $\G/K \xrightarrow{\simeq} \H$.  In particular, this gives isomorphisms $\G/K \to \G$ in the case of the maps $q_{p^k}$, witnessing the quotients of the Lubin--Tate formal group as, again, universal deformations.  Draw the norm-coherence triangle.
 
 
+The power operation for $E$--theory has this description.  In particular, this gives an algebraic model for the map from the $E_\infty$ contexts to the unstable context.
 
+
+
+In all these constructions give \emph{two different} sections to the map assigning an isogeny to its kernel subgroup divisor:
+\begin{enumerate}
+    \item A subgroup divisor has an associated norm construction.  The targets of these norm constructions vary, but this requires no special assumption about the structure of the formal group.
+    \item In the case of the Lubin--Tate group, a subgroup divisor also has an associated deformation of Frobenius for which it is the kernel.  These are all (up to change-of-base) endo-isogenies of the Lubin--Tate group.
+\end{enumerate}
+
+
+
+
+\begin{remark}[{\cite[1.4.2.3]{CCO}}]
+Let $R$ be a (nice) complete local ring, and let $\G$ and $\G'$ be two $p$--divisible groups over $R$.  There is an injection \[\Isog_R(\G, \G') \into \Isog_{R/\m}(\G, \G').\]
+\end{remark}
 
 
 
@@ -293,18 +399,21 @@ The coequalizer definition comes equipped with a third isomorphism theorem: if $
 Let $E$ and $F$ be $H_\infty$ ring spectra with power operations $P_E$ and $P_F$.  Suppose that $F$ is $p$--local.  Let $f\co E \to F$ be a ring map such that the equation $f_* \circ P^{\Sigma_p}_E = P^{\Sigma_p}_F \circ f_*$ holds; then $f$ is an $H_\infty$ map. \qed
 \end{theorem}
 
-\begin{theorem}[{\cite[Proposition VIII.7.3]{BMMS}}]
-Let $F$ be a $p$--local spectrum such that $\pi_* F$ is free over $\Z_{(p)}$ in even dimensions and zero in odd dimensions.  Let $X$ be a space such that $H_*(X; \Z)$ is free abelian in even dimensions and zero in odd dimensions.  If $X$ and $F$ are additionally finite type, then the map \[\iota^* \otimes \Delta^*\co \widetilde F^* X^{\sm G}_{hG} \to \widetilde F^* X^{\sm G} \oplus \widetilde F^*(X \sm BG_+)\] is injective. \qed
+\begin{theorem}
+Let $E$ be an $E_\infty$ ring spectrum and let $X$ be a space such that $E^{\Susp^\infty_+ X}$ is a wedge of copies of $E$.  The map \[\iota^* \otimes \Delta^*\co \widetilde E^* X^{\sm G}_{hG} \to \widetilde E^* X^{\sm G} \oplus \widetilde E^*(X \sm BG_+)\] is then injective.\footnote{The actual statement of McClure's result~\cite[Proposition VIII.7.3]{BMMS} has several additional hypotheses: $\pi_* E$ is taken to be even-concentrated and free over $\Z_{(p)}$, $X$ has homology free abelian in even dimensions and zero in odd dimensions, and $X$ and $E$ are both taken to be finite type.  Although this is the theorem cited in the source material~\cite[Section 4]{Ando}~\cite[Proof of Proposition 6.1]{AHSHinfty}, the version that has the weak hypotheses that we require only appeared in print much later.}\todo{Find a Lawson citation for this last claim.} \qed
 \end{theorem}
 
+We apply these theorems to the case of an orientation $f\co MUP \to E_\Gamma$, which together show that $f$ is $H_\infty$ if and only if it is compatible with the cyclic $C_p$--power operation.  This power operation was described from $MUP$ in \Cref{AjAndBjAreInTheFGLSubring}, where we found that it applies the norm construction to $f$ for the universal $\Z/p$--level structure on $\G$.  The cyclic power operation on Morava $E$--theory was determined in the previous section to act by pullback along the deformation of Frobenius isogeny associated to the same universal level structure.  This condition is important enough to warrant a name:
 
+\begin{definition}
+A coordinate $\phi\co \G \to \A^1$ (or, more generally, a section $s \in \Gamma(\L \downarrow \G)$ of a line bundle $\L$ on $\G$) on a Lubin--Tate group $\G$ is said to be \textit{norm-coherent} when for all subgroups $K \subseteq \G$, we have that $N_K \phi$ and $\psi_K^* \phi$ (or, more generally, $N_K s$ and $\phi_K^* s$) are related by the isomorphism $g_K$.
+\end{definition}
 
+\begin{corollary}
+The subset of those orientations which are $H_\infty$ correspond exactly to those coordinates which are norm-coherent. \qed
+\end{corollary}
 
-Do the calculation in the case of $MUP \to E$.  Conclude that $H_\infty$ maps are exactly norm-coherent coordinates.
-
-
-
-
+Having now finally cast the desired result, our main result is that such coordinates are remarkably common:
 
 \begin{theorem}
 Let $\L$ be a line bundle on $\G$ a Lubin--Tate formal group, and let $s_0 \in \Gamma(\L_0 \downarrow \Gamma)$ be a section over the special fiber.  Then there exists exactly one section $s \in \Gamma(\L \downarrow \G)$ restricting to $s_0$ on the special fiber and satisfying the norm-coherence condition above.
@@ -313,11 +422,10 @@ Let $\L$ be a line bundle on $\G$ a Lubin--Tate formal group, and let $s_0 \in \
 
 \end{proof}
 
-
-
+We injected the extra generality into this proof in order to lift our analysis to the other kinds of orientations discussed in \Cref{ChapterSigmaOrientation}.
 
 \begin{theorem}
-$H_\infty$ orientations $MU[6, \infty) \to E_\Gamma$ are norm-coherent cubical structures.
+Orientations $MU[6, \infty) \to E_\Gamma$ which are $H_\infty$ correspond to norm-coherent cubical structures.  If $\height{\Gamma} \le 2$, this also holds for $M\String$--orientations.
 \end{theorem}
 
 
@@ -346,7 +454,7 @@ Power operations in Tate $K$--theory vs this story.
 
 
 
-Work in height $1$ (and height $2$??) examples through this?  $K$--theory is pretty accessible, and the height $2$ examples are somewhat understood (Charles, Yifei), and they're both relevant for the elliptic $M\String$ story.  (There's also the pile of elliptic curves with isogenies...)
+---------------------------
 
 This MO conversation looks interesting: http://chat.stackexchange.com/transcript/message/29465746\#29465746.
 
@@ -392,8 +500,6 @@ Barry's description of the image of \[E_\infty(A, B) \to \CatOf{Spaces}(\Loops^\
 \subsection*{Subgroups and level structures}
 
 
-Prop 8.3 in ``Character of the Total Power Operation'' provides an algebro-geometric proof of something in AHS04, using the fact that for $R$ a nice complete local ring and $G$, $G'$ $p$--divisible groups over $R$, there is an injection \[\Isog_R(G, G') \into \Isog_{R/\m}(G, G').\]
-
 \todo[color=red,inline]{Matt in and before Theorem 3.3.2 describes the ring $D_k$ as the \emph{image} of the localization map $E_n(B\Lambda_k) \to S^{-1} E_n(B\Lambda_k)$ rather than as the whole target.  Why??  He cites HKR for this, but the citation is meaningless because the theorem numbering scheme is so old.  Ah, comparing with Lemma 3.3.3 yields a clue: $D_k$ has a universal property as it sits under $E_n$, rather than under $E_n(B\Lambda_k)$...}
 
 
@@ -413,20 +519,6 @@ Let $\L_r(R)$ be the set of all group homomorphism \[\phi: \Lambda_r^* \to F[p^r
 
 ---
 
-Section 2: complete local rings
-
-``Galois'' means $R \to S$ a finite extension of integral domains has $R$ as the fixed subring for $\operatorname{Aut}_R(S)$ and $S$ is free over $R$.  Galois extension of rings implies the extension of fraction fields is Galois.  The converse holds for finite (finitely generated as a module) dominant (kernel of $f$ is nilpotent) maps of smooth (regular local ring) schemes.
-
-Section 4: basic facts about divisors
-
-Since $x -_F a \dot= x - a$, you can treat the divisor $[a]$ (defined in a coordinate by the ideal sheaf generated by $x - x(a)$) as generated just by $x - a$.
-
-\begin{lemma}\citeme{Prop 4.6 of Finite Subgroups}
-Let $D$ and $D'$ be two divisors on $\G$ over $X$.  There is then a closed subscheme $Y \le X$ such that for any map $a: Z \to X$ we have $a^* D \le a^* D'$ if and only if $a$ factors through $Y$. \qed
-\end{lemma}
-
-Section 5: quotient by a finite sbgp is again a fml gp
-
 \begin{definition}
 A \textit{finite subgroup} of $\G$ will mean a divisor $K$ on $\G$ which is also a subgroup scheme.  Let $\sheaf{O}_{\G/K}$ be the equalizer
 \begin{center}
@@ -439,12 +531,6 @@ A \textit{finite subgroup} of $\G$ will mean a divisor $K$ on $\G$ which is also
 \begin{lemma}\citeme{Theorem 5.3 of Finite Subgroups}
 Write $y = N_\pi \mu^* x \in \sheaf O_{\G}$.\footnote{Remember that if $f: X \to Y$ is a finite flat map, then $N_f: \sheaf O_X \to \sheaf O_Y$ is the nonadditive map sending $u$ to the determinant of multiplication by $u$, considered as an $\sheaf O_Y$--linear endomorphism of $\sheaf O_X$.}  Then $y \equiv x^{p^m} \pmod{\m_X}$ and $\sheaf O_{\G/K} = \sheaf O_X\ps{y}$.  Moreover, the projection $\G \to \G/K$ is the categorical cokernel of $K \to \G$.  This all commutes with base change: given $f: Y \to X$ we have $f^* \G / f^* K = f^*(\G/K)$. \qed \todo{Expand this out in the case of a subgroup scheme given by a sum of point divisors.}
 \end{lemma}
-
-\todo{cf.\ also Prop 2.2.2 of Matt's thesis}
-
-Section 6: coordinate-free lubin-tate theory
-
-nothing you haven't already seen. in fact, most of it is done in coordinates, with only passing reference to the decoordinatization.
 
 Section 7: level--$A$ structures: smooth, finite, flat
 
@@ -475,21 +561,6 @@ Let $A$, $B$ be finite abelian $p$--groups of rank at most $n$, and let $u: A \t
 \item The torsion subgroup of $\G(\Level(A, \G))$ is $A$. \qed
 \end{enumerate}
 \end{theorem}
-
-Section 9: epimorphisms of groups become maps of level schemes, quotients by level structures
-
-Let $\G_0$ be a formal group of height $n$ over $X_0 = \Spec \kappa$.  For every $m$, the divisor $p^m[0]$ is a subgroup of $\G_0$.  We write $\G_0\<p^m\>$ for the quotient group $\G_0 / p^m[0]$ and $\G\<m\> \to X\<m\>$ for the universal deformation of $\G_0\<m\> \to X_0$.  Note that $\G_0[p] = p^n[0]$, which induces isomorphisms $\G_0\<m+n\> \to \G_0\<m\>$, and we use this to make as many identifications as we can.
-
-\begin{lemma}\citeme{9.1 of Finite Subgroups}
-Let $u: A \to B$ be an epimorphism of abelian $p$--groups wit kernel $|\ker(u)| = p^\ell$.  Then $u$ induces a map \[u_!: \Level(A, \G\<m\>) \to \Level(B, \G\<m+\ell\>).\]  Also, if $A = \Lambda[p^m]$, then $u_!$ is a Galois covering with Galois group
-\[\pushQED{\qed}
-\Gamma = \{\alpha \in \operatorname{Aut}(A) \mid u\alpha = u\}. \qedhere
-\popQED\]
-\end{lemma}
-
-\begin{corollary}\citeme{Interstitial text between 9.1 and 9.2 of Finite Subgroups}
-In particular, the map $A \to 0$ induces a map \[0_!: \Level(A, \G\<m\>) \to \Level(0, \G\<m+\ell\>) = X\<m+\ell\>\] which extracts quotient formal groups from level structures.  In the case $A = \Lambda[p^\ell]$, $0_!$ is just the projection $0^!$. \qed
-\end{corollary}
 
 Section 10: moduli of subgroup schemes
 
@@ -538,27 +609,12 @@ $b$ is finite and flat of degree $|\Sub_{p^m}(\Lambda)|$. \qed
 
 \todo[inline]{Cf. Matt's thesis's Prop 2.5.1: $\Phi$ is a formal group over $\F_p$, $F$ a lift of $\Phi$ to $E_n$, $H$ a finite subgroup of $F(D_k)$, then $F/H$ is a lift of $\Phi$ to $D_k$.  (This is because the quotient map to $F/H$ reduces to $t \mapsto t^{p^r}$ for some $r$ over $\F_p$, which is an endomorphism of $\Phi$, so the quotient map over the residue field doesn't do anything!)  See also Prop 2.5.4, where he characterizes all isogenies of this sort as arising from this construction.}
 
-Section 14: connections to AT
-
-Neil's \textit{Finite Subgroups of Formal Groups} has (in addition to lots of results) a section 14 where he talks about the action of a generalized Hecke algebra on the $E$--theory of a space.  Let $a$ and $b$ be two points of $X$, with fibers $\G_a$ and $\G_b$, and let $q: \G_a \to \G_b$ be an isogeny.  Then there's an induced map $(Z_E)_a \to (Z_E)_b$, functorial in $q$ and natural in $Z$.  ``Certain $\Ext$ groups over this Hecke algebra form the input to spectral sequences that compute homotopy groups of spaces of maps of strictly commutative ring spectra, for example.''  \textbf{This sounds like the beginning of an answer to my context question.}
-
-Section 11: flags of controlled rank ascending to $\G[p]$ and a map $\Level(1, \G) \to \operatorname{Flag}(\lambda, \G)$.
-Section 12: the orbit scheme $\operatorname{Type}(A, \G) = \Level(A, \G) / \operatorname{Aut}(A)$: smooth, finite, flat
 Section 15: formulas for computation
 Section 16: examples
 
 ------
 
-Talk with Nat:
-\begin{itemize}
-\item Recall the Lubin--Tate moduli problem.
-\item Show that quotients of deformations by finite subgroups give deformations again.
-\item Define the Drinfel'd ring.
-\item As an $E^0$--algebra, it carries the universal level structure.
-\item As an ind--(complete local ring), it corepresents deformations (by precomposition with the map $E^0 \to D_n$) \emph{equipped with level structures}.
-\item Describe the action by $GL_n(\Z_p)$. (Hint at the action by $M_{n \times n}(\Z_p)$ with $\det \ne 0$.)
-\item Describe the isogenies pile and its relation to all this?  (This doesn't really fit precisely, but it may be good to put here, on an algebraic day.)
-\end{itemize}
+Describe the action by $GL_n(\Z_p)$. (Hint at the action by $M_{n \times n}(\Z_p)$ with $\det \ne 0$.)
 
 ------
 
@@ -639,18 +695,6 @@ Take $\pi_0 E$ to be a complete local ring and $\G_E$ to be of finite height.  I
 It suffices to consider the tautological level structure over $\Level(A, \G)$.  We may take $A$ to be a $p$--group, and indeed for now we set $A = \Z/p$, $B = 0$.  For $t \in \pi_0 E^{\CP^\infty_+}$ a coordinate with formal group law $F$, we have \[\pi_0 E^{BA^*_+} \cong \pi_0 E \ps{t} / [p]_F(t)\] and $\tau: \pi_0 E^{BB^*_+} = \pi_0 E \to \pi_0 E^{BA^*_+}$ is given by $\tau(1) = \<p\>_F(t)$, where $\<p\>_F(t) = [p]_F(t) / t$ is the ``reduced $p$--series''.  The result then follows from the isomorphism $\sheaf O(\Level(\Z/p, \G_E)) \cong \pi_0 E\ps{t} / \<p\>_F(t)$.  The result then follows in general by induction: $B^*$ can be taken to be a \emph{maximal} proper subgroup of $A^*$, with cokernel $\Z/p$.
 \end{proof}
 
-\begin{example}
-Let $\G_m$ be the formal multiplicative group with coordinate $x$ so that the group law is \[x +_{\G_m} y = x + y - xy, \quad [p](x) = 1 - (1 - x)^p.\]  The monomorphism $\Z/p \to \G_m(\Z\ps{y} / [p](y))$ given by $j \mapsto [j](y)$ becomes the zero map under the base change
-\begin{align*}
-\Z\ps{y} / [p](y) & \to \Z/p, \\
-y & \mapsto 0.
-\end{align*}
-\end{example}
-
-\begin{remark}\citeme{Corollary 9.21, Prop 9.17}
-If $R$ is a domain of characteristic $0$, then a level structure over $R$ actually induces a monomorphism on points.
-\end{remark}
-
 \begin{lemma}\citeme{Prop 9.24} \todo{One of the reduction steps in Prop 6.1 is handled by 9.24, which is in turn equivalent to a basic case of an HKR theorem, so should be stated on that day (or in the algebraic day).}
 The natural map \[\sheaf O(\InternalHom{FormalGroups}(\Z/p, \G)) \to R \times \sheaf O(\Level(\Z/p, \G))\] is injective.
 \end{lemma}
@@ -661,8 +705,6 @@ The natural map \[\sheaf O(\InternalHom{FormalGroups}(\Z/p, \G)) \to R \times \s
 ------ Descent along level structures, simplicially (Section 11) ------
 
 \todo[inline]{Actually, this section appears \emph{not} to be about $\FGps$, and instead it's about the \emph{coarse moduli quotient} to the functor of formal groups, which is not locally representable.  I'm a little confused about this---I intend to ask Mike what's going on.}
-
-Write $\Level(A) \to \FGps$ for the parameter space of a formal group equipped with a level--$A$ structure, together with its structure map (to the \emph{coarse moduli of formal groups!!!}).  We define a sequence of schemes by: $\Level_0 = \FGps$, $\Level_1 = \coprod_{A_0} \Level(A_0)$ for finite abelian groups $A_0$, and most generally \[\Level_n = \coprod_{0 = A_n \subseteq \cdots \subseteq A_0} \Level(A_0).\]  There are two maps $\Level_1 \to \Level_0$.  One is the structural one, where we simply peel off the formal group and forget the level structure.  The other comes from the quotient map: $\ell\co A \to \G$ yields a quotient isogeny $q\co \G \to \G/\ell$, and we take the second map $\Level_1 \to \Level_0$ to send $\ell$ to $\G / \ell$.  Then, consider the following Lemma:
 
 \begin{lemma}\citeme{AHS Lemma 11.3}
 For $\ell\co A \to \G$ a level structure and $B \subseteq A$ a subgroup, the induced map $\ell|_B\co B \to \G$ is a level structure and the quotient $\G / \ell|_B$ receives a level structure $\ell'\co A/B \to \G/\ell|_B$. \qed
@@ -750,58 +792,6 @@ Incidentally, the descent data constructed here is also the descent data that wo
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsection*{Tyler's argument}
-
-There's an important injectivity result used by Ando and Ando--Hopkins--Strickland (though Matt blames it on Hopkins and Strickland both times) about the injectivity of a certain $p${\th} power map.  They cite the McClure chapter of BMMS, but McClure's proof requires finite type hypotheses on the cohomology theory involved, which Morava $E$--theory does not satisfy.  Here are the McClure results:
-
-\begin{theorem}[{\cite[Proposition 7.2]{BMMS}}]
-Let $E$ and $F$ be $H_\infty$ ring spectra.  A ring spectrum map $E \to F$ is $H_\infty$ if and only if it commutes with the $p${\th} power operations. \qed
-\end{theorem}
-
-\begin{theorem}[{\cite[Proposition 7.3]{BMMS}}]
-Let $F$ be a $p$--local spectrum such that $\pi_* F$ is free over $\Z_{(p)}$ in even dimensions and zero in odd dimensions.  Let $X$ be a space such that $H_*(X; \Z_{(p)})$ is free in even dimensions and zero in odd dimensions.  Suppose that $X$ and $F$ have finite type.  Then the natural map \[\widetilde F^* X^{\sm n}_{h\Sigma_n} \xrightarrow{(\text{restrict along quotient}) \oplus \Delta^*} \widetilde F^* X^{\sm n} \oplus \widetilde F^* (X \sm (B\Sigma_n)_+)\] is a monomorphism. \qed
-\end{theorem}
-
-There is a similar proof in the recent paper of Hopkins--Lawson, and so Nat and I wrote to Tyler about whether there was a common generalization of the two theorems that would give a good replacement argument.  Here is his reply:
-
----
-
-Here are my current thought processes, which may be a bit messy at present. Fix a space $X$ and take $X^{(p)}$ for its smash power, as McClure does.
-
-Let's write $M = F(\Sigma^\infty X^{(p)}, E)$ for the function spectrum which is now $C_p$--equivariant, and $N = F(\Sigma^\infty X,E)$. Let's assume that $E$ has an $E_\infty$ multiplication and that $X$ is nice in the following sense: $E^X$ is a wedge of copies of $E$ (unshifted). This is satisfied when $E$ is $E$--theory and $X$ is finite type with $\Z_{(p)}$-homology only in even degrees.
-
-We get two maps:
-\[M^{hC_p} \to M\]
-This will realize our ``forgetful'' map $E^*(D X) \to E^*(X^{(p)})$.
-\[M^{hC_p} \to N^{hC_p}\]
-This will realize the ``other'' map $E^*(D X) \to E^*((BC_p)_+ \wedge X)$.
-
-We want to prove that these are jointly monomorphisms.
-
-The assumptions on $X$ actually imply that $E^{X^{(p)}} = (E^X)^{(p)}$ where the latter smash is taken over $E$. This decomposes, $C_p$--equivariantly, into a wedge of copies of $E$ with trivial action and a bunch of regular representations $E[C_p]$. Since $M$ is $E$--dual to this, we find that the map $M^{hC_p} \to M$ is a monomorphism on all the $E[C_p]$ components; on the $E$ parts with trivial action it decomposes as a product of projections $E_*\ps{x} / [p](x) \to E_*$. The kernel of this consists of the multiples of $x$. So if we want to prove a monomorphism, all we have to do now is show that these multiples of x map monomorphically into the homotopy of $N^{hC_p}$.
-
-I now want to consider the composite to the Tate spectra \[M^{hC_p} \to N^{hC_p} \to N^{tC_p}\] or equivalently \[M^{hC_p} \to M^{tC_p} \to N^{tC_p}.\]
-
-The first composition shows that, if we can show that this composite is a monomorphism on the multiples of $x$, we will be done. The second composition has, as its first map, inverting $x$, and it's a monomorphism on the desired classes. So we just have to check that the second map preserves that.
-
-This has the following benefit: instead of being born out of the unstable diagonal map $X \to X^{(p)}$, the constructions
-\[M^{tC_p} = F(X^{(p)}, E)^{tC_p}\]
-and
-\[N^{tC_p} = F(X,E)^{tC_p}\]
-take cofiber sequences in (finite) $X$ to fiber sequences of spectra. I think that this means that, instead of being functions of the unstable diagonal map on $X$, they are constructions that only require knowledge of the \emph{stable} homotopy type of $X$\todo{I don't understand this. I guess this has been a recurring theme in the Thursday seminar, and also in Chapters 2 and 6 of these notes (in some guise). I can ask Mike to explain it to me.}. I believe in fact that, by checking the case $X = S^0$, we then find that the map $M^{tC_p} \to N^{tC_p}$ is an equivalence for any finite $X$, and that should hopefully be enough to buy us a monomorphism on any of the $X$'s that we're describing.
 
 
 
