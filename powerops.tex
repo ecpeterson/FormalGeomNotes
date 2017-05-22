@@ -152,37 +152,37 @@ Our introduction of $E_\infty$ rings also automatically introduces a few interes
 & \CatOf{Spectra} \arrow[shift left=0.4em, "(-) \sm E"]{u} \arrow["\P", shift left=0.4em]{r} & \EinftyRings. \arrow[shift left=0.4em, "(-) \sm E"]{u} \arrow[shift left=0.4em]{l}
 \end{tikzcd}
 \end{center}
-The first functor sends a space $X$ to its spectrum of $E$--cochains $E^X$, and the other two functors form a free/forgetful monad approximating $\EinftyRings_E$ by $\CatOf{Modules}_E$.  These kinds of functors are familiar to us from the discussion of contexts in \Cref{StableContextLecture} and \Cref{UnstableContextsSection}, and the recipe applied in those situations gives an analogous story here.  First, there is a natural map \[\CatOf{Spaces}(*, X) \to \EinftyRings_E(E^X, E),\] which one hopes is an equivalence under (often very strong) hypotheses on $E$ and on $X$.\footnote{It is an unpublished theorem of Hopkins and Lurie that if $X$ is a space admitting a finite Postnikov system with at most $\height \Gamma$ stages and involving only finite groups, then the natural map $F(*, X) \to \EinftyRings_{E_\Gamma/}(E_\Gamma^X, E_\Gamma)$ is an equivalence.}  Second, the adjunction gives a mechanism for resolving $E^X$, which feeds into a spectral sequence computing this mapping space.  The functors $\P$ and $\P_E$ can be given by explicit formula:
+The first functor sends a space $X$ to its spectrum of $E$--cochains $E^{\Susp^\infty_+ X}$, and the other two functors form a free/forgetful monad resolving a mapping space in $\EinftyRings_E$ by a sequence of mapping spaces in $\CatOf{Modules}_E$.  These kinds of functors are familiar to us from the discussion of contexts in \Cref{StableContextLecture} and \Cref{UnstableContextsSection}, and the recipe applied in those situations gives an analogous story here.  First, there is a natural map \[\CatOf{Spaces}(*, X) \to \EinftyRings_E(E^{X_+}, E),\] which one hopes is an equivalence under (often very strong) hypotheses on $E$ and on $X$.\footnote{It is an unpublished theorem of Hopkins and Lurie that if $X$ is a space admitting a finite Postnikov system with at most $\height \Gamma$ stages and involving only finite groups, then the natural map $F(*, X) \to \EinftyRings_{E_\Gamma/}(E_\Gamma^{X_+}, E_\Gamma)$ is an equivalence.}  Second, the adjunction gives a mechanism for resolving $E^{X_+}$, which feeds into a spectral sequence computing this right-hand mapping space.  The functors $\P$ and $\P_E$ can be given by explicit formula:
 \begin{align*}
 \P(X) & = \bigvee_{j=0}^\infty X^{\sm j}_{h\Sigma_j}, &
 \P_E(M) & = \bigvee_{j=0}^\infty M^{\sm_E j}_{h\Sigma_j}.
 \end{align*}
-Finally, we expect the homotopy groups of this resolution to form a quasicoherent sheaf over a suitable \emph{$E_\infty$ context}, which forms the case where $X$ is a point.
-
-In the case where we are resolving a point, we can explicitly name some of the terms in this resolution, which will help us better understand what we are studying.  To begin, the bottom two stages of the resolution take the form
+Finally, we expect the homotopy groups of this resolution to form a quasicoherent sheaf over a suitable \emph{$E_\infty$ context}, which arises as the simplicial scheme associated to this resolution in the case where $X$ is a point.  In this case, we can explicitly name some of the terms in this resolution: the bottom two stages take the form
 \begin{center}
 \begin{tikzcd}
 \EinftyRings_E(E, E) \\
 \EinftyRings_E(\P_E(E), E) \arrow{u} \arrow{r} & \EinftyRings_E(\P_E^2(E), E) \arrow[shift left=0.4em]{l} \arrow[shift right=0.4em]{l} \arrow[shift left=0.4em] {r} \arrow[shift right=0.4em]{r} & \arrow[shift left=0.8em]{l} \arrow{l} \arrow[shift right=0.8em]{l} \cdots.
 \end{tikzcd}
 \end{center}
-The available adjunctions give us access to these in more explicit terms:
+The available adjunctions give a more explicit presentation of these terms:
 \begin{align*}
 \EinftyRings_E(\P_E(E), E) & \simeq \CatOf{Modules}_E(E, E) \\
 & \simeq \CatOf{Spectra}(\S, E),
-\intertext{which on homotopy groups computes the coefficient ring of $E$.}
+\intertext{which on homotopy groups computes the coefficient ring of $E$, and}
 \EinftyRings_E(\P_E^2(E), E) & \simeq \CatOf{Modules}_E(\P_E(E), E) \\
 & \simeq \CatOf{Modules}_E\left(\bigvee_{j=0}^\infty E^{\sm_E j}_{h\Sigma_j}, E\right) \\
-& \simeq \CatOf{Spectra}\left(\bigvee_{j=0}^\infty \S^{\sm j}_{h\Sigma_j}, E\right),
+& \simeq \CatOf{Spectra}\left(\bigvee_{j=0}^\infty \S^{\sm j}_{h\Sigma_j}, E\right) \\
+& \simeq \prod_{j=0}^\infty \CatOf{Spectra}\left(B\Sigma_j, E\right),
 \end{align*}
 which on homotopy groups is made up of a product of the cohomology rings $E^*(B\Sigma_j)$.  The higher terms track the compositional behavior of these summands.
 
 \begin{remark}[{\cite{BousfieldUnstableLocalization,MahowaldThompson}}]
-One of the first places these ideas appear in the literature is in work of Mahowald and Thompson.  Bousfield defined an unstable local homotopy type associated to a (simply-connected) space and a homology theory.  In the case of the space $S^{2n-1}$ and $p$--adic $K$--theory, Mahowald and Thompson calculated that $L_K S^{2n-1}$ appears as the homotopy fiber \[L_K S^{2n-1} \to L_K \Loops^\infty \Sigma^\infty S^{2n-1} \to L_K \Loops^\infty \Sigma^\infty ((S^{2n-1}_{(p)})^{\sm p}_{h\Sigma p}),\] which is an abbreviated form of the monadic resolution described above.
+One of the first places these ideas appear in the literature is in work of Mahowald and Thompson.  Bousfield defined an unstable local homotopy type associated to a (simply-connected) space and a homology theory.  In the case of the space $S^{2n-1}$ and $p$--adic $K$--theory, Mahowald and Thompson calculated that $L_K S^{2n-1}$ appears as the homotopy fiber \[L_K S^{2n-1} \to L_K \Loops^\infty \Sigma^\infty S^{2n-1} \to L_K \Loops^\infty \Sigma^\infty ((S^{2n-1})^{\sm p}_{h\Sigma_p}),\] which is an abbreviated form of the monadic resolution described above.
 \end{remark}
 
 \begin{remark}
-In general, if $E^* B\Sigma_j$ is sufficiently nice, then the the $E^2$--page of the monadic descent spectral sequence computes the derived functors of derivations, taken in a suitable category of modules over the algebra of power operations.
+\citeme{This should be in...Charles's work?}
+In general, if $E^* B\Sigma_j$ is sufficiently nice, then the the $E^2$--page of the monadic descent spectral sequence computes the derived functors of derivations, taken in a suitable category of monad-algebras for the monad specifying the behavior of power operations.
 \end{remark}
 
 
@@ -192,51 +192,64 @@ In general, if $E^* B\Sigma_j$ is sufficiently nice, then the the $E^2$--page of
 
 \subsection*{Strickland's theorems}
 
-We thus set out to understand the cohomological formal schemes $(B\Sigma_j)_E$ in the case where $E$ is a Morava $E$--theory.  We first remark that an immediate effect of the $d^1$--differential in the descent spectral sequence is to pass to ``$\ast$--decomposables'', which in this setting amounts to killing all of the proper transfers.  We can therefore restrict attention to the following closed subschemes: \[(B\Sigma_j)_E^{/\Tr} := \Spf E^0 B\Sigma_j / I_{\Tr} := \Spf \left( \frac{E^0 B\Sigma_j}{\im(\Tr_{\Sigma_i \times \Sigma_j-i}^{\Sigma_j}\co E^0 B\Sigma_i \times E^0 B\Sigma_{j-i} \to E^0 B\Sigma_j)_{i=1}^{j-1}} \right).\]
+We thus set out to understand the formal schemes constituting the $E_\infty$ context associated to Morava $E$--theory.  As described in \Cref{UnstableContextsSection} and \Cref{UnstableAlgebraicModelSection}, the correct language for these phenomena are schemes defined on Hopf rings, together with the adjunction between classical rings and Hopf rings consisting of the $\ast$--square--zero extension functor and the $\ast$--indecomposables functor.  The rings $E^0 B\Sigma_j$ assemble into a Hopf ring using the following structure:
+\begin{itemize}
+    \item The $\ast$--product comes from the stable transfer maps $B\Sigma_{i+j} \to B\Sigma_i \times B\Sigma_j$.
+    \item The $\circ$--product comes from the diagonal maps $B\Sigma_j \to B\Sigma_j \times B\Sigma_j$.
+    \item The diagonal comes from the block-inclusion maps $B\Sigma_i \times B\Sigma_j \to B\Sigma_{i+j}$.
+\end{itemize}
+
+\begin{definition}
+Accordingly, we set the \textit{natural $E_\infty$ context} to be \[\Econtext{E_\Gamma} = \SpH E^0 B\Sigma_*.\]
+\end{definition}
+
+The effect of this functor on classical rings is given by \Cref{HopfRingsAndRingsAdjunction}: $\Econtext{E_\Gamma}(T) = \CatOf{Algebras}_{E_\Gamma^0}(Q^* E^0 B\Sigma_*, T)$, where \[Q^* E^0 B\Sigma_* = \frac{E^0 B\Sigma_*}{\im(\Tr_{\Sigma_{*_1} \times \Sigma_{*_2}}^{\Sigma_{*_1 + *_2}}\co E^0 B\Sigma_{*_1} \times E^0 B\Sigma_{*_2} \to E^0 B\Sigma_{*_1 + *_2})}.\]  The ideal appearing in this equation is called the \textit{transfer ideal}, written $I_{\Tr}$.
+
+\begin{remark}
+In terms of the descent spectral sequence described in the previous subsection, all of the $*$--decomposables are in the image of the $d^1$--differential, so do not contribute to even the $E^2$--page of the spectral sequence.
+\end{remark}
+
+We select a particular value of $j$ and set out to understand the formal scheme $\Spec (E^0 B\Sigma_j / I_{\Tr})$, which appears as the $j${\th} graded piece of $\Econtext{E_\Gamma}$ as restricted to classical rings.
 
 \begin{example}
-It is helpful to consider a low-index example to begin: $(B\Sigma_p)_E$.  In light of the results of \Cref{CharacterTheorySection}, we might begin by analyzing the (maximal) abelian subgroups of $\Sigma_p$.  There is only one: the transitive subgroup $C_p \subseteq \Sigma_p$.  In \Cref{KtheoryConvertsTorsionToTorsion}, we calculated $BS^1[p]_E = \CP^\infty_E[p]$, and we make the further observation that the regular representation map $BS^1[p] \to BU(p)$ induces the following map on cohomological formal schemes:
+To gain a foothold, it is helpful to further specify to a particular case---say, $j = p$.  In light of the results of \Cref{CharacterTheorySection}, we might begin by analyzing the (maximal) abelian subgroups of $\Sigma_p$, of which there is only one: the transitive subgroup $C_p \subseteq \Sigma_p$.  In \Cref{KtheoryConvertsTorsionToTorsion}, we calculated $BS^1[p]_E = \CP^\infty_E[p]$, and we now make the further observation that the regular representation map $BS^1[p] \to BU(p)$ induces the following map on cohomological formal schemes:
 \begin{center}
 \begin{tikzcd}
 BS^1[p]_E \arrow{r} & BU(p)_E \\
-\InternalHom{FormalGroups}(\Z/p, \CP^\infty_E) \arrow{r} \arrow[equal]{u} & \Div_n^+ \CP^\infty_E \arrow[equal]{u},
+\InternalHom{FormalGroups}(\Z/p, \CP^\infty_E) \arrow{r} \arrow[equal]{u} & \Div_p^+ \CP^\infty_E \arrow[equal]{u},
 \end{tikzcd}
 \end{center}
 where the bottom arrow sends such a homomorphism to its image divisor.  This map belongs to a larger diagram of schemes:
 \begin{center}
 \begin{tikzcd}
-(B\Sigma_p)_E^{/\Tr} \arrow{r} & (B\Sigma_p)_E \arrow{r} & BU(p) \\
-(BC_p)_E^{/\Tr} \arrow{r} \arrow{u} & (BC_p)_E \arrow{u} \arrow{ru}.
+\Spf E^0 B\Sigma_p / I_{\Tr} \arrow{r} & (B\Sigma_p)_E \arrow{r} & BU(p)_E \\
+\Spf E^0 BC_p / I_{\Tr} \arrow{r} \arrow{u} & (BC_p)_E \arrow{u} \arrow{ru}.
 \end{tikzcd}
 \end{center}
-The effect of killing the transfer ideal in $(BC_p)_E$ is to force the image divisor to be a subdivisor of $\CP^\infty_E[p]$\todo{Explain why.}, and this subscheme of homomorphisms is written $\Level(\Z/p, \CP^\infty_E)$.  Finally, passing to $B\Sigma_p$ from $BC_p$ exactly destroys the choice of generator of $\Z/p$, i.e., it encodes passing from the homomorphism to the image divisor.  This winds up giving an isomorphism \[(B\Sigma_p)_E^{/\Tr} \cong \Sub_p \CP^\infty_E,\] where $\Sub_p$ denotes the scheme of subgroup divisors of rank $p$.
+The effect of killing the transfer ideal in $(BC_p)_E$ is to force the image divisor to be a subdivisor of $\CP^\infty_E[p]$\todo{Explain why.} (i.e., the zero homomorphism is disallowed), and this subscheme of homomorphisms is written $\Level(\Z/p, \CP^\infty_E)$.  Finally, passing to $B\Sigma_p$ from $BC_p$ exactly destroys the choice of generator of $\Z/p$, i.e., it encodes passing from the homomorphism to the image divisor.  This winds up giving an isomorphism \[\Spf E^0 B\Sigma_p / I_{\Tr} \cong \Sub_p \CP^\infty_E,\] where $\Sub_p$ denotes the subscheme of $\Div_p^+$ consisting of those effective Weil divisors of rank $p$ which are subgroup divisors.
 \end{example}
 
-In light of this example, there are several further variants of the $E_\infty$ context which one might consider:
-\begin{itemize}
-    \item The natural $E_\infty$ context: By this, we mean the context constructed in the previous subsection, whose $1$--simplices are given by $\prod_j (B\Sigma_j)_E$.
-    \item The abelian $E_\infty$ context: A consequence of \Cref{CharacterTheorySection} is that we can fully understand the behavior of the natural context by embedding the rings $E^0 B\Sigma_j$ into the cohomology of the maximal abelian subgroups of $\Sigma_j$.  A benefit to this context is that it has predictable behavior in Morava $E$--theory: the cohomological formal scheme associated to an abelian group can be presented as an internal scheme of group homomorphisms.
-    \item The unstable context: Every power operation can be considered as a family of unstable operations, giving a natural map to the unstable context considered in \Cref{UnstableContextsSection}.
-\end{itemize}
-We also saw in the example that it was profitable, from the perspective of cohomologial formal schemes, to preempt the $d^1$--differential and pass to the $\ast$--indecomposables.  In order,\footnote{\ldots i.e., in the order listed above, but not at all in logical order of proof.} Strickland has proven the following results about each of these reduced contexts:
+The broad features of this example hold for a general index $j$.
+\begin{definition}
+The \textit{abelian $E_\infty$ context} is formed by considering the inclusions \[\bigvee_{\substack{A \le \Sigma_j \\ \text{$A$ abelian}}} BA \to B\Sigma_j.\]
+\end{definition}
+\noindent A consequence of \Cref{CharacterTheorySection} is that this map is \emph{injective} on Morava $E$--cohomology, so that we can understand the natural $E_\infty$ context in terms of this larger object.  A benefit to this auxiliary context is that we can already predict its behavior in Morava $E$--theory: the cohomological formal scheme associated to an abelian group can be presented as an internal scheme of group homomorphisms, just as above.  Strickland has proven the following results about each of these contexts:
 
 \begin{theorem}[{\cite[Theorem 1.1]{StricklandEthyOfBSigma}}]
-There is an isomorphism \[(B\Sigma_j)_E^{/\Tr} \cong \Sub_j \CP^\infty_E.\]  If $j$ is not a power of $p$, this is the terminal scheme. \qed
+There is an isomorphism \[\Spf E^0 B\Sigma_j / I_{\Tr} \cong \Sub_j \CP^\infty_E,\] where $\Sub_j$ denotes the subscheme of $\Div_j^+$ consisting of those effective Weil divisors of rank $j$ which are subgroup divisors.\footnote{If $j$ is not a power of $p$, this is the terminal scheme.} \qed
 \end{theorem}
 
 \begin{theorem}\citeme{Strickland somewhere}
-There is an isomorphism \[BA_E^{/\Tr} \cong \Level(A^*, \CP^\infty_E),\] where $\Level(A^*, \CP^\infty_E)$ denotes the subscheme of $\InternalHom{FormalGroups}(A^*, \CP^\infty_E)$ subject to the condition that $A^*[n]$ forms a subdivisor of $\CP^\infty_E[n]$. \qed
+For a finite abelian group $A$, there is an isomorphism \[\Spf E^0 BA / I_{\Tr} \cong \Level(A^*, \CP^\infty_E),\] where $\Level(A^*, \CP^\infty_E)$ denotes the subscheme of $\InternalHom{FormalGroups}(A^*, \CP^\infty_E)$ subject to the condition that $A^*[n]$ forms a subdivisor of $\CP^\infty_E[n]$.\footnote{If $A[p] \cong (\Z/p)^{\times k}$ has $k > \height{\Gamma}$, then this is the terminal scheme.}  \qed
 \end{theorem}
 
-\begin{lemma}[{mild extension of \Cref{UnstableCooperationsChapter}}]
-There is an isomorphism \[\Spec Q^* \pi_* L_\Gamma(E \sm E) \cong \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_E). \qed\]
-\end{lemma}
-
 \begin{remark}
-An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is that they form a kind of replacement for the nonexistent ``scheme of monomorphisms''.  Specifically, the $p$--series for a Lubin--Tate universal deformation group is only once $x$--divisible, and hence the divisor $\G[p]$ only contains the divisor $[0]$ with multiplicity one.  This excludes noninjective morphisms in this case.  On the other hand, the only subgroups of the formal group restricted to the special fiber are of the form $p^m \cdot [0]$.  In particular, any level structure on $\G$ restricts to a morphism with this image divisor at the special fiber, and hence functoriality considerations force us to count these---which are \emph{not} images of monomorphisms---as level structures as well.\todo{This kind of reasoning applies to domains of characteristic $0$.}
+An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is that they form a kind of replacement for the nonexistent ``scheme of monomorphisms''.  Specifically, the $p$--series for a Lubin--Tate universal deformation group is only once $x$--divisible, and hence the divisor $\G[p]$ only contains the divisor $[0]$ with multiplicity one.  This excludes noninjective morphisms in this case.  On the other hand, the only subgroups of the formal group restricted to the special fiber are of the form $p^m \cdot [0]$.  In particular, any level structure on $\G$ restricts to a morphism with this image divisor at the special fiber, and hence functoriality considerations force us to count these---which are \emph{not} images of monomorphisms---as level structures as well.\footnote{This kind of reasoning applies to domains of characteristic $0$.}
 \end{remark}
 
-\todo{The Drinfel'd ring? Galois descent for level structures?}
+\begin{remark}[{\cite{StricklandFiniteSubgps}}]
+The schemes $\Sub_j \G$ and $\Level(A, \G)$ are known to possess many very pleasant algebraic properties: they are finite and free of predictable rank, they have Galois descent properties, the schemes $\Level(A, \G)$ are all reduced, there are important decompositions coming from presenting a subgroup scheme as a flag of smaller subgroups, \ldots.  Indeed, these algebraic results form important ingredients to the proof of the connection with homotopy theory~\cite[Section 9]{StricklandEthyOfBSigma}.
+\end{remark}
 
 
 
@@ -249,13 +262,19 @@ An important piece of intuition about the schemes $\Level(A^*, \CP^\infty_E)$ is
 
 \subsection*{Isogenies and the Lubin--Tate moduli}
 
-In this subsection, we seek an algebraic comparison of the different sorts of contexts previously considered.  It will be useful to phrase our ideas in the language of \emph{isogenies}.
+In this subsection, we seek a comparison of the natural $E_\infty$ context and the unstable context considered in \Cref{UnstableContextsSection}.  Our model for the unstable context in \Cref{UnstableAlgebraicModelSection} focuses on the effect of unstable operations on the cohomology of $\CP^\infty$, as summarized in the following result:
+
+\begin{lemma}[{mild extension of \Cref{UnstableCooperationsChapter}}]
+There is an isomorphism \[\Spec Q^* \pi_* L_\Gamma(E \sm E) \cong \InternalHom{FormalGroups}(\CP^\infty_E, \CP^\infty_E). \qed\]
+\end{lemma}
+
+\noindent In order to form a comparison map between these two contexts, we will want algebraic constructions that trade a subgroup divisor (i.e., a point in the natural $E_\infty$ context) for a formal group homomorphism (i.e., a point in the unstable context).  It will be useful to phrase our ideas in the language of \emph{isogenies}.
 
 \begin{definition}[{\cite[Definition 5.17]{StricklandFSFG}}]
 Take $C$ and $D$ to be formal curves over $X$.  A map $f\co C \to C'$ is an \textit{isogeny} (of degree $d$) when the induced map $C \to C \times_X C'$ exhibits $C$ as a divisor (of rank $d$) on $C \times_X C'$ as $C'$--schemes.
 \end{definition}
 
-\begin{remark}
+\begin{remark}[{cf.\ \Cref{DivHasPushforwards}}]
 In this case, a divisor $D$ on $C'$ gives rise to a divisor $f^* D$ on $C$ by scheme-theoretic pullback:
 \begin{center}
 \begin{tikzcd}
@@ -268,42 +287,37 @@ altogether inducing a map \[f^*\co \Div_n^+ C' \to \Div_{nd}^+ C.\]  This map in
 
 The usual source of examples of isogenies are polynomial maps between curves.  In fact, this is close to the general case, and the following result is the source of much intuition:
 \begin{lemma}[Weierstrass preparation]
-Let $R$ be a complete local ring.  Every isogeny $f\co \A^1 \to \A^1$ can be factored uniquely as a coordinate change and a monic polynomial. \qed
+Let $R$ be a complete local ring.  Every degree $d$ isogeny $f\co \A^1_R \to \A^1_R$ admits a unique factorization as a coordinate change and a monic polynomial of degree $d$. \qed
 \end{lemma}
 
-In the case of formal groups over a perfect field $k$ of positive characteristic, this reduces to two familiar structural results:
+\noindent In the case of formal groups over a perfect field of positive characteristic, this reduces to two familiar structural results:
 
 \begin{corollary}
-Every nonzero map of formal groups over $k$ can be factored as an iterate of Frobenius and a coordinate change. \qed
+Every nonzero map of formal groups over a perfect field of positive charactersitic can be factored as an iterate of Frobenius and a coordinate change.\footnote{Incidentally, the Frobenius iterate appearing in the Weierstrass factorization of the multiplication-by-$p$ isogeny $p\co \G \to \G$ is another definition of the height of $\G$.} \qed
 \end{corollary}
 
 \begin{corollary}
-A map of ($1$--dimensional, smooth) formal groups over a complete local ring with residue field $k$ is an isogeny if and only if the kernel subscheme of the map is a divisor. \qed
+A map of formal groups over a complete local ring with a perfect positive-characteristic residue field is an isogeny if and only if the kernel subscheme of the map is a divisor. \qed
 \end{corollary}
 
-\begin{remark}
-The Frobenius iterate appearing in the Weierstrass factorization of the multiplication-by-$p$ isogeny $p\co \G \to \G$ is another definition of the height of $\G$.
-\end{remark}
-
-Isogenies of formal groups are also automatically (fppf-)surjective, and accordingly it is a good idea to address quotients of formal groups as well as the basic isomorphism theorems.
+This last result is the fountainhead of the connection we are seeking: isogenies are exactly the class of formal group homomorphisms which have subgroup divisors as kernels.  On the other hand, the unstable context consists of \emph{all} formal group \emph{endomorphisms}, so we would like a construction in the opposite direction which converts a subgroup to an \emph{endomorphism}.  As a first approximation to this goal, and in keeping with our exploration of the basic features of isogenies, we note that isogenies of formal groups are automatically fppf-surjective and that it is an accordingly good idea to address \emph{quotients} of formal groups as well as the basic isomorphism theorems.
 
 \begin{definition}
-For $i\co K \subseteq \G$ be a subgroup divisor, we define the quotient group $\G/K$ to be the formal scheme whose ring of functions appears as the coequalizer
+For $K \subseteq \G$ be a subgroup divisor, we define the quotient group $\G/K$ to be the formal scheme whose ring of functions is the coequalizer
 \begin{center}
 \begin{tikzcd}
-\sheaf O_{\G/K} \arrow{r} & \sheaf O_{\G} \arrow[shift left=0.4em, "\mu^*"]{r} \arrow[shift right=0.4em, "1 \otimes i^*"']{r} & \sheaf O_{\G} \otimes \sheaf O_K.
+\sheaf O_{\G/K} \arrow{r} & \sheaf O_{\G} \arrow[shift left=0.4em, "\mu^*"]{r} \arrow[shift right=0.4em, "1 \otimes \eta^*"']{r} & \sheaf O_{\G} \otimes \sheaf O_K.
 \end{tikzcd}
 \end{center}
 \end{definition}
 
-\begin{lemma}
-\citeme{Strickland}
+\begin{lemma}[{\cite[Theorem 5.3.2-3]{StricklandFiniteSubgps}}]
 The functor $\G/K$ is again a $1$--dimensional smooth commutative formal group. \qed
 \end{lemma}
 
 The inclusion of rings of functions determines an isogeny $q\co \G \to \G/K$ of degree $|K|$.  In this particular case, the induced pullback map $q^*$ of divisor schemes has an especially easy formulation:
 \begin{lemma}
-Pullback along the isogeny $q\co \G \to \G/K$ is computed by \[q^* \co D \mapsto D * K,\] where $*\co \Div_n^+ \G \times \Div_d^+ \G \to \Div_{nd}^+ \G$ is the convolution product of divisors on formal groups described in \Cref{ProductMapOfDivisorSchemes}. \qed
+Pullback along the isogeny $q\co \G \to \G/K$ is computed by \[q^* \co D \mapsto D * K,\] where $*\co \Div_n^+ \G \times \Div_d^+ \G \to \Div_{nd}^+ \G$ is the convolution product of divisors on formal groups as described in \Cref{ProductMapOfDivisorSchemes}. \qed
 \end{lemma}
 
 In the case that $K$ is specified by a level structure, this admits a further refinement:
@@ -311,36 +325,57 @@ In the case that $K$ is specified by a level structure, this admits a further re
 Let $\ell\co A \to \G$ be a level structure parametrizing a subgroup divisor $K$.  The divisor pullback map can then be computed by the expansion \[q^* D = \sum_{a \in A} \tau_{\ell(a)}^* D,\] where $\tau_g\co \G \to \G$ is the translation by $g$ map. \qed
 \end{corollary}
 
-\begin{remark}
-This second construction can be upgraded to an assignment from \emph{functions} on $\G$ to \emph{functions} on $\G/K$, rather than just the ideals that they generate.  Specifically, we define the \textit{norm} of $\phi \in \sheaf O_{\G}$ along a level structure $\ell\co A \to \G$ by the formula \[N_\ell \phi = \prod_{a \in A} (\phi \circ \tau_{\ell(a)}).\]  An often useful special case of this norm construction is that if $\phi$ is a coordinate on $\G$, then $N_\ell \phi$ is a coordinate on $\G/K$.
-\end{remark}
+\begin{definition}
+This second construction can be upgraded to an assignment from \emph{functions} on $\G$ to \emph{functions} on $\G/K$, rather than just the ideals that they generate.  Specifically, we define the \textit{norm} of $\phi \in \sheaf O_{\G}$ along a level structure $\ell\co A \to \G$ by the formula \[N_\ell \phi = \prod_{a \in A} \tau_{\ell(a)}^* \phi.\]  An often-useful property of this norm construction is that if $\phi$ is a coordinate on $\G$, then $N_\ell \phi$ is a coordinate on $\G/K$~\cite[Theorem 5.3.1]{StricklandFiniteSubgps}.
+\end{definition}
 
 \begin{remark}
-In general, the pullback map $q^*$ admits the following description: an isogeny $q\co C \to C'$ gives a presentation of $\sheaf O_C$ as a finite free $\sheaf O_{C'}$--module.  A function $\phi \in \sheaf O_C$ therefore begets an element $\phi \cdot (-) \in \operatorname{GL}_{\sheaf O_{C'}}(\sheaf O_C)$, and the determinant of this element gives an element of $q^* \phi \in \sheaf O_{C'}$.  Letting $\phi$ range, this gives a multiplicative (but not typically additive) map $\sheaf O_C \to \sheaf O_{C'}$.  If a divisor $D$ is specified as the zero-locus of a function $\phi_D$, the divisor $q^* D$ is specified as the zero-locus of $q^* \phi_D$.
+In general, the pullback map $q^*$ admits the following description: an isogeny $q\co C \to C'$ gives a presentation of $\sheaf O_C$ as a finite free $\sheaf O_{C'}$--module.  A function $\phi \in \sheaf O_C$ therefore begets a linear endomorphism $\phi \cdot (-) \in \operatorname{GL}_{\sheaf O_{C'}}(\sheaf O_C)$, and the determinant of this map gives an element of $q^* \phi \in \sheaf O_{C'}$.  Letting $\phi$ range, this gives a multiplicative (but not typically additive) map $q^*\co \sheaf O_C \to \sheaf O_{C'}$.  If a divisor $D$ is specified as the zero-locus of a function $\phi_D$, the divisor $q^* D$ is specified as the zero-locus of $q^* \phi_D$.
 \end{remark}
 
-\begin{lemma}[Third isomorphism theorem for formal groups]
+Our last technical remark is that this definition of quotient does, indeed, have the universal property of a quotient:
+
+\begin{lemma}[Third isomorphism theorem for formal groups, {\cite[Theorem 5.3.4]{StricklandFiniteSubgps}}]
 If $f\co \G \to \mathbb H$ is any isogeny with kernel divisor $K$, then there is a uniquely specified commuting triangle
 \begin{center}
 \begin{tikzcd}
 & \G \arrow["q"']{ld} \arrow["f"]{rd} \\
-\G/K \arrow["{g \quad \simeq}"]{rr} & & \mathbb H.
+\G/K \arrow["g", "\simeq"']{rr} & & \mathbb H. \qed
 \end{tikzcd}
 \end{center}
 \end{lemma}
 
-
-
-Finally, we note that these constructions interact with the Lubin--Tate moduli problem in an exceptionally interesting way.  This begins with the observation that multiplication by $p$ is an endo-isogeny of any Lubin--Tate group, so that the Lemma above gives rise to an isomorphism
+We now use this Lemma, along with properties of the Lubin--Tate moduli problem, to associate endo-isogenies to subgroup divisors.  To begin, consider the multiplication--by--$p$ endo-isogeny of a Lubin--Tate group $\G$.  Since $\G$ is finite height, this map is an isogeny and the Lemma above gives rise to an isomorphism
 \begin{center}
 \begin{tikzcd}
 & \G \arrow["q"']{ld} \arrow["p"]{rd} \\
-\G/\G[p] \arrow["{g \quad \simeq}"]{rr} & & \G.
+\G/\G[p] \arrow["g", "\simeq"']{rr} & & \G.
 \end{tikzcd}
 \end{center}
-This diagram expresses the observation that $\G / \G[p]$ is again a universal deformation, as witnessed by a preferred isomorphism to $\G$.
-\todo{You're missing something here: you need to suck the Frobenius into the deformation data to get the map $\psi$.}
-In turn, this observation shows that there is some automorphism of Lubin--Tate space\footnote{An obvious but common point of confusion is that the map $\psi_{\G[p]}$ is \emph{not} an $LT_\Gamma$--algebra map.} \[\psi_{\G[p]}\co (\moduli{fg})^\wedge_\Gamma \to (\moduli{fg})^\wedge_\Gamma\] over which $g\co \G[p] \cong \psi_{\G[p]}^* \G$ covers the identity.
+In particular, this diagram shows that the quotient map $\G / \G[p]$ is \emph{again} a universal deformation, as witnessed by a preferred isomorphism to $\G$.  Recall that the following diagram expresses the data of a deformation:
+\begin{center}
+\begin{tikzcd}
+\Gamma \arrow{d} & i^* \Gamma \arrow{l} \arrow{rd} \arrow[equal, "\phi"]{r} & R/\m \otimes G \arrow{r} \arrow{d} & G \arrow{rd} \arrow[equal, "\psi"]{r} & R \otimes \G \arrow{d} \arrow{r} & \G \arrow{d} \\
+\Spec k & & \Spec R/\m \arrow["i"]{ll} \arrow{rr} & & \Spf R \arrow{r} & (\mathcal M_{\mathbf{fg}})^\wedge_\Gamma.
+\end{tikzcd}
+\end{center}
+
+
+\begin{center}
+\begin{tikzcd}[column sep=0em]
+ & \operatorname{Frob}^j \otimes \Gamma & & \arrow{ll} \operatorname{Frob}^j \otimes i^* \Gamma \arrow[equal, "\phi'", densely dotted]{rr} & & R/\m \otimes \G' \arrow{rr} & & \G' \\
+\Gamma \arrow{ru} & & i^* \Gamma \arrow{ll} \arrow[equal, "\phi"]{rr} \arrow{ru} & & R/\m \otimes G \arrow{rr} \arrow{ru}[description]{R/\m \otimes g} & & \G \arrow{ru}[description]{g}
+\end{tikzcd}
+\end{center}
+
+
+
+
+
+
+
+
+In turn, this observation shows that there is some automorphism of Lubin--Tate space\footnote{An obvious but common point of confusion is that the map $\psi_{\G[p]}$ is \emph{not} an $LT_\Gamma$--algebra map.} \[\psi_{\G[p]}\co (\moduli{fg})^\wedge_\Gamma \to (\moduli{fg})^\wedge_\Gamma\] over which $g\co \G/\G[p] \cong \psi_{\G[p]}^* \G$ covers the identity.
 
 The main observation powering this is that the subgroup structure of $\Gamma$ is extremely simple: every subgroup finds expression as a $p^j$--multiple of the zero-point.  This also means that every quotient isogeny, not just the multiplication-by-$p$ endoisogeny, acquires a similar expression as a deformation.
 
