@@ -835,13 +835,118 @@ The contravariant Dieudonn\'e functor described above has a natural extension by
 \end{remark}
 
 \begin{remark}
-Dieudonn\'e theory gives rise to an important function called the \textit{period map}.  Although the crystalline nature of the cohomology group $H^1_{dR}$ makes our definition of $D^*$ invariant of choice of lift, the underlying chain complex is \emph{not} invariant of choice of lift.  In turn, the subsheaf of honestly invariant differentials $\omega_{\G}$ selects an interesting $1$--dimensional vector subspace of $PH^1_{dR}(\G)$.  Thinking of $\G$ as a point in $(\moduli{fg})^\wedge_{\G_0}(\W_p(k))$, this observation gives rise to an interesting function
+\todo{pp.\ 42-43 of FPFP has some easy-to-state results about this collected.}
+\todo{Section 2.3 (pg.\ 35--36) of Morava's \textit{Noetherian Localisations} gives a sketch of the period map (in terms of curves, I guess).}
+\todo{Mention that the period map is equivariant for the isotropy action.}
+Dieudonn\'e theory gives rise to an important function called the \textit{period map}.  Although the crystalline nature of the cohomology group $H^1_{dR}$ makes our definition of $D^*$ invariant of choice of lift, the underlying chain complex is \emph{not} invariant of choice of lift.  In turn, the subsheaf of honestly invariant differentials $\omega_{\G}$ selects an interesting $1$--dimensional vector subspace of $PH^1_{dR}(\G)$~\cite[Section 2.3]{MoravaCobordismComodules}.  Thinking of $\G$ as a point in $(\moduli{fg})^\wedge_{\G_0}(\W_p(k))$, this observation gives rise to an interesting function
 \begin{align*}
 \pi_{GH}\co (\moduli{fg})^\wedge_{\G_0}(\W_p(k)) & \to \P(D^*(\G)), \\
 \G & \mapsto [\omega_{\G} \subseteq \P(D^*(\G))].
 \end{align*}
-This map has incredibly good properties.  It is equivariant for the action of $\Aut \G_0$~\cite[Theorem 1]{HopkinsGrossAnnouncement}, and with enough work one can use this to extract explicit (recursive) formulas expressing the action~\cite{DevinatzHopkins}, \cite[Section 24]{StricklandFPFP}, \cite[Section 22]{HopkinsGrossEquivVBs}, bringing some relief to the problem of \Cref{StablizerRepIsComplicated}.  Also, in a suitable context it becomes an \'etale morphism with identifiable fibers~\cite[Theorem 1]{HopkinsGrossAnnouncement}, \cite[Sections 23-4]{HopkinsGrossEquivVBs}.
+This map has incredibly good properties.  It is equivariant for the action of $\Aut \G_0$~\cite[Theorem 1]{HopkinsGrossAnnouncement}, and with enough work one can use this to extract explicit (recursive) formulas expressing the action~\cite{DevinatzHopkins}, \cite[Section 24]{StricklandFPFP}, \cite[Section 22]{HopkinsGrossEquivVBs}, bringing some relief to the problem of \Cref{StablizerRepIsComplicated}.  Also, in a suitable context it becomes an \'etale morphism with identifiable fibers~\cite[Theorem 1]{HopkinsGrossAnnouncement}, \cite[Sections 23-4]{HopkinsGrossEquivVBs}, which allows one to give an explicit formula for the dualizing sheaf~\cite[Corollary 3]{HopkinsGrossAnnouncement} with direct applications to topology~\cite[Theorem 6]{HopkinsGrossAnnouncement}: \[\context{E_\Gamma}(\Susp^{-d^2 - d} \mathbb I_{\Q/\Z}) = \Omega^{d - 1}_{(\moduli{fg})^\wedge_\Gamma} = \omega^{\otimes d}[\det].\]  In \Cref{PeriodMapFigure} we sketch the period map at $n = 2$ and $p = 2$, which has the following list of properties~\cite[Appendix 25]{HopkinsGrossEquivVBs}, \cite{Yu}:
+\begin{itemize}
+\item The center of the $\Z_{p^2}$--points of Lubin--Tate space corresponds to the canonical lift, which is the formal group that further acquires an $\mathcal O_A$--module structure.  It has $\pi$--series $[\pi](x) = \pi x + x^{q^2}$.
+\item There are three nontrivial points in $\G[2]$: $\alpha$, $\beta$, and $\alpha + \beta$.  Quotienting by them gives three points at order $1/(q+1)$, the first bunch of ``quasicanonical lifts'', which have partial formal $\mathcal O_A$--module structures.
+\item Out to order $1/q$, $\pi_{GH}$ is injective.
+\item You can compute these orders using the Newton polygon associated to the $\pi$--series.
+\item At each quasicanonical point, you also also form three quotients: two of them make the situation ``worse'', and one of them makes the situation ``better'', which is a kind of witness to the identification $\G / \G[2] \cong \G$.
+\item The canonical Frobenius $F_{can} = \left[ \begin{array}{cc} 0 & p \\ 1 & 0 \end{array} \right]$ first flips the two coordinates (and scales one by $p$), then flips them back (and scales the other by $p$), and after two flips scaling everything by $p$ scales back down by homogeneous coordinates.
+\item The group $\F_4^\times$ acts by rotation on $\mathbb P^1$.
+\item The map $\pi_{GH}$ sends the canonical lift to $0 = [1:0]$, sends the first order quasicanonical points to $\infty = [0:1]$, and alternates from there.  The three branches of ``directions to quotient'' carve $\mathbb P^1$ up into three lobes.  This is because $\pi_{GH}$ is equivariant for \emph{isogenies}, and quotienting by one of these order $2$ subgroups is a lift of the Frobenius isogeny on the residue formal group.
+\item These quasicanonical points are the ones with nontrivial stabilizers under the action by the Morava stabilizer group---all the other points belong to free orbits.  The canonical lift has the largest stabilizer of all.
+\end{itemize}
 \end{remark}
+
+\begin{figure}
+\begin{center}
+
+\pgfdeclareradialshading{myshading}{\pgfpointorigin}
+{
+  color(0cm)=(pgftransparent!100);
+  color(2cm)=(pgftransparent!100);
+  color(2.5cm)=(pgftransparent!0);
+  color(3cm)=(pgftransparent!0)
+}
+\pgfdeclarefading{fading3}{\pgfuseshading{myshading}}
+
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+% thanks to Tomasz M. Trzeciak
+% based off of http://www.latex-community.org/viewtopic.php?f=4&t=2111
+
+\draw (0,0) circle (3);
+
+\begin{scope}
+\pgfsetfading{fading3}{\pgftransformshift{\pgfpoint{0cm}{0cm}}}
+\filldraw[black!5] (0,0) circle (3);
+\end{scope}
+
+\draw[dashed] (0,0) circle (1);
+\coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (O) at (0,0);
+\node[below=5pt] at (O) {$0$};
+
+\draw (O) -- +( 90:1.5) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q1)
+      (O) -- +(210:1.5) coordinate[style={inner sep=0pt,outer sep=0pt,minimum size=3pt, fill=black,circle}] (Q2)
+      (O) -- +(330:1.5) coordinate[style={inner sep=0pt,outer sep=0pt,minimum size=3pt, fill=black,circle}] (Q3);
+
+\draw[black!40] (Q1) -- +(120-90:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q12)
+      (Q1) -- +(240-90:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q13)
+      (Q2) -- +(120-330:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q21)
+      (Q2) -- +(240-330:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q23)
+      (Q3) -- +(120-210:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q31)
+      (Q3) -- +(240-210:0.75) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q32);
+
+\draw[black!20] (Q12) -- +(90:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q121)
+      (Q12) -- +(330:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q123)
+      (Q13) -- +(90:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q131)
+      (Q13) -- +(210:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q132)
+      (Q21) -- +(90:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q212)
+      (Q21) -- +(210:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q213)
+      (Q23) -- +(210:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q231)
+      (Q23) -- +(330:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q232)
+      (Q31) -- +(210:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q312)
+      (Q31) -- +(330:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q313)
+      (Q32) -- +(90:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q321)
+      (Q32) -- +(330:0.375) coordinate[style={inner sep=0pt, outer sep=0pt, minimum size=3pt, fill=black, circle}] (Q323);
+\end{tikzpicture}%
+%
+\quad $\xrightarrow{\pi_{GH}}$ \quad%
+%
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+
+\newcommand\pgfmathsinandcos[3]{%
+  \pgfmathsetmacro#1{sin(#3)}%
+  \pgfmathsetmacro#2{cos(#3)}%
+}
+\newcommand\LongitudePlane[3][current plane]{%
+  \pgfmathsinandcos\sinEl\cosEl{#2} % elevation
+  \pgfmathsinandcos\sint\cost{#3} % azimuth
+  \tikzset{#1/.style={cm={\cost,\sint*\sinEl,0,\cosEl,(0,0)}}}
+}
+\newcommand\DrawLongitudeCircle[2][1]{
+  \LongitudePlane{35}{#2} % first argument is angle of elevation
+  \tikzset{current plane/.prefix style={scale=#1}}
+   % angle of "visibility"
+  \pgfmathsetmacro\angVis{atan(sin(#2)*cos(35)/sin(35))} % these are angle of elevation too
+  % this might assume that the angle of elevation is positive
+  \draw[current plane] (\angVis:1) arc (\angVis:90:1);
+  \draw[current plane,dashed] (\angVis:1) arc (\angVis:-90:1);
+}
+
+% the "2.5" magic number is the radius of the sphere 
+% the "35" magic number is the angle of elevation of the camera
+\pgfmathsetmacro\H{2.5*cos(35)}
+\filldraw[ball color=white] (0,0) circle (2.5);
+\foreach \t in {-5,-125,-245} { \DrawLongitudeCircle[2.5]{\t} }
+\coordinate[style={inner sep=0pt,outer sep=0pt,minimum size=3pt,
+    fill=black,circle}] (O) at (0,-\H);
+\node[below=16pt] at (O) {$0$};
+\coordinate[style={inner sep=0pt,outer sep=0pt,minimum size=3pt,
+    fill=black,circle}] (I) at (0,\H);
+\node[above=16pt] at (I) {$\infty$};
+\end{tikzpicture}
+\end{center}
+\caption{The period map at $n = 2$, $p = 2$}\label{PeriodMapFigure}
+\end{figure}
 
 \begin{remark}
 It is also possible to build versions of Dieudonn\'e theory over still more exotic rings.  The most successful such version is Zink's theory of Dieudonn\'e displays~\cite{ZinkDisplays}, which has found some application in algebraic topology~\cite{LawsonDisplays}.
