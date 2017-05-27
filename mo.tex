@@ -263,9 +263,8 @@ This group scheme has several interesting properties, which we will merely state
 \todo{Jeremy had some motivation for this, that quite generally one wants to consider ind-systems of compact objects.  Why does one want this?  Is it better motivation than just dropping into it?}
 We now turn to a different class of examples, which will wind up being the key players in our upcoming topological story.  To begin, consider the colimit of the sets $\colim_{n \to \infty} \mathbb A^{1,(n)}(T)$, which is of use in algebra: it is the collection of nilpotent elements in $T$.  These kinds of conditions which are ``unbounded in $n$'' appear frequently enough that we are moved to give these functors a name too:
 \begin{definition}
-\todo{How are finite schemes characterized in the functor of points perspective?  They should commute with sequential colimits or something.}
 \todo{Erick points out that the morphisms in this system should be infintesimal thickenings.  Is there a functor-of-points way to recognize such things, without reaching all the way up to talking about ideals?  (He also thinks that we should allow finite type in addition to finite, but I don't think I want that. I've been wrong before, though.)}
-An \textit{affine formal scheme} is an ind-system of finite affine schemes.\footnote{This has the effect of formally adjoining colimits of filtered diagrams to the category of finite affine schemes.}  The morphisms between two formal schemes are computed by \[\CatOf{FormalSchemes}(\{X_\alpha\}, \{Y_\beta\}) = \lim_\alpha \colim_\beta \CatOf{Schemes}(X_\alpha, Y_\beta).\]  Given affine charts $X_\alpha = \Spec R_\alpha$, we will glibly suppress the system from the notation and write \[\Spf R := \{\Spec R_\alpha\}.\]
+An \textit{affine formal scheme} is an ind-system of finite affine schemes.\footnote{This has the effect of formally adjoining colimits of filtered diagrams to the category of finite affine schemes.  In fact, a functor $X\co \CatOf{Algebras} \to \CatOf{Sets}$ which preserves finite limits is a formal scheme exactly when there exists a family of maps $X_i \to X$ from a set of affine schemes $X_i$ such that the induced map \[\coprod_i X_i(T) \to X(T)\] is jointly surjective for all test algebras $T$~\cite[Proposition 4.6]{StricklandFSFG}.}  The morphisms between two formal schemes are computed by \[\CatOf{FormalSchemes}(\{X_\alpha\}, \{Y_\beta\}) = \lim_\alpha \colim_\beta \CatOf{Schemes}(X_\alpha, Y_\beta).\]  Given affine charts $X_\alpha = \Spec R_\alpha$, we will glibly suppress the system from the notation and write \[\Spf R := \{\Spec R_\alpha\}.\]
 \end{definition}
 
 \begin{example}\label{FormalGaExample}
@@ -273,7 +272,7 @@ The individual schemes $\mathbb A^{1, (n)}$ do not support group structures.  Af
 \end{example}
 
 \begin{example}
-Similarly, one can define the scheme $\Gm[n]$ of elements of unipotent order $n$: \[\Gm[n] = \Spec \frac{\F_2[x,y]}{(xy - 1, x^n - 1)} \subseteq \Gm.\]  These \emph{are} all group schemes, and they nest together in a complicated way: there is an inclusion of $\Gm[n]$ into $\Gm[nm]$.\todo{Additionally, the only $\Gm[n]$ which are infinitesimal thickenings of $\Gm[1]$ are those with $n = 2^j$.}  There is also a second filtration along the lines of the one considered in \Cref{FormalGaExample}: \[\Gm^{(n)} = \Spec \frac{\F_2[x,y]}{(xy - 1, (x - 1)^n)}.\]  These schemes form a sequential system\todo{... of infinitesimal thickenings}, but they are only occasionally group schemes.  Specifically, $\Gm^{(2^j)}$ is a group scheme, in which case $\Gm^{(2^j)} \cong \Gm[2^j]$.  We define $\G_m$ using this common subsystem: \[\G_m := \{\Gm^{(2^j)}\}_{j=0}^\infty.\]
+Similarly, one can define the scheme $\Gm[n]$ of elements of unipotent order $n$: \[\Gm[n] = \Spec \frac{\F_2[x,y]}{(xy - 1, x^n - 1)} \subseteq \Gm.\]  These \emph{are} all group schemes, and they nest together in a complicated way: there is an inclusion of $\Gm[n]$ into $\Gm[nm]$.  There is also a second filtration along the lines of the one considered in \Cref{FormalGaExample}: \[\Gm^{(n)} = \Spec \frac{\F_2[x,y]}{(xy - 1, (x - 1)^n)}.\]  These schemes form a sequential system\todo{... of infinitesimal thickenings}, but they are only occasionally group schemes.  Specifically, $\Gm^{(2^j)}$ is a group scheme, in which case $\Gm^{(2^j)} \cong \Gm[2^j]$.\footnote{Additionally, the \emph{only} values of $n$ for which $\Gm[n]$ is an infinitesimal thickening of $\Gm[1]$ are those of the form $n = 2^j$.}  We define $\G_m$ using this common subsystem: \[\G_m := \{\Gm^{(2^j)}\}_{j=0}^\infty.\]
 \end{example}
 
 Let us now consider the example that we closed with last time, where we calculated $H\F_2^*(\RP^n) = \F_2[x] / (x^{n+1})$.  Putting ``$\Spec$'' in front of this, we could reinterpret this calculation as \[\Spec H\F_2^*(\RP^n) \cong \mathbb A^{1, (n)}.\]  This is such a useful thing to do that we will give it a notation all of its own:
@@ -322,8 +321,7 @@ We left off in the previous Lecture with an ominous finiteness condition in \Cre
 \end{enumerate}
 In this Lecture, we will fix all these deficiencies of $X_{H\F_2}$ except for \#\ref{SkewCommutativeDeficiency}, which does not matter with mod--$2$ coefficients but which will be something of a bugbear throughout the rest of the book.
 
-We will begin by considering the grading on $H\F_2^* X$, where $X$ is a finite complex.  In algebraic geometry, the following standard construction is used to track gradings:
-\todo{Mention FPFP's Polarised Schemes (Sections 11 and 14) in a footnote.}
+We will begin by considering the grading on $H\F_2^* X$, where $X$ is a finite complex.  In algebraic geometry, the following standard construction is used to track gradings:\footnote{Strickland gives an alternative formalism for tracking gradings~\cite[Sections 11 and 14]{StricklandFPFP} called a \emph{polarization}, which amounts to choosing a trivialization $\pi_2 E \cong \pi_0 E$ and considering the isomorphisms $\pi_{2n} E \cong (\pi_2 E)^{\otimes_{\pi_0 E} n}$.}
 
 \begin{definition}[{\cite[Definition 2.95]{StricklandFSFG}}]
 A \textit{$\Z$--grading} on a ring $R$ is a system of additive subgroups $R_k$ of $R$ satisfying $R = \bigoplus_k R_k$, $1 \in R_0$, and $R_j R_k \subseteq R_{j+k}$.  Additionally, a map $f\co R \to S$ of graded rings is said to \textit{respect the grading} if $f(R_k) \subseteq S_k$.\footnote{The terminology ``$\Z$--filtering'' might be more appropriate, but this is the language commonly used.}
@@ -632,6 +630,10 @@ We now give several examples to get a sense of how the Adams spectral sequence b
 Consider the degenerate case $X = H\F_2$.  Then $H\F_{2*}(H\F_2) = \mathcal A_*$ is a cofree comodule, and hence $\Cotor$ is concentrated on the $0$--line: \[\Cotor_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*}(H\F_2)) = \F_2.\]  The Adams spectral sequence collapses to show the wholly unsurprising equality $\pi_* H\F_2 = \F_2$, and indeed this is the element in the image of the Hurewicz map $\pi_* H\F_2 \to H\F_{2*} H\F_2$.
 \end{example}
 
+\begin{example}
+In the slightly less degenerate case of $X = H\Z$, one can calculate \[\Cotor^{*, *}_{\mathcal A_*}(\F_2, H\F_2{}_* H\Z) \cong \Cotor^{*, *}_{\Lambda[\xi_1]}(\F_2, \F_2) \cong \F_2[h_0].\]  This spectral sequence collapses, and the additive extensions cause it to converge to $\Z^\wedge_2$ in degree $0$ and $0$ in all other degrees.  The governing element $\xi_1$ is precisely the \textit{$2$--adic Bockstein}, which mediates the difference between trivial and nontrivial extensions of $\Z/2^j$ by $\Z/2$.
+\end{example}
+
 \begin{example}\label{kOASSExample}
 Next, we consider the more computationally serious case of $X = kO$, the connective real $K$--theory spectrum.  The main input we need is the structure of $H\F_{2*} kO$ as an $\mathcal A_*$--comodule, so that we can compute \[\Cotor_{\mathcal A_*}^{*, *}(\F_2, H\F_{2*} kO) \Rightarrow \pi_* kO^\wedge_2.\]  There is a slick trick for doing this: by working in the category of $kO$--modules rather than in all spectra, we can construct a relative Adams spectral sequence \[\Cotor_{\pi_* H\F_2 \sm_{kO} H\F_2}^{*, *}(\F_2, \pi_* H\F_2 \sm_{kO}(kO \sm H\F_2)) \Rightarrow \pi_*(kO \sm H\F_2).\]  The second argument is easy to identify: \[\pi_* H\F_2 \sm_{kO}(kO \sm H\F_2) = \pi_* H\F_2 \sm H\F_2 = \mathcal A_*.\]  The Hopf algebra requires further input.  Consider the following trio of cofiber sequences\footnote{This first sequence, known as the Wood cofiber sequence, is a consequence of a very simple form of Bott periodicity~\cite[Section 5]{Harris}: there is a fiber sequence of infinite-loopspaces $O/U \to BO \to BU$, and $\OS{kO}{1} = O/U$.}:
 \begin{align*}
@@ -646,8 +648,9 @@ These combine to give a resolution of $H\F_2$ via an iterated cofiber of free $k
 \mathcal A_* \arrow{r} & \begin{array}{c}\F_2[\xi_1, \xi_2, \xi_3, \xi_4, \ldots] \\ \hline (\xi_1^4, \xi_2^2), (\xi_n \mid n \ge 3)\end{array}.
 \end{tikzcd}
 \end{center}
-This Hopf algebra is commonly denoted $\mathcal A(1)_*$, and its corresponding subgroup scheme $\Spec \pi_* H\F_2 \sm_{kO} H\F_2 \subseteq \InternalAut_1 \G_a$ admits easy memorization: it is the subscheme of automorphisms of the form $x + \xi_1 x^2 + \xi_2 x^4$, with exactly the additional relations imposed on $\xi_1$ and $\xi_2$ so that this set is stable under composition and inversion.\footnote{A similar analysis shows that $H\F_2{}_* H\Z$ corepresents the subscheme of automorphisms of the form $x + \xi_1 x^2$ which are stable under composition and inversion.}\footnote{There is also an accidental isomorphism of this Hopf algebra with $\F_2^{D_4}$, where $D_4$ is the dihedral group with $8$ elements.}  Its cohomology is periodic with period $8$, and it is pictured through a range in \Cref{kOASSFigure}.
-\todo{This doesn't connect back with the first Adams SS.}
+This Hopf algebra is commonly denoted $\mathcal A(1)_*$, and its corresponding subgroup scheme $\Spec \pi_* H\F_2 \sm_{kO} H\F_2 \subseteq \InternalAut_1 \G_a$ admits easy memorization: it is the subscheme of automorphisms of the form $x + \xi_1 x^2 + \xi_2 x^4$, with exactly the additional relations imposed on $\xi_1$ and $\xi_2$ so that this set is stable under composition and inversion.\footnote{A similar analysis shows that $H\F_2{}_* H\Z$ corepresents the subscheme of automorphisms of the form $x + \xi_1 x^2$ which are stable under composition and inversion.}\footnote{There is also an accidental isomorphism of this Hopf algebra with $\F_2^{D_4}$, where $D_4$ is the dihedral group with $8$ elements.}
+
+Formal geometry aside, this $kO$--based Adams spectral sequence collapses, giving an isomorphism \[\Cotor^{*, *}_{\mathcal A(1)_*}(\F_2, \mathcal A_*) = \mathcal A_* \mmod \mathcal A(1)_* \cong H\F_2{}_* kO.\]  In turn, the original Adams spectral sequence takes the form \[\Cotor^{*, *}_{\mathcal A_*}(\F_2, \mathcal A \mmod \mathcal A(1)_*) \cong \Cotor^{*, *}_{\mathcal A(1)_*}(\F_2, \F_2) \Rightarrow \pi_* kO.\]  This spectral sequence is also collapsing, and we provide a picture of it in \Cref{kOASSFigure}.  In particular, eight-fold real Bott periodicity can be quickly read off from this picture.
 \end{example}
 
 \begin{example}
@@ -656,7 +659,6 @@ At the other extreme, we can pick the extremely nondegenerate case $X = \S$, whe
 \end{example}
 
 \todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?  I think this is a duality effect: working with the Steenrod algebra versus its dual.}
-\todo{Another thing that might belong here is the deformation picture: $H\F_2{}_* H\Z$ is also computable using the same methods, and the change-of-rings theorem then says that the Adams spectral sequence computing $H\Z_* X$ from $H\F_2{}_* X$ is controlled by $\Ext$ over the exterior algebra generated by that one Bockstein.  (This might also belong much later, say, when we talk about the Morava $K$--theory cooperations or if we ever describe $H\F_2{}_* BP$.)}
 
 \afterrectopage{
 \begin{sidewaysfigure}
