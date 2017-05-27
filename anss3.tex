@@ -1,39 +1,33 @@
 % -*- root: main.tex -*-
 
 \begin{sseqpage}[
-    degree={-1}{#1},
-    differentials={-{>[width=4]}, target anchor=-35},
-    classes={minimum width={0.3ex}},
-    %edge labels=description,
-    math nodes,    
+    Adams grading,
+    differentials={-{>[width=4]}, target anchor=-60},
     y range={0}{10},
     x range={0}{45},
-    x label step=5,
+    x tick step=5,
     xscale=0.375,
-    above left label distance={0em},
-    label distance={0.2em},
+    class labels={above left=0.2em},
 ]
+\class[rectangle,fill,inner sep=3pt](0,0)
 
-\node[rectangle,fill] at (0,0) {};
-\class(0,0)
+\class["\alpha_1"](3,1) \structline(0,0)(3,1)
+\class["\alpha_2"](7,1)
+\class[circlen=2,"\alpha_{3/2}"](11,1)
+\class["\alpha_4"](15,1)
+\class["\alpha_5"](19,1)
+\class[circlen=2,"\alpha_{6/2}"](23,1)
+\class["\alpha_7"](27,1)
+\class["\alpha_8"](31,1)
+\class[circlen=3,"\alpha_{9/3}"](35,1)
+\class["\alpha_{10}"](39,1)
+\class["\alpha_{11}"](43,1)
 
-\class["\alpha_1" {above left=0.2em}](3,1) \structline(0,0)(3,1)
-\class["\alpha_2" {above left=0.2em}](7,1)
-\class["{\alpha_{3/2}}" {above left=0.2em}](11,1)
-\class["\alpha_4" {above left=0.2em}](15,1)
-\class["\alpha_5" {above left=0.2em}](19,1)
-\class["{\alpha_{6/2}}" {above left=0.2em}](23,1)
-\class["\alpha_7" {above left=0.2em}](27,1)
-\class["\alpha_8" {above left=0.2em}](31,1)
-\class["{\alpha_{9/3}}" {above left=0.2em}](35,1)
-\class["{\alpha_{10}}" {above left=0.2em}](39,1)
-\class["{\alpha_{11}}" {above left=0.2em}](43,1)
-
-\class["\beta_1" {above left=0.2em}](10,2) \structline(3,1)(10,2)
-\class["\beta_2" {above left=0.2em}](26,2)
-\class["{\beta_{3/3}}" {above left=0.2em}](34,2)
-\class["{\beta_{3/2}}" {above left=0.2em}](38,2)
-\class["\beta_3" {above left=0.2em}](42,2)
+\class["\beta_1"](10,2) \structline(3,1)(10,2)
+\class["\beta_2"](26,2)
+\class["\beta_{3/3}"](34,2)
+\class["\beta_{3/2}"](38,2)
+\class["\beta_3"](42,2)
 
 % tower definitions
 \gdef\alphaclass(#1,#2){
@@ -62,6 +56,7 @@
 \betaclass(46,6)
 \alphaclass(49,7)
 
+
 % tower off of beta_3/3
 \alphaclass(37,3)
 \betaclass(44,4)
@@ -69,12 +64,10 @@
 \betaclass(54,6)
 
 % tower off of beta_3
-\node[circle,fill,scale=0.3] at (45,3) {};
-\class(45,3) \structline(42,2,-1)(45,3,-1)
+\class[fill,double=white](45,3) \structline(42,2,-1)(45,3,-1)
 \betaclass(52,4)
 
 % d5s
 \d5(34,2)
 \d5(44,4)
-
 \end{sseqpage}
