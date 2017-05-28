@@ -508,7 +508,7 @@ Let $\G$ be the formal group associated to $+_\phi$, and denote its inherited pa
 \item Given $r \in R$, we can define a \textit{homothety} by rescaling the coordinate by $r$: \[\log(\theta_r g_0) = \log(g_0(rx)) = \sum_{n=1}^\infty (a_n r^n) x^n.\]
 \item For $\ell \in \Z$, we can define a shift operator (or \textit{Verschiebung}) by \[\log(V_\ell g_0(x)) = \log(g(x^\ell)) = \sum_{n=1}^\infty a_n x^{n \ell}.\]
 \item Given an $\ell \in \Z_{(p)}$, we define the \textit{$\ell$--series} by\footnote{Note that for $\ell \in \Z$, this agrees with $[\ell](g_0(x)) = \overset{\text{$\ell$ times}}{\overbrace{g_0(x) +_{\G} \cdots +_{\G} g_0(x)}}$.} \[\log([\ell](g_0(x))) = \ell \log(g_0(x)) = \sum_{n=1}^\infty \ell a_n x^n.\]
-\item For $\ell \in \Z$, we can define a \textit{Frobenius operator}\footnote{There are other definitions of the Frobenius operator which are less mysterious but less explicit.  For instance, it also arises from applying the Verschiebung to the character group (or ``Cartier dual'') of $\G$.} by \[\log(F_\ell g_0(x)) = \log\left(\sum_{j=1}^\ell{}_{\G} g_0(\zeta_\ell^j x^{1/\ell}) \right),\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$).  But, by pulling the logarithm through and noting \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$: \[\log(F_\ell g_0(x)) = \sum_{n=1}^\infty \ell a_{n \ell} x^n.\]
+\item For $\ell \in \Z$, we can define a \textit{Frobenius operator}\footnote{There are other definitions of the Frobenius operator which are less mysterious but less explicit.  For instance, it also arises from applying the Verschiebung to the character group (or ``Cartier dual'') of $\G$.} by \[\log(F_\ell g_0(x)) = \log\left(\sumG_{j=1}^\ell g_0(\zeta_\ell^j x^{1/\ell}) \right),\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$).  But, by pulling the logarithm through and noting \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$: \[\log(F_\ell g_0(x)) = \sum_{n=1}^\infty \ell a_{n \ell} x^n.\]
 \end{itemize}
 Stringing these together, for $p \nmid \ell$ we have \[\log([1/\ell] V_\ell F_\ell g_0(x)) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell}.\]  Hence, we can iterate over primes $\ell \ne p$, and for two adjacent such primes $\ell' > \ell$ we consider the perturbation \[g_{\ell'} = g_\ell -_{\G} [1/\ell] V_\ell F_\ell g_\ell.\]  Each of these differences gives a parameter according to \Cref{InverseFunctionTheoremForFVars}, and the first possible nonzero term appears in degree $\ell$, hence the coefficients stabilize linearly in $\ell$.  Passing to the limit thus gives a new parameter $g_\infty$ on the same formal group $\G$, but now with a $p$--typical logarithm.
 \end{proof}
@@ -534,7 +534,7 @@ p \log_\phi(x) & = \log_\phi (px) + \log_\phi(v_1 x^p) + \log_\phi(v_2 x^{p^2}) 
 In the other direction, the logarithm coefficients can be recursively recovered from the coefficients $v_d$ for a formal group law with $p$--typical $p$--series, using a similar manipulation:
 \begin{align*}
 p \log_\phi(x) & = \log_\phi\left([p]_\phi(x)\right) \\
-p \sum_{n=0}^\infty m_n x^n & = \log_\phi \left(\sum_{d=0}^\infty{}_\phi v_d x^{p^d} \right) = \log_\phi(px) + \sum_{d=1}^\infty \log_\phi\left(v_d x^{p^d}\right), \\
+p \sum_{n=0}^\infty m_n x^n & = \log_\phi \left(\sumphi_{d=0}^\infty v_d x^{p^d} \right) = \log_\phi(px) + \sum_{d=1}^\infty \log_\phi\left(v_d x^{p^d}\right), \\
 \intertext{which is only soluable if $\log_\phi$ is concentrated in degrees of the form $p^d$.  In that case, we can push this slightly further:}
 \sum_{d=0}^\infty p m_{p^d} x^{p^d} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_{p^j} v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_{p^k} v_{n-k}^{p^k} \right) x^{p^n},
 \end{align*}
@@ -555,9 +555,9 @@ Every formal group law $+_\phi$ is naturally isomorphic to a $p$--typical one. \
 If $+_\phi$ is a $p$--typical formal group law, then there are elements $v_d$ with \[[p]_\phi(x) = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_d x^{p^d} +_\phi \cdots.\]
 \end{lemma}
 \begin{proof}
-As before, let $\G$ denote the formal group associated to $+_\phi$ and let $g\co \A^1 \to G$ denote the induced $p$--typical coordinate.  Any auxiliary function $h\co \A^1 \to \G$ can be expressed in the form \[h = \sum_{m = 0}^\infty {}_{\G} V_m \theta_{a_m} g.\]  We will show that if $h$ is $p$--typical (i.e., $F_\ell h = 0$ for $p \nmid \ell$) then $a_m = 0$ for every $m \ne p^d$.\footnote{The converse so this claim also holds: since $F_\ell F_p = F_p F_\ell$ for $p \nmid \ell$, we can commute $F_\ell$ through the sum expression (which is absent any non-commuting terms by hypothesis), where it then kills $g$ to give $F_\ell h = 0$.}  Suppose instead that we can find a smallest index $m = rp^d$ with $p \nmid r$, $r \ne 1$, and $a_m \ne 0$.  We can then write
+As before, let $\G$ denote the formal group associated to $+_\phi$ and let $g\co \A^1 \to G$ denote the induced $p$--typical coordinate.  Any auxiliary function $h\co \A^1 \to \G$ can be expressed in the form \[h = \sumG_{m = 0}^\infty V_m \theta_{a_m} g.\]  We will show that if $h$ is $p$--typical (i.e., $F_\ell h = 0$ for $p \nmid \ell$) then $a_m = 0$ for every $m \ne p^d$.\footnote{The converse so this claim also holds: since $F_\ell F_p = F_p F_\ell$ for $p \nmid \ell$, we can commute $F_\ell$ through the sum expression (which is absent any non-commuting terms by hypothesis), where it then kills $g$ to give $F_\ell h = 0$.}  Suppose instead that we can find a smallest index $m = rp^d$ with $p \nmid r$, $r \ne 1$, and $a_m \ne 0$.  We can then write
 \begin{align*}
-F_\ell \left( h -_{\G} \sum_{j=0}^{d} {}_{\G} V_{p^j} \theta_{a_{p^j}} g \right) & = F_\ell(V_m \theta_{a_m} g + \cdots) \\
+F_\ell \left( h -_{\G} \sumG_{j=0}^{d} V_{p^j} \theta_{a_{p^j}} g \right) & = F_\ell(V_m \theta_{a_m} g + \cdots) \\
 & = r V_{p^d} \theta_{a_m} g + \cdots \ne 0.
 \end{align*}
 Since $p$--typical curves are closed under difference, $h$ could not have been $p$--typical.
@@ -623,7 +623,7 @@ The ideal $I_d = (p, v_1, \ldots, v_{d-1})$ is invariant under the action of \em
 \end{corollary}
 \begin{proof}
 \todo{\textit{Put a dictionary entry here defining the submoduli of height $\ge d$ formal group laws.}}
-Recall from \Cref{KudoArakiIsomorphism} the Kudo--Araki isomorphism \[\moduli{fgl}^{\ptyp} \xrightarrow{\simeq} \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots] =: \Spec V,\] and let $+_L$ denote the associated universal $p$--typical formal group law with $p$--series \[[p]_L(x) = px +_L v_1 x^p +_L v_2 x^{p^2} +_L \cdots +_L v_d x^{p^d} +_L \cdots.\]  Over $\Spec V[t_1, t_2, \ldots]$, we can form a second group law $+_R$ by conjugating $+_L$ by the universal $p$--typical coordinate transformation $g(x) = \sum_{j=0}^\infty {}_L t_j x^{p^j}$.  The corresponding $p$--series \[[p]_R(x) = \sum_{d=0}^\infty {}_R \eta_R(v_d) x^{p^d}\] determines the $\eta_R$ map of the Hopf algebroid $(V, V[t_1, t_2, \ldots])$ presenting the moduli of $p$--typical formal group laws and $p$--typical isomorphisms.  We cannot hope to compute $\eta_R(v_d)$ explicitly, but modulo $p$ we can apply Freshman's Dream to the expansion of \[[p]_L(g(x)) = g([p]_R(x))\] to discern some information: \[\sum_{\substack{i \ge 0 \\ j > 0}}{}_L t_i \eta_R(v_j)^{p^i} \equiv \sum_{\substack{i > 0 \\ j \ge 0}}{}_L v_i t_j^{p^i} \pmod p.\]  This is still inexplicit, since $+_L$ is a very complicated operation, but we can see $\eta_R(v_d) \equiv v_d \pmod{I_d}$.  It follows that $I_d$ is invariant for each $d$.  Additionally, the closed substack this determines are those formal groups admitting local $p$--typical coordinates for which $v_{\le d} = 0$, guaranteeing that the height of the associated formal group is at least $d$.
+Recall from \Cref{KudoArakiIsomorphism} the Kudo--Araki isomorphism \[\moduli{fgl}^{\ptyp} \xrightarrow{\simeq} \Spec \Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots] =: \Spec V,\] and let $+_L$ denote the associated universal $p$--typical formal group law with $p$--series \[[p]_L(x) = px +_L v_1 x^p +_L v_2 x^{p^2} +_L \cdots +_L v_d x^{p^d} +_L \cdots.\]  Over $\Spec V[t_1, t_2, \ldots]$, we can form a second group law $+_R$ by conjugating $+_L$ by the universal $p$--typical coordinate transformation $g(x) = \sumfgl{L}_{j=0}^\infty t_j x^{p^j}$.  The corresponding $p$--series \[[p]_R(x) = \sumfgl{R}_{d=0}^\infty \eta_R(v_d) x^{p^d}\] determines the $\eta_R$ map of the Hopf algebroid $(V, V[t_1, t_2, \ldots])$ presenting the moduli of $p$--typical formal group laws and $p$--typical isomorphisms.  We cannot hope to compute $\eta_R(v_d)$ explicitly, but modulo $p$ we can apply Freshman's Dream to the expansion of \[[p]_L(g(x)) = g([p]_R(x))\] to discern some information: \[\sumfgl{L}_{\substack{i \ge 0 \\ j > 0}} t_i \eta_R(v_j)^{p^i} \equiv \sumfgl{L}_{\substack{i > 0 \\ j \ge 0}} v_i t_j^{p^i} \pmod p.\]  This is still inexplicit, since $+_L$ is a very complicated operation, but we can see $\eta_R(v_d) \equiv v_d \pmod{I_d}$.  It follows that $I_d$ is invariant for each $d$.  Additionally, the closed substack this determines are those formal groups admitting local $p$--typical coordinates for which $v_{\le d} = 0$, guaranteeing that the height of the associated formal group is at least $d$.
 \end{proof}
 
 \noindent What is \emph{much} harder to prove is the following:
@@ -688,11 +688,11 @@ In the previous two Lectures, we analyzed the structure of $\moduli{fg}$ as a wh
 Let $\bar k$ be an algebraically closed field of positive characteristic $p$.  The height map \[\height\co \pi_0 \moduli{fg}(\bar k) \to \N_{> 0} \cup \{\infty\}\] is a bijection.
 \end{theorem}
 \begin{proof}
-Surjectivity follows from \Cref{EveryPSeriesArises}.  Namely, the \textit{$d${\th} Honda formal group law} is the $p$--typical formal group law over $k$ determined by \[[p]_{\phi_d}(x) = x^{p^d},\] and it gives a preimage for $d$.  To show injectivity, we must show that every $p$--typical formal group law $\phi$ over $\bar k$ is isomorphic to the appropriate Honda group law.  Suppose that the $p$--series for $\phi$ begins \[[p]_\phi(x) = x^{p^d} +_\phi a x^{p^{d+k}} + \cdots.\]  Then, we will construct a coordinate transformation $g(x) = \sum_{j=0}^\infty{}_\phi b_j x^{p^j}$ satisfying
+Surjectivity follows from \Cref{EveryPSeriesArises}.  Namely, the \textit{$d${\th} Honda formal group law} is the $p$--typical formal group law over $k$ determined by \[[p]_{\phi_d}(x) = x^{p^d},\] and it gives a preimage for $d$.  To show injectivity, we must show that every $p$--typical formal group law $\phi$ over $\bar k$ is isomorphic to the appropriate Honda group law.  Suppose that the $p$--series for $\phi$ begins \[[p]_\phi(x) = x^{p^d} +_\phi a x^{p^{d+k}} + \cdots.\]  Then, we will construct a coordinate transformation $g(x) = \sumphi_{j=0}^\infty b_j x^{p^j}$ satisfying
 \begin{align*}
 g(x^{p^d}) & \equiv [p]_\phi(g(x)) & \pmod{x^{p^{d+k} + 1}} \\
-\sum_{j=0}^\infty {}_\phi b_j x^{p^{d+j}} & \equiv \left( \sum_{j=0}^\infty {}_\phi b_j x^{p^j} \right)^{p^d} +_\phi a \left( \sum_{j=0}^\infty {}_\phi b_j x^{p^j} \right)^{p^{d+k}} & \pmod{x^{p^{d+k} + 1}} \\
-\sum_{j=0}^\infty {}_\phi b_j x^{p^{d+j}} & \equiv \left( \sum_{j=0}^\infty {}_{(\operatorname{Frob}^d)^* \phi} b_j^{p^d} x^{p^{d+j}} \right) + a x^{p^{d+k}} & \pmod{x^{p^{d+k} + 1}}.
+\sumphi_{j=0}^\infty b_j x^{p^{d+j}} & \equiv \left( \sumphi_{j=0}^\infty b_j x^{p^j} \right)^{p^d} +_\phi a \left( \sumphi_{j=0}^\infty b_j x^{p^j} \right)^{p^{d+k}} & \pmod{x^{p^{d+k} + 1}} \\
+\sumphi_{j=0}^\infty b_j x^{p^{d+j}} & \equiv \left( \sum_{j=0}^\infty {}_{(\operatorname{Frob}^d)^* \phi} b_j^{p^d} x^{p^{d+j}} \right) + a x^{p^{d+k}} & \pmod{x^{p^{d+k} + 1}}.
 \end{align*}
 For $g$ to be a coordinate transformation, we must have $b_0 = 1$, and because $\bar k$ is algebraically closed we can induct on $j$ to solve for the other coefficients in the series.  The coordinate for $\phi$ can thus be perturbed so that the term $x^{p^{d+k}}$ does not appear in the $p$--series, and inducting on $d$ gives the result.
 \end{proof}
@@ -808,9 +808,9 @@ The key observation is that these two conditions appear as cocycle conditions fo
 \todo{Can this be phrased geometrically?}
 The deformation complex $\widehat C^*(+_\Gamma; k)$ is defined by \[k \to k\ps{x_1} \to k\ps{x_1, x_2} \to k\ps{x_1, x_2, x_3} \to \cdots\] with differential
 \begin{align*}
-(df)(x_1, \ldots, x_{n+1}) & = \Gamma_1\left(\sum_{i=1}^n {}_\Gamma x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
+(df)(x_1, \ldots, x_{n+1}) & = \Gamma_1\left(\sumGamma_{i=1}^n x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
 & \quad + \sum (-1)^i f(x_1, \ldots, x_i +_\Gamma x_{i+1}, \ldots, x_{n+1}) \\
-& \quad + (-1)^{n+1} \left( \phi_2\left(x_1, \sum_{i=2}^{n+1} {}_\Gamma x_i \right) \cdot f(x_2, \ldots, x_{n+1}) \right),
+& \quad + (-1)^{n+1} \left( \phi_2\left(x_1, \sumGamma_{i=2}^{n+1} x_i \right) \cdot f(x_2, \ldots, x_{n+1}) \right),
 \end{align*}
 where we have again written
 \begin{align*}
@@ -832,7 +832,7 @@ Remarkably, we have already encountered this complex before:
 Write $\G$ for the formal group associated to the group law $+_\Gamma$.  The cochain complex $\widehat C^*(+_\Gamma; k)$ is quasi-isomorphic to the cohomology cochain complex considered in the proof of \Cref{Symmetric2CocycleLemma}:
 \begin{align*}
 \widehat C^*(+_\Gamma; k) & \to \InternalHom{FormalSchemes}(B\G, \G_a)(k) \\
-f & \mapsto \Gamma_1\left(0, \sum_{i=1}^n{}_\Gamma x_i \right)^{-1} f(x_1, \ldots, x_n). \qed
+f & \mapsto \Gamma_1\left(0, \sumGamma_{i=1}^n x_i \right)^{-1} f(x_1, \ldots, x_n). \qed
 \end{align*}
 \end{lemma}
 
