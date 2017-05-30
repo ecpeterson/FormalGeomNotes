@@ -6,12 +6,11 @@
 Having totally dissected unoriented bordism, we can now turn our attention to other sorts of bordism theories, and there are many available: oriented, $\Spin$, $\String$, complex, \ldots---the list continues.  We would like to replicate the results from \Cref{UnorientedBordismChapter} for these other cases, but upon even a brief inspection we quickly see that only one of the bordism theories mentioned supports this program.  Specifically, the space $\RP^\infty = BO(1)$ was a key player in the unoriented bordism story, and the only other similar ground object is $\CP^\infty = BU(1)$ in complex bordism.  This informs our choice to spend this Case Study focused on it.  To begin, the contents of \Cref{LectureThomSpectra} can be replicated essentially \textit{mutatis mutandis}, resulting in the following theorems:
 
 \begin{theorem}[{cf.\ \Cref{JIsMonoidal} and surrounding discussion}]\label{ComplexJHomomorphism}
-There is a map of infinite--loopspaces \[J_{\C}\co BU \to B \GL_1 \S\] called the \textit{complex $J$--homomorphism}.
+There is a map of infinite--loopspaces \[J_{\C}\co BU \to B \GL_1 \S\] called the \textit{complex $J$--homomorphism}. \qed
 \end{theorem}
 
 \begin{definition}[{cf.\ \Cref{DefnOfMO}}]\label{DefnComplexOrientation}
 The associated Thom spectrum is written ``$MU$'' and called \textit{complex bordism}.  A map $MU \to E$ of ring spectra is said to be a \textit{complex orientation of $E$}.
-\todo{Something I've seen more than once is an equivalence $MU(k) \simeq BU(k) / BU(k-1)$. It's not immediately obvious to me where this comes from. Where does it come from? Is it helpful to think about?}
 \end{definition}
 
 \begin{theorem}[{cf.\ \Cref{GeneralThomIsom}}]\label{ThomIsomOverC}
@@ -22,8 +21,6 @@ E \sm T(\xi) \simeq E \sm \Susp^\infty_+ X. \qedhere
 
 \begin{corollary}[{cf.\ \Cref{HF2RPinftyExample}}]\label{CPinftyNiceCalculation}
 In particular, for a complex-oriented ring spectrum $E$ it follows that $E^* \CP^\infty$ is isomorphic to a one--dimensional power series ring. \qed
-\todo{Maybe I'm confused about grading issues, but I thought $E^* \C P^\infty$ was a polynomial ring and $EP^0 \C P^\infty$ is the power series ring?}
-\todo{Also, this is a nice argument.  Usually this computation proceeds through the AHSS.  Can this method be adapted to spaces other than $\C P^\infty$?}
 \end{corollary}
 
 We would like to then review the results of \Cref{TheSteenrodAlgebraSection} and conclude (by reinterpreting \Cref{CPinftyNiceCalculation}) that $\CP^\infty_E$ gives a $1$--dimensional formal group over $\Spec E_*$.  In order to make this statement honestly, however, we are first required to describe more responsibly the algebraic geometry we outlined in \Cref{SectionSchemesOverF2}.  Specifically, the characteristic $2$ nature of the unoriented bordism ring was a major simplifying feature which made it wholly amenable to study by $\HFtwo$.  In turn, $\HFtwo$ has many nice properties---for example, it has a duality between homology and cohomology, and it supports a K\"unneth isomorphism---and these are reflected in the extremely simple algebraic geometry of $\Spec \F_2$.  By contrast, the complex bordism ring is considerably more complicated, not least because it is a characteristic $0$ ring, and more generally we have essentially no control over the behavior of the coefficient ring $E_*$ of some other complex--oriented theory.  Nonetheless, once the background theory and construction of ``$X_E$'' are taken care of in \Cref{FormalVarietiesLecture}, we indeed find that $\CP^\infty_E$ is a $1$--dimensional formal group over $\Spec E_*$.
@@ -44,8 +41,7 @@ The execution of this proof requires some understanding of cohomology operations
 
 In light of the introduction, we see that it would be prudent to develop some of the theory of formal schemes and formal varieties outside of the context of $\F_2$--algebras.  However, writing down a list of definitions and checking that they have good enough properties is not especially enlightening or fun.  Instead, it will be informative to understand where these objects come from in algebraic geometry, so that we can carry the accompanying geometric intuition along with us as we maneuver our way back toward homotopy theory and bordism.  Our overarching goal in this Lecture is to develop a notion of calculus (and analytic expansions in particular) in the context of affine schemes.  The place to begin is with definitions of cotangent and tangent spaces, as well as some supporting vocabulary.
 \begin{definition}[{cf.\ \Cref{DefnAffineF2Scheme}}]
-\todo{FPFP Definition 8.1 says what an affine open subscheme is without introducing non-affines.}
-For an $R$--algebra $A$, the functor $\Spec A \co \CatOf{Algebras}_R \to \CatOf{Sets}$ defined by \[(\Spec A)(T) := \CatOf{Algebras}_R(A, T)\] is called the \textit{spectrum of $A$}.  A functor $X$ which is naturally isomorphic to some $\Spec A$ is called an \textit{affine ($R$--)scheme}, and $A = \sheaf O_{\Spec A}$ is called its \textit{ring of functions}.  A subfunctor $Y \subseteq X$ is said to be a \textit{closed\footnote{The word ``closed'' is meant to suggest properties of these inclusions: in suitable senses, they are closed under finite unions and arbitrary intersections.} subscheme} when an identification\footnote{This property is independent of choice of chart.} $X \cong \Spec A$ induces a further identification
+For an $R$--algebra $A$, the functor $\Spec A \co \CatOf{Algebras}_R \to \CatOf{Sets}$ defined by \[(\Spec A)(T) := \CatOf{Algebras}_R(A, T)\] is called the \textit{spectrum of $A$}.  A functor $X$ which is naturally isomorphic to some $\Spec A$ is called an \textit{affine ($R$--)scheme}, and $A = \sheaf O_{\Spec A}$ is called its \textit{ring of functions}.  A subfunctor $Y \subseteq X$ is said to be a \textit{closed\footnote{The word ``closed'' is meant to suggest properties of these inclusions: in suitable senses, they are closed under finite unions and arbitrary intersections.  The complementary concept of ``open'' is harder to describe: open subschemes of affine schemes are merely ``covered'' by finitely many affines, which requires a discussion of coverings, which we remit to the actual algebraic geometers~\cite[Definition 8.1]{StricklandFPFP}.} subscheme} when an identification\footnote{This property is independent of choice of chart.} $X \cong \Spec A$ induces a further identification
 \begin{center}
 \begin{tikzcd}
 Y \arrow{r} \arrow[leftarrow, "\simeq"]{d} & X \arrow[leftarrow, "\simeq"]{d} \\
@@ -87,7 +83,7 @@ More generally, the \textit{$n${\th} jet space} of $X$ at $x$, or the \textit{$n
 
 In order to study analytic expansions of functions, we bundle these jet spaces together into a single object embodying formal expansions in $X$ at $x$:
 \begin{definition}\label{DefnCompletion}
-Fix a scheme $S$.  A \textit{formal $S$--scheme} $X = \{X_\alpha\}_\alpha$ is an ind-system of $S$--schemes $X_\alpha$.\footnote{This definition, owing to Strickland~\cite[Definition 4.1]{StricklandFSFG}, is somewhat idiosyncratic.  Its generality gives it good categorical properties, but it is somewhat disconnected from the formal schemes familiar to algebraic geometers, which primarily arise through linearly topologized rings~\cite[pg.\ 194]{Hartshorne}.  For functor-of-points definitions that hang more tightly with the classical definition, the reader is directed toward Strickland's solid formal schemes~\cite[Section 4.2]{StricklandFSFG} or to Beilinson and Drinfel'd~\cite[Section 7.11.1]{BeilinsonDrinfeld}.}\todo{FPFP Example 5.1 deserves a mention.}  Given a closed subscheme $Y$ of an affine $S$--scheme $X$, we define the \textit{$n${\th} order neighborhood of $Y$ in $X$} to be the scheme $\Spec R/I^{n+1}$.  The \textit{formal neighborhood of $Y$ in $X$} is then defined to be the formal scheme \[X^\wedge_Y := \Spf R^\wedge_I := \left\{ \Spec R/I \to \Spec R/I^2 \to \Spec R/I^3 \to \cdots \right\}.\]  In the case that $Y = S$, this specializes to the system of jet spaces as in \Cref{JetSpacesDefn}.
+Fix a scheme $S$.  A \textit{formal $S$--scheme} $X = \{X_\alpha\}_\alpha$ is an ind-system of $S$--schemes $X_\alpha$.\footnote{This definition, owing to Strickland~\cite[Definition 4.1]{StricklandFSFG}, is somewhat idiosyncratic.  Its generality gives it good categorical properties, but it is somewhat disconnected from the formal schemes familiar to algebraic geometers, which primarily arise through linearly topologized rings~\cite[pg.\ 194]{Hartshorne}.  For functor-of-points definitions that hang more tightly with the classical definition, the reader is directed toward Strickland's solid formal schemes~\cite[Section 4.2]{StricklandFSFG} or to Beilinson and Drinfel'd~\cite[Section 7.11.1]{BeilinsonDrinfeld}.}  Given a closed subscheme $Y$ of an affine $S$--scheme $X$, we define the \textit{$n${\th} order neighborhood of $Y$ in $X$} to be the scheme $\Spec R/I^{n+1}$.  The \textit{formal neighborhood of $Y$ in $X$} is then defined to be the formal scheme \[X^\wedge_Y := \Spf R^\wedge_I := \left\{ \Spec R/I \to \Spec R/I^2 \to \Spec R/I^3 \to \cdots \right\}.\]  In the case that $Y = S$, this specializes to the system of jet spaces as in \Cref{JetSpacesDefn}.
 \end{definition}
 
 Although we will make use of these definitions generally, the following ur-example captures the most geometrically-intuitive situation.
@@ -102,13 +98,14 @@ A \textit{formal affine variety} (of dimension $n$) is a formal scheme $V$ which
 \end{definition}
 
 This definition allows local theorems from analytic differential geometry to be imported in coordinate-free language.  For instance, there is the following version of the inverse function theorem:
-\begin{theorem}\label{InverseFunctionTheoremForFVars}\citeme{This is 3.1.8 in the Crystals notes.}
+\begin{theorem}\label{InverseFunctionTheoremForFVars}
+% \citeme{This is 3.1.8 in the Crystals notes.}
 A pointed map $f\co V \to W$ of finite--dimensional formal varieties is an isomorphism if and only if the induced map $T_0 f\co T_0 V \to T_0 W$ is an isomorphism of $R$--modules. \qed
 \end{theorem}
 
 Coordinate-free theorems are only really useful if we can verify their hypotheses by coordinate-free methods as well.  The following two results are indispensible in this regard:
 \begin{theorem}\label{DetectingFormalVarieties}
-\citeme{This is 9.6.4 in the Crystals notes}
+% \citeme{This is 9.6.4 in the Crystals notes}
 Let $R$ be a Noetherian ring and $F\co \CatOf{Algebras}_{R/} \to \CatOf{Sets}_{*/}$ be a functor such that $F(R) = *$, $F$ takes surjective maps to surjective maps, and there is a fixed finite free $R$--module $M$ such that $F$ carries square-zero extensions of Noetherian $R$--algebras $I \to B \to B'$ to product sequences \[* \to I \otimes_R M \to F(B) \to F(B') \to *.\]  Then, a basis $M \cong R^n$ determines an isomorphism $F \cong \A^n$.
 \end{theorem}
 \begin{proof}[Proof sketch]
@@ -137,7 +134,7 @@ there exists a dotted arrow extending the diagram. \qed
 With all this algebraic geometry in hand, we now return to our original motivation: extracting formal schemes from the rings appearing in algebraic topology.
 
 \begin{definition}[{cf.\ \Cref{FullDefnOfXHF2}}]\label{FullDefnOfXE}
-Let $E$ be an even-periodic ring spectrum, and let $X$ be a CW--space.  Because $X$ is compactly generated, it can be written as the colimit of its compact subspaces $X^{(\alpha)}$, and we set\footnote{The careful reader will immediately notice that the rings in the pro-system underlying \Cref{FullDefnOfXE} run the risk of not being even-concentrated.  We are thus required to make the following technical compromise: for any pro-isomorphic system of even $E^*$--algebras $\{R_\beta \otimes_{E^0} E^*\} \cong \{E^0 X^{(\alpha)}\}_\alpha$ we set \[X_E := \{\Spec R_\beta\}_\beta,\] and otherwise we leave $X_E$ undefined.  For example, the technical condition of \Cref{FullDefnOfXE} is satisfied if there exists a cofinal subsystem of $\{X^{(\alpha)}\}_\alpha$ with $E^* X^{(\alpha)}$ even--concentrated.  This follows, for instance, from $H\Z_* X$ being free and even~\cite[Definition 8.15, Proposition 8.17]{StricklandFSFG}.} \[X_E := \Spf E^0 X := \{\Spec E^0 X^{(\alpha)}\}_\alpha.\]
+Let $E$ be an even-periodic ring spectrum, and let $X$ be a CW--space.  Because $X$ is compactly generated, it can be written as the colimit of its compact subspaces $X^{(\alpha)}$, and we set\footnote{The careful reader will immediately notice that the rings in the pro-system underlying \Cref{FullDefnOfXE} run the risk of not being even-concentrated.  We are thus required to make the following technical compromise: for any pro-isomorphic system of even $E^*$--algebras $\{R_\beta \otimes_{E^0} E^*\} \cong \{E^0 X^{(\alpha)}\}_\alpha$ we set \[X_E := \{\Spec R_\beta\}_\beta,\] and otherwise we leave $X_E$ undefined.  For example, the technical condition of \Cref{FullDefnOfXE} is satisfied if there exists a cofinal subsystem of $\{X^{(\alpha)}\}_\alpha$ with $E^* X^{(\alpha)}$ even--concentrated.  This follows, for instance, from $H\Z_* X$ being free and even~\cite[Definition 8.15, Proposition 8.17]{StricklandFSFG}.}\footnote{In cases of ``large'' spaces and cohomology theories, the technical points underlying this definition are necessary: $BU_{KU}$ is an instructive example, as it is \emph{not} the formal scheme associated to $KU^0(BU)$ by any adic topology.} \[X_E := \Spf E^0 X := \{\Spec E^0 X^{(\alpha)}\}_\alpha.\]
 \end{definition}
 
 Consider the example of $\CP^\infty_E$ for $E$ a complex-oriented cohomology theory.  We saw in \Cref{CPinftyNiceCalculation} that the complex-orientation determines an isomorphism $\CP^\infty_E \cong \A^1$ (i.e., an isomorphism $E^0 \CP^\infty \cong E^0\ps{x}$).  However, the object ``$E^0 \CP^\infty$'' is something that exists independent of the orientation map $MU \to E$, and the language of \Cref{DefnFormalVariety} allows us to make the distinction between the property and the data:
@@ -195,7 +192,7 @@ There is an isomorphism $\CP^\infty_{H\Z P} \cong \G_a$.  This follows from reas
 \end{example}
 
 \begin{example}\label{CPinftyKUExample}
-There is also an isomorphism $\CP^\infty_{KU} \cong \G_m$.  A reasonable\todo{This is not a good word and not good reasoning.} choice of first Chern class is given by the natural topological map \[c_1\co \Susp^{-2} \Susp^\infty \CP^\infty \xrightarrow{1 - \beta \L} KU,\] and a formula for the first Chern class of the tensor product is thus
+There is also an isomorphism $\CP^\infty_{KU} \cong \G_m$.  The standard choice of first Chern class is given by the topological map \[c_1\co \Susp^{-2} \Susp^\infty \CP^\infty \xrightarrow{1 - \beta \L} KU,\] and a formula for the first Chern class of the tensor product is thus
 \begin{align*}
 c_1(\L_1 \otimes \L_2) & = 1 - \beta(\L_1 \otimes \L_2) \\
 & = -\beta^{-1} \left( (1 - \beta \L_1) \cdot (1 - \beta \L_2) \right) + (1 - \beta \L_1) + (1 - \beta \L_2) \\
@@ -233,8 +230,6 @@ Consider the formal group law $x_1(t_1) +_{\G_m} x_2(t_2) = t_1 + t_2 - t_1 t_2$
 
 
 \section{Divisors on formal curves}\label{CurveDivisorsSection}
-
-\todo{I think this section is a little short. Maybe we could expand the proof of the comparison between Cartier and Weil divisors at the end? Or we would include a proof of the universality of the divisor scheme?  We could talk about divisors and line bundles on complex curves, culminating in the observation that principal divisors appear as subsheaves of the sheaf of meromorphic functions and that every divisor is locally principal.  Something to give this a little more meat, anyway.}
 
 We continue to develop vocabulary and accompanying machinery used to give algebro-geometric reinterpretations of the results in the introduction to this Case Study.  In the previous section we deployed the language of formal schemes to recast \Cref{CPinftyNiceCalculation} in geometric terms, and we now turn towards reencoding \Cref{ThomIsomOverC}.  In \Cref{DefnQCohSheaves} and \Cref{CorrespondenceQCohAndModules} we discussed a general correspondence between $R$--modules and quasicoherent sheaves over $\Spec R$, and the isomorphism of $1$--dimensional $E^* X$--modules appearing in \Cref{ThomIsomOverC} moves us to study sheaves over $X_E$ which are $1$--dimensional---i.e., line bundles.  In fact, for the purposes of \Cref{ThomIsomOverC}, we will find that it suffices to understand the basics of the geometric theory of line bundles \emph{just over formal curves}.  This is our goal in this Lecture, and we leave the applications to algebraic topology aside for later.  For the rest of this section we fix the following three pieces of data: a base formal scheme $S$, a formal curve $C$ over $S$, and a distinguished point $\zeta\co S \to C$ on $C$.
 
@@ -277,7 +272,7 @@ The first assertion is a consequence of Newton's theorem on symmetric polynomial
 \end{proof}
 
 \begin{remark}
-The map $C^{\times n} \to C^{\times n}_{\Sigma_n}$ is an example of a map of schemes which is surjective \emph{as a map of sheaves}.  This is somewhat subtle: for any given test ring $T$, it is not necessarily the case that $C^{\times n}(T) \to C^{\times n}_{\Sigma_n}(T)$ is surjective on $T$--points---this amounts to the claim that not every polynomial can be written as a product of linear factors.  However, for a fixed point $f \in C^{\times n}_{\Sigma_n}(T)$, we are guaranteed a flat covering $T \to \prod_j T_j$ such that there are individual lifts $\widetilde f_j$ of $f$ over each $T_j$.\todo{Add an example here.  Remember that the coefficients are supposed to be nilpotents.}
+The map $C^{\times n} \to C^{\times n}_{\Sigma_n}$ is an example of a map of schemes which is surjective \emph{as a map of sheaves}.  This is somewhat subtle: for any given test ring $T$, it is not necessarily the case that $C^{\times n}(T) \to C^{\times n}_{\Sigma_n}(T)$ is surjective on $T$--points.  However, for a fixed point $f \in C^{\times n}_{\Sigma_n}(T)$, we are guaranteed a flat covering $T \to \prod_j T_j$ such that there are individual lifts $\widetilde f_j$ of $f$ over each $T_j$.\footnote{This amounts to the claim that not every polynomial can be written as a product of linear factors.  For instance, the divisor on $C = \Spf \R\ps{x}$ defined by the equation $x^2 + 1$ splits as $(x + i)(x - i)$ after base-change along the flat cover $\Spec \C \to \Spec \R$.}
 \end{remark}
 
 Now we use the pointing $\zeta\co S \to C$ to interrelate divisor schemes of varying ranks.  Together with the $\sqcup$ operation, $\zeta$ gives a composite
