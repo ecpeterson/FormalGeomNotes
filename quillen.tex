@@ -264,7 +264,7 @@ Next, note that there is a canonical isomorphism $C \xrightarrow{\cong} \Div_1^+
 C^{\times n}_{\Sigma_n} \arrow[densely dotted, "\cong"]{r} & \Div_n^+ C.
 \end{tikzcd}
 \end{center}
-\begin{lemma}
+\begin{lemma}\label{SymmetricAffinesExist}
 The object $C^{\times n}_{\Sigma_n}$ exists as a formal variety, it factors the iterated addition map, and the dotted arrow is an isomorphism.
 \end{lemma}
 \begin{proof}
@@ -301,27 +301,27 @@ The scheme $\Div^+ C$ models the free formal monoid on the unpointed formal curv
 \noindent We will postpone the proof of this Theorem until later, once we've developed a theory of coalgebraic formal schemes.
 
 \begin{remark}\label{DivHasPushforwards}
-Given $q\co C \to C'$ a map of formal curves over $S$ and $D \subseteq C$ a divisor on $C$, the composite $D \to C \to C'$ is also a divisor\todo{Is there a proof here? It's still finite and free over the base, but is it still a closed subscheme? Does this come out of some kind of finite $\implies$ compact argument?}, denoted $q_* D$.  \Cref{DivConstructionsAreFree} gives a second construction of $q_* D$ in the stable case, using the composite \[C \xrightarrow{q} C' \cong \Div_1^+ C' \to \Div C'.\]  Since the target of this map is a formal group scheme, universality induces a map \[q_*\co \Div C \to \Div C'.\]  On the other hand, for a general $q$ the pullback $D \times_{C'} C$ of a divisor $D \subseteq C'$ will not be a divisor on $C$.  It is possible to impose conditions on $q$ so that this is so, and in this case $q$ is called an \textit{isogeny}.  We will return to this in the future.\todo{Put in a forward reference about isogenies when it exists.}
+Given $q\co C \to C'$ a map of formal curves over $S$ and $D \subseteq C$ a divisor on $C$, the construction of $\Div_n^+ C$ as a symmetric space as in \Cref{SymmetricAffinesExist} shows that there is a corresponding divisor $q_* D$ on $C'$.  This can be thought of in some other ways---for instance, this map at the level of sheaves~\cite[Ch.\ IV, Exercise 2.6]{Hartshorne} is given by \[\det q_* \sheaf I_D \cong (\det q_* \sheaf O_C) \otimes \sheaf I_{q_* D}.\]  We can also use \Cref{DivConstructionsAreFree} in the stable case: the composite map \[C \xrightarrow{q} C' \cong \Div_1^+ C' \to \Div C'\] targets a formal group scheme, and hence universality induces a map \[q_*\co \Div C \to \Div C'.\]  On the other hand, for a general $q$ the pullback $D \times_{C'} C$ of a divisor $D \subseteq C'$ will not be a divisor on $C$.  It is possible to impose conditions on $q$ so that this is so, and in this case $q$ is called an \textit{isogeny}.  We will return to this in \Cref{IsogeniesSection}.
 \end{remark}
 
-\todo{This can definitely be rewritten some. The classical perspective is that Cartier divisors (specified as line bundles) are the sheafification of Weil divisors (specified as zero-loci of polynomials), and there isn't much sheafification to be done on a formal curve.}
-Our final goal for the section is to broaden this discussion to line bundles on formal curves generally, using this nice case as a model.  To begin, we need some vocabulary that connects the general case to the one studied above.
+Our final goal for the section is to broaden this discussion to line bundles on formal curves generally, using this nice case as a model.  The main classical theorem is that line bundles, sometimes referred to as \textit{Cartier divisors}, arise as the group-completion and sheafification of zero-loci of polynomials, referred to (as above) as \textit{Weil divisors}.  In the case of a \emph{formal} curve, sheafification has little effect, and so we seek to exactly connect line bundles on a formal curve with formal differences of Weil divisors.  To begin, we need some vocabulary that connects the general case to the one studied above.
 
-\begin{definition}[{cf.\ \cite[Section 14.2]{Vakil}}]\todo{This and the following Lemma aren't great citations.}
-Suppose that $\L$ is a line bundle on $C$ and select a section $u$ of $\L$.  There is a largest closed subscheme $D \subseteq C$ where the condition $u|_D = 0$ is satisfied.  If $D$ is a divisor, $u$ is said to be \textit{divisorial} and $D = \div u$.
+\begin{definition}[{cf.\ \cite[Section 14.2]{Vakil}}]\label{DivisorialDefn}
+\citeme{This and the following Lemma aren't great citations}
+Suppose that $\L$ is a line bundle on $C$ and select a section $u$ of $\L$.  There is a largest closed subscheme $D \subseteq C$ where the condition $u|_D = 0$ is satisfied.  If $D$ is a divisor, $u$ is said to be \textit{divisorial} and we write $\div u := D$.
 \end{definition}
 
 \begin{lemma}[{cf.\ \cite[Exercise 14.2.E]{Vakil}}]
 A divisorial section $u$ of a line bundle $\L$ induces an isomorphism $\L \cong \sheaf I_D$. \qed
 \end{lemma}
 
-Line bundles which admit divisorial sections are thus those that arise through our construction above.  However, in the classical situation, such line bundles account for roughly ``half'' of the available line bundles: line bundles are also used to house meromorphic functions with prescribed zeroes \emph{and poles}, and we have not encountered such sections yet.
+Line bundles which admit divisorial sections are therefore those that arise through our construction above, i.e., those which are controlled by the zero locus of a polynomial.  In keeping with the classical inspiration, we expect generic line bundles to be controlled by the zeroes \emph{and poles} of a rational function, and so we introduce the following class of functions:
 
 \begin{definition}[{\cite[Definition 5.20 and Proposition 5.26]{StricklandFSFG}}]
 The ring of meromorphic functions on $C$, $\sheaf{M}_C$, is obtained by inverting all coordinates in $\sheaf{O}_C$.\footnote{In fact, it suffices to invert any single one~\cite[Lemma 5.21]{StricklandFSFG}.}  Additionally, this can be augmented to a scheme $\operatorname{Mer}(C, \mathbb G_m)$ of meromorphic functions on $C$ by \[\operatorname{Mer}(C, \mathbb G_m)(R) := \left\{ (u, f) \middle| \begin{array}{c} u: \Spec R \to S, \\ f \in \sheaf{M}^\times_{C \times_S \Spec R} \end{array} \right\}.\]
 \end{definition}
 
-Thinking of a meromorphic function as the formal expansion of a rational function, we are moved to study the monoidality of divisoriality.
+Thinking of a meromorphic function as the formal expansion of a rational function, we are moved to study the monoidality of \Cref{DivisorialDefn}.
 
 \begin{lemma}
 If $u_1$ and $u_2$ are divisorial sections of $\sheaf L_1$ and $\sheaf L_2$ respectively, then $u_1 \otimes u_2$ is a divisorial section of $\sheaf L_1 \otimes \sheaf L_2$ and $\div(u_1 \otimes u_2) = \div u_1 + \div u_2$. \qed
@@ -331,10 +331,9 @@ If $u_1$ and $u_2$ are divisorial sections of $\sheaf L_1$ and $\sheaf L_2$ resp
 A \textit{meromorphic divisorial section} of a line bundle $\sheaf L$ is a decompositon $\sheaf L \cong \sheaf L_1 \otimes \sheaf L_2^{-1}$ together with an expression of the form $u_+ / u_-$, where $u_+$ and $u_-$ are divisorial sections of $\sheaf L_1$ and $\sheaf L_2$ respectively.  We set $\div(u_+ / u_-) = \div u_+ - \div u_-$.
 \end{definition}
 
-In the case of a formal curve, the fundamental theorem is that meromorphic functions (or ``Cartier divisors''), line bundles, and stable Weil divisors all essentially agree.  \todo{Some of these could be stated as theorems.}  A particular meromorphic function spans a $1$--dimensional $\sheaf O_C$--submodule sheaf of $\sheaf M_C$, and hence it determines a line bundle.  Conversely, a line bundle is determined by local gluing data, which is exactly the data of a meromorphic function.  However, it is clear that there is some overdeterminacy in this first operation: scaling a meromorphic function by a nowhere vanishing entire function will not modify the submodule sheaf.  Additionally, the function $\div$ gives an assignment from meromorphic functions to stable Weil divisors which is also insensitive to rescaling by a nowhere vanishing function.
+In the case of a formal curve, the fundamental theorem is that meromorphic functions, line bundles, and stable Weil divisors all essentially agree.  A particular meromorphic function spans a $1$--dimensional $\sheaf O_C$--submodule sheaf of $\sheaf M_C$, and hence it determines a line bundle.  Conversely, a line bundle is determined by local gluing data, which is exactly the data of a meromorphic function.  However, it is clear that there is some overdeterminacy in this presentation: scaling a meromorphic function by a nowhere vanishing entire function will not modify the submodule sheaf.  We now make the observation that the function $\div$ gives an assignment from meromorphic functions to stable Weil divisors which is \emph{also} insensitive to rescaling by a nowhere vanishing function.  These inputs are arranged in the following theorem:
 
-\begin{theorem}[{\cite[Proposition 5.26]{StricklandFSFG}}]
-\todo{Prove me?}
+\begin{theorem}[{\cite[Proposition 5.26]{StricklandFSFG}, \cite[Proposition 33.4]{StricklandFPFP}}]
 In the case of a formal curve $C$, there is a short exact sequence of formal groups
 \[\pushQED{\qed}
 0 \to \InternalHom{FormalSchemes}(C, \mathbb G_m) \to \operatorname{Mer}(C, \mathbb G_m) \to \Div(C) \to 0. \qedhere
