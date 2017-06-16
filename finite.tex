@@ -3,12 +3,10 @@
 \chapter{Finite spectra}\label{ChapterFiniteSpectra}
 
 
-\todo[inline]{Andy Senger correctly points out that ``stalkwise'' is the wrong word to use in all this (if we mean to be working in the Zariski topology, which surely we must).  The stalks are selected by maps from certain local rings; $E_\Gamma$ selects the formal neighborhood of the special point inside of this; and $K_\Gamma$ selects the special point itself.  Is ``fiberwise'' enough of a weasel word to get out of this?  In any case, make sure you clean up all instances of the word ``stalk''.}
-
 
 Our goal in this Case Study is to thoroughly examine one of the techniques from \Cref{UnorientedBordismChapter} that has not yet resurfaced: the idea that $\HFtwo$--homology takes values in quasicoherent sheaves over some algebro-geometric object encoding the coaction of the dual Steenrod Hopf algebra.  We will find that this situation is quite generic: associated to mildly nice ring spectra $E$, we will construct a very rich algebro-geometric object $\context{E}$, called its context, such that $E$--homology sends spaces $X$ to sheaves $\context{E}(X)$ over $\context{E}$.  In still nicer situations, the difference between the $E_*$--module $E_*(X)$ and the sheaf $\context{E}(X)$ tracks exactly the analogue of the action of the dual Steenrod algebra, called the \textit{Hopf algebroid of stable $E$--homology cooperations}.  From this perspective, we will reinterpret Quillen's \Cref{QuillensTheorem} as giving a presentation \[\context{MUP} \xrightarrow{\simeq} \moduli{fg},\] where $\moduli{fg}$ is the \textit{moduli of formal groups}.  This indicates a program for studying periodic complex bordism, which we will spend the rest of this introduction outlining.
 
-Abstractly, one can hope to study any sheaf, including $\context{E}(X)$, by analyzing its stalks.  The main utility of Quillen's theorem is that it gives us access to a concrete model of the context $\context{MUP}$, so that we can determine where to even look for those stalks.  However, even this is not really enough to get off the ground: the stalks of some sheaf can exhibit nearly arbitrary behavior.  In particular, there is little reason to expect the stalks of $\context{E}(X)$ to vary nicely with $X$.  Accordingly, given a map $f$ in the diagram
+Abstractly, one can hope to study any sheaf, including $\context{E}(X)$, by analyzing its stalks, or relatedly (with some luck) by analyzing its geometric fibers.  The main utility of Quillen's theorem is that it gives us access to a concrete model of the context $\context{MUP}$, so that we can determine where to even look for those fibers.  However, even this is not really enough to get off the ground: the stalks of some sheaf can exhibit nearly arbitrary behavior.  In particular, there is little reason to expect the stalks of $\context{E}(X)$ to vary nicely with $X$.  Accordingly, given a map $f$ in the diagram
 \begin{center}
 \begin{tikzcd}
 \Spec R \arrow{r}{f} & \moduli{fgl} \arrow[equal]{r} \arrow{d} & \context{MUP}[0] \arrow{d} \arrow[equal]{r} & \Spec MUP_0 \\
@@ -18,12 +16,12 @@ Abstractly, one can hope to study any sheaf, including $\context{E}(X)$, by anal
 life would be easiest if the $R$--module determined by $f^* \context{MUP}(X)$ were itself the value of a homology theory $R_0(X) = MUP_0 X \otimes_{MUP_0} R$---this is exactly what it would mean for $R_0(X)$ to ``vary nicely with $X$''.  Of course, this is unreasonable to expect in general: homology theories are functors which convert cofiber sequences of spectra to long exact sequences of groups, but base--change from $\moduli{fg}$ to $\Spec R$ preserves exact sequences exactly when the diagonal arrow is \textit{flat}.  However, if flatness is satisfied, this gives the following theorem:
 
 \begin{theorem}[Landweber]\label{LandwebersStackyTheorem}
-Given such a diagram where the diagonal arrow is flat, the functor \[R_0(X) := MUP_0(X) \otimes_{MUP_0} R\] is a homology theory.
+Given such a diagram where the diagonal arrow is flat, the functor \[R_0(X) := MUP_0(X) \otimes_{MUP_0} R\] is a $2$--periodic homology theory.
 \end{theorem}
 
 \noindent In the course of proving this theorem, Landweber additionally devised a method to recognize flat maps.  Recall that a map $f\co Y \to X$ of schemes is flat exactly when for any closed subscheme $i\co A \to X$ with ideal sheaf $\mathcal I$ there is an exact sequence \[0 \to f^* \sheaf I \to f^* \sheaf O_X \to f^* i_* \sheaf O_A \to 0.\]  Landweber classified the closed subobjects of $\moduli{fg}$, thereby giving a precise list of conditions needed to check maps for flatness.
 
-This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing stalks: the inclusion of a geometric point is flat only in highly degenerate cases.  We will see that this can be repaired: the inclusion of the formal completion of a subobject is flat in friendly situations, and so we naturally become interested in the infinitesimal deformation spaces of the geometric points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called \textit{Morava $E_\Gamma$--theories}.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover \textit{Morava $K_\Gamma$--theory}, a \emph{homology theory}, which plays the role\footnote{To be clear: $K_\Gamma(X)$ may not actually compute the literal stalk of $\context{MUP}(X)$ at $\Gamma$, since the homotopical operation of quotienting out the regular sequence is potentially sensitive to torsion sections of $\context{MUP}(X)$.} of computing the stalk of $\context{MUP}(X)$ at $\Gamma$.\footnote{Incidentally, this program has no content when applied to $\context{\HFtwo}$, as $\Spec \F_2$ is simply too small.}
+This appears to be a moot point, however, as it is unreasonable to expect this idea to apply to computing geometric fibers: the inclusion of a geometric point is flat only in highly degenerate cases.  We will see that this can be repaired: the inclusion of the formal completion of a subobject is flat in friendly situations, and so we naturally become interested in the infinitesimal deformation spaces of the geometric points $\Gamma$ on $\moduli{fg}$.  If we can analyze those, then Landweber's theorem will produce homology theories called \textit{Morava $E_\Gamma$--theories}.  Moreover, if we find that these deformation spaces are \emph{smooth}, it will follow that their deformation rings support regular sequences.  In this excellent case, by taking the regular quotient we will be able to recover \textit{Morava $K_\Gamma$--theory}, a \emph{homology theory}, which plays the role\footnote{To be clear: $K_\Gamma(X)$ may not actually compute the literal stalk of $\context{MUP}(X)$ at $\Gamma$, since the homotopical operation of quotienting out the regular sequence is potentially sensitive to torsion sections of $\context{MUP}(X)$.} of computing the stalk of $\context{MUP}(X)$ at $\Gamma$.\footnote{Incidentally, this program has no content when applied to $\context{\HFtwo}$, as $\Spec \F_2$ is simply too small.}
 
 We have thus assembled a task list:
 \begin{itemize}
@@ -42,22 +40,22 @@ These will occupy our attention for the first half of this Case Study.  In the s
 
 \section{Descent and the context of a spectrum}\label{StableContextLecture}
 
-\todo{You are sloppy about $EP_0$ versus $E_*$ in this lecture.  Pretty sure you mean to choose $EP_0$ and be done with it.}
-
-In \Cref{HopfAlgebraLecture} we took for granted the $\HFtwo$--Adams spectral sequence, which had the form \[E_2^{*, *} = H^*_{\mathrm{gp}}(\InternalAut(\G_a); \widetilde{\HFtwo P_0 X}) \Rightarrow \pi_* X^\wedge_2,\] where we had already established some yoga by which we could identify the dual Steenrod coaction on $\HFtwo P_0 X$ with an action of $\InternalAut{\G_a}$ on its associated quasicoherent sheaf over $\Spec \F_2$.  Our goal in this Lecture is to revise this tool to work for other ring spectra $E$ and target spectra $X$, eventually arriving at a spectral sequence with signature \[E_2^{*, *} = H^*(\context{E}; \context{E}(X)) \Rightarrow \pi_* X.\]  In particular, we will encounter along the way the object ``$\context{E}$'' envisioned in the introduction to this Case Study.
+In \Cref{HopfAlgebraLecture} we took for granted the $\HFtwo$--Adams spectral sequence, which had the form \[E_2^{*, *} = H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{\HFtwo P_0 X}) \Rightarrow \pi_* X^\wedge_2,\] where we had already established some yoga by which we could identify the dual Steenrod coaction on $\HFtwo P_0 X$ with an action of $\InternalAut{\G_a}$ on its associated quasicoherent sheaf over $\Spec \F_2$.  Our goal in this Lecture is to revise this tool to work for other ring spectra $E$ and target spectra $X$, eventually arriving at a spectral sequence with signature \[E_2^{*, *} = H^*(\context{E}; \context{E}(X)) \Rightarrow \pi_* X.\]  In particular, we will encounter along the way the object ``$\context{E}$'' envisioned in the introduction to this Case Study.
 
 At a maximum level of vagueness, we are seeking a process by which its homotopy $\pi_* X$ can be recovered from the $E$--homology groups $E_* X$.  Generally speaking, spectral sequences arise from taking homotopy groups of a topological version of this same recovery process---i.e., recovering the spectrum $X$ from the spectrum $E \sm X$.  Recognizing that $X$ can be thought of as an $\S$--module and $E \sm X$ can be thought of as its base change to an $E$--module, we are inspired to double back and consider as inspiration an algebraic analogue of the same situation.  Given a ring map $f\co R \to S$ and an $S$--module $N$, Grothendieck's framework of \textit{(faithfully flat) descent} addresses the following questions:
 \begin{enumerate}
 \item When is there an $R$--module $M$ such that $N \cong S \otimes_R M = f^* M$?
 \item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of $R$--modules under the map $f^*$?
 \item What conditions can be placed on $f$ so that the category of descent data for any given module is always contractible, called \textit{effectivity}?
-\todo{Check that this definition of effective matches FPFP's Definition 12.2.}
 \end{enumerate}
 
-Suppose that we begin with an $R$--module $M$ and set $N = f^* M$, so that we are certain \emph{a priori} that the answer to the first question is positive.  The $S$--module $N$ has a special property, arising from $f$ being a ring map: there is a canonical isomorphism of $(S \otimes_R S)$--modules\todo{Get this right.}
+Suppose that we begin with an $R$--module $M$ and set $N = f^* M$, so that we are certain \emph{a priori} that the answer to the first question is positive.  The $S$--module $N$ has a special property, arising from $f$ being a ring map: there is a canonical isomorphism of $(S \otimes_R S)$--modules
 \begin{align*}
-\phi\co S \otimes_R N = (f \otimes 1)^* N = ((f \otimes 1) \circ f)^* M & \cong ((1 \otimes f) \circ f)^* M = (1 \otimes f)^* N = N \otimes_R S, \\
-s_1 \otimes (s_2 \otimes m) & \mapsto (s_1 \otimes m) \otimes s_2.
+\phi\co S \otimes_R N & = \\
+(f \otimes 1)^* N & = \\
+((f \otimes 1) \circ f)^* M & \cong ((1 \otimes f) \circ f)^* M & s_1 \otimes (s_2 \otimes m) & \mapsto (s_1 \otimes m) \otimes s_2. \\
+& = (1 \otimes f)^* N \\
+& = N \otimes_R S, \\
 \end{align*}
 In fact, this isomorphism is compatible with further shuffles, in the sense that the following diagram commutes:\footnote{The commutativity of this triangle shows that any number of shuffles also commutes.}
 \begin{center}
@@ -111,7 +109,7 @@ which shows that any descent datum (including those not arising, a priori, from 
 The following Theorem is the culmination of a typical first investigation of descent:\footnote{For details and additional context, see Vistoli~\cite[Section 4.2.1]{Vistoli}.  The story in the context of Hopf algebroids is also spelled out in detail by Miller~\cite{MillerSheavesGradings}.}
 
 \begin{theorem}[Grothendieck]\label{OriginalFFDescent}\citeme{Actually give an original citation for f.f.\ descent? Or just reference Vakil}
-If $f\co R \to S$ is faithfully flat, then the natural assignments
+If $f\co R \to S$ is faithfully flat, the natural assignments
 \begin{center}
 \begin{tikzcd}
 \CatOf{QCoh}(\Spec R) \arrow[bend left,"c^*"]{r} & \CatOf{QCoh}(\mathcal D_f) \arrow[bend left,"\lim"]{l}
@@ -125,7 +123,7 @@ The basic observation in this case is that $0 \to R \to S \to S \otimes_R S$ is 
 
 Without the flatness hypothesis, this Theorem fails dramatically and immediately.  For instance, the inclusion of the closed point \[f\co \Spec \F_p \to \Spec \Z\] fails to distinguish the $\Z$--modules $\Z$ and $\Z/p$.  Remarkably, this can be to large extent repaired by reintroducing homotopy theory and passing to derived categories---for instance, the complexes $Lf^* \widetilde{\Z}$ and $Lf^* \widetilde{\Z/p}$ become distinct as objects of $D(\Spec \F_p)$.  Our preceding discussion of descent in \Cref{StrictCechDescentRemark} can be quickly revised for this new homotopical setting, provided we remember to derive not just the categories of sheaves but also their underlying geometric objects.  Our approach is informed by the following result:
 
-\begin{lemma}[{\cite[Theorem IV.2.4]{EKMM}}]\todo{Does a correct statement need boundedness conditions?}
+\begin{lemma}[{\cite[Theorem IV.2.4]{EKMM}}]
 There is an equivalence of $\infty$--categories between $D(\Spec R)$ and $\CatOf{Modules}_{HR}$. \qed
 \end{lemma}
 
@@ -169,38 +167,34 @@ The \textit{$E$--nilpotent completion} of $X$ is the totalization of this cosimp
 \end{definition}
 
 \begin{remark}[{\cite[Theorem 1.12]{RavenelLocalizationWRTPeriodic}, \cite{BousfieldLocalization}}]
-Ravenel proves the following generalization of \Cref{DescentFromHFpToHZp}.  Let $E$ be a connective ring spectrum, let $J$ be the set of primes complementary to those primes $p$ for which $E_*$ is uniquely $p$--divisible, and let $X$ be a connective spectrum.  If each element of $E_*$ has finite order, then $X^\wedge_E = X^\wedge_J$ gives the arithmetic completion of $X$---which we reinterpret as $\S^\wedge_J \to E$ being of effective descent\todo{Is this right?}.  Otherwise, if $E_*$ has elements of infinite order, then $X^\wedge_E = X_{(J)}$ gives the arithmetic localization---which we reinterpret as saying that $\S_{(J)} \to E$ is of effective descent.  Sorting out more encompassing conditions on maps $f\co R \to S$ of $E_\infty$--rings for which descent holds is a subject of serious study~\cite[Appendix D]{LurieSAG}.
-\end{remark}
-
-\begin{remark}
-Even for connective ring spectra $E$, the Bousfield localization $L_E X$ does \emph{not} have to recover an arithmetic localization of $X$ if $X$ is not connective.  Take $E = H\Z$ and $X = KU$, which Snaith's theorem\footnote{You can also work this example without knowing Snaith's theorem. All you really need to know is that $\Susp^\infty_+ \CP^\infty[\beta^{-1}] \to KU$ is a map of ring spectra, so that $\pi_0 \Susp^\infty_+ \CP^\infty[\beta^{-1}]$ can't be a rational group since $\pi_0 KU = \Z$.} presents as \[X = KU = \Susp^\infty_+ \CP^\infty[\beta^{-1}],\] where $\beta\co \CP^1 \to \CP^\infty$ is the Bott element.  This gives \[H\Z_* KU = H\Z_*(\CP^\infty[\beta^{-1}]) = (H\Z_* \CP^\infty)[b_1^{-1}].\]  We can identify the pieces in turn: \Cref{HZGivesGa} shows $\CP^\infty_{H\Z} = \G_a$, so the dual Hopf algebra $\sheaf O_{\G_a}^* = H\Z_* \CP^\infty$ is a divided polynomial algebra on the class $b_1$.  Inverting $b_1$ then gives \[(H\Z_* \CP^\infty)[b_1^{-1}] = \Gamma[b_1][b_1^{-1}] = \Q[b_1^\pm],\] so that, in particular, there is a weak equivalence $H\Z \sm KU \to H\Q \sm KU$.  The cofiber \[KU \to KU \otimes \Q \to KU \otimes \Q/\Z\] is thus a nonzero $H\Z$--acyclic spectrum.
+Ravenel proves the following generalization of \Cref{DescentFromHFpToHZp}.  Let $E$ be a connective ring spectrum, let $J$ be the set of primes complementary to those primes $p$ for which $E_*$ is uniquely $p$--divisible, and let $X$ be a connective spectrum.\footnote{Even for connective ring spectra $E$, the Bousfield localization $L_E X$ does \emph{not} have to recover an arithmetic localization of $X$ if $X$ is not connective.  Take $E = H\Z$ and $X = KU$, which Snaith's theorem presents as $X = KU = \Susp^\infty_+ \CP^\infty[\beta^{-1}]$, where $\beta\co \CP^1 \to \CP^\infty$ is the Bott element.  This gives $H\Z_* KU = H\Z_*(\CP^\infty[\beta^{-1}]) = (H\Z_* \CP^\infty)[b_1^{-1}]$.  We can identify the pieces in turn: \Cref{HZGivesGa} shows $\CP^\infty_{H\Z} = \G_a$, so the dual Hopf algebra $(\sheaf O_{\G_a})^* = H\Z_* \CP^\infty$ is a divided polynomial algebra on the class $b_1$.  Inverting $b_1$ then gives $(H\Z_* \CP^\infty)[b_1^{-1}] = \Gamma[b_1][b_1^{-1}] = \Q[b_1^\pm]$, so that, in particular, there is a weak equivalence $H\Z \sm KU \to H\Q \sm KU$.  The cofiber $KU \to KU \otimes \Q \to KU \otimes \Q/\Z$ is thus a nonzero $H\Z$--acyclic spectrum.  You can also work this example without knowing Snaith's theorem: all you really need to know is that $\Susp^\infty_+ \CP^\infty[\beta^{-1}] \to KU$ is a map of ring spectra, so that $\pi_0 \Susp^\infty_+ \CP^\infty[\beta^{-1}]$ can't be a rational group since $\pi_0 KU = \Z$.}  If each element of $E_*$ has finite order, then $X^\wedge_E = X^\wedge_J$ gives the arithmetic completion of $X$---which we reinterpret as $\S^\wedge_J \to E$ being of effective descent for connective objects.  Otherwise, if $E_*$ has elements of infinite order, then $X^\wedge_E = X_{(J)}$ gives the arithmetic localization---which we reinterpret as saying that $\S_{(J)} \to E$ is of effective descent.  Sorting out more encompassing conditions on maps $f\co R \to S$ of $E_\infty$--rings for which descent holds is a subject of serious study~\cite[Appendix D]{LurieSAG}.
 \end{remark}
 
 Finally, we can interrelate these algebraic and topological notions of descent by studying the coskeletal filtration spectral sequence for $\pi_* X^\wedge_E$, which we define to be the \textit{$E$--Adams spectral sequence} for $X$.  Applying the homotopy groups functor to the cosimplicial ring spectrum $\mathcal D_E$ gives a cosimplicial ring $\pi_* \mathcal D_E$, which we would like to connect with an algebraic descent object of the sort considered in \Cref{StrictCechDescentRemark}.  In order to make this happen, we need two niceness conditions on $E$:
 
 \begin{definition}
-A ring spectrum $E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis, when the ring $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.  In this case, we can form the simplicial scheme \[\context{E} = \Spec \pi_* \mathcal D_E,\] called the \textit{context} of $E$.
+An even-periodic ring spectrum $E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis, when the ring $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.  In this case, we can form the simplicial scheme \[\context{E} = \Spec \pi_0 \mathcal D_E,\] called the \textit{context} of $E$.
 \end{definition}
 
 \begin{definition}
-A ring spectrum $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_* \to E_* E$ is flat.\footnote{If $E$ is a commutative ring spectrum, then this is equivalent to asking that the left-unit map is a flat map of $E_*$--modules.}  In this case, the Segal map \[(E_* E)^{\otimes_{E_*} j} \otimes_{E_*} E_* X \to \pi_*(E^{\sm (j+1)} \sm X) = \pi_* \mathcal D_E(X)[j]\] is an isomorphism for all $X$.  In geometric language, this says that $\context{E}$ is valued in simplicial sets equivalent to nerves of groupoids and that \[\context{E}(X) := \widetilde{\pi_* \mathcal D_E(X)}\] forms a Cartesian quasicoherent sheaf over $\context{E}$.  In this sense, we have constructed a factorization
+An even-periodic ring spectrum $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_0 \to E_0 E$ is flat.\footnote{If $E$ is a commutative ring spectrum, then this is equivalent to asking that the left-unit map is a flat map of $E_0$--modules.}  In this case, the Segal map \[(E_0 E)^{\otimes_{E_0} j} \otimes_{E_0} E_0 X \to \pi_0(E^{\sm (j+1)} \sm X) = \pi_0 \mathcal D_E(X)[j]\] is an isomorphism for all $X$.  In geometric language, this says that $\context{E}$ is valued in simplicial sets equivalent to nerves of groupoids and that \[\context{E}(X) := \widetilde{\pi_0 \mathcal D_E(X)}\] forms a Cartesian quasicoherent sheaf over $\context{E}$.  In this sense, we have constructed a factorization
 \begin{center}
 \begin{tikzcd}
-\CatOf{Spectra} \arrow["E_*(-)"]{rr} \arrow["\context{E}(-)"]{rd} & & \CatOf{Modules}_{E_*} \\
+\CatOf{Spectra} \arrow["E_0(-)"]{rr} \arrow["\context{E}(-)"]{rd} & & \CatOf{Modules}_{E_0} \\
 & \CatOf{QCoh}(\context{E}) \arrow["{(-)[0]}"]{ru} .
 \end{tikzcd}
 \end{center}
 \end{definition}
 
-While {\CH} and {\FH} are enough to guarantee that $\context{E}$ and $\context{E}(X)$ are well-behaved, they still do not exactly connect us with \Cref{StrictCechDescentRemark}.  The main difference is that the ring of homology cooperations for $E$ \[E_*E = \pi_*(E \sm E) = \pi_* \mathcal D_E[1]\] is only distantly related to the tensor product $E_* \otimes_{\pi_* \S} E_*$ (or even $\Tor^{\pi_* \S}_{*, *}(E_*, E_*)$).  This is a trade we are eager to make, as the latter groups are typically miserably behaved, whereas $E_* E$ is typically fairly nice.  In order to take advantage of this, we enlarge our definition to match:
+While {\CH} and {\FH} are enough to guarantee that $\context{E}$ and $\context{E}(X)$ are well-behaved, they still do not exactly connect us with \Cref{StrictCechDescentRemark}.  The main difference is that the ring of homology cooperations for $E$ \[E_0 E = \pi_0(E \sm E) = \pi_0 \mathcal D_E[1]\] is only distantly related to the tensor product $E_* \otimes_{\pi_* \S} E_*$ (or even $\Tor^{\pi_* \S}_{*, *}(E_*, E_*)$).  This is a trade we are eager to make, as the latter groups are typically miserably behaved, whereas $E_0 E$ is typically fairly nice.  In order to take advantage of this, we enlarge our definition to match:
 
 \begin{definition}\label{FHGivesComodules}
-Let $A$ and $\Gamma$ be commutative rings with associated affine schemes $X_0 = \Spec A$, $X_1 = \Spec \Gamma$.  A \textit{Hopf algebroid} consists of the pair $(A, \Gamma)$ together with structure maps\todo{Fix the spacing around the superscripts.}
+Let $A$ and $\Gamma$ be commutative rings with associated affine schemes $X_0 = \Spec A$, $X_1 = \Spec \Gamma$.  A \textit{Hopf algebroid} consists of the pair $(A, \Gamma)$ together with structure maps
 \begin{align*}
 \eta_L \co A & \to \Gamma, & s\co X_1 & \to X_0, \\
 \eta_R \co A & \to \Gamma, & t\co X_1 & \to X_0, \\
-\Delta \co \Gamma & \to \Gamma {}^{\eta_R} \otimes_A^{\eta_L} \Gamma, & \circ\co X_1 {}^{t}\times_{X_0}^{s} X_1 & \to X_1, \\
-\chi \co \Gamma & \to \Gamma, & (-)^{-1}\co X_1 & \to X_1,
+\chi \co \Gamma & \to \Gamma, & (-)^{-1}\co X_1 & \to X_1, \\
+\Delta \co \Gamma & \to \Gamma \presuper{\eta_R}{\underset{A}\otimes}^{\eta_L} \Gamma, & \circ\co X_1 \presuper{t}{\underset{X_0}{\times}}^{s} X_1 & \to X_1,
 \end{align*}
 such that $(X_0, X_1)$ forms a groupoid scheme.  An \textit{$(A, \Gamma)$--comodule} is an $A$--module equipped with a $\Gamma$--comodule structure, and such a comodule is equivalent to a Cartesian quasicoherent sheaf on the nerve of $(X_0, X_1)$.
 \end{definition}
@@ -225,7 +219,7 @@ The sphere spectrum fails to satisfy {\CH}, so the above results do not apply to
 \end{remark}
 
 \begin{remark}\label{WarningAboutStacks}
-In \Cref{DescentFromHFpToHZp}, we discussed translating from the algebra descent picture to a homotopical one, and a crucial point was how thorough we had to be: we transferred not just to the derived category $D(\Spec R)$ but we also replaced the base ring $R$ with its homotopical incarnation $HR$.  In \Cref{FHGivesComodules}, we have not been as thorough as possible: both $X_0$ and $X_1$ are schemes and hence satisfy a sheaf condition individually, but the functor $(X_0, X_1)$, thought of as valued in homotopy $1$--types, does not necessarily satisfy a homotopy sheaf condition.  Enforcing this descent condition results in the \textit{associated stack}~\cite[Definition 8.13]{HopkinsCOCTALOS}, denoted \[\Spec A \mmod \Spec \Gamma = X_0 \mmod X_1.\]  Remarkably, this does not change the category of Cartesian quasicoherent sheaves---it is still equivalent to the category of $(A, \Gamma)$--comodules~\cite[Proposition 11.6]{HopkinsCOCTALOS}.  However, several different Hopf algebroids (even those with maps between them inducing natural equivalences of groupoid schemes, as studied by Hovey~\cite[Theorem D]{HoveyMoritaThy}) can give the same associated stack, resulting in surprising equivalences of comodule categories.\footnote{We will employ one of these surprising equivalences in \Cref{OpenSubstacksOfMfg}.}  For the most part, it will not be especially relevant to us whether we are considering the groupoid scheme or its associated stack, so we will not draw much of a distinction.\todo{Maybe this is irresponsible and we should be careful not to be sloppy.}
+In \Cref{DescentFromHFpToHZp}, we discussed translating from the algebra descent picture to a homotopical one, and a crucial point was how thorough we had to be: we transferred not just to the derived category $D(\Spec R)$ but we also replaced the base ring $R$ with its homotopical incarnation $HR$.  In \Cref{FHGivesComodules}, we have not been as thorough as possible: both $X_0$ and $X_1$ are schemes and hence satisfy a sheaf condition individually, but the functor $(X_0, X_1)$, thought of as valued in homotopy $1$--types, does not necessarily satisfy a homotopy sheaf condition.  Enforcing this descent condition results in the \textit{associated stack}~\cite[Definition 8.13]{HopkinsCOCTALOS}, denoted \[\Spec A \mmod \Spec \Gamma = X_0 \mmod X_1.\]  Remarkably, this does not change the category of Cartesian quasicoherent sheaves---it is still equivalent to the category of $(A, \Gamma)$--comodules~\cite[Proposition 11.6]{HopkinsCOCTALOS}.  However, several different Hopf algebroids (such as those with maps between them inducing natural equivalences of groupoid schemes, as studied by Hovey~\cite[Theorem D]{HoveyMoritaThy}, but also some with \emph{no} such zig-zag) can give the same associated stack, resulting in surprising equivalences of comodule categories.\footnote{We will employ one of these surprising equivalences in \Cref{OpenSubstacksOfMfg}.}  For the most part, it will not be especially relevant to us whether we are considering the groupoid scheme or its associated stack, so we will not draw much of a distinction.  For the most part, the associated stack is theoretically preferable, but the groupoid scheme is easier to think about.\footnote{Constructing the correct derived category of comodules also has subtle associated homotopical issues.  Hovey gives a good reference for this in the case of a stack associated to a Hopf algebroid~\cite{HoveyHomotopyOfComodules}.}
 \end{remark}
 
 \begin{example}
@@ -254,7 +248,7 @@ The context for $MOP$, by contrast, is reasonably simple.  \Cref{CalculationOfPi
 \end{example}
 
 \begin{remark}
-The algebraic moduli $\context{MU} = (\Spec MU_*, \Spec MU_* MU)$ and the topological moduli $(MU, MU \sm MU)$ are quite different.  An orientation $MU \to E$ selects a coordinate on the formal group $\CP^\infty_E$, but $\CP^\infty_E$ itself exists independently of the orientation.  Hence, while $\context{MU}(E_*)$ can have many connected components corresponding to \emph{distinct formal groups} on the coefficient ring $E_*$, the groupoid $\CatOf{RingSpectra}(\sheaf D_{MU}, E)$ has only one connected component corresponding to the formal group $\CP^\infty_E$ intrinsic to $E$.\footnote{The reader ought to compare this with the situation in explicit local class field theory, where a local number field has a preferred formal group attached to it.}
+The algebraic moduli $\context{MU} = (\Spec MU_*, \Spec MU_* MU)$ and the topological moduli $(MU, MU \sm MU)$ are quite different.  An orientation $MU \to E$ selects a coordinate on the formal group $\CP^\infty_E$, but $\CP^\infty_E$ itself exists independently of the orientation.  Hence, while $\context{MU}(E_*)$ can have many connected components corresponding to \emph{distinct formal groups} on the coefficient ring $E_*$, the groupoid $\CatOf{RingSpectra}(\sheaf D_{MU}, E)$ has only one connected component corresponding to the formal group $\CP^\infty_E$ intrinsic to $E$.\footnote{The reader ought to compare this with the situation in explicit local class field theory, where a local number field has a preferred formal group attached to it.}\footnote{The precocious student might ask what functor $MU$ represents as an $E_\infty$ ring spectrum.  To date, this functor has not been algebraically recognized.}
 \end{remark}
 
 \begin{remark}\citeme{pg 5 of From Spectra To Stacks by Hopkins in the TMF volume}
@@ -272,17 +266,19 @@ E \sm X & E \sm \overline E \sm X & E \sm \overline E^{\sm 2} \sm X & \cdots.
 This presentation makes the connection to descent much more opaque, but it does not require $E$ to be an $A_\infty$--ring spectrum.
 \end{remark}
 
+\begin{remark}
+With contexts in mind, the pro-spectrum $DX_+ = \{F(X_\alpha, \S)\}_\alpha$ gains our attention as a kind of universal example in the following sense.  Because each $X_\alpha$ is a compact object, base-change along the unit map $\eta\co \S \to E$ can be computed by the following formula:
+\begin{align*}
+\eta^* DX_+ = E \sm \{F(X_\alpha, \S)\}_\alpha = \{E \sm F(X_\alpha, \S)\}_\alpha = \{F(X_\alpha, E)\}_\alpha.
+\end{align*}
+Applying the functor $\Spf \circ \pi_0$ to this pro-system yields the formal scheme $X_E$ considered in \Cref{FullDefnOfXE}.  One of the themes of this book will be to think of the objects $X$ and $DX_+$ as spectral incarnations of some formal group construction, which base-change along $\eta$ to specialize to classical algebro-geometric constructions applied to the formal group associated to $E$.
+\end{remark}
 
 
 
-\todo{You can build an Adams resolution in the absence of an $A_\infty$ structure too, you just miss the descent picture.}
-\todo{Think about what sorts of simplicial sheaves you really want. They seem like they should be valued in something like quasicategories: the stable operations are valued in space-like simplicial sets, the isogenies pile is a sheaf of \emph{categories}, then unstable operations generically have some other weird structure...}
-\todo{We should expand the comparison of a Cartesian q.c.\ sheaf on an affinely presented stack with a module plus structural data.}
+
 \citeme{Pridham's article \textit{Presenting higher stacks as simplicial schemes} seems like a good reference?  Maybe some Toen things are appropriate?  I don't really know where this simplicial scheme stuff is written down.}
 \todo{Say what open, closed, flat maps of simplicial schemes are?}
-\todo{Jon thinks that this picture can be instructively recast in terms of the cotangent complex.  I'm not sure how, but it's something to keep in mind for later.}
-\todo{Hovey and Strickland have published a whole bunch of papers about establishing a reasonable (un/bounded) derived category for sheaves on various stacks important to topology, which go by names like $\operatorname{Stable}(BP_* BP)$.  It's probably worth putting in a remark about this here, admitting that the homotopical version of the stuff here isn't totally worked out, but this is the major foothold on it.}
-\todo{Somewhere in here you should talk about how $DX_+$ is an $E_\infty$ ring pro-spectrum, the spectral cohomology ring $F(X_+, E)$ is the base-change of $DX_+$ from $\S$ to $E$, that the weak topology is a natural thing to consider, and that the subscript notation is motivated by this change-of-base observation.}
 
 
 
@@ -1277,7 +1273,7 @@ For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$
 \end{theorem}
 
 \begin{remark}\label{StablizerRepIsComplicated}
-As a matter of emphasis, this Theorem does not give any description of the \emph{representation} of $\Aut \Gamma_d$, which is very complicated (cf.\ \Cref{ThePeriodMapSection}).  Nonetheless, the arithmetically-minded reader might recognize this description of $\Aut \Gamma_d$ as the group of units of a maximal order $\mathbf o_D$ in the division algebra $D$ of Brauer--Hasse invariant $1/d$ over $k$---another glimpse of arithmetic geometry poking through to affect stable homotopy theory.\footnote{This finally explains our preference for using the letter ``$d$'' to represent the height of a formal group---the ``$d$'' (or, rather the ``$D$'') stands for ``division algebra''.}
+As a matter of emphasis, this Theorem does not give any description of the \emph{representation} of $\Aut \Gamma_d$, which is very complicated (cf.\ \Cref{ThePeriodMapSection}).  Nonetheless, the arithmetically-minded reader might recognize this description of $\Aut \Gamma_d$ as the group of units of a maximal order $\mathbf o_D$ in the division algebra $D$ of Brauer--Hasse invariant $1/d$ over $k$---another glimpse of arithmetic geometry poking through to affect stable homotopy theory.\footnote{This finally explains our preference for using the letter ``$d$'' to represent the height of a formal group---the ``$d$'' (or, rather the ``$D$'') stands for ``division algebra''.  The typical algebraic topologist writes ``$n$'' for the height, a trend set by Jack Morava, allegedly because the localizer ``$L_n$'' is a homophone of his wife's name, Ellen.  It has been further alleged that the ``$E$'' in ``Morava $E$--theory'' is also an abbreviation for Ellen.  With no disrespect meant to either of them, I find ``$d$'' to be a considerably better mnemonic and to be less likely to conflict with other indices.  ``$E$'' is also prone to collisions (with spectral sequences, with operads, \ldots), but there is no compelling alternative.}
 \end{remark}
 
 \begin{example}[Adams]\label{piLK1SExample}\citeme{Find a citation}
