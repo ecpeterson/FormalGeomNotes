@@ -297,7 +297,7 @@ In \Cref{FHGivesComodules} we gave a factorization
 & \CatOf{QCoh}(\context{MUP}) \arrow["{(-)[0]}"]{ru} ,
 \end{tikzcd}
 \end{center}
-and in \Cref{ContextOfMUPExample} we established an equivalence \[\phi\co \context{MUP} \xrightarrow{\simeq} \moduli{fg}.\]  Our program, as outlined in the introduction, is to analyze this functor $\context{MUP}(-)$ by postcomposing it with $\phi^*$ and studying the resulting sheaf over $\moduli{fg}$.  In order to perform such an analysis, we will want a firm grip on the geometry of the stack $\moduli{fg}$, and in this Lecture we begin by studying the scheme $\moduli{fgl}$ as well as the natural covering map \[\moduli{fgl} \to \moduli{fg}.\]
+and in \Cref{ContextOfMUPExample} we established an equivalence \[\phi\co \context{MUP} \xrightarrow{\simeq} \moduli{fg}.\]  Our program, as outlined in the introduction, is to analyze this functor $\context{MUP}(-)$ by postcomposing it with $\phi^*$ and studying the resulting sheaf over $\moduli{fg}$.  In order to perform such an analysis, we will want a firm grip on the geometry of the stack $\moduli{fg}$, and in this Lecture we begin by studying the scheme $\moduli{fgl}$ as well as the natural covering map \[\moduli{fgl} \to \moduli{fg}.\]  Additionally, \Cref{ContextOfMUPExample} was a consequence of \Cref{QuillensTheorem}, which relied on the unproven result stated as \Cref{DummyLazardsThm}, which we will now prove in this section as \Cref{LazardsTheorem}.
 
 \begin{definition}\label{MfglDefn}
 There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying \emph{all} bivariate power series:
@@ -316,7 +316,12 @@ There is a noncanonical isomorphism
 \popQED{\qed}\]
 \end{theorem}
 \begin{proof}
-Let $L = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting an exponential \[\exp(x) := \sum_{j=0}^\infty b_j x^{j+1}\] with compositional inverse \[\log(x) := \sum_{j=0}^\infty m_j x^{j+1}.\]  They induce a formal group law on $L$ by the conjugation formula \[x +_! y = \exp(\log(x) + \log(y)),\] which is in turn classified by a map $u\co \sheaf O_{\moduli{fgl}} \to L$.\footnote{This is \emph{not} the universal formal group law.  We will soon see that some formal group laws do not admit logarithms.}  Modulo decomposables, we compute
+Let $L = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting an exponential and a logarithm:
+\begin{align*}
+\exp(x) & := \sum_{j=0}^\infty b_j x^{j+1}, &
+\log(x) & := \sum_{j=0}^\infty m_j x^{j+1}.
+\end{align*}
+They induce a formal group law on $L$ by the conjugation formula \[x +_! y = \exp(\log(x) + \log(y)),\] which is in turn classified by a map $u\co \sheaf O_{\moduli{fgl}} \to L$.\footnote{This is \emph{not} the universal formal group law.  We will soon see that some formal group laws do not admit logarithms.}  Modulo decomposables, we compute
 \begin{align*}
 x & = \exp(\log(x)) \\
 & = x + \sum_{n=1}^\infty m_n x^{n+1} + \sum_{n=1}^\infty b_n \left( x + \sum_{j=1}^\infty m_j x^{j+1} \right)^{n+1} \\
@@ -347,7 +352,7 @@ We now show that the following conditions are equivalent:
 \begin{enumerate}
 \item (\Cref{Symmetric2CocycleLemma}) Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{k} \middle| 0 < k < n \right)$.
 \item For $F$ is an $n$--bud, the set of $(n+1)$--buds extending $F$ form a torsor under addition for $R \otimes c_n$.
-\item Any homomorphism $(Q\mathcal O_{\moduli{fgl}})_{2n} \to A$ factors through the map $(Q \mathcal O_{\moduli{fgl}})_{2n} \to T_{2n}$.
+\item Any homomorphism $(Q\mathcal O_{\moduli{fgl}})_{2n} \to A$ factors through $(Q \mathcal O_{\moduli{fgl}})_{2n} \to T_{2n}$.
 \item (\Cref{LazardSplittingLemma}) There is a canonical splitting $T_{2n} \to (Q \mathcal O_{\moduli{fgl}})_{2n}$.
 \end{enumerate}
 
@@ -384,7 +389,7 @@ We now ground ourselves by fitting symmetric $2$--cocycles into a more general h
 \cdots
 \end{tikzcd}
 \right\}.\]
-By applying the functor $\InternalHom{FormalSchemes}(-, \G_a)(k)$, we get a cosimplicial abelian group stemming from the group scheme structure on $\G_a$, and this gives a cochain complex of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} what we've been calling $2$--cocycles\footnote{They aren't obligated to be symmetric or of homogeneous degree, though.}, so we are interested in computing $H^2$.  First, we can quickly compute $B^2$, since $C^1$ is so small: \[d^1(x^k) = d_k c_k.\]  Secondly, one may think of this complex as a resolution computing various\footnote{Refer back to \Cref{ExtAndCotorAgree}.} derived functors \[\Cotor_{\sheaf O_{\G}}(k, k) \cong \Ext_{\sheaf O_{\G}}(k, k) \cong \Tor_{\sheaf O_{\G}^*}(k, k).\]\todo{Do you use ${}^*$ or ${}^\vee$ later for linear dual?}  We are now going to compute these last groups using a more efficient complex.
+By applying the functor $\InternalHom{FormalSchemes}(-, \G_a)(k)$, we get a cosimplicial abelian group stemming from the group scheme structure on $\G_a$, and this gives a cochain complex of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} what we've been calling $2$--cocycles\footnote{They aren't obligated to be symmetric or of homogeneous degree, though.}, so we are interested in computing $H^2$.  First, we can quickly compute $B^2$, since $C^1$ is so small: \[d^1(x^k) = d_k c_k.\]  Secondly, one may think of this complex as a resolution computing various\footnote{Refer back to \Cref{ExtAndCotorAgree}.} derived functors \[\Cotor_{\sheaf O_{\G}}(k, k) \cong \Ext_{\sheaf O_{\G}}(k, k) \cong \Tor_{\sheaf O_{\G}^*}(k, k).\]  We are now going to compute these last groups using a more efficient complex.
 
 \begin{itemize}
 \item[$\Q$:] There is a free $\Q[t]$--module resolution
@@ -438,15 +443,11 @@ so that a surjective map of rings $\Spec R \to \Spec S$ can then be completed to
 A map $\G\co \Spec R \to \moduli{fg}$ lifts to $\moduli{fgl}$ exactly when the Lie algebra $T_0 \G$ of $\G$ is isomorphic to $R$.
 \end{lemma}
 \begin{proof}
-Certainly if $\G$ admits a global coordinate, then $T_0 \G \cong R$.  Conversely, the formal group $\G$ is certainly locally isomorphic to $\A^1$ by a covering $i_\alpha\co X_\alpha \to \Spec R$ and isomorphisms $\phi_\alpha$---but, \textit{a priori}, these isomorphisms may not glue, precisely corresponding to the nontriviality of the {\Cech} $1$--cocycle \[[\phi_\alpha] \in \check{H}^1(\Spec R; \moduli{ps}^{\gpd}).\]  The group scheme $\moduli{ps}^{\gpd}$ is populated by $T$--points of the form \[\moduli{ps}^{\gpd}(T) = \left\{ t_0 x + t_1 x^2 + t_2 x^3 + \cdots \mid t_j \in T, t_0 \in T^\times \right\},\] and it is admits a filtration by the closed subschemes \[\moduli{ps}^{\gpd, \ge N}(T) = \left\{ 1 \cdot x + t_N x^{N+1} + t_{N+1} x^{N+2} + \cdots \mid t_j \in T \right\}.\]  The associated graded of this filtration is $\Gm \times \mathbb G_a^{\times \infty}$, and hence the filtration spectral sequence shows \[\check{H}^1(\Spec R; \moduli{ps}^{\gpd}) \xrightarrow{\simeq} \check{H}^1(\Spec R; \Gm),\] as $\check{H}^1(\Spec R; \mathbb G_a) = 0$ for all affine schemes.  Finally, given a choice of trivialization $T_0 \G \cong R$, this induces compatible trivializations of $T_0 i_\alpha^* \G$, which we can use to rescale the isomorphisms $\phi_\alpha$ so that their image in $\check{H}^1(\Spec R; \Gm)$ vanishes, and hence $[\phi_\alpha]$ is induced from a class in \[\check{H}^1(\Spec R; \moduli{ps}^{\gpd, \ge 1}).\]  This obstruction group vanishes.
+Certainly if $\G$ admits a global coordinate, then $T_0 \G \cong R$.  Conversely, the formal group $\G$ is certainly locally isomorphic to $\A^1$ by a covering $i_\alpha\co X_\alpha \to \Spec R$ and isomorphisms $\phi_\alpha$---but, \textit{a priori}, these isomorphisms may not glue, precisely corresponding to the nontriviality of the {\Cech} $1$--cocycle \[[\phi_\alpha] \in \check{H}^1(\Spec R; \moduli{ps}^{\gpd}).\]  The group scheme $\moduli{ps}^{\gpd}$ is populated by $T$--points of the form \[\moduli{ps}^{\gpd}(T) = \left\{ t_0 x + t_1 x^2 + t_2 x^3 + \cdots \mid t_j \in T, t_0 \in T^\times \right\},\] and it is admits a filtration by the closed subschemes \[\moduli{ps}^{\gpd, \ge N}(T) = \left\{ 1 \cdot x + t_N x^{N+1} + t_{N+1} x^{N+2} + \cdots \mid t_j \in T \right\}.\]  The associated graded of this filtration is $\Gm \times \mathbb G_a^{\times \infty}$, and hence the filtration spectral sequence shows \[\check{H}^1(\Spec R; \moduli{ps}^{\gpd}) \xrightarrow{\simeq} \check{H}^1(\Spec R; \Gm),\] as $\check{H}^1(\Spec R; \mathbb G_a) = 0$ for all affine schemes.  Finally, given a choice\footnote{Incidentally, a choice of trivialization of $T_0 \G$ exactly resolves the indeterminacy of $\log'(0)$ in \Cref{RationalFGLsHaveLogarithms}.} of trivialization $T_0 \G \cong R$, this induces compatible trivializations of $T_0 i_\alpha^* \G$, which we can use to rescale the isomorphisms $\phi_\alpha$ so that their image in $\check{H}^1(\Spec R; \Gm)$ vanishes, and hence $[\phi_\alpha]$ is induced from a class in \[\check{H}^1(\Spec R; \moduli{ps}^{\gpd, \ge 1}).\]  This obstruction group vanishes.
 \end{proof}
 
 \begin{remark}
-Incidentally, a choice of trivialization of $T_0 \G$ exactly resolves the indeterminacy of $\log'(0)$ in \Cref{RationalFGLsHaveLogarithms}.
-\end{remark}
-
-\begin{remark}
-The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the literature as the group of \textit{strict isomorphisms}.  There is an associated moduli of formal groups identified only up to strict isomorphism, which sits in a fiber sequence \[\Gm \to \moduli{fgl} \mmod \moduli{ps}^{\gpd, \ge 1} \to \moduli{fg}.\]  These appeared earlier in this Lecture as well: in the proof of \Cref{LazardsTheorem}, we constructed over $L$ the universal formal group law equipped with a \emph{strict} exponential map.\todo{Give a comparison with $\context{MU}$ vs $\context{MUP}$.}
+The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the literature as the group of \textit{strict isomorphisms}.  There is an associated moduli of formal groups identified only up to strict isomorphism, which sits in a fiber sequence \[\Gm \to \moduli{fgl} \mmod \moduli{ps}^{\gpd, \ge 1} \to \moduli{fg}.\]  These appeared earlier in this Lecture as well: in the proof of \Cref{LazardsTheorem}, we constructed over $L$ the universal formal group law equipped with a \emph{strict} exponential map.  The moduli of formal group laws modulo strict isomorphisms appears as the context associated to the graded version, rather than even-periodic version, of the story told so far---i.e., as a sort of non-periodic context $\context{MU}$.
 \end{remark}
 
 
