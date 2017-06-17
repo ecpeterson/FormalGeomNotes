@@ -672,7 +672,7 @@ to produce the coordinate change from \Cref{EveryFGLIsPTypical}: \[1 - \exp \lef
 
 \section{The structure of \texorpdfstring{$\moduli{fg}$}{Mfg} III: Small scales}\label{SectionMfgSmallScales}
 
-In the previous two Lectures, we analyzed the structure of $\moduli{fg}$ as a whole: first we studied the cover \[\moduli{fgl} \to \moduli{fg},\] and then we turned to the stratification described by the height function \[\height\co \pi_0 \moduli{fg}(\text{$T$ a $\Z_{(p)}$--algebra}) \to \N \cup \{\infty\}.\]  In this Lecture, we will concern ourselves with the small scale behaviors of $\moduli{fg}$: its geometric points and their local neighborhoods.  To begin, we have all the tools in place to perform an outright classification of the geometric points.
+In the previous two Lectures, we analyzed the structure of $\moduli{fg}$ as a whole: first we studied the cover \[\moduli{fgl} \to \moduli{fg},\] and then we turned to the stratification described by the height function \[\height\co \pi_0 \moduli{fg}(\text{$T$ a $\Z_{(p)}$--algebra}) \to \N \cup \{\infty\}.\]  In this Lecture, we will concern ourselves with the small scale behaviors of $\moduli{fg}$: its geometric points and their local neighborhoods.\footnote{For an alternative perspective on much of this material, see~\cite[Section 18]{StricklandFGNotes}, where the presentation connects rather tightly with our \Cref{SectionDieudonneModules}.}  To begin, we have all the tools in place to perform an outright classification of the geometric points.
 
 \begin{theorem}[{\cite[Th\'eor\`eme IV]{Lazard}}]\label{FGpsOverAlgClosedFields}
 Let $\bar k$ be an algebraically closed field of positive characteristic $p$.  The height map \[\height\co \pi_0 \moduli{fg}(\bar k) \to \N_{> 0} \cup \{\infty\}\] is a bijection.
@@ -793,14 +793,14 @@ Similarly, such a formal group law $+_\Delta$ admits a series expansion \[x +_\D
 Equating these gives the condition in the Lemma statement.
 \end{proof}
 
+\todo[inline]{I would like a coordinate-independent model for this complex, which will hopefully make the following Corollary self-evident.}
 The key observation is that these two conditions appear as cocycle conditions for the first two levels of a natural cochain complex.
 \begin{definition}[{\cite[Section 3]{LazarevDeformations}}]
-\todo{Can this be phrased geometrically?}
-The deformation complex $\widehat C^*(+_\Gamma; k)$ is defined by \[k \to k\ps{x_1} \to k\ps{x_1, x_2} \to k\ps{x_1, x_2, x_3} \to \cdots\] with differential
+The deformation complex\footnote{Pieces are of this complex are visible in work of Drinfel'd~\cite[Section 4.A]{Drinfeld} and of Lubin--Tate~\cite{LubinTate}, but neither actually assemble the whole complex.} $\widehat C^*(+_\Gamma; k)$ is defined by \[k \to k\ps{x_1} \to k\ps{x_1, x_2} \to k\ps{x_1, x_2, x_3} \to \cdots\] with differential
 \begin{align*}
 (df)(x_1, \ldots, x_{n+1}) & = \Gamma_1\left(\sumGamma_{i=1}^n x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
-& \quad + \sum (-1)^i f(x_1, \ldots, x_i +_\Gamma x_{i+1}, \ldots, x_{n+1}) \\
-& \quad + (-1)^{n+1} \left( \phi_2\left(x_1, \sumGamma_{i=2}^{n+1} x_i \right) \cdot f(x_2, \ldots, x_{n+1}) \right),
+& \quad + \sum_{i=1}^n (-1)^i \cdot f(x_1, \ldots, x_i +_\Gamma x_{i+1}, \ldots, x_{n+1}) \\
+& \quad + (-1)^{n+1} \cdot \Gamma_2\left(x_1, \sumGamma_{i=2}^{n+1} x_i \right) \cdot f(x_2, \ldots, x_{n+1}),
 \end{align*}
 where we have again written
 \begin{align*}
@@ -812,7 +812,6 @@ where we have again written
 The complex even knits the information together intelligently:
 
 \begin{corollary}[{\cite[p.\ 1320]{LazarevDeformations}}]\label{InterpretLTCoboundaries}
-\todo{Consider proving this.}
 Two extensions $+_\Delta$ and $+_{\Delta'}$ of $+_\Gamma$ to $k[\eps] / \eps^2$ are isomorphic if their corresponding $2$--cocycles in $\widehat{Z}^2(+_\Gamma; k)$ differ by an element in $\widehat B^2(+_\Gamma; k)$. \qed
 \end{corollary}
 
@@ -835,10 +834,10 @@ Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then $H^1(\G;
 \begin{proof}[Proof (after Hopkins)]
 We select a $p$--typical coordinate on $\G$ of the form \[x +_\phi y = x + y + \mathrm{unit} \cdot c_{p^d}(x, y) + \cdots,\] where $c_{p^d}(x, y)$ is as in one of Lazard's symmetric $2$--cocycles, as in \Cref{Symmetric2CocycleLemma}.  Filtering $\G$ by degree, the multiplication projects to $x +_\phi y = x + y$ in the associated graded, and the resulting filtration spectral sequence has signature \[[H^*(\G_a; \G_a)]_* \Rightarrow H^*(\G; \G_a),\] where the second grading comes from the degree of the homogeneous polynomial representatives of classes in $H^*(\G_a; \G_a)$.
 
-Because \Cref{Symmetric2CocycleLemma} gives different calculations of $H^*(\G_a; \G_a)$ for $p = 2$ and $p > 2$, we specialize to $p > 2$ for the remainder of the proof and leave the similar $p = 2$ case to the reader.  For $p > 2$, \Cref{Symmetric2CocycleLemma} gives \[[H^*(\G_a; \G_a)]_* = \left[\frac{k[\alpha_j \mid j \ge 0]}{\alpha_j^2 = 0} \otimes k[\beta_j \mid j \ge 0]\right]_*,\] where $\alpha_j$ is represented by $x^{p^j}$ and $\beta_j$ is represented by $c_{p^j}(x, y)$.  To compute the differentials in this spectral sequence generally, one computes by hand the formula for the differential in the bar complex, working up to lowest nonzero degree.  For instance, to compute $d(\alpha_j)$ we examine the series \[(x +_\phi y)^{p^j} - (x^{p^j} + y^{p^j}) = (\text{unit}) \cdot c_{p^{d + j}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^j} = c_{p^{j+d}}$.  So, we see that nothing in the $1$--column of the spectral sequence is a permanent cocycle and that there are $d - 1$ classes at the bottom of the $2$--column of the spectral sequence which are not coboundaries.  To conclude the Lemma statement, we need only to check that they are indeed permanent cocycles.  To do this, we note that they are indeed realized as deformations, by noting \[x +_{\mathrm{univ}} y \cong x + y + v_j c_{p^j}(x, y) \pmod{v_1, \ldots, v_{j-1}, (x, y)^{p^j+1}}\] where $+_{\mathrm{univ}}$ is the Kudo--Araki universal $p$--typical law (cf.\ \cite[Proposition 1.1]{LubinTate}).
+Because \Cref{Symmetric2CocycleLemma} gives different calculations of $H^*(\G_a; \G_a)$ for $p = 2$ and $p > 2$, we specialize to $p > 2$ for the remainder of the proof and leave the similar $p = 2$ case to the reader.  For $p > 2$, \Cref{Symmetric2CocycleLemma} gives \[[H^*(\G_a; \G_a)]_* = \left[\frac{k[\alpha_j \mid j \ge 0]}{\alpha_j^2 = 0} \otimes k[\beta_j \mid j \ge 0]\right]_*,\] where $\alpha_j$ is represented by $x^{p^j}$ and $\beta_j$ is represented by $c_{p^j}(x, y)$.  To compute the differentials in this spectral sequence generally, one computes by hand the formula for the differential in the bar complex, working up to lowest nonzero degree.  For instance, to compute $d(\alpha_j)$ we examine the series \[(x +_\phi y)^{p^j} - (x^{p^j} + y^{p^j}) = (\text{unit}) \cdot c_{p^{d + j}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^j} = c_{p^{j+d}}$, giving $d(\alpha_j) = \beta_{j+d}$.  So, we see that nothing in the $1$--column of the spectral sequence is a permanent cocycle and that there are $d$ classes at the bottom of the $2$--column of the spectral sequence which are not coboundaries.  To conclude the Lemma statement, we need only to check that they are indeed permanent cocycles.  To do this, we note that they are indeed realized as deformations, by noting \[x +_{\mathrm{univ}} y \cong x + y + v_j c_{p^j}(x, y) \pmod{v_1, \ldots, v_{j-1}, (x, y)^{p^j+1}}\] where $+_{\mathrm{univ}}$ is the Kudo--Araki universal $p$--typical law (cf.\ \cite[Proposition 1.1]{LubinTate}).
 \end{proof}
 
-\begin{proof}[Proof of \Cref{LubinTateModuliThm} using \Cref{LubinTateModuliThmInFGLTerms}]
+\begin{proof}[Proof of the square-zero case of \Cref{LubinTateModuliThm} using \Cref{LubinTateModuliThmInFGLTerms}]
 We will prove this inductively on the order of the infinitesimal neighborhood of $\Spec k = \Spec R / \m$ in $\Spf R$: \[\Spec R / \m \xrightarrow{j_r} \Spec R/\m^r \xrightarrow{i_r} \Spf R.\]  Suppose that we have demonstrated the Theorem for $+_{\G_{r-1}} = i_{r-1}^* (+_{\G})$, so that there is a map $\alpha_{r-1}\co \W_p(k)\ps{u_1, \ldots, u_{d-1}} \to R/\m^{r-1}$ and a strict isomorphism $g_{r-1}\co +_{\G_{r-1}} \to \alpha_{r-1}^* +_{\tilde \Gamma}$ of formal group laws.  The exact sequence \[0 \to \m^{r-1} / \m^r \to R/\m^r \to R/\m^{r-1} \to 0\] exhibits $R/\m^r$ as a square--zero extension of $R/\m^{r-1}$ by $M = \m^{r-1} / \m^r$.  Then, let $\beta$ be \emph{any} lift of $\alpha_{r-1}$ and $h$ be \emph{any} lift of $g_{r-1}$ to $R/I^r$, and let $A$ and $B$ be the induced group laws
 \begin{align*}
 x +_A y & = \beta^* \tilde \phi, &
@@ -849,6 +848,20 @@ Since these both deform the group law $+_{\G_{r-1}}$, by \Cref{InterpretLTCoboun
 g_r(x) & = h(x) - f(x), &
 \alpha_r(u_j) & = \beta(u_j) + m_j. \qedhere
 \end{align*}
+\end{proof}
+
+\begin{lemma}[{\cite[Reduction to Theorem 21.5]{LurieChromaticCourseNotes}}]
+\Cref{LubinTateModuliThm} is true in general if and only if it holds for the square-zero thickening $R = k[\eps]/\eps^2$.
+\end{lemma}
+\begin{proof}
+Of course, if \Cref{LubinTateModuliThm} is true in general, then it holds for the special case of $R = k[\eps]/\eps^2$.  Our task is to reduce the general case to this special case, and we proceed by inducting on the length of the Artinian ring $R$.  If $R$ has length $1$, then $R = k$ and we are done.  Otherwise, we can choose an element $r \in R$ which is annihilated by $\m$, and we consider the relationship between $(\moduli{fg})^\wedge_\Gamma(R)$ and $(\moduli{fg})^\wedge_\Gamma(R/r)$.  There is a pullback diagram
+\begin{center}
+\begin{tikzcd}
+(\moduli{fg})^\wedge_\Gamma(R \times_{R/r} R) \arrow["m"]{r} \arrow{d} & (\moduli{fg})^\wedge_\Gamma(R) \arrow["\pi"]{d} \\
+(\moduli{fg})^\wedge_\Gamma(R) \arrow{r} & (\moduli{fg})^\wedge_\Gamma(R/r).
+\end{tikzcd}
+\end{center}
+First observing that $R \times_{R/r} R \cong k[\eps] / \eps^2 \times_k R$, we note that $G = (\moduli{fg})^\wedge_\Gamma(k[\eps]/\eps^2)$ forms a group, that the map $G$ acts on $(\moduli{fg})^\wedge_\Gamma(R)$ through the map $m$, that $\pi$ factors to give an embedding \[\pi/G\co (\moduli{fg})^\wedge_\Gamma(R) / G \to (\moduli{fg})^\wedge_\Gamma(R/r),\] and that \Cref{MfglIsSmooth} shows that $\pi/G$ is additionally surjective.  From all this, we see that $\pi$ presents $(\moduli{fg})^\wedge_\Gamma(R)$ as a principal homogeneous space for $G$ over $(\moduli{fg})^\wedge_\Gamma(R/r)$.  An identical argument shows that formal schemes with this same property are smooth, and hence there is an isomorphism \[G \cong \CatOf{Algebras}_{k/}(\W_p(k)\ps{u_1, \ldots, u_{n-1}}, k[\eps] / \eps^2). \qedhere\]
 \end{proof}
 
 \begin{remark}\label{ActionBySnLiftsToLTn}
@@ -884,25 +897,6 @@ Having accomplished all our major goals, we close our algebraic analysis of $\mo
 \caption{Portrait of $\moduli{fg} \times \Spec \Z_{(p)}$.}\label{MfgPicture}
 \end{sidewaysfigure}
 
-
-% \begin{lemma}[{\cite[Reduction to Theorem 21.5]{LurieChromaticCourseNotes}}]
-% \Cref{LubinTateModuliThm} is true in general if and only if it holds for the square-zero thickening $R = k[\eps]/\eps^2$.
-% \end{lemma}
-% \begin{proof}
-% \todo{I don't \emph{really} understand this proof. I feel that if I did, I wouldn't phrase it quite like this.  //  It's also not so clear to me how much this depends upon having already shown that $(\moduli{fg})^\wedge_\Gamma$ is discrete.}
-% Of course, if \Cref{LubinTateModuliThm} is true in general, then it holds for the special case of $R = k[\eps]/\eps^2$.  Our task is to reduce the general case to this special case, and we proceed by inducting on the length of the Artinian ring $R$.  If $R$ has length $1$, then $R = k$ and we are done.  Otherwise, we can choose an element $r \in R$ which is annihilated by $\m$, and we consider the relationship between $(\moduli{fg})^\wedge_\Gamma(R)$ and $(\moduli{fg})^\wedge_\Gamma(R/r)$.  There is a pullback diagram
-% \begin{center}
-% \begin{tikzcd}
-% (\moduli{fg})^\wedge_\Gamma(R \times_{R/r} R) \arrow["m"]{r} \arrow{d} & (\moduli{fg})^\wedge_\Gamma(R) \arrow["\pi"]{d} \\
-% (\moduli{fg})^\wedge_\Gamma(R) \arrow{r} & (\moduli{fg})^\wedge_\Gamma(R/r).
-% \end{tikzcd}
-% \end{center}
-% First observing that $R \times_{R/r} R \cong k[\eps] / \eps^2 \times_k R$, we note that $G = (\moduli{fg})^\wedge_\Gamma(k[\eps]/\eps^2)$ forms a group, that the map $G$ acts on $(\moduli{fg})^\wedge_\Gamma(R)$ through the map $m$, that $\pi$ factors to give an embedding \[\pi/G\co (\moduli{fg})^\wedge_\Gamma(R) / G \to (\moduli{fg})^\wedge_\Gamma(R/r),\] and that \Cref{MfglIsSmooth} shows that $\pi/G$ is additionally surjective.  From all this, we see that $\pi$ presents $(\moduli{fg})^\wedge_\Gamma(R)$ as a principal homogeneous space for $G$ over $(\moduli{fg})^\wedge_\Gamma(R/r)$.  An identical argument shows that smooth formal schemes also have this property, hence an isomorphism \[G \cong \CatOf{Algebras}_{k/}(\W_p(k)\ps{u_1, \ldots, u_{n-1}}, k[\eps] / \eps^2)\] would finish the induction.
-% \end{proof}
-
-\todo{\cite[Section 4.A]{Drinfeld} also contains a Lubin--Tate cohomology theory, this time for formal $A$--modules. You should also cite \cite{LubinTate}.}
-\citeme{Neil's FG notes in the first half of section 18 talk about additive extensions and their relation to infinitesimal deformations.  In the second half, he (more or less) talks about the de Rham crystal and shows that $\Ext_{\mathrm{rigid}}(G, \G_a) \cong \operatorname{Prim}(H^1_{dR}(G/X))$ in 18.37.}
-\todo{I still have some confusion about the formal similarity between deforming formal group laws over square-zero extensions of the base and deforming formal $n$--buds over the finite order nilpotent neighborhoods of a point.  This would be a good place to sort that out.}
 
 
 
