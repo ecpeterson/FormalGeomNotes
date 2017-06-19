@@ -512,26 +512,25 @@ As in the proofs of \Cref{BUtoBUZ} and \Cref{BSUToBU}, this is checked by perfor
 \end{proof}
 
 Thus far, we have constructed the solid maps in the following commutative diagram:
-\todo{Should this $(\CP^\infty_E)^{\wedge 2}$ have a $[p^\infty]$?}
 \begin{center}
 \begin{tikzcd}
 \Spec E_0 BSU \arrow{r} \arrow["\widehat \Pi_2","\cong"']{d} & \Spec E_0 BU[6, \infty) \arrow{r} \arrow["\widehat \Pi_3"]{d} & \Spec E_0 \OS{H\Z}{3} \arrow["\cong"']{d} \\
 C^2(\CP^\infty_E; \Gm) \arrow["\delta"]{r} & C^3(\CP^\infty_E; \Gm) \arrow[densely dotted, "e"]{r} & \InternalHom{FormalGroups}((\CP^\infty_E)^{\wedge 2}, \G_m),
 \end{tikzcd}
 \end{center}
-where the left-most vertical map is an isomorphism by \Cref{CharacterizationOfBSUUpperE} and right-most vertical map is an isomorphism by \Cref{EThyOfEMSpaces}.  We would like to enrich this diagram to an isomorphism of short exact sequences, and to do so we need to finish constructing the sequences themselves---we need a horizontal map $e$ making the diagram commute.
+where $\G^{\sm n}$ denotes the exterior $n${\th} power of $\G$, the left-most vertical map is an isomorphism by \Cref{CharacterizationOfBSUUpperE}, and right-most vertical map is an isomorphism by \Cref{EThyOfEMSpaces}.  We would like to enrich this diagram to an isomorphism of short exact sequences, and to do so we need to finish constructing the sequences themselves---we need a horizontal map $e$ making the diagram commute.
 
-The idea behind the construction of $e$ is to pretend that $\widehat \Pi_3$ is an isomorphism, so that we could completely detect $e$ by comparing the image of the identity point on $\Spec E_0 BU[6, \infty)$ through $\widehat \Pi_3$ to the image of the same identity point through the maps \[\Spec E_0 BU[6, \infty) \to \Spec E_0 \OS{H\Z}{3} \to \CatOf{FormalGroups}((\CP^\infty_E)^{\sm 2}, \Gm).\]  Using our calculation that $(\CP^\infty_E)^{\sm 2}$ is a $p$--divisible group, we see that we can further restrict attention to the torsion subgroups $(\CP^\infty_E)^{\sm 2}[p^j] = (BS^1[p^j]_E)^{\sm 2}$ which filter it, corresponding to analyzing the bundle classified by the restriction \todo{We are sloppy here (and possibly elsewhere) about the difference between the ring $\Z/p^j$ and the group $S^1[p^j]$.} \[BS^1[p^j]^{\sm 2} \xrightarrow{\mu} \OS{HS^1[p^j]}{2} \xrightarrow{\beta} \OS{H\Z}{3} \xrightarrow{\gamma} \OS{kU}{6}.\]  Using the abbreviation $B_j = BS^1[p^j]$, our summary goal is to find an express description of a map $d$ making the following square commute:\todo{Is ``$a$'' better named $\alpha$?}
+The idea behind the construction of $e$ is to pretend that $\widehat \Pi_3$ is an isomorphism, so that we could completely detect $e$ by comparing the image of the identity point on $\Spec E_0 BU[6, \infty)$ through $\widehat \Pi_3$ to the image of the same identity point through the maps \[\Spec E_0 BU[6, \infty) \to \Spec E_0 \OS{H\Z}{3} \to \CatOf{FormalGroups}((\CP^\infty_E)^{\sm 2}, \Gm).\]  Using our calculation that $(\CP^\infty_E)^{\sm 2}$ is a $p$--divisible group, we see that we can further restrict attention to the torsion subgroups $(\CP^\infty_E)^{\sm 2}[p^j] = (BS^1[p^j]_E)^{\sm 2}$ which filter it, corresponding to analyzing the bundle classified by the restriction \[BS^1[p^j]^{\sm 2} \xrightarrow{\mu} \OS{HS^1[p^j]}{2} \xrightarrow{\beta_j} \OS{H\Z}{3} \xrightarrow{\gamma} \OS{kU}{6}.\]  Using the abbreviation $B_j = BS^1[p^j]$, our summary goal is to find an express description of a map $d$ making the following square commute:
 \begin{center}
 \begin{tikzcd}
-B_j \sm B_j \arrow{r} \arrow["\beta\mu(a \sm a)"]{d} & \CP^\infty \sm \CP^\infty \arrow[densely dotted, "d"]{d} \\
+B_j \sm B_j \arrow{r} \arrow["\beta_j\mu(\alpha \sm \alpha)"]{d} & \CP^\infty \sm \CP^\infty \arrow[densely dotted, "d"]{d} \\
 \Susp^3 H\Z \arrow["\gamma"]{r} & \Susp^6 kU,
 \end{tikzcd}
 \end{center}
-where we have quietly replaced spaces by their suspension spectra, and where $\beta \mu(a \sm a)$ denotes the composite \[B_j^{\sm 2} \xrightarrow{a \sm a} (\Susp H\Z/n)^{\sm 2} \xrightarrow{\mu} \Susp^2 H\Z/n \xrightarrow{\beta} \Susp^3 H\Z.\]  Our strategy is to extend this putative square to a map of putative cofiber sequences
+where we have quietly replaced spaces by their suspension spectra, and where $\beta_j \mu(\alpha \sm \alpha)$ denotes the composite \[B_j^{\sm 2} \xrightarrow{\alpha \sm \alpha} (\Susp H\Z/p^j)^{\sm 2} \xrightarrow{\mu} \Susp^2 H\Z/p^j \xrightarrow{\beta_j} \Susp^3 H\Z.\]  Our strategy is to extend this putative square to a map of putative cofiber sequences
 \begin{center}
 \begin{tikzcd}
-(\CP^\infty)^{\sm 2} / B_j^{\sm 2} \arrow["\Delta"]{r} \arrow["f", densely dotted]{d} & \Susp B_j \sm B_j \arrow{r} \arrow["\beta\mu(a \sm a)"]{d} & \Susp \CP^\infty \sm \CP^\infty \arrow[densely dotted, "d"]{d} \arrow{r} & \Susp (\CP^\infty)^{\sm 2} / (B_j)^{\sm 2} \arrow["f", densely dotted]{d} \\
+(\CP^\infty)^{\sm 2} / B_j^{\sm 2} \arrow["\Delta"]{r} \arrow["f", densely dotted]{d} & \Susp B_j \sm B_j \arrow{r} \arrow["\beta_j\mu(\alpha \sm \alpha)"]{d} & \Susp \CP^\infty \sm \CP^\infty \arrow[densely dotted, "d"]{d} \arrow{r} & \Susp (\CP^\infty)^{\sm 2} / (B_j)^{\sm 2} \arrow["f", densely dotted]{d} \\
 \Susp^4 kU \arrow["\sigma"]{r} & \Susp^4 H\Z \arrow["\gamma"]{r} & \Susp^7 kU \arrow{r} & \Susp^5 kU,
 \end{tikzcd}
 \end{center}
@@ -545,18 +544,17 @@ Make the definitions
 \item $A_1$ is the projection $\frac{\CP^\infty \sm \CP^\infty}{B_j \sm B_j} \to \frac{\CP^\infty \sm \CP^\infty}{B_j \sm \CP^\infty} = (\CP^\infty / B_j) \sm \CP^\infty = T(\L^{\otimes p^j}) \sm \CP^\infty$.
 \item Similarly, $A_2$ is the swapped projection $(\CP^\infty)^{\sm 2} / B_j^{\sm 2} \to \CP^\infty \sm T(\L^{\otimes p^j})$.
 \end{itemize}
-Setting $f = \mu(u \sm x) A_1 - \mu(x \sm u) A_2$ gives the desired commuting square: \[\sigma \circ f = \beta \mu(a \sm a) \circ \Delta.\]
+Setting $f = \mu(u \sm x) A_1 - \mu(x \sm u) A_2$ gives the desired commuting square: \[\sigma \circ f = \beta_j \mu(\alpha \sm \alpha) \circ \Delta.\]
 \end{lemma}
 \begin{proof}
 The idea is to gain control of the cohomology group $H\Z^4((\CP^\infty)^{\sm 2}, B_j^{\sm 2})$ by Mayer-Vietoris, which is rendered complicated by our simultaneous use of the cofiber sequence \[B_j \to \CP^\infty \to T(\L^{\otimes p^j})\] in \emph{two} factors of a smash product.  Toward this end, consider the maps
-\todo{It is not good to name the space $B_j$ and these maps $B_1$, $B_2$.}
 \begin{align*}
 B_1\co B_j \sm T(\L^{\otimes p^j}) & \to (\CP^\infty)^{\sm 2} / B_j^{\sm 2}, &
 B_2\co T(\L^{\otimes p^j}) \sm B_j & \to (\CP^\infty)^{\sm 2} / B_j^{\sm 2},
 \end{align*}
-which have cofibers $A_1$ and $A_2$ respectively.  Direct calculation~\cite[Lemma 5.6]{AndoStrickland} shows that $(\ker B_1^*) \cap (\ker B_2^*)$ is torsion-free, so if we can identify $B_1^*(\beta \mu \circ \Delta)$ and $B_2^*(\beta \mu \circ \Delta)$, we will be most of the way there.  We pick $B_1$ to consider, as $B_2$ is similar, and we start computing, beginning with
+which have cofibers $A_1$ and $A_2$ respectively.  Direct calculation~\cite[Lemma 5.6]{AndoStrickland} shows that $(\ker B_1^*) \cap (\ker B_2^*)$ is torsion-free, so if we can identify $B_1^*(\beta_j \mu \circ \Delta)$ and $B_2^*(\beta_j \mu \circ \Delta)$, we will be most of the way there.  We pick $B_1$ to consider, as $B_2$ is similar, and we start computing, beginning with
 \begin{align*}
-B_1^*(\beta \mu (a \sm a) \circ \Delta) & = \beta \mu (a \sm a) \circ \Delta B_1. \\
+B_1^*(\beta_j \mu (\alpha \sm \alpha) \circ \Delta) & = \beta_j \mu (\alpha \sm \alpha) \circ \Delta B_1. \\
 \intertext{Writing $\delta\co T(\L^{\otimes p^j}) \to \Susp B_j$ for the going-around map in that cofiber sequence, we have
 \begin{center}
 \begin{tikzcd}[ampersand replacement=\&]
@@ -565,22 +563,22 @@ B_1^*(\beta \mu (a \sm a) \circ \Delta) & = \beta \mu (a \sm a) \circ \Delta B_1
 \end{tikzcd}
 \end{center}
 and hence}
-\beta \mu (a \sm a) \circ \Delta B_1 & = \beta \mu (a \sm a) \circ (1_B \sm \delta) \\
-& = \beta \mu (a \sm a\delta). \\
+\beta_j \mu (\alpha \sm \alpha) \circ \Delta B_1 & = \beta_j \mu (\alpha \sm \alpha) \circ (1_B \sm \delta) \\
+& = \beta_j \mu (\alpha \sm \alpha\delta). \\
 \intertext{
-The maps $a$ and $\delta$ appear in the following map of cofiber sequences:
+The maps $\alpha$ and $\delta$ appear in the following map of cofiber sequences:
 \begin{center}
 \begin{tikzcd}[ampersand replacement=\&]
-B \arrow["j"]{r} \arrow["a"]{d} \& P \arrow["q"]{r} \arrow["y"]{d} \& T \arrow["\delta"]{r} \arrow["w"]{d} \& \Susp B \arrow["a"]{d} \\
-\Susp H\Z/p^j \arrow["\beta"]{r} \& \Susp^2 H\Z \arrow["p^j"]{r} \& \Susp^2 H\Z \arrow["\rho"]{r} \& \Susp^2 H\Z/p^j,
+B \arrow["j"]{r} \arrow["\alpha"]{d} \& P \arrow["q"]{r} \arrow["y"]{d} \& T \arrow["\delta"]{r} \arrow["w"]{d} \& \Susp B \arrow["\alpha"]{d} \\
+\Susp H\Z/p^j \arrow["\beta_j"]{r} \& \Susp^2 H\Z \arrow["p^j"]{r} \& \Susp^2 H\Z \arrow["\rho"]{r} \& \Susp^2 H\Z/p^j,
 \end{tikzcd}
 \end{center}
-where $y$ is the standard Euler class in $H^2 \CP^\infty$ and the first block commutes because the bottom row is the stabilization of the top row; $w$ is the Thom class associated to $T(\L^{\otimes p^j})$ and the middle block commutes because it witnesses the $H\Z$--analogue of the statements expressed by \Cref{MUConvertsTorsionPointsToTorsionPoints} and \Cref{KtheoryConvertsTorsionToTorsion}; and the last block commutes because the other two do.\textbf{Also need some shifted mapping group to be zero?}  In particular, an application of the right-most block gives}
-\beta \mu (a \sm a\delta) & = \beta \mu (a \sm \rho w). \\
-\intertext{Using the fact that $\beta$ is the cofiber of the ring map $\rho$, there is a juggle \textbf{This looks like a $V$/$F$ relation.  Can this be made explicit?}}
-\beta \mu (a \sm \rho w) & = \mu(\beta a \sm w), \\
+where $y$ is the standard Euler class in $H^2 \CP^\infty$ and the first block commutes because the bottom row is the stabilization of the top row; $w$ is the Thom class associated to $T(\L^{\otimes p^j})$ and the middle block commutes because it witnesses the $H\Z$--analogue of the statements expressed by \Cref{MUConvertsTorsionPointsToTorsionPoints} and \Cref{KtheoryConvertsTorsionToTorsion}; and the last block commutes because $[B, \Sigma^2 H\Z] = 0$ and because the other two do.  In particular, an application of the right-most block gives}
+\beta_j \mu (\alpha \sm \alpha\delta) & = \beta_j \mu (\alpha \sm \rho w). \\
+\intertext{Using the fact that $\beta_j$ is the cofiber of the ring map $\rho$, there is a juggle}
+\beta_j \mu (\alpha \sm \rho w) & = \mu(\beta_j \alpha \sm w), \\
 \intertext{and then we use the first block in the above map of cofiber sequences to conclude}
-\mu(\beta a \sm w) & = \mu(yj \sm w).
+\mu(\beta_j \alpha \sm w) & = \mu(yj \sm w).
 \end{align*}
 Finally, we can use this to guess a formula for our desired map $f$: we set \[f = \mu(u \sm x) A_1 + \mu(x \sm u) A_2,\] because, for instance,
 \begin{align*}
@@ -590,9 +588,9 @@ B_1^*(\sigma f) & = \sigma (\mu(u \sm x) A_1 + \mu(x \sm u) A_2) B_1 \\
 \sigma \mu(x \sm u) (j \sm \id_T) & = \mu(y \sm w)(j \sm \id_T) \\
 & = \mu(yj \sm w).
 \end{align*}
-Hence, we have crafted a class $f$ with $\sigma f - \beta \mu(a \sm a) \in (\ker B_1^*) \cap (\ker B_2^*)$.
+Hence, we have crafted a class $f$ with $\sigma f - \beta_j \mu(\alpha \sm \alpha) \in (\ker B_1^*) \cap (\ker B_2^*)$.
 
-What remains is to show that this class is torsion, hence identically zero.  Half of this is obvious: $p^j \beta \mu(a \sm a) = 0$, since $p^j \beta = 0$ on its own.  For $p^j \sigma f$, we make an explicit calculation:
+What remains is to show that this class is torsion, hence identically zero.  Half of this is obvious: $p^j \beta_j \mu(\alpha \sm \alpha) = 0$, since $p^j \beta_j = 0$ on its own.  For $p^j \sigma f$, we make an explicit calculation:
 \begin{align*}
 p^j \sigma f & = p^j(\mu(w \sm y) A_1 - \mu(y \sm w) A_2) \\
 & = \mu(w \sm p^j y) A_1 - \mu(p^j y \sm w) A_2 \\
@@ -606,7 +604,7 @@ The upshot of all of this is that we have our desired calculation of the map $e$
 There is a commuting triangle
 \begin{center}
 \begin{tikzcd}
-(\Susp^\infty BS^1[p^j])^{\sm 2} \arrow["\beta"]{d} \arrow["d_j"]{rd} \\
+(\Susp^\infty BS^1[p^j])^{\sm 2} \arrow["\beta_j"]{d} \arrow["d_j"]{rd} \\
 \OS{H\Z}{3} \arrow["\gamma"]{r} & \OS{kU}{6},
 \end{tikzcd}
 \end{center}
@@ -614,7 +612,6 @@ where $d_j$ classifies the bundle \[d_j = \sum_{k=1}^{p^j-1}\left((1 - \L_1)(1 -
 \end{corollary}
 \begin{proof}
 We return to our putative map of cofiber sequences, and in particular to the right-most block
-\todo{It is not good that the Bockstein is $\beta$ and the Bott element is $\beta$.}
 \begin{center}
 \begin{tikzcd}
 \CP^\infty \sm \CP^\infty \arrow["r"]{r} \arrow["d", densely dotted]{d} & (\CP^\infty)^{\sm 2} / B_j^{\sm 2} \arrow["f"]{d} \\
@@ -634,6 +631,8 @@ This expresses $d$ in terms of $f$ in the cohomology ring $kU^*(\CP^\infty)^{\ti
 \end{align*}
 \end{proof}
 
+We take this as inspiration for an algebraic definition:
+
 \begin{definition}
 Let $\G$ be a connected $p$--divisible group of dimension $1$.  Given a point $f \in C^3(\G; \Gm)(T)$, we construct the function
 \begin{align*}
@@ -642,8 +641,6 @@ e_{p^j}(f)\co (x_1, x_2) & \mapsto \prod_{k=1}^{p^j} \frac{f(x_1, kx_1, x_2)}{f(
 \end{align*}
 As $j$ ranges, this assembles into a map \[e\co C^3(\G; \Gm) \to \InternalHom{FormalGroups}(\G^{\sm 2}, \Gm),\] called the \textit{Weil pairing} associated to $f$.
 \end{definition}
-
-
 
 By design, the map $e$ participates in a commuting square with $\Spec E_0 BU[6, \infty) \to \Spec E_0 \OS{H\Z}{3}$, so that this fills out the map of sequences we were considering before we got involved in this analysis of vector bundles.  What remains, then, is to assemble enough exactness results to apply the $5$--lemma.
 
