@@ -750,27 +750,27 @@ The \textit{Artin--Hasse exponential} is the power series \[E_p(t) = \exp\left( 
 Write $\delta_{(\G_a, \Gm)}\co C^1(\G_a; \Gm) \to C^2(\G_a; \Gm)$ and \[d_n = \begin{cases} 1 & \text{if $n = p^j$}, \\ 0 & \text{otherwise}. \end{cases}\]  The class $g_n(x, y) = \delta_{(\G_a,\Gm)} E_p(a_n x^n)^{1/p^{d_n}}$ is a series in $\F_p[a_n]\ps{x,y}$ and presents a point in $C^2(\G_a; \Gm)$ reducing to $a_n c_n \in C^2(\G_a; \G_a)$ on tangent spaces.
 \end{lemma}
 \begin{proof}
-Recall from \Cref{ArtinHasseExponential} that $E_p$ has coefficients in $\Z_{(p)}$, and hence it can be reduced to a series with coefficients in $\F_p$.   We then make the calculation
+Recall from \Cref{ArtinHasseExponential} that $E_p$ has coefficients in $\Z_{(p)}$, and hence it can be reduced to a series with coefficients in $\F_p$.   With this in mind, we make the calculation
 \begin{align*}
 g_n(x, y) & = \delta_{(\G_a, \Gm)} E_p(a_n x^n)^{1/p^{d_n}} \\
 & = \exp\left( \sum_{j=0}^\infty \frac{a_n^{p^j} \delta_{(\G_a, \G_a)} x^{np^j}}{p^{j + d_n}} \right) \\
 & = \exp\left( \sum_{j=0}^\infty \frac{a_n^{p^j} c_{np^j}(x, y)}{p^j} \right).
 \end{align*}
-As claimed, the leading term is exactly $a_n c_n$, this series is symmetric, and since it is in the image of $\delta_{(\G_a, \Gm)}$ it is certainly a $2$--cocycle.
+As claimed, the leading term is exactly $a_n c_n$, this series is symmetric, and since it is in the image of $\delta_{(\G_a, \Gm)}$ it is certainly a $2$--cocycle.  Finally, the integrality properties of $E_p$ mean that $g_n$ has coefficients in $\Z_{(p)}[a_n]$.
 \end{proof}
 
 Letting $n$ range, this culminates in the following calculation:
 
 \begin{lemma}[{\cite[Equation 3.7]{AHSTheoremOfTheCube}}]
-The map \[\Spec \Z_{(p)}[a_n \mid n \ge 2] \xrightarrow{\prod_{n \ge 2} g_2} C^2(\G_a; \Gm) \times \Spec \Z_{(p)}\] is an isomorphism. \qed
+The map \[\Spec \Z_{(p)}[a_n \mid n \ge 2] \xrightarrow{\prod_{n \ge 2} g_n} C^2(\G_a; \Gm) \times \Spec \Z_{(p)}\] is an isomorphism. \qed
 \end{lemma}
 
-The case $k = 3$ is similar, with one important new wrinkle: over an $\F_p$--algebra there is an equality $c_n^p = c_{pn}$, but this relation does not generalize to trivariate $2$--cocycles.  For instance, consider the following example at $p = 2$:
+The trivariate case $k = 3$ is similar, with one important new wrinkle: over an $\F_p$--algebra there is an equality $c_n^p = c_{pn}$, but this relation does not generalize to trivariate $2$--cocycles.  For instance, consider the following example at $p = 2$:
 \begin{align*}
 \frac{1}{2} \delta (c_6) & = x^2 y^2 z^2 + x^4 y z + x y^4 z + x y z^4, &
 \left(\frac{1}{2} \delta c_3\right)^2 & = x^2 y^2 z^2.
 \end{align*}
-The following Lemma states that this is the only new feature of the trivariate setting:
+The following Lemma states that this is the only new feature:
 \begin{lemma}[{\cite[Proposition 3.20, Proposition A.12]{AHSTheoremOfTheCube}}]
 The $p$--primary residue of the scheme of trivariate symmetric $2$--cocycles is presented by
 \[\pushQED{\qed}
@@ -810,11 +810,11 @@ C^2(\G_a; \Gm) \arrow{r}{\delta} & C^3(\G_a; \Gm) \arrow{r}{e} & \Weil(\G_a) \ar
 \end{tikzcd}
 \end{center}
 which we have shown to be exact at all the indicated nodes.  (The exactness of the topological sequence follows from the Serre spectral sequence analysis.  The exactness of the bottom sequence follows from it receiving a map from the top exact sequence, where the left-hand vertical map is an isomorphism.)  Our calculations now pay off:
-\begin{corollary}
+\begin{corollary}[{\cite[Corollary 4.14]{AHSTheoremOfTheCube}}]
 The map $\hat \Pi_3$ is an isomorphism: \[\hat \Pi_3\co \Spec H_* BU[6, \infty) \xrightarrow{\cong} C^3(\G_a; \Gm).\]
 \end{corollary}
 \begin{proof}[Proof sketch]
-We don't actually have to compute much about the middle map.  Because the squares in the map of sequences commute and the sequences themselves are exact as indicated, we at least learn that $\hat \Pi_3$ is an epimorphism\todo{Epi or mono?  Group schemes or Hopf algebras of functions?} on rings of functions.  But, since both source and target are affine schemes of graded finite type with equal Poincar\'e series in each case, our epimorphism is an isomorphism.
+We don't actually have to compute much about the middle map.  Because the squares in the map of sequences commute and the sequences themselves are exact as indicated, we at least learn that $\hat \Pi_3$ is an epimorphism on group schemes, hence a monomorphism on rings of functions.  But, since both source and target are affine schemes of graded finite type with equal Poincar\'e series in each case, this monomorphism is an isomorphism.
 \end{proof}
 
 \begin{corollary}[{\cite[Theorem 2.31]{AHSTheoremOfTheCube}}]\label{Pi3ForCplxOrientableE}
@@ -850,15 +850,15 @@ Take $E$ to be \emph{complex--orientable}.  The functor $C^3(\CP^\infty_E; \shea
 \end{corollary}
 
 \begin{lemma}\label{MSUToMU6}
-The ring map $MU[6, \infty) \to MSU$ is controlled on orientations by the map\todo{Expand this with a formula?}
-\[\pushQED{\qed}
-C^2(\CP^\infty_E; \sheaf I(0)) \xrightarrow{\delta} C^3(\CP^\infty_E; \sheaf I(0)). \qedhere
-\popQED\]
+The ring map $MU[6, \infty) \to MSU$ is modeled by the map
+\begin{align*}
+C^2(\CP^\infty_E; \sheaf I(0)) & \xrightarrow{\delta} C^3(\CP^\infty_E; \sheaf I(0)), \\
+s \in \Theta^2 \sheaf I(0) & \mapsto \frac{\mu_{12}^* s}{\mu_1^* s \otimes \mu_2^* s} \in \Theta^1 \Theta^2 \sheaf I(0) \cong \Theta^3 \sheaf I(0). \qed
+\end{align*}
 \end{lemma}
 
 \begin{remark}
-The rational conclusion of this analysis admits a very mild reformulation: there is always a natural $MU[6, \infty)$--orientation of a rational spectrum $E$ given by the composite \[MU[6, \infty) \to MU[6, \infty) \otimes \Q \to H\Q = \S \otimes \Q \xrightarrow{\eta_E} E \otimes \Q = E.\]  This canonical point turns the $C^3(\CP^\infty_E; \Gm)$--torsor structure of $C^3(\CP^\infty_E; \sheaf I(0))$ into an isomorphism $C^3(\CP^\infty_E; \sheaf I(0)) \cong C^3(\CP^\infty_E; \Gm)$.  In sum, an arbitrary $MU[6, \infty)$--orientation of $E$ is witnessed by a symmetric rigid trivariate power series satisfying $kU^0$--linearity, called its \textit{characteristic series}.
-\todo{Mention analogues in lower dimensions.  Mention how the characteristic series gives you access to the thing evaluated on ``line bundles''.}
+The rational conclusion of this analysis admits a very mild reformulation: there is always a natural $MU[6, \infty)$--orientation of a rational spectrum $E$ given by the composite \[MU[6, \infty) \to MU[6, \infty) \otimes \Q \to H\Q = \S \otimes \Q \xrightarrow{\eta_E} E \otimes \Q = E.\]  This canonical point turns the $C^3(\CP^\infty_E; \Gm)$--torsor structure of $C^3(\CP^\infty_E; \sheaf I(0))$ into an isomorphism $C^3(\CP^\infty_E; \sheaf I(0)) \cong C^3(\CP^\infty_E; \Gm)$.  In sum, an arbitrary $MU[6, \infty)$--orientation of $E$ is witnessed by a symmetric rigid trivariate power series satisfying $kU^0$--linearity, called its \textit{characteristic series}.  There are similar theories of characteristic series for rational orientations by $MSU$, $MU$, and $MUP$; in the latter two cases this recovers the \textit{Hirzebruch series}, which associated to an orientation $\phi\co MUP \to \Q \otimes E$ is the difference of trivializations $x / \exp_\phi(x)$.  Conversely, any such series gives rise to a characteristic class by the formula \[K_\phi(\L_1 \oplus \cdots \oplus \L_n) = \prod_{j=1}^n \frac{c_1(\L_j)}{\exp_\phi(c_1(\L_j))},\] where $c_1$ is the first Chern class associated to the canonical rational orientation.
 \end{remark}
 
 Our second task is to analyze the cohomology formal scheme associated to $BU[6, \infty)$, and we begin with the choice $E = H$.
