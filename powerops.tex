@@ -481,54 +481,48 @@ We can apply these observations to $E_{\widehat C}$, the Morava $E$--theory for 
 
 \section{The spectrum of modular forms}\label{ConstructionOfTMFSection}
 
-\begin{center}
-\textbf{\Large This is a paste of a talk from another venue. It needs reworking.}
-\end{center}
+The introduction of the geometry of $E_\infty$ ring spectra has borne out a second version of the $\sigma$--orientation, summarized as a map of $E_\infty$ ring spectra \[\sigma\co M\String \to \tmf.\]  This map has \emph{extremely} good properties, not only owing to it being a map of structured ring spectra but to the object $\tmf$ itself, not heretofore discussed.  This is one variant of the spectrum of \textit{topological modular forms}, which comes about from the following daydream: according to \Cref{EllipticSpectraAreOriented} and \Cref{EllipticSpectraAreOrientedByString}, every elliptic spectrum is naturally oriented, and the system of orientations should give rise to a $\String$--orientation of the homotopy limit over all elliptic spectra, itself a kind of ``universal'' elliptic spectrum.  There are several delicate points to this: the limit of a diagram of rings need not be a complex-orientable ring spectrum (cf.\ the $C_2$--equivariant spectrum $KU$); this diagram is very large; and the diagram exists only in the homotopy category and contains loops, so ``homotopy limit'' is not automatically defined without finding a lift to a more structured context.
 
-This is a service talk.  One of the goals of this conference is to discuss Serre duality on derived stacks, and in order to explore this idea we require some interesting examples of derived stacks.  We have been continually interested in the moduli stack of elliptic curves, and this is the stack we will seek a topological enrichment for.  To begin: what is a topological enrichment?
+The goal of this Lecture is to sketch out both the ingredients and the recipe for constructing this object.  We aren't going to prove the main theorem in full detail, as the details are so thick that they do not admit a more reasonable presentation than what Beherns has already given~\citeme{Behrens}.  The idea is to make use of the obstruction theory that $E_\infty$ rings garner us, and to ``work locally'' on a particular class of examples where the obstruction theory is well-behaved, using these to carefully exhaust the problem.  We begin with a precise definition of what ``locally'' means in this setting:
 
-\begin{definition}
-Let $f\co \stack N \to \moduli{fg}$ be a flat, representable morphism of stacks.  A \textit{topological enrichment} of $\stack N$ is a sheaf of $E_\infty$ ring spectra $\sheaf O$ on $\stack N$ such that\todo{Talk about the complex-oriented cohomology of $\CP^1$.} \[\pi_n \circ \sheaf O \cong \begin{cases} f^* \omega^{\otimes k} & \text{if $n = 2k$ is even}, \\ 0 & \text{if $n$ is odd}. \end{cases}\]
+\begin{definition}[{\cite[Definition 6.2.2.6, Section 6.5]{LurieHTT}}]
+A \textit{$\CatOf{D}$--valued sheaf} on a site $\CatOf{C}$ is a functor $F\co \CatOf C \to \CatOf D$ that converts \v{C}ech diagrams to homotopy limit diagrams.
 \end{definition}
 
-\begin{remark}
-To gain intuition for the above, ignore the structure ring spectrum part and recall that a Landweber-flat even-periodic cohomology theory $R$ is determined by a flat map $\Spec R_0 \to \moduli{fg}$ from an affine, together with a preferred lift to $\moduli{fgl}$.  In this case, we have \[\pi_2 R = [\S^2, R] = [\CP^1, R] = \widetilde R^0 \CP^1 = \frac{\ker R^0 \CP^\infty \to R^0(*)}{(\ker R^0 \CP^\infty \to R^0(*))^{\otimes_{R^0 \CP^\infty} 2}},\] which is the cotangent space of $R^0 \CP^\infty$ or the invariant $1$--forms on $R^0 \CP^\infty$.\footnote{The identification of these two things is an indirect consequence of the discussion of logarithms from Luca's talk.}  This explains the condition about homotopy groups.
-\end{remark}
-
-\begin{remark}
-To gain intuition about what a topological enrichment gains us, consider a flat map $\Spec R \to \stack N$.  We recover a complex-orientable homology theory $R_0(-)$ in the same way as Landweber's theorem, and its associated formal group is classified by the composite to $\moduli{fg}$.  Given an \'etale map $\Spec R \to \stack N$ and a topological enrichment $\sheaf O$, this homology theory has a chosen lift to an $E_\infty$ ring spectrum: $\sheaf O(R)$.
-\end{remark}
+\begin{definition}[{\cite[Remark 4.1]{GoerssTMF}}]
+Let $f\co \stack N \to \moduli{fg}$ be a flat, representable morphism of stacks.  A \textit{topological enrichment} of $\stack N$ is a sheaf of $E_\infty$ ring spectra $\sheaf O$ on $\stack N$ such that\footnote{In particular, $\pi_0 \sheaf O$ recovers the structure sheaf of $\stack N$.} \[\pi_n \circ \sheaf O \cong \begin{cases} f^* \omega^{\otimes k} & \text{if $n = 2k$ is even}, \\ 0 & \text{if $n$ is odd}. \end{cases}\]
+\end{definition}
 
 Fix a fixed map $f\co \stack N \to \moduli{fg}$, this has its own associated moduli problem of topological enrichments of $f$.
 
-\begin{theorem}[Goerss--Hopkins--Miller; Behrens; Lurie]
-The moduli of topological enrichments of $\moduli{ell}$ is contractible.
+\begin{theorem}[{Goerss--Hopkins--Miller~\cite{GoerssHopkins}; Behrens; Lurie~\cite{LurieSurveyOfEll}}]
+\citeme{Behrens from the tmf volume; Hopkins--Miller from the tmf volume}
+The moduli of topological enrichments of $\moduli{ell}$, the moduli of elliptic curves, is contractible.
 \end{theorem}
 
-\noindent The cohomology theories manufactured from this sheaf are examples of \textit{elliptic spectra}, which are triples $(E, C, \phi)$ of an even-periodic cohomology theory $E$, a elliptic curve $C$, and an isomorphism $\phi$ between $C^\wedge_0$ and the formal group associated to $E^0 \CP^\infty$.
-
-We aren't going to prove this theorem---the details are too thick to completely present in an hour, even assuming much more topological technology---but I hope to give enough indications of the proof that you get the gist and are able to slot in the relevant topological inputs as you learn about them.  Our approach is to work locally on $\moduli{ell}$: divide it up over primes by passing to the $p$--completion, then divide the $p$--complete moduli itself into two further regions by using the following result:
+It is in this sense that we will work locally: we will construct a topological enrichment of $\moduli{ell}$ by doing so locally, then gluing the resulting local definitions together along common subsets to generate a sheaf on the entire object.  We first divide $\moduli{ell}$ up over primes by passing to the $p$--completion, then we further divide the $p$--complete moduli itself into two regions via the following result:
 
 \begin{lemma}
-The $p$--divisible group of an elliptic curve is either formal of height $2$ or an extension of an \'etale $p$--divisible group of height $1$ by a formal group of height $1$. \qed
+The $p$--divisible group of an elliptic curve is either formal of height $2$ (called the \textit{supersingular} case) or an extension of an \'etale $p$--divisible group of height $1$ by a formal group of height $1$ (called the \text{ordinary} case).
 \end{lemma}
-% \begin{proof}
-% The Riemann--Manin symmetry condition states that the quasi-isogeneous components of a Dieudonn\'e module associated to an abelian variety are Cartier self-symmetric.  Then, an abelian variety of dimension $d$ has $p$--divisible group of height $2d$.
-% \end{proof}
+\begin{proof}
+The category of Dieudonn\'e modules with quasi-isogenies inverted becomes semisimple, and the simple components all take the form \[M_{m, n} = \Cart_{\overline{\F}_p} / (V^m = F^n),\] for $m$ and $n$ copromise.  An abelian variety is always isogenous to its dual, and hence in this semisimple category the Dieudonn\'e module associated to an abelian variety decomposes into a Cartier self-symmetric sum of generators.  An abelian variety of dimension $d$ has $p$--divisible group of height $2d$, and Cartier duality on these simple components obeys the formula $DM_{m,n} = M_{n,m}$, from which it follows that the only possibilities for the quasi-isogenous components of a $p$--divisible group associated to an elliptic curve are $M_{1,1}$ and $M_{1,0} \oplus M_{0,1}$.
+\end{proof}
 
-\noindent Elliptic curves over a $p$--complete ring with connected $p$--divisible groups (i.e., those of the first form) are called \textit{supersingular}, whereas those of the second form are called \textit{ordinary}.  The most important fact about supersingular elliptic curves is that they are reasonably uncommon:
+The names supersingular and ordinary are partially explained by the following result, which says that ordinary curves form the generic case and that supersingular curves are comparatively very rare:
 
 \begin{lemma}
 The supersingular locus of $\moduli{ell}$ is $0$--dimensional.  In fact, it is the zero-locus of a polynomial of degree $\lfloor (p-1)/12 \rfloor + \{0, 1, 2\}$. \qed
 \end{lemma}
 
-We write $i\co \moduli{ell}^{\ord} \to \moduli{ell}$ for the open inclusion of the ordinary locus.  We then plan to recover a topological enrichment by constructing the pieces of the following pullback:\footnote{This is an incarnation of the chromatic fracture square.  The top-right node is the $K(2)$--local component, the bottom-left is the $K(1)$--local component, and the bottom-right is the gluing data: the $K(1)$--localization of the $K(2)$--local component.}
+\noindent We write $i\co \moduli{ell}^{\ord} \to \moduli{ell}$ for the open inclusion of the ordinary locus.  We then plan to recover a topological enrichment by constructing the pieces of the following pullback:
 \begin{center}
 \begin{tikzcd}
 & \sheaf O_{\top} \arrow{r} \arrow{d} & (\sheaf O_{\top})^\wedge_{\moduli{ell}^{\ss}} \arrow{d} & \sheaf O^{\ss} \arrow[equal]{l} \\
 \sheaf O^{\ord} \arrow[equal]{r} & i_* i^* \sheaf O_{\top} \arrow{r} & i_* i^* \left((\sheaf O_{\top})^\wedge_{\moduli{ell}^{\ss}}\right).
 \end{tikzcd}
 \end{center}
+This decomposition is compatible with the perspective on homotopy theory taken up in the rest of this textbook: this decomposition is an instantiation of the chromatic fracture square.  The top-right node forms the $\widehat L_2$--local component, the bottom-left forms the $\widehat L_1$--local component, and the bottom-right is the gluing data: the $\widehat L_1$--localization of the $\widehat L_2$--local component.
 
 
 
@@ -537,25 +531,25 @@ We write $i\co \moduli{ell}^{\ord} \to \moduli{ell}$ for the open inclusion of t
 
 \subsection*{The supersingular locus}
 
-Our task in this section is to define $\sheaf O^{\ss}$ on $\widehat{\moduli{ell}^{\ss}}$, the supersingular part of the topological enrichment.  In order to make this definition, we need to specify its behavior on formal \'etale affines.  Since the moduli is itself $0$--dimensional, these are exactly the formal affine covers of the deformation spaces of the supersingular curves in the larger moduli $\moduli{ell}$.  The following arithmetic result gives us a crucial reduction:
+Our task in this section is to define $\sheaf O^{\ss}$ on $\widehat{\moduli{ell}^{\ss}}$, the supersingular part of the topological enrichment, and it suffices to specify its behavior on formal \'etale affines.  Since the moduli is itself $0$--dimensional, these are exactly the affine covers of the deformation spaces of the supersingular curves in the larger moduli $\moduli{ell}$.  The following arithmetic result gives us a crucial reduction:
 
-\begin{theorem}[Serre--Tate]
-The map $\moduli{ell} \to \moduli{pdiv}(2)$ is formally \'etale.\footnote{In general, the Serre--Tate theorem states that $\moduli{ab}^{d} \to \moduli{pdiv}(2d)$ is formally \'etale.} \qed
+\begin{theorem}[{Serre--Tate~\cite[Appendix 1]{KatzSTLocalModuli}}]
+The map $\moduli{ell} \to \moduli{pdiv}(2)$ is formally \'etale, where $\moduli{pdiv}(2)$ is the moduli of $p$--divisible groups of height $2$.\footnote{In general, the Serre--Tate theorem states that $\moduli{ab}^{d} \to \moduli{pdiv}(2d)$ is formally \'etale.} \qed
 \end{theorem}
 \begin{lemma}
 The deformation theory of a connected $p$--divisible group of height $d$ as a $p$--divisible group is isomorphic to the deformation theory of the associated formal group of height $d$ as a formal group. \qed
 \end{lemma}
 
-This reduces us to a case from JD's talk: the inclusion of a deformation neighborhood of a height $2$ point on the moduli of formal groups, which he showed had an associated homology theory called \textit{Morava $E$--theory}.  A \emph{very} extravagant application of the tools from Ben's talk yields the following theorem, essentially owing to the very nice (i.e., formally smooth) deformation space and very nice (i.e., formally smooth) space of operations:
+This reduces us to finding a topological enrichment for $(\moduli{fg})^\wedge_{\widehat{C}}$, i.e., a version of Morava $E$--theory.  A \emph{very} extravagant application of the resolution tools for $E_\infty$ ring spectra yields the following theorem, essentially owing to the very nice (i.e., formally smooth) deformation space and very nice (i.e., formally smooth) space of operations:
 
-\begin{theorem}[Goerss--Hopkins--Miller]
-Let $\Gamma$ be a finite height formal group over a perfect field.  The moduli of topological enrichments of $(\moduli{fg})^\wedge_\Gamma$ is homotopy equivalent to $B\Aut \Gamma$.  These operations are distinguished by their behavior on the cohomology of $\CP^\infty$. \qed
+\begin{theorem}[{Goerss--Hopkins--Miller~\cite[Corollary 7.6--7]{GoerssHopkins}}]\label{GHMTheoremForEThy}
+Let $\Gamma$ be a finite height formal group over a perfect field.  The moduli of topological enrichments of $(\moduli{fg})^\wedge_\Gamma$ is homotopy equivalent to $B\Aut \Gamma$.  An element $\gamma$ of $\pi_1$ of this moduli based at a specific realization $E_\Gamma$ gives a cohomology operation $\psi^\gamma\co E_\Gamma \to E_\Gamma$ whose behavior on $\CP^\infty_{E_\Gamma}$ is to induce the automorphism $\gamma$. \qed
 \end{theorem}
 
-In particular, this gives a canonical topological enrichment of $\widehat{\moduli{ell}^{\ss}}$: it is the pullback of the Goerss--Hopkins--Miller sheaf along the Serre--Tate map \[\widehat{\moduli{ell}^{\ss}} = \coprod_{\text{supersingular $C$}} (\moduli{ell})^\wedge_C \xrightarrow{\text{f.\'e.}} \coprod_{\text{supersingular $C$}} (\moduli{pdiv}(2))^\wedge_{C[p^\infty]} \xleftarrow{\cong} \coprod_{\text{supersingular $C$}} (\moduli{fg})^\wedge_{\widehat C}.\]
+Now we use the reduction above to extract from this a topological enrichment of $\widehat{\moduli{ell}^{\ss}}$: the enrichment sheaf arises as the pullback of the Goerss--Hopkins--Miller sheaf along the Serre--Tate map \[\widehat{\moduli{ell}^{\ss}} = \coprod_{\text{s.s.\ $C$}} (\moduli{ell})^\wedge_C \xrightarrow{\text{f.\'e.}} \coprod_{\text{s.s.\ $C$}} (\moduli{pdiv}(2))^\wedge_{C[p^\infty]} \xleftarrow{\cong} \coprod_{\text{s.s.\ $C$}} (\moduli{fg})^\wedge_{\widehat C}.\]
 
 \begin{remark}
-This buys you more than just a bouquet of Morava $E$--theories, or even the global sections \[\sheaf O^{\ss}\left(\widehat{\moduli{ell}^{\ss}}\right) = \prod_{\text{supersingular $C$}} E_{\widehat C}^{h\Aut C}.\]  For instance, the moduli $\moduli{ell}^{\ss}(N)$ of supersingular elliptic curves $C$ equipped with specified isomorphisms $C[N] \cong (\Z/N)^{\times 2}$ forms an \'etale cover of $\moduli{ell}^{\ss}$ whenever $p \nmid N$, and hence this sheaf produces spectra $\TMF(N)^{\ss} = \sheaf O^{\ss}(\moduli{ell}^{\ss}(N))$ satisfying $(\TMF(N)^{\ss})^{hGL_2(\Z/N)} \simeq \TMF^{\ss}$.
+This buys more than just a bouquet of Morava $E$--theories, or even the global sections \[\sheaf O^{\ss}\left(\widehat{\moduli{ell}^{\ss}}\right) = \prod_{\text{supersingular $C$}} E_{\widehat C}^{h\Aut C}.\]  For instance, the moduli $\moduli{ell}^{\ss}(N)$ of supersingular elliptic curves $C$ equipped with a level--$N$ structure\footnote{A \textit{level--$N$ structure} is a specified isomorphism $C[N] \cong (\Z/N)^{\times 2}$, i.e., a choice of basis for the $N$--torsion.} forms an \'etale cover of $\moduli{ell}^{\ss}$ whenever $p \nmid N$, and hence this sheaf produces a spectrum $\TMF(N)^{\ss} = \sheaf O^{\ss}(\moduli{ell}^{\ss}(N))$ satisfying $(\TMF(N)^{\ss})^{hGL_2(\Z/N)} \simeq \TMF^{\ss}$.
 \end{remark}
 
 
@@ -566,21 +560,41 @@ This buys you more than just a bouquet of Morava $E$--theories, or even the glob
 
 \subsection*{The ordinary locus}
 
-Before addressing the ordinary locus in earnest, where our goal is to manufacture a \emph{lot} of cohomology theories, we spend a moment thinking about a particular example: $p$--adic $K$--theory, a familiar cohomology theory whose formal group looks like one associated to an ordinary elliptic curve.  Using the Goerss--Hopkins--Miller theorem stated above, $p$--adic $K$--theory appears as the $E_\infty$ ring\footnote{$K$--theory can be given the structure of an $E_\infty$ ring spectrum directly from the geometry of vector bundles, and it is a further theorem that these two structures agree.} of sections assigned to the \'etale cover \[\Spf \Z_p \to (\moduli{fg})^\wedge_{\G_m}.\]  Using $\Aut \G_m = \Z_p^\times$, the second half of the Goerss--Hopkins--Miller theorem endows this with a $\Z_p^\times$--indexed family of $E_\infty$ ring maps, denoted $\psi^k$ for $k \in \Z_p^\times$.  Their effect on the cohomology of $\CP^\infty$ is given by
+We now turn to the ordinary locus, which constitutes the bulk of the problem: remember that the supersingular locus was essentially discrete, and we are setting out to construct a sheaf, which means that we will be manufacturing a \emph{lot} of spectra.  The main tool for analyzing this situation is a specialization of the obstruction theory of Goerss--Hopkins--Miller.  First, note that completed $p$--adic $K$--homology (i.e., continuous Morava $E$--theory for $\G_m$) carries an action by $\Aut \G_m$, and using the results of \Cref{PowerOpnsSection} this extends to an action by $\End \G_m$ using the $p${\th} power operation.  In turn, the completed $p$--adic $K$--homology of an $E_\infty$ ring spectrum carries an action by $\End \G_m$, which is sometimes referred to as the structure of a \textit{$\theta$--algebra}.  To be more explicit:
+\begin{theorem}[McClure]
+The homotopy of a $K(1)$--local commutative $K_p$--algebra spectrum $R$, such as $\widehat L_1 (K_p \sm E)$, carries an extra family of ring operations $\psi^k$ indexed on $k \in \Z_p$, as well as a ring map $\theta$,\footnote{If $E_*$ is torsion-free, then the last condition means that $\theta$ is redundant.} such that
 \begin{align*}
-\psi^k\co K_p^0 \CP^\infty & \to K_p^0 \CP^\infty, \\
-x & \mapsto 1 - (1 - x)^k,
+\psi^1(x) & = x, &
+\psi^k (\psi^{k'} x) & = \psi^{kk'}(x), \\
+\psi^p(x) & = x^p + p\theta(x), &
+\psi^k(x) \cdot \psi^{k'}(x) & = \psi^{k + k'}(x). \qed
 \end{align*}
-where $x \in K_p^0 \CP^\infty$ is the ``usual'' power series generator.
+\end{theorem}
+\noindent Goerss--Hopkins--Miller obstruction theory reverses this information flow by seeking answers to the questions:
+\begin{itemize}
+    \item Given a $\theta$--algebra $A$, what is the moduli of $E_\infty$ rings whose completed $p$--adic $K$--homology is isomorphic to $A$, called a \textit{realization} of $A$?\footnote{Note that the homotopy of $E$ itself can be recovered from that of $R = \widehat L_1 (K_p \sm E)$ by taking fixed points for the $\Z_p^\times$--action, i.e., by an Adams spectral sequence.}
+    \item Given a map $f\co A \to B$ of $\theta$--algebras, as well as specified realizations $R$ and $S$ of $A$ and $B$ respectively, what is the moduli of maps $R \to S$ of $E_\infty$ rings which realize to $f$?
+\end{itemize}
 
-On the other hand, the $E_\infty$ ring structure itself gives another map \[P^p\co K_p^0 \to K_p^0 B\Sigma_p,\] the $p${\th} power operation.  There is a calculation $K_p^0 B\Sigma_p = K_p^0\{1, \theta\}$, and in these terms the effect of the $p${\th} power operation on the cohomology of $\CP^\infty$ is
-\begin{align*}
-P^p\co K_p^0 \CP^\infty & \to K_p^0 \CP^\infty \otimes K_p^0\{1, \theta\}, \\
-x & \mapsto (1 - (1 - x)^p) \otimes \theta.
-\end{align*}
-This extra operation describes an extension of the $\Z_p^\times$ action on $K_p$ to an action of the monoid $\Z_p$.\footnote{An alternative description of the effect of the power operation is that it encodes quotienting by an order $p$ subgroup of the formal group associated to $E_\Gamma$, and it so happens that $\G_m[p]$ is the \emph{unique} such subgroup for $\G_m$.}
+\begin{theorem}[{Goerss--Hopkins, $K(1)$--locally}]
+Given a map of $\theta$--algebras $f\co A_* \to B_*$, the following Andr\'e--Quillen cohomology groups (internal to $\theta$--algebras) measure various obstructions:
+\begin{center}
+\begin{tabular}{@{}ccc@{}} \toprule
+moduli problem & existence & uniqueness \\
+\midrule
+a model $E$ for $A$ & $H^{s \ge 3}_\theta(A_*, \Loops^{s-2} A_*)$ & $H^{s \ge 2}_\theta(A_*, \Loops^{s-1} A_*)$ \\
+a map $E \to F$ of models & $H^{s \ge 2}_\theta(A_*, \Loops^{s-1} B_*)$ & $H^{s \ge 1}_\theta(A_*, \Loops^s B_*)$. \\
+ \bottomrule
+\end{tabular}
+\end{center}
+Finally, given such a map $f$, there is a spectral sequence computing the homotopy groups of the $E_\infty$ mapping space: \[E_2^{s, t} = H^s_\theta(A_*, \Loops^{-t} B_*) \Rightarrow \pi_{-s-t}(E_\infty(E, F), f). \qed\]
+\end{theorem}
 
-In general, the $p$--adic $K$--theory of an $E_\infty$ ring spectrum also carries a $\Z_p$--action (and perhaps a little more, if the homotopy groups are not torsion-free), called a \textit{$\theta$--algebra}.  A different version of the Goerss--Hopkins--Miller theorem gives a reverse-engineering tool that converts information about $\theta$--algebras into information about the space of possible ordinary $E_\infty$ ring spectra yielding them on evaluation of $p$--adic $K$--theory, or the mapping space between two such.  A tool from JD's talk lets us guess which algebra should be associated to the $p$--adic $K$--theory of the global sections of $\sheaf O^{\ord}$, pictured in the first pullback square below:
+\begin{remark}
+These enhanced Andr\'e--Quillen cohomology groups can be computed using a Grothendieck-type spectral sequence, intertwining classical Andr\'e--Quillen cohomology groups for commutative rings with the extra task of checking compatibility with the $\theta$--algebra structure.  In practice, this means that if the underlying ring of a $\theta$--algebra is especially nice, it is immediately guaranteed that the relevant obstruction groups vanish.
+\end{remark}
+
+In order to apply this theorem, we need a guess as to what $\theta$--algebra should correspond to the completed $p$--adic $K$--theory of $\TMF$.  The discussion in \Cref{PullingBackOverMfgVsMfgl}, \Cref{DefnChromaticHomologyThys}, and \Cref{RemovingStackinessFromSpectra} provide the foothold we need.  We expect the $\theta$--algebra to appear as the corner in the following pullback square:
 
 \begin{center}
 \begin{tikzcd}
@@ -589,20 +603,30 @@ In general, the $p$--adic $K$--theory of an $E_\infty$ ring spectrum also carrie
 \end{tikzcd}
 \end{center}
 
-\noindent Moreover, $V^\wedge_\infty$ has a natural structure as a $\theta$--algebra: the interesting map $\psi^p$ acts by \[\psi^p\co (C, \eta\co \G_m \xrightarrow\cong \widehat C) \mapsto \left(
+\noindent Defined via these moduli, $V^\wedge_\infty$ has a natural structure as a solution to a moduli problem itself: it parameterizes pairs $(C, \eta\co \G_m \xrightarrow{\cong} \widehat C)$ of ordinary elliptic curves and markings of their associated formal groups.  It also carries a natural interpretation as a $\theta$--algebra: the interesting operation $\psi^p$ acts by
+\[
+\psi^p\co (C, \eta\co \G_m \xrightarrow\cong \widehat C) \mapsto \left(
 \begin{tikzcd}
 \G_m[p] \arrow{r} \arrow{d} & \G_m \arrow["p"]{r} \arrow["\eta"]{d} & \G_m \arrow[densely dotted, red, "\eta^{(p)}"]{d} \\
 C[p]\arrow{r} & C \arrow["p"]{r} & C^{(p)}
 \end{tikzcd}
-\right).\]  Unfortunately, this $\theta$--algebra is not nice enough to apply the Goerss--Hopkins--Miller theorem.  At this point, it becomes convenient to work at $p \ge 5$ for simplicity, where introducing a formal $(\Z/p)$--level structure fixes this:
-\begin{lemma}[Igusa]
+\right).
+\]
+Unfortunately, this $\theta$--algebra is not nice enough to apply the Goerss--Hopkins--Miller theorem.  In order to fix this, it becomes convenient to work at $p \ge 5$ for simplicity, and we then pass to a slightly more rigid moduli: we introduce a formal $(\Z/p)$--level structure, i.e., an isomorphism $\Z/p \cong (\widehat C)[p]$.  This \'etale $(\Z/p)^\times$--cover of $\moduli{ell}^{\ord}$ has the following exceptional property:
+
+\begin{lemma}[Igusa]\citeme{Igusa}
 For $p \ge 5$, the moduli $\moduli{ell}^{\ord}(p)$ is \emph{affine}. \qed
 \end{lemma}
+
 \begin{corollary}
 The associated $\theta$--algebra $W_1$ has vanishing Goerss--Hopkins--Miller obstruction groups, hence realizes uniquely to an ordinary $E_\infty$ ring spectrum $\TMF(p)^{\ord}$, and the action of $(\Z/p)^\times$ on the level structure enhances to a coherent $(\Z/p)^\times$--action on $\TMF(p)^{\ord}$. \qed
 \end{corollary}
 
-We define $\TMF^{\ord}$, our candidate for $\Gamma(\sheaf O^{\ord})$, to be the $(\Z/p)^\times$--fixed points of $\TMF(p)^{\ord}$, and indeed its $p$--adic $K$--theory is $V^\wedge_\infty$.  More than this, it turns out that the $\theta$--algebra associated to any formal \'etale affine open of $\moduli{ell}^{\ord}$ has a unique realization \emph{as an algebra under $\TMF(p)^{\ord}$}, and maps between such also lift uniquely---and this gives us the desired sheaf $\sheaf O^{\ord}$.  This is a common strategy: find a topological enrichment of an affine cover of your stack of interest, then descend it to the stack itself.
+We define $\TMF^{\ord}$, our candidate for $\Gamma(\sheaf O^{\ord})$, to be the $(\Z/p)^\times$--fixed points of $\TMF(p)^{\ord}$, and indeed its $p$--adic $K$--theory is $V^\wedge_\infty$.  More than this, it turns out that the $\theta$--algebra associated to any formal \'etale affine open of $\moduli{ell}^{\ord}$ has a unique realization \emph{as an algebra under $\TMF(p)^{\ord}$}, and maps between such also lift uniquely.  Altogether, this gives us the desired sheaf $\sheaf O^{\ord}$---and it shows that the potential complexity introduced by working with sheaves in an $\infty$--category does not arise in this case.
+
+\begin{remark}
+This approach is also a common strategy: first find a topological enrichment of an affine cover of your stack of interest, then descend it to the stack itself.
+\end{remark}
 
 
 
@@ -610,23 +634,33 @@ We define $\TMF^{\ord}$, our candidate for $\Gamma(\sheaf O^{\ord})$, to be the 
 
 \subsection*{Gluing data}
 
-The last thing we have to do to construct the pullback square is to manufacture a map of sheaves \[i_* i^* \sheaf O_{\top} \to i_* i^* \left((\sheaf O_{\top})^\wedge_{\moduli{ell}^{\ss}}\right).\]  This is rather similar to the construction of $\sheaf O^{\ord}$ itself: we construct a candidate map $\TMF^{\ord} \to (\TMF^{\ss})^{\ord}$ of global sections, and then we use this to control the map of sheaves using relative Goerss--Hopkins obstruction theory.
-
-The main result that marries algebra to topology are the following two results about $(\TMF^{\ss})^{\ord}$.  The first is that $(\TMF^{\ss})^{\ord}$ counts as an elliptic spectrum:
+The last thing we have to do to construct the pullback square is to manufacture a map of sheaves \[i_* i^* \sheaf O_{\top} \to i_* i^* \left((\sheaf O_{\top})^\wedge_{\moduli{ell}^{\ss}}\right).\]  This is rather similar to the construction of $\sheaf O^{\ord}$ itself: we construct a candidate map $\TMF^{\ord} \to (\TMF^{\ss})^{\ord} =: \widehat L_1 (\TMF^{\ss})$ of global sections, and then we use this to control the map of sheaves using relative Goerss--Hopkins obstruction theory.  The main results that marry algebra to topology are the following two facts about $(\TMF^{\ss})^{\ord}$.  The first is that $(\TMF^{\ss})^{\ord}$ counts as an elliptic spectrum:
 
 \begin{lemma}
-There is an elliptic curve $C^{\alg}$ over an affine $\Spf ((V^\wedge_\infty)^{\ss})$ such that $(\TMF^{\ss})^{\ord}$ is an elliptic spectrum for this curve. \qed
+There is an elliptic curve $C^{\alg}$ over an affine $\Spf ((V^\wedge_\infty)^{\ss})$ such that $(\TMF^{\ss})^{\ord}$ is an elliptic spectrum for this curve.
 \end{lemma}
+\begin{proof}[Remarks on proof]
+This comes down to \textit{algebraization}: in certain cases involving formal schemes, one can guarantee the existence of extensions of the following form:
+\begin{center}
+\begin{tikzcd}
+\Spf A \arrow{r} \arrow{d} & X \arrow{d} \\
+\Spec A \arrow[densely dotted,"\exists"]{r} & Y.
+\end{tikzcd}
+\end{center}
+Such a theorem appears here when studying the homotopy ring of $\widehat L_1 E_{\widehat C}$, which can be calculated to be \[\pi_0 \widehat L_1 E_{\widehat C} = (\pi_0 E_{\widehat C})[u_1^{-1}]^\wedge_p,\] which is no longer easily viewed as the ring of functions on a formal scheme.  However, if the classifying map $\Spec \pi_0 E_{\widehat C} \to \moduli{ell}$ is first algebraized, these operations of localization and completion can be performed on ordinary affine schemes.  This has its own wrinkle: algebraization is hard to understand, for one, but we are also briefly obligated to replace $X = \moduli{ell}$ by a certain compactified moduli $Y = \overline{\moduli{ell}}$ of cubic curves with nodal singularities allowed.
+\end{proof}
 
-\noindent This gives two candidates for a $\theta$--algebra structure on the $p$--adic $K$--theory of $\TMF^{\ss}$: there is the $\theta$--algebra structure coming from the geometric map $\Spf ((V^\wedge_\infty)^{\ss}) \to \Spf V^\wedge_\infty$, and there is the $\theta$--algebra structure coming from the shear fact that $(\TMF^{\ss})^{\ord}$ is an ordinary $E_\infty$ ring spectrum.
+\noindent This specification of a map $\Spf ((V^\wedge_\infty)^{\ss}) \to \moduli{ell}$ gives two candidates for a $\theta$--algebra structure on the $p$--adic $K$--theory of $\TMF^{\ss}$: there is the $\theta$--algebra structure coming from transfer of structure along the map of schemes, and there is the $\theta$--algebra structure coming from the shear fact that $(\TMF^{\ss})^{\ord}$ is an $E_\infty$ ring spectrum, and hence topology simply imbues it with such algebraic structure.
 
 \begin{theorem}
-The natural $\theta$--algebra structure on $\Spf ((V^\wedge_\infty)^{\ss})$ induced by the map $\Spf ((V^\wedge_\infty)^{\ss}) \to \Spf V^\wedge_\infty$ agrees with the Goerss--Hopkins--Miller $\theta$--algebra structure on $\pi_* (\TMF^{\ss})^{\ord}$. \qed
+The natural $\theta$--algebra structure on $\Spf ((V^\wedge_\infty)^{\ss})$ induced by the map $\Spf ((V^\wedge_\infty)^{\ss}) \to \Spf V^\wedge_\infty$ agrees with the Goerss--Hopkins--Miller $\theta$--algebra structure on $K_p (\TMF^{\ss})$. \qed
 \end{theorem}
 
-\noindent This is to be read as a recognition theorem for the $\theta$--algebra structure on the topological object $(\TMF^{\ss})^{\ord}$: it matches the algebraic model.  Once this is established, the Goerss--Hopkins--Miller obstructions can be shown to vanish, and it follows that the above map lifts to a map of the $E_\infty$ rings of global sections, and then one proceeds to produce the map of sheaves by further applications of obstruction theory.
+\noindent This is to be read as a recognition theorem for the $\theta$--algebra structure on the topological object $(\TMF^{\ss})^{\ord}$: it matches the algebraic model.  Once this is established, the Goerss--Hopkins--Miller obstructions can be shown to vanish after introducing a suitable level structure; it follows that the above map lifts to a $(\Z/p)^{\times}$--equivariant map of the $E_\infty$ rings of the global sections over the moduli with level structure; this descends to a map of global sections over the original module after taking $(\Z/p)^\times$--fixed points; and one finally produces the map of sheaves by further applications of relative obstruction theory.
 
+\begin{remark}
 Arithmetic fracture is dealt with similarly, but it is \emph{far} simpler.  Because $\Q \otimes \TMF$ has a smooth $\Q$--algebra as its homotopy, the obstructions governing the version of Goerss--Hopkins--Miller for commutative $H\Q$--algebras vanish, letting us lift algebraic results into homotopy theory wholesale.
+\end{remark}
 
 
 
@@ -647,12 +681,16 @@ At the prime $2$, two further things go wrong: one must pass to the Igusa cover 
 There is another way to construct $\TMF^{\ord}$ at low primes, given by a complex consisting of two $E_\infty$ cells attached to $\S$.  The way this is done, essentially, is by constructing a complex whose $p$--adic $K$--theory matches the expected value: first it must have the right dimension, and then the action of $\theta$ must be corrected.
 \end{remark}
 
-\begin{remark}
+\begin{remark}[{\cite[Section 7]{LawsonAbVars}}]
 There is an analogous (and much easier) picture for the moduli of forms of the multiplicative group: any ordered pair of puncture points in $\mathbb A^1$ can be used to give $\mathbb P^1$ the unique structure of a group with identity at $\infty$, and the associated formal group is classified by a map $\moduli{\mathbb G_m} \to \moduli{fg}$; there is an equivalence $\moduli{\mathbb G_m} \simeq BC_2$; and $KU$ forms the global sections of a topological enhancement of $\Spec \Z \to \moduli{fg}$ which descends using the complex-conjugation action to $BC_2 \to \moduli{fg}$.
 \end{remark}
 
 \begin{remark}
-With some effort\footnote{Actually, a significant chunk of the trouble is already present in the details of this construction, since dealing with the gluing data requires working with an algebraized curve, which is only classified by a map to the compactified moduli.}, the construction of $\sheaf O_{\top}$ outlined here extends to the compactified moduli $\overline{\moduli{ell}}$ where Weierstrass curves with nodal singularities are allowed, i.e., where $\Delta$ is \emph{not} inverted (as in $y^2 + xy = x^3$).  The resulting global sections yields a spectrum $\Tmf$, which is \emph{not} a periodic ring spectrum.  The connective truncation of that spectrum is denoted $\tmf$, and it is expected to arise as the global sections of a topological enrichment of a stack of generalized cubics, i.e., where cuspidal singularities are also allowed (as in $y^2 = x^3$).  The existence proof for a topological enrichment of $\moduli{cub}$ remains elusive.
+With some effort, the construction of $\sheaf O_{\top}$ outlined here extends to the compactified moduli $\overline{\moduli{ell}}$ where Weierstrass curves with nodal singularities are allowed, i.e., where $\Delta$ is \emph{not} inverted (as in $y^2 + xy = x^3$).  The resulting global sections yields a spectrum $\Tmf$, which is \emph{not} a periodic ring spectrum.  The connective truncation of that spectrum is denoted $\tmf$, and it arises as the global sections of a topological enrichment of a stack of generalized cubics, i.e., where cuspidal singularities are also allowed (as in $y^2 = x^3$).
+\end{remark}
+
+\begin{remark}[{\cite{Stojanoska}}]
+A topological enrichment can be thought of as an enhancement of a classical algebro-geometric object to a \textit{spectral} (or \textit{derived}) one.  This opens the door for exploring all sorts of phenomena: for instance, there is a very interesting manifestation of Serre duality on $\moduli{ell}$ in this enhanced setting, whose exploration is due to Stojanoska.
 \end{remark}
 
 
@@ -660,7 +698,8 @@ With some effort\footnote{Actually, a significant chunk of the trouble is alread
 
 \subsection*{Descent on homotopy}
 
-One of the main upsides of finding one of these topological enrichments is that it comes a equipped with a spectral sequence computing the homotopy of its global sections, coming from recovering $\sheaf O(\stack N)$ as the homotopy limit of finer and finer covers of $\stack N$:
+One of the main upsides of producing a topological enrichment is that it is naturally equipped with a spectral sequence computing the homotopy of its global sections, coming from recovering $\sheaf O(\stack N)$ as the homotopy limit of finer and finer covers of $\stack N$.
+
 \begin{lemma}
 For $\sheaf O$ a topological enrichment of an appropriate map $\stack N \to \moduli{fg}$, there is a spectral sequence \[E_2^{s, t} = H^s(\stack{N}; \pi_t \circ \sheaf O) \Rightarrow \pi_{t-s} \Gamma(\stack{N}; \sheaf O). \qed\]
 \end{lemma}
@@ -686,15 +725,13 @@ Consider the \v{C}ech complex associated to the affine cover $\moduli{Weier} \to
 
 \begin{figure}
     \begin{center}
-    \begin{tikzcd}[column sep=0em]
+    \begin{tikzcd}[column sep=-1.2em]
     & \begin{array}{c}(\moduli{fgl} \times \moduli{ps}^{\mathrm{gpd}}) \\ \times_{\moduli{fgl}} \\ \moduli{Weier} \end{array} \arrow{rr} \arrow{ld} & & \moduli{Weier} \arrow{dd} \arrow{ld} \\
     \moduli{fgl} \times \moduli{ps}^{\mathrm{gpd}} \arrow{rr} \arrow{dd} & & \moduli{fgl} \arrow{dd} \\
     & & & \moduli{ell} \arrow{ld} \\
     \moduli{fgl} \arrow{rr} & & \moduli{fg},
-    \end{tikzcd}
-    \end{center}
-    \begin{center}
-    \begin{tikzcd}[column sep=0em]
+    \end{tikzcd} \hspace{1em}
+    \begin{tikzcd}[column sep=-1em]
     & \moduli{quad.trans.} \arrow{rr} \arrow{dd} & & \moduli{Weier} \arrow{dd} \arrow{ld} \\
     & & \moduli{fgl} \\
     & \moduli{Weier} \arrow{rr} \arrow{ld} & & \moduli{ell} \arrow{ld} \\
@@ -704,305 +741,11 @@ Consider the \v{C}ech complex associated to the affine cover $\moduli{Weier} \to
     \caption{Two expressions of the same cubical pullback.}\label{HypercubesFigure}
 \end{figure}
 
-\noindent We now appeal to Katharine's and Dominic's talks in order to compute $\pi_* TMF[1/6]$.  Since $2$ and $3$ are both inverted, we can use scaling and translation to complete both the cube and the square to replace an arbitrary Weierstrass curve with \emph{unique} one of the form $y^2 = x^3 + c_4 x + c_6$, with $\Delta = -24(4c^3_4 + 27c^2_3)$ and in fact the map \[\Spec \Z[c_4, c_6, \Delta^{-1}][1/6] \to \moduli{ell} \times \Spec \Z[1/6]\] is an equivalence of \todo{graded?} stacks.\todo{$c_4^3 - c_6^2 = 1728\Delta$}  Since the quasicoherent sheaf cohomology of affines is always amplitude $0$, this spectral sequence is concentrated on the $0$--line, and we recover \[\pi_* \TMF[1/6] \cong \Z[c_4, c_6, \Delta^{-1}][1/6].\]
+\begin{example}
+We now appeal to basic results about $\moduli{ell} \times \Spec \Z[1/6]$ to compute $\pi_* TMF[1/6]$ using these methods.\footnote{This is admittedly a rather elaborate way of recovering the homotopy of the \emph{complex-orientable} ring spectrum $\TMF[1/6]$.}  After inverting $2$ and $3$, we can use scaling and translation transformations to complete both the cube and the square, replacing an arbitrary Weierstrass curve with a \emph{unique} one of the form $y^2 = x^3 + c_4 x + c_6$.  This exhausts the morphisms in the groupoid $\moduli{ell}$: the map \[\Spec \Z[c_4, c_6, \Delta^{-1}][1/6] \to \moduli{ell} \times \Spec \Z[1/6]\] is an equivalence of stacks.  Since the quasicoherent sheaf cohomology of affines is always amplitude $0$, this spectral sequence is concentrated on the $0$--line, and we recover \[\pi_* \TMF[1/6] \cong \Z[c_4, c_6, \Delta^{-1}][1/6].\]
+\end{example}
 
-\begin{remark}
-This is all a rather elaborate way of recovering the homotopy of the \emph{complex-orientable} ring spectrum $\TMF[1/6]$.
-\end{remark}
 
-\todo{Cite Johan and Andr\'e}
-\todo{The $\tmf$ sheaf exists: $\moduli{ell}$ has a $j$ map to $\mathbb A^1$, $\overline{\moduli{ell}}$ has a $j$ map to $\mathbb P^1 = \mathbb A^2 \setminus \{0\} / \Gm$, and that can be completed (by enlarging the moduli) to a $j$ map to $\mathbb A^2 / \Gm$.  \'Etale maps miss this extra bad point, so this is mostly just fussing with gluing data, and then only in the rational situation.}
-
-
-
-\subsection*{---------------------------------------------------------------------------}
-
-
-
-\subsection*{Recollections}
-
-This talk is the first mention of $\TMF$, the spectrum of \textit{topological modular forms}.  This is precisely where it made its historical appearance: it lies between the classical theory of chromatic homotopy theory described so far and the wide-open world of derived algebraic geometry about to be discussed.  Here are some classical ingredients that enter into $\TMF$:
-
-\begin{lemma}
-The ring of modular forms is $\Z[E_4, E_6]$.  In fact, the map $\Spec \Z[E_4, E_6][1/6] \to \moduli{ell}$ is an isomorphism away from $6$.
-\end{lemma}
-\begin{proof}[Mnemonic]
-The inertia groups of $\moduli{ell}$ are of order $2$ and $3$, so inverting these primes causes $\moduli{ell}$ to become a scheme rather than a stack.  Weierstrass presentation finishes the isomorphism claim.
-\end{proof}
-
-
-
-\begin{corollary}
-There is a complex-oriented cohomology theory, $\TMF[1/6]$, determined by \[\TMF[1/6]_0(X) = MUP_0(X) \otimes_{MUP_0} \Z[E_4, E_6][1/6].\]
-\end{corollary}
-\begin{proof}
-In particular, the isomorphism above is flat.  Apply Landweber flatness.
-\end{proof}
-
-This ring spectrum has a kind of universal property:
-\begin{definition}
-An elliptic spectrum $E = (E, C, \phi)$ is an even-periodic ring spectrum $E$, a choice of an elliptic curve $C$, and a choice of an isomorphism $\phi\co C^\wedge_0 \cong \CP^\infty_E$.  Such a spectrum is called \textit{flat} when the map $E_* \to \moduli{ell}$ classifying $C$ is flat.
-\end{definition}
-
-\begin{corollary}
-If $E$ is a flat elliptic spectrum with $1/6 \in \pi_0 E$, then there is a natural map $\TMF[1/6] \to E$. \qed
-\end{corollary}
-
-\begin{remark}
-Similar spectra were classically investigated by different people: Morava studied a form of $\TMF$ ``near the cusp'' in \textit{Forms of $K$--theory}, and Landweber--Ravenel--Stong defined a version of elliptic cohomology specifically for the Jacobi curve.
-\end{remark}
-
-Our goal now is to understand $\TMF$ as an object in derived algebraic geometry.  This could mean many different things, the most basic of which is that we would like to instantiate $\TMF$ as an $E_\infty$ ring spectrum, so that we can make use of the tools from Ben's talk.  This will be our main immediate concern, but we will be guided by a considerably more complicated apparatus: as modular forms (of a particular weight) appear as sections of a certain sheaf on $\moduli{ell}$, we will also eventually arrive at a definition of $\TMF$ itself as the global sections of a sheaf of $E_\infty$ ring spectra, defined on the \'etale site of $\moduli{ell}$.  This is quite trippy to think about, so for now we will just use it as inspiration.
-
-Recall the following Lemma:
-
-
-
-
-\noindent Consequentially, $(\moduli{ell})^\wedge_p$ decomposes into two components: a closed substack of those curves of the first type, called \textit{supersingular}, and an open complement of those curves of the second type, called \textit{ordinary}.  Our approach to constructing $\TMF$ will be by chromatic fracture: we will define $L_0 \TMF$, $\widehat L_1 \TMF$, and $\widehat L_2 \TMF$, as well as certain gluing data that assembles into the chromatic fracture cube to recover $\TMF$ itself.
-
-In order to avoid \emph{significant} complications introduced by the geometry of $\moduli{ell}$ itself, we will continue to work with $6$ inverted, thereby deleting all of the inertia groups.
-
-
-
-
-
-
-\subsection*{The chromatic components of $\TMF[1/6]$}
-
-\subsection*{The $K(1)$--local component}
-
-We will investigate the $K(1)$--local part of $\TMF$ first.  The idea is to use continuous $p$--adic $K$--theory as a replacement for $K(1)$, since $p$--adic $K$--theory is an $E_\infty$ ring, and so this way we can make use of tools from Ben's talk.
-
-\begin{theorem}[McClure]
-The homotopy of a $K(1)$--local commutative $K_p$--algebra spectrum $R$, such as $\widehat L_1 (K_p \sm E)$, carries an extra family of ring operations $\psi^k$ indexed on $k \in \Z_p$, as well as a ring map $\theta$,\footnote{If $E_*$ is torsion-free, then the last condition means that $\theta$ is redundant.} such that
-\begin{align*}
-\psi^1(x) & = x, &
-\psi^k (\psi^{k'} x) & = \psi^{kk'}(x), &
-\psi^k(x) \cdot \psi^{k'}(x) & = \psi^{k + k'}(x), &
-\psi^p(x) & = x^p + p\theta(x). \qed
-\end{align*}
-\end{theorem}
-
-Graded rings with this structure are called \textit{graded $\theta$--$(K_p)_*$--algebras}, or just $\theta$--algebras.  The homotopy of $E$ itself can be recovered from that of $R = \widehat L_1 (K_p \sm E)$ by taking fixed points for the $\Z_p^\times$--action, i.e., by an Adams spectral sequence.  We say that a $K(1)$--local $E_\infty$ ring spectrum $E$ \textit{models} a $\theta$--algebra $A_*$ when $K^\vee_p E = A_*$.
-
-\begin{theorem}[{Goerss--Hopkins, $K(1)$--locally}]
-Given a map of $\theta$--algebras $f\co A_* \to B_*$, the following Andr\'e--Quillen cohomology groups (internal to $\theta$--algebras) measure various obstructions:
-\begin{center}
-\begin{tabular}{c|cc}
-& existence & uniqueness \\
-\hline
-a model $E$ for $A$ & $H^{s \ge 3}_\theta(A_*, \Loops^{s-2} A_*)$ & $H^{s \ge 2}_\theta(A_*, \Loops^{s-1} A_*)$ \\
-a map $E \to F$ of models & $H^{s \ge 2}_\theta(A_*, \Loops^{s-1} B_*)$ & $H^{s \ge 1}_\theta(A_*, \Loops^s B_*)$.
-\end{tabular}
-\end{center}
-Finally, given such a map $f$, there is a spectral sequence computing the homotopy groups of the $E_\infty$ mapping space: \[E_2^{s, t} = H^s_\theta(A_*, \Loops^{-t} B_*) \Rightarrow \pi_{-s-t}(E_\infty(E, F), f). \qed\]
-\end{theorem}
-
-These enhanced Andr\'e--Quillen cohomology groups can be computed using a Grothendieck-type spectral sequence, intertwining classical Andr\'e--Quillen cohomology groups for commutative rings with the extra task of checking compatibility with the $\theta$--algebra structure.  We won't need to do this so manually, and the following utility result will capture what we need:
-
-\begin{lemma}\label{ObstructionLemma}
-Suppose that $A_*$ is a torsion-free even-periodic $\theta$--algebra, that $B_*$ is a torsion-free $\theta$--$A_*$--algebra, that $A_*^{\Z_p^\times} / p$ is a formally smooth $\F_p$--algebra, that $A_* / p$ is ind-\'etale over $A_*^{\Z_p^\times}/p$, and lastly that $H^{s \ge 1}_c(\Z_p^\times; B_*) = 0$.  Then the following vanishing result holds: \[H^{s \ge 1}(A_*, \Loops^t B_*) = 0, \quad H^0(A_*, \Loops^{2t} B_*) = 0. \qed\]
-\end{lemma}
-
-Now we make an educated guess about what $K_p^\vee \TMF$ should be, based on \textit{From Spectra to Stacks}\todo{Get JD to talk about this}:
-\begin{center}
-\begin{tikzcd}[column sep=0.3em, row sep=0.3em]
-\text{``$\Spf K_p^\vee \TMF(p^k)$''} \arrow{rr} \arrow{rd} \arrow{dd} & & \moduli{ell}^{\ord}(p^k) \arrow{dd} \arrow{rd} \\
-& \text{``$\Spf K_p^\vee \TMF$''} \arrow[crossing over]{rr} & & \moduli{ell} \arrow{dd} \\
-\Spf \Z_p \arrow{rr} \arrow{rd} & & \moduli{fg}^{\mathrm{mult}}(p^k) \arrow{rd} \\
-& \Spf K_* \arrow{rr}[description]{\G_m} \arrow[crossing over, leftarrow]{uu} & & \moduli{fg}^{\mathrm{mult}},
-\end{tikzcd}
-\end{center}
-where the front and right faces are meant to be pullbacks.  The front pullback is the moduli of elliptic curves equipped with a \emph{marking}, which is an isomorphism $\eta\co \G_m \xrightarrow{\cong} \widehat C$.  This turns out to be affine with ring of functions $V^\wedge_\infty$, and the moduli-theoretic interpretation of this ring endows it with a natural structure as a $\theta$--algebra:
-\begin{itemize}
-  \item For $k \in \Z_p^\times$, we send a marked elliptic curve to $\psi^k(C, \eta) = (C, [k] \circ \eta)$.
-  \item For $p \in \Z_p$, we use the fact that the map $p\co \G_m \to \G_m$ is an endomorphism of $\G_m$ with kernel exactly $\G_m[p]$.  This tells us that the $p${\th} multiple of a marking factors through the $p${\th} multiplication map on the elliptic curve, to give a marking $\eta^{(p)}$ of $C^{(p)}$.  This defines the relevant map by $\psi^p(C, \eta) = (C^{(p)}, \eta^{(p)})$.
-\end{itemize}
-
-\todo[inline]{This description of what's going on in the back face is \emph{not} right.}
-This turns out to be insufficient to construct $\widehat L_1 \TMF$, because this $\theta$--algebra does not satisfy the hypotheses of \Cref{ObstructionLemma}.  However, the back face will do: it turns out that $\moduli{ell}^{\ord}(p^k)$ is affine, and $\moduli{ell}^{\ord}(p)$ is an \'etale torsor over $\moduli{ell}^{\ord}$ with structure group $G = \Z_p^\times / 1 + p\Z_p$.\footnote{The proof is that $\moduli{ell}^{\ord}(p^k)$ embeds into the moduli of ordinary elliptic curves equipped with a $(p^k-1)$--jet, and there is a unique change of coordinates that transforms an $n$--jet to one with vanishing first three components in the standard Weierstrass coordinate.}  You can write down a (completely analogous) $\theta$--algebra structure on this ring, and this time the obstruction theory finds a foothold: there exists a modeling spectrum $\tmf(p)^{\ord}$, the Hurewicz map from $\theta$--algebras to $\End_{E_\infty} \tmf(p)^{\ord}$ is an isomorphism (as spaces), and so the Galois action lifts to an action on $\tmf(p)^{\ord}$.  We set $\widehat L_1 \TMF = (\tmf(p)^{\ord})^{hG}$, and because $|G|$ is coprime to $p$ we have $K_p^\vee \widehat L_1 \TMF = V^\wedge_\infty$.
-
-\begin{remark}
-Before moving on, we list what modifications are necessary to get this to work at the remaining primes:
-\begin{itemize}
-    \item At $3$, the main obstacle is in the analysis of the Igusa tower: showing that $\moduli{ell}^{\ord}(p) \to \moduli{ell}^{\ord}$ has the relevant properties is complicated considerably by not being able to complete the cube.
-    \item At $2$, the above modifications are necessary, but it is $\moduli{ell}^{\ord}(4)$ that is affine.  However, $(\Z/4)^\times \cong C_2$ is \emph{not} of order coprime to $2$, and indeed has infinite cohomological dimension.  As is often the case in this kind of situation, the correction is to re-do all of the preceding theory with $KO = KU^{hC_2}$ in place of $KU$, which has this action already built-in.
-\end{itemize}
-\end{remark}
-
-
-
-
-
-\subsection*{The $K(2)$--local component}
-
-The definition of the $K(2)$--local component of $\TMF$ actually proceeds along much the same lines.  The main fact we need to know about $\moduli{ell}$ is:
-
-
-
-
-
-
-\noindent It is also useful to know the following fact about $K(n)$--localization:
-\begin{lemma}
-If $M$ is a $BP$--module spectrum, then $\pi_* \widehat L_n M = M[v_n^{-1}]^\wedge_{I_n}$. \qed
-\end{lemma}
-
-We might thus expect $\widehat L_2 \TMF$ to be assembled out of the formal neighborhood of the supersingular locus.  The Serre--Tate theorem says that these formal neighborhoods are isomorphic to the formal neighborhoods of the associated $p$--divisible groups in their moduli, and the formal neighborhoods of \emph{connected} $p$--divisible groups (which is the supersingularity condition) are isomorphic to the formal neighborhoods in $\moduli{fg}$.  We are therefore interested in the Morava $E$--theories associated to supersingular elliptic curves.  An amplification of the Goerss--Hopkins obstruction theorem described above also shows that Morava $E$--theories exist as $E_\infty$ ring spectra (owing, most essentially, to their formally smooth homotopy rings), and the only $E_\infty$ maps among them are controlled by the action of the Morava stabilizer.  Coupling these together, we are done.
-
-
-
-
-\subsection*{Chromatic fracture}
-
-We now seek to understand the diagram
-\begin{center}
-\begin{tikzcd}
-\TMF[1/6]^\wedge_p \arrow{r} \arrow{d} & \widehat L_2 \TMF[1/6] \arrow{d} \\
-\widehat L_1 \TMF[1/6] \arrow{r} & \widehat L_1 \widehat L_2 \TMF[1/6].
-\end{tikzcd}
-\end{center}
-The right-hand vertical arrow is just the localizing unit associated to $\widehat L_1$, but the bottom horizontal arrow is more interesting: if we already had a spectrum $\TMF[1/6]^\wedge_p$, it would be $\widehat L_1$ applied to the localizing unit associated to $\widehat L_2$, but the whole point is that we do not.  Instead, we will define $\TMF[1/6]^\wedge_p$ by defining this bottom arrow.  The Goerss--Hopkins theorem gave us access to the space of $E_\infty$ maps off of $\TMF(p)^{\ord}$, but not $\TMF^{\ord}$, so our goal is to build a $G$--equivariant $E_\infty$ ring spectrum over $\widehat L_2 \TMF$, understand its $K(1)$--localization, produce a $G$--equivariant map of the desired form, and finally pass to fixed points.
-
-\begin{definition}
-The Galois cover $\moduli{ell}^{\ord}(p)$ came from considering markings, and the analogous structure that enhances to $\moduli{ell}^{\ss}$ is called a \textit{full level--$N$ structure}, which is an isomorphism $\eta\co (C_N)^2 \xrightarrow\cong C[N]$.\footnote{This marks the $p$--divisible group associated to $C$ rather than the formal group.}  The moduli of such elliptic curves with full level--$N$ structure forms a \emph{scheme} over $\Z[1/N]$ which is a $GL_2(\Z/N)$--Galois cover of $\moduli{ell} \times \Spec \Z[1/N]$, and we define the supersingular moduli with level by the pullback
-\begin{center}
-\begin{tikzcd}
-\moduli{ell}^{\ss}(N) \arrow{r} \arrow{d} & \moduli{ell}(N)_p \arrow{d} & & & \moduli{ell}^{\ss}(N)^{\ord} \arrow{d} \arrow{r} & \moduli{ell}^{\ord} \arrow{d} \\
-\moduli{ell}^{\ss} \arrow{r} & (\moduli{ell})_p, & & \moduli{ell}^{\ss}(N) \arrow{r} & \moduli{ell}^{\ss}(N)^{\alg} \arrow{r} & \overline{\moduli{ell}},
-\end{tikzcd}
-\end{center}
-which we then algebraize and extend to the compactification, then define the ordinary part of the supersingular locus by intersection.  Using $\moduli{ell}^{\ss}(N)^{\ord}$, we then define a series of auxiliary pullbacks:
-\begin{center}
-\begin{tikzcd}[column sep=1em]
-& \moduli{ell}^{\ss}(p)^{\ord} \arrow{rd} \\
-\moduli{ell}^{\ss}(N,p)^{\ord} \arrow{rr} \arrow[red, "/GL_2(\Z/N)"]{ru} \arrow{d} & & \moduli{ell}^{\ord}(p) \arrow{d} & \moduli{ell}^{\ord}(N, p)^{\ns} \arrow[red]{r} \arrow{d} & \moduli{ell}^{\ord}(p)^{\ns} \arrow{d} & \moduli{ell}^{\ss}(N,p)^{\ord} \arrow{r} \arrow{d} & \moduli{ell}^{\ss}(p)^{\ord} \arrow{d} \\
-\moduli{ell}^{\ss}(N)^{\ord} \arrow{rr} & & \moduli{ell}^{\ord} & \moduli{ell}(N)^\wedge_p \arrow{r} & (\moduli{ell})^\wedge_p & \moduli{ell}^{\ord}(N, p)^{\ns} \arrow{r} & \moduli{ell}^{\ord}(p)^{\ns}.
-\end{tikzcd}
-\end{center}
-\end{definition}
-
-\begin{lemma}[Remark 8.2]
-The following are iterated pullback diagrams:
-\begin{center}
-\begin{tikzcd}
-\Spf \widetilde W^{\ss} \arrow{r} \arrow{d} & \Spf W^{\ss} \arrow{r} \arrow{d} & \Spf W \arrow{r} \arrow{d} & \moduli{ell}^{\ord}(p^\infty) \arrow{d} \\
-\moduli{ell}^{\ss}(N, p)^{\ord} \arrow{r} & \moduli{ell}^{\ss}(p)^{\ord} \arrow{r} & \moduli{ell}^{\ord}(p) \arrow{r} & \moduli{ell}^{\ord},
-\end{tikzcd}
-\end{center}
-\begin{center}
-\begin{tikzcd}[column sep=7em]
-\Spf \widetilde W^{\ss} \arrow{r}[description]{/GL_2(\Z/N)} \arrow{dd} & \Spf W^{\ss} \arrow{r}[description]{/G} \arrow{dd} & \Spf ((V^\wedge_\infty)^{\ss}) \arrow{d} \arrow{r} & \moduli{ell}^{\ord}(p^\infty) \arrow{d} \\
-& & \moduli{ell}^{\ss}(p)^{\ord} \arrow{r} \arrow{d} & \moduli{ell}^{\ord}(p) \\
-\moduli{ell}^{\ord}(N, p)^{\ns} \arrow{r} & \moduli{ell}^{\ord}(p)^{\ns} \arrow{r} & (\moduli{ell}^{\ord})^{\ns}.
-\end{tikzcd}
-\end{center}
-\end{lemma}
-
-We make the definitions
-\begin{align*}
-\widehat L_2 \TMF(N) & := \sheaf O^{\top}_{K(2)}(\moduli{ell}^{\ss}(N)), &
-\widehat L_1 \widehat L_2 \TMF(N, p) & = \widehat L_1 \widehat L_2 \TMF(N) \sm E_1^{h(1 + p\Z_p)}, &
-\widehat L_1 \widehat L_2 \TMF(p) & = \widehat L_1 \widehat L_2 \TMF \sm E_1^{h(1 + p\Z_p)}.
-\end{align*}
-We make the computations
-\begin{align*}
-\pi_0 \widehat L_2 \TMF(N) & \cong \sheaf O_{\moduli{ell}^{\ss}(N)}, &
-\pi_0 \widehat L_1 \widehat L_2 \TMF(N) & \cong O_{\moduli{ell}^{\ss}(N)}[u_1^{-1}]^\wedge_p,
-\end{align*}
-and we remark on the pullback square
-\begin{center}
-\begin{tikzcd}
-\Spf \pi_0 (E \sm E_1^{h(1 + p\Z_p)}) \arrow{r} \arrow{d} & \moduli{fg}^{\mathrm{mult}}(p) \arrow{d} \\
-\Spf \pi_0 E \arrow{r} & \moduli{fg}^{\mathrm{mult}}.
-\end{tikzcd}
-\end{center}
-Using the first iterated pullback diagram from the Lemma, it follows that $\widehat L_1 \widehat L_2 \TMF(N, p)$ models $\widetilde W^{\ss}$.  Using the second iterated pullback square, we see that the other spectra are models for the other $\theta$--algebras pictured.  The Goerss--Hopkins theorem shows that there exists a unique $G$--equivariant map to the model $\widehat L_1 \TMF(p)$ for $W$.  Taking fixed points gives the desired chromatic attaching map.
-
-
-
-
-
-
-
-
-
-
-
-
-The gluing data (remarks about $2$ and $3$):
-  just computing the homotopy of $\widehat L_1 \widehat L_2 \TMF$ to get a guess at the moduli;
-  look at 6.8--10 for $L_K(1) E_{\widehat C_{ss}}$;
-  needs $\sheaf O^{\top}_{K(2)}$ to be a sheaf and needs to understand $\widehat L_1 \TMF \to \widehat L_1 \widehat L_2 \TMF$ as a map of $E_\infty$ $K(1)$--local elliptic spectra
-
-
-
-
-\subsection*{Arithmetic fracture}
-
-This is the easiest piece of the whole bunch.  Because $\pi_* L_{\Q} \tmf = \Q[a_4, a_6]$ is smooth, there are no Andr\'e--Quillen obstructions to constructing maps of commutative $H\Q$--algebras with signature \[L_{\Q} \tmf \to \mathbb A_{\mathrm{fin}} \otimes L_{\Q} \tmf.\]
-
-
-
-
-
-
-
-
-
-\subsection*{The sheaf $\sheaf O^{\top}$ away from $6$}
-
-$\TMF[1/6]$ as:
-  the sections of a sheaf,
-    as well as basic properties of homotopy sheaves,
-
-enriching $\widehat L_1 \TMF$ to a sheaf:
-  constructing $\Gamma(\Spec R; \moduli{ell}^{\ord})$ as $\widehat L_1 \TMF[1/6]$--algebras (pg.\ 163):
-    if $E$ is $K(1)$--local elliptic classified by a flat map to $\moduli{ell}$, then $K^\wedge E = W$, where $\Spf W$ is the pullback of $\Spec E_0$ to $\moduli{ell}^{\ord}(p^\infty)$,
-    $W$ has a unique $\theta$--algebra structure on it, and we say an $E_\infty$ structure on $E$ is $\theta$--compatible when these match,
-    7.7 constructs a $(\Z/p)^\times$--equivariant spectrum $\tmf^{\ord}(p)_{K(1)}$,
-    then checks that this has the right formal group,
-  ;
-enriching the gluing data to a map of sheaves:
-  (pg.\ 172)
-  ;
-the universal property of the sheaf $\sheaf O^{\top}_p$:
-  Proposition 8.5 (pg.\ 175)
-  ;
-
-
-
-\begin{remark}[Hopkins--Miller]
-Remarks on $A_\infty$ and a different dissection of the moduli
-\end{remark}
-
-Extension to $\Tmf$ and to $\tmf$:
-  singular and additive degenerations;
-  the $\theta$--algebra structure in the $K(1)$--local analysis is complicated, seems solvable with work for multiplicative degeneration but not additive;
-  the Witten genus and behavior at the cusp;
-  
-
-
-
-\subsection*{The descent spectral sequence}
-
-Cohomology of the Hopf algebroid:
-  emphasize that this is easier than studying the fracture square
-
-$\pi_* \tmf[1/6] = \Z[1/6, a_4, a_6]$.
-
-Remark on the horizontal vanishing line in the descent spectral sequence, Tate vanishing.
-
-Remark on Stojanoska duality:
-  maybe just make the statement for $\Tmf(2)$
-
-
-
-JOHAN WANTS:
-    $\TMF$ WITH LEVEL STRUCTURES;
-    A MENTION OF THE PREDICTED MODULI UNDERLYING $\tmf$;
-    A MENTION OF THE DESCENT SPECTRAL SEQUENCE FOR HOMOTOPY
 
 
 
