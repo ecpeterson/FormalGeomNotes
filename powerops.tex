@@ -69,7 +69,8 @@ Some other references:
 Morava's \textit{Local fields} paper; 
 Theorem 2.6 of Greenlees--Strickland;
 work of Stapleton and Schlank--Stapleton;
-Nat's little monologue to me about the classical case, where the word ``character'' comes from
+Nat's little monologue to me about the classical case, where the word ``character'' comes from;
+try to cover the action by $GL_n(\Z_p)$ (and hint at the action by $M_{n \times n}(\Z_p)$ with $\det \ne 0$)
 
 
 
@@ -115,7 +116,7 @@ The available adjunctions give a more explicit presentation of these terms:
 \end{align*}
 which on homotopy groups is made up of a product of the cohomology rings $E^*(B\Sigma_j)$.  The higher terms track the compositional behavior of these summands.
 
-\begin{remark}[{\cite{BousfieldUnstableLocalization,MahowaldThompson}}]
+\begin{remark}[{\cite{BousfieldUnstableLocalization,MahowaldThompson,BousfieldLambdaRings,Davis}}]
 One of the first places these ideas appear in the literature is in work of Mahowald and Thompson.  Bousfield defined an unstable local homotopy type associated to a (simply-connected) space and a homology theory.  In the case of the space $S^{2n-1}$ and $p$--adic $K$--theory, Mahowald and Thompson calculated that $L_K S^{2n-1}$ appears as the homotopy fiber \[L_K S^{2n-1} \to L_K \Loops^\infty \Sigma^\infty S^{2n-1} \to L_K \Loops^\infty \Sigma^\infty ((S^{2n-1})^{\sm p}_{h\Sigma_p}),\] which is an abbreviated form of the monadic resolution described above.
 \end{remark}
 
@@ -131,7 +132,7 @@ In general, if $E^* B\Sigma_j$ is sufficiently nice, then the the $E^2$--page of
 
 \subsection*{Strickland's theorems}
 
-We thus set out to understand the formal schemes constituting the $E_\infty$ context associated to Morava $E$--theory.  As described in \Cref{UnstableContextsSection} and \Cref{UnstableAlgebraicModelSection}, the correct language for these phenomena are schemes defined on Hopf rings, together with the adjunction between classical rings and Hopf rings consisting of the $\ast$--square--zero extension functor and the $\ast$--indecomposables functor.  The rings $E^0 B\Sigma_j$ assemble into a Hopf ring using the following structure:
+We thus set out to understand the formal schemes constituting the $E_\infty$ context associated to Morava $E$--theory.\footnote{Much of the analysis for the case of $\HFtwo$ can be read off from a pleasant paper of Baker~\cite{Baker}.}  As described in \Cref{UnstableContextsSection} and \Cref{UnstableAlgebraicModelSection}, the correct language for these phenomena are schemes defined on Hopf rings, together with the adjunction between classical rings and Hopf rings consisting of the $\ast$--square--zero extension functor and the $\ast$--indecomposables functor.  The rings $E^0 B\Sigma_j$ assemble into a Hopf ring using the following structure:
 \begin{itemize}
     \item The $\ast$--product comes from the stable transfer maps $B\Sigma_{i+j} \to B\Sigma_i \times B\Sigma_j$.
     \item The $\circ$--product comes from the diagonal maps $B\Sigma_j \to B\Sigma_j \times B\Sigma_j$.
@@ -172,14 +173,21 @@ The broad features of this example hold for a general index $j$.
 \begin{definition}
 The \textit{abelian $E_\infty$ context} is formed by considering the inclusions \[\bigvee_{\substack{A \le \Sigma_j \\ \text{$A$ abelian}}} BA \to B\Sigma_j.\]
 \end{definition}
-\noindent A consequence of \Cref{CharacterTheorySection} is that this map is \emph{injective} on Morava $E$--cohomology, so that we can understand the natural $E_\infty$ context in terms of this larger object.  A benefit to this auxiliary context is that we can already predict its behavior in Morava $E$--theory: the cohomological formal scheme associated to an abelian group can be presented as an internal scheme of group homomorphisms, just as above.  Using this auxiliary context, Strickland has proven the following results:
+\noindent A consequence of \Cref{CharacterTheorySection} is that this map is \emph{injective} on Morava $E$--cohomology, so that we can understand the natural $E_\infty$ context in terms of this larger object.  A benefit to this auxiliary context is that we can already predict its behavior in Morava $E$--theory: the cohomological formal scheme associated to an abelian group can be presented as an internal scheme of group homomorphisms, just as above.  Using this auxiliary context for reference, Strickland has proven the following results:
 
 \begin{theorem}[{\cite[Theorem 1.1]{StricklandEthyOfBSigma}}]
 There is an isomorphism \[\Spf E^0 B\Sigma_j / I_{\Tr} \cong \Sub_j \CP^\infty_E,\] where $\Sub_j$ denotes the subscheme of $\Div_j^+$ consisting of those effective Weil divisors of rank $j$ which are subgroup divisors.\footnote{If $j$ is not a power of $p$, this is the terminal scheme.} \qed
 \end{theorem}
 
-\begin{theorem}\citeme{Strickland somewhere}
-For a finite abelian group $A$, there is an isomorphism \[\Spf E^0 BA / I_{\Tr} \cong \Level(A^*, \CP^\infty_E),\] where $\Level(A^*, \CP^\infty_E)$ denotes the subscheme of $\InternalHom{FormalGroups}(A^*, \CP^\infty_E)$ subject to the condition that $A^*[n]$ forms a subdivisor of $\CP^\infty_E[n]$.\footnote{If $A[p] \cong (\Z/p)^{\times k}$ has $k > \height{\Gamma}$, then this is the terminal scheme.}  \qed
+\begin{theorem}[{\cite[pg.\ 45]{StricklandFPFP}}]
+For a finite abelian group $A$, there is a diagram
+\begin{center}
+\begin{tikzcd}
+\left.\Spf E^0 BA \middle/ \left( \sum_{\substack{a \in A \\ a \ne 0}} \operatorname{ann}(a) \right) \right. \arrow{r} \arrow[equal]{d} & \Spf E^0 BA / I_{\Tr} \arrow{r} & \Spf E^0 BA \arrow[equal]{d} \\
+\Level(A^*, \CP^\infty_E) \arrow{rr} & & \InternalHom{FormalGroups}(A^*, \CP^\infty_E),
+\end{tikzcd}
+\end{center}
+where $\Level(A^*, \CP^\infty_E)$ denotes the subscheme of $\InternalHom{FormalGroups}(A^*, \CP^\infty_E)$ subject to the condition that $A^*[n]$ forms a subdivisor of $\CP^\infty_E[n]$.\footnote{If $A[p] \cong (\Z/p)^{\times k}$ has $k > \height{\Gamma}$, then this is the terminal scheme.} \qed
 \end{theorem}
 
 \begin{remark}
@@ -323,11 +331,10 @@ G \arrow{rd} \arrow[equal, "\beta"]{r} & \psi^* \G \arrow{d} \arrow{r} & \G \arr
 & \Spf R \arrow["\psi"]{r} & (\mathcal M_{\mathbf{fg}})^\wedge_\Gamma
 \end{tikzcd}
 \right\}.\]
-Accordingly, to construct the map $\psi_K$ from the Lemma statement, we need only exhibit $G/K$ as belonging to a natural diagram of the sort at left.  This is exactly what the Frobenius discussion above accomplishes:
-\todo{Did you get the direction here right?}
+Accordingly, to construct the map $\psi_K$ from the Lemma statement, we need only exhibit $G/K$ as belonging to a natural diagram of the sort at left.  Using the fact that finite subgroups of formal groups over a \emph{field} are always of the form $p^j \cdot [0]$, this is exactly what the Frobenius discussion above accomplishes:
 \begin{center}
 \begin{tikzcd}
-\Gamma \arrow{d} & (\phi^j)^* \Gamma \arrow["\Frob^j"']{l} \arrow{rd} \arrow[equal, "g_{p^j[0]}"]{r} & (j^* G)/p^j\cdot[0] \arrow{r} \arrow{d} & G/K \arrow{d} \\
+\Gamma \arrow{d} & (\phi^j)^* \Gamma \arrow{l} \arrow{rd} \arrow[equal, "g_{p^j[0]}"]{r} & (j^* G)/p^j\cdot[0] \arrow{r} \arrow{d} & G/K \arrow{d} \\
 \Spec k & & \Spec k \arrow["\phi^j"']{ll} \arrow["j"]{r} & \Spf R.
 \end{tikzcd}
 \end{center}
@@ -339,17 +346,8 @@ Applying this Lemma to the universal case gives the following result:
 \begin{corollary}
 There is a unique sequence of maps \[P^{\Sigma_{p^k}}\co \G \times \Sub_{p^k} \G \to \psi_{\Sigma_{p^k}}^* \G\] determined by the following properties:
 \begin{enumerate}
-    \item The kernel of $P^{\Sigma_{p^k}}$ is exactly the universal subgroup.
+    \item Restricting to any point in $\Sub_{p^k} \G$ gives a group homomorphism with that kernel.
     \item (\textit{Deformation of Frobenius}:) At the special fiber, $P^{\Sigma_{p^k}}$ reduces to the $k${\th} Frobenius iterate.
-    % (There is \emph{one} of these in each $\star$-isomorphism class.)
-    % \item There is there a family of commuting triangles
-    % \begin{center}
-    % \begin{tikzcd}
-    % & \G \arrow["N_K"']{ld} \arrow["q_K"]{rd} \\
-    % \G / K \arrow["{g_K \quad \simeq}"]{rr} & & \psi_K^* \G
-    % \end{tikzcd}
-    % \end{center}
-    % indexed on subgroups $K \subseteq \G$.
     \qed \todo{Prove me?}
 \end{enumerate}
 \end{corollary}
@@ -390,9 +388,8 @@ Let $E$ and $F$ be $H_\infty$ ring spectra with $F$ $p$--local, and let $f\co E 
 Let $E$ be an $E_\infty$ ring spectrum and let $X$ be a space such that $E^{\Susp^\infty_+ X}$ is a wedge of copies of $E$.  The map \[\iota^* \otimes \Delta^*\co \widetilde E^* X^{\sm G}_{hG} \to \widetilde E^* X^{\sm G} \oplus \widetilde E^*(X \sm BG_+)\] is then injective.\footnote{The actual statement of McClure's result~\cite[Proposition VIII.7.3]{BMMS} has several additional hypotheses: $\pi_* E$ is taken to be even-concentrated and free over $\Z_{(p)}$, $X$ has homology free abelian in even dimensions and zero in odd dimensions, and $X$ and $E$ are both taken to be finite type.  Although this is the theorem cited in the source material~\cite[Section 4]{Ando}~\cite[Proof of Proposition 6.1]{AHSHinfty}, the version that has the weak hypotheses that we require only appeared in print much later.} \qed
 \end{theorem}
 
-\begin{corollary}[{\cite[pg.\ 271]{AHSHinfty}}]
-\todo{You could prove this or mention where the character theory reduction happens.  This is also a really disgusting presentation of this rather simple diagram}
-A ring map $x\co MUP \to E_\Gamma$ is $H_\infty$ if and only if the internal power operations commute: \[x \circ \mu^{\Sigma_p}_{MUP} \circ \Delta = \mu^{\Sigma_p}_{E_\Gamma} \circ x^{\sm p}_{h\Sigma_p} \circ \Delta \in E_\Gamma^0 T(\L \otimes \rho \downarrow \CP^\infty \times BC_p). \qed\]
+\begin{corollary}[{\cite[pg.\ 271]{AHSHinfty}, \cite[Proposition VII.7.2]{BMMS}}]
+A ring map $x\co MUP \to E_\Gamma$ is $H_\infty$ if and only if the internal power operations commute: \[x \circ \mu^{C_p}_{MUP} \circ \Delta = \mu^{C_p}_{E_\Gamma} \circ x^{\sm p}_{hC_p} \circ \Delta \in E_\Gamma^0 T(\L \otimes \rho \downarrow \CP^\infty \times BC_p). \qed\]
 \end{corollary}
 
 We now expand the algebraic condition that this last Corollary encodes.  The power operation for $MUP$ was described in \Cref{AjAndBjAreInTheFGLSubring}, where we found that it applies the norm construction to $f$ for the universal $\Z/p$--level structure on $\G$.  The cyclic power operation on Morava $E$--theory was determined in the previous section to act by pullback along the deformation of Frobenius isogeny associated to the same universal level structure.  This condition is important enough to warrant a name:
@@ -464,18 +461,7 @@ We can apply these observations to $E_{\widehat C}$, the Morava $E$--theory for 
 
 
 
-% \begin{remark}
-% Power operations in Tate $K$--theory vs this story.
-% \end{remark}
-
-
-\todo{This MO conversation looks interesting: http://chat.stackexchange.com/transcript/message/29465746\#29465746.}
-\todo{Bousfield's paper \textit{On $\lambda$--rings and the $K$--theory of infinite loopspaces} claims to have applications to Mahowald--Thompson type resolutions.}
-\todo{Don Davis has a \textit{Handbook of Algebraic Topology} chapter on unstable $v_1$--periodic homotopy of spheres.}
-\todo{Baker's POWER OPERATIONS AND COACTIONS IN HIGHLY COMMUTATIVE HOMOLOGY THEORIES seems like a nice place to learn about these things. He advertises some interaction with the traditional context story, which is appealing, and he mostly treats the case of ordinary homology, which we probably ought to spend a section on.}
-\todo{FPFP Example 4.6 is a nice summary of a main result of HKR character theory.  Compare also Example 4.8.}
-\todo{If you can figure out what Hood was doing with Dyer--Lashof operations in $\HFtwo$ and the logarithm/exponential coordinates, that'd be pretty cool to include.  (Neil has a Steenrod Algebra note that brushes against this.)}
-\todo{Describe the action by $GL_n(\Z_p)$. (Hint at the action by $M_{n \times n}(\Z_p)$ with $\det \ne 0$.)}
+\todo{Power operations in Tate $K$--theory vs this story?}
 
 
 
