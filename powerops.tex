@@ -291,9 +291,10 @@ If $f\co \G \to \widehat{\mathbb H}$ is any isogeny with kernel divisor $K$, the
 \begin{center}
 \begin{tikzcd}
 & \G \arrow["q"']{ld} \arrow["f"]{rd} \\
-\G/K \arrow["g", "\simeq"']{rr} & & \widehat{\mathbb H}. \qed
+\G/K \arrow["g", "\simeq"']{rr} & & \widehat{\mathbb H}.
 \end{tikzcd}
 \end{center}
+\qed
 \end{lemma}
 
 We now use this Lemma, along with properties of the Lubin--Tate moduli problem, to associate endo-isogenies to subgroup divisors.  To begin, consider the multiplication--by--$p$ endo-isogeny of a Lubin--Tate group $\G$.  Since $\G$ is finite height, this map is an isogeny and the Lemma above gives rise to an isomorphism
@@ -384,7 +385,12 @@ There is a useful result about isogenies that more topologists out to be aware o
 Having worked through enough of the underlying algebra, we now return to our intended topological application of studying $H_\infty$ orientations of Morava $E$--theory by $MUP$.  There are two reduction theorems, due to McClure, that lighten our workload from an infinite number of conditions to check to merely two conditions:
 
 \begin{theorem}[{\cite[Proposition VIII.7.2]{BMMS}}]
-Let $E$ and $F$ be $H_\infty$ ring spectra with $F$ $p$--local, and let $f\co E \to F$ be a map of ring spectra in the homotopy category.  Then $f$ is furthermore an $H_\infty$ ring map if and only if the following equation is satisfied: \[f \circ P^{\Sigma_p}_E = P^{\Sigma_p}_F \circ f^{\sm p}_{h\Sigma_p}. \qed\]
+Let $E$ and $F$ be $H_\infty$ ring spectra with $F$ $p$--local, and let $f\co E \to F$ be a map of ring spectra in the homotopy category.  Then $f$ is furthermore an $H_\infty$ ring map if and only if the following equation is satisfied:
+\[
+\pushQED{\qed}
+f \circ P^{\Sigma_p}_E = P^{\Sigma_p}_F \circ f^{\sm p}_{h\Sigma_p}. \qedhere
+\popQED
+\]
 \end{theorem}
 
 \begin{theorem}
@@ -393,7 +399,12 @@ Let $E$ be an $E_\infty$ ring spectrum and let $X$ be a space such that $E^{\Sus
 \end{theorem}
 
 \begin{corollary}[{\cite[pg.\ 271]{AHSHinfty}, \cite[Proposition VII.7.2]{BMMS}}]
-A ring map $x\co MUP \to E_\Gamma$ is $H_\infty$ if and only if the internal power operations commute: \[x \circ \mu^{C_p}_{MUP} \circ \Delta = \mu^{C_p}_{E_\Gamma} \circ x^{\sm p}_{hC_p} \circ \Delta \in E_\Gamma^0 T(\L \otimes \rho \downarrow \CP^\infty \times BC_p). \qed\]
+A ring map $x\co MUP \to E_\Gamma$ is $H_\infty$ if and only if the internal power operations commute: \[
+\pushQED{\qed}
+x \circ \mu^{C_p}_{MUP} \circ \Delta = \mu^{C_p}_{E_\Gamma} \circ x^{\sm p}_{hC_p} \circ \Delta \in E_\Gamma^0 T(\L \otimes \rho \downarrow \CP^\infty \times BC_p).
+\qedhere
+\popQED
+\]
 \end{corollary}
 
 We now expand the algebraic condition that this last Corollary encodes.  The power operation for $MUP$ was described in \Cref{AjAndBjAreInTheFGLSubring}, where we found that it applies the norm construction to $f$ for the universal $\Z/p$--level structure on $\G$.  The cyclic power operation on Morava $E$--theory was determined in the previous section to act by pullback along the deformation of Frobenius isogeny associated to the same universal level structure.  This condition is important enough to warrant a name:
@@ -567,12 +578,14 @@ This buys more than just a bouquet of Morava $E$--theories, or even the global s
 We now turn to the ordinary locus, which constitutes the bulk of the problem: remember that the supersingular locus was essentially discrete, and we are setting out to construct a sheaf, which means that we will be manufacturing a \emph{lot} of spectra.  The main tool for analyzing this situation is a specialization of the obstruction theory of Goerss--Hopkins--Miller.  First, note that completed $p$--adic $K$--homology (i.e., continuous Morava $E$--theory for $\G_m$) carries an action by $\Aut \G_m$, and using the results of \Cref{PowerOpnsSection} this extends to an action by $\End \G_m$ using the $p${\th} power operation.  In turn, the completed $p$--adic $K$--homology of an $E_\infty$ ring spectrum carries an action by $\End \G_m$, which is sometimes referred to as the structure of a \textit{$\theta$--algebra}.  To be more explicit:
 \begin{theorem}[McClure]
 The homotopy of a $K(1)$--local commutative $K_p$--algebra spectrum $R$, such as $\widehat L_1 (K_p \sm E)$, carries an extra family of ring operations $\psi^k$ indexed on $k \in \Z_p$, as well as a ring map $\theta$,\footnote{If $E_*$ is torsion-free, then the last condition means that $\theta$ is redundant.} such that
+\pushQED{\qed}
 \begin{align*}
 \psi^1(x) & = x, &
 \psi^k (\psi^{k'} x) & = \psi^{kk'}(x), \\
 \psi^p(x) & = x^p + p\theta(x), &
-\psi^k(x) \cdot \psi^{k'}(x) & = \psi^{k + k'}(x). \qed
+\psi^k(x) \cdot \psi^{k'}(x) & = \psi^{k + k'}(x). \qedhere
 \end{align*}
+\popQED
 \end{theorem}
 \noindent Goerss--Hopkins--Miller obstruction theory reverses this information flow by seeking answers to the questions:
 \begin{itemize}
@@ -705,7 +718,7 @@ A topological enrichment can be thought of as an enhancement of a classical alge
 One of the main upsides of producing a topological enrichment is that it is naturally equipped with a spectral sequence computing the homotopy of its global sections, coming from recovering $\sheaf O(\stack N)$ as the homotopy limit of finer and finer covers of $\stack N$.
 
 \begin{lemma}
-For $\sheaf O$ a topological enrichment of an appropriate map $\stack N \to \moduli{fg}$, there is a spectral sequence \[E_2^{s, t} = H^s(\stack{N}; \pi_t \circ \sheaf O) \Rightarrow \pi_{t-s} \sheaf{O}(\stack{N}). \qed\]
+For $\sheaf O$ a topological enrichment of an appropriate map $\stack N \to \moduli{fg}$, there is a spectral sequence \[\pushQED{\qed} E_2^{s, t} = H^s(\stack{N}; \pi_t \circ \sheaf O) \Rightarrow \pi_{t-s} \sheaf{O}(\stack{N}). \qedhere \popQED\]
 \end{lemma}
 
 \begin{lemma}
@@ -920,7 +933,7 @@ The front and back faces are connected by logarithms of \emph{different} heights
 \end{remark}
 
 \begin{theorem}[{\cite[Theorem 1.9]{RezkLogarithm}}]
-For $R$ a $K(1)$--local $E_\infty$ ring with $\pi_0 R$ torsion--free, the map $\pi_0 \ell_1\co \pi_0 R^\times \to \pi_0 R$ is given by the formula\footnote{The analogue of this formula for $E_\Gamma$ (but not an arbitrary $K(d)$--local $E_\infty$ ring spectrum) is given in \cite[Subsection 1.10]{RezkLogarithm}.} \[\ell_1(x) = \frac{1}{p} \log\left(\frac{x^p}{\psi^p x}\right) = \sum_{k=1}^\infty \frac{p^{k-1}}{k} \left(\frac{\theta(x)}{x^p}\right)^k. \qed\]
+For $R$ a $K(1)$--local $E_\infty$ ring with $\pi_0 R$ torsion--free, the map $\pi_0 \ell_1\co \pi_0 R^\times \to \pi_0 R$ is given by the formula\footnote{The analogue of this formula for $E_\Gamma$ (but not an arbitrary $K(d)$--local $E_\infty$ ring spectrum) is given in \cite[Subsection 1.10]{RezkLogarithm}.} \[\pushQED{\qed} \ell_1(x) = \frac{1}{p} \log\left(\frac{x^p}{\psi^p x}\right) = \sum_{k=1}^\infty \frac{p^{k-1}}{k} \left(\frac{\theta(x)}{x^p}\right)^k. \qedhere \popQED\]
 \end{theorem}
 
 \begin{corollary}
