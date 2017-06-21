@@ -98,6 +98,15 @@
 \setlength\epigraphrule{0pt}
 
 
+\usepackage{makeidx}
+\makeindex
+
+% REMOVE ME EVENTUALLY
+% \usepackage{showidx}
+% /REMOVE ME EVENTUALLY
+
+
+
 %%% DONE WITH PACKAGES
 
 % \setlength{\marginparwidth}{1in-\marginparsep} % fullpage sets margins to 1in
@@ -322,3 +331,11 @@
    \mathopen{\vphantom{#2}}^{#1}%
    \kern-\scriptspace%
    #2}
+
+% from hood chatham: 
+\makeatletter
+\def\idxentry{\@ifnextchar[{\idxentry@}{\idxentry@dbl}}
+% \def\idxentry@dbl#1{\mycommand@[#1]{#1}}
+\def\idxentry@dbl#1{\textit{#1}\index{#1}}
+\def\idxentry@[#1]#2{\textit{#2}\index{#1@#2}}
+\makeatother
