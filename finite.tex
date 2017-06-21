@@ -55,7 +55,7 @@ Suppose that we begin with an $R$--module $M$ and set $N = f^* M$, so that we ar
 (f \otimes 1)^* N & = \\
 ((f \otimes 1) \circ f)^* M & \cong ((1 \otimes f) \circ f)^* M & s_1 \otimes (s_2 \otimes m) & \mapsto (s_1 \otimes m) \otimes s_2. \\
 & = (1 \otimes f)^* N \\
-& = N \otimes_R S, \\
+& = N \otimes_R S,
 \end{align*}
 In fact, this isomorphism is compatible with further shuffles, in the sense that the following diagram commutes:\footnote{The commutativity of this triangle shows that any number of shuffles also commutes.}
 \begin{center}
@@ -729,14 +729,14 @@ where $i$ is an inclusion of $k$ into the residue field $R/\m$ and $\alpha\co i^
 The local formal group $\Gamma\co \Spec k \to \moduli{fg}$ always has trivializable Lie algebra, hence \Cref{CoordinatizbleFGs} shows that it always admits a presentation by a formal group law.  In fact, any deformation $\G\co \Spf R \to \moduli{fg}$ of $\Gamma$ also has a trivializable Lie algebra, since projective modules (such as $T_0 \G$) over local rings like $R$ are automatically free (i.e., trivializable).  It follows that the groupoid $(\moduli{fg})^\wedge_\Gamma(R)$ admits a presentation in terms of formal group \emph{laws}.  Starting with the pullback square of groupoids
 \begin{center}
 \begin{tikzcd}
-(\moduli{fg})^\wedge_\Gamma(R) \arrow{d} \arrow{rr} & & \moduli{fg}(B) \arrow{d} \\
+(\moduli{fg})^\wedge_\Gamma(R) \arrow{d} \arrow{rr} \arrow[drr, phantom, "\lrcorner", very near start] & & \moduli{fg}(R) \arrow{d} \\
 \displaystyle\coprod_{i\co \Spec R/\m \to \Spec k} \{\Gamma\} \arrow{r} & \displaystyle\coprod_{i\co \Spec R/\m \to \Spec k} \moduli{fg}(k) \arrow{r} & \moduli{fg}(R/\m)
 \end{tikzcd}
 \end{center}
 and selecting formal group laws everywhere, the objects of the groupoid $(\moduli{fg})^\wedge_\Gamma(R)$ are given by diagrams
 \begin{center}
 \begin{tikzcd}[column sep=1em]
-{(\A^1_k, +_\Gamma)} \arrow{d} & {(\A^1_{R/\m}, +_{i^* \Gamma})} \arrow{rd} \arrow[equal]{rr} \arrow{l} & & {(\A^1_{R/\m}, +_{\pi^* \G})} \arrow{ld} \arrow{r} & {(\A^1_R, +_{\G})} \arrow{d} \\
+{(\A^1_k, +_\Gamma)} \arrow{d} & {(\A^1_{R/\m}, +_{i^* \Gamma})} \arrow{rd} \arrow[ld, phantom, "\llcorner", very near start] \arrow[equal]{rr} \arrow{l} & & {(\A^1_{R/\m}, +_{\pi^* \G})} \arrow{ld} \arrow{r} \arrow[dr, phantom, "\lrcorner", very near start] & {(\A^1_R, +_{\G})} \arrow{d} \\
 \Spec k & & \Spec R/\m \arrow["i"']{ll} \arrow["\pi"]{rr} & & \Spf R,
 \end{tikzcd}
 \end{center}
@@ -857,7 +857,7 @@ g_r(x) & = h(x) - f(x), &
 Of course, if \Cref{LubinTateModuliThm} is true in general, then it holds for the special case of $R = k[\eps]/\eps^2$.  Our task is to reduce the general case to this special case, and we proceed by inducting on the length of the Artinian ring $R$.  If $R$ has length $1$, then $R = k$ and we are done.  Otherwise, we can choose an element $r \in R$ which is annihilated by $\m$, and we consider the relationship between $(\moduli{fg})^\wedge_\Gamma(R)$ and $(\moduli{fg})^\wedge_\Gamma(R/r)$.  There is a pullback diagram
 \begin{center}
 \begin{tikzcd}
-(\moduli{fg})^\wedge_\Gamma(R \times_{R/r} R) \arrow["m"]{r} \arrow{d} & (\moduli{fg})^\wedge_\Gamma(R) \arrow["\pi"]{d} \\
+(\moduli{fg})^\wedge_\Gamma(R \times_{R/r} R) \arrow["m"]{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & (\moduli{fg})^\wedge_\Gamma(R) \arrow["\pi"]{d} \\
 (\moduli{fg})^\wedge_\Gamma(R) \arrow{r} & (\moduli{fg})^\wedge_\Gamma(R/r).
 \end{tikzcd}
 \end{center}
@@ -941,7 +941,7 @@ This construction always gives an $MUP$--module spectrum in the homotopy categor
 If $f\co \Spec R \to \moduli{fg}$, then in the pullback
 \begin{center}
 \begin{tikzcd}
-P \arrow{d} \arrow["f'"]{r} & \moduli{fgl} \arrow{d} \\
+P \arrow{d} \arrow["f'"]{r} \arrow[dr, phantom, "\lrcorner", very near start] & \moduli{fgl} \arrow{d} \\
 \Spec R \arrow["f"]{r} & \moduli{fg}
 \end{tikzcd}
 \end{center}
@@ -991,7 +991,7 @@ In general, the quotient of a ring spectrum by a homotopy element does not give 
 Before turning to the other half of this Lecture, we feel obligated to include one out-of-place remark that the first-time reader is advised to skip.  The pullback idea expressed in \Cref{PullingBackOverMfgVsMfgl} intermingles interestingly with the detection result expressed in \Cref{StackinessMeasuresNonorientability}: there is a certain program, which is beyond the scope of this point of the book, which realizes spectra associated to certain nontrivial \emph{stacks} equipped with maps to the moduli of formal groups.  For instance, the non-complex-orientable spectrum $KO$ is attached to a map \[\Spec \Z \mmod C_2 \to \moduli{fg}\] which selects $KU$ with its complex-conjugation action.  There is a sequence of non-complex-orientable ring spectra $X(n) = T(\Loops SU(n))$ which limit to $X(\infty) = MU$ and which carry ``partial complex-orientations'' that give a Thom isomorphism for $\CP^{n-1}$, i.e., they come equipped with a specified formal group law modulo terms of degree $n$.  We write $\moduli{fg}^{(n)}$ for the moduli of formal groups where the isomorphisms are required to act trivially on space of $n$--jets (so that, e.g., \Cref{StrictIsosRemark} concerns $\moduli{fg}^{(1)}$).  The pullback of stacks
 \begin{center}
 \begin{tikzcd}
-P \arrow{r} \arrow{d} & \moduli{fg}^{(2)} \arrow{d} \\
+P \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \moduli{fg}^{(2)} \arrow{d} \\
 \Spec \Z \mmod C_2 \arrow{r} & \moduli{fg}
 \end{tikzcd}
 \end{center}
