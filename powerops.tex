@@ -505,19 +505,29 @@ A \index{sheaf!infty sheaf@$\infty$--sheaf}\textit{$\CatOf{D}$--valued sheaf} on
 \end{definition}
 
 \begin{definition}[{\cite[Remark 4.1]{GoerssTMF}}]
-Let $f\co \stack N \to \moduli{fg}$ be a flat, representable morphism of stacks.  A \index{topological enrichment}\textit{topological enrichment} of $\stack N$ is a sheaf of $E_\infty$ ring spectra $\sheaf O$ on $\stack N$ such that\footnote{In particular, $\pi_0 \sheaf O$ recovers the structure sheaf of $\stack N$.} \[\pi_n \circ \sheaf O \cong \begin{cases} f^* \omega^{\otimes k} & \text{if $n = 2k$ is even}, \\ 0 & \text{if $n$ is odd}. \end{cases}\]
+Let $f\co \stack N \to \moduli{fg}$ be a flat, representable morphism of stacks.  A \index{topological enrichment}\textit{topological enrichment} of $\stack N$ is a sheaf of $E_\infty$ ring spectra $\sheaf O$ on $\stack N$ such that\footnote{In particular, $\pi_0 \sheaf O$ recovers the structure sheaf of $\stack N$.} \[\pi_n \circ \sheaf O \cong \begin{cases} f^* \omega^{\otimes k} & \text{if $n = 2k$ is even}, \\ 0 & \text{if $n$ is odd}. \end{cases}\]  Fix a fixed map $f\co \stack N \to \moduli{fg}$, this has its own associated moduli problem of topological enrichments of $f$.
 \end{definition}
 
-Fix a fixed map $f\co \stack N \to \moduli{fg}$, this has its own associated moduli problem of topological enrichments of $f$.
+Our goal, then, is to outline the proof of the following theorem:
 
-\todo[inline]{Give an explicit presentation for $\moduli{ell}$.  Make sure the names line up with the final subsection of this Lecture.}
-
-\begin{theorem}[{Goerss--Hopkins--Miller~\cite{GoerssHopkins}; Behrens; Lurie~\cite{LurieSurveyOfEll}}]
+\begin{theorem}[{Goerss--Hopkins--Miller~\cite{GoerssHopkins}; Behrens; Lurie~\cite{LurieSurveyOfEll}}]\label{UniqueTopEnrichmentOfMell}
 \citeme{Behrens from the tmf volume; Hopkins--Miller from the tmf volume}
 The moduli of topological enrichments of $\moduli{ell}$, the moduli of elliptic curves, is contractible.
 \end{theorem}
 
-It is in this sense that we will work locally: we will construct a topological enrichment of $\moduli{ell}$ by doing so locally, then gluing the resulting local definitions together along common subsets to generate a sheaf on the entire object.  We first divide $\moduli{ell}$ up over primes by passing to the $p$--completion, then we further divide the $p$--complete moduli itself into two regions via the following result:
+
+
+\subsection*{The moduli of elliptic curves}
+
+In order to give a coherent strategy for proving \Cref{UniqueTopEnrichmentOfMell}, we need to know something about the moduli of elliptic curves itself.  Recalling from \Cref{SectionEllipticCurvesAndThetaFunctions} the idea of a Weierstrass presentation of an elliptic curve, we define a general Weierstrass curve to be a projective curve specified by an equation of the form \[C_a := \{y^2 + a_1xy + a_3y = x^3 + a_2x^2 + a_4x + a_6\},\] the universal one of which is defined over \[\moduli{Weier} = \Spec \Z[a_1, a_2, a_3, a_4, a_6][\Delta^{-1}],\] where the invertibility of the function $\Delta$ guarantees that these curves are nonsingular.  The point at infinity in the set of projective solutions gives the curve a canonical marked point and hence the structure of an abelian variety.  The fraction $y/x$ gives a coordinate in a neighborhood of the point at infinity, and hence Taylor expansion in this coordinate describes a map \[\moduli{Weier} \to \moduli{fgl}.\]  Just as several formal group laws give the same formal group, several Weierstrass curves present the same elliptic curve, which are related by transformations of the form
+\begin{align*}
+f_{\lambda,s,r,t} \co C_a & \to C_{a'}, \\
+x & \mapsto \lambda^2 x + r, \\
+y & \mapsto \lambda^3 y + sx + t,
+\end{align*}
+the universal one of which is defined over \[\moduli{Weier.trans.} = \moduli{Weier} \times \Spec \Z[\lambda^{\pm}, r, s, t].\]  This structure map is the groupoid component map in a groupoid scheme structure on $\moduli{ell} = (\moduli{Weier}, \moduli{Weier.trans.})$, along which we have a descended map \[\moduli{ell} \to \moduli{fg}.\]
+
+With the moduli of elliptic curves now specified, we will construct a topological enrichment of $\moduli{ell}$ by doing so locally, then gluing the resulting local definitions together along common subsets to generate a sheaf on the entire object.  We first divide $\moduli{ell}$ up over primes by passing to the $p$--completion, then we further divide the $p$--complete moduli itself into two regions via the following result:
 
 \begin{lemma}
 The $p$--divisible group of an elliptic curve is either formal of height $2$ (called the \index{elliptic curve!supersingular}\textit{supersingular} case) or an extension of an \'etale $p$--divisible group of height $1$ by a formal group of height $1$ (called the \index{elliptic curve!ordinary}\text{ordinary} case).
@@ -737,7 +747,7 @@ Consider the \v{C}ech complex associated to the affine cover $\moduli{Weier} \to
     \end{tikzcd}
     \end{center}
     In the same stroke, this is also the pullback diagram computing $\Spec MU_* \TMF$.
-    \item Now consider the pair of cubes of iterated pullbacks pictured in \Cref{HypercubesFigure}.  These compute the pullback of the cube in two different ways, producing an isomorphism $\moduli{quad.trans.} \cong (\moduli{fg} \times \moduli{ps}^{\mathrm{gpd}}) \times_{\moduli{fgl}} \moduli{Weier}$.
+    \item Now consider the pair of cubes of iterated pullbacks pictured in \Cref{HypercubesFigure}.  These compute the pullback of the cube in two different ways, producing an isomorphism $\moduli{Weier.trans.} \cong (\moduli{fg} \times \moduli{ps}^{\mathrm{gpd}}) \times_{\moduli{fgl}} \moduli{Weier}$.
     \item[$n$.] The general case is similar, but requires stomaching iterated pullbacks in $n$--cubes. \qedhere
 \end{enumerate}
 \end{proof}
@@ -751,7 +761,7 @@ Consider the \v{C}ech complex associated to the affine cover $\moduli{Weier} \to
     \moduli{fgl} \arrow{rr} & & \moduli{fg},
     \end{tikzcd} \hspace{1em}
     \begin{tikzcd}[column sep=-1em]
-    & \moduli{quad.trans.} \arrow{rr} \arrow{dd} & & \moduli{Weier} \arrow{dd} \arrow{ld} \\
+    & \moduli{Weier.trans.} \arrow{rr} \arrow{dd} & & \moduli{Weier} \arrow{dd} \arrow{ld} \\
     & & \moduli{fgl} \\
     & \moduli{Weier} \arrow{rr} \arrow{ld} & & \moduli{ell} \arrow{ld} \\
     \moduli{fgl} \arrow{rr} & & \moduli{fg}. \arrow[leftarrow, crossing over]{uu}
