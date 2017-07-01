@@ -178,9 +178,9 @@ Let $\G$ be a formal group.  In the presence of a coordinate $\phi \co \G \cong 
 \end{center}
 and hence a $n$--tuple of $(2n)$--variate power series ``$+_\phi$'', satisfying
 \begin{align*}
-\underline{\smash x} +_\phi \underline{\smash y} & = \underline{\smash y} +_\phi \underline{\smash x}, & \text{(commutativity)} \\
-\underline{\smash x} +_\phi \underline{\smash 0} & = \underline{\smash x}, & \text{(unitality)} \\
-\underline{\smash x} +_\phi (\underline{\smash y} +_\phi \underline{\smash z}) & = (\underline{\smash x} +_\phi \underline{\smash y}) +_\phi \underline{\smash z}. & \text{(associativity)}
+\underline{\smash x} +_\phi \underline{\smash y} & = \underline{\smash y} +_\phi \underline{\smash x}, \tag{commutativity} \\
+\underline{\smash x} +_\phi \underline{\smash 0} & = \underline{\smash x}, \tag{unitality} \\
+\underline{\smash x} +_\phi (\underline{\smash y} +_\phi \underline{\smash z}) & = (\underline{\smash x} +_\phi \underline{\smash y}) +_\phi \underline{\smash z}. \tag{associativity}
 \end{align*}
 Such a series $+_\phi$ is called a \index{formal group!law}\textit{formal group law}, and it is the concrete data associated to a formal group.
 \end{definition}
@@ -376,13 +376,13 @@ We use these properties to work the following Example, which connects Thom sheav
 Take $\L$ to be the canonical line bundle over $\CP^\infty$.  Using the same mode of argument as in \Cref{RPnThomExample}, the zero-section \[\Susp^\infty \CP^\infty \xrightarrow{\simeq} T_2(\L)\] gives an identification \[E^0 \CP^\infty \supseteq \widetilde E^0 \CP^\infty \xleftarrow{\simeq} E^0 T_2(\L)\] of $E^0 T_2(\L)$ with the augmentation ideal in $E^0 \CP^\infty$.  At the level of Thom sheaves, this gives an isomorphism \[\sheaf I(0) \xleftarrow{\simeq} \ThomSheaf{\L}\] of $\ThomSheaf{\L}$ with the sheaf of functions vanishing at the origin of $\CP^\infty_E$.  Pulling $\L$ back along \[0\co * \to \CP^\infty\] gives a line bundle over the one-point space, which on Thom spectra gives the inclusion \[\Susp^\infty \CP^1 \to \Susp^\infty \CP^\infty.\]  Stringing many results together, we can now calculate:%
 \footnote{The identification $0^* \sheaf I(0) = \sheaf I(0) / \sheaf I(0) \cdot \sheaf I(0)$ deserves further explanation.  The functor $0^*$ is right-exact, so sends the short exact sequence \[0 \to \sheaf I(0)^2 \to \sheaf I(0) \to \sheaf I(0) / \sheaf I(0)^2 \to 0\] to a right-exact sequence, and we need only check that the map $0^* \sheaf I(0)^2 \to 0^* \sheaf I(0)$ is zero.  This is the statement that a function vanishing to second order also has vanishing first derivative.}
 \begin{align*}
-\widetilde{\pi_2 E} & \cong \widetilde{E^0 \CP^1} & \text{($S^2 \simeq \CP^1$)} \\
-& \cong \ThomSheaf{0^* \L} & \text{(\Cref{DefnThomSheaf})} \\
-& \cong 0^* \ThomSheaf{\L} & \text{(\Cref{PropertiesOfThomSheaves})} \\
-& \cong 0^* \sheaf I(0) & \text{(preceding calculation)} \\
-& \cong \sheaf I(0) / (\sheaf I(0) \cdot \sheaf I(0)) & \text{(definition of $0^*$ from \Cref{PushAndPullForQCohOnAffines})} \\
-& \cong T^*_0 \CP^\infty_E & \text{(\Cref{DefnOfCoTangentSpaces})} \\
-& \cong \omega_{\CP^\infty_E}, & \text{(proof of \Cref{RationalFGLsHaveLogarithms})}
+\widetilde{\pi_2 E} & \cong \widetilde{E^0 \CP^1} \tag{$S^2 \simeq \CP^1$} \\
+& \cong \ThomSheaf{0^* \L} \tag{\Cref{DefnThomSheaf}} \\
+& \cong 0^* \ThomSheaf{\L} \tag{\Cref{PropertiesOfThomSheaves}} \\
+& \cong 0^* \sheaf I(0) \tag{preceding calculation} \\
+& \cong \sheaf I(0) / (\sheaf I(0) \cdot \sheaf I(0)) \tag{definition of $0^*$ from \Cref{PushAndPullForQCohOnAffines}} \\
+& \cong T^*_0 \CP^\infty_E \tag{\Cref{DefnOfCoTangentSpaces}} \\
+& \cong \omega_{\CP^\infty_E}, \tag{proof of \Cref{RationalFGLsHaveLogarithms}}
 \end{align*}
 where $\omega_{\CP^\infty_E}$ denotes the sheaf of invariant differentials on $\CP^\infty_E$.  Consequently, if $k \cdot \eps$ is the trivial bundle of dimension $k$ over a point, then \[\widetilde{\pi_{2k} E} \cong \ThomSheaf{k \cdot \eps} \cong \ThomSheaf{k \cdot 0^* \L} \cong \ThomSheaf{0^* \L}^{\otimes k} \cong \omega_{\CP^\infty_E}^{\otimes k}.\]  Finally, given an $E$--algebra $f \co E \to F$ (e.g., $F = E^{X_+}$), then we have \[\widetilde{\pi_{2k} F} \cong f_E^* \omega_{\CP^\infty_E}^{\otimes k}.\]
 \end{example}
@@ -733,19 +733,18 @@ There is an isomorphism of Thom spectra \[T(\xi(n)) \simeq (T\xi)^{\sm n}_{hC_n}
 \begin{proof}
 This proof is mostly a matter of having had the idea to write down the Lemma to begin with.  From here, we string basic properties together:
 \begin{align*}
-T(\xi(n)) & = T(\xi^{\oplus n}_{hC_n}) & \text{(definition)} \\
-& = T(\xi^{\oplus n})_{hC_n} & \text{(colimits commute with colimits)} \\
-& = T(\xi)^{\sm n}_{hC_n}. & \text{($T$ is monoidal: \Cref{ThomSpacesAreMonoidal})} & \qedhere
+T(\xi(n)) & = T(\xi^{\oplus n}_{hC_n}) \tag{definition} \\
+& = T(\xi^{\oplus n})_{hC_n} \tag{colimits commute with colimits} \\
+& = T(\xi)^{\sm n}_{hC_n}. \tag{$T$ is monoidal: \Cref{ThomSpacesAreMonoidal}}
 \end{align*}
 \end{proof}
 
 Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n} \to MU(k)^{\sm n}_{hC_n} \to MU(nk)\] of the unstable multiplication map, and hence a stable factorization \[MU^{\sm n} \to MU^{\sm n}_{hC_n} \xrightarrow{\mu_n} MU.\]  In fact, this enriches to an $H_\infty^2$ ring spectrum structure: by applying \Cref{ThomSpectrumOfAssocBundle} in reverse, the basic construction is
 \begin{align*}
 \mu_{2,2}\co \S^2_{h\Sigma_2} \sm MU^{\sm 2}_{h\Sigma_2} & \xrightarrow{1 \sm \mu_2} \S^2_{h\Sigma_2} \sm MU \\
-& \simeq T(1_{\R}(2) \downarrow *) \sm MU & \text{(\Cref{ThomSpectrumOfAssocBundle}, }\\
-& & \text{+ ``$1_{\R}$'' the trivial real bundle)} \\
-& \simeq T(1_{\C} \downarrow *) \sm MU & \text{($MU$--Thom isomorphism)} \\
-& \simeq \S^2 \sm MU. & \text{(Thom spectrum of $1_{\C}$)}
+& \simeq T(1_{\R}(2) \downarrow *) \sm MU \tag{\Cref{ThomSpectrumOfAssocBundle}} \\
+& \simeq T(1_{\C} \downarrow *) \sm MU \tag{$MU$--Thom isomorphism} \\
+& \simeq \S^2 \sm MU. \tag{Thom spectrum of $1_{\C}$}
 \end{align*}
 Our goal in the next Lecture will be to gain a computational understanding of $\mu_{n,2d}$.
 
