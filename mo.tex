@@ -36,8 +36,7 @@ If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T_n(\xi) = S^n \sm (X_+
 Let $\xi$ be the tautological $S^0$--bundle over the unpointed space $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, $EO(1)$, the cofiber degenerates and it follows that $T_1(\xi) = \RP^\infty$, a pointed space.\footnote{If you already know what's coming, this should comport with the Thom isomorphism: $x \cdot \HFtwo^* \RP^\infty \cong \widetilde{\HFtwo}^{* + 1} \RP^\infty$.}  More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
 \end{example}
 
-\citeme{Give a reference for this general construction of classifying spaces for fibrations.}
-Now we catalog a bunch of useful properties of the Thom space functor.  Firstly, recall that a spherical bundle over $X$ is the same data as a map $X \to B \GL_1 S^{n-1}$, where $\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback of spaces
+Now we catalog a bunch of useful properties of the Thom space functor.  Firstly, recall that a spherical bundle over $X$ is the same data~\cite{MayClassifyingSpaces} as a map $X \to B \GL_1 S^{n-1}$, where $\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback of spaces
 \begin{center}
 \begin{tikzcd}
 \GL_1 S^{n-1} \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \CatOf{Spaces}(S^{n-1}, S^{n-1}) \arrow{d} \\
@@ -70,7 +69,7 @@ BO(n) \arrow[equal]{r} & BO(n) \times * \arrow["\operatorname{id} \times \text{t
 \begin{corollary}\label{DefnRealJHomomorphism}
 The operations of block--sum and topological join imbue the colimiting spaces $BO$ and $B\GL_1 \S$ with the structure of $H$--groups\todo{Should you justify ``group'' rather than ``space''?}.  Moreover, the colimiting map \[J_{\R}\co BO \to B\GL_1 \S,\] called the \idxentry[J homomorphism]{$J$--homomorphism}, is a morphism of $H$--groups. \qed
 \end{corollary}
-\noindent Finally, we can ask about the compatibility of Thom constructions with all of this.  In order to properly phrase the question, we need a version of the construction which operates on stable spherical bundles, i.e., whose source is the slice category over $B\GL_1 \S$.  By calculating\todo{Does this calculation need justification?} \[T_{n+1}(\xi \ast \text{triv}) \simeq \Susp T_n(\xi),\] we are inspired to make the following definition:
+\noindent Finally, we can ask about the compatibility of Thom constructions with all of this.  In order to properly phrase the question, we need a version of the construction which operates on stable spherical bundles, i.e., whose source is the slice category over $B\GL_1 \S$.  By calculating \[T_{n+1}(\xi \ast \text{triv}) \simeq \Susp T_n(\xi),\] we are inspired to make the following definition:
 
 \begin{definition}
 For $\xi$ an $S^{n-1}$--bundle, we define the \idxentry{Thom spectrum} of $\xi$ to be \[T(\xi) := \Susp^{-n} \Susp^\infty T_n(\xi).\]  By filtering the base space by compact subspaces, this begets a functor \[T\co \CatOf{Spaces}_{/ B\GL_1 \S} \to \CatOf{Spectra}.\]
@@ -84,18 +83,15 @@ $T$ is monoidal: it carries external fiberwise joins to smash products of Thom s
 The spectrum \idxentry[MO]{$MO$} arises as the universal example of all these constructions, strung together:
 \[MO := T(J_{\R}) = \colim_n T(J_{\R}^n) = \colim_n \Susp^{-n} T_n J_{\R}^n.\]
 \end{definition}
-\citeme{There should be a reference here (to Pontryagin, presumably) saying that we recover $MO$ as defined on the first day.}
 
-The spectrum $MO$ has several remarkable properties.  The most basic such property is that it is a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces.  Much more excitingly, we can also deduce the presence of \index{Thom isomorphism}Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
+The spectrum $MO$ has several remarkable properties.  First, it can be shown that the generalized homology theory that this spectrum encodes matches the one described in the Introduction~(\cite[Theorem 12.30]{Switzer}, \cite[Theorem 7.27]{Rudyak}).  The most basic homotopical property is that this spectrum is naturally a ring spectrum, and this follows immediately from $J_{\R}$ being a homomorphism of $H$--spaces.  Much more excitingly, we can also deduce the presence of \index{Thom isomorphism}Thom isomorphisms just from the properties stated thus far.  That $J_{\R}$ is a homomorphism means that the following square commutes:
 \begin{center}
 \begin{tikzcd}
 BO \times BO \rar["\sigma",equiv'] \arrow[bend right]{rrd} & BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
 & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
-We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.
-\todo{$\sigma$ \emph{almost} shows up in giving a categorical definition of a $G$--torsor.  I wish I understood this, but I always get tangled up.}
-It is evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little lifting triangle it forms.}  We are now in a position to see the Thom isomorphism:
+We have extended this square very slightly by a certain shearing map $\sigma$ defined by $\sigma(x, y) = (xy^{-1}, y)$.  It is evident that $\sigma$ is a homotopy equivalence, since just as we can de-scale the first coordinate by $y$ we can re-scale by it---indeed, this is the observation that $BO$ is a torsor for itself.  We can calculate directly the behavior of the long composite: \[J_{\R} \circ \mu \circ \sigma(x, y) = J_{\R} \circ \mu(xy^{-1}, y) = J_{\R}(xy^{-1}y) = J_{\R}(x).\]  It follows that the second coordinate plays no role, and that the bundle classified by the long composite can be written as $J_{\R} \times 0$.\footnote{This factorization does \emph{not} commute with the rest of the diagram, just with the little lifting triangle it forms.}  We are now in a position to see the Thom isomorphism:
 \begin{lemma}[{Thom isomorphism, universal example, cf.\ \cite{Mahowald}}]
 As $MO$--modules, \[MO \sm MO \simeq MO \sm \Susp^\infty_+ BO.\]
 \end{lemma}
@@ -260,11 +256,12 @@ This group scheme has several interesting properties, which we will merely state
 \end{enumerate}
 \end{example}
 
-\todo{Jeremy had some motivation for this, that quite generally one wants to consider ind-systems of compact objects.  Why does one want this?  Is it better motivation than just dropping into it?}
 We now turn to a different class of examples, which will wind up being the key players in our upcoming topological story.  To begin, consider the colimit of the sets $\colim_{j \to \infty} \mathbb A^{1,(j)}(T)$, which is of use in algebra: it is the collection of nilpotent elements in $T$.  These kinds of conditions which are ``unbounded in $j$'' appear frequently enough that we are moved to give these functors a name too:
 \begin{definition}
 \todo{Erick points out that the morphisms in this system should be infintesimal thickenings.  Is there a functor-of-points way to recognize such things, without reaching all the way up to talking about ideals?  (He also thinks that we should allow finite type in addition to finite, but I don't think I want that. I've been wrong before, though.)}
-An \index{scheme!formal}\textit{affine formal scheme} is an ind-system of finite affine schemes.\footnote{This has the effect of formally adjoining colimits of filtered diagrams to the category of finite affine schemes.  In fact, a functor $X\co \CatOf{Algebras} \to \CatOf{Sets}$ which preserves finite limits is a formal scheme exactly when there exists a family of maps $X_i \to X$ from a set of affine schemes $X_i$ such that the induced map \[\coprod_i X_i(T) \to X(T)\] is jointly surjective for all test algebras $T$~\cite[Proposition 4.6]{StricklandFSFG}.}  The morphisms between two formal schemes are computed by \[\CatOf{FormalSchemes}(\{X_\alpha\}, \{Y_\beta\}) = \lim_\alpha \colim_\beta \CatOf{Schemes}(X_\alpha, Y_\beta).\]  Given affine charts $X_\alpha = \Spec R_\alpha$, we will glibly suppress the system from the notation and write \[\Spf R := \{\Spec R_\alpha\}.\]
+An \index{scheme!formal}\textit{affine formal scheme} is an ind-system of finite affine schemes.  The morphisms between two formal schemes are computed%
+\footnote{For the categorical reader, we include a significant categorical aside: passing to ind-systems has the effect of formally adjoining colimits of filtered diagrams to a category.  The formula for the mapping set comes from asserting that the assignment $\CatOf C \to \operatorname{Ind}(\CatOf C)$ is fully faithful, that its image consists of compact objects, and that each diagram $\CatOf D \to \CatOf C$ which can be interpreted as a member of $\operatorname{Ind}(\CatOf C)$ is its own colimit.  To control the difference between this category and the original category, it is often useful to restrict attention to diagrams of objects \emph{which are already compact in $\CatOf C$}, as in our definition of a formal scheme.}\footnote{Along the same lines, one can show the following recognition principle~\cite[Proposition 4.6]{StricklandFSFG}: a functor $X\co \CatOf{Algebras} \to \CatOf{Sets}$ which preserves finite limits is a formal scheme exactly when there exists a family of maps $X_i \to X$ from a set of affine schemes $X_i$ such that for all test algebras $T$ the following map is onto: \[\coprod_i X_i(T) \to X(T).\]}
+by \[\CatOf{FormalSchemes}(\{X_\alpha\}, \{Y_\beta\}) = \lim_\alpha \colim_\beta \CatOf{Schemes}(X_\alpha, Y_\beta).\]  Given affine charts $X_\alpha = \Spec R_\alpha$, we will glibly suppress the system from the notation and write \[\Spf R := \{\Spec R_\alpha\}.\]
 \end{definition}
 
 \begin{example}\label{FormalGaExample}
@@ -292,7 +289,6 @@ Recall that $\RP^\infty$ is an $H$--space in two equivalent ways:
 \begin{enumerate}
 \item There is an identification $\RP^\infty \simeq K(\F_2, 1)$, and the $H$--space structure is induced by the sum on cohomology.
 \item There is an identification $\RP^\infty \simeq BO(1)$, and the $H$--space structure is induced by the tensor product of real line bundles.
-\todo{I thought we came up with an instructive third example of where to find the $H$--space structure.}
 \end{enumerate}
 In either case, this induces a Hopf algebra diagonal \[\HFtwo^* \RP^\infty \otimes \HFtwo^* \RP^\infty \xleftarrow\Delta \HFtwo^* \RP^\infty\] which we would like to analyze.  This map is determined by where it sends the class $x$, and because it must respect gradings it must be of the form $\Delta x = ax_1 + bx_2$ for some constants $a, b \in \F_2$.  Furthermore, because it belongs to a Hopf algebra structure, it must satisfy the unitality axiom
 \begin{center}
@@ -382,7 +378,6 @@ We are now in a position to uncover the desired map $\alpha^*$ from earlier.  In
 Projecting to the quotient Hopf algebra $\mathcal AP_0 \to \F_2[\xi_0^\pm]$ gives exactly the coaction map $\alpha^*$.
 \end{lemma}
 \begin{proof}[Calculation]
-\todo{This could be clearer.  Sean wasn't even sure what we were trying to calculate---he believed immediately that $\xi_0$ did its job.}
 Starting with an auxiliary cohomology class $x \in \HFtwo^n(X)$, we produce a homogenized cohomology class $x \cdot u^n \in \HFtwo P^0(X)$.  Under the coaction map, this is sent to
 \begin{center}
 \begin{tikzcd}
@@ -450,7 +445,7 @@ In summary, the formula $\RP^\infty_{\HFtwo P} \cong \G_a$ is meant to point out
 
 \section{Hopf algebra cohomology}\label{HopfAlgebraLecture}
 
-In this section, we will focus on an important classical tool: the Adams spectral sequence.  We are going to study this in greater earnest later on, so we will avoid giving a satisfying construction in this Lecture.  But, even without a construction, it is instructive to see how this comes about from a moral perspective.  \citeme{I first saw this presentation from Matt Ando. He must have learned it from someone. I'd like to know who to attribute this to}
+In this section, we will focus on an important classical tool: the Adams spectral sequence.  We are going to study this in greater earnest later on, so we will avoid giving a satisfying construction in this Lecture.  But, even without a construction, it is instructive to see how this comes about from a moral perspective.
 
 \begin{remark}
 Throughout this Lecture, we will work with graded homology groups, rather than with periodified cohomology as was the case in \Cref{TheSteenrodAlgebraSection}.  This choice will remain mysterious for now, but we can at least reassure ourselves that it carries the same data as we were studying previously.  Referring to our discussion of the construction of the coaction map, we see that without taking Spanier--Whitehead duals we already have an analogous coaction map on homology: \[H\F_{2*} X \to H\F_{2*} X \otimes \mathcal A_*.\]  Additionally, building on the discussion in \Cref{AutGaHasStableCoopns}, the splitting of the Hopf algebra shows that we are free to work gradedly or work with the periodified version of mod--$2$ homology, while still retaining the rest of the framework.
@@ -489,9 +484,7 @@ We use a vertical line to indicate the nontrivial coaction involving $\xi_1$:}
 \& H\F_{2*} \S^0 \& \arrow[leftarrow]{l} H\F_{2*} C(0) \& \arrow[leftarrow]{l} H\F_{2*} \S^1, \& H\F_{2*} \S^0 \& \arrow[leftarrow]{l} H\F_{2*} C(2) \& \arrow[leftarrow]{l} H\F_{2*} \S^1.
 \end{tikzcd}
 \end{center}
-We can now see what trading maps for cofiber sequences has bought us: mod--$2$ homology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.
-\todo{Can this be phrased so as to indicate how this works for longer extensions? I've never tried to think about even what happens for $C(4)$.}
-The Adams spectral sequence bundles this thought process into a single machine:
+We can now see what trading maps for cofiber sequences has bought us: mod--$2$ homology can distinguish the defining sequences for $C(0)$ and $C(2)$ by considering their induced extensions of comodules over $\mathcal A_*$.\footnote{More complicated homotopy elements may require more complicated extensions: for instance, the element $4 = 2 \cdot 2$ has to be written as a length--$2$ extension to distinguish it from other elements.}  The Adams spectral sequence bundles this thought process into a single machine:
 \begin{theorem}[{\cite[Definition 2.1.8, Lemma 2.1.16]{RavenelGreenBook}, \cite[Chapter 18]{MosherTangora}}]
 There is a convergent spectral sequence of signature
 \[
@@ -546,7 +539,6 @@ An $R$--module $M$ gives rise to a quasicoherent sheaf $\widetilde M$ on $\Spec 
 The tensoring operation appearing in the definition of a presheaf appears more generally as an operation on the category of sheaves.
 
 \begin{definition}\label{PushAndPullForQCohOnAffines}
-\todo{Jay was frustrated with which adjoint I put on top (and perhaps which went on which side). Apparently there's some convention, which I should look up and obey.}
 A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of categories of quasicoherent sheaves.  At the level of modules, these are given by
 \begin{center}
 \begin{tikzcd}
@@ -556,7 +548,7 @@ A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of categories of 
 \end{center}
 \end{definition}
 
-One of the main uses of these operations is to define the cohomology of a sheaf.  Let $\pi\co X \to \Spec k$ be a scheme over $\Spec k$, $k$ a field, and let $\sheaf F$ be a sheaf over $X$.  The adjunction above induces a derived adjunction\todo{Why doesn't $\pi^*$ need to be left-derived?} \[\Ext_X(\pi^* k, \sheaf F) \cong \Ext_{\Spec k}(k, R\pi_* \sheaf F),\] which is used to translate the \emph{definition} of sheaf cohomology to that of the cohomology of the derived pushforward $R\pi_* \sheaf F$, itself interpretable as a mere complex of $k$--modules.  This pattern is very general: the sense of ``cohomology'' relevant to a situation is often accessed by taking the derived pushforward to a suitably terminal object.\footnote{This perspective often falls under the heading of ``six--functor formalism''.}  To invent a notion of cohomology for comodules over a Hopf algebra, we are thus moved to produce push and pull functors for a map of Hopf algebras, and this is best motivated by another example.
+One of the main uses of these operations is to define the cohomology of a sheaf.  Let $\pi\co X \to \Spec k$ be a scheme over $\Spec k$, $k$ a field, and let $\sheaf F$ be a sheaf over $X$.  The adjunction above induces a derived adjunction \[\Ext_X(\pi^* k, \sheaf F) \cong \Ext_{\Spec k}(k, R\pi_* \sheaf F),\] which is used to translate the \emph{definition} of sheaf cohomology to that of the cohomology of the derived pushforward $R\pi_* \sheaf F$, itself interpretable as a mere complex of $k$--modules.  This pattern is very general: the sense of ``cohomology'' relevant to a situation is often accessed by taking the derived pushforward to a suitably terminal object.\footnote{This perspective often falls under the heading of ``six--functor formalism''.}  To invent a notion of cohomology for comodules over a Hopf algebra, we are thus moved to produce push and pull functors for a map of Hopf algebras, and this is best motivated by another example.
 
 \begin{example}\label{HopfAlgebrasFromFiniteGroups}
 A common source of Hopf algebras is through group--rings: given a group $G$, we can define the Hopf $k$--algebra $k[G]$ consisting of formal $k$--linear combinations of elements of $G$.  This Hopf algebra is commutative exactly when $G$ is abelian, and $k[G]$--modules are naturally equivalent to $k$--linear $G$--representations.  Dually, the ring $k^G$ of $k$--valued functions on $G$ is always commutative, using pointwise multiplication of functions, and it is \emph{cocommutative} exactly when $G$ is abelian.  If $G$ is finite, then $k^G$ and $k[G]$ are $k$--linear dual Hopf algebras, and hence finite--dimensional $k^G$--comodules are naturally equivalent to finite--dimensional $k$--linear $G$--representations.\footnote{There is a variation on this equivalence that uses fewer dualities and which is instructive to expand.  The Hopf algebra $k^G = \prod_{g \in G} k$ is the ring of functions on the constant group scheme $G$, and its $k$--points $(\Spec k^G)(k)$ biject with points in $G$.  Namely, given $g \in G$ we can form a projection map $g\co k^G \to k$ and hence a composite $M \to M \otimes_k k^G \xrightarrow{\id \otimes g} M \otimes_k k \cong M$.  Collectively, this determines a map $G \times M \to M$ witnessing $M$ as a $G$--representation.  In the other direction, if $G$ is finite then we can construct a map $M \to M \otimes_k \prod_{g \in G} k$ sending $m \in M$ to $g \cdot m$ in the $g${\th} labeled component of the target.}
@@ -648,17 +640,16 @@ These combine to give a resolution of $\HFtwo$ via an iterated cofiber of free $
 \mathcal A_* \arrow{r} & \begin{array}{c}\F_2[\xi_1, \xi_2, \xi_3, \xi_4, \ldots] \\ \hline (\xi_1^4, \xi_2^2), (\xi_n \mid n \ge 3)\end{array}.
 \end{tikzcd}
 \end{center}
-This Hopf algebra is commonly denoted $\mathcal A(1)_*$, and its corresponding subgroup scheme $\Spec \pi_* \HFtwo \sm_{kO} \HFtwo \subseteq \InternalAut_1 \G_a$ admits easy memorization: it is the subscheme of automorphisms of the form $x + \xi_1 x^2 + \xi_2 x^4$, with exactly the additional relations imposed on $\xi_1$ and $\xi_2$ so that this set is stable under composition and inversion.\footnote{A similar analysis shows that $\HFtwo_* H\Z$ corepresents the subscheme of automorphisms of the form $x + \xi_1 x^2$ which are stable under composition and inversion.}\footnote{There is also an accidental isomorphism of this Hopf algebra with $\F_2^{D_4}$, where $D_4$ is the dihedral group with $8$ elements.}
+This Hopf algebra is commonly denoted $\mathcal A(1)_*$, and its corresponding subgroup scheme $\Spec \pi_* \HFtwo \sm_{kO} \HFtwo \subseteq \InternalAut_1 \G_a$ admits easy memorization: it is the subscheme of automorphisms of the form $x + \xi_1 x^2 + \xi_2 x^4$, with exactly the additional relations imposed on $\xi_1$ and $\xi_2$ so that this set is stable under composition and inversion.\footnote{A similar analysis shows that $\pi_* (\HFtwo \wedge_{H\Z} \HFtwo)$ corepresents the subscheme of automorphisms of the form $x + \xi_1 x^2$ which are stable under composition and inversion.}\footnote{There is also an accidental isomorphism of this Hopf algebra with $\F_2^{D_4}$, where $D_4$ is the dihedral group with $8$ elements.}
 
 Formal geometry aside, this $kO$--based Adams spectral sequence collapses, giving an isomorphism \[\Cotor^{*, *}_{\mathcal A(1)_*}(\F_2, \mathcal A_*) = \mathcal A_* \mmod \mathcal A(1)_* \cong \HFtwo_* kO.\]  In turn, the original Adams spectral sequence takes the form \[\Cotor^{*, *}_{\mathcal A_*}(\F_2, \mathcal A \mmod \mathcal A(1)_*) \cong \Cotor^{*, *}_{\mathcal A(1)_*}(\F_2, \F_2) \Rightarrow \pi_* kO.\]  This spectral sequence is also collapsing, and we provide a picture of it in \Cref{kOASSFigure}.  In particular, eight-fold real Bott periodicity can be quickly read off from this picture.
 \end{example}
 
 \begin{example}
-At the other extreme, we can pick the extremely nondegenerate case $X = \S$, where $\InternalAut_1 \G_a$ acts maximally nonfreely on $\widetilde{\F_2}$.  The resulting spectral sequence is pictured through a range in \Cref{HF2ASSFigure}.  It is worth remarking that some of the stable stems receive identifiable names in this language: for instance, the elements of $H^1_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{\F_2})$ are exactly the $1$--cocycles \[h_j\co \left( f = x + \sum_{j=1}^\infty \xi_j x^{2^j}\right) \mapsto \xi_j.\]  The cocycle $h_j$ transforms in the $\Gm$--character $z \mapsto z^{2^j}$, hence $h_1$ is a name for the lone element in the spectral sequence contributing to $\pi_1 \S$, which we also know to be $\eta$.  In general, the elements $h_j$ selecting the power series coefficients are called the \idxentry{Hopf invariant $1$ elements}, and their survival or demise in the Adams spectral sequence is directly related to the problem of putting $H$--space structures on spheres.
-\citeme{VFoS problem}
+At the other extreme, we can pick the extremely nondegenerate case $X = \S$, where $\InternalAut_1 \G_a$ acts maximally nonfreely on $\widetilde{\F_2}$.  The resulting spectral sequence is pictured through a range in \Cref{HF2ASSFigure}.  It is worth remarking that some of the stable stems receive identifiable names in this language: for instance, the elements of $H^1_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{\F_2})$ are exactly the $1$--cocycles \[h_j\co \left( f = x + \sum_{j=1}^\infty \xi_j x^{2^j}\right) \mapsto \xi_j.\]  The cocycle $h_j$ transforms in the $\Gm$--character $z \mapsto z^{2^j}$, hence $h_1$ is a name for the lone element in the spectral sequence contributing to $\pi_1 \S$, which we also know to be $\eta$.  In general, the elements $h_j$ selecting the power series coefficients are called the \idxentry{Hopf invariant $1$ elements}, and their survival or demise in the Adams spectral sequence is directly related to the problem of putting $H$--space structures on spheres~\cite{AdamsVFoS}].
 \end{example}
 
-\todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?  I think this is a duality effect: working with the Steenrod algebra versus its dual.}
+% \todo{Jon asked: spectral sequences coming from $\pi_*$ of a Tot tower increase Tot degree. ANSS differentials decrease degree: they run against the multiplicative structure in pictures. What's going on with this?  I think this is a duality effect: working with the Steenrod algebra versus its dual.}
 
 \afterrectopage{
 \begin{sidewaysfigure}
@@ -692,8 +683,7 @@ Our first step toward this is the following calculation:
 The natural map \[\Sym \widetilde{\HFtwo P}_0(BO(1)) \to \HFtwo P_0(BO).\] induces a map \[\Sym \widetilde{\HFtwo P}_0(BO(1)) = \frac{\Sym \HFtwo P_0(BO(1))}{\beta_0 = 0} \xrightarrow{\simeq} \HFtwo P_0(BO)\] which is an isomorphism of Hopf algebras and of comodules for the dual Steenrod algebra.
 \end{lemma}
 \begin{proof}
-\citeme{You could cite these standard facts.}
-This follows from a combination of standard facts about Stiefel--Whitney classes.  First, these classes generate the cohomology ring $\HFtwo^* BO(n)$: \[\HFtwo^* BO(n) \cong \F_2\ps{w_1, \ldots, w_n}.\]  Second, the total Stiefel--Whitney class\todo{... which you haven't defined.} is exponential, in the sense of \[w(V \oplus W) = w(V) \cdot w(W).\]  From this, it follows that the natural map \[\HFtwo^* BO(n) \xrightarrow{\bigoplus_{j=1}^n \L_j} \HFtwo^* BO(1)^{\times n} \cong (\HFtwo^* BO(1))^{\otimes n}\] is the inclusion of the symmetric polynomials, by calculating the total Stiefel--Whitney class \[w\left( \bigoplus_{j=1}^n \L_j \right) = \prod_{j=1}^n (1 + w_1(\L_j)) = \sum_{j=0}^n \sigma_j(w_1(\L_1), \ldots, w_1(\L_n)) t^j.\]  Dually, the homological map \[(H\F_{2*} BO(1))^{\otimes n} \to H\F_{2*} BO(n)\] is surjective, modeling the quotient from the tensor product to the symmetric tensor product.  Stabilizing as $n \to \infty$, we recover the statement of the Lemma.
+This follows from a combination of standard facts about Stiefel--Whitney classes.  First, these classes generate the cohomology ring $\HFtwo P^0 BO(n)$~\cite[Theorem 16.10]{Switzer}: \[\HFtwo P^0 BO(n) \cong \F_2\ps{w_1, \ldots, w_n}.\]  Second, the total Stiefel--Whitney class $w(V) = \sum_j w_j(V) t^j$ is exponential~\cite[Theorem 16.3]{Switzer}, in the sense of \[w(V \oplus W) = w(V) \cdot w(W).\]  From this, it follows that the natural map \[\HFtwo P^0 BO(n) \xrightarrow{\bigoplus_{j=1}^n \L_j} \HFtwo P^0 BO(1)^{\times n} \cong (\HFtwo P^0 BO(1))^{\otimes n}\] is the inclusion of the symmetric polynomials, by calculating the total Stiefel--Whitney class \[w\left( \bigoplus_{j=1}^n \L_j \right) = \prod_{j=1}^n (1 + w_1(\L_j)) = \sum_{j=0}^n \sigma_j(w_1(\L_1), \ldots, w_1(\L_n)) t^j.\]  Dually, the homological map \[(\HFtwo P_0 BO(1))^{\otimes n} \to \HFtwo P_0 BO(n)\] is surjective, modeling the quotient from the tensor product to the symmetric tensor product.  Stabilizing as $n \to \infty$, we recover the statement of the Lemma.
 \end{proof}
 
 With this in hand, we now turn to the homotopy ring $\HFtwo P_0 MO$.  There are two equivalences that we might consider employing.  We have the Thom isomorphism:
@@ -753,8 +743,7 @@ We extend the square in the \Cref{DetectingMORingMapsInHomotopy} using the follo
 where the equality at bottom follows from the universal property of $\HFtwo P_0(MO)$ in $\F_2$--algebras expressed in \Cref{HF2MOisFree}.  Noting that $\beta'_0$ is induced by the topological map $\S^0 \to MO(1)$, the condition $f(\beta'_0) = 1$ is exactly the condition expressed in the statement of the Corollary.
 \end{proof}
 
-\begin{corollary}
-\citeme{I wish I could find this in the literature}
+\begin{corollary}[{\cite[Definition 12.1, Theorem 12.3]{StricklandFGNotes}}]
 There is an $\InternalAut(\G_a)$--equivariant isomorphism of schemes \[\Spec \HFtwo P_0(MO) \cong \Coord_1(\RP^\infty_{\HFtwo P}),\] where the latter is the subscheme of functions $\RP^\infty_{\HFtwo P} \to \A^1$ which are coordinates (i.e., which are \emph{isomorphisms} of formal schemes---or, equivalently, which restrict to the canonical identification of tangent spaces $\RP^1_{\HFtwo P} = \A^{1,(1)}$).
 \end{corollary}
 \begin{proof}
