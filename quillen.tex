@@ -41,7 +41,12 @@ The execution of this proof requires some understanding of cohomology operations
 
 In light of the introduction, we see that it would be prudent to develop some of the theory of formal schemes and formal varieties outside of the context of $\F_2$--algebras.  However, writing down a list of definitions and checking that they have good enough properties is not especially enlightening or fun.  Instead, it will be informative to understand where these objects come from in algebraic geometry, so that we can carry the accompanying geometric intuition along with us as we maneuver our way back toward homotopy theory and bordism.  Our overarching goal in this Lecture is to develop a notion of calculus (and analytic expansions in particular) in the context of affine schemes.  The place to begin is with definitions of cotangent and tangent spaces, as well as some supporting vocabulary.
 \begin{definition}[{cf.\ \Cref{DefnAffineF2Scheme}}]
-For an $R$--algebra $A$, the functor $\Spec A \co \CatOf{Algebras}_R \to \CatOf{Sets}$ defined by \[(\Spec A)(T) := \CatOf{Algebras}_R(A, T)\] is called the \index{scheme!affine}\textit{spectrum of $A$}.  A functor $X$ which is naturally isomorphic to some $\Spec A$ is called an \textit{affine ($R$--)scheme}, and $A = \sheaf O_{\Spec A}$ is called its \index{ring of functions}\textit{ring of functions}.  A subfunctor $Y \subseteq X$ is said to be a \index{scheme!closed}\textit{closed\footnote{The word ``closed'' is meant to suggest properties of these inclusions: in suitable senses, they are closed under finite unions and arbitrary intersections.  The complementary concept of ``open'' is harder to describe: open subschemes of affine schemes are merely ``covered'' by finitely many affines, which requires a discussion of coverings, which we remit to the actual algebraic geometers~\cite[Definition 8.1]{StricklandFPFP}.} subscheme} when an identification\footnote{This property is independent of choice of chart.} $X \cong \Spec A$ induces a further identification
+For an $R$--algebra $A$, the functor
+\begin{align*}
+\Spec A \co \CatOf{Algebras}_R & \to \CatOf{Sets}, \\
+T & \mapsto \CatOf{Algebras}_R(A, T)
+\end{align*}
+is called the \index{scheme!affine}\textit{spectrum of $A$}.  A functor $X$ which is naturally isomorphic to some $\Spec A$ is called an \textit{affine ($R$--)scheme}, and $A = \sheaf O_{\Spec A}$ is called its \index{ring of functions}\textit{ring of functions}.  A subfunctor $Y \subseteq X$ is said to be a \index{scheme!closed}\textit{closed\footnote{The word ``closed'' is meant to suggest properties of these inclusions: in suitable senses, they are closed under finite unions and arbitrary intersections.  The complementary concept of ``open'' is harder to describe: open subschemes of affine schemes are merely ``covered'' by finitely many affines, which requires a discussion of coverings, which we remit to the actual algebraic geometers~\cite[Definition 8.1]{StricklandFPFP}.} subscheme} when an identification\footnote{This property is independent of choice of chart.} $X \cong \Spec A$ induces a further identification
 \begin{center}
 \begin{tikzcd}
 Y \arrow{r} \arrow[leftarrow, "\simeq"]{d} & X \arrow[leftarrow, "\simeq"]{d} \\
@@ -120,10 +125,10 @@ In the motivating case where $F \cong \A^n$ is given, we can define $M$ to be \[
 \end{proof}
 
 \begin{corollary}
-\todo{I think this is right.}
+\citeme{EGA? or something?}
 An $S$--point $x\co S \to X$ of a Noetherian scheme is formally smooth exactly when $T_x X$ is a free $S$--module and for any nilpotent thickenings $S \to \Spec B \to \Spec B'$ and any solid diagram
 \begin{center}
-\begin{tikzcd}
+\begin{tikzcd}[column sep=3em]
 S \arrow{r} \arrow["x"]{rd} & \Spec B \arrow{r} \arrow{d} & \Spec B' \arrow[densely dotted]{ld} \\
 & X
 \end{tikzcd}
@@ -307,18 +312,17 @@ Given $q\co C \to C'$ a map of formal curves over $S$ and $D \subseteq C$ a divi
 Our final goal for the section is to broaden this discussion to line bundles on formal curves generally, using this nice case as a model.  The main classical theorem is that line bundles, sometimes referred to as \index{divisor!Cartier}\textit{Cartier divisors}, arise as the group-completion and sheafification of zero-loci of polynomials, referred to (as above) as \textit{Weil divisors}.  In the case of a \emph{formal} curve, sheafification has little effect, and so we seek to exactly connect line bundles on a formal curve with formal differences of Weil divisors.  To begin, we need some vocabulary that connects the general case to the one studied above.
 
 \begin{definition}[{cf.\ \cite[Section 14.2]{Vakil}}]\label{DivisorialDefn}
-\citeme{This and the following Lemma aren't great citations}
 Suppose that $\L$ is a line bundle on $C$ and select a section $u$ of $\L$.  There is a largest closed subscheme $D \subseteq C$ where the condition $u|_D = 0$ is satisfied.  If $D$ is a divisor, $u$ is said to be \index{divisor!divisorial section}\textit{divisorial} and we write $\div u := D$.
 \end{definition}
 
-\begin{lemma}[{cf.\ \cite[Exercise 14.2.E]{Vakil}}]
+\begin{lemma}[{cf.\ \cite[Exercise 14.2.E]{Vakil} and \cite[Proposition II.6.13]{Hartshorne}}]
 A divisorial section $u$ of a line bundle $\L$ induces an isomorphism $\L \cong \sheaf I_D$. \qed
 \end{lemma}
 
 Line bundles which admit divisorial sections are therefore those that arise through our construction above, i.e., those which are controlled by the zero locus of a polynomial.  In keeping with the classical inspiration, we expect generic line bundles to be controlled by the zeroes \emph{and poles} of a rational function, and so we introduce the following class of functions:
 
 \begin{definition}[{\cite[Definition 5.20 and Proposition 5.26]{StricklandFSFG}}]
-The ring of meromorphic functions on $C$, $\sheaf{M}_C$, is obtained by inverting all coordinates in $\sheaf{O}_C$.\footnote{In fact, it suffices to invert any single one~\cite[Lemma 5.21]{StricklandFSFG}.}  Additionally, this can be augmented to a scheme $\operatorname{Mer}(C, \mathbb G_m)$ of meromorphic functions on $C$ by \[\operatorname{Mer}(C, \mathbb G_m)(R) := \left\{ (u, f) \middle| \begin{array}{c} u: \Spec R \to S, \\ f \in \sheaf{M}^\times_{C \times_S \Spec R} \end{array} \right\}.\]
+The ring of meromorphic functions on $C$, $\sheaf{M}_C$, is obtained by inverting all coordinates in $\sheaf{O}_C$.\footnote{In fact, it suffices to invert any single one~\cite[Lemma 5.21]{StricklandFSFG}.}  Additionally, this can be augmented to a scheme $\operatorname{Mer}(C, \mathbb G_m)$ of meromorphic functions on $C$ by \[\operatorname{Mer}(C, \mathbb G_m)(R) := \left\{ (u, f) \middle| \begin{array}{c} u: \Spec R \to S, \\ f \in (\sheaf{M}_{C \times_S \Spec R})^\times \end{array} \right\}.\]
 \end{definition}
 
 Thinking of a meromorphic function as the formal expansion of a rational function, we are moved to study the monoidality of \Cref{DivisorialDefn}.
@@ -333,7 +337,7 @@ A \textit{meromorphic divisorial section} of a line bundle $\sheaf L$ is a decom
 
 In the case of a formal curve, the fundamental theorem is that meromorphic functions, line bundles, and stable Weil divisors all essentially agree.  A particular meromorphic function spans a $1$--dimensional $\sheaf O_C$--submodule sheaf of $\sheaf M_C$, and hence it determines a line bundle.  Conversely, a line bundle is determined by local gluing data, which is exactly the data of a meromorphic function.  However, it is clear that there is some overdeterminacy in this presentation: scaling a meromorphic function by a nowhere vanishing entire function will not modify the submodule sheaf.  We now make the observation that the function $\div$ gives an assignment from meromorphic functions to stable Weil divisors which is \emph{also} insensitive to rescaling by a nowhere vanishing function.  These inputs are arranged in the following theorem:
 
-\begin{theorem}[{\cite[Proposition 5.26]{StricklandFSFG}, \cite[Proposition 33.4]{StricklandFPFP}}]
+\begin{theorem}[{\cite[Proposition 5.26]{StricklandFSFG}, \cite[Proposition 33.4]{StricklandFPFP}, cf.\ \cite[Proposition II.6.11]{Hartshorne}}]
 In the case of a formal curve $C$, there is a short exact sequence of formal groups
 \[\pushQED{\qed}
 0 \to \InternalHom{FormalSchemes}(C, \mathbb G_m) \to \operatorname{Mer}(C, \mathbb G_m) \to \Div(C) \to 0. \qedhere
@@ -662,10 +666,10 @@ The image of the map $\pi_0 (E^{\Susp^\infty_+ X})_{hC_p} \to \pi_0 (E^{\Susp^\i
 The real miracle is that these cyclic Tate power operations are not only additive, but they are even \emph{completely} computable.
 
 \begin{lemma}\label{TateConstructionIsACohomThy}
+\citeme{This is Prop 2.2.3 of DAG XIII, which will appear as Chapter IX in SAG}
 The assignment $X \mapsto \pi_0 (E^{(\Susp^\infty_+ X)^{\sm p}})^{tC_p}$ is a cohomology theory.
 \end{lemma}
 \begin{proof}
-\citeme{I learned this proof from Tyler Lawson. He suggested looking at Greenlees--May or Lun{\o}e-Nielsen--Rognes.  This is Prop 2.2.3 of DAG XIII.  He also said that Charles has referred him to this point of view before}
 The Eilenberg--Steenrod axioms are clear except for the cofiber sequence axiom, which we will boil down to checking that the assignment $X \mapsto (X^{\sm p})^{tC_p}$ preserves cofiber sequences of finite complexes.  A cofiber sequence $X \to Y \to Y/X$ of pointed spaces is equivalent data to the diagram \[X \to Y,\] which has colimit $Y$ and which admits a filtration by distance from the initial node with filtration quotients:
 \begin{center}
 \begin{tikzcd}
@@ -727,7 +731,6 @@ The universal case gives the map $\widetilde \mu_n$.
 \end{definition}
 
 \begin{lemma}[{\cite[Equation VII.7.3]{Rudyak}}]\label{ThomSpectrumOfAssocBundle}
-\todo{This citation is actually for Thom spaces, where he picks up a factor of $S^n_{hC_n}$.  This might be important to get right for the future, when we're doing unstable / degree--sensitive things.  \textbf{Jeremy warned me that this is more serious than I wanted to admit.  Compare carefully with Rudyak.}}
 There is an isomorphism of Thom spectra \[T(\xi(n)) \simeq (T\xi)^{\sm n}_{hC_n}.\]
 \end{lemma}
 \begin{proof}
@@ -749,12 +752,10 @@ Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n
 Our goal in the next Lecture will be to gain a computational understanding of $\mu_{n,2d}$.
 
 \begin{remark}[{\cite[Equations 3.10-11]{Quillen}}]
-\citeme{Cite Christian's undergrad thesis?}
 The picture Quillen paints of all this is considerably different from ours.  He begins by giving a different presentation of the complex cobordism groups of a manifold $M$: a complex orientation of a smooth map $Z \to M$ is a factorization \[Z \xrightarrow{i} E \xrightarrow{\pi} M\] through a complex vector bundle $\pi\co E \to M$ by an embedding $i$, as well as a complex structure on the normal bundle $\nu_i$.  Up to suitable notions of stability (in the dimension of $E$) and homotopy equivalence (involving, in particular, isotopies of different embeddings $i$), these quotient to give cobordism classes of maps complex-oriented maps $Z \to M$.  The collection of cobordism classes over $M$ of codimension $q$ over is isomorphic to $MU^q(M)$~\cite[Proposition 1.2]{Quillen}.  Quillen's definition of the power operations is then given in terms of this geometric model: a representative $f\co Z \to M$ of a cobordism class gives rise to another complex-oriented map $f^{\times n}\co Z^{\times n} \to M^{\times n}$, and he defines $P^{C_n}_{\mathrm{ext}}(f)$ to be the postcomposition with $M^{\times n} \to M^{\times n}_{hC_n}$ (after taking care that the target isn't typically a manifold).  All the properties of his construction must therefore be explored through the lens of groups acting on manifolds.
 \end{remark}
 
-\begin{example}
-\citeme{Where can you find Steenrod squares defined like this?  The VFoS notes, but that's not a great reference.}
+\begin{example}[{\cite{SteenrodCyclic,SteenrodSymmetric}}]
 The chain model for $\HFtwo$--homology is actually also rigid enough to define power operations, and somewhat curiously these operations automatically turn out to be additive, without passing to the Tate construction.  This means that they are recognizable in terms of classical Steenrod operations: the $C_2$--construction \[\{\Susp^n \Susp^\infty_+ X \xrightarrow{f} \HFtwo\} \xrightarrow{P^{C_2}} \{\Susp^{2n} \Susp^\infty_+ X \sm \Susp^\infty_+ BC_2 \xrightarrow{P^{C_2}(f)} \HFtwo\}\] gives a class in $\HFtwo^{2n-*}(X) \otimes \HFtwo^*(\RP^\infty)$, which decomposes as \[P^{C_2}(f) = \sum_{j=0}^{2n} \Sq^{2n-j}(f) \otimes x^j.\]  The Adem relations can be extracted by studying the wreath product $\Sigma_2 \wr \Sigma_2$ and the compositional identity for power operations.
 \end{example}
 
@@ -800,7 +801,6 @@ where we have expanded out some of the pieces of the total symmetric Chern class
 \end{remark}
 
 \begin{definition}[{\cite[Theorem I.5.1]{AdamsBlueBook}}]
-\todo{Should you include Quillen's ``norm'' perspective on these operations (cf.\ between equations 2.2 and 2.3)? You were just almost-but-not-quite talking about isogenies, and you're going to want to talk about norm constructions eventually...}
 Take the orientation to be $MU \xrightarrow{\id} MU$, so that we are considering $MU^* MU$ and the Landweber--Novikov operations arising from the Conner--Floyd--Chern classes.  These account for the \emph{stable} operations in $MU$--cohomology, analogous to the Steenrod operations for $\HFtwo$.  They satisfy the following properties:
 \begin{itemize}
 \item $s_0$ is the identity.
@@ -836,7 +836,7 @@ This is the exponential adjunction
 V_{hG} \arrow[shift left=0.3\baselineskip, |->]{r} & V \arrow[shift left=0.3\baselineskip, |->]{l} .
 \end{tikzcd}
 \end{center}
-The right-hand side consists of $G$--equivariant vector bundles over the $G$--trivial base $X$, and the left-hand side consists of vector bundles over $X \times BG$.\todo{This isn't much of a proof.}
+The right-hand side consists of $G$--equivariant vector bundles over the $G$--trivial base $X$, and the left-hand side consists of vector bundles over $X \times BG$.
 \end{proof}
 
 \begin{corollary}
