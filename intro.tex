@@ -7,7 +7,7 @@
 
 The goal of this book is to communicate a certain \textit{Weltanschauung} uncovered in pieces by many different people working in bordism theory, and the goal just for this introduction is to tell a story about one theorem where it is especially apparent.
 
-To begin, we will define a homology theory called ``bordism homology''.  Recall that the singular homology of a space $X$ comes about by probing $X$ with simplices: beginning with the collection of continuous maps $\sigma\co \Delta^n \to X$, we take the free $\Z$--module on each of these sets and construct a chain complex \[\cdots \xrightarrow{\partial} \Z\{\Delta^n \to X\} \xrightarrow{\partial} \Z\{\Delta^{n-1} \to X\} \xrightarrow{\partial} \cdots.\]  Bordism homology is constructed analogously, but using manifolds $Z$ as the probes instead of simplices: \todo{Mention a word or two about inverses in footnote?} \footnote{One doesn't need to take the free abelian group on anything, since the disjoint union of two manifolds is already a (disconnected) manifold, whereas the disjoint union of two simplices is not a simplex.}
+To begin, we will define a homology theory called ``bordism homology''.  Recall that the singular homology of a space $X$ comes about by probing $X$ with simplices: beginning with the collection of continuous maps $\sigma\co \Delta^n \to X$, we take the free $\Z$--module on each of these sets and construct a chain complex \[\cdots \xrightarrow{\partial} \Z\{\Delta^n \to X\} \xrightarrow{\partial} \Z\{\Delta^{n-1} \to X\} \xrightarrow{\partial} \cdots.\]  Bordism homology is constructed analogously, but using manifolds $Z$ as the probes instead of simplices:\footnote{One doesn't need to take the free abelian group on anything, since the disjoint union of two manifolds is already a (disconnected) manifold, whereas the disjoint union of two simplices is not a simplex.}
 \begin{align*}
 \cdots & \xrightarrow{\partial} \{Z^n \to X \mid \text{$Z^n$ a compact $n$--manifold}\} \\
 & \xrightarrow{\partial} \{Z^{n-1} \to X \mid \text{$Z^{n-1}$ a compact $(n-1)$--manifold}\} \\
@@ -15,7 +15,7 @@ To begin, we will define a homology theory called ``bordism homology''.  Recall 
 \end{align*}
 
 \begin{lemma}[{\cite[Section 4]{Kochman}}]\label{OriginalDefnOfBordism}
-This forms a chain complex of monoids under disjoint union of manifolds, and its homology is written $MO_*(X)$.  These are naturally abelian groups, and moreover they satisfy the axioms of a generalized homology theory. \qed
+This forms a chain complex of monoids under disjoint union of manifolds, and its homology is written $MO_*(X)$.  These are naturally abelian groups\footnote{For instance, the inverse map comes from the cylinder construction: for a manifold $M$, the two components of $\partial(I \times M)$ witness the existence of an inverse to $M$ in the bordism groups.}, and moreover they satisfy the axioms of a generalized homology theory. \qed
 \end{lemma}
 
 In fact, we can define a bordism theory $MG$ for any suitable family of structure groups $G(n) \to O(n)$.  The coefficient ring of $MG$, or its value $MG_*(*)$ on a point, gives the ring of $G$--bordism classes, and generally $MG_*(Y)$ gives a kind of ``bordism in families over the space $Y$''.  There are comparison morphisms for the most ordinary kinds of bordism, given by replacing a chain of manifolds with an equivalent simplicial chain:
@@ -40,9 +40,9 @@ Associated to such a representative $(Z, \omega)$, the yoga of stable homotopy t
 & \xrightarrow{\mathmakebox[2.5em]{\phi \sm 1}} H\Z \sm H\Z \\
 & \xrightarrow{\mathmakebox[2.5em]{\mu}} H\Z,
 \end{align*}
-where $\phi$ is the orientation map.  Altogether, this composite gives us an element of $\pi_0 H\Z$, i.e., an integer.\todo{I used to think that we got a generalized Stokes's theorem too, but now I'm not sure. Stokes's theorem is the statement that the chain and cochain differentials are adjoint: $\<d\omega, \sigma\> = \<\omega, \partial \sigma\>$, where the pairing is the integration pairing.  It would be neat to interpret this in generality, but it might be a stretch.}
+where $\phi$ is the orientation map.  Altogether, this composite gives us an element of $\pi_0 H\Z$, i.e., an integer.%\todo{I used to think that we got a generalized Stokes's theorem too, but now I'm not sure. Stokes's theorem is the statement that the chain and cochain differentials are adjoint: $\<d\omega, \sigma\> = \<\omega, \partial \sigma\>$, where the pairing is the integration pairing.  It would be neat to interpret this in generality, but it might be a stretch.}
 
-\begin{lemma}\citeme{Where is this proven?}
+\begin{lemma}%\citeme{Where is this proven?}
 The integer obtained by the above process is $\int_Z \omega$. \qed
 \end{lemma}
 
@@ -61,7 +61,7 @@ Me \arrow{r} \arrow{rrrd} \arrow{rrrrd} \arrow{rrrrrd} & \cdots \arrow{r} & M\St
 This is the situation homotopy theorists found themselves in some decades ago, when Ochanine and Witten proved the following mysterious theorem using analytical and physical methods:
 
 \begin{theorem}[{Ochanine~\cite{Ochanine}, Witten~\cite{WittenEllipticGeneraQFT,WittenIndexDiracOperatorLoopSpace}}]\label{OchanineWittenTheorem}
-There is a map of rings \[\sigma: M\Spin_* \to \C(\!(q)\!).\]  Moreover, if $Z$ is a $\Spin$ manifold such that half its first Pontryagin class vanishes---that is, if $Z$ lifts to a $\String$--manifold---then $\sigma(Z)$ lands in the subring $MF \subseteq \Z\ps{q}$ of modular forms with integral coefficients. \qed
+There is a map of rings \[\sigma: M\Spin_* \to \C(\!(q)\!).\]  Moreover, if $Z$ is a $\Spin$ manifold such that half its first Pontryagin class vanishes---that is, if $Z$ lifts to a $\String$--manifold---then $\sigma(Z)$ lands in the subring $MF \subseteq \Z\ps{q}$ of $q$--expansions of modular forms with integral coefficients. \qed
 \end{theorem}
 
 \noindent However, neither party gave indication that their result should be valid ``in families'' (in our sense), and no theory of integration was formally produced (in our sense).  From the perspective of the homotopy theorist, it wasn't even totally clear what such a claim would mean: to give a topological enrichment of these theorems would mean finding a ring spectrum $E$ such that $E_*(*)$ had something to do with modular forms.
@@ -80,8 +80,9 @@ MU[6, \infty) \arrow{r} \arrow{rd} & M\String \arrow[densely dotted]{d} \\
 \end{tikzcd}
 \end{center}
 Leaving aside the extension problem for the moment, their main theorem is the following description of the cohomology ring $E^* MU[6, \infty)$:
+
 \begin{theorem}[{Ando--Hopkins--Strickland~\cite{AHSTheoremOfTheCube}, cf.\ Singer~\cite{Singer} and Stong~\cite{Stong}}]\label{IntroAHSMU6Thm}
-For $E$ an even--periodic cohomology theory, \[\Spec E_* MU[6, \infty) \cong C^3(\G_E; \sheaf I(0)),\] where ``$C^3(\G_E; \sheaf I(0))$'' is a certain scheme.  When $E$ is taken to be elliptic, so that there is a specified isomorphism $\G_E \cong C^\wedge_0$ for $C$ an elliptic curve, the theory of elliptic curves furnishes the scheme with a canonical point.  Hence, there is a preferred class $MU[6, \infty) \to E$, natural in the choice of elliptic $E$. \qed
+For $E$ an even--periodic cohomology theory, there is an isomorphism \[\Spec E_* MU[6, \infty) \cong C^3(\G_E; \sheaf I(0)),\] where ``$C^3(\G_E; \sheaf I(0))$'' is the affine scheme parametrizing ``cubical structures''.  When $E$ is taken to be elliptic, so that there is a specified elliptic curve $C$ and isomorphism $\G_E \cong C^\wedge_0$, the theory of elliptic curves gives a canonical such cubical structure and hence a preferred class $MU[6, \infty) \to E$.  This assignment is natural in the choice of elliptic $E$. \qed
 \end{theorem}
 
 Our real goal is to understand theorems like this last one, where algebraic geometry asserts some real control over something squarely in the domain of homotopy theory, and we will work through a sequence of case studies where this perspective shines through most brightly.  In particular, rather than taking an optimal route to the Ando--Hopkins--Strickland result, we will use it as a gravitational slingshot to cover many anciliary topics which are also governed by the technology of formal geometry.  We will begin by working through Thom's calculation of the homotopy of $MO$, which holds the simultaneous attractive features of being approachable while revealing essentially all of the structural complexity of the general situation, so that we know what to expect later on.  Having seen that through, we'll then venture on to other examples: the complex bordism ring, structure theorems for finite spectra, unstable cooperations, and, finally, the $\sigma$--orientation and its extensions.  Again, the overriding theme of the text will be that algebraic geometry is a good organizing principle that gives us one avenue of insight into how homotopy theory functions: it allows us to organize ``operations'' of various sorts between spectra derived from bordism theories.
