@@ -9,14 +9,14 @@ Remarkably, these unstable contexts also admit algebro-geometric interpretations
 \begin{itemize}
 \item (\Cref{UnstableContextsSection}:) For $F = E = \HFtwo$, we compute the full unstable dual Steenrod algebra $\HFtwo_* \OS{\HFtwo}{*}$ by means of iterated bar spectral sequences.  We then pass to the additive unstable cooperations, where we show by hand that this presents the endomorphism scheme $\InternalHom{FormalGroups}(\G_a, \G_a)$.  Finally, we pass to the stable additive cooperations, and we check that our results here are compatible with the isomorphism \[\Spec \HFtwo_* \HFtwo \cong \InternalAut{\G_a}\] presented in \Cref{SteenrodAlgIdentifiedWithAutGa}.
 \item (\Cref{COableCoopnsII}:) We next consider the case where $E = MU$ and where $F$ is any complex-orientable theory.  We begin with the case $F = \HFp$, where we can again approach the problem using iterated bar spectral sequences.  The resulting computation is sufficiently nice that we can use this special case of $F = \HFp$ to deduce the further case of $F = H\Z_{(p)}$, then $F = H\Z$, then $F = MU$, and then finally $F$ any complex-orientable theory.
-\item (\Cref{LEFTCooperations}:) Having been able to vary $F$ as widely as possible in the previous case, we then turn to trying to vary $E$.  This is considerably harder, since the infinite loopspaces $\OS{E}{*}$ associated to $E$ are extremely complicated and vary wildly under even ``small'' changes in $E$.  However, in the special case of $F = \HFp$, we have an incredibly powerful trick available to us: Dieudonn\'e theory, discussed in \Cref{SectionDieudonneModules}, gives an equivalence of categories \[D_*\co \CatOf{GradedHopfAlgebras}^{> 0, \fin}_{\F_p/} \to \CatOf{GradedDMods},\] which postcomposes with
+\item (\Cref{LEFTCooperations}:) Having been able to vary $F$ as widely as possible in the previous case, we then turn to trying to vary $E$.  This is considerably harder, since the infinite loopspaces $\OS{E}{*}$ associated to $E$ are extremely complicated and vary wildly under even ``small'' changes in $E$.  However, in the special case of $F = \HFp$, we have an incredibly powerful trick available to us: Dieudonn\'e theory, discussed in \Cref{SectionDieudonneModules}, gives an equivalence of categories \[D_*\co \CatOf{GradedHopfAlgebras}^{> 0, \fin}_{\F_p/} \to \CatOf{GradedDMods},\] and applying this in the composite
 \begin{align*}
 \CatOf{Spectra} & \xrightarrow{\Loops^\infty} \CatOf{Loopspaces} \\
 & \xrightarrow{\HFp_*} \CatOf{GradedHopfAlgebras}^{>0, \fin}_{\F_p/} \\
 & \xrightarrow{D_*} \CatOf{GradedDMods} \\
 & \subseteq \CatOf{GradedModules}_{\Cart}
 \end{align*}
-to give a homological functor.  This means that the Dieudonn\'e module associated to an infinite loopspace varies stably with the spectrum underlying the loopspace, which is enough leverage to the settle the case where $E$ is any Landweber--flat theory.
+gives a homological functor.  This means that the Dieudonn\'e module associated to an infinite loopspace varies stably with the spectrum underlying the loopspace, which is enough leverage to the settle the case where $E$ is any Landweber--flat theory.
 \item (\Cref{CoopnsForMoravaKandHA}:) Finally, we settle one further case not covered by any of our generic hypotheses above: $F = K_\Gamma$ and $E = H\Z/p^j$.  Neither $K_\Gamma$ nor $H\Z/p^j$ is Landweber--flat, but because $K_\Gamma$ is a field spectrum and because the additive group law associated to $H\Z/p^j$ is so simple, we can still perform the requisite iterated bar spectral sequence calculation by hand.
 \end{itemize}
 
@@ -694,14 +694,7 @@ Note that the module $D^*(\G_0)$ carries some natural operations:
 With this, we come to the main theorem of this Lecture:
 
 \begin{theorem}[{\cite[Th\'eor\`eme 4.2]{GrothendieckCristaux}, \cite[Sections III.8-9]{Demazure}}]\label{MainContraDieudonneThm}
-The functor $D^*$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups $\G_0$ over $k$ of finite $p$--height and \index{Dieudonne module@Dieudonn\'e module}\textit{Dieudonn\'e modules}, which are modules $M$ over the Cartier--Dieudonn\'e ring \[\Cart_p = \left. \W_p(k)\<F,V\> \middle/ \left( \begin{array}{c} FV = VF = p, \\ Fw = w^\phi F, \\ wV = Vw^\phi \end{array} \right) \right.\] which furthermore satisfy the following three technical conditions:
-\todo{Are these the correct technical conditions for the \emph{contravariant} Dieudonn\'e module?}
-\begin{itemize}
-    \item Finiteness: $M$ is a finite-dimensional free $\W_p(k)$--module.
-    \item Reduced: $M \cong \lim_r M / V^r M$.
-    \item Uniform: $M/VM \to V^r M / V^{r+1} M$ is an isomorphism.
-    \qed
-\end{itemize}
+The functor $D^*$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups $\G_0$ over $k$ of finite $p$--height and \index{Dieudonne module@Dieudonn\'e module}\textit{Dieudonn\'e modules}, which are modules $M$ over the Cartier--Dieudonn\'e ring \[\Cart_p = \left. \W_p(k)\<F,V\> \middle/ \left( \begin{array}{c} FV = VF = p, \\ Fw = w^\phi F, \\ wV = Vw^\phi \end{array} \right) \right.\] which are free and finite rank over $\W_p(k)$.
 \end{theorem}
 
 \begin{remark}
@@ -951,7 +944,13 @@ It is also possible to build versions of Dieudonn\'e theory over still more exot
 
 Our goal in this Lecture is to put Dieudonn\'e modules to work for us in algebraic topology.  The executive summary of Dieudonn\'e theory is that it gives a \emph{linear} presentation of the theory of Hopf algebras.  From the perspective of algebraic topology, functors sending cofiber sequences to exact sequences in a linear category are precisely the homology functors.  Tying these two ideas together, if we can find a functor that sends exact sequences of spaces (or spectra) to exact sequences of Hopf algebras, we can post-compose it with a suitable version of the Dieudonn\'e functor to get a homology functor and hence a \emph{spectrum}.
 
-To meet algebraic topology in its natural setting, it will be useful to also have a version of Dieudonn\'e theory that is well-adapted to working with formal groups whose coordinate ring forms a \emph{graded} Hopf algebra.  Using as inspiration our previous identification \[C(\G) = \CatOf{FormalSchemes}(\A^1, \G) \cong \CatOf{FormalGroups}(\G, \widehat{C\W}_p) \cong \CatOf{HopfAlgebras}(\sheaf O_{\widehat{C\W}_p}, \sheaf O_{\G}),\] we are thus moved to form graded versions of the Witt Hopf algebra.  More precisely, the following theorem says that there are graded versions of the Witt Hopf algebra that give a sequence of projective generators for the category of connected graded Hopf algebras over $\F_p$:
+To meet algebraic topology in its natural setting, it will be useful to also have a version of Dieudonn\'e theory that is well-adapted to working with formal groups whose coordinate ring forms a \emph{graded} Hopf algebra.  Using as inspiration our previous identification
+\begin{align*}
+C(\G) & = \CatOf{FormalSchemes}(\A^1, \G) \\
+& \cong \CatOf{FormalGroups}(\G, \widehat{C\W}_p) \\
+& \cong \CatOf{HopfAlgebras}(\sheaf O_{\widehat{C\W}_p}, \sheaf O_{\G}),
+\end{align*}
+we are thus moved to form graded versions of the Witt Hopf algebra.  More precisely, the following theorem says that there are graded versions of the Witt Hopf algebra that give a sequence of projective generators for the category of connected graded Hopf algebras over $\F_p$:
 
 \begin{theorem}[{\cite[Section 3.2]{Schoeller}, \cite[Proposition 1.6]{GLM}}]
 Let $S(n)$ denote the free graded-commutative Hopf algebra over $\F_p$ on a single generator in degree $n > 0$.  There is a projective cover $H(n) \onto S(n)$, given by the formula
