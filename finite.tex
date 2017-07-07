@@ -274,11 +274,14 @@ With contexts in mind, the pro-spectrum $DX_+ = \{F(X_\alpha, \S)\}_\alpha$ gain
 Applying the functor $\Spf \circ \pi_0$ to this pro-system yields the formal scheme $X_E$ considered in \Cref{FullDefnOfXE}.  One of the themes of this book will be to think of the objects $X$ and $DX_+$ as spectral incarnations of some formal group construction, which base-change along $\eta$ to specialize to classical algebro-geometric constructions applied to the formal group associated to $E$.
 \end{remark}
 
+\begin{remark}
+Many algebro-geometric properties lift automatically to the setting of \index{stack!representable}\textit{representable} maps: a map $f\co \stack M \to \stack N$ is representable when for all affines $\Spec R \to \stack N$, the homotopy pullback $\stack M \times_{\stack N} \Spec R$ is affine.  A representable such $f$ is said to have property \textbf{P} when the natural map $\stack M \times_{\stack N} \Spec R \to \Spec R$ has property \textbf{P} for every choice of affine over $\stack N$.
+\end{remark}
+
 
 
 
 \citeme{Pridham's article \textit{Presenting higher stacks as simplicial schemes} seems like a good reference?  Maybe some Toen things are appropriate?  I don't really know where this simplicial scheme stuff is written down.}
-\todo{Say what open, closed, flat maps of simplicial schemes are?}
 
 
 
@@ -423,15 +426,14 @@ Given a formal group law $F$ over a ring $R$ and a surjective ring map $f\co S \
 Identify $F$ with the classifying map $\Spec R \to \moduli{fgl}$.  Employ an isomorphism \[\phi\co \moduli{fgl} \to \Spec L\] afforded by \Cref{LazardsTheorem}, so that $\phi \circ F$ is selected by a sequence of elements $r_n = \phi^* F^*(t_n) \in R$.  Each of these admit preimages $s_n$ through $f$, and we determine a map \[\widetilde{\phi \circ F}\co \Spec S \to \Spec L\] by the formula $\widetilde{\phi \circ F}^* (t_j) = s_j$ and freeness of $L$.  Since $\phi$ is an isomorphism, this determines a map $\widetilde F = \phi^{-1} \circ \widetilde{\phi \circ F}$ factoring $F$.
 \end{proof}
 
-\todo{This isn't super well stated, but it's at least here to be smoothed out later.}
-In order to employ \Cref{MfglIsSmooth} effectively, we need to know when a map $\Spec R \to \moduli{fg}$ classifying a formal group can be lifted to a triangle
+In order to employ \Cref{MfglIsSmooth} effectively, we will need to know when a map $\Spec R \to \moduli{fg}$ classifying a formal group can be lifted to a triangle
 \begin{center}
 \begin{tikzcd}
 & \moduli{fgl} \arrow{d} \\
-\Spec R \arrow{r} \arrow[densely dotted]{ru} & \moduli{fg},
+\Spec R \arrow{r} \arrow[densely dotted]{ru} & \moduli{fg}.
 \end{tikzcd}
 \end{center}
-so that a surjective map of rings $\Spec R \to \Spec S$ can then be completed to a second diagram
+Once this is achieved, we can apply \Cref{MfglIsSmooth} to a surjective map of rings $\Spec R \to \Spec S$ to build a second diagram
 \begin{center}
 \begin{tikzcd}
 \Spec S \arrow[densely dotted]{r} \arrow[densely dotted]{rd} & \moduli{fgl} \arrow{d} \\
@@ -828,8 +830,7 @@ f & \mapsto \Gamma_1\left(0, \sumGamma_{i=1}^n x_i \right)^{-1} f(x_1, \ldots, x
 Two Lectures ago while proving \Cref{Symmetric2CocycleLemma}, we computed the cohomology of this complex in the specific case of $\G = \G_a$.  This is the one case where Lubin and Tate's theorem does \emph{not} apply, since it requires $\height \G < \infty$.  Nonetheless, by filtering the multiplication on $\G$ by degree, we can use this specific calculation to get up to the general one we now seek.
 
 \begin{lemma}\label{CalculationOfLTTangentSpace}
-Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then $H^1(\G; \G_a) = 0$ and $H^2(\G; \G_a)$ is a free $k$--vector space of dimension $(d - 1)$.
-\todo{$d$ or $(d-1)$?  There's $\beta_0$ through $\beta_{d-1}$\ldots.  Also compare this with \Cref{Symmetric2CocycleLemma}.}
+Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then $H^1(\G; \G_a) = 0$ and $H^2(\G; \G_a)$ is a free $k$--vector space of dimension $d$.
 \end{lemma}
 \begin{proof}[Proof (after Hopkins)]
 We select a $p$--typical coordinate on $\G$ of the form \[x +_\phi y = x + y + \mathrm{unit} \cdot c_{p^d}(x, y) + \cdots,\] where $c_{p^d}(x, y)$ is as in one of Lazard's symmetric $2$--cocycles, as in \Cref{Symmetric2CocycleLemma}.  Filtering $\G$ by degree, the multiplication projects to $x +_\phi y = x + y$ in the associated graded, and the resulting filtration spectral sequence has signature \[[H^*(\G_a; \G_a)]_* \Rightarrow H^*(\G; \G_a),\] where the second grading comes from the degree of the homogeneous polynomial representatives of classes in $H^*(\G_a; \G_a)$.
@@ -924,7 +925,7 @@ We thus see that we are essentially tasked with showing that $\sheaf F$ is flat,
 
 Flatness of $\sheaf F$ is equivalent to $\Tor_1(\sheaf F, \sheaf N) = 0$ for an arbitrary auxiliary quasicoherent sheaf $\sheaf N$ (soon to be thought of as $\context{MU}(X)$).  By our regularity hypothesis, there is an exact sequence of sheaves \[0 \to \sheaf F \xrightarrow{p} \sheaf F \to \sheaf F / (p) \to 0,\] so applying $\Tor_*(-, \sheaf N)$ gives an exact sequence \[\Tor_2(\sheaf F / (p), \sheaf N) \xrightarrow{} \Tor_1(\sheaf F, \sheaf N) \xrightarrow{p} \Tor_1(\sheaf F, \sheaf N)\] of $\Tor$ groups.  The sequence gives the following sufficiency condition: \[[\Tor_1(p^{-1} \sheaf F, \sheaf N) = 0 \quad \text{and} \quad \Tor_2(\sheaf F/(p), \sheaf N) = 0] \quad \Rightarrow \quad \Tor_1(\sheaf F, \sheaf N) = 0.\]  Similarly, the $v_1$--multiplication sequence gives another sufficiency condition: \[[\Tor_2(v_1^{-1} \sheaf F/(p), \sheaf N) = 0 \quad \text{and} \quad \Tor_3(\sheaf F/I_2, \sheaf N) = 0] \quad \Rightarrow \quad \Tor_2(\sheaf F/(p), \sheaf N) = 0.\]  Continuing in this fashion, for some $D \gg 0$ we would like to show
 \begin{align*}
-\Tor_{d+1}(v_d^{-1} \sheaf F/I_d, \sheaf N) & = 0 & \tag{for each $d < D$}, \\
+\Tor_{d+1}(v_d^{-1} \sheaf F/I_d, \sheaf N) & = 0, \tag{for each $d < D$} \\
 \Tor_{D+1}(\sheaf F/I_{D+1}, \sheaf N) & = 0.
 \end{align*}
 The second condition is satisfied one of two ways, corresponding to our two auxiliary hypotheses and two conclusions in the Theorem statement:
@@ -1347,8 +1348,13 @@ Take $k$ to be a perfect field of positive characteristic $p$, and take $\Gamma$
 \end{center}
 At odd primes, this turns out to be the $v_1$--self-map $v\co M_{2(p-1)}(p) \to M_0(p)$ announced in \Cref{AdamsSelfMapThm} (cf.\ also \cite[Proposition 12.7]{AdamsJXIV}).
 
-More generally, different powers $v_1^j$ of the section $v_1$ also give rise to homotopy elements $\alpha_{j/1} \in \pi_{2(p-1)j} M_0(p)$.  These have varying orders of divisibility, and we write $\alpha_{j/k}$ for the element satisfying $p^{k-1} \alpha_{j/k} = \alpha_{j/1}$.  Compositionally, these maps satisfy the useful relation $\alpha_{p^{j-1}/j-1}^p = \alpha_{p^j/j}$.
-\todo{Is this relation right?}
+This admits many extensions.  More generally, different powers $v_1^j$ of the section $v_1$ also give rise to homotopy elements $\alpha_{j/1} \in \pi_{2(p-1)j} M_0(p)$.  These have varying orders of divisibility, and we write $\alpha_{j/k}$ for the element of $\pi_* \S$ satisfying $p^{k-1} \alpha_{j/k} = \alpha_{j/1}$.  Additionally, each Moore spectrum supports an Adams $v_1$--self--map of the form \[v(p^j) \co M_{|v_1| p^{j-1}}(p^j) \to M_0(p^j),\] which collectively form commutative diagrams of the shape
+\begin{center}
+\begin{tikzcd}
+M_{p \cdot |v_1| p^{j-1}}(p^j) \arrow["v(p^j)^p"]{r} \arrow{d} & M_0(p^j) \arrow{d} \\
+M_{|v_1|p^j}(p^{j+1}) \arrow["v(p^{j+1})"]{r} & M_0(p^{j+1}).
+\end{tikzcd}
+\end{center}
 The other invariant functions described in \Cref{IdIsAnInvariantIdeal} (e.g., $v_d$ modulo $I_d$) also give rise to elements in $H^*(\moduli{fg}^{\ge d}; \omega^{\otimes *})$, which map to the $BP$--Adams $E_2$--term and which sometimes survive the spectral sequence to give to homotopy elements of the generalized Moore spectra $M_0(v^I)$.  Homotopy elements arising in this way are collectively referred to as \index{Greek letter family}\textit{Greek letter families}~\cite[Section 3]{MRW}.
 \end{example}
 
@@ -1356,7 +1362,7 @@ The other invariant functions described in \Cref{IdIsAnInvariantIdeal} (e.g., $v
 In the broader literature, the phrase ``Greek letter elements'' typically refers to the pushforward of the above elements to the homotopy groups of $\S$ by pinching to the top cell.  This is somewhat obscuring: for instance, this significantly entangles how multiplication by $\alpha_{j/k}$ behaves.  Finally, the incarnation of these elements in $\G_m$--local homotopy are exactly the elements witnessed by the invariant function $u^{2(p-1)k}$ in \Cref{piLK1SExample}.
 \end{remark}
 
-\todo{Danny was asking some interesting questions about the relationships between the $t_i$ and the $h_j$ elements of the Adams spectral sequence.  You could try to explain some of this comparison and how you get the Hopf invariant one theorem out of it.  This could also include a brief discussion of the (geometric and algebraic) chromatic spectral sequence(s).}
+\todo[inline]{Danny was asking some interesting questions about the relationships between the $t_i$ and the $h_j$ elements of the Adams spectral sequence.  You could try to explain some of this comparison and how you get the Hopf invariant one theorem out of it.  This could also include a brief discussion of the (geometric and algebraic) chromatic spectral sequence(s).}
 
 
 
