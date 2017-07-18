@@ -7,17 +7,24 @@
 
 \usepackage[protrusion=true,expansion=true]{microtype}
 % \usepackage{savetrees}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{stmaryrd} % for \llbracket and \rrbracket
 \usepackage[version warn]{sseqpages/sseqpages}
 
-% \usepackage[urw-garamond]{mathdesign}
-\usepackage{mathpazo} % math & rm
-\linespread{1.05}        % Palatino needs more leading (space between lines)
-\usepackage[scaled]{helvet} % ss
-\usepackage{courier} % tt
-\normalfont
-\usepackage[T1]{fontenc}
+% \usepackage{mathpazo} % math & rm
+% \linespread{1.05}        % Palatino needs more leading (space between lines)
+% \usepackage[scaled]{helvet} % ss
+% \usepackage{courier} % tt
+% \normalfont
+% \usepackage[T1]{fontenc}
+
+\usepackage{txfonts}
+
+% \usepackage{mathptmx}
+
+\usepackage{showframe}
 
 \usepackage{tikz}
 \usetikzlibrary{matrix,calc,3d,arrows,positioning,fadings,shapes}
@@ -63,6 +70,7 @@
 \usepackage[nottoc,numbib]{tocbibind}
 
 \usepackage{cleveref}
+\usepackage{etoolbox}
 
 % used to set custom chapter titles
 \usepackage{tocloft,calc}
@@ -112,6 +120,7 @@
 % \setlength{\marginparwidth}{1in-\marginparsep} % fullpage sets margins to 1in
 
 \setcounter{tocdepth}{1} % don't print subsections in the table of contents
+\setcounter{secnumdepth}{1} % don't even bother numbering subsections
 
 % todonotes definitions
 \usepackage{xpatch}
@@ -197,7 +206,7 @@
 \renewcommand{\ss}{\mathrm{ss}}
 \newcommand{\ord}{\mathrm{ord}}
 \newcommand{\alg}{\mathrm{alg}}
-\newcommand{\ns}{\mathrm{ns}}
+\renewcommand{\ns}{\mathrm{ns}}
 \newcommand{\TAF}{\mathit{TAF}}
 \newcommand{\BP}{\mathit{BP}}
 \newcommand{\MU}{\mathit{MU}}
@@ -255,21 +264,21 @@
 
 % theorem environments
 
-\numberwithin{equation}{section}
+% \numberwithin{equation}{section}
 
 \theoremstyle{plain}
-\newtheorem{theorem}[equation]{Theorem}
-\newtheorem{proposition}[equation]{Proposition}
-\newtheorem{lemma}[equation]{Lemma}
-\newtheorem{corollary}[equation]{Corollary}
-\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
 \theoremstyle{definition}
-\newtheorem{definition}[equation]{Definition}
-\newtheorem{construction}[equation]{Construction}
-\newtheorem{warning}[equation]{Important Warning}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{warning}[theorem]{Important Warning}
 \theoremstyle{remark}
-\newtheorem{remark}[equation]{Remark}
-\newtheorem{example}[equation]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
 
 % sseqpages definitions
 
@@ -288,8 +297,8 @@
 
 % section headers
 
-\crefname{section}{lecture}{lectures} \Crefname{section}{Lecture}{Lectures}
-\crefname{chapter}{case study}{case studies} \Crefname{chapter}{Case Study}{Case Studies}
+% \crefname{section}{lecture}{lectures} \Crefname{section}{Lecture}{Lectures}
+% \crefname{chapter}{case study}{case studies} \Crefname{chapter}{Case Study}{Case Studies}
 
 % put commas between adjacent footnotes without disturbing hyperref
 
@@ -318,7 +327,11 @@
 
 % from hood chatham: an \intertext command that works in tikzcd
 
-\usepackage{geometry}
+% \usepackage{geometry}
+\makeatletter
+\edef\Gm@rmargin{\the\dimexpr1in + \hoffset + \oddsidemargin}
+\edef\Gm@lmargin{\the\dimexpr1in + \hoffset + \evensidemargin}
+\makeatother
 \input{tikzcdintertext}
 
 % from hood chatham: 
@@ -340,3 +353,19 @@
 \def\idxentry@dbl#1{\textit{#1}\index{#1}}
 \def\idxentry@[#1]#2{\textit{#2}\index{#1@#2}}
 \makeatother
+
+% from hood chatham: fix cleveref to work with cambridge7a
+\makeatletter
+\AtBeginDocument{%
+\def\@thm{\@ifnextchar[{\cref@thmoptarg}{\cref@thmnoarg}}%]
+\patchcmd\cref@thmoptarg {.}{\enskip}{}{\error}}
+\makeatother
+
+\makeatletter
+\AtBeginDocument{%
+\patchcmd{\@makechapterhead}{\huge\bfseries \thechapter}{\huge\bfseries \chaptername\ \thechapter}{}{\error}%
+}
+\makeatother
+
+
+
