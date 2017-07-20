@@ -6,7 +6,7 @@
 
 Our goal in this Case Study is to thoroughly examine one of the techniques from \Cref{UnorientedBordismChapter} that has not yet resurfaced: the idea that $\HFtwo$--homology takes values in quasicoherent sheaves over some algebro-geometric object encoding the coaction of the dual Steenrod Hopf algebra.  We will find that this situation is quite generic: associated to mildly nice ring spectra $E$, we will construct a very rich algebro-geometric object $\context{E}$, called its context, such that $E$--homology sends spaces $X$ to sheaves $\context{E}(X)$ over $\context{E}$.  In still nicer situations, the difference between the $E_*$--module $E_*(X)$ and the sheaf $\context{E}(X)$ tracks exactly the analogue of the action of the dual Steenrod algebra, called the \textit{Hopf algebroid of stable $E$--homology cooperations}.  From this perspective, we will reinterpret Quillen's \Cref{QuillensTheorem} as giving a presentation \[\context{MUP} \xrightarrow{\simeq} \moduli{fg},\] where $\moduli{fg}$ is the \textit{moduli of formal groups}.  This indicates a program for studying periodic complex bordism, which we will spend the rest of this introduction outlining.
 
-Abstractly, one can hope to study any sheaf, including $\context{E}(X)$, by analyzing its stalks, or relatedly (with some luck) by analyzing its geometric fibers.  The main utility of Quillen's theorem is that it gives us access to a concrete model of the context $\context{MUP}$, so that we can determine where to even look for those fibers.  However, even this is not really enough to get off the ground: the stalks of some sheaf can exhibit nearly arbitrary behavior.  In particular, there is little reason to expect the stalks of $\context{E}(X)$ to vary nicely with $X$.  Accordingly, given a map $f$ in the diagram
+Abstractly, one can hope to study any sheaf, including $\context{E}(X)$, by analyzing its stalks---or, relatedly (with some luck), by analyzing its geometric fibers.  The main utility of Quillen's theorem is that it gives us access to a concrete model of the context $\context{MUP}$, so that we can determine where to even look for those fibers.  However, even this is not really enough to get off the ground: the stalks of some sheaf can exhibit nearly arbitrary behavior.  In particular, there is little reason to expect the stalks of $\context{E}(X)$ to vary nicely with $X$.  Accordingly, given a map $f$ in the diagram
 \begin{center}
 \begin{tikzcd}
 \Spec R \arrow{r}{f} & \moduli{fgl} \arrow[equal]{r} \arrow{d} & \context{MUP}[0] \arrow{d} \arrow[equal]{r} & \Spec MUP_0 \\
@@ -42,10 +42,10 @@ These will occupy our attention for the first half of this Case Study.  In the s
 
 In \Cref{HopfAlgebraLecture} we took for granted the $\HFtwo$--Adams spectral sequence, which had the form \[E_2^{*, *} = H^*_{\mathrm{gp}}(\InternalAut_1(\G_a); \widetilde{\HFtwo P_0 X}) \Rightarrow \pi_* X^\wedge_2,\] where we had already established some yoga by which we could identify the dual Steenrod coaction on $\HFtwo P_0 X$ with an action of $\InternalAut{\G_a}$ on its associated quasicoherent sheaf over $\Spec \F_2$.  Our goal in this Lecture is to revise this tool to work for other ring spectra $E$ and target spectra $X$, eventually arriving at a spectral sequence with signature \[E_2^{*, *} = H^*(\context{E}; \context{E}(X)) \Rightarrow \pi_* X.\]  In particular, we will encounter along the way the object ``$\context{E}$'' envisioned in the introduction to this Case Study.
 
-At a maximum level of vagueness, we are seeking a process by which its homotopy $\pi_* X$ can be recovered from the $E$--homology groups $E_* X$.  Generally speaking, spectral sequences arise from taking homotopy groups of a topological version of this same recovery process---i.e., recovering the spectrum $X$ from the spectrum $E \sm X$.  Recognizing that $X$ can be thought of as an $\S$--module and $E \sm X$ can be thought of as its base change to an $E$--module, we are inspired to double back and consider as inspiration an algebraic analogue of the same situation.  Given a ring map $f\co R \to S$ and an $S$--module $N$, Grothendieck's framework of \index{descent!faithfully flat}\textit{(faithfully flat) descent} addresses the following questions:
+At a maximum level of vagueness, we are seeking a process by which its homotopy $\pi_* X$ can be recovered from the $E$--homology groups $E_* X$.  Generally speaking, spectral sequences arise from applying homotopy groups to some topological filtration, so we might also try to filter $X$ by pieces that look like $E \sm X$.  Recognizing that $X$ can be thought of as an $\S$--module and $E \sm X$ can be thought of as its base change to an $E$--module, we are inspired to double back and consider as inspiration a completely algebraic analogue of the same situation.  Given a ring map $f\co R \to S$ and an $S$--module $N$, Grothendieck's framework of \index{descent!faithfully flat}\textit{(faithfully flat) descent} addresses the following questions:
 \begin{enumerate}
 \item When is there an $R$--module $M$ such that $N \cong S \otimes_R M = f^* M$?
-\item What extra data can be placed on $N$, called \textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of $R$--modules under the map $f^*$?
+\item What extra data can be placed on $N$, called \index{descent!datum}\textit{descent data}, so that the category of descent data for $N$ is equivalent to the category of $R$--modules under the map $f^*$?
 \item What conditions can be placed on $f$ so that the category of descent data for any given module is always contractible, called \index{descent!effective}\textit{effectivity}?
 \end{enumerate}
 
@@ -71,8 +71,8 @@ An $S$--module $N$ equipped with such an isomorphism $\phi\co S \otimes_R N \to 
 \end{definition}
 
 Descent data admit two equivalent reformulations, both of which are useful to note.
-\begin{remark}[{\cite{Amitsur}}]
-The ring $C = S \otimes_R S$ admits the structure of an $S$--coring: we can use the map $f$ to produce a relative diagonal map \[\Delta\co S \otimes_R S \cong S \otimes_R R \otimes_R S \xrightarrow{1 \otimes f \otimes 1} S \otimes_R S \otimes_R S \cong (S \otimes_R S) \otimes_S (S \otimes_R S).\]  The descent datum $\phi$ on an $S$--module $N$ is equivalent to a $C$--coaction map.  The $S$--linearity of the coaction map is encoded by a square
+\begin{remark}[{\cite{Amitsur}}]\index{Amitsur complex|see {descent object}}\index{canonical coring|see {descent object}}
+The ring $C = S \otimes_R S$ admits the structure of an $S$--coring: we can use the map $f$ to produce a relative diagonal map \[\Delta\co S \otimes_R S \cong S \otimes_R R \otimes_R S \xrightarrow{1 \otimes f \otimes 1} S \otimes_R S \otimes_R S \cong (S \otimes_R S) \otimes_S (S \otimes_R S).\]  The descent datum $\phi$ on an $S$--module $N$ is equivalent to a \index{comodule}$C$--coaction map.  The $S$--linearity of the coaction map is encoded by a square
 \begin{center}
 \begin{tikzcd}
 S \otimes_R N \arrow["1 \otimes \psi"]{r} \arrow["\phi" near end]{rrd} \arrow{d} & S \otimes_R N \otimes_S (S \otimes_R S) \arrow[crossing over]{d} \\
@@ -83,7 +83,7 @@ and the long composite gives the descent datum $\phi$.  Conversely, given a desc
 \end{remark}
 
 \begin{remark}[{\cite[Theorem A]{HoveyMoritaThy}}]\label{StrictCechDescentRemark}
-Alternatively, descent data also arise naturally as sheaves on simplicial schemes.  Associated to the map $f\co \Spec S \to \Spec R$, we can form a {\Cech} complex
+Alternatively, descent data also arise naturally as sheaves on \index{scheme!simplicial}simplicial schemes.  Associated to the map $f\co \Spec S \to \Spec R$, we can form a \index{Cech complex@{\Cech} complex}{\Cech} complex
 \[\mathcal D_f := \left\{
 \begin{tikzcd}[ampersand replacement=\&]
 \Spec S \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} \&
@@ -98,7 +98,7 @@ which factors the map $f$ as
 \Spec S \arrow["\mathrm{sk}^0"]{r} \arrow[bend left, "f"]{rr} & \mathcal D_f \arrow["c"]{r} & \Spec R.
 \end{tikzcd}
 \end{center}
-A quasicoherent (and Cartesian~\cite[Tag 09VK]{stacks-project}) sheaf $\sheaf F$ over a simplicial scheme $X$ is a sequence of quasicoherent sheaves $\sheaf F[n]$ on $X[n]$ as well as, for each map $\sigma\co [m] \to [n]$ in the simplicial indexing category inducing a map $X(\sigma)\co X[n] \to X[m]$, a natural choice of isomorphism of sheaves \[\sheaf F(\sigma)^*\co X(\sigma)^* \sheaf F[m] \to \sheaf F[n].\]  In particular, a pullback $c^* \widetilde{M}$ gives such a quasicoherent sheaf on $\mathcal D_f$.  By restricting attention to the first three levels we find exactly the structure of the descent datum described before.  Additionally, we have a natural \index{Segal isomorphism}\textit{Segal isomorphism}
+A \index{sheaf!simplicial}quasicoherent (and Cartesian~\cite[Tag 09VK]{stacks-project}) sheaf $\sheaf F$ over a simplicial scheme $X$ is a sequence of quasicoherent sheaves $\sheaf F[n]$ on $X[n]$ as well as, for each map $\sigma\co [m] \to [n]$ in the simplicial indexing category inducing a map $X(\sigma)\co X[n] \to X[m]$, a natural choice of isomorphism of sheaves \[\sheaf F(\sigma)^*\co X(\sigma)^* \sheaf F[m] \to \sheaf F[n].\]  In particular, a pullback $c^* \widetilde{M}$ gives such a quasicoherent sheaf on $\mathcal D_f$.  By restricting attention to the first three levels we find exactly the structure of the descent datum described before.  Additionally, we have a natural \index{Segal isomorphism}\textit{Segal isomorphism}
 \begin{align*}
 \mathcal D_f[1]^{\times_{\mathcal D_f[0]}(n)} & \xrightarrow{\simeq} \mathcal D_f[n] &
 \text{(cf.\ $S \otimes_R S \otimes_R S$} & \cong \text{$(S \otimes_R S) \otimes_S (S \otimes_R S)$ at $n = 2$)},
@@ -109,7 +109,7 @@ which shows that any descent datum (including those not arising, a priori, from 
 The following Theorem is the culmination of a typical first investigation of descent:\footnote{For details and additional context, see Vistoli~\cite[Section 4.2.1]{Vistoli}.  The story in the context of Hopf algebroids is also spelled out in detail by Miller~\cite{MillerSheavesGradings}.}
 
 \begin{theorem}[{\cite[Expos\'e VIII]{GrothendieckSGAI}}]\label{OriginalFFDescent}
-If $f\co R \to S$ is faithfully flat, the natural assignments
+If $f\co R \to S$ is \index{descent!faithfully flat}faithfully flat, the natural assignments
 \begin{center}
 \begin{tikzcd}
 \CatOf{QCoh}(\Spec R) \arrow[bend left,"c^*"]{r} & \CatOf{QCoh}(\mathcal D_f) \arrow[bend left,"\lim"]{l}
@@ -127,7 +127,7 @@ Without the flatness hypothesis, this Theorem fails dramatically and immediately
 There is an equivalence of $\infty$--categories between $D(\Spec R)$ and $\CatOf{Modules}_{HR}$. \qed
 \end{lemma}
 
-Hence, given a map of rings $f\co R \to S$, we redefine the derived descent object to be the cosimplicial ring spectrum
+Hence, given a map of rings $f\co R \to S$, we redefine the derived \index{descent!object}descent object to be the cosimplicial ring spectrum
 \[\mathcal D_{Hf} := \left\{
 \begin{tikzcd}[ampersand replacement=\&]
 HS \arrow[leftarrow]{r} \arrow[shift left=\baselineskip]{r} \arrow[shift right=\baselineskip]{r} \&
@@ -173,11 +173,11 @@ Ravenel proves the following generalization of \Cref{DescentFromHFpToHZp}.  Let 
 Finally, we can interrelate these algebraic and topological notions of descent by studying the coskeletal filtration spectral sequence for $\pi_* X^\wedge_E$, which we define to be the \index{Adams spectral sequence}\textit{$E$--Adams spectral sequence} for $X$.  Applying the homotopy groups functor to the cosimplicial ring spectrum $\mathcal D_E$ gives a cosimplicial ring $\pi_* \mathcal D_E$, which we would like to connect with an algebraic descent object of the sort considered in \Cref{StrictCechDescentRemark}.  In order to make this happen, we need two niceness conditions on $E$:
 
 \begin{definition}
-An even-periodic ring spectrum $E$ satisfies \CH, the \textbf Commutativity \textbf Hypothesis, when the ring $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.  In this case, we can form the simplicial scheme \[\context{E} = \Spec \pi_0 \mathcal D_E,\] called the \index{context}\textit{context} of $E$.
+An even-periodic ring spectrum $E$ satisfies \index{commutativity hypothesis@commutativity hypothesis, \CH}\CH, the \textbf Commutativity \textbf Hypothesis, when the ring $\pi_* E^{\sm j}$ is commutative for all $j \ge 1$.  In this case, we can form the simplicial scheme \[\context{E} = \Spec \pi_0 \mathcal D_E,\] called the \index{context}\textit{context} of $E$.
 \end{definition}
 
 \begin{definition}
-An even-periodic ring spectrum $E$ satisfies \FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_0 \to E_0 E$ is flat.\footnote{If $E$ is a commutative ring spectrum, then this is equivalent to asking that the left-unit map is a flat map of $E_0$--modules.}  In this case, the Segal map \[(E_0 E)^{\otimes_{E_0} j} \otimes_{E_0} E_0 X \to \pi_0(E^{\sm (j+1)} \sm X) = \pi_0 \mathcal D_E(X)[j]\] is an isomorphism for all $X$.  In geometric language, this says that $\context{E}$ is valued in simplicial sets equivalent to nerves of groupoids and that \[\context{E}(X) := \widetilde{\pi_0 \mathcal D_E(X)}\] forms a Cartesian quasicoherent sheaf over $\context{E}$.  In this sense, we have constructed a factorization
+An even-periodic ring spectrum $E$ satisfies \index{flatness hypothesis@flatness hypothesis, \FH}\FH, the \textbf Flatness \textbf Hypothesis, when the right-unit map $E_0 \to E_0 E$ is flat.\footnote{If $E$ is a commutative ring spectrum, then this is equivalent to asking that the left-unit map is a flat map of $E_0$--modules.}  In this case, the Segal map \[(E_0 E)^{\otimes_{E_0} j} \otimes_{E_0} E_0 X \to \pi_0(E^{\sm (j+1)} \sm X) = \pi_0 \mathcal D_E(X)[j]\] is an isomorphism for all $X$.  In geometric language, this says that $\context{E}$ is valued in simplicial sets equivalent to nerves of groupoids and that \[\context{E}(X) := \widetilde{\pi_0 \mathcal D_E(X)}\] forms a Cartesian quasicoherent sheaf over $\context{E}$.  In this sense, we have constructed a factorization
 \begin{center}
 \begin{tikzcd}
 \CatOf{Spectra} \arrow["E_0(-)"]{rr} \arrow["\context{E}(-)"]{rd} & & \CatOf{Modules}_{E_0} \\
@@ -200,7 +200,7 @@ such that $(X_0, X_1)$ forms a groupoid scheme.  An \index{comodule}\textit{$(A,
 \end{definition}
 
 \begin{example}
-A Hopf $k$--algebra $H$ gives a Hopf algebroid $(k, H)$.  The scheme of objects $\Spec k$ in the groupoid scheme is the constant scheme $0$.
+A \index{Hopf algebra}Hopf $k$--algebra $H$ gives a Hopf algebroid $(k, H)$.  The scheme of objects $\Spec k$ in the groupoid scheme is the constant scheme $0$.
 \end{example}
 
 \begin{lemma}\label{IdentifyingAdamsE2Page}
@@ -214,8 +214,8 @@ E_2^{*, *} & = \Cotor_{E_* E}^{*, *}(E_*, E_* X) \\
 The homological algebra of Hopf algebras from \Cref{HopfAlgebraLecture} can be lifted almost verbatim, allowing us to define resolutions suitable for computing derived functors~\cite[Definition A1.2.3]{RavenelGreenBook}.  This includes the cobar resolution~\cite[Definition A1.2.11]{RavenelGreenBook}, which shows that the associated graded for the coskeletal filtration of $\mathcal D_E(X)$ is a complex computing the derived functors claimed in the Lemma statement.
 \end{proof}
 
-\begin{remark}\label{HurewiczRemark}
-The sphere spectrum fails to satisfy {\CH}, so the above results do not apply to it, but the $\S$--Adams spectral sequence is particularly degenerate: it consists of $\pi_* X$, concentrated on the $0$--line.  For any other ring spectrum $E$, the unit map $\S \to E$ induces a map of Adams spectral sequences whose image on the $0$--line are those maps of comodules induced by applying $E$--homology to a homotopy element of $X$---i.e., the Hurewicz image of $E$.
+\begin{remark}[{cf.\ \Cref{HurewiczImageOnZeroLine}}]\label{HurewiczRemark}
+The sphere spectrum fails to satisfy {\CH}, so the above results do not apply to it, but the $\S$--Adams spectral sequence is particularly degenerate: it consists of $\pi_* X$, concentrated on the $0$--line.  For any other ring spectrum $E$, the unit map $\S \to E$ induces a map of Adams spectral sequences whose image on the $0$--line are those maps of comodules induced by applying $E$--homology to a homotopy element of $X$---i.e., the \index{Hurewicz map}Hurewicz image of $E$.
 \end{remark}
 
 \begin{remark}\label{WarningAboutStacks}
@@ -223,11 +223,11 @@ In \Cref{DescentFromHFpToHZp}, we discussed translating from the algebra descent
 \end{remark}
 
 \begin{example}
-Most of the homology theories we will discuss have these {\CH} and {\FH} properties.  For an easy example, $\HFtwo P$ certainly has this property: there is only one possible algebraic map $\F_2 \to \mathcal A_*$, so {\FH} is necessarily satisfied.  This grants us access to a description of the context for $\HFtwo$: \[\context{\HFtwo P} = \Spec \F_2 \mmod \InternalAut{\G_a}.\]
+Most of the homology theories we will discuss have these {\CH} and {\FH} properties.  For an easy example, $\HFtwo P$ certainly has this property: there is only one possible algebraic map $\F_2 \to \mathcal A_*$, so {\FH} is necessarily satisfied.  Our work in \Cref{TheSteenrodAlgebraSection} thus grants us access to a description of the context for $\HFtwo$: \[\context{\HFtwo P} = \Spec \F_2 \mmod \InternalAut{\G_a}.\]
 \end{example}
 
 \begin{example}\label{ContextOfMUPExample}
-The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  Quillen's theorem on its face gives an equivalence $\Spec MUP_0 \cong \moduli{fgl}$, but in \Cref{OrientationsOnEAndMU} we also gave a description of $\Spec MUP_0 MUP$: it is the moduli of pairs of formal group laws equipped with an invertible power series intertwining them.  Altogether, this presents $\context{MUP}$ as the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.  We include a picture of the $p$--localized Adams $E_2$--page in \Cref{ANSS2Figure} and \Cref{ANSS3Figure}.  In view of \Cref{WarningAboutStacks}, there is an important subtlety about the stack $\moduli{fg}$: an $R$--point is a functor on affines over $\Spec R$ which is locally isomorphic to a formal group, but whose local isomorphism \emph{may not patch} to give a global isomorphism.  This does not agree, a priori, with the definition of formal group given in \Cref{DefnFormalGps}, where the isomorphism witnessing a functor as a formal variety was expected to be global.  We will address this further in \Cref{CoordinatizbleFGs} below.
+The context for $MUP$ is considerably more complicated, but Quillen's theorem can be equivalently stated as giving a description of it.  Quillen's theorem on its face gives an equivalence $\Spec MUP_0 \cong \moduli{fgl}$, but in \Cref{OrientationsOnEAndMU} we also gave a description of $\Spec MUP_0 MUP$: it is the moduli of pairs of formal group laws equipped with an invertible power series intertwining them.  Altogether, this presents $\context{MUP}$ as the moduli of formal groups: \[\context{MUP} \simeq \moduli{fg} := \moduli{fgl} \mmod \moduli{ps}^{\gpd},\] where $\moduli{ps} = \InternalEnd(\A^1)$ is the moduli of self-maps of the affine line (i.e., of power series) and $\moduli{ps}^{\gpd}$ is the multiplicative subgroup of invertible such maps.  We include a picture of the $p$--localization of the $MU$--Adams $E_2$--page in \Cref{ANSS2Figure} and \Cref{ANSS3Figure}.  In view of \Cref{WarningAboutStacks}, there is an important subtlety about the stack $\moduli{fg}$: an $R$--point is a functor on affines over $\Spec R$ which is locally isomorphic to a formal group, but whose local isomorphism \emph{may not patch} to give a global isomorphism.  This does not agree, a priori, with the definition of formal group given in \Cref{DefnFormalGps}, where the isomorphism witnessing a functor as a formal variety was expected to be global.  We will address this further in \Cref{CoordinatizbleFGs} below.
 \end{example}
 
 \afterrectopage{
@@ -248,7 +248,7 @@ The context for $MOP$, by contrast, is reasonably simple.  \Cref{CalculationOfPi
 \end{example}
 
 \begin{remark}
-The algebraic moduli $\context{MU} = (\Spec MU_*, \Spec MU_* MU)$ and the topological moduli $(MU, MU \sm MU)$ are quite different.  An orientation $MU \to E$ selects a coordinate on the formal group $\CP^\infty_E$, but $\CP^\infty_E$ itself exists independently of the orientation.  Hence, while $\context{MU}(E_*)$ can have many connected components corresponding to \emph{distinct formal groups} on the coefficient ring $E_*$, the groupoid $\CatOf{RingSpectra}(\sheaf D_{MU}, E)$ has only one connected component corresponding to the formal group $\CP^\infty_E$ intrinsic to $E$.\footnote{The reader ought to compare this with the situation in explicit local class field theory, where a local number field has a preferred formal group attached to it.}\footnote{The precocious student might ask what functor $MU$ represents as an $E_\infty$ ring spectrum.  To date, this functor has not been algebraically recognized.}
+The algebraic moduli $\context{MU} = (\Spec MU_*, \Spec MU_* MU)$ and the topological moduli $(MU, MU \sm MU)$ are quite different.  An orientation $MU \to E$ selects a coordinate on the formal group $\CP^\infty_E$, but $\CP^\infty_E$ itself exists independently of the orientation.  Hence, while $\context{MU}(E_*)$ can have many connected components corresponding to \emph{distinct formal groups} on the coefficient ring $E_*$, the groupoid $\CatOf{RingSpectra}(\sheaf D_{MU}, E)$ has only \emph{one} connected component corresponding to the formal group $\CP^\infty_E$ intrinsic to $E$.\footnote{The reader ought to compare this with the situation in explicit local class field theory, where a local number field has a preferred formal group attached to it.}\footnote{The precocious student might ask what functor $MU$ represents as an $E_\infty$ ring spectrum.  To date, this functor has not been algebraically recognized.}
 \end{remark}
 
 \begin{remark}[{\cite[{pg.\ 5}]{HopkinsFromSpectraToStacks}}]\label{StackinessMeasuresNonorientability}
@@ -256,7 +256,7 @@ If $E$ is a complex-oriented ring spectrum, then the simplicial sheaf $\context{
 \end{remark}
 
 \begin{remark}
-It is also possible to construct an Adams spectral sequence by iteratively smashing with the fiber sequence $\overline E \to \S \to E$ to form the tower
+It is also possible to construct an $E$--Adams spectral sequence by iteratively smashing with the fiber sequence $\overline E \to \S \to E$ to form the tower
 \begin{center}
 \begin{tikzcd}
 \S \sm X \arrow{d} & \overline E \sm X \arrow{l} \arrow{d} & \overline E^{\sm 2} \sm X \arrow{l} \arrow{d} & \cdots \arrow{l} \\
@@ -267,7 +267,7 @@ This presentation makes the connection to descent much more opaque, but it does 
 \end{remark}
 
 \begin{remark}
-With contexts in mind, the pro-spectrum $DX_+ = \{F(X_\alpha, \S)\}_\alpha$ gains our attention as a kind of universal example in the following sense.  Because each $X_\alpha$ is a compact object, base-change along the unit map $\eta\co \S \to E$ can be computed by the following formula:
+With contexts in mind, the pro-spectrum $DX_+ = \{F(X_\alpha, \S)\}_\alpha$ gains our attention as a kind of universal example.  Because each $X_\alpha$ is a compact object, base-change along the unit map $\eta\co \S \to E$ can be computed by the following formula:
 \begin{align*}
 \eta^* DX_+ = E \sm \{F(X_\alpha, \S)\}_\alpha = \{E \sm F(X_\alpha, \S)\}_\alpha = \{F(X_\alpha, E)\}_\alpha.
 \end{align*}
@@ -275,7 +275,7 @@ Applying the functor $\Spf \circ \pi_0$ to this pro-system yields the formal sch
 \end{remark}
 
 \begin{remark}
-Many algebro-geometric properties lift automatically to the setting of \index{stack!representable}\textit{representable} maps: a map $f\co \stack M \to \stack N$ is representable when for all affines $\Spec R \to \stack N$, the homotopy pullback $\stack M \times_{\stack N} \Spec R$ is affine.  A representable such $f$ is said to have property \textbf{P} when the natural map $\stack M \times_{\stack N} \Spec R \to \Spec R$ has property \textbf{P} for every choice of affine over $\stack N$.
+Many algebro-geometric properties lift automatically to the setting of \index{stack!representable}\textit{representable} maps: a map $f\co \stack M \to \stack N$ is representable when for all affines $\Spec R \to \stack N$, the homotopy pullback $\stack M \times_{\stack N} \Spec R$ is affine.  A representable such $f$ is said to have property \textbf{P} when the natural map $\stack M \times_{\stack N} \Spec R \to \Spec R$ has property \textbf{P} for every choice of affine over $\stack N$, giving us intrinsic notions of adjectives like open, flat, \ldots.
 \end{remark}
 
 
@@ -300,10 +300,10 @@ In \Cref{FHGivesComodules} we gave a factorization
 & \CatOf{QCoh}(\context{MUP}) \arrow["{(-)[0]}"]{ru} ,
 \end{tikzcd}
 \end{center}
-and in \Cref{ContextOfMUPExample} we established an equivalence \[\phi\co \context{MUP} \xrightarrow{\simeq} \moduli{fg}.\]  Our program, as outlined in the introduction, is to analyze this functor $\context{MUP}(-)$ by postcomposing it with $\phi^*$ and studying the resulting sheaf over $\moduli{fg}$.  In order to perform such an analysis, we will want a firm grip on the geometry of the stack $\moduli{fg}$, and in this Lecture we begin by studying the scheme $\moduli{fgl}$ as well as the natural covering map \[\moduli{fgl} \to \moduli{fg}.\]  Additionally, \Cref{ContextOfMUPExample} was a consequence of \Cref{QuillensTheorem}, which relied on the unproven result stated as \Cref{DummyLazardsThm}, which we will now prove in this section as \Cref{LazardsTheorem}.
+and in \Cref{ContextOfMUPExample} we established an equivalence \[\phi\co \context{MUP} \xrightarrow{\simeq} \moduli{fg}.\]  Our program, as outlined in the introduction, is to analyze this functor $\context{MUP}(-)$ by postcomposing it with $\phi^*$ and studying the resulting sheaf over $\moduli{fg}$.  In order to perform such an analysis, we will want a firm grip on the geometry of the stack $\moduli{fg}$, and in this Lecture we begin by studying the scheme $\moduli{fgl}$ as well as the natural \index{stack!cover}covering map \[\moduli{fgl} \to \moduli{fg}.\]  Additionally, \Cref{ContextOfMUPExample} was a consequence of \Cref{QuillensTheorem}, which relied on the unproven result stated as \Cref{DummyLazardsThm}, which we will now prove in this section as \Cref{LazardsTheorem}.
 
 \begin{definition}\label{MfglDefn}
-There is an affine scheme $\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying \emph{all} bivariate power series:
+There is an affine scheme \index{formal group laws!moduli@moduli, $\moduli{fgl}$}$\moduli{fgl}$ classifying formal group laws.  Begin with the scheme classifying \emph{all} bivariate power series:
 \begin{align*}
 \Spec \Z[a_{ij} \mid i, j \ge 0] & \leftrightarrow \left\{ \text{bivariate power series} \right\}, \\
 f \in \Spec\Z[a_{ij} \mid i, j \ge 0](R) & \leftrightarrow \sum_{i, j \ge 0} f(a_{ij}) x^i y^j.
@@ -313,10 +313,7 @@ Then, $\moduli{fgl}$ is the closed subscheme selected by the formal group law ax
 
 This presentation of $\moduli{fgl}$ as a subscheme appears to be extremely complicated in that its ideal is generated by many hard-to-describe elements, but $\moduli{fgl}$ itself is actually not complicated at all.  We will prove the following:
 \begin{theorem}[{\cite[Th\'eor\`eme II]{Lazard}}]\label{LazardsTheorem}
-There is a noncanonical isomorphism
-\[\pushQED{\qed}
-\sheaf{O}_{\moduli{fgl}} \cong \Z[b_n \mid 1 \le n < \infty] =: L. \qedhere
-\popQED{\qed}\]
+There is a noncanonical isomorphism \[\sheaf{O}_{\moduli{fgl}} \cong \Z[b_n \mid 1 \le n < \infty] =: L.\]
 \end{theorem}
 \begin{proof}
 Let $L = \Z[b_0, b_1, b_2, \ldots] / (b_0 - 1)$ be the universal ring supporting an exponential and a logarithm:\footnote{In the context of complex-oriented cohomology theories, this is called the \index{logarithm!Miscenko@Mi\v{s}\v{c}enko}\textit{Mi\v{s}\v{c}enko logarithm}, given by the formula $\log_\phi(x) = \sum_{n=0}^\infty \frac{\phi[\CP^n]}{n+1} x^{n+1}$.}
@@ -350,7 +347,7 @@ There is a canonical splitting $T_{2n} \to (Q \mathcal O_{\moduli{fgl}})_{2n}$.
 In order to prove the missing \Cref{LazardSplittingLemma}, it will be useful to study the series $+_\phi$ ``up to degree $n$'', i.e., modulo $(x, y)^{n+1}$.  Such a truncated series satisfying the analogues of the formal group law axioms is called a \index{formal group!formal n bud@formal $n$--bud}\textit{formal $n$--bud}.\footnote{A formal $n$--bud determines a ``multiplication'' $(\A^1 \times \A^1)^{(n)} \to \A^{1,(n)}$.  Note that this does \emph{not} belong to a group object, since $(\A^1 \times \A^1)^{(n)} \not\simeq \A^{1,(n)} \times \A^{1,(n)}$.  This is the observation that the ideals $(x, y)^{n+1}$ and $(x^{n+1}, y^{n+1})$ are distinct.}  We will additionally be moved to study the difference between a formal $n$--bud and a formal $(n+1)$--bud extending it.  The simplest case of this is when the formal $n$--bud is just the additive law $x +_\phi y = x + y$, in which case any extension to an $(n+1)$--bud has the form $x + y + f(x, y)$ for $f(x, y)$ a homogeneous polynomial of degree $n$.  Symmetry of the group law requires $f(x, y)$ to be symmetric, and associativity of the group law requires $f(x, y)$ to satisfy the equation \[f(x, y) - f(t + x, y) + f(t, x + y) - f(t, x) = 0.\]  Such a polynomial is called a \index{symmetric 2 cocycle@symmetric $2$--cocycle}\textit{symmetric $2$--cocycle} (of degree $n$).\footnote{We will justify the ``$2$--cocycle'' terminology in the course of the proof of \Cref{Symmetric2CocycleLemma}.}
 \end{definition}
 
-\begin{proof}[{Reduction of \Cref{LazardSplittingLemma} to \Cref{Symmetric2CocycleLemma}}]
+\begin{proof}[{Reduction of \Cref{LazardSplittingLemma} to \Cref{Symmetric2CocycleLemma}}]\index{symmetric 2 cocycle@symmetric $2$--cocycle!lemma}
 We now show that the following conditions are equivalent:
 \begin{enumerate}
 \item (\Cref{Symmetric2CocycleLemma}) Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{k} \middle| 0 < k < n \right)$.
@@ -392,7 +389,7 @@ We now ground ourselves by fitting symmetric $2$--cocycles into a more general h
 \cdots
 \end{tikzcd}
 \right\}.\]
-By applying the functor $\InternalHom{FormalSchemes}(-, \G_a)(k)$, we get a cosimplicial abelian group stemming from the group scheme structure on $\G_a$, and this gives a cochain complex of which we can take the cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} what we've been calling $2$--cocycles\footnote{They aren't obligated to be symmetric or of homogeneous degree, though.}, so we are interested in computing $H^2$.  First, we can quickly compute $B^2$, since $C^1$ is so small: \[d^1(x^k) = d_k c_k.\]  Secondly, one may think of this complex as a resolution computing various\footnote{Refer back to \Cref{ExtAndCotorAgree}.} derived functors \[\Cotor_{\sheaf O_{\G}}(k, k) \cong \Ext_{\sheaf O_{\G}}(k, k) \cong \Tor_{\sheaf O_{\G}^*}(k, k).\]  We are now going to compute these last groups using a more efficient complex.
+By applying the functor $\InternalHom{FormalSchemes}(-, \G_a)(k)$, we get a cosimplicial abelian group stemming from the group scheme structure on $\G_a$, and this gives a cochain complex of which we can take the \index{formal group!cohomology}cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} what we've been calling $2$--cocycles\footnote{They aren't obligated to be symmetric or of homogeneous degree, though.}, so we are interested in computing $H^2$.  First, we can quickly compute $B^2$, since $C^1$ is so small: \[d^1(x^k) = d_k c_k.\]  Secondly, one may think of this complex as a resolution computing various\footnote{Refer back to \Cref{ExtAndCotorAgree}.} derived functors \[\Cotor_{\sheaf O_{\G}}(k, k) \cong \Ext_{\sheaf O_{\G}}(k, k) \cong \Tor_{\sheaf O_{\G}^*}(k, k).\]  We are now going to compute these last groups using a more efficient complex.
 
 \begin{itemize}
 \item[$\Q$:] There is a free $\Q[t]$--module resolution
@@ -449,7 +446,7 @@ Certainly if $\G$ admits a global coordinate, then $T_0 \G \cong R$.  Conversely
 \end{proof}
 
 \begin{remark}\label{StrictIsosRemark}
-The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the literature as the group of \index{formal group!strict isomorphism of}\textit{strict isomorphisms}.  There is an associated moduli of formal groups identified only up to strict isomorphism, which sits in a fiber sequence \[\Gm \to \moduli{fgl} \mmod \moduli{ps}^{\gpd, \ge 1} \to \moduli{fg}.\]  These appeared earlier in this Lecture as well: in the proof of \Cref{LazardsTheorem}, we constructed over $L$ the universal formal group law equipped with a \emph{strict} exponential map.  The moduli of formal group laws modulo strict isomorphisms appears as the context associated to the graded version, rather than even-periodic version, of the story told so far---i.e., as a sort of non-periodic context $\context{MU}$.
+The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the literature as the group of \index{formal group!strict isomorphism of}\textit{strict isomorphisms}.  There is an associated moduli of formal groups identified only up to strict isomorphism, which sits in a fiber sequence \[\Gm \to \moduli{fgl} \mmod \moduli{ps}^{\gpd, \ge 1} \to \moduli{fg}.\]  These appeared earlier in this Lecture as well: in the proof of \Cref{LazardsTheorem}, we constructed over $L$ the universal formal group law equipped with a \emph{strict} \index{formal group!exponential}exponential map.  The moduli of formal group laws modulo strict isomorphisms appears as the context associated to the graded version, rather than even-periodic version, of the story told so far---i.e., as a sort of non-periodic context $\context{MU}$.
 \end{remark}
 
 
@@ -467,7 +464,7 @@ The subgroup scheme $\moduli{ps}^{\gpd, \ge 1}$ is often referred to in the lite
 We now turn to understanding the geometry of the quotient stack $\moduli{fg}$ itself, armed with two important tools: \Cref{RationalFGLsHaveLogarithms} and \Cref{MfglIsSmooth}.  We begin with a rephrasing of the former:
 
 \begin{theorem}[{cf.\ \Cref{RationalFGLsHaveLogarithms}}]\label{RationalGeometricPointsOfMfg}
-Let $k$ be any field of characteristic $0$.  Then $\G_a$ describes a unique map
+Let $k$ be any field of characteristic $0$.  Then $\G_a$ describes the unique map
 \[\pushQED{\qed}
 \Spec k \xrightarrow{\simeq} \moduli{fg}. \qedhere
 \popQED\]
@@ -475,7 +472,7 @@ Let $k$ be any field of characteristic $0$.  Then $\G_a$ describes a unique map
 
 One of our overarching tasks from the introduction to this Case Study is to enhance this to a classification of \emph{all} of the geometric points of $\moduli{fg}$, including those where $k$ is a field of positive characteristic $p$: \[\G\co \Spec k \to \moduli{fg} \times \Spec \Z_{(p)}.\]  We proved this Theorem in the characteristic $0$ case by solving a certain differential equation, which necessitated integrating a power series, and integration is what we expect to fail in characteristic $p$.  The following definition tracks \emph{where} it fails:
 \begin{definition}
-Let $+_\phi$ be a formal group law over a $\Z_{(p)}$--algebra.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $(n-1)$--bud determined by $+_\phi$.  The \index{formal group!height of a}\textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
+Let $+_\phi$ be a formal group law over a $\Z_{(p)}$--algebra.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $(n-1)$--bud determined by $+_\phi$.  The \index{formal group!height}\textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
 \end{definition}
 
 This turns out to be a crucial invariant of a formal group law, admitting many other interesting presentations.  In this Lecture, investigation of this definition will lead us to a classification of the closed substacks of $\moduli{fg}$, another of our overarching tasks.  As a first step, we would like to show that this value is well-behaved in various senses, including the following:
@@ -486,7 +483,7 @@ Over a field of positive characteristic $p$, the $p$--height of a formal group l
 \noindent We will have to develop some machinery to get there.  First, we note that this definition really depends on the formal group rather than the formal group law.
 
 \begin{lemma}\label{HeightIsAnIsomInvariant}
-The height of a formal group law is an isomorphism invariant, i.e., it descends to give a function \[\height\co \pi_0 \moduli{fg}(T) \to \N \cup \{\infty\}\] for any test $\Z_{(p)}$--algebra $T$.
+The height of a formal group law is an isomorphism invariant, i.e., it descends to give a function \[\height\co \pi_0 \moduli{fg}(T) \to \N \cup \{\infty\}\] for any local test $\Z_{(p)}$--algebra $T$.
 \end{lemma}
 \begin{proof}
 The series $\ell$ is a partial logarithm for the formal group law $\phi$, i.e., an isomorphism between the formal group defined by $\phi$ and the additive group.  Since isomorphisms compose, this statement follows.
@@ -494,7 +491,7 @@ The series $\ell$ is a partial logarithm for the formal group law $\phi$, i.e., 
 
 With this in mind, we look for a more standard form for formal group laws, where \Cref{FGLHeightIsAnInteger} will hopefully be obvious.  The most blindly optimistic standard form is as follows:
 \begin{definition}[{cf.\ \cite[Proposition 15.2.4]{Hazewinkel}}]\label{DefnpTypicalLog}
-Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that its logarithm is \index{formal group!p typicality@$p$--typicality}\textit{$p$--typical} when it takes the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
+Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that its logarithm is \index{p typical@$p$--typical!logarithm}\textit{$p$--typical} when it takes the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
 \end{definition}
 
 \begin{lemma}[{\cite[Theorem 15.2.9]{Hazewinkel}}]\label{EveryLogHaspTypification}
@@ -542,7 +539,7 @@ implicitly taking $m_1 = 1$ and $v_0 = p$.
 This result portends much of what is to come.  We now set our definition of $p$--typical to correspond to the manipulations we were making in the course of proving \Cref{EveryLogHaspTypification}.
 
 \begin{definition}\label{pTypicalityInGeneral}
-A parameter $g\co \A^1 \to \G$ of a formal group is said to be \index{formal group!p typicality@$p$--typicality}\textit{$p$--typical} when $F_\ell g = 0$ for all $p \nmid \ell$.
+A parameter $g\co \A^1 \to \G$ of a formal group is said to be \index{p typical@$p$--typical!parameter}\textit{$p$--typical} when $F_\ell g = 0$ for all $p \nmid \ell$.
 \end{definition}
 
 \begin{corollary}[{cf.\ \Cref{EveryLogHaspTypification}}]\label{EveryFGLIsPTypical}
@@ -597,7 +594,7 @@ For any sequence of coefficients $v_j \in R$ in a $\Z_{(p)}$--algebra $R$, there
 \popQED\]
 \end{corollary}
 
-Finally, we exploit these results to make deductions about the geometry of $\moduli{fg} \times \Spec \Z_{(p)}$.  There is an inclusion of groupoid--valued sheaves from $p$--typical formal group laws with $p$--typical isomorphisms to all formal group laws with all isomorphisms.  \Cref{EveryFGLIsPTypical} can be viewed as presenting this inclusion as a deformation retraction, witnessing a natural \emph{equivalence} of groupoids.  It follows from \Cref{WarningAboutStacks} that they both present the same stack.  The central utility of this equivalence is that the Kudo--Araki moduli of $p$--typical formal group laws is a considerably smaller algebra than $\sheaf O_{\moduli{fgl}}$, resulting in a less noisy picture of the Hopf algebroid.
+Finally, we exploit these results to make deductions about the geometry of $\moduli{fg} \times \Spec \Z_{(p)}$.  There is an inclusion of groupoid--valued sheaves from $p$--typical formal group laws with $p$--typical isomorphisms to all formal group laws with all isomorphisms.  \Cref{EveryFGLIsPTypical} can be viewed as presenting this inclusion as a deformation retraction, witnessing a natural \index{stack!equivalence}\emph{equivalence} of groupoids.  It follows from \Cref{WarningAboutStacks} that they both present the same stack.  The central utility of this equivalence is that the Kudo--Araki moduli of $p$--typical formal group laws is a considerably smaller algebra than $\sheaf O_{\moduli{fgl}}$, resulting in a less noisy picture of the Hopf algebroid.
 
 Our final goal in this Lecture is to exploit this refined presentation in the study of invariant functions.
 \begin{definition}[{\cite[Lemma 2.28]{GoerssQCohOnMfg}}]\label{DefnClosedSubstack}
@@ -631,7 +628,7 @@ We want to show that if $I$ is an invariant prime ideal, then $I = I_d$ for some
 \end{proof}
 
 \begin{remark}\label{OpenSubstacksOfMfg}
-The complementary open substack of dimension $d$ is harder to describe.%\footnote{Alternatively, just checking that $X_d = \Spec \Z_{(p)}[v_1, \ldots, v_{d-1}, v_d^\pm] \to \moduli{fg}$ is flat, without bothering with a moduli-theoretic interpretation, is easier.  We pull this map back along the cover $\moduli{fgl} \to \moduli{fg}$, which gives a map of affines \[\moduli{fgl} \times_{\moduli{fgl}} (\moduli{fgl} \times \moduli{PS}^{\gpd}) \times_{\moduli{fgl}} X_d \cong (\moduli{fgl} \times \moduli{PS}^{\gpd}) \times_{\moduli{fgl}} X_d \to X_d.\]  This is then something you can verify by hand.}
+The complementary \index{stack!open substack}open substack of dimension $d$ is harder to describe.%\footnote{Alternatively, just checking that $X_d = \Spec \Z_{(p)}[v_1, \ldots, v_{d-1}, v_d^\pm] \to \moduli{fg}$ is flat, without bothering with a moduli-theoretic interpretation, is easier.  We pull this map back along the cover $\moduli{fgl} \to \moduli{fg}$, which gives a map of affines \[\moduli{fgl} \times_{\moduli{fgl}} (\moduli{fgl} \times \moduli{PS}^{\gpd}) \times_{\moduli{fgl}} X_d \cong (\moduli{fgl} \times \moduli{PS}^{\gpd}) \times_{\moduli{fgl}} X_d \to X_d.\]  This is then something you can verify by hand.}
 From first principles, we can say only that it is the locus where the coordinate functions $p$, $v_1$, \ldots, $v_d$ do not \emph{all simultaneously vanish}.  It turns out that:
 \begin{enumerate}
 \item On a cover, at least one of these coordinates can be taken to be invertible.\item Once one of them is invertible, a coordinate change on the formal group law can be used to make $v_d$ (and perhaps others in the list) invertible.  Hence, we can use $v_d^{-1} \sheaf O_{\moduli{fgl}^{\ptyp}}$ as a coordinate chart.
@@ -648,7 +645,7 @@ It's worth pointing out how strange all of this is. In Euclidean geometry, open 
 \end{remark}
 
 \begin{remark}
-The results of this section have several alternative forms in the literature.  For instance, $[p]_\phi(x)$ can also be expressed as \[[p]_\phi(x) = px + v_1 x^p + v_2 x^{p^2} + \cdots + v_d x^{p^d} + \cdots,\] and this also determines a presentation of $\sheaf O_{\moduli{fgl}^{\ptyp}}$.  These other elements $v_d$, called \index{formal group!Hazewinkel coordinates}\textit{Hazewinkel coordinates}, differ substantially from the Kudo--Araki coordinates favored here, although they are equally ``canonical''.  Different coordinate patches are useful for accomplishing different tasks, and the reader would be wise to remain flexible.\footnote{In particular, it is a largely open question whether there is a (partial) coordinate patch that is compatible with the results of \Cref{PowerOpnsSection}.}
+The results of this section have several alternative forms in the literature.  For instance, $[p]_\phi(x)$ can also be expressed as \[[p]_\phi(x) = px + v_1 x^p + v_2 x^{p^2} + \cdots + v_d x^{p^d} + \cdots,\] where the sum is \emph{not} taken with respect to the group law, and this also determines a presentation of $\sheaf O_{\moduli{fgl}^{\ptyp}}$.  These other elements $v_d$, called \index{formal group!Hazewinkel coordinates}\textit{Hazewinkel coordinates}, differ substantially from the Kudo--Araki coordinates favored here, although they are equally ``canonical''.  Different coordinate patches are useful for accomplishing different tasks, and the reader would be wise to remain flexible.\footnote{In particular, it is a largely open question whether there is a (partial) coordinate patch that is compatible with the results of \Cref{PowerOpnsSection}.}
 \end{remark}
 
 \begin{remark}[{\cite[Section 17.5]{Hazewinkel}}]\label{ArtinHasseExponential}
@@ -690,10 +687,10 @@ For $g$ to be a coordinate transformation, we must have $b_0 = 1$, and because $
 \end{proof}
 
 \begin{remark}[{\cite[Remark 11.2]{StricklandFGNotes}}]
-We can now see see that $\pi_0 \moduli{fg}$, sometimes called the \index{formal group!coarse moduli of}\textit{coarse moduli of formal groups}, is not representable by a scheme.  From \Cref{FGpsOverAlgClosedFields}, we see that there are infinitely many points in $\pi_0 \moduli{fg}(\F_p)$.  From \Cref{MfglIsSmooth}, we see that these lift along the surjection $\Z \to \F_p$ to give infinitely many distinct points in $\pi_0 \moduli{fg}(\Z)$.  On the other hand, by \Cref{RationalGeometricPointsOfMfg} there is a single $\Q$--point of the coarse moduli, whereas the $\Z$--points of a representable functor would inject into its $\Q$--points.
+We can now see see that $\pi_0 \moduli{fg}$, sometimes called the \index{formal group!coarse moduli}\textit{coarse moduli of formal groups}, is not representable by a scheme.  From \Cref{FGpsOverAlgClosedFields}, we see that there are infinitely many points in $\pi_0 \moduli{fg}(\F_p)$.  From \Cref{MfglIsSmooth}, we see that these lift along the surjection $\Z \to \F_p$ to give infinitely many distinct points in $\pi_0 \moduli{fg}(\Z)$.  On the other hand, by \Cref{RationalGeometricPointsOfMfg} there is a single $\Q$--point of the coarse moduli, whereas the $\Z$--points of a representable functor would inject into its $\Q$--points.
 \end{remark}
 
-We now turn to understanding the infinitesimal neighborhoods of these geometric points.  In general, for $p\co \Spec k \to X$ a closed $k$--point of a scheme, we defined in \Cref{JetSpacesDefn} and \Cref{DefnCompletion} an infinitesimal neighborhood object $X^\wedge_p$ with a lifting property
+We now turn to understanding the \index{infinitesimal neighborhood}infinitesimal neighborhoods of these geometric points.  In general, for $p\co \Spec k \to X$ a closed $k$--point of a scheme, we defined in \Cref{JetSpacesDefn} and \Cref{DefnCompletion} an infinitesimal neighborhood object $X^\wedge_p$ with a lifting property
 \begin{center}
 \begin{tikzcd}
 \Spec k \arrow["p"]{r} \arrow{d} & X^\wedge_p \arrow{d} \\
@@ -762,7 +759,7 @@ For the finite perfect fields $k = \F_{p^d} = \F_p(\zeta_{p^d-1})$, the Witt rin
 \end{remark}
 
 \begin{remark}\label{LubinTateModuliThmInFGLTerms}
-In light of \Cref{LubinTateStackInFGLTerms}, we can also state \Cref{LubinTateModuliThm} in terms of formal group laws and their $\star$--isomorphisms.  For a group law $+_\Gamma$ over a perfect field $k$ of positive characteristic, it claims that there exists a ring $X$, noncanonically isomorphic to $\W_p(k)\ps{u_1, \ldots, u_{d-1}}$, as well as a certain group law $+_{\widetilde \Gamma}$ on this ring.  The group law $+_{\widetilde \Gamma}$ has the following property: if $+_\G$ is a formal group law on an infinitesimal thickening $\Spf R$ of $\Spec k$ which reduces along $\pi\co \Spec R/\m \to \Spf R$ to $+_\Gamma$, then there is a unique ring map $f\co X \to R$ such that $f^* (+_{\widetilde \Gamma})$ is $\star$--isomorphic to $\pi^* (+_{\G})$.  Moreover, this $\star$--isomorphism is unique.
+In light of \Cref{LubinTateStackInFGLTerms}, we can also state \Cref{LubinTateModuliThm} in terms of formal group laws and their $\star$--isomorphisms.  For a group law $+_\Gamma$ over a perfect field $k$ of positive characteristic, it claims that there exists a ring $X$, noncanonically isomorphic to $\W_p(k)\ps{u_1, \ldots, u_{d-1}}$, as well as a certain group law $+_{\widetilde \Gamma}$ on this ring.  The group law $+_{\widetilde \Gamma}$ has the following property: if $+_\G$ is a formal group law on an infinitesimal thickening $\Spf R$ of $\Spec k$ which reduces along $\pi\co \Spec R/\m \to \Spf R$ to $+_\Gamma$, then there is a unique ring map $f\co X \to R$ such that $f^* (+_{\widetilde \Gamma})$ is $\star$--isomorphic to $\pi^* (+_{\G})$, and this $\star$--isomorphism is unique.
 \end{remark}
 
 We will spend the rest of this Lecture working towards a proof of \Cref{LubinTateModuliThm}.  We first consider a very particular sort of infinitesimal thickening: the square-zero extension $R = k[\eps] / \eps^2$ with pointing $\eps = 0$.  We are interested in two kinds of data over $R$: formal group laws $+_\Delta$ over $R$ reducing to $+_\Gamma$ at the pointing, and formal group law automorphisms $\phi$ of $+_\Gamma$ which reduce to the identity automorphism at the pointing.
@@ -798,7 +795,7 @@ Equating these gives the condition in the Lemma statement.
 \todo[inline]{I would like a coordinate-independent model for this complex, which will hopefully make the following Corollary self-evident.}
 The key observation is that these two conditions appear as cocycle conditions for the first two levels of a natural cochain complex.
 \begin{definition}[{\cite[Section 3]{LazarevDeformations}}]
-The deformation complex\footnote{Pieces are of this complex are visible in work of Drinfel'd~\cite[Section 4.A]{Drinfeld} and of Lubin--Tate~\cite{LubinTate}, but neither actually assemble the whole complex.} $\widehat C^*(+_\Gamma; k)$ is defined by \[k \to k\ps{x_1} \to k\ps{x_1, x_2} \to k\ps{x_1, x_2, x_3} \to \cdots\] with differential
+The \index{deformation complex}deformation complex\footnote{Pieces are of this complex are visible in work of Drinfel'd~\cite[Section 4.A]{Drinfeld} and of Lubin--Tate~\cite{LubinTate}, but neither actually assemble the whole complex.} $\widehat C^*(+_\Gamma; k)$ is defined by \[k \to k\ps{x_1} \to k\ps{x_1, x_2} \to k\ps{x_1, x_2, x_3} \to \cdots\] with differential
 \begin{align*}
 (df)(x_1, \ldots, x_{n+1}) & = \Gamma_1\left(\sumGamma_{i=1}^n x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
 & \quad + \sum_{i=1}^n (-1)^i \cdot f(x_1, \ldots, x_i +_\Gamma x_{i+1}, \ldots, x_{n+1}) \\
@@ -820,25 +817,26 @@ Two extensions $+_\Delta$ and $+_{\Delta'}$ of $+_\Gamma$ to $k[\eps] / \eps^2$ 
 Remarkably, we have already encountered this complex before:
 
 \begin{lemma}[{\cite[p.\ 1320]{LazarevDeformations}}]\label{LazarevComparisonOfCplxes}
-Write $\G$ for the formal group associated to the group law $+_\Gamma$.  The cochain complex $\widehat C^*(+_\Gamma; k)$ is quasi-isomorphic to the cohomology cochain complex considered in the proof of \Cref{Symmetric2CocycleLemma}:
+Write $\G$ for the formal group associated to the group law $+_\Gamma$.  The cochain complex $\widehat C^*(+_\Gamma; k)$ is quasi-isomorphic to the \index{formal group!cohomology}cohomology cochain complex considered in the proof of \Cref{Symmetric2CocycleLemma}:
 \begin{align*}
 \widehat C^*(+_\Gamma; k) & \to \InternalHom{FormalSchemes}(B\G, \G_a)(k) \\
 f & \mapsto \Gamma_1\left(0, \sumGamma_{i=1}^n x_i \right)^{-1} f(x_1, \ldots, x_n). \qed
 \end{align*}
 \end{lemma}
 
-Two Lectures ago while proving \Cref{Symmetric2CocycleLemma}, we computed the cohomology of this complex in the specific case of $\G = \G_a$.  This is the one case where Lubin and Tate's theorem does \emph{not} apply, since it requires $\height \G < \infty$.  Nonetheless, by filtering the multiplication on $\G$ by degree, we can use this specific calculation to get up to the general one we now seek.
+Two Lectures ago while proving \Cref{Symmetric2CocycleLemma}, we computed the cohomology of this complex in the specific case of $\G = \G_a$.  This is the one case where Lubin and Tate's theorem does \emph{not} apply, since it requires $\height \G < \infty$.  Nonetheless, by filtering the multiplication on $\G$ by degree, we can use this specific calculation to get up to the one we now seek.
 
 \begin{lemma}\label{CalculationOfLTTangentSpace}
 Let $\G$ be a formal group of finite height $d$ over a field $k$.  Then $H^1(\G; \G_a) = 0$ and $H^2(\G; \G_a)$ is a free $k$--vector space of dimension $d$.
 \end{lemma}
 \begin{proof}[Proof (after Hopkins)]
-We select a $p$--typical coordinate on $\G$ of the form \[x +_\phi y = x + y + \mathrm{unit} \cdot c_{p^d}(x, y) + \cdots,\] where $c_{p^d}(x, y)$ is as in one of Lazard's symmetric $2$--cocycles, as in \Cref{Symmetric2CocycleLemma}.  Filtering $\G$ by degree, the multiplication projects to $x +_\phi y = x + y$ in the associated graded, and the resulting filtration spectral sequence has signature \[[H^*(\G_a; \G_a)]_* \Rightarrow H^*(\G; \G_a),\] where the second grading comes from the degree of the homogeneous polynomial representatives of classes in $H^*(\G_a; \G_a)$.
+We select a $p$--typical coordinate on $\G$ of the form \[x +_\phi y = x + y + \mathrm{unit} \cdot c_{p^d}(x, y) + \cdots,\] where $c_{p^d}(x, y)$ is as in one of Lazard's symmetric $2$--cocycles, as in \Cref{Symmetric2CocycleLemma}.  Filtering $\G$ by degree, the multiplication projects to $x +_\phi y = x + y$ in the associated graded, and the resulting \index{tangent spectral sequence}filtration spectral sequence has signature \[[H^*(\G_a; \G_a)]_* \Rightarrow H^*(\G; \G_a),\] where the second grading comes from the degree of the homogeneous polynomial representatives of classes in $H^*(\G_a; \G_a)$.
 
-Because \Cref{Symmetric2CocycleLemma} gives different calculations of $H^*(\G_a; \G_a)$ for $p = 2$ and $p > 2$, we specialize to $p > 2$ for the remainder of the proof and leave the similar $p = 2$ case to the reader.  For $p > 2$, \Cref{Symmetric2CocycleLemma} gives \[[H^*(\G_a; \G_a)]_* = \left[\frac{k[\alpha_j \mid j \ge 0]}{\alpha_j^2 = 0} \otimes k[\beta_j \mid j \ge 0]\right]_*,\] where $\alpha_j$ is represented by $x^{p^j}$ and $\beta_j$ is represented by $c_{p^j}(x, y)$.  To compute the differentials in this spectral sequence generally, one computes by hand the formula for the differential in the bar complex, working up to lowest nonzero degree.  For instance, to compute $d(\alpha_j)$ we examine the series \[(x +_\phi y)^{p^j} - (x^{p^j} + y^{p^j}) = (\text{unit}) \cdot c_{p^{d + j}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^j} = c_{p^{j+d}}$, giving $d(\alpha_j) = \beta_{j+d}$.  So, we see that nothing in the $1$--column of the spectral sequence is a permanent cocycle and that there are $d$ classes at the bottom of the $2$--column of the spectral sequence which are not coboundaries.  To conclude the Lemma statement, we need only to check that they are indeed permanent cocycles.  To do this, we note that they are indeed realized as deformations, by noting \[x +_{\mathrm{univ}} y \cong x + y + v_j c_{p^j}(x, y) \pmod{v_1, \ldots, v_{j-1}, (x, y)^{p^j+1}}\] where $+_{\mathrm{univ}}$ is the Kudo--Araki universal $p$--typical law (cf.\ \cite[Proposition 1.1]{LubinTate}).
+Because \Cref{Symmetric2CocycleLemma} gives different calculations of $H^*(\G_a; \G_a)$ for $p = 2$ and $p > 2$, we specialize to $p > 2$ for the remainder of the proof and leave the similar $p = 2$ case to the reader.  For $p > 2$, \Cref{Symmetric2CocycleLemma} gives \[[H^*(\G_a; \G_a)]_* = \left[\frac{k[\alpha_j \mid j \ge 0]}{\alpha_j^2 = 0} \otimes k[\beta_j \mid j \ge 0]\right]_*,\] where $\alpha_j$ is represented by $x^{p^j}$ and $\beta_j$ is represented by $c_{p^j}(x, y)$.  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest nonzero degree.  For instance, to compute $d(\alpha_j)$ we examine the series \[(x +_\phi y)^{p^j} - (x^{p^j} + y^{p^j}) = (\text{unit}) \cdot c_{p^{d + j}}(x, y) + \cdots,\] where we used $c_{p^d}^{p^j} = c_{p^{j+d}}$, giving $d(\alpha_j) = \beta_{j+d}$.  So, we see that nothing in the $1$--column of the spectral sequence is a permanent cocycle and that there are $d$ classes at the bottom of the $2$--column of the spectral sequence which are not coboundaries.  To conclude the Lemma statement, we need only to check that they are indeed permanent cocycles.  To do this, we note that they are realized as deformations, by noting \[x +_{\mathrm{univ}} y \cong x + y + v_j c_{p^j}(x, y) \pmod{v_1, \ldots, v_{j-1}, (x, y)^{p^j+1}}\] where $+_{\mathrm{univ}}$ is the Kudo--Araki universal $p$--typical law (cf.\ \cite[Proposition 1.1]{LubinTate}).
 \end{proof}
 
-\begin{proof}[Proof of the square-zero case of \Cref{LubinTateModuliThm} using \Cref{LubinTateModuliThmInFGLTerms}]
+\begin{proof}[{Proof of the square-zero case of \Cref{LubinTateModuliThm} using \Cref{LubinTateModuliThmInFGLTerms}}]%
+\footnote{The reader may also be interested in a proof presented in more stacky language~\cite[Reduction to Theorem 21.5]{LurieChromaticCourseNotes}.}
 We will prove this inductively on the order of the infinitesimal neighborhood of $\Spec k = \Spec R / \m$ in $\Spf R$: \[\Spec R / \m \xrightarrow{j_r} \Spec R/\m^r \xrightarrow{i_r} \Spf R.\]  Suppose that we have demonstrated the Theorem for $+_{\G_{r-1}} = i_{r-1}^* (+_{\G})$, so that there is a map $\alpha_{r-1}\co \W_p(k)\ps{u_1, \ldots, u_{d-1}} \to R/\m^{r-1}$ and a strict isomorphism $g_{r-1}\co +_{\G_{r-1}} \to \alpha_{r-1}^* +_{\tilde \Gamma}$ of formal group laws.  The exact sequence \[0 \to \m^{r-1} / \m^r \to R/\m^r \to R/\m^{r-1} \to 0\] exhibits $R/\m^r$ as a square--zero extension of $R/\m^{r-1}$ by $M = \m^{r-1} / \m^r$.  Then, let $\beta$ be \emph{any} lift of $\alpha_{r-1}$ and $h$ be \emph{any} lift of $g_{r-1}$ to $R/I^r$, and let $A$ and $B$ be the induced group laws
 \begin{align*}
 x +_A y & = \beta^* \tilde \phi, &
@@ -851,31 +849,16 @@ g_r(x) & = h(x) - f(x), &
 \end{align*}
 \end{proof}
 
-\begin{lemma}[{\cite[Reduction to Theorem 21.5]{LurieChromaticCourseNotes}}]
-\Cref{LubinTateModuliThm} is true in general if and only if it holds for the square-zero thickening $R = k[\eps]/\eps^2$.
-\end{lemma}
-\begin{proof}
-Of course, if \Cref{LubinTateModuliThm} is true in general, then it holds for the special case of $R = k[\eps]/\eps^2$.  Our task is to reduce the general case to this special case, and we proceed by inducting on the length of the Artinian ring $R$.  If $R$ has length $1$, then $R = k$ and we are done.  Otherwise, we can choose an element $r \in R$ which is annihilated by $\m$, and we consider the relationship between $(\moduli{fg})^\wedge_\Gamma(R)$ and $(\moduli{fg})^\wedge_\Gamma(R/r)$.  There is a pullback diagram
-\begin{center}
-\begin{tikzcd}
-(\moduli{fg})^\wedge_\Gamma(R \times_{R/r} R) \arrow["m"]{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & (\moduli{fg})^\wedge_\Gamma(R) \arrow["\pi"]{d} \\
-(\moduli{fg})^\wedge_\Gamma(R) \arrow{r} & (\moduli{fg})^\wedge_\Gamma(R/r).
-\end{tikzcd}
-\end{center}
-First observing that $R \times_{R/r} R \cong k[\eps] / \eps^2 \times_k R$, we note that $G = (\moduli{fg})^\wedge_\Gamma(k[\eps]/\eps^2)$ forms a group, that the map $G$ acts on $(\moduli{fg})^\wedge_\Gamma(R)$ through the map $m$, that $\pi$ factors to give an embedding \[\pi/G\co (\moduli{fg})^\wedge_\Gamma(R) / G \to (\moduli{fg})^\wedge_\Gamma(R/r),\] and that \Cref{MfglIsSmooth} shows that $\pi/G$ is additionally surjective.  From all this, we see that $\pi$ presents $(\moduli{fg})^\wedge_\Gamma(R)$ as a principal homogeneous space for $G$ over $(\moduli{fg})^\wedge_\Gamma(R/r)$.  An identical argument shows that formal schemes with this same property are smooth, and hence there is an isomorphism \[G \cong \CatOf{Algebras}_{k/}(\W_p(k)\ps{u_1, \ldots, u_{n-1}}, k[\eps] / \eps^2). \qedhere\]
-\end{proof}
-
 \begin{remark}\label{ActionBySnLiftsToLTn}
-Our calculation $H^1(\G_\phi; \G_a) = 0$ shows that the automorphisms $\alpha\co \Gamma \to \Gamma$ of the special fiber induce automorphisms of the entire Lubin--Tate stack by universality.  Namely, for $\Gamma \to \widetilde \Gamma$ the universal deformation, the precomposite \[\Gamma \xrightarrow{\alpha} \Gamma \to \widetilde \Gamma\] presents $\widetilde \Gamma$ as a deformation of $\Gamma$ in a different way, hence induces a map $\widetilde \alpha\co \widetilde \Gamma \to \widetilde \Gamma$, which by \Cref{LubinTateModuliThm} is in turn induced by a map $\widetilde \alpha\co (\moduli{fg})^\wedge_\Gamma \to (\moduli{fg})^\wedge_\Gamma$.  The action is \emph{highly} nontrivial in all but the most degenerate cases, and its study is of serious interest to homotopy theorists (cf.\ \Cref{ChromaticLocalizationSection}) and to arithmetic geometers (cf.\ \Cref{ThePeriodMapSection}).
+Our calculation $H^1(\G_\phi; \G_a) = 0$ shows that the automorphisms $\alpha\co \Gamma \to \Gamma$ of the special fiber induce \index{Lubin Tate stack@Lubin--Tate stack!automorphisms}automorphisms of the entire Lubin--Tate stack by universality.  Namely, for $\Gamma \to \widetilde \Gamma$ the universal deformation, the precomposite \[\Gamma \xrightarrow{\alpha} \Gamma \to \widetilde \Gamma\] presents $\widetilde \Gamma$ as a deformation of $\Gamma$ in a different way, hence induces a map $\widetilde \alpha\co \widetilde \Gamma \to \widetilde \Gamma$, which by \Cref{LubinTateModuliThm} is in turn induced by a map $\widetilde \alpha\co (\moduli{fg})^\wedge_\Gamma \to (\moduli{fg})^\wedge_\Gamma$.  The action is \emph{highly} nontrivial in all but the most degenerate cases, and its study is of serious interest to homotopy theorists (cf.\ \Cref{ChromaticLocalizationSection}) and to arithmetic geometers (cf.\ \Cref{ThePeriodMapSection}).
 \end{remark}
 
 \begin{remark}
-We also see that our analysis fails wildly for the case $\Gamma = \G_a$.  The differential calculation in \Cref{CalculationOfLTTangentSpace} is meant to give us an upper bound on the dimensions of $H^1(\Gamma; \G_a)$ and $H^2(\Gamma; \G_a)$, but this family of differentials is zero in the additive case.  Accordingly, both of these vector spaces are infinite dimensional, completely prohibiting us from making any further assessment.
+We also see that our analysis of infinitesimal behavior fails wildly for the case $\Gamma = \G_a$.  The differential calculation in \Cref{CalculationOfLTTangentSpace} is meant to give us an upper bound on the dimensions of $H^1(\Gamma; \G_a)$ and $H^2(\Gamma; \G_a)$, but this family of differentials is zero in the additive case.  Accordingly, both of these vector spaces are infinite dimensional, completely prohibiting us from making any further assessment.
 \end{remark}
 
 Having accomplished all our major goals, we close our algebraic analysis of $\moduli{fg}$ with \Cref{MfgPicture}, a diagram summarizing our results.
 \todo[color=red]{Complete picture}
-\todo{Hood suggests including two pictures, one labeled with algebraic names and one labeled with topological names. This is a good idea.}
 
 \afterrectopage{
 \begin{sidewaysfigure}
@@ -902,7 +885,7 @@ Having accomplished all our major goals, we close our algebraic analysis of $\mo
 
 With our analysis of $\moduli{fg}$ complete, our first goal in this Lecture is to finish the program sketched in the introduction to this Case Study by manufacturing those interesting homology theories connected to the functor $\context{MU}(-)$.  We begin by rephrasing our main tool, \Cref{LandwebersStackyTheorem}, in terms of algebraic conditions.
 \begin{theorem}[{\cite[Corollary 2.7]{LandweberHomologicalComodules} and \cite[Theorem 21.4 and Proposition 21.5]{HopkinsCOCTALOS}, cf.\ \Cref{LandwebersStackyTheorem}}]\label{LEFTRealTheoremWithProof}
-Let $\sheaf F$ a quasicoherent sheaf over $\moduli{fg} \times \Spec \Z_{(p)}$, thought of as a comodule $M$ for the Kudo--Araki Hopf algebroid (cf.\ \Cref{KudoArakiIsomorphism}) \[(A, \Gamma) = (\sheaf O_{\moduli{fgl}^{\ptyp}}, \sheaf O_{\moduli{fgl}^{\ptyp}}[t_1, t_2, \ldots]).\]  If $(p, v_1, \ldots, v_d, \ldots)$ forms an infinite regular sequence on $M$, then \[X \mapsto M \otimes_{\sheaf O_{\moduli{fgl}^{\ptyp}}} MU_0(X)\] determines a homology theory on \emph{finite} spectra $X$.  Moreover, if $M/I_d = 0$ for some $d \gg 0$, then the same formula determines a homology theory on \emph{all} spectra $X$.
+Let $\sheaf F$ a \index{sheaf!quasicoherent}quasicoherent sheaf over $\moduli{fg} \times \Spec \Z_{(p)}$, thought of as a \index{comodule}comodule $M$ for the Kudo--Araki Hopf algebroid (cf.\ \Cref{KudoArakiIsomorphism}) \[(A, \Gamma) = (\sheaf O_{\moduli{fgl}^{\ptyp}}, \sheaf O_{\moduli{fgl}^{\ptyp}}[t_1, t_2, \ldots]).\]  If $(p, v_1, \ldots, v_d, \ldots)$ forms an infinite regular sequence on $M$, then \[X \mapsto M \otimes_{\sheaf O_{\moduli{fgl}^{\ptyp}}} MU_0(X)\] determines a homology theory on \emph{finite} spectra $X$.  Moreover, if $M/I_d = 0$ for some $d \gg 0$, then the same formula determines a homology theory on \emph{all} spectra $X$.
 \end{theorem}
 \begin{proof}
 Following the discussion in the introduction, we note that a cofiber sequence \[X' \to X \to X''\] of spectra gives rise to an exact sequence
@@ -912,7 +895,7 @@ Following the discussion in the introduction, we note that a cofiber sequence \[
 \cdots \arrow{r} & \sheaf N' \arrow[equal]{u} \arrow{r} & \sheaf N \arrow[equal]{u} \arrow{r} & \sheaf N'' \arrow[equal]{u} \arrow{r} & \cdots.
 \end{tikzcd}
 \end{center}
-We thus see that we are essentially tasked with showing that $\sheaf F$ is flat, so that tensoring with $\sheaf F$ does not disturb the exactness of this sequence.  In that case, we can then apply Brown representability to the composite functor $\sheaf F \otimes \context{MU}(X)$.
+We thus see that we are essentially tasked with showing that $\sheaf F$ is \index{sheaf!flat}flat, so that tensoring with $\sheaf F$ does not disturb the exactness of this sequence.  In that case, we can then apply Brown representability to the composite functor $\sheaf F \otimes \context{MU}(X)$.
 
 Flatness of $\sheaf F$ is equivalent to $\Tor_1(\sheaf F, \sheaf N) = 0$ for an arbitrary auxiliary quasicoherent sheaf $\sheaf N$ (soon to be thought of as $\context{MU}(X)$).  By our regularity hypothesis, there is an exact sequence of sheaves \[0 \to \sheaf F \xrightarrow{p} \sheaf F \to \sheaf F / (p) \to 0,\] so applying $\Tor_*(-, \sheaf N)$ gives an exact sequence \[\Tor_2(\sheaf F / (p), \sheaf N) \xrightarrow{} \Tor_1(\sheaf F, \sheaf N) \xrightarrow{p} \Tor_1(\sheaf F, \sheaf N)\] of $\Tor$ groups.  The sequence gives the following sufficiency condition: \[[\Tor_1(p^{-1} \sheaf F, \sheaf N) = 0 \quad \text{and} \quad \Tor_2(\sheaf F/(p), \sheaf N) = 0] \quad \Rightarrow \quad \Tor_1(\sheaf F, \sheaf N) = 0.\]  Similarly, the $v_1$--multiplication sequence gives another sufficiency condition: \[[\Tor_2(v_1^{-1} \sheaf F/(p), \sheaf N) = 0 \quad \text{and} \quad \Tor_3(\sheaf F/I_2, \sheaf N) = 0] \quad \Rightarrow \quad \Tor_2(\sheaf F/(p), \sheaf N) = 0.\]  Continuing in this fashion, for some $D \gg 0$ we would like to show
 \begin{align*}
@@ -924,6 +907,9 @@ The second condition is satisfied one of two ways, corresponding to our two auxi
 \item If $\sheaf F$ itself satisfies $\sheaf F / I_{D+1} = 0$, we are done.
 \item Writing $j_{D+1}\co \moduli{fg}^{\ge D+1} \to \moduli{fg}$ for the inclusion of the prime closed substack, we can identify $\sheaf N / I_{D+1}$ with $j_{D+1}{}_* j_{D+1}^* \sheaf N$.  If $\sheaf N$ is coherent (for instance, in the case that $\sheaf N = \context{MU}(X)$ for a \emph{finite} complex $X$), then $j_{D+1}^* \sheaf N$ is free for large $D$ and hence has vanishing $\Tor$ groups.
 \end{itemize}
+
+We then turn to the first collection of conditions.  They are \emph{always} satisfied, but this requires an argument.  We write $i_d\co \moduli{fg}^{= d} \to \moduli{fg}$ for the inclusion of the substack of formal groups of height exactly $d$, which (following \Cref{OpenSubstacksOfMfg}) has a presentation by the Hopf algebroid \[(v_d^{-1} A / I_d, \Gamma \otimes v_d^{-1} A / I_d).\]  We are trying to study the derived functors of \[\sheaf N \mapsto (i_d{}_* i_d^* \sheaf F) \otimes \sheaf N \cong i_d{}_* (i_d^* \sheaf F \otimes i_d^* \sheaf N).\]  Since $i_d{}_*$ is exact, we are moved to study the composite functor spectral sequence for \[\CatOf{QCoh}_{\moduli{fg}} \xrightarrow{i_d^*} \CatOf{QCoh}_{\moduli{fg}^{=d}} \xrightarrow{i_d^* \sheaf F \otimes -} \CatOf{QCoh}_{\moduli{fg}^{=d}}.\]  The second functor is actually exact: the geometric map \[\Gamma_d\co \Spec k \to \moduli{fg}^{=d}\] is a faithfully flat cover, and $k$--modules have no nontrivial $\Tor$.  Meanwhile, the first functor has at most $d$ derived functors: $i_d^*$ is modeled by tensoring with $v_d^{-1} A / I_d$, but $A / I_d$ admits a Koszul resolution with $d$ stages and $A / I_d \to v_d^{-1} A / I_d$ is exact.  As $\Tor_{d+1}$ is beyond the length of this resolution, it is always zero.
+\end{proof}
 
 \begin{remark}
 This construction always gives an $MUP$--module spectrum in the homotopy category.  If $\sheaf F$ comes from the pushforward of the ring of functions along a flat map $\Spec R \to \moduli{fg}$, then the resulting spectrum is a ring spectrum, and flat sheaves on it become module spectra over this ring spectrum.
@@ -940,9 +926,6 @@ P \arrow{d} \arrow["f'"]{r} \arrow[dr, phantom, "\lrcorner", very near start] & 
 the sheaf ${f'}^* \context{MU}(X)$ gives a model for $(MU \sm R)_0(X)$ \emph{without first defining $R_0$}.  We can use this to define $R_0(X)$ by suitably equalizing the maps $s, t\co (\moduli{fgl} \times \moduli{ps}^{\gpd}) \to \moduli{fgl}$, but forming this equalizer may not be exact.  By selecting a lift $\widetilde f\co \Spec R \to \moduli{fgl}$, this equalizer becomes \emph{forked} (i.e., we gain an extra degeneracy in the simplicial object), and the equalizer is thus guaranteed to be exact.  
 \end{remark}
 
-We then turn to the first collection of conditions.  They are \emph{always} satisfied, but this requires an argument.  We write $i_d\co \moduli{fg}^{= d} \to \moduli{fg}$ for the inclusion of the substack of formal groups of height exactly $d$, which (following \Cref{OpenSubstacksOfMfg}) has a presentation by the Hopf algebroid \[(v_d^{-1} A / I_d, \Gamma \otimes v_d^{-1} A / I_d).\]  We are trying to study the derived functors of \[\sheaf N \mapsto (i_d{}_* i_d^* \sheaf F) \otimes \sheaf N \cong i_d{}_* (i_d^* \sheaf F \otimes i_d^* \sheaf N).\]  Since $i_d{}_*$ is exact, we are moved to study the composite functor spectral sequence for \[\CatOf{QCoh}_{\moduli{fg}} \xrightarrow{i_d^*} \CatOf{QCoh}_{\moduli{fg}^{=d}} \xrightarrow{i_d^* \sheaf F \otimes -} \CatOf{QCoh}_{\moduli{fg}^{=d}}.\]  The second functor is actually exact: the geometric map \[\Gamma_d\co \Spec k \to \moduli{fg}^{=d}\] is a faithfully flat cover, and $k$--modules have no nontrivial $\Tor$.  Meanwhile, the first functor has at most $d$ derived functors: $i_d^*$ is modeled by tensoring with $v_d^{-1} A / I_d$, but $A / I_d$ admits a Koszul resolution with $d$ stages and $A / I_d \to v_d^{-1} A / I_d$ is exact.  As $\Tor_{d+1}$ is beyond the length of this resolution, it is always zero.
-\end{proof}
-
 \begin{definition}\label{DefnChromaticHomologyThys}
 Coupling \Cref{LEFTRealTheoremWithProof} to our understanding of $\moduli{fg}$, we produce many interesting homology theories, collectively referred to as \index{chromatic homology theory}\textit{chromatic\footnote{The elements of \Cref{ANSS2Figure} and \Cref{ANSS3Figure} are related to each other by ``$v_d$--multiplication'' (cf.\ \Cref{GreekLetterElements}), and families of such elements can be selected for by inverting $v_d$, i.e., by passing to the open substack $\moduli{fg}^{\le d}$.  The word ``chromatic'' here thus refers to an analogy: this localization selects certain periodic families of elements, like a bandpass filter selects certain frequencies out of a complicated radio signal.} homology theories}:
 \begin{itemize}
@@ -957,7 +940,7 @@ E_\Gamma / (p) \xrightarrow{u_1} E_\Gamma / (p) & \to E_\Gamma / (p, u_1), \\
 E_\Gamma / I_{d-1} \xrightarrow{u_{d-1}} E_\Gamma / I_{d-1} & \to E_\Gamma / I_d.
 \end{align*}
 This determines a spectrum $K_\Gamma = E_\Gamma / I_d$, and hence determines a homology theory called \index{Morava K theory@Morava $K$--theory}\textit{the Morava $K$--theory for $\Gamma$}.  In the case where $\Gamma$ comes from the Honda $p$--typical formal group law (of height $d$), this spectrum is often written as $K(d)$.  As an edge case, we also set $K(0) = H\Q$ and $K(\infty) = \HFp$.\footnote{By \Cref{FGpsOverAlgClosedFields} and \Cref{FieldSpectraAreKTheories} to follow, it often suffices to consider just these spectra $K(d)$ to make statements about all $K_\Gamma$.  With more care, it even often suffices to consider $d \ne \infty$.}
-\item More delicately, there is a version of Morava $E$--theory which takes into account the formal topology on $(\moduli{fg})^\wedge_\Gamma$, called \textit{continuous Morava $E$--theory}.  It is defined by the pro-system $\{E_\Gamma(X) / u^I\}$, where $I$ ranges over multi-indices and the quotient is again given by cofiber sequences.
+\item More delicately, there is a version of Morava $E$--theory which takes into account the formal topology on $(\moduli{fg})^\wedge_\Gamma$, called \index{}\textit{continuous Morava $E$--theory}.  It is defined by the pro-system $\{E_\Gamma(X) / u^I\}$, where $I$ ranges over multi-indices and the quotient is again given by cofiber sequences.
 \item There is also a homology theory associated to the closed substack $\moduli{fg}^{\ge d}$.  Since $I_d = (p, v_1, \ldots, v_{d-1})$ is generated by a regular sequence on $BPP_0$, we can directly define the spectrum $P(d)P$ by a regular quotient: \[P(d)P = BP / (p, v_1, \ldots, v_{d-1}).\]  This spectrum does have the property $P(d)P_0 = BPP_0 / I_d$ on coefficient rings, but $P(d)P_0(X) = BPP_0(X) / I_d$ \emph{only} when $I_d$ forms a regular sequence on $BPP_0(X)$---which is reasonably rare among the cases of interest.
 \end{itemize}
 \end{definition}
@@ -976,11 +959,11 @@ E(1)P & \cong KU_{(p)}.
 \end{example}
 
 \begin{remark}[{\cite[Section 5.2]{KLW}, \cite[Corollaries 2.14 and 2.16]{RavenelLocalizationWRTPeriodic}, \cite[Theorem 2.13]{StricklandProductsOnModules}}]\label{MoravaKIsNotCommutative}
-In general, the quotient of a ring spectrum by a homotopy element does not give another ring spectrum.  The most typical example of this phenomenon is that $\S/2$ is not a ring spectrum, since its homotopy is not $2$--torsion.  Most of our constructions above do not suffer from this deficiency, with one exception: Morava $K$--theories at $p = 2$ are not commutative.  Instead, there is a derivation $Q_d: K(d) \to \Susp K(d)$ which tracks the commutativity by the relation \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, we find that $K(d)^* X$ is a commutative ring whenever $K(d)^1 X = 0$, which is often the case.
+In general, the quotient of a ring spectrum by a homotopy element does not give another ring spectrum.  The most typical example of this phenomenon is that $\S/2$ is not a ring spectrum, since its homotopy is not $2$--torsion.  Most of our constructions above do not suffer from this deficiency, with one exception: Morava $K$--theories at $p = 2$ are not commutative.  Instead, there is a \index{Milnor primitive}derivation $Q_d: K(d) \to \Susp K(d)$ which tracks the commutativity by the relation \[ab - ba = u Q_d(a) Q_d(b).\]  In particular, we find that $K(d)^* X$ is a commutative ring whenever $K(d)^1 X = 0$, which is often the case.
 \end{remark}
 
 \begin{remark}[{\cite[Section 3]{HopkinsFromSpectraToStacks}}]\label{RemovingStackinessFromSpectra}
-Before turning to the other half of this Lecture, we feel obligated to include one out-of-place remark that the first-time reader is advised to skip.  The pullback idea expressed in \Cref{PullingBackOverMfgVsMfgl} intermingles interestingly with the detection result expressed in \Cref{StackinessMeasuresNonorientability}: there is a certain program, which is beyond the scope of this point of the book, which realizes spectra associated to certain nontrivial \emph{stacks} equipped with maps to the moduli of formal groups.  For instance, the non-complex-orientable spectrum $KO$ is attached to a map \[\Spec \Z \mmod C_2 \to \moduli{fg}\] which selects $KU$ with its complex-conjugation action.  There is a sequence of non-complex-orientable ring spectra $X(n) = T(\Loops SU(n))$ which limit to $X(\infty) = MU$ and which carry ``partial complex-orientations'' that give a Thom isomorphism for $\CP^{n-1}$, i.e., they come equipped with a specified formal group law modulo terms of degree $n$.  We write $\moduli{fg}^{(n)}$ for the moduli of formal groups where the isomorphisms are required to act trivially on space of $n$--jets (so that, e.g., \Cref{StrictIsosRemark} concerns $\moduli{fg}^{(1)}$).  The pullback of stacks
+Before turning to the other half of this Lecture, we feel obligated to include one out-of-place remark that the first-time reader is advised to skip.  The pullback idea expressed in \Cref{PullingBackOverMfgVsMfgl} intermingles interestingly with the detection result expressed in \Cref{StackinessMeasuresNonorientability}: there is a certain program, which is beyond the scope of this Lecture, which realizes spectra associated to certain nontrivial \emph{stacks} equipped with maps to the moduli of formal groups.  For instance, the non-complex-orientable spectrum $KO$ is attached to a map \[\Spec \Z \mmod C_2 \to \moduli{fg}\] which selects $KU$ with its complex-conjugation action.  There is a sequence of non-complex-orientable ring spectra \index{Xn@$X(n)$}$X(n) = T(\Loops SU(n))$ which limit to $X(\infty) = MU$ and which carry ``partial complex-orientations'' that give a Thom isomorphism for $\CP^{n-1}$, i.e., they come equipped with a specified formal group law modulo terms of degree $n$.  We write $\moduli{fg}^{(n)}$ for the moduli of formal groups where the isomorphisms are required to act trivially on space of \index{n jets@$n$--jets}$n$--jets (so that, e.g., \Cref{StrictIsosRemark} concerns $\moduli{fg}^{(1)}$).  The pullback of stacks
 \begin{center}
 \begin{tikzcd}
 P \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \moduli{fg}^{(2)} \arrow{d} \\
@@ -999,7 +982,7 @@ Every homotopy class $\alpha \in \pi_{\ge 1} \S$ is nilpotent. \qed
 \noindent People studying $K$--theory in the '$70$s discovered the following related phenomenon:
 
 \begin{theorem}[{\cite[Theorem 12.1]{AdamsJXIV}}]\label{AdamsSelfMapThm}
-Let $M_{2n}(p)$ denote the mod--$p$ Moore spectrum with bottom cell in degree $2n$.  Then there is an index $n$ and a map $v: M_{2n}(p) \to M_0(p)$ such that $KU_* v$ acts by multiplication by the $n$\textsuperscript{th}\, power of the Bott class.  The minimal such $n$ is given by the formula
+Let $M_{2n}(p)$ denote the mod--$p$ Moore spectrum with bottom cell in degree $2n$.  Then there is an index $n$ and a map \index{vd self map@$v_d$--self--map}$v\co M_{2n}(p) \to M_0(p)$ such that $KU_* v$ acts by multiplication by the $n$\textsuperscript{th}\, power of the Bott class.  The minimal such $n$ is given by the formula
 \[
 \pushQED{\qed}
 n = \begin{cases} p-1 & \text{when $p \ge 3$}, \\ 4 & \text{when $p = 2$}. \end{cases}
@@ -1020,7 +1003,7 @@ This question and surrounding issues formed the basis of Ravenel's nilpotence co
 The spectrum $MU$ detects nilpotence. \qed
 \end{theorem}
 
-\noindent This is a very hard theorem, and we will not attempt to prove it.\footnote{In particular, this is a very hard \emph{geometric} theorem.  Its proof is phrased homotopically, but it comes down to very concrete, computational facts about such geometric objects as double-loopspaces of spheres.  (One unfulfilled daydream of this book is to re-encode these computations in the language of formal geometry.)  One way of understanding the contents of the Theorem is that the spectral sequences pictured in \Cref{ANSS2Figure} and \Cref{ANSS3Figure} have \emph{asymptotically flat} vanishing curves, so that powers of any particular element eventually escape the populated region of the spectral sequence.  (In fact, this vanishing curve is conjectured to be asymptotically equivalent to a square root function, but little about this is known.)  On the other hand, you can see from the $E_2$ page of the $2$--primary spectral sequence that such a vanishing line is \emph{not} initially present, due to the nonnilpotence of $\eta$---and as a consequence, there is no analogue of the nilpotence theorems for $\CatOf{QCoh}(\moduli{fg})$ itself.  This is another sense in which it is a fundamentally geometric fact.  It is also not even true at the $E_\infty$ page of \Cref{HF2ASSFigure}, where the ``image of $J$ pattern'' (the name for the ``shark fins'' near the main diagonal) give a family of permanent cycles along a line of slope $1$.}
+\noindent This is a very hard theorem, and we will not attempt to prove it.\footnote{In particular, this is a very hard \emph{geometric} theorem.  Its proof is phrased homotopically, but it comes down to very concrete, computational facts about such geometric objects as double-loopspaces of spheres.  (One unfulfilled daydream of this book is to re-encode these computations in the language of formal geometry---alas.)  One way of understanding the contents of the Theorem is that the spectral sequences pictured in \Cref{ANSS2Figure} and \Cref{ANSS3Figure} have \emph{asymptotically flat} vanishing curves, so that powers of any particular element eventually escape the populated region of the spectral sequence.  (In fact, this vanishing curve is conjectured to be asymptotically equivalent to a square root function, but little about this is known.)  On the other hand, we can see from \Cref{ANSS2Figure} that such a vanishing line is \emph{not} initially present, due to the nonnilpotence of $\eta$---and as a consequence, there is no analogue of the nilpotence theorems for $\CatOf{QCoh}(\moduli{fg})$ itself.  This is another sense in which it is a fundamentally geometric fact.  It is also not even true at the $E_\infty$ page of \Cref{HF2ASSFigure}, where the ``image of $J$ pattern'' (the name for the ``shark fins'' near the main diagonal) give a family of permanent cycles along a line of slope $1$.}
 % \todo{Someday, I want to include a formal-geometric interpretation of the proof of this theorem.  I would be thrilled to dedicate another 20 pages to that task here, if only I knew how to do it.}
 However, taking this as input, they are easily able to show several other interesting structural results about finite spectra.  For instance, they also show that the $MU$ is the universal object which detects nilpotence, in the sense that any other ring spectrum can have this property checked stalkwise on $\context{MU}$.
 
@@ -1071,10 +1054,10 @@ A full subcategory of a triangulated category (e.g., the homotopy category of $p
 \noindent Examples of thick subcategories include:
 \begin{itemize}
 \item The category $\CatOf{C}_d$ of $p$--local finite spectra which are $K(d-1)$--acyclic.  (For instance, if $d = 1$, the condition of $K(0)$--acyclicity is that the spectrum have purely torsion homotopy groups.)  These are called ``finite spectra of type at least $d$''.
-\item The category $\CatOf{D}_d$ of $p$--local finite spectra $F$ for which there is a self-map $v: \Susp^N F \to F$, $N \gg 0$ which induces multiplication by a unit in $K(d)$--homology and which is nilpotent in $K(\ne d)$--homology.  These are called ``finite spectra admitting $v_d$--self--maps''.
+\item The category $\CatOf{D}_d$ of $p$--local finite spectra $F$ for which there is a self-map $v: \Susp^N F \to F$, $N \gg 0$ which induces multiplication by a unit in $K(d)$--homology and which is nilpotent in $K(\ne d)$--homology.  These are called ``finite spectra admitting \index{vd self map@$v_d$--self--map}$v_d$--self--maps''.
 \end{itemize}
 
-\noindent The categories $\CatOf C_d$ are the ones we are interested in analyzing, and we hope to identify these putative spaces $V(d)$ inside of them.  Ravenel shows the following foothold interrelating the $\CatOf C_d$:
+\noindent The categories $\CatOf C_d$ are the ones we are interested in analyzing, and we hope to identify these putative spectra $V(d)$ inside of them.  Ravenel shows the following foothold interrelating the $\CatOf C_d$:
 
 \begin{lemma}[{\cite[Theorem 2.11]{RavenelLocalizationWRTPeriodic}}]\label{CdCategoriesNest}
 For $X$ a finite complex, there is a bound \[\dim K(d-2)_* X \le \dim K(d-1)_* X.\]  In particular, there is an inclusion $\CatOf C_{d-1} \subseteq \CatOf C_d$.
@@ -1113,7 +1096,7 @@ We now work to show that this smash product lies in the thick subcategory $\CatO
 A $p$--local finite spectrum is $K(d-1)$--acyclic exactly when it admits a $v_d$--self--map.  Additionally, the inclusion $\CatOf C_d \subsetneq \CatOf C_{d-1}$ is proper.
 \end{theorem}
 \begin{proof}[Executive summary of proof]
-Given the classification of thick subcategories, if a property is closed under thickness then one need only exhibit a single spectrum with the property to know that all the spectra in the thick subcategory it generates also all have that property.  Inductively, they manually construct finite spectra $M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}})$ for sufficiently large\footnote{We ran into the asymptotic condition $I \gg 0$ earlier, when we asserted that there is no root of the $2$--local $v_1$--self--map $v\co M_8(2) \to M_0(2)$.} indices $i_*$ which admit a self-map $v$ governed by a commuting square
+Given the classification of thick subcategories, if a property is closed under thickness then one need only exhibit a single spectrum with the property to know that all the spectra in the thick subcategory it generates also all have that property.  Inductively, they manually construct finite spectra \index{generalized Moore spectrum}$M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}})$ for sufficiently large\footnote{We ran into the asymptotic condition $I \gg 0$ earlier, when we asserted that there is no root of the $2$--local $v_1$--self--map $v\co M_8(2) \to M_0(2)$.} indices $i_*$ which admit a self-map $v$ governed by a commuting square
 \begin{center}
 \begin{tikzcd}
 BP_* M_{|v_d| i_d}(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{v} \arrow[equal]{d} & BP_* M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow[equal]{d} \\
@@ -1123,7 +1106,7 @@ BP_* M_{|v_d| i_d}(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{v} \
 These maps are guaranteed by very careful study of Adams spectral sequences.
 \end{proof}
 
-They therefore conclude the strongest possible positive response to Ravenel's conjectures.  Not only can we continue the sequence \[\S, \; \S/p, \; \S/(p, v), \; \ldots,\] but in fact \emph{any} finite spectrum admits an (essentially unique) interesting periodic self-map.  This is maybe the most remarkable of the statements: although Nishida's theorem initially led us to think of periodic self-maps as rare, they are in fact ubiquitous.  Additionally, we learned that the shift\footnote{This is sometimes referred to as the ``wavelength'' in the chromatic analogy.} of this self-map is determined by the first nonvanishing $K(d)$--homology, giving an effective detection tool.  Finally, all such periodicity shifts arise: for any $d$, there is a spectrum admitting a $v_d$--self--map but not a $v_{d-1}$--self--map.
+They therefore conclude the strongest possible positive response to Ravenel's conjectures.  Not only can we continue the sequence \[\S, \; \S/p, \; \S/(p, v), \; \ldots,\] but in fact \emph{any} finite spectrum admits an (essentially unique) interesting periodic self-map.  This is maybe the most remarkable of the statements: although Nishida's theorem initially led us to think of periodic self-maps as rare, they are in fact ubiquitous.  Additionally, we learned that the shift\footnote{This is sometimes referred to as the ``wavelength'' in the chromatic analogy.} of this self-map is determined by the first nonvanishing $K(d)$--homology, giving an effective detection tool.  Finally, all such periodicity shifts arise: for any $d$, there is a spectrum admitting a $v_d$--self--map but no $v_{<d}$--self--maps.
 
 
 
@@ -1166,7 +1149,7 @@ Using \Cref{CdEqualsDd}, we can characterize $\CatOf C_d$ as the kernel of $K(d-
 The functor \[\context{MU}(-)\co \CatOf{Spectra}^{\fin} \to \CatOf{Coh}(\context{MU})\] induces\footnote{This has to be interpreted delicately, as the functor $\context{MU}(-)$ is not (quite) a functor of triangulated categories~\cite[2.4.2]{MoravaCplxBordismInAT}.} a homeomorphism of the spectrum of $\CatOf{Spectra}^{\fin}$ to that of $\moduli{fg}$. \qed
 \end{corollary}
 
-The construction as we have described it falls short of completely recovering $\Spec R$, as we have constructed only a topological space rather than a locally ringed space (or anything otherwise equipped locally with algebraic data, as in our functor of points perspective).  The approach taken by Balmer~\cite[Section 6]{Balmer} is to use Tannakian reconstruction to extract a structure sheaf of local rings from the prime $\otimes$--ideal subcategories.  We, however, are at least as interested in finite spectra as we are the ring spectrum $\S$, so we will take an approach that emphasizes module categories rather than local rings.  Specifically, Bousfield's theory of homological localization allows us to lift the localization structure among open substacks of $\moduli{fg}$ to the category $\CatOf{Spectra}$ as follows:
+The construction as we have described it falls short of completely recovering $\Spec R$, as we have constructed only a topological space rather than a locally ringed space (or anything otherwise equipped locally with algebraic data, as in our functor of points perspective).  The approach taken by Balmer~\cite[Section 6]{Balmer} is to use Tannakian reconstruction to extract a structure sheaf of local rings from the prime $\otimes$--ideal subcategories.  We, however, are at least as interested in finite spectra as we are the ring spectrum $\S$, so we will take an approach that emphasizes module categories rather than local rings.  Specifically, Bousfield's theory of \index{Bousfield localization}homological localization allows us to lift the localization structure among open substacks of $\moduli{fg}$ to the category $\CatOf{Spectra}$ as follows:
 
 \begin{theorem}[{\cite{BousfieldLocalization}, \cite[Theorem 7.7]{Margolis}}]
 Let $j\co \Spec R \to \moduli{fg}$ be a flat map, and let $R_*$ denote the homology theory associated to it by \Cref{LandwebersStackyTheorem}.  There is then a diagram
@@ -1176,12 +1159,12 @@ Let $j\co \Spec R \to \moduli{fg}$ be a flat map, and let $R_*$ denote the homol
 \CatOf{Spectra} \arrow[leftarrow,shift right=0.20cm, "\dashv", "i"']{u} \arrow[red]{ru}[description]{\context{R}(-)} \arrow[red]{r}{\context{MU}(-)} & \CatOf{QCoh}(\context{MU}), \arrow[leftarrow, shift right=0.20cm, "\dashv", "j_*"']{u}
 \end{tikzcd}
 \end{center}
-such that $L_R$ is left-adjoint to $i$, $j^*$ is left-adjoint to $j_*$, $i$ and $j_*$ are inclusions of full subcategories, $L_R$ and $j^*$ are idempotent, the red composites are all equal, and $R_*$ is conservative on $\CatOf{Spectra}_R$.\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak--equivalences.} \qed
+such that $L_R$ is left-adjoint to $i$, $j^*$ is left-adjoint to $j_*$, $i$ and $j_*$ are inclusions of full subcategories, $L_R$ and $j^*$ are idempotent, the red composites are all equal, and $R_*$ is conservative on $\CatOf{Spectra}_R$.\footnote{The meat of this theorem is in overcoming set-theoretic difficulties in the construction of $\CatOf{Spectra}_R$.  Bousfield accomplished this by describing a model structure on $\CatOf{Spectra}$ for which $R$--equivalences create the weak-equivalences.} \qed
 \end{theorem}
 
 The idea, then, is that $\CatOf{Spectra}_R$ plays the topological role of the derived category of those sheaves supported on the image of the map $j$.  In \Cref{DefnChromaticHomologyThys}, we identified several classes of interesting such maps $j$ tied to the geometry of $\moduli{fg}$.  We record these special cases now:
 \begin{definition}
-In the case that $R = E_\Gamma$ models the inclusion of the deformation space around the point $\Gamma$, we will denote the localizer by $L_\Gamma$.  In the special case that $\Gamma = \Gamma_d$ is taken to be the Honda formal group, we further abbreviate the localizer by \[\CatOf{Spectra} \xrightarrow{\widehat L_d} \CatOf{Spectra}_{\Gamma_d}.\]  In the case when $R = E(d)$ models the inclusion of the open complement of the unique closed substack of codimension $d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{L_d} \CatOf{Spectra}_d = \CatOf{Spectra}_{\moduli{fg}^{\le d}}.\]
+In the case $R = E_\Gamma$ of continuous Morava $E$--theory, this is a model of the inclusion of the deformation space around the point $\Gamma$, and we will denote the associated localizer by $L_\Gamma$.  In the special case that $\Gamma = \Gamma_d$ is taken to be the \index{Honda formal group}Honda formal group, we further abbreviate the localizer by \[\CatOf{Spectra} \xrightarrow{\widehat L_d} \CatOf{Spectra}_{\Gamma_d}.\]  In the case when $R = E(d)$ models the inclusion of the open complement of the unique closed substack of codimension $d$, we will denote the localizer by \[\CatOf{Spectra} \xrightarrow{L_d} \CatOf{Spectra}_d = \CatOf{Spectra}_{\moduli{fg}^{\le d}}.\]
 \end{definition}
 
 These localizers have a number of nice properties linking them to algebraic models.
@@ -1194,7 +1177,7 @@ There are natural factorizations
 In particular, $L_d X = 0$ implies both $L_{d-1} X = 0$ and $\widehat L_d X = 0$.
 \end{lemma}
 \begin{proof}[Analogy to $j_* \vdash j^*$]
-The open substack of dimension $d$ properly contains both the open substack of dimension $(d-1)$ and the infinitesimal deformation neighborhood of the geometric point of height $d$.  The factorization is inclusions gives a factorization of pullback functors.
+The open substack of dimension $d$ properly contains both the open substack of dimension $(d-1)$ and the infinitesimal deformation neighborhood of the geometric point of height $d$.  The factorization of inclusions gives a factorization of pullback functors.
 \end{proof}
 
 \begin{lemma}[{\cite[Theorem 7.5.6]{RavenelOrangeBook}, \cite[Proof of Lemma 2.3]{HoveyCSC}}]\label{FormulaForKnLocalization}
@@ -1246,14 +1229,14 @@ L_{d-1} X \arrow{r} & L_{d-1} \widehat L_d X, & X_{\Q} \arrow{r} & \left( \prod_
 \end{center}
 \end{corollary}
 \begin{proof}[Analogy to $j_* \vdash j^*$]
-For the left-hand square, the inclusion of the open substack of dimension $d-1$ into the one of dimension $d$ has relatively closed complement the point of height $d$.  Algebraically, this gives a Mayer-Vietoris sequence with analogous terms.  The right-hand square is analogous to the ad\`elic decomposition of abelian groups.\footnote{Whenever $L_B L_A = 0$, $L_{A \vee B}$ appears as the homotopy pullback of the cospan $L_A \to L_A L_B \from L_B$.  Hence, this follows from \Cref{ChromaticFractureInput}, as well as the identification $L_{E(d-1) \vee K(d)} \simeq L_{E(d)}$.}
+For the left-hand square, the inclusion of the open substack of dimension $d-1$ into the one of dimension $d$ has relatively closed complement the point of height $d$.  Algebraically, this gives a \index{Mayer Vietoris sequence@Mayer--Vietoris sequence}Mayer--Vietoris sequence with analogous terms.  The right-hand square is analogous to the \index{ad{\`e}les}ad\`elic decomposition of abelian groups.\footnote{Whenever $L_B L_A = 0$, $L_{A \vee B}$ appears as the homotopy pullback of the cospan $L_A \to L_A L_B \from L_B$.  Hence, this follows from \Cref{ChromaticFractureInput}, as well as the identification $L_{E(d-1) \vee K(d)} \simeq L_{E(d)}$.}
 \end{proof}
 
 \begin{remark}
-\Cref{ChromaticFractureSquares} is maybe the most useful result discussed in this Lecture.  It shows that a map to an $L_d$--local spectrum can be understood as a system of compatible maps to its $\widehat L_j$--localizations, $j \le d$.  In turn, any map into an $\widehat L_j$--local object factors through the $\widehat L_j$--localization of the source.  Thus, if the source itself has chromatic properties, this often puts \emph{very} strong restrictions on how maps to the original target can behave.
+\Cref{ChromaticFractureSquares} is maybe the most useful result discussed in this Lecture.  It shows that a map to an $L_d$--local spectrum can be understood as a system of compatible maps to its $\widehat L_j$--localizations, $j \le d$.  In turn, any map into an $\widehat L_j$--local object factors through the $\widehat L_j$--localization of the source.  Thus, if the source itself has chromatic properties, this often puts \emph{very} strong restrictions on how maps can behave.
 \end{remark}
 
-These functors and their properties listed thus far give a tight analogy between certain local categories of spectra and sheaves supported on particular submoduli of formal groups, in a way that lifts the six-functors formalism of $j_* \vdash j^*$ to the level of spectra.  With this analogy in hand, however, one is led to ask considerably more complicated questions whose proofs are not at all straightforward.  For instance, a useful fact about coherent sheaves on $\moduli{fg}$ is that they are completely determined by their restrictions to all of the open submoduli.  The analogous fact about finite spectra is referred to as \index{chromatic convergence}\textit{chromatic convergence}:
+These functors and their properties listed thus far give a tight analogy between certain local categories of spectra and sheaves supported on particular submoduli of formal groups, in a way that lifts the \index{six-functors formalism}six-functors formalism of $j_* \vdash j^*$ to the level of spectra.  With this analogy in hand, however, one is led to ask considerably more complicated questions whose proofs are not at all straightforward.  For instance, a useful fact about \emph{coherent} sheaves on $\moduli{fg}$ is that they are completely determined by their restrictions to all of the open submoduli.  The analogous fact about finite spectra is referred to as \index{chromatic convergence}\textit{chromatic convergence}:
 
 \begin{theorem}[{\cite[Theorem 7.5.7]{RavenelOrangeBook}}]\label{ChromaticConvergence}
 The homotopy limit of the tower \[\cdots \to L_d F \to L_{d-1} F \to \cdots \to L_1 F \to L_0 F\] recovers the $p$--local homotopy type of any finite spectrum $F$.\footnote{Spectra satisfying this limit property are said to be \index{chromatically complete}\textit{chromatically complete}, which is closely related to being \index{harmonic spectrum}\textit{harmonic}, i.e., being local with respect to $\bigvee_{d=0}^\infty K(d)$.  (I believe this a joke about ``music of the spheres''.)  It is known that nice Thom spectra are harmonic~\cite{Kriz} (so, in particular, every suspension and finite spectrum), that every finite spectrum is chromatically complete, and that there exist some harmonic spectra which are not chromatically complete~\cite[Section 5.1]{Barthel}.}\footnote{A consequence of the fact that $p$--local finite spectra are $\bigvee_{d < \infty} K(d)$--local, there are no nontrivial maps $\HFp \to F$, and in particular the Spanier--Whitehead dual of $\HFp$ is null.}\footnote{While we're talking about $\bigvee_{d < \infty} K(d)$, the cofiber of $\bigvee_{d < \infty} K(d) \to \prod_{d < \infty} K(d)$, where we are using the $2(p^d-1)$--periodic spectra, is concentrated in degree zero since all other homotopy degrees carry contributions from only finitely many factors.  It follows that the cofiber is Eilenberg--Mac Lane---an unusual property.} \qed
@@ -1263,7 +1246,7 @@ In addition to furthering the analogy, \Cref{ChromaticConvergence} suggests a me
 
 \begin{theorem}[{\Cref{IdentifyingAdamsE2Page}, see also \Cref{Pi2AndInvariantDiffls}, \Cref{DefnOfNilpCompletionAndASS}, and \Cref{FHGivesComodules}}]
 The $E_d$--based\footnote{Although the $K(d)$--Adams spectral sequence more obviously targets $\widehat L_d \S$, we have chosen to analyze the $E_d$--Adams spectral sequence above because $K(d)$ fails to satisfy {\CH}.  Starting with $BPP_0 BPP \cong BPP_0[t_0^{\pm}, t_1, t_2, \ldots]$ from \Cref{DefnChromaticHomologyThys} and \Cref{IdIsAnInvariantIdeal}, we can calculate $E(d)P_0 E(d)P$ by base-changing this Hopf algebroid: $E(d)P_0 E(d)P = E(d)P_0 \otimes_{BPP_0} BPP_0 BPP \otimes_{BPP_0} E(d)P_0$, which is again free over $E(d)P_0$.  Since $K(d)P$ is formed from $E(d)P$ by quotienting by a regular sequence, we calculate that $K(d)P_0 E(d)P$ is free over $K(d)P_0$, generated by the same summands.  However, when quotienting by the regular sequence \emph{again} to form $K(d)P_* K(d)P$, the maps in the quotient sequences act by elements in $I_d = 0$, hence introduce Bocksteins.  The end result is \[K(d)P_* K(d)P = \left(K(d)P_* \otimes_{BPP_*} BPP_* BPP \otimes_{BPP_*} K(d)P_*\right) \otimes \Lambda[\tau_0, \ldots, \tau_{d-1}],\] where $\tau_j$ in degree $1$ controls the cofiber of $E(d)P \xrightarrow{v_j} E(d)P$.  This pattern seems to be quite generic: whenever odd-primary information appears near the formal geometric picture, it comes from a poorly behaved homotopical quotient: some element was killed twice, say, or in some specific case a map was zero but is generically nonzero.  So it is here.}
-Adams spectral sequence for the sphere converges strongly to $\pi_* \widehat L_d \S$.  Writing $\omega$ for the line bundle on $\context{E_d}$ of invariant differentials, we have
+Adams spectral sequence for the sphere converges strongly to $\pi_* \widehat L_d \S$.  Writing $\omega$ for the line bundle on $\context{E_d}$ of invariant differentials, we have\todo{Where in $\omega$ in 3.1?}
 \[\pushQED{\qed}
 E_2^{*, *} = H^*(\context{E_d}; \omega^{\otimes *}) \Rightarrow \pi_* \widehat L_d \S. \qedhere
 \popQED\]
@@ -1271,7 +1254,7 @@ E_2^{*, *} = H^*(\context{E_d}; \omega^{\otimes *}) \Rightarrow \pi_* \widehat L
 
 The utility of this Theorem is in the identification of the stack $\context{E_d} \cong (\moduli{fg})^\wedge_{\Gamma_d}$ from \Cref{DefnChromaticHomologyThys}.  Our algebraic analysis from \Cref{LubinTateModuliThm} and \Cref{LubinTateModuliThmInFGLTerms} shows a further identification \[\context{E_{\Gamma_d}} = \left( \moduli{fg} \right)^\wedge_{\Gamma_d} \simeq \widehat{\mathbb A}^{d-1}_{\mathbb W(k)} \mmod \InternalAut(\Gamma_d).\]  This computation is thus boiled down to a calculation of the cohomology of the $\Aut(\Gamma_d)$--representations arising via \Cref{ActionBySnLiftsToLTn} as the global sections of the sheaves $\omega^{\otimes *}$ (cf.\ the discussion in \Cref{HopfAlgebrasFromFiniteGroups} and \Cref{HF2HomologyIsValuedInAutGaEquivarModules}).\footnote{In fact, the stable \emph{operations} of $E_d$ take the form of the twisted group-ring $E_d^0 E_d = E_d^0\<\!\<\Aut(\Gamma_d)\>\!\>$.}  We will later deduce the following polite description of $\Aut \Gamma_d$:
 \begin{theorem}[{cf.\ \Cref{FormOfStabilizerGroup}}]
-For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$ of positive characteristic $p$, we compute \[\Aut \Gamma_d \cong \left( \W_p(k) \<S\> \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right)^\times,\] where $\phi$ denotes a lift of the Frobenius from $k$ to $\W_p(k)$. \qed
+\index{Morava stabilizer group}For $\Gamma_d$ the Honda formal group law of height $d$ over a perfect field $k$ of positive characteristic $p$, we compute \[\Aut \Gamma_d \cong \left( \W_p(k) \<S\> \middle/ \left( \begin{array}{c} Sw = w^\phi S, \\ S^d = p \end{array} \right) \right)^\times,\] where $\phi$ denotes a lift of the Frobenius from $k$ to $\W_p(k)$. \qed
 \end{theorem}
 
 \begin{remark}[{\cite[Section 24]{StricklandFPFP}, \cite{DevinatzHopkins}}]\label{StablizerRepIsComplicated}
@@ -1285,7 +1268,7 @@ As a matter of emphasis, this Theorem does not give any description of the \emph
 \end{remark}
 
 \begin{remark}
-The arithmetically-minded reader might recognize this description of $\Aut \Gamma_d$ as the group of units of a maximal order $\mathbf o_D$ in the division algebra $D$ of Brauer--Hasse invariant $1/d$ over $k$---another glimpse of arithmetic geometry poking through to affect stable homotopy theory.\footnote{This finally explains our preference for using the letter ``$d$'' to represent the height of a formal group---the ``$d$'' (or, rather the ``$D$'') stands for ``division algebra''.  The typical algebraic topologist writes ``$n$'' for the height, a trend set by Jack Morava, allegedly because the localizer ``$L_n$'' is a homophone of his wife's name, Ellen.  It has been further alleged that the ``$E$'' in ``Morava $E$--theory'' is also an abbreviation for Ellen.  With no disrespect meant to either of them, I find ``$d$'' to be a considerably better mnemonic and to be less likely to conflict with other indices.  ``$E$'' is also prone to collisions (with spectral sequences, with operads, \ldots), but there is no compelling alternative.}
+The arithmetically-minded reader might recognize this description of $\Aut \Gamma_d$ as the group of units of a maximal order $\mathbf o_D$ in the \index{division algebra}division algebra $D$ of Brauer--Hasse invariant $1/d$ over $k$---another glimpse of arithmetic geometry poking through to affect stable homotopy theory.\footnote{This finally explains our preference for using the letter ``$d$'' to represent the height of a formal group---the ``$d$'' (or, rather the ``$D$'') stands for ``division algebra''.  The typical algebraic topologist writes ``$n$'' for the height, a trend set by Jack Morava, allegedly because the localizer ``$L_n$'' is a homophone of his wife's name, Ellen.  It has been further alleged that the ``$E$'' in ``Morava $E$--theory'' is also an abbreviation for Ellen.  With no disrespect meant to either of them, I find ``$d$'' to be a considerably better mnemonic and to be less likely to conflict with other indices.  ``$E$'' is also prone to collisions (with spectral sequences, with operads, \ldots), but there is no compelling alternative.}
 \end{remark}
 
 \begin{example}[{Adams, \cite[Lemma 2.5]{HMS}}]\label{piLK1SExample}
@@ -1319,7 +1302,7 @@ If this were possible, we would also be able to detect the retraction after chro
 0 & (t) / (t)^2 \arrow{l} \arrow[bend left, densely dotted, "i^*"]{r} & (t) / (t)^3 \arrow{l} & (t)^2 / (t)^3 \arrow{l} & 0. \arrow{l}
 \end{tikzcd}
 \end{center}
-Because $i$ is taken to be a retraction, the map $i^*$ would satisfy $i^*(t) = t \pmod{t^2}$, so that $i^*(t) = t + at^2$ for some $a$.  Additionally, $i^*$ would be natural with respect to all cohomology operations on $KU^\wedge_p$.  In particular, the element $(-1) \in \Z_p^\times \cong \Aut \G_m$ gives rise to an operation $\psi^{-1}$, which acts by the $(-1)$--series on the coordinate $t$.  In the case that $t$ is the coordinate considered in \Cref{CPinftyKUExample}, this gives \[[-1](t) = -\sum_{j=1}^\infty t^j = -t - t^2 \pmod{t^3}.\]  We thus compute:
+Because $i$ is taken to be a retraction, the map $i^*$ would satisfy $i^*(t) = t \pmod{t^2}$, so that $i^*(t) = t + at^2$ for some $a$.  Additionally, $i^*$ would be natural with respect to all \index{Adams operations}cohomology operations on $KU^\wedge_p$.  In particular, the element $(-1) \in \Z_p^\times \cong \Aut \G_m$ gives rise to an operation $\psi^{-1}$, which acts by the $(-1)$--series on the coordinate $t$.  In the case that $t$ is the coordinate considered in \Cref{CPinftyKUExample}, this gives \[[-1](t) = -\sum_{j=1}^\infty t^j = -t - t^2 \pmod{t^3}.\]  We thus compute:
 \begin{align*}
 \psi^{-1} \circ i(t) & = i \circ \psi^{-1}(t) \\
 \psi^{-1}(t + at^2) & = i(-t) \\
@@ -1337,7 +1320,7 @@ Take $k$ to be a perfect field of positive characteristic $p$, and take $\Gamma$
 & M_0(p).
 \end{tikzcd}
 \end{center}
-At odd primes, this turns out to be the $v_1$--self-map $v\co M_{2(p-1)}(p) \to M_0(p)$ announced in \Cref{AdamsSelfMapThm} (cf.\ also \cite[Proposition 12.7]{AdamsJXIV}).
+At odd primes, this turns out to be the $v_1$--self-map $v\co M_{2(p-1)}(p) \to M_0(p)$ announced in \Cref{AdamsSelfMapThm} (cf.\ also \cite[Proposition 12.7]{AdamsJXIV}).\index{vd self map@$v_d$--self--map}
 
 This admits many extensions.  More generally, different powers $v_1^j$ of the section $v_1$ also give rise to homotopy elements $\alpha_{j/1} \in \pi_{2(p-1)j} M_0(p)$.  These have varying orders of divisibility, and we write $\alpha_{j/k}$ for the element of $\pi_* \S$ satisfying $p^{k-1} \alpha_{j/k} = \alpha_{j/1}$.  Additionally, each Moore spectrum supports an Adams $v_1$--self--map of the form \[v(p^j) \co M_{|v_1| p^{j-1}}(p^j) \to M_0(p^j),\] which collectively form commutative diagrams of the shape
 \begin{center}
