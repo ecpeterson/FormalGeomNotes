@@ -2,7 +2,7 @@
 
 \chapter{The \texorpdfstring{$\sigma$}{sigma}-orientation}\label{ChapterSigmaOrientation}
 
-By this point, we have seen a great many ways that algebraic geometry exerts control over the behavior of homotopy theory, stable and unstable.  The goal in this Case Study is to explore a setting where algebraic geometry is itself tightly controlled: whereas the behavior of formal groups is quite open-ended, the behavior of \emph{abelian varieties} is comparatively strict.  We import this strictness into algebraic topology by stiudying complex-orientable cohomology theories $E$ which have been tagged with an auxiliary abelian variety $A$ via an isomorphism $\phi\co \CP^\infty_E \cong A^\wedge_0$.  In the case that $A$ is an elliptic curve, this is our definition of an \textit{elliptic cohomology theory}.  The idea, then, is not that this puts serious constraints on the formal group $\CP^\infty_E$ (although it does place some), but rather that the theory of abelian varieties endows $A$, and hence $A^\wedge_0$, with various bits of preferred data.  This is the tack we take to construct a \emph{canonical} $MU[6, \infty)$--orientation of $E$: for any complex-orientable $E$, we identify the collection of such ring maps with ``$\Theta$--structures on $\CP^\infty_E$''; a basic theorem about abelian varieties endows the elliptic curve $A$ with a canonical such structure; and altogether this yields the desired orientation for an elliptic spectrum.
+By this point, we have seen a great many ways that algebraic geometry exerts control over the behavior of homotopy theory, stable and unstable.  The goal in this Case Study is to explore a setting where algebraic geometry is itself tightly controlled: whereas the behavior of formal groups is quite open-ended, the behavior of \emph{abelian varieties} is comparatively strict.  We import this strictness into algebraic topology by stiudying complex-orientable cohomology theories $E$ which have been tagged with an auxiliary abelian variety $A$ and an isomorphism $\phi\co \CP^\infty_E \cong A^\wedge_0$.  In the case that $A$ is an elliptic curve, this is our definition of an \textit{elliptic cohomology theory}.  The idea, then, is not that this puts serious constraints on the formal group $\CP^\infty_E$ (although it does place some), but rather that the theory of abelian varieties endows $A$, and hence $A^\wedge_0$, with various bits of preferred data.  This is the tack we take to construct a \emph{canonical} $MU[6, \infty)$--orientation of $E$: for any complex-orientable $E$, we identify the collection of such ring maps with ``$\Theta$--structures on $\CP^\infty_E$''; a basic theorem about abelian varieties endows the elliptic curve $A$ with a canonical such structure; and altogether this yields the desired orientation for an elliptic spectrum.
 
 Making the identification of $MU[6, \infty)$--orientations with $\Theta$--structures requires real work, but many of the stepping stones are now in place.  We begin with a technical section about especially nice formal schemes, called \textit{coalgebraic}, and we use this to finally give the proof, announced back in \Cref{DivConstructionsAreFree}, that the scheme of stable Weil divisors on a formal curve presents the free formal group on that curve.  With that out of the way and with $MU[6, \infty)$ in mind as the eventual goal, we then summarize the behavior of the part of the Postnikov tower for complex bordism that we \emph{do} understand---the cases of $MUP$ and $MU$---and use this to make an analysis of $MSU$.  In particular, we rely heavily on the results from \Cref{ComplexBordismChapter} and \Cref{ChapterFiniteSpectra} to understand the co/homological behaviors of $BU \times \Z$, $BU$, $MUP$, and $MU$.
 
@@ -24,10 +24,10 @@ We also give a short r\'esum\'e on the theory of elliptic curves in \Cref{Sectio
 
 We will now finally address an elephant that has been lingering in our metaphorical room: in the first third of this book we were primarily interested in the formal scheme associated to the \emph{cohomology} of a space, but in the second third we were primarily interested in a construction converting the \emph{homology} of a spectrum to a sheaf over a context.  Our goal for this Lecture is to, when possible, put these two variances on even footing.  Our motivation for putting this lingering discrepancy to rest is more technical than aesthetic: we have previously wanted access to certain colimits of formal schemes (e.g., in \Cref{DivConstructionsAreFree}).  While such colimits are generally forbidding, similarly to colimits of manifolds, we will in effect produce certain conditions under which they are accessible.
 
-For $E$ a ring spectrum and $X$ a space, the diagonal map $\Delta\co X \to X \times X$ induces a multiplication map on $E$--cohomology via the composite \[E^* X \otimes_{E^*} E^* X \xrightarrow{\text{K\"unneth}} E^*(X \times X) \xrightarrow{E^* \Delta} E^* X.\]  Dually, applying $E$--homology, we have a pair of maps \[E_* X \xrightarrow{E_* \Delta} E_*(X \times X) \xleftarrow{\text{K\"unneth}} E_* X \otimes_{E_*} E_* X,\] where, remarkably, the K\"unneth map goes the wrong way to form a composite.  In the case that that map is an isomorphism, the long composite induces the structure of an $E_*$--coalgebra on $E_* X$.  In the most generous case that $E$ is a field spectrum (in the sense of \Cref{FieldSpectraAreKTheories}), the K\"unneth map is always invertible and, moreover, $E^* X$ is functorially the linear dual of $E_* X$.  This motivates us to consider the following purely algebraic construction:
+For $E$ a ring spectrum and $X$ a space, the diagonal map $\Delta\co X \to X \times X$ induces a multiplication map on $E$--cohomology via the composite \[E^* X \otimes_{E^*} E^* X \xrightarrow{\text{K\"unneth}} E^*(X \times X) \xrightarrow{E^* \Delta} E^* X.\]  Dually, applying $E$--homology, we have a pair of maps \[E_* X \xrightarrow{E_* \Delta} E_*(X \times X) \xleftarrow{\text{K\"unneth}} E_* X \otimes_{E_*} E_* X,\] where, remarkably, the K\"unneth map goes the wrong way to form a composite.  In the case that that map is an isomorphism, the long composite induces the structure of an \index{coalgebra}$E_*$--coalgebra on $E_* X$.  In the most generous case that $E$ is a field spectrum (in the sense of \Cref{FieldSpectraAreKTheories}), the K\"unneth map is always invertible and, moreover, $E^* X$ is functorially the linear dual of $E_* X$.  This motivates us to consider the following purely algebraic construction:
 
 \begin{definition}
-Let $C$ be a coalgebra over a field $k$.  We define a functor
+Let $C$ be a coalgebra over a field $k$.  We define a functor\index{scheme!coalgebraic!Sch@$\Sch$}
 \begin{align*}
 \Sch C\co \CatOf{Algebras}_{k/} & \to \CatOf{Sets}, \\
 T & \mapsto \left\{f \in C \otimes T \middle| \begin{array}{c} \Delta f = f \otimes f \in (C \otimes T) \otimes_T (C \otimes T), \\ \eps f = 1 \end{array} \right\}.
@@ -94,7 +94,7 @@ In the specific case that $\Spec R \to X$ is a pointed formal \emph{curve}, we c
 For $\Spec R \to X$ a pointed formal curve, the free formal monoid is automatically an abelian group.
 \end{corollary}
 \begin{proof}[Proof sketch]
-The main idea is that the coalgebra associated to a formal curve admits an increasing filtration $F_k$ so that the reduced diagonal $\overline \Delta = \Delta - (1 \otimes \eta) - (\eta \otimes 1)$ reduces filtration degree: \[\overline \Delta|_{F_k}\co F_k \to \sum_{\substack{i,j > 0 \\ i+j=k}} F_i \otimes F_j.\]  In turn, the symmetric algebra on the coalgebra associated to a formal curve inherits enough of this filtration that one can iteratively solve for a Hopf algebra antipode.
+The main idea is that the coalgebra associated to a formal curve admits an increasing filtration $F_k$ so that the reduced diagonal $\overline \Delta = \Delta - (1 \otimes \eta) - (\eta \otimes 1)$ reduces filtration degree: \[\overline \Delta|_{F_k}\co F_k \to \sum_{\substack{i,j > 0 \\ i+j=k}} F_i \otimes F_j.\]  In turn, the symmetric algebra on the coalgebra associated to a formal curve inherits enough of this filtration that one can iteratively solve for a \index{Hopf algebra}Hopf algebra antipode.
 \end{proof}
 
 We now reconnect this algebraic discussion with the algebraic topology that spurred it.
@@ -124,11 +124,11 @@ We show that the first two objects, $D\G$ and $\mathbb H$, represent the same ob
 \end{proof}
 
 \begin{remark}[{\cite[pg.\ 72]{Demazure}}]
-The effect of Cartier duality on the Dieudonn\'e module of a formal group is \emph{also} described by linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} can be taken to be related by Cartier duality.
+The effect of Cartier duality on the \index{Dieudonn\'e module}Dieudonn\'e module of a formal group is \emph{also} described by linear duality.  Hence, the covariant and contravariant Dieudonn\'e modules described in \Cref{SectionDieudonneModules} can be taken to be related by Cartier duality.
 \end{remark}
 
 \begin{remark}\label{TopologicalCartierDuality}
-Cartier duality intertwines the homological and cohomological schemes assigned to a commutative $H$--space.  When such a commutative $H$--space $X$ has free and even $E$--homology, there is an isomorphism \[D(\Spf E^0 X) = DX_E = \InternalHom{GroupSchemes}(X_E, \Gm) \cong \Spec E_0 X.\]
+\index{formal scheme!from a space}Cartier duality intertwines the homological and cohomological schemes assigned to a commutative $H$--space.  When such a commutative $H$--space $X$ has free and even $E$--homology, there is an isomorphism \[D(\Spf E^0 X) = DX_E = \InternalHom{GroupSchemes}(X_E, \Gm) \cong \Spec E_0 X.\]
 \end{remark}
 
 
@@ -146,8 +146,8 @@ Cartier duality intertwines the homological and cohomological schemes assigned t
 
 Starting in this Lecture, after our extended interludes on chromatic homotopy theory and cooperations, we are going to return to thinking about bordism orientations directly.  To begin, we will summarize the various perspectives already adopted in \Cref{ComplexBordismChapter} when we were studying complex orientations of ring spectra.
 \begin{enumerate}
-\item (\Cref{DefnComplexOrientation}:) A complex--orientation of $E$ is, definitionally, a map $MUP \to E$ of ring spectra in the homotopy category.
-\item (\Cref{ComplexOrientationsInTermsOfTrivs}:) A complex--orientation of $E$ is also equivalent to a multiplicative system of Thom isomorphisms for complex vector bundles.  Such a system is determined by its value on the universal line bundle $\L$ over $\CP^\infty$.  We can also phrase this algebro-geometrically: such a Thom isomorphism is the data of a trivialization of the Thom sheaf $\ThomSheaf{\L}$ over $\CP^\infty_E$.
+\item (\Cref{DefnComplexOrientation}:) A \index{orientation!complex}complex--orientation of $E$ is, definitionally, a map $MUP \to E$ of ring spectra in the homotopy category.
+\item (\Cref{ComplexOrientationsInTermsOfTrivs}:) A complex--orientation of $E$ is also equivalent to a multiplicative system of \index{Thom isomorphism}Thom isomorphisms for complex vector bundles.  Such a system is determined by its value on the universal line bundle $\L$ over $\CP^\infty$.  We can also phrase this algebro-geometrically: such a Thom isomorphism is the data of a trivialization of the \index{Thom sheaf}Thom sheaf $\ThomSheaf{\L}$ over $\CP^\infty_E$.\index{canonical bundle}
 \item (\Cref{OrientationsOnEAndMU}:) Ring spectrum maps $MUP \to E$ induce on $E$--homology maps $E_0 MUP \to E_0$ of $E_0$--algebras.  This, too, can be phrased algebro-geometrically: these are elements of $(\Spec E_0 MUP)(E_0)$.
 \end{enumerate}
 We can summarize our main result about these perspectives as follows:
@@ -160,7 +160,7 @@ Take $E$ to be \emph{complex--orientable}.  The functor
 is isomorphic to the affine scheme $\Spec E_0 MUP$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MUP \to E$.
 \end{theorem}
 \begin{proof}[Proof summary]
-The equivalence between (1) and (3)---i.e., between complex-orientations and $E_0$--points of $\Spec E_0 MUP$---follows from calculating that $E_0 MUP$ is a free $E_0$--module, so that there is a collapse in the universal coefficient theorem.  Then, the equivalence between (1) and (2) follows from the splitting principle for complex line bundles, which says that the first Chern class of $\L$---i.e., a trivialization of $\ThomSheaf{\L}$---determines the rest of the map $MUP \to E$.
+The equivalence between (1) and (3)---i.e., between complex-orientations and $E_0$--points of $\Spec E_0 MUP$---follows from calculating that $E_0 MUP$ is a free $E_0$--module, so that there is a collapse in the universal coefficient theorem.  Then, the equivalence between (1) and (2) follows from the \index{splitting principle}splitting principle for complex line bundles, which says that the first \index{Chern class}Chern class of $\L$---i.e., a trivialization of $\ThomSheaf{\L}$---determines the rest of the map $MUP \to E$.
 \end{proof}
 
 An analogous result holds for ring spectrum maps $MU \to E$ and the line bundle $1 - \L$, and it is proven in analogous way.  In particular, we will want a version of the splitting principle for virtual vector bundles of virtual rank $0$.  Given a finite complex $X$ and such a rank $0$ virtual vector bundle, write $\tilde V \co X \to BU$ for the classifying map.  Because $X$ is a finite complex, there exists an integer $n$ so that $\tilde V = -(n \cdot 1 - V)$ for an honest rank $n$ vector bundle $V$ over $X$.  Using \Cref{OriginalSplittingPrinciple}, the splitting $f^* V \cong \bigoplus_{i=1}^n \L_i$ over $Y$ gives a presentation of $\tilde V$ as \[\tilde V = -(n \cdot 1 - V) = -\bigoplus_{i=1}^n (1 - \L_i).\]  Crucially, we have organized this sum \emph{entirely in terms of bundles classified by $BU$}, as each bundle $1 - \L_i$ itself has the natural structure of a rank $0$ virtual vector bundle.  This version of the splitting principle, together with our extended discussion of formal geometry, begets the following analogue of the previous result:
@@ -213,7 +213,7 @@ f(t) \arrow[|->]{r} & f(t) / f(0).
 \end{tikzcd}
 \end{center}
 
-At the level of Thom spectra, these identifications are controlled by the Chern classes associated to these bundles, and the briefest way to summarize their relationship is this.  The spaces $\Z \times BU$ and $BU$ are the $0${\th} and $2${\nd} spaces in the $\Omega$--spectrum for connective complex $K$--theory, and since connective complex $K$--theory is complex-orientable, we have $kU^*(\CP^\infty) = \Z[\beta]\ps{c_1}$.  Inside this ring there is the relation \[\beta c_1 = (1 - \L).\]  Recognizing $\beta$ as the restriction of the tautological bundle on $\CP^\infty$ to $S^2 \simeq \CP^1$ and employing \Cref{Pi2AndInvariantDiffls}, this says that the trivialization $f$ of $\ThomSheaf{u^* \L}$, corresponding to a point in $(\Spec E_0 MUP)(T)$ and to $(1 - \L) \in kU^0(\CP^\infty) = [\CP^\infty, \Z \times BU]$, is sent to the trivialization $f'(0) / f$ of $\ThomSheaf{u^*(1 - \L)}$, corresponding to the induced point in $(\Spec E_0 MU)(T)$ and to $c_1 \in kU^2(\CP^\infty) = [\CP^\infty, BU]$.
+At the level of Thom spectra, these identifications are controlled by the \index{Chern class}Chern classes associated to these bundles, and we now briefly summarize their relationship.  The spaces $\Z \times BU$ and $BU$ are the $0${\th} and $2${\nd} spaces in the $\Omega$--spectrum for connective complex $K$--theory, and since connective complex $K$--theory is complex-orientable, we have $kU^*(\CP^\infty) = \Z[\beta]\ps{c_1}$.  Inside this ring there is the relation \[\beta c_1 = (1 - \L).\]  Recognizing $\beta$ as the restriction of the tautological bundle on $\CP^\infty$ to $S^2 \simeq \CP^1$ and employing \Cref{Pi2AndInvariantDiffls}, this says that the trivialization $f$ of $\ThomSheaf{u^* \L}$, corresponding to a point in $(\Spec E_0 MUP)(T)$ and to $(1 - \L) \in kU^0(\CP^\infty) = [\CP^\infty, \Z \times BU]$, is sent to the trivialization $f'(0) / f$ of $\ThomSheaf{u^*(1 - \L)}$, corresponding to the induced point in $(\Spec E_0 MU)(T)$ and to $c_1 \in kU^2(\CP^\infty) = [\CP^\infty, BU]$.
 \end{remark}
 
 
@@ -225,9 +225,9 @@ There is an equivalence \[\OS{kU}{2k} = BU[2k, \infty).\]
 Consider the element $\beta^k \in kU_* = \Z[\beta]$.  The source of the induced map $\beta^k\co \Susp^{2k} kU \to kU$ is $2k$--connective, and hence there is a factorization \[\Susp^{2k} kU \to kU[2k, \infty) \to kU.\]  Then, the structure of the homotopy ring $kU_*$ shows that this is an equivalence: every class of degree at least $2k$ can be uniquely written as a $\beta^k$--multiple.\footnote{Similarly, there is an equivalence $\OS{kO}{8k} = BO[8k, \infty)$, and this \emph{does not hold} for indices which are not precise multiples of $8$.}  Applying $\Loops^\infty$ gives the desired statement: \[\OS{kU}{2k} = \Loops^\infty \Susp^{2k} kU \simeq \Loops^\infty kU[2k, \infty) = BU[2k, \infty). \qedhere\]
 \end{proof}
 
-The next space and Thom spectrum in the sequence are thus $BSU$ and $MSU$.  This case will be wholly amenable to analysis through methods we have developed so far, which is now our stated goal for the rest of this Lecture.  Our jumping off point for that story will be, again, a partial extension of the splitting principle.
+The next space and Thom spectrum in the sequence are thus $BSU$ and $MSU$.  This case will be wholly amenable to analysis through methods we have developed in this Lecture, which is now our stated goal for the rest of this Lecture.  Our jumping off point for that story will be, again, a partial extension of the splitting principle.
 \begin{lemma}\label{SplittingPrincipleForBSU}
-Let $X$ be a finite complex, and let $\tilde V\co X \to BU$ classify a virtual vector bundle of rank $0$ over $X$.  Select a factorization $\tilde{\tilde V}\co X \to BSU$ of $\tilde V$ through $BSU$.  Then, there is a space $f\co Y \to X$, where $f_E\co Y_E \to X_E$ is finite and flat, as well as a collection of line bundles $\sheaf H_j$, $\sheaf H'_j$ expressing a $BSU$--internal decomposition \[\tilde{\tilde V} = -\bigoplus_{j=1}^n (1 - \sheaf H_j)(1 - \sheaf H'_j).\]
+Let $X$ be a finite complex, and let $\tilde V\co X \to BU$ classify a virtual vector bundle of rank $0$ over $X$.  Select a factorization $\tilde{\tilde V}\co X \to BSU$ of $\tilde V$ through $BSU$.  Then, there is a space $f\co Y \to X$, where $f_E\co Y_E \to X_E$ is finite and flat, as well as a collection of line bundles $\sheaf H_j$, $\sheaf H'_j$ expressing a $BSU$--internal decomposition\index{splitting principle!for BSU@for $BSU$} \[\tilde{\tilde V} = -\bigoplus_{j=1}^n (1 - \sheaf H_j)(1 - \sheaf H'_j).\]
 \end{lemma}
 \begin{proof}
 Begin by using \Cref{OriginalSplittingPrinciple} on $V$ to get an equality of $BU$--bundles \[\tilde{\tilde V} = V' + \L_1 + \L_2 - n \cdot 1.\]  Adding $(1 - \L_1)(1 - \L_2)$ to both sides, this gives
@@ -255,23 +255,23 @@ There is another less obvious symmetry, inspired by our use of the product map \
 (\sheaf H - \L_1 \sheaf H)(1 - \L_2) & = (1 - \L_1)(\sheaf H - \sheaf H \L_2) \\
 (1 - \L_1 \sheaf H)(1 - \L_2) - (1 - \sheaf H)(1 - \L_2) & = (1 - \L_1)(1 - \sheaf H \L_2) - (1 - \L_1)(1 - \sheaf H).
 \end{align*}
-This ``$kU^0$--linearity'' is sometimes called a ``$2$--cocycle condition'', in reference to the similarity with the formula in \Cref{DefinitionSymmetric2Cocycle}.
+This ``$kU^0$--linearity'' is sometimes called a \index{symmetric 2 cocycle@symmetric $2$--cocycle}``$2$--cocycle condition'', in reference to the similarity with the formula in \Cref{DefinitionSymmetric2Cocycle}.
 \end{example}
 
 We would like to show that these observations suffice, as in the following version of \Cref{BUZTriumvirate} and \Cref{BUTriumvirate}:
 \begin{theorem}[{\cite[Theorem 2.50]{AHSTheoremOfTheCube}}]\label{BSUTriumvirate}
-The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \begin{array}{c} \text{trivializations of $u^* \ThomSheaf{(1 - \L_1)(1 - \L_2)}$} \\ \text{over $u^* (\CP^\infty)^{\times 2}_E$ which are} \\ \text{symmetric, rigid, and $kU^0$--linear} \end{array} \right\}\] is isomorphic to the affine scheme $\Spec E_0 MSU$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MSU \to E$.
+The functor \[\{\Spec T \xrightarrow{u} \Spec E_0\} \to \left\{ \begin{array}{c} \text{trivializations of $u^* \ThomSheaf{(1 - \L_1)(1 - \L_2)}$} \\ \text{over $u^* (\CP^\infty)^{\times 2}_E$ which are} \\ \text{symmetric, rigid, and $kU^0$--linear} \end{array} \right\}\] is isomorphic to the affine scheme $\Spec E_0 MSU$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MSU \to E$.\index{orientation!MSU@$MSU$}
 \end{theorem}
 
 \noindent In pursuit of this, we will show rather manually that $BSU_E$ represents an object subject to exactly such symmetries, hence $\Spec E_0 BSU$ represents the scheme of such symmetric functions, and finally conclude that $\Spec E_0 MSU$ represents the scheme of such symmetric trivializations.  The place to begin is with a Serre spectral sequence:
 \begin{lemma}[{\cite[Lemma 6.1]{AndoStrickland}, cf.\ also \cite[Proposition 6.5]{AndoStrickland}}]\label{BSUtoBUtoCPinftyIsSexseq}
-The Postnikov fibration \[BSU \to BU \xrightarrow{B\det} BU(1)\] induces a short exact sequence of Hopf algebras
+The Postnikov fibration\index{Postnikov tower} \[BSU \to BU \xrightarrow{B\det} BU(1)\] induces a short exact sequence of Hopf algebras
 \[\pushQED{\qed}
 E^0 BSU \from E^0 BU \xleftarrow{c_1 \mapsfrom c_1} E^0 BU(1). \qedhere
 \popQED\]
 \end{lemma}
 
-\noindent An equivalent statement is that there is a short exact sequence of formal group schemes
+\noindent An equivalent statement is that there is a short exact sequence of formal group schemes\todo{Is this in Lecture 2.3? It should be.}
 \begin{center}
 \begin{tikzcd}
 BSU_E \arrow{r} \arrow[equal]{d} & BU_E \arrow{r}{B\det} \arrow[equal]{d} & BU(1)_E \arrow[equal]{d} \\
@@ -426,7 +426,12 @@ Our definition of the scheme $C_2 \G$ was by the formula \[C_2 \G = \Sym^2_{\Div
 \end{remark}
 
 \begin{remark}
-One consequence of our analysis is that the theory of $MSU$--orientations for a complex-orientable theory is not especially different from the theory of $MU$--orientations.  Explicitly, we have found a short exact sequence of bipolynomial group schemes \[0 \to BSU_E \to BU_E \to BU(1)_E \to 0,\] which has a canonical splitting at the level of products of formal schemes.  This splitting is not a map of group schemes, and so it does not survive to give a \emph{canonical} splitting of the Cartier dual sequence \[0 \from \Spec E_0 BSU \from \Spec E_0 BU \from \Spec E_0 BU(1) \from 0,\] but this sequence is nonetheless \emph{noncanonically} split.  It follows from our analysis above that any $MSU$--orientation of a complex-orientable theory arises as the restriction of an $MU$--orientation (where there the space of available $MU$--orientation lifts is a torsor for $\Spec E_0 BU(1)$).
+In an algebraic direction, the reader is also advised to consider the short exact sequence \[0 \to I \to \Z[G] \to \Z \to 0\] as a model for the short exact sequence \[0 \to \Div_0 \G \to \Div \G \to \underline{\Z} \to 0.\]  The results we have pursued here (in particular, \Cref{SDivModelsC2}) have direct analogues in the setting of group--rings.
+\end{remark}
+
+
+\begin{remark}
+One consequence of our analysis is that the theory of $MSU$--orientations for a complex-orientable theory is not especially different from the theory of $MU$--orientations.  Explicitly, we have found a short exact sequence of bipolynomial group schemes \[0 \to BSU_E \to BU_E \to BU(1)_E \to 0,\] which has a canonical splitting at the level of products of formal schemes.  This splitting is not a map of group schemes, and so it does not survive to give a \emph{canonical} splitting of the Cartier dual sequence \[0 \from \Spec E_0 BSU \from \Spec E_0 BU \from \Spec E_0 BU(1) \from 0,\] but this sequence is nonetheless \emph{noncanonically} split.  It follows from our analysis above that any $MSU$--orientation of a complex-orientable theory arises as the restriction of an $MU$--orientation (where there the space of available $MU$--orientation preimages is a torsor for $\Spec E_0 BU(1)$).
 \end{remark}
 
 
@@ -446,8 +451,8 @@ We now embark on an analysis of $MU[6, \infty)$--orientations in earnest.  As in
 
 \emph{Nevertheless}, we will show that this algebraic model is still accurate by complete topological calculation.  Our approach is divided between two fronts.
 \begin{enumerate}
-    \item If we specialize to a particularly nice cohomology theory---such as $E = E_\Gamma$ a Morava $E$--theory---then we can use our extensive body of knowledge about finite height formal groups and their relationship to algebraic topology in order to force nice behavior into the story.  This should be thought of as an exploratory step: if there is a general statement to be found, it will be visible in this particularly algebro-geometric setting, where we can maybe compute fully enough to determine what it is.
-    \item If we specialize to a particularly simple formal group---such as $\G_a$ and its associated cohomology theory $\HFp$---then we can use our talent for performing computations in algebraic topology to completely exhaust the problem.  This should be thought of as the ``actual'' proof: as in \Cref{COableCoopnsII}, we will show that successfully transferring the guess result from Morava $E$--theory to the setting of ordinary cohomology entails the result for \emph{any} complex-orientable cohomology theory.
+    \item If we specialize to a particularly nice cohomology theory---such as $E = E_\Gamma$ a \index{Morava E theory@Morava $E$--theory}Morava $E$--theory---then we can use our extensive body of knowledge about finite height formal groups and their relationship to algebraic topology in order to force nice behavior into the story.  This should be thought of as an exploratory step: if there is a general statement to be found, it will be visible in this particularly algebro-geometric setting, where we can maybe algebraically compute fully enough to determine what it is.
+    \item If we specialize to a particularly simple formal group---such as $\G_a$ and its associated cohomology theory $\HFp$---then we can use our talent for performing computations in algebraic \emph{topology} to completely exhaust the problem.  This should be thought of as the ``actual'' proof: as in \Cref{COableCoopnsII}, we will show that successfully transferring the guess result from Morava $E$--theory to the setting of ordinary cohomology entails the result for \emph{any} complex-orientable cohomology theory.
 \end{enumerate}
 
 In this Lecture, we will pursue the first avenue.  We begin by setting $\Gamma$ to be a formal group of finite $p$--height of a field $k$ of positive characteristic $p$, and we let $E = E_\Gamma$ denote the associated Morava $E$--theory.  Our main technical tool will be the Postnikov fibration \[\OS{H\Z}{3} \to BU[6, \infty) \to BSU,\] and our main goals are to construct a model sequence of formal schemes, then show that $E$--theory is well-behaved enough that the formal schemes it constructs exactly match the model.
@@ -477,7 +482,7 @@ This construction converts many properties of $f$ into corresponding properties 
 Recall the vector bundle $\Pi_2$ lifted through $BSU$, defined at the top of this Lecture and of great interest to us in \Cref{MSUDay}.  The adjoint to the classifying map of $\Pi_2$ is a map of formal schemes \[\widehat \Pi_2\co (\CP^\infty_E)^{\times 2} \times \Spec E_0 BSU \to \Gm,\] which passes through the exponential adjunction to become a map \[\Spec E_0 BSU \to \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm).\]  Because the adjoint construction preserves properties of the class $\Pi_2$, we learn that this map factors through the closed subscheme
 \begin{center}
 \begin{tikzcd}
-\Spec E_0 BSU \arrow[densely dotted]{r} \arrow[bend left=10]{rr} & C^2(\CP^\infty_E; \Gm) \arrow{r} & \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm)
+\Spec E_0 BSU \arrow[densely dotted, "\widehat \Pi_2"]{r} \arrow[bend right=10]{rr} & C^2(\CP^\infty_E; \Gm) \arrow{r} & \InternalHom{FormalSchemes}((\CP^\infty_E)^{\times 2}, \Gm)
 \end{tikzcd}
 \end{center}
 of symmetric, rigid functions satisfying $kU^0$--linearity.  By careful manipulation of divisors in \Cref{SDivModelsC2}, we showed that $BSU_E \cong \SDiv_0 \CP^\infty_E$, which on applying Cartier duality showed the factorized map $\Spec E_0 BSU \to C^2(\CP^\infty_E; \Gm)$ to be an isomorphism.
@@ -515,9 +520,9 @@ Thus far, we have constructed the solid maps in the following commutative diagra
 C^2(\CP^\infty_E; \Gm) \arrow["\delta"]{r} & C^3(\CP^\infty_E; \Gm) \arrow[densely dotted, "e"]{r} & \InternalHom{FormalGroups}((\CP^\infty_E)^{\wedge 2}, \G_m),
 \end{tikzcd}
 \end{center}
-where $\G^{\sm n}$ denotes the exterior $n${\th} power of $\G$, the left-most vertical map is an isomorphism by \Cref{CharacterizationOfBSUUpperE}, and right-most vertical map is an isomorphism by \Cref{EThyOfEMSpaces}.  We would like to enrich this diagram to an isomorphism of short exact sequences, and to do so we need to finish constructing the sequences themselves---we need a horizontal map $e$ making the diagram commute.
+where $\G^{\sm n}$ denotes the \index{p divisible group@$p$--divisible group!alternating power}exterior $n${\th} power of $\G$, the left-most vertical map is an isomorphism by \Cref{CharacterizationOfBSUUpperE}, and right-most vertical map is an isomorphism by \Cref{EThyOfEMSpaces}.  We would like to enrich this diagram to an isomorphism of short exact sequences, and to do so we need to finish constructing the sequences themselves---we need a horizontal map $e$ making the diagram commute.
 
-The idea behind the construction of $e$ is to pretend that $\widehat \Pi_3$ is an isomorphism, so that we could completely detect $e$ by comparing the image of the identity point on $\Spec E_0 BU[6, \infty)$ through $\widehat \Pi_3$ to the image of the same identity point through the maps \[\Spec E_0 BU[6, \infty) \to \Spec E_0 \OS{H\Z}{3} \to \CatOf{FormalGroups}((\CP^\infty_E)^{\sm 2}, \Gm).\]  Using our calculation that $(\CP^\infty_E)^{\sm 2}$ is a $p$--divisible group, we see that we can further restrict attention to the torsion subgroups $(\CP^\infty_E)^{\sm 2}[p^j] = (BS^1[p^j]_E)^{\sm 2}$ which filter it, corresponding to analyzing the bundle classified by the restriction \[BS^1[p^j]^{\sm 2} \xrightarrow{\mu} \OS{HS^1[p^j]}{2} \xrightarrow{\beta_j} \OS{H\Z}{3} \xrightarrow{\gamma} \OS{kU}{6}.\]  Using the abbreviation $B_j = BS^1[p^j]$, our summary goal is to find an express description of a map $d$ making the following square commute:
+The idea behind the construction of $e$ is to pretend that $\widehat \Pi_3$ is an isomorphism, so that we could completely detect $e$ by comparing the image of the identity point on $\Spec E_0 BU[6, \infty)$ through $\widehat \Pi_3$ to the image of the same identity point through the maps \[\Spec E_0 BU[6, \infty) \to \Spec E_0 \OS{H\Z}{3} \to \CatOf{FormalGroups}((\CP^\infty_E)^{\sm 2}, \Gm).\]  Using our calculation that $(\CP^\infty_E)^{\sm 2}$ is a \index{p divisible group@$p$--divisible group}$p$--divisible group, we see that we can further restrict attention to the torsion subgroups $(\CP^\infty_E)^{\sm 2}[p^j] = (BS^1[p^j]_E)^{\sm 2}$ which filter it, corresponding to analyzing the bundle classified by the restriction \[BS^1[p^j]^{\sm 2} \xrightarrow{\mu} \OS{HS^1[p^j]}{2} \xrightarrow{\beta_j} \OS{H\Z}{3} \xrightarrow{\gamma} \OS{kU}{6}.\]  Using the abbreviation $B_j = BS^1[p^j]$, our summary goal is to find an express description of a map $d$ making the following square commute:
 \begin{center}
 \begin{tikzcd}
 B_j \sm B_j \arrow{r} \arrow["\beta_j\mu(\alpha \sm \alpha)"]{d} & \CP^\infty \sm \CP^\infty \arrow[densely dotted, "d"]{d} \\
@@ -709,7 +714,7 @@ C^2(\G_a; \Gm) \arrow{r} & C^3(\G_a; \Gm) \arrow{r} & \InternalHom{FormalGroups}
 \end{center}
 Our task, as then, is to discern as much about these nodes as possible, as well as any exactness properties of the two sequences.\footnote{The quotes indicate that the right-hand topological node does not even make sense: $H_* \OS{H\Z}{3}$ is not even-concentrated, and we do not understand the algebraic geometry of spaces whose homology is not even-concentrated.  This is quite troubling---but we will press on for now.}
 
-We begin with the topological sequence.  The Serre spectral sequence \[E_2^{*, *} = H^* BSU \otimes H^* \OS{H\Z}{3} \Rightarrow H^* BU[6, \infty)\] gives us easy access to the middle node, and we will recount the case of $p = 2$ in detail.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = \HFtwo^* BSU \otimes \HFtwo^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ > 1 \end{array}\right].\]  Because the target is $6$--connective, we must have the transgressive differential $d_4 \iota_3 = c_2$, which via the Kudo transgression theorem spurs the much larger family of differentials \[d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2.\]  This necessitates understanding the action of the Steenrod operations on the cohomology of $BSU$, which is due to Wu~\cite[Section 23.6]{MayConciseCourse}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 \equiv c_{1 + 2^j} \pmod{\text{decomposables}}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:\todo{This spectral sequence can be drawn in using Hood's package.}
+We begin with the topological sequence.  The Serre spectral sequence \[E_2^{*, *} = H^* BSU \otimes H^* \OS{H\Z}{3} \Rightarrow H^* BU[6, \infty)\] gives us easy access to the middle node, and we will recount the case of $p = 2$ in detail.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = \HFtwo^* BSU \otimes \HFtwo^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ > 1 \end{array}\right].\]  Because the target is $6$--connective, we must have the transgressive differential $d_4 \iota_3 = c_2$, which via the Kudo transgression theorem spurs the much larger family of differentials \[d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2.\]  This necessitates understanding the action of the Steenrod operations on the cohomology of $BSU$, which is due to \index{Wu formulas}Wu~\cite[Section 23.6]{MayConciseCourse}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 \equiv c_{1 + 2^j} \pmod{\text{decomposables}}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:\todo{This spectral sequence can be drawn in using Hood's package.}
 
 \begin{theorem}\label{HF2BU6Calculation}
 There is an isomorphism
@@ -719,7 +724,7 @@ There is an isomorphism
 \end{theorem}
 
 \begin{remark}[{\cite{Singer,Stong}}]
-More generally, there is an isomorphism \[\HFtwo^* \OS{kU}{2k} \cong \frac{\HFtwo^* BU}{(c_j \mid \sigma_2(j - 1) < k - 1)} \otimes \operatorname{Op}[\Sq^3 \iota_{2k-1}],\] where $\sigma_2$ is the dyadic digital sum and ``$\operatorname{Op}$'' denotes the Steenrod--Hopf--subalgebra of $\HFtwo^* \OS{H\Z}{2k-1}$ generated by the indicated class.  Stong specialized to $p = 2$ and carefully applied the Serre spectral sequence to the fibrations \[\OS{kU}{2(k+1)} \to \OS{kU}{2k} \to \OS{H\Z}{2k}.\]  Singer worked at an arbitrary prime and used the Eilenberg--Moore spectral sequence for the fibrations \[\OS{H\Z}{2k-1} \to \OS{kU}{2(k+1)} \to \OS{kU}{2k}.\]  Both used considerable knowledge of the interaction of these spectral sequences with the Steenrod algebra.
+More generally, there is an isomorphism \[\HFtwo^* \OS{kU}{2k} \cong \frac{\HFtwo^* BU}{(c_j \mid \sigma_2(j - 1) < k - 1)} \otimes \operatorname{Op}[\Sq^3 \iota_{2k-1}],\] where $\sigma_2$ is the dyadic digital sum and ``$\operatorname{Op}$'' denotes the Steenrod--Hopf--subalgebra of $\HFtwo^* \OS{H\Z}{2k-1}$ generated by the indicated class.  Stong specialized to $p = 2$ and carefully applied the Serre spectral sequence to the fibrations \[\OS{kU}{2(k+1)} \to \OS{kU}{2k} \to \OS{H\Z}{2k}.\]  Singer worked at an arbitrary prime and used the \index{bar spectral sequence}Eilenberg--Moore spectral sequence for the fibrations \[\OS{H\Z}{2k-1} \to \OS{kU}{2(k+1)} \to \OS{kU}{2k}.\]  Both used considerable knowledge of the interaction of these spectral sequences with the Steenrod algebra.
 \end{remark}
 
 \begin{remark}
@@ -728,10 +733,10 @@ These methods and results generalize directly to odd primes.  The necessary modi
 
 From the edge homomorphisms in \Cref{HF2BU6Calculation}, we can already see that the sequence of Hopf algebras \[H_* \OS{H\Z}{3} \to H_* BU[6, \infty) \to H_* BSU\] modeling the sequence of formal group schemes \[\text{``$(\OS{H\Z}{3})_{HP}$''} \to BU[6, \infty)_{HP} \to BSU_{HP}\] is neither left-exact nor right-exact.  This seems bleak.
 
-Ever the optimists, we embark on an analysis of the available algebra all the same.  We begin by reusing a strategy previously employed in \Cref{CalculationOfLTTangentSpace}: first perform a tangent space calculation \[T_0 C^k(\G_a; \Gm) \cong C^k(\G_a; \G_a),\] then study the behavior of the different tangent directions to determine the full object $C^k(\G_a; \Gm)$.  As a warm-up to the case $k = 3$ of interest, we will first consider the case $k = 2$.  We have already performed the tangent space calculation:
+Ever the optimists, we embark on an analysis of the available algebra all the same.  We begin by reusing a strategy previously employed in \Cref{CalculationOfLTTangentSpace}: first perform a \index{formal scheme!tangent space}\index{tangent spectral sequence}tangent space calculation \[T_0 C^k(\G_a; \Gm) \cong C^k(\G_a; \G_a),\] then study the behavior of the different tangent directions to determine the full object $C^k(\G_a; \Gm)$.  As a warm-up to the case $k = 3$ of interest, we will first consider the case $k = 2$.  We have already performed the tangent space calculation:
 
 \begin{corollary}[{cf.\ \Cref{Symmetric2CocycleLemma}}]
-The unique symmetric additive $2$--cocycle of homogeneous degree $n$ has the form
+The unique \index{symmetric 2 cocycle@symmetric $2$--cocycle!lemma}symmetric additive $2$--cocycle of homogeneous degree $n$ has the form
 \[\pushQED{\qed}
 c_n(x, y) = \begin{cases} (x + y)^n - x^n - y^n & \text{if $n \ne p^j$}, \\ \frac{1}{p} \left( (x + y)^n - x^n - y^n \right) & \text{if $n = p^j$}. \end{cases} \qedhere
 \popQED\]
@@ -779,7 +784,7 @@ There is an isomorphism \[\Spec \Z_{(p)}[a_d \mid d \ge 3, d \ne 1 + p^t] \times
 The main claim is that the Artin--Hasse exponential trick used in the case $k = 2$ works here as well, provided $d \ne 1 + p^t$ so that taking an appropriate $p${\th} root works out.  They then show that the remaining exceptional cases extend to multiplicative cocycles only when the $p${\th} power of the leading coefficient vanishes.  Finally, a rational calculation shows how to bind these truncated generators together into a divided power algebra.
 \end{proof}
 
-It is now time to clear up our confusion about the right-hand topological node by pursuing a link between $H_* \OS{H\Z}{3}$ and the algebraic model $\InternalHom{FormalGroups}(\G_a^{\sm 2}, \Gm)$.  Analyzing the edge homomorphism from our governing Serre spectral sequence shows that the map \[H^* BU[6, \infty) \to H^* \OS{H\Z}{3}\] factors through the subalgebra $A^* \subseteq H^* \OS{H\Z}{3}$ generated by the \emph{squares} of the polynomial generators.  Accordingly, we aim to replace the right-hand node of the topological sequence with $\Spec A_*$ outright.
+It is now time to clear up our confusion about the right-hand topological node by pursuing a link between $H_* \OS{H\Z}{3}$ and the \index{p divisible group@$p$--divisible group!alternating power}algebraic model $\InternalHom{FormalGroups}(\G_a^{\sm 2}, \Gm)$.\footnote{The reader might note that $\G_a$ is \emph{not} a $p$--divisible group.  Nonetheless, we can make sense of $\InternalHom{FormalGroups}(\G_a^{\sm 2}, \Gm)$ as a closed subscheme of $\InternalHom{FormalSchemes}(\G_a^{\times 2}, \Gm)$.}  Analyzing the edge homomorphism from our governing Serre spectral sequence shows that the map \[H^* BU[6, \infty) \to H^* \OS{H\Z}{3}\] factors through the subalgebra $A^* \subseteq H^* \OS{H\Z}{3}$ generated by the \emph{squares} of the polynomial generators.  Accordingly, we aim to replace the right-hand node of the topological sequence with $\Spec A_*$ outright.
 
 \begin{lemma}[{\cite[Lemma 3.36, Proposition 4.13, Lemma 4.11]{AHSTheoremOfTheCube}}]
 The scheme $\Spec A_*$ models $\InternalHom{FormalGroups}(\G_a^{\sm 2}, \Gm)$ by an isomorphism $\lambda$ commuting with $e \circ \hat \Pi_3$.
@@ -807,7 +812,7 @@ which we have shown to be exact at all the indicated nodes.  (The exactness of t
 The map $\hat \Pi_3$ is an isomorphism: \[\hat \Pi_3\co \Spec H_* BU[6, \infty) \xrightarrow{\cong} C^3(\G_a; \Gm).\]
 \end{corollary}
 \begin{proof}[Proof sketch]
-We don't actually have to compute much about the middle map.  Because the squares in the map of sequences commute and the sequences themselves are exact as indicated, we at least learn that $\hat \Pi_3$ is an epimorphism on group schemes, hence a monomorphism on rings of functions.  But, since both source and target are affine schemes of graded finite type with equal Poincar\'e series in each case, this monomorphism is an isomorphism.
+We don't actually have to compute much about the middle map.  Because the squares in the map of sequences commute and the sequences themselves are exact as indicated, we at least learn that $\hat \Pi_3$ is an epimorphism on group schemes, hence a monomorphism on rings of functions.  But, since both source and target are affine schemes of graded finite type with equal \index{Poincar\'e series}Poincar\'e series in each case, this monomorphism is an isomorphism.
 \end{proof}
 
 \begin{corollary}[{\cite[Theorem 2.31]{AHSTheoremOfTheCube}}]\label{Pi3ForCplxOrientableE}
@@ -839,7 +844,7 @@ where the horizontal maps are the action maps defining torsors and the vertical 
 \end{lemma}
 
 \begin{corollary}\label{BU6Triumvirate}
-Take $E$ to be \emph{complex--orientable}.  The functor $C^3(\CP^\infty_E; \sheaf I(0))$ is isomorphic to the affine scheme $\Spec E_0 MU[6, \infty)$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MU[6, \infty) \to E$. \qed
+Take $E$ to be \emph{complex--orientable}.  The functor $C^3(\CP^\infty_E; \sheaf I(0))$ is isomorphic to the affine scheme $\Spec E_0 MU[6, \infty)$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $MU[6, \infty) \to E$.\index{orientation!MU six@$MU[6, \infty)$} \qed
 \end{corollary}
 
 \begin{lemma}\label{MSUToMU6}
@@ -862,7 +867,7 @@ $DC^k(\G_a; \Gm)$ are all formal varieties for $k \le 3$.
 \begin{proof}
 We know that $\sheaf O C^k(\G_a; \Gm)$ are all free $\Z$--modules of graded finite rank in the range $k \le 3$, so we may write \[\sheaf O(D C^k(\G_a; \Gm)) \cong (\sheaf O C^k(\G_a; \Gm))^*.\]  Our task is to show that this Hopf algebra $\sheaf O(C^k(\G_a; \Gm))^*$ is a power series ring.
 
-Specialize, for the moment, to the case of $k = 2$.  It will suffice to show that it is a power series ring modulo $p$ for every prime $p$.  Such graded connected finite-type Hopf algebras over $\F_p$ were classified by Borel (and exposited by Milnor--Moore~\cite[Theorem 7.11]{MilnorMoore}) as either polynomial or truncated polynomial.  These two cases are distinguished by the Frobenius operation: the Frobenius on a polynomial ring is injective, whereas the Frobenius on a truncated polynomial ring is not.  It is therefore equivalent to show that the \emph{Verschiebung} on the original ring $\sheaf O(C^2(\G_a; \Gm)) \otimes \F_p$ is \emph{surjective}.  Recalling the calculation $c_n^p = c_{np}$ at the level of bivariate $2$--cocycles, we compute \[p^* a_n = a_{np}^p,\] and since $F a_{np} = a_{np}^p$ and $FV = p^*$, we learn \[V(a_{np}) = a_n.\]  Essentially the same proof handles the cases $k = 1$ and $k = 0$.
+Specialize, for the moment, to the case of $k = 2$.  It will suffice to show that it is a power series ring modulo $p$ for every prime $p$.  Such graded connected finite-type Hopf algebras over $\F_p$ were classified by Borel (and exposited by \index{Milnor--Moore}Milnor--Moore~\cite[Theorem 7.11]{MilnorMoore}) as either polynomial or truncated polynomial.  These two cases are distinguished by the \index{Frobenius}\textit{Frobenius} operation: the Frobenius on a polynomial ring is injective, whereas the Frobenius on a truncated polynomial ring is not.  It is therefore equivalent to show that the \index{Verschiebung}\emph{Verschiebung} on the original ring $\sheaf O(C^2(\G_a; \Gm)) \otimes \F_p$ is \emph{surjective}.  Recalling the calculation $c_n^p = c_{np}$ at the level of bivariate $2$--cocycles, we compute \[p^* a_n = a_{np}^p,\] and since $F a_{np} = a_{np}^p$ and $FV = p^*$, we learn \[V(a_{np}) = a_n.\]  Essentially the same proof handles the cases $k = 1$ and $k = 0$.
 
 The case $k = 3$ requires a small modification, to cope with the two classes of trivariate $2$--cocycles.  On the polynomial tensor factor of $\sheaf O(C^3(\G_a; \Gm))$ we can reuse the same Verschiebung argument to see that its dual Hopf algebra is polynomial.  For the other fact, the dual of the divided power tensor factor is, without any further argument, always a primitively generated polynomial algebra.
 \end{proof}
@@ -871,7 +876,7 @@ The case $k = 3$ requires a small modification, to cope with the two classes of 
 The scheme $C_3 \CP^\infty_E$ exists, and it is modeled by $BU[6, \infty)_E$.
 \end{theorem}
 \begin{proof}[Proof sketch]
-Let $\G$ be an arbitrary formal group.  Note first that if $C^3(\G; \Gm)$ is coalgebraic, then $C_3 \G$ exists and is its Cartier dual: the diagram presenting $\sheaf OC^3(\G; \Gm)$ as a reflexive coequalizer of free Hopf algebras is also the diagram meant to present $C_3 \G$ as a coalgebraic formal scheme.  So, if the coequalizing Hopf algebra has a good basis, it will follow from \Cref{CoalgebraicColimitsExist} that the resulting diagram is a colimit diagram in formal schemes, with $C_3 \G$ sitting at the cone point.  It will additionally follow that the isomorphism \[\Spec E_0 BU[6, \infty) \xrightarrow{\cong} C^3(\CP^\infty_E; \Gm)\] of \Cref{Pi3ForCplxOrientableE} will re-dualize to an isomorphism \[BU[6, \infty)_E \xleftarrow{\cong} C_3 \CP^\infty_E.\]  So, we reduce to checking that $\sheaf O C^3(\G; \Gm)$ admits a good basis.  By a base change argument, it suffices to take $\G$ to be the universal formal group over the Lazard ring, and we thus set about finding a nice basis for that.
+Let $\G$ be an arbitrary formal group.  Note first that if $C^3(\G; \Gm)$ is \index{formal scheme!coalgebraic}coalgebraic, then $C_3 \G$ exists and is its \index{formal group!Cartier dual}Cartier dual: the diagram presenting $\sheaf OC^3(\G; \Gm)$ as a reflexive coequalizer of free Hopf algebras is also the diagram meant to present $C_3 \G$ as a coalgebraic formal scheme.  So, if the coequalizing Hopf algebra has a good basis, it will follow from \Cref{CoalgebraicColimitsExist} that the resulting diagram is a colimit diagram in formal schemes, with $C_3 \G$ sitting at the cone point.  It will additionally follow that the isomorphism \[\Spec E_0 BU[6, \infty) \xrightarrow{\cong} C^3(\CP^\infty_E; \Gm)\] of \Cref{Pi3ForCplxOrientableE} will re-dualize to an isomorphism \[BU[6, \infty)_E \xleftarrow{\cong} C_3 \CP^\infty_E.\]  So, we reduce to checking that $\sheaf O C^3(\G; \Gm)$ admits a good basis.  By a base change argument, it suffices to take $\G$ to be the universal formal group over $\sheaf O_{\moduli{fgl}}$, and we thus set about finding a nice basis for that.
 
 We hope to gain control (as in \Cref{HopfRingForEBP} or \Cref{Pi3ForCplxOrientableE}) of this situation using our strong knowledge of $\sheaf O C^3(\G_a; \Gm)$.  We know from \Cref{CkGaGmAreFVars} that $\sheaf O C^3(\G_a; \Gm)$ is a free abelian group, and we know from \Cref{LazardsTheorem} that $\sheaf O(\moduli{fgl})$ is as well.  By picking a $\Z$--basis $\Z\{\beta_j\}_j$ of $\sheaf O C^3(\G_a; \Gm)$ and considering the specialization map from $\G$ over $\moduli{fgl}$ to $\G_a$ over $\Spec \Z$, we choose a map $\alpha$ of $\sheaf O(\moduli{fgl})$--modules
 \begin{center}
@@ -880,7 +885,7 @@ We hope to gain control (as in \Cref{HopfRingForEBP} or \Cref{Pi3ForCplxOrientab
 \Z\{\beta_j\}_j \arrow["\cong"]{r} & \sheaf O C^3(\G_a; \Gm).
 \end{tikzcd}
 \end{center}
-By induction on degree, one sees that $\alpha$ is surjective, and since the source and target are abelian groups of graded finite rank \emph{and the source is free}, we need only check that they have the same rational Poincar\'e series to conclude that $\alpha$ is an isomorphism.  Over $\Spec \Q$ we can use the logarithm to construct an isomorphism \[\Spec \Q \times (\moduli{fgl} \times C^k(\G; \Gm)) \to \Spec \Q \times (\moduli{fgl} \times C^k(\G_a; \Gm)),\] hence the Poincar\'e series agree, hence $\alpha \otimes \Q$ is an isomorphism, and finally $\alpha$ is too.
+By induction on degree, one sees that $\alpha$ is surjective, and since the source and target are abelian groups of graded finite rank \emph{and the source is free}, we need only check that they have the same rational \index{Poincar\'e series}Poincar\'e series to conclude that $\alpha$ is an isomorphism.  Over $\Spec \Q$ we can use the \index{formal group!logarithm}logarithm to construct an isomorphism \[\Spec \Q \times (\moduli{fgl} \times C^k(\G; \Gm)) \to \Spec \Q \times (\moduli{fgl} \times C^k(\G_a; \Gm)),\] hence the Poincar\'e series agree, hence $\alpha \otimes \Q$ is an isomorphism, and finally $\alpha$ is too.
 
 Lastly, one checks that this basis gives us access to the desired collection of good subcoalgebras: these are indexed on an integer $d$, spanned by those basis vectors of degree at most $d$.
 \end{proof}
@@ -898,7 +903,7 @@ Lastly, one checks that this basis gives us access to the desired collection of 
 
 The first goal of this Lecture is to give the briefest possible summary of the theory of elliptic curves that covers the topics necessary to us in the coming sections.  Accordingly, we won't cover many topics that a sane introduction to elliptic curves would make a point to cover, and---perhaps worse---we will hardly prove anything.  We will, however, discover a place where ``$C_3 \G$'' appears internally to the theory of elliptic curves, and I hope nonetheless that this will give the arithmetically disinclined reader a foothold on the ``elliptic'' part of ``elliptic cohomology''.
 
-To begin, recall that an elliptic curve in the complex setting is a torus, and it admits a presentation by selecting a lattice $\Lambda$ of full rank in $\C$ and forming the quotient \[\C \xrightarrow{\pi_\Lambda} \C / \Lambda =: E_\Lambda.\]  A meromorphic function $f$ on $E_\Lambda$ pulls back to give a meromorphic function $\pi_\Lambda^* f$ on $\C$ which satisfies a periodicity constraint in the form of the functional equation \[\pi_\Lambda^* f(z + \Lambda) = \pi_\Lambda^* f(z).\]  It follows immediately that there are no holomorphic such functions, save the constants---such a function would be bounded, and Liouville's theorem would apply.  It is, however, possible to build the following meromorphic special function, which has poles of order $2$ at the lattice points and satisfies the periodicity constraints: \[\wp_\Lambda(z) = \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \{0\}} \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2}.\]  Its derivative is also a meromorphic function satisfying the periodicity constraint: \[\wp_\Lambda'(z) = -2 \sum_{\omega \in \Lambda} \frac{1}{(z - \omega)^3}.\]  In fact, these two functions generate all other meromorphic functions on $E_\Lambda$, in the sense that the subsheaf spanned by the algebra generators $\wp_\Lambda$ and $\wp_\Lambda'$ is exactly $\pi_\Lambda^* \sheaf M_{E_\Lambda}$.  This algebra is subject to the following relation, in the form of a differential equation: \[\wp_\Lambda'(z)^2 = 4 \wp_\Lambda(z)^3 - 60G_4(\Lambda) \wp_\Lambda(z) - 140G_6(\Lambda),\] for some special values $G_4(\Lambda), G_6(\Lambda) \in \C$.  Accordingly, writing $C \subseteq \CP^2$ for the projective curve $wy^2 = 4x^3 - G_4(\Lambda) w^2 x - G_6(\Lambda) w^3$, there is an analytic group isomorphism
+To begin, recall that an \index{elliptic curve}elliptic curve in the complex setting is a torus, and it admits a presentation by selecting a lattice $\Lambda$ of full rank in $\C$ and forming the quotient \[\C \xrightarrow{\pi_\Lambda} \C / \Lambda =: E_\Lambda.\]  A meromorphic function $f$ on $E_\Lambda$ pulls back to give a meromorphic function $\pi_\Lambda^* f$ on $\C$ which satisfies a periodicity constraint in the form of the functional equation \[\pi_\Lambda^* f(z + \Lambda) = \pi_\Lambda^* f(z).\]  It follows immediately that there are no holomorphic such functions, save the constants---such a function would be bounded, and Liouville's theorem would apply.  It is, however, possible to build the following meromorphic special function, which has poles of order $2$ at the lattice points and satisfies the periodicity constraints: \[\wp_\Lambda(z) = \frac{1}{z^2} + \sum_{\omega \in \Lambda \setminus \{0\}} \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2}.\]  Its derivative is also a meromorphic function satisfying the periodicity constraint: \[\wp_\Lambda'(z) = -2 \sum_{\omega \in \Lambda} \frac{1}{(z - \omega)^3}.\]  In fact, these two functions generate all other meromorphic functions on $E_\Lambda$, in the sense that the subsheaf spanned by the algebra generators $\wp_\Lambda$ and $\wp_\Lambda'$ is exactly $\pi_\Lambda^* \sheaf M_{E_\Lambda}$.  This algebra is subject to the following relation, in the form of a differential equation: \[\wp_\Lambda'(z)^2 = 4 \wp_\Lambda(z)^3 - 60G_4(\Lambda) \wp_\Lambda(z) - 140G_6(\Lambda),\] for some special values $G_4(\Lambda), G_6(\Lambda) \in \C$.  Accordingly, writing $C \subseteq \CP^2$ for the projective curve $wy^2 = 4x^3 - G_4(\Lambda) w^2 x - G_6(\Lambda) w^3$, there is an analytic group isomorphism
 \begin{align*}
 E_\Lambda & \to C, \\
 z \pmod \Lambda & \mapsto [1: \wp_\Lambda(z): \wp_\Lambda'(z)].
@@ -910,9 +915,10 @@ Before proceeding, the values $G_4(\Lambda)$ and $G_6(\Lambda)$ are themselves i
 \end{remark}
 
 There is a second standard embedding of a complex elliptic curve into projective space, using \index{theta function@$\theta$--function}\textit{$\theta$--functions}, which are most naturally expressed with an alternative basic presentation of an elliptic curve.  Select a lattice $\Lambda$ and a basis for it, and rescale the lattice so that the basis takes the form $\{1, \tau\}$ with $\tau$ in the upper half-plane.  Then, the normalized exponential function $\C \to \C^{\times}$ given by $z \mapsto \exp(2 \pi i z)$ has $1 \cdot \Z$ as its kernel.  Setting $q = \exp(2 \pi i \tau)$ to account for the missing component of the kernel of $\pi_\Lambda$, we get a second presentation of $E_\Lambda$ as $\C^\times / q^{\Z}$, as pictured in \Cref{AnnulusPicture}.
+\todo{Draw an exponential curve in the plan mirroring a meridinal band on the torus.}
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[baseline=(current bounding box.center)]
+\begin{tikzpicture}[baseline=(current bounding box.center),scale=0.6]
 % http://tex.stackexchange.com/questions/202607/drawing-discs-with-circular-holes-with-tikz
     \pgfresetboundingbox
     \clip (-3.5,-3.5) rectangle (3.5,3.5);
@@ -1008,7 +1014,7 @@ A & = \theta_q^{0, 0}(0) = \sum_n q^{n^2}, &
 B & = \theta_q^{0, 1/2}(0) = \sum_n (-1)^n q^{n^2}, &
 C & = \theta_q^{1/2, 0}(0) = \sum_n q^{(n + 1/2)^2},
 \end{align*}
-upon which there is the additional ``Jacobi'' relation \[A^4 = B^4 + C^4.\]
+upon which there is the additional \index{theta function@$\theta$--function!Jacobi relation}\textit{Jacobi relation} \[A^4 = B^4 + C^4.\]
 \end{example}
 
 \begin{figure}
@@ -1029,8 +1035,8 @@ $\theta_q^{1/2,1/2}$ & $q^{\Z}$. \\ \bottomrule
 This embedding of $E_\Lambda$ as an intersection of quadric surfaces in $\CP^3$ is quite different from the Weierstrass embedding.  Nonetheless, the embeddings are analytically related.  Namely, there is an equality \[\frac{d^2}{dz^2} \log \theta_q(u) = \wp_\Lambda(z).\]  Separately, Weierstrass considered a function $\sigma_\Lambda$, defined by \[\sigma_\Lambda(z) = z \prod_{\omega \in \Lambda \setminus 0} \left( 1 - \frac{z}{\omega} \right) \cdot \exp \left[ \frac{z}{\omega} + \frac{1}{2} \left( \frac{z}{\omega} \right)^2 \right],\] which also has the property that its second logarithmic derivative is $\wp$ and so is ``basically $\theta_q^{1/2,1/2}$''.  In fact, any elliptic function can be written in the form \[c \cdot \prod_{i=1}^n \frac{\sigma_\Lambda(z - a_i)}{\sigma_\Lambda(z - b_i)}.\]
 \end{remark}
 
-The $\theta$--functions version of the story has two main successes: it continues to make sense in algebraic geometry, without invoking transcendental functions, and in fact there is a version of this story for an \emph{arbitrary} abelian variety.  It turns out that all abelian varieties are projective, and the theorem sitting at the heart of this claim is
-\begin{corollary}[{``Theorem of the Cube'', \cite[Corollary I.6.4 and Theorem I.7.1]{Milne}}]\label{Theta3IsTrivial}
+The $\theta$--functions version of the story has two main successes: it continues to make sense in algebraic geometry, without invoking transcendental functions, and in fact there is a version of this story for an \emph{arbitrary} \index{abelian variety}abelian variety.  It turns out that all abelian varieties are projective, and the theorem sitting at the heart of this claim is
+\begin{corollary}[{``Theorem of the Cube'', \cite[Corollary I.6.4 and Theorem I.7.1]{Milne}}]\label{Theta3IsTrivial}\index{theorem of the cube}\index{theta structure@$\Theta$--structure}
 Let $A$ be an abelian variety, let $p_i: A \times A \times A \to A$ be the projection onto the $i${\th} factor, and let $p_{ij} = p_i +_A p_j$, $p_{ijk} = p_i +_A p_j +_A p_k$.  Then for any invertible sheaf $\L$ on $A$, the sheaf \[\Theta^3(\L) := \frac{p_{123}^* \L \otimes p_1^* \L \otimes p_2^* \L \otimes p_3^* \L}{p_{12}^* \L \otimes p_{23}^* \L \otimes p_{31}^* \L \otimes p_\emptyset^* \L} = \bigotimes_{I \subseteq \{1, 2, 3\}} (p_I^* \L)^{(-1)^{|I| - 1}}\] on $A \times A \times A$ is trivial.  If $\L$ is rigid (i.e., it has a specified trivialization at the identity point of $A$), then $\Theta^3(\L)$ is \emph{canonically} trivialized by a section $s(A; \L)$. \qed
 \end{corollary}
 
@@ -1048,14 +1054,14 @@ The section $s(A; \L)$ satisfies three familiar properties:
 \end{remark}
 
 \begin{remark}
-The proof of projectivity arising from this method rests on choosing a line bundle on $A$, extracting from it a very ample line bundle, and then constructing some generating global sections to get an embedding into $\P(\L^{\oplus n})$~\cite[Remark II.7.8.2]{Hartshorne}.  Mumford~\cite{MumfordEquationsI} showed that a choice of ``$\theta$--structure'' on $(A, \L)$, which is only slightly more data, gives a canonical choice of generating global sections as well as a canonical identification of $\P(\L^{\oplus n})$ with a \emph{fixed} projective space.  This is suitable for studying how these equations change as one considers different points in the moduli of abelian varieties~\cite{MumfordEquationsII,MumfordEquationsIII}.
+The proof of projectivity arising from this method rests on choosing a line bundle on $A$, extracting from it a very ample line bundle, and then constructing some generating global sections to get an embedding into $\P(\L^{\oplus n})$~\cite[Remark II.7.8.2]{Hartshorne}.  Mumford~\cite{MumfordEquationsI} showed that a choice of ``$\theta$--structure'' on $(A, \L)$, which is only slightly more data, gives a canonical choice of generating global sections as well as a canonical identification of $\P(\L^{\oplus n})$ with a \emph{fixed} projective space.  This is suitable for studying how these equations change as one considers different points in the \index{abelian variety!moduli}moduli of abelian varieties~\cite{MumfordEquationsII,MumfordEquationsIII}.
 \end{remark}
 
 \begin{remark}[{\cite[Section 4]{Breen}}]
 Breen presented a relative version of this story that applies to arbitrary \emph{commutative group schemes}, where the basic objects are a choice of line bundle $\L$ over a commutative group scheme $A$, a choice of trivialization of $\Theta^3 \L$, and an epimorphism $\pi\co A' \to A$ that trivializes $\L$.
 \end{remark}
 
-Finally, we remark that the function \[e\co C^3(\G; \Gm) \to \InternalHom{FormalGroups}(\G_a^{\sm 2}, \G_m)\] considered in \Cref{ChromaticKUCoopnsSection} also manifests in the theory of abelian varieties.  Let $A$ be an abelian variety equipped with a line bundle $\L$.  Suppose that $s$ is a symmetric, rigid section of $\Theta^3 \L$, sometimes called a \index{cubical structure}\textit{cubical structure on $\L$}.  Using the identification $(p_{12} - p_1 - p_2)^* \Theta^2 \L = \Theta^3 \L$, this induces the structure of a \index{symmetric biextension}\textit{symmetric biextension} on $\Theta^2 \L$ via the multiplication maps
+Finally, we remark that the function \[e\co C^3(\G; \Gm) \to \InternalHom{FormalGroups}(\G^{\sm 2}, \Gm)\] considered in \Cref{ChromaticKUCoopnsSection} also manifests in the theory of abelian varieties.  Let $A$ be an abelian variety equipped with a line bundle $\L$.  Suppose that $s$ is a symmetric, rigid section of $\Theta^3 \L$, sometimes called a \index{cubical structure}\textit{cubical structure on $\L$}.  Using the identification $(p_{12} - p_1 - p_2)^* \Theta^2 \L = \Theta^3 \L$, this induces the structure of a \index{symmetric biextension}\textit{symmetric biextension} on $\Theta^2 \L$ via the multiplication maps
 \begin{align*}
 (\Theta^2 \L)_{x, y} \otimes (\Theta^2 \L)_{x', y} & \to (\Theta^2 \L)_{x + x', y}, &
 (\Theta^2 \L)_{x, y} \otimes (\Theta^2 \L)_{x, y'} & \to (\Theta^2 \L)_{x, y + y'}.
@@ -1075,8 +1081,9 @@ This function $e_{p^j}$ is called the \index{Weil pairing}\textit{($p^j$){\th} W
 \begin{tikzpicture}[x  = {(-0.707cm,-0.707cm)},
                     y  = {(0.9659cm,-0.25882cm)},
                     z  = {(0cm,1cm)},
-                    scale = 1.8,
-                    color = {lightgray}]
+                    scale = 1.3,
+                    color = {lightgray},
+                    baseline=(current bounding box.center)]
 % style of faces
 \tikzset{facestyle/.style={fill=black!25,draw=black,very thin,line join=round,opacity=.4},slicestyle/.style={fill=black!25,draw=black,very thin,line join=round,opacity=.8}}
 %\tikzset{facestyle/.style={fill=cyan,draw=blue,very thin,line join=round,opacity=.4},slicestyle/.style={fill=cyan,draw=blue,very thin,line join=round,opacity=.7}}
@@ -1133,7 +1140,7 @@ This function $e_{p^j}$ is called the \index{Weil pairing}\textit{($p^j$){\th} W
      (1.5,2,0) -- node [right,black] {$a_2$} (1.5,2,0);
 \end{tikzpicture}
 \hspace{0.5em}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.8,baseline=(current bounding box.center)]
     \draw[very thin,black,line join=round,fill=black!30]
         (0,1) -- node [below,black] {$A \times \{a_2\}$} (3,1) -- node[right,black] {$\Gm$} (3,4) -- (0,4) -- (0,1);
     \draw[very thin,black,line join=round,fill=black!70]
@@ -1155,7 +1162,7 @@ An \index{elliptic spectrum}\textit{elliptic spectrum} consists of a even--perio
 \end{definition}
 
 \begin{remark}
-Our preference for \emph{isomorphisms} of elliptic curves rather than general homomorphisms is prompted by our study of stable operations: we have seen that a stable operation between complex-oriented ring spectra can only ever give rise to an isomorphism of formal group laws (incorporating a suitable base change).  More broadly, we have also found that the collection of possible isomorphisms of formal group laws organizes into the \index{context!stable}\textit{stable context}, a very important object in our study.  In the next Case Study, we will develop a theory (with an attendant notion of context) which incorporates \emph{isogenies} of elliptic curves in addition to isomorphisms.
+Our preference for \emph{isomorphisms} of elliptic curves rather than general homomorphisms is prompted by our study of stable operations: we have seen that a stable operation between complex-oriented ring spectra can only ever give rise to an isomorphism of formal group laws (incorporating a suitable base change).  More broadly, we have also found that the collection of possible isomorphisms of formal group laws organizes into the \index{context!stable}\textit{stable context}, a very important object in our study.  In \Cref{PowerOpnsChapter}, we will develop a theory (with an attendant notion of context) which incorporates \index{isogeny}\textit{isogenies} of elliptic curves in addition to isomorphisms.
 \end{remark}
 
 Coupling \Cref{DefnEllipticSpectrum} to \Cref{BU6Triumvirate} and \Cref{Theta3IsTrivial}, we conclude the following:
@@ -1178,11 +1185,11 @@ T^0 (E_\Lambda)^\wedge_0 \arrow[iso]{r} \arrow[iso, leftarrow]{d} & \C \arrow[eq
 T^0 (\G_a \times \Spec \C) \arrow[iso]{r} & \C.
 \end{tikzcd}
 \end{center}
-Accordingly, we define an elliptic spectrum $HE_\Lambda P$ whose underlying ring spectrum is $H\C P$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to HE_\Lambda P,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n \in HE_\Lambda P_{2n}$, where $u_\Lambda$ is the canonical section of $\widetilde{\pi_2 HE_\Lambda P} = \omega_{\CP^\infty_{HE_\Lambda P}}$ and $\Phi_\Lambda(M) \in \C$ is some resulting complex number.
+Accordingly, we define an elliptic spectrum $HE_\Lambda P$ whose underlying ring spectrum is $H\C P$ and whose associated elliptic curve and isomorphism are $E_\Lambda$ and $\phi$.  This spectrum receives a natural map \[MU[6, \infty) \to HE_\Lambda P,\] which to a bordism class $M \in MU[6, \infty)_{2n}$ assigns an element $\Phi_\Lambda(M) \cdot u_\Lambda^n \in HE_\Lambda P_{2n}$, where $u_\Lambda$ is the canonical section of $\widetilde{\pi_2 HE_\Lambda P} = \omega_{\CP^\infty_{HE_\Lambda P}} = \omega_{(E_\Lambda)^\wedge_0}$ and $\Phi_\Lambda(M) \in \C$ is some resulting complex number.
 \end{example}
 
 \begin{example}
-The naturality of the $MU[6, \infty)$--orientation moves us to consider more than one elliptic spectrum at a time.  If $\Lambda'$ is another lattice with $\Lambda' = \lambda \cdot \Lambda$, then the multiplication map $\lambda\co \C \to \C$ descends to an isomorphism $E_\Lambda \to E_{\Lambda'}$ and hence a map of elliptic spectra $HE_{\Lambda'}P \to HE_\Lambda P$ acting by $u_{\Lambda'} \mapsto \lambda u_\Lambda$.  The commuting triangle in \Cref{EllipticSpectraAreOriented} then begets the \emph{modularity relation} \[\Phi(M; \lambda \cdot \Lambda) = \lambda^{-n} \Phi(M; \Lambda).\]
+The naturality of the $MU[6, \infty)$--orientation moves us to consider more than one elliptic spectrum at a time.  If $\Lambda'$ is another lattice with $\Lambda' = \lambda \cdot \Lambda$, then the multiplication map $\lambda\co \C \to \C$ descends to an isomorphism $E_\Lambda \to E_{\Lambda'}$ and hence a map of elliptic spectra $HE_{\Lambda'}P \to HE_\Lambda P$ acting by $u_{\Lambda'} \mapsto \lambda u_\Lambda$.  The commuting triangle in \Cref{EllipticSpectraAreOriented} then begets the \index{modular form!modularity relation}\textit{modularity relation} \[\Phi(M; \lambda \cdot \Lambda) = \lambda^{-n} \Phi(M; \Lambda).\]
 \end{example}
 
 \begin{example}\label{OrdinaryHomologyInUpperHalfPlaneEx}
@@ -1191,7 +1198,7 @@ This equation leads us to consider all curves $E_\Lambda$ simultaneously---or, e
 Using these ideas, we construct a cohomology theory $H \sheaf O_{\h} P$, where $\sheaf O_{\h}$ is the ring of complex-analytic functions on the upper half-plane.  The $\h$--parametrized family of elliptic curves \[\h \times \C / (1, \tau) \to \h,\] together with the logarithm, present $H \sheaf O_{\h} P$ as an elliptic spectrum $H\h P$.  The canonical map $\Phi\co MU[6, \infty) \to H\h P$ specializes at a point to give the functions $\Phi(-; \Lambda)$ considered above, and hence $\Phi(M) \in u^k \cdot \sheaf O_{\h}$ is itself a complex modular form of weight $k$.
 \end{example}
 
-In fact, this totalized map $\Phi$ is a ghost of Ochanine and Witten's modular genus from \Cref{OchanineWittenTheorem}, as a bordism class in $MU[6, \infty)_{2n}$ is, in particular, a bordism class in $M\String_{2n}$.  However, they know more about this function than we can presently see: for instance, they claim that it has an integral $q$--expansion.  In terms of the modular form, its $q$--expansion is given by building the Taylor expansion ``at $\infty$'' (using that unspoken decay condition).  In order to use our topological methods, it would be nice to have an elliptic spectrum embodying these $q$--expansions in the same way that $H\h P$ embodied holomorphic functions, together with a comparison map that trades a modular form for its $q$--expansion.  The main ideas leading to such a spectrum come from considering the behavior of $E_\Lambda$ as $\tau$ tends to $i \cdot \infty$.
+In fact, this totalized map $\Phi$ is a ghost of Ochanine and Witten's modular genus from \Cref{OchanineWittenTheorem}, as a bordism class in $MU[6, \infty)_{2n}$ is, in particular, a bordism class in $M\String_{2n}$.  However, they know more about this function than we can presently see: for instance, they claim that it has an integral \index{modular form!q expansion@$q$--expansion}$q$--expansion.  In terms of the modular form, its $q$--expansion is given by building the Taylor expansion ``at $\infty$'' (using that unspoken decay condition).  In order to use our topological methods, it would be nice to have an elliptic spectrum embodying these $q$--expansions in the same way that $H\h P$ embodied holomorphic functions, together with a comparison map that trades a modular form for its $q$--expansion.  The main ideas leading to such a spectrum come from considering the behavior of $E_\Lambda$ as $\tau$ tends to $i \cdot \infty$.
 
 \begin{definition}
 Note that as $\tau$ tends to $i \cdot \infty$, the parameter $q = \exp(2 \pi i \tau)$ tends to $0$.  In the multiplicative model of \Cref{SectionEllipticCurvesAndThetaFunctions}, we considered the punctured complex disk $D'$ with its associated family of elliptic curves \[C'_{\mathrm{an}} = \C^\times \times D' / (u, q) \sim (qu, q).\]  The fiber of $C'$ over a particular point $q \in D'$ is the curve $\C^\times / q^{\Z}$. %  , and $\theta$ determines a holomorphic function on the total space $\C^\times \times D'$.
@@ -1211,7 +1218,7 @@ The singularities of a degenerate Weierstrass equation always occur outside of a
 \end{remark}
 
 \begin{definition}[{\cite[Section 5]{MoravaFormsOfKthy}, \cite[Section 2.7]{AHSTheoremOfTheCube}}]\label{TateKTheoryDefn}
-The generalized elliptic spectrum $K_{\Tate}$, called \index{Tate K theory@Tate $K$--theory}\textit{Tate $K$--theory}, has as its underlying spectrum $KU\ps{q}$.  The associated generalized elliptic curve is $C_{\Tate}$, and the isomorphism $\CP^\infty_{KU\ps{q}} \cong (C_{\Tate})^\wedge_0$ is $\phi$ from \Cref{TwistedCubicGivesGm}.
+The generalized \index{elliptic spectrum!generalized}elliptic spectrum $K_{\Tate}$, called \index{Tate K theory@Tate $K$--theory}\textit{Tate $K$--theory}, has as its underlying spectrum $KU\ps{q}$.  The associated generalized elliptic curve is $C_{\Tate}$, and the isomorphism $\CP^\infty_{KU\ps{q}} \cong (C_{\Tate})^\wedge_0$ is $\phi$ from \Cref{TwistedCubicGivesGm}.
 \end{definition}
 
 \noindent The trade for the breadth of this definition is that theorems pulled from the study of abelian varities have to be shown to extend uniquely to those generalized elliptic curves which are not smooth curves.
@@ -1256,7 +1263,7 @@ MU[6, \infty) \arrow["\delta"]{r} \arrow["\sigma_{\Tate}"']{drrr} & MSU \arrow["
 & & & KU\ps{q}.
 \end{tikzcd}
 \end{center}
-We will analyze this triangle by comparing $\tilde\theta$ to the usual $MUP$--orientation of $KU$, which selects the coordinate $f(u) = 1 - u$ on the formal completion of $\Gm = \Spec \Z[u^\pm]$.  Appealing to \Cref{BUtoBUZ}, the induced $MU$--orientation \[MU \xrightarrow{\delta} MUP \xrightarrow{\Td} KU\] sends $f$ to the rigid section $\delta f$ of \[\Theta^1 \sheaf I(0) = \sheaf I(0)_0 \otimes \sheaf I(0)^{-1} \cong \omega \otimes \sheaf I(0)\] given by \[\delta f = \frac{1}{1 - u} \left( - \frac{du}{u} \right).\]  The difference between $\delta \Td$ and $\delta \tilde\theta$ is expressed by an element $\psi \in C^1(\widehat C_{\Tate}; \Gm)$, given explicitly by the quotient formula \[\psi = \left(\frac{\Td(1)}{\Td(u)}\right)^{-1} \cdot \frac{\tilde \theta_q(1)}{\tilde \theta_q(u)} = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}.\]  This gives a re-expression of $\delta \tilde\theta$ as the composite \[\delta \tilde\theta\co MU \xrightarrow{\eta_R} MU \sm MU \simeq MU \sm BU_+ \xrightarrow{\delta\Td \sm \psi} K_{\Tate},\] and hence its effect on a line bundle is determined by the evaluation of this characteristic series: \[\psi(1 - \L) = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n \L)(1 - q^n \L^{-1})}.\]  Its effect on vector bundles in general is determined by the splitting principle and an exponential law, which after some computation~\cite[Section 2.7]{AHSTheoremOfTheCube} gives the generic formula \[\psi(\dim V \cdot 1 - V) = \bigotimes_{n \ge 1} \bigoplus_{j \ge 0} \Sym^j(\dim V \cdot 1 - V \otimes_{\R} \C) q^{jn} =: \bigotimes_{n \ge 1} \Sym_{q^n}(- \bar V_{\C}).\]  Finally, the map $(\eta_R)_*\co MU_* \to \pi_*(MU \sm \Susp^\infty_+ BU)$ sends a manifold $M$ with stable normal bundle $\nu$ to the pair $(M, \nu)$, so we at last compute
+We will analyze this triangle by comparing $\tilde\theta$ to the usual $MUP$--orientation of $KU$, which selects the coordinate $f(u) = 1 - u$ on the formal completion of $\Gm = \Spec \Z[u^\pm]$.  Appealing to \Cref{BUtoBUZ}, the induced $MU$--orientation \[MU \xrightarrow{\delta} MUP \xrightarrow{\Td} KU\] sends $f$ to the rigid section $\delta f$ of \[\Theta^1 \sheaf I(0) = \sheaf I(0)_0 \otimes \sheaf I(0)^{-1} \cong \omega \otimes \sheaf I(0)\] given by \[\delta f = \frac{1}{1 - u} \left( - \frac{du}{u} \right).\]  The difference between $\delta \Td$ and $\delta \tilde\theta$ is expressed by an element $\psi \in C^1(\widehat C_{\Tate}; \Gm)$, given explicitly by the quotient formula \[\psi = \left(\frac{\Td(1)}{\Td(u)}\right)^{-1} \cdot \frac{\tilde \theta_q(1)}{\tilde \theta_q(u)} = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n u)(1 - q^n u^{-1})}.\]  This gives a re-expression of $\delta \tilde\theta$ as the composite \[\delta \tilde\theta\co MU \xrightarrow{\eta_R} MU \sm MU \simeq MU \sm BU_+ \xrightarrow{\delta\Td \sm \psi} K_{\Tate},\] and hence its effect on a line bundle is determined by the evaluation of this \index{characteristic series}characteristic series: \[\psi(1 - \L) = \prod_{n \ge 1} \frac{(1 - q^n)^2}{(1 - q^n \L)(1 - q^n \L^{-1})}.\]  Its effect on vector bundles in general is determined by the \index{splitting principle}splitting principle and an exponential law, which after some computation~\cite[Section 2.7]{AHSTheoremOfTheCube} gives the generic formula \[\psi(\dim V \cdot 1 - V) = \bigotimes_{n \ge 1} \bigoplus_{j \ge 0} \Sym^j(\dim V \cdot 1 - V \otimes_{\R} \C) q^{jn} =: \bigotimes_{n \ge 1} \Sym_{q^n}(- \bar V_{\C}).\]  Finally, the map $(\eta_R)_*\co MU_* \to \pi_*(MU \sm \Susp^\infty_+ BU)$ sends a manifold $M$ with stable normal bundle $\nu$ to the pair $(M, \nu)$, so we at last compute
 \begin{align*}
 \sigma_{\Tate}(M \in \pi_{2n} MU[6, \infty)) & = (\delta \Td \sm \theta')(M, \nu) \\
 & =: \Td\left(M; \bigotimes_{n \ge 1} \Sym_{q^n}(\bar \tau_{\C}) \right).
@@ -1273,7 +1280,7 @@ where $G_{2k}$ is the $2k${\th} Eisenstein series.  Noting that $G_2$ is \emph{n
 \end{remark}
 
 \begin{remark}[{\cite{AndoMorava}}]
-Another location where this series $\psi$ appears is in the theory of Tate $p$--divisible groups of Ando and Morava (and, in some sense, in the sense of Katz and Mazur).  For a formal group $\G$ over $\Spf R$ with group law $+_\phi$, they consider the Weierstrass product \[\Theta_{\phi}(x; q) = x \cdot \prod_{\substack{k \in \Z \\ k \ne 0}} \frac{(x +_\phi [k]_\phi(q))}{[k]_\phi(q)} \in R\ps{x,q},\] which plays the role of a kind of $\theta$--function for $\G$.  They also connect this series the quotient function mapping to the group scheme $\G / q^{\Z}$ (in the sense of \Cref{NormForFns}), which they further identify as the universal extension of $\G$ by a constant $p$--divisible group of dimension $1$.  In the presense of a global object $\mathbb G$ specializing to $\G$ (as in the case of $\G_a$ or $\G_m$), they show how to modify this product to an analytically convergent power series, recovering the characteristic series for the $\widehat A$--genus and the $L$--genus.  The higher height analogues of these results seem very mysterious and very interesting.\footnote{Morava is generally full of interesting ideas about genera---see, for instance,~\cite{MoravaMotivicThomIso}.}
+Another location where this series $\psi$ appears is in the theory of \index{p divisible group@$p$--divisible group!Tate}Tate $p$--divisible groups of Ando and Morava (and, in some sense, in the sense of Katz and Mazur\citeme{Find a reference}).  For a formal group $\G$ over $\Spf R$ with group law $+_\phi$, they consider the Weierstrass product \[\Theta_{\phi}(x; q) = x \cdot \prod_{\substack{k \in \Z \\ k \ne 0}} \frac{(x +_\phi [k]_\phi(q))}{[k]_\phi(q)} \in R\ps{x,q},\] which plays the role of a kind of $\theta$--function for $\G$.  They also connect this series the \index{formal group!quotient}quotient function mapping to the group scheme $\G / q^{\Z}$ (in the sense of \Cref{NormForFns}), which they further identify as the \index{formal group!universal constant extension}universal extension of $\G$ by a constant $p$--divisible group of dimension $1$.  In the presense of a global object $\mathbb G$ specializing to $\G$ (as in the case of $\G_a$ or $\G_m$), they show how to modify this product to an analytically convergent power series, recovering the characteristic series for the \index{A hat genus@$\widehat A$--genus}$\widehat A$--genus and the \index{L genus@$L$--genus}$L$--genus.  The higher height analogues of these results seem very mysterious and very interesting.\footnote{Morava is generally full of interesting ideas about genera---see, for instance,~\cite{MoravaMotivicThomIso}.}
 \end{remark}
 
 \begin{remark}[{\cite{AFG}}]
@@ -1294,9 +1301,9 @@ Ando, French, and Ganter have given a construction that convert $MU[2k, \infty)$
 
 \section{Chromatic \texorpdfstring{$\Spin$}{Spin} and \texorpdfstring{$\String$}{String} orientations}
 
-We now turn to understanding $M\String$--orientations in turns of $MU[6, \infty)$--orientations.  We will approach this in successive passes, keeping the desired picture sharp the entire time but introducing generality slowly.  Unfortunately, most of the original source material~\cite{HAS,StricklandFSKS} for this has not been published, and hence it is difficult to give references.\footnote{Versions of some of this have appeared in work of Kitchloo and Laures~\cite{KitchlooLaures}.}  We have gone to some lengths to prepare the reader for the sorts of arguments that appear here: they are not so different from the arguments appearing elsewhere in this chapter.
+We now turn to understanding $M\String$--orientations in terms of $MU[6, \infty)$--orientations.  We will approach this in successive passes, keeping the desired picture sharp the entire time but introducing generality slowly.  Unfortunately, most of the original source material~\cite{HAS,StricklandFSKS} for this has not been published, and hence it is difficult to give references.  We have gone to some lengths to prepare the reader for the sorts of arguments that appear here: they are not so different from the arguments appearing elsewhere in this chapter.
 
-We begin at the maximally simple situation, where $2$ is inverted.  In this case, the Wood cofiber sequence \[\Susp kO \xrightarrow{\eta} kO \xrightarrow{c} kU \xrightarrow{\lambda} \Susp^2 kO\] becomes split, since $\eta$ is a $2$--torsion element.  By considering different underlying infinite-loopspaces, this gives a number of identifications:
+We begin at the maximally simple situation, where $2$ is inverted.  In this case, the Wood cofiber sequence \[\Susp kO \xrightarrow{\eta} kO \xrightarrow{c} kU \xrightarrow{\lambda} \Susp^2 kO\] becomes split, since $\eta$ is a $2$--torsion element.  By considering different underlying infinite-loopspaces, this gives a number of identifications of spaces as products:
 \begin{center}
 \begin{tikzcd}[row sep=0em]
 \OS{(-)}{0}: & BO \times \Z \arrow{r} & BU \times \Z \arrow{r} & \OS{kO}{2}, \\
@@ -1305,7 +1312,7 @@ We begin at the maximally simple situation, where $2$ is inverted.  In this case
 \OS{(-)}{6}: & \OS{kO}{6} \arrow{r} & BU[6, \infty) \arrow{r} & B\String.
 \end{tikzcd}
 \end{center}
-Next, by recognizing $c\co kO \to kU$ as the complexification map, we note that it lies in fixed points for complex-conjugation on $kU$.  The other gain that inverting $2$ gets us is an idempotent selecting this fixed point subspectrum: there are a pair of orthogonal idempotents
+Next, by recognizing $c\co kO \to kU$ as the complexification map, we note that it lies in fixed points for complex-conjugation on $kU$.  Having inverted $2$, we availa ourselves of an idempotent selecting these fixed point subspectra:
 \begin{align*}
 P_+ & = \frac{1 + \xi}{2}, &
 P_- & = \frac{1 - \xi}{2},
@@ -1319,7 +1326,7 @@ B\String_E & = C_3(\CP^\infty_E) / ([a, b, c] = -[-a, -b, -c]), \\
 \end{align*}
 \end{lemma}
 \begin{proof}[Proof sketch]
-This is a matter of translating the splittings above across \Cref{BU6Triumvirate}.  The complex-conjugation map $\xi$ acts on $C_k(\G)$ according to \[\xi[a_1, \ldots, a_n] = (-1)^n [-a_1, \ldots, -a_n],\] which encodes $B\String_E$ as the quotient of $BU[6, \infty)_E$ by $\im P_-$.  Finally, the claim about the homological scheme follows from the description of the cohomological formal scheme by Cartier duality.
+This is a matter of translating the splittings above across \Cref{BU6Triumvirate}.  The complex-conjugation map $\xi$ acts on $C_k(\G)$ according to \[\xi[a_1, \ldots, a_n] = (-1)^n [-a_1, \ldots, -a_n],\] which encodes $B\String_E$ as the quotient of $BU[6, \infty)_E$ by $\im P_-$.  Finally, the claim about the homological scheme follows from the description of the cohomological formal scheme by \index{formal group!Cartier dual}Cartier duality.
 \end{proof}
 
 The repeated appearances of the terms in the above splittings suggest that the composite \[\tau\co kU \xrightarrow{\lambda} \Susp^2 kO \xrightarrow{\Susp^2 c} \Susp^2 kU\] of the maps in two adjacent cofiber sequences itself plays an interesting role.  This is the map that encodes surjecting onto one factor in the preceding splitting, then reincluding it into the next splitting.
@@ -1349,11 +1356,11 @@ B\String_E & = C_3(\CP^\infty_E) / ([a, b, -a-b] = 0), \\
 \end{corollary}
 
 \begin{definition}
-We denote this last functor by $\Sigma^3(\CP^\infty_E; \Gm)$, and more generally if $\L$ is a line bundle on $\CP^\infty_E$ then $\Sigma^3(\CP^\infty_E; \L)$ will denote the subscheme of $C^3(\CP^\infty_E; \L)$ of those trivializations which restrict to the rigidifying trivialization of $\Theta^3 \L$ on the subscheme of $(\CP^\infty)^{\times 3}$ specified by $[a, b, -a-b]$.  Such trivializations are referred to as \index{Sigma structure@$\Sigma$--structure}\textit{$\Sigma$--structures on $\L$}, following Breen~\cite[Section 5]{Breen}.
+We denote this last functor by $\Sigma^3(\CP^\infty_E; \Gm)$, and more generally if $\L$ is a line bundle on $\CP^\infty_E$ then $\Sigma^3(\CP^\infty_E; \L)$ will denote the subscheme of $C^3(\CP^\infty_E; \L)$ of those trivializations which restrict to the rigidifying trivialization of $\Theta^3 \L$ \index{cubical structure}on the subscheme of $(\CP^\infty)^{\times 3}$ specified by $[a, b, -a-b]$.  Such trivializations are referred to as \index{Sigma structure@$\Sigma$--structure}\textit{$\Sigma$--structures on $\L$}, following Breen~\cite[Section 5]{Breen}.
 \end{definition}
 
 \begin{corollary}\label{OddPrimaryMStringTriumvirate}
-For $E$ a complex-orientable ring spectrum with $1/2 \in \pi_0 E$, the functor $\Sigma^3(\CP^\infty_E; \sheaf I(0))$ is isomorphic to the affine scheme $\Spec E_0 M\String$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $M\String \to E$. \qed
+For $E$ a complex-orientable ring spectrum with $1/2 \in \pi_0 E$, the functor $\Sigma^3(\CP^\infty_E; \sheaf I(0))$ is isomorphic to the affine scheme $\Spec E_0 M\String$.  Moreover, the $E_0$--points of this scheme biject with ring spectrum maps $M\String \to E$.\index{orientation!String@$\String$} \qed
 \end{corollary}
 
 \begin{remark}[{\cite[Section 26.1]{Hirzebruch}}]
@@ -1369,7 +1376,7 @@ We now turn to the \emph{much} more complicated setting where $2$ is not inverti
 \OS{kO[6, \infty)}{-2} \arrow{rr} \arrow[equal]{uu} & & \OS{kU[6, \infty)}{-2} \arrow{rr} \arrow[leftarrow,crossing over]{uu} & & \OS{(\Susp^2 kO)[6, \infty)}{-2}. \arrow[leftarrow,crossing over]{uu}
 \end{tikzcd}
 \end{center}
-Our program is to analyze the chromatic homology of $\Spin/SU$ as well as the maps to $BU[6, \infty)$ and $BSU$.  We hope to show that the scheme associated to $\Spin/SU$ selects exactly the relations defining $\Sigma$--structures \emph{and} that the map is flat, so that the associated bar spectral sequences
+Our program is to analyze the chromatic homology of $\Spin/SU$ as well as the maps to $BU[6, \infty)$ and $BSU$.  We hope to show that the scheme associated to $\Spin/SU$ selects exactly the relations defining $\Sigma$--structures \emph{and} that the map is flat, so that the associated \index{bar spectral sequence}bar spectral sequences
 \begin{align*}
 \Tor^{E_* \Spin/SU}_{*, *}(E_*, E_* BSU) & \Rightarrow E_* B\Spin, &
 \Tor^{E_* \Spin/SU}_{*, *}(E_*, E_* BU[6, \infty)) & \Rightarrow E_* B\String
@@ -1423,7 +1430,7 @@ where \[\lambda_3(f)\co (x, y) \mapsto f(x, y, -_{\G}(x +_{\G} y)).\]
 This is again a matter of checking that the outer rectangle commutes.
 \end{proof}
 
-This is as much as we can discern without delving into the analysis of the algebraic model.  Our primary concern in that respect is to show that the algebraic map has the desired flatness property---we will actually quickly show that our comparison map is an isomorphism in our pursuit of this.  Our main tool for addressing flatness is the following theorem, strongly related to the Milnor--Moore classification of Hopf algebras over a field of positive characteristic:
+This is as much as we can discern without delving into the analysis of the algebraic model.  Our primary concern in that respect is to show that the algebraic map has the desired flatness property---we will actually quickly show that our comparison map is an isomorphism in our pursuit of this.  Our main tool for addressing flatness is the following theorem, strongly related to the \index{Milnor--Moore}Milnor--Moore classification of Hopf algebras over a field of positive characteristic:
 
 \begin{lemma}\citeme{Gerd may have an article with a version of this forthcoming, and HAS cites [?, III, Section 3, n.\ 7], cf.\ also FPFP Example 12.10}
 Let $k$ be a field, and let $G$ and $H$ be group schemes over $\Spec k$.  A map $f\co G \to H$ of groups is faithfully flat if and only if for every test $k$--algebra $T$ and $T$--point $a \in H(T)$ there is a faithfully flat $T$--algebra $S$ and an $S$--point $b \in G(S)$ covering $a$. \qed
@@ -1436,7 +1443,7 @@ Let $k$ be a field, and let $G$ and $H$ be group schemes over $\Spec k$.  A map 
     \item This last condition can be reduced further: a map of affine algebraic group schemes is flat if and only if the induced map on tangent spaces is surjective.  Although $E_0 BSU$ is \emph{infinite} polynomial, and hence not algebraic, this technicality can be overcome by means of the grading and the same condition applies.
 \end{enumerate}
 
-We thus set about studying the points of $\Sigma^2(\G; \Gm)$ up to first order.  As in \Cref{SectionBU6AtInfiniteHeight}, we begin with the special case $\G = \G_a$ and understand the generic case in terms of perturbation.
+We thus set about studying the points of $\Sigma^2(\G; \Gm)$ up to first order.  As in \Cref{SectionBU6AtInfiniteHeight}, we begin with the special case $\G = \G_a$ and understand the generic case in terms of perturbation.\index{tangent spectral sequence}
 
 \begin{lemma}
 The map \[\Spec \Gamma_{\Z_{(2)}}[a_{2n + 1} \mid n \ge 1] \to \Sigma^2(\G_a; \Gm) \times \Spec \Z_{(2)}\] classifying the product \[\prod_{n \ge 1} \exp(a_{2n+1} c_{2n+1})\] is an isomorphism.  In turn, there is an isomorphism \[\Sigma^2(\G_a; \Gm) \times \Spec \F_2 \cong \Spec \left.\F_2\left[a_{2n+1}^{[2^j]} \middle| n \ge 1, j \ge 0\right] \middle/ \left(\left(a_{2n+1}^{[2^j]}\right)^2 = 0\right)\right. .\]
@@ -1454,7 +1461,7 @@ This is a combination of three observations:
 The injective comparison map \[\Spec E_0 \Spin/SU \to \Sigma^2(\CP^\infty_E; \Gm)\] of \Cref{SpinSUComparisonMapIsInj} is an isomorphism.
 \end{corollary}
 \begin{proof}
-The same Serre spectral sequence calculation as in the proof of \Cref{SpinSUComparisonMapIsInj} shows that the source and target of the factorization have the same Poincar\'e series, and we are done.
+The same Serre spectral sequence calculation as in the proof of \Cref{SpinSUComparisonMapIsInj} shows that the source and target of the factorization have the same \index{Poincar\'e series}Poincar\'e series, and we are done.
 \end{proof}
 
 From here, the work gets considerably more technical.  In particular, we will only be able to conclude flatness in the case $\height \G \le 2$, and then only through explicit calculation.  The results cleave into the following three pieces:
@@ -1499,7 +1506,7 @@ This, finally, makes explicit use of height $1$ and $2$ formal group laws.  The 
 
 \begin{figure}
 \centering
-\begin{tikzpicture}
+\begin{tikzpicture}[node distance=2.2em]
 \fill node[circle,draw=black] (1-2) {2};
 \fill node[draw, right of=1-2] (1-3) {3};
 \fill node[circle,draw=black, right of=1-3] (1-4) {4};
@@ -1582,11 +1589,11 @@ An \emph{immediate} consequence of the canonical cubical structure associated to
 \end{proof}
 
 \begin{remark}[{\cite[Theorem 7.2]{HopkinsICMZurich}}]
-More generally, the $\sigma$--orientation associated to a elliptic spectrum which either has $1/2 \in \pi_0 E$ or which has $\pi_* E$ torsion--free is supposed to lift through $M\String$.  Flatness in this setting is supposed to be approached via a fiber-by-fiber criterion, but here the grading tricked used above are less visibly helpful in lifting the classical algebraic result to the periodic one we require to make this work.  Rather than pursue this, we will give a sketch of the construction of the $\String$--orientation of $\tmf$ in \Cref{JuvitopTalkSection}, which automatically gives this much stronger result.
+More generally, the $\sigma$--orientation associated to a elliptic spectrum which either has $1/2 \in \pi_0 E$ or which has $\pi_* E$ torsion--free is supposed to lift through $M\String$.  Flatness in this setting is supposed to be approached via a fiber-by-fiber criterion, but the grading tricks used above are less visibly helpful in lifting the classical algebraic result to the periodic one we require to make this work.  Rather than pursue this, we will give a sketch of the construction of the $\String$--orientation of $\tmf$ in \Cref{JuvitopTalkSection}, which automatically gives this much stronger result.
 \end{remark}
 
 \begin{remark}[{\cite{KLW,StricklandFSKS}}]
-A the cohomology formal schemes of a number of other infinite loopspaces related to real $K$--theory admit reasonable descriptions, often even independent of height.  A routinely useful result in this arena is due to Yagita~\cite[Lemma 2.1]{Yagita}: for $k_\Gamma$ the connective cover of the Morava $K$--theory $K_\Gamma$, in the Atiyah--Hirzebruch spectral sequence \[E_2^{*, *} = Hk^* X \otimes_k k_\Gamma^* \Rightarrow k_\Gamma^* X,\] the differentials are given by \[d_r(x) = \begin{cases} 0 & \text{if $r \le 2(p^d - 1)$}, \\ \lambda Q_d x \otimes v_d & \text{if $r = 2(p^d - 1) + 1$} \end{cases}\] where $\lambda \ne 0$ and $Q_d$ is the $d${\th} Milnor primitive.  For instance, this shows that $K_* BO$ decomposes as \[K_* BO \cong K_*[b_2, b_4, b_{2^{d+1}-2}] \underset{K_*[b_{2j}^2 \mid j < 2^d]}{\otimes} K_*[b_{2j}^2].\]  This, coupled to a theorem governing the result of the double bar spectral sequence, powers most of the results of Kitchloo, Laures, and Wilson~\cite[Section 4]{KLW}.  Their stronger results on the connective covers of $BO \times \Z$ are summarized in \Cref{MoravaKthyOfBO}.  The remaining formal scheme $B\String_K$, our prized object, is harder to access by these means: the sequence $(\OS{HS^1}{2})_K \to B\String_K \to B\Spin_K$ is exact in the middle, but neither left- nor right-exact~\cite[pg.\ 234]{KLW}, causing significant headache.  Satisfyingly, their methods also tell us that our analysis fails at higher heights: the formal scheme $\Spin/SU_K$ contains $\coprod_{j \ge 3} (\OS{HS^1[2]}{j})_K$ as a subscheme, and it accounts for the kernel of the map to $B\Spin_K$.  Once $\height \Gamma \ge 3$ is satisfied, this kernel is nonzero.
+A the cohomology formal schemes of a number of other infinite loopspaces related to real $K$--theory admit reasonable descriptions, often even independent of height.  A routinely useful result in this arena is due to Yagita~\cite[Lemma 2.1]{Yagita}: for $k_\Gamma$ the connective cover of the Morava $K$--theory $K_\Gamma$, in the Atiyah--Hirzebruch spectral sequence \[E_2^{*, *} = Hk^* X \otimes_k k_\Gamma^* \Rightarrow k_\Gamma^* X,\] the differentials are given by \[d_r(x) = \begin{cases} 0 & \text{if $r \le 2(p^d - 1)$}, \\ \lambda Q_d x \otimes v_d & \text{if $r = 2(p^d - 1) + 1$} \end{cases}\] where $\lambda \ne 0$ and $Q_d$ is the \index{}$d${\th} Milnor primitive.  For instance, this shows that $K_* BO$ decomposes as \[K_* BO \cong K_*[b_2, b_4, b_{2^{d+1}-2}] \underset{K_*[b_{2j}^2 \mid j < 2^d]}{\otimes} K_*[b_{2j}^2].\]  This, coupled to a theorem governing the result of the double bar spectral sequence, powers most of the results of Kitchloo, Laures, and Wilson~\cite[Section 4]{KLW}.  Their stronger results on the connective covers of $BO \times \Z$ are summarized in \Cref{MoravaKthyOfBO}.  The remaining formal scheme $B\String_K$, our prized object, is harder to access by these means: the sequence $(\OS{HS^1}{2})_K \to B\String_K \to B\Spin_K$ is exact in the middle, but neither left- nor right-exact~\cite[pg.\ 234]{KLW}, causing significant headache.  Satisfyingly, their methods also tell us that our analysis fails at higher heights: the formal scheme $\Spin/SU_K$ contains $\coprod_{j \ge 3} (\OS{HS^1[2]}{j})_K$ as a subscheme, and it accounts for the kernel of the map to $B\Spin_K$.  Once $\height \Gamma \ge 3$ is satisfied, this kernel is nonzero.
 \end{remark}
 
 \begin{figure}
