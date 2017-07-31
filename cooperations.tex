@@ -704,7 +704,7 @@ Note that the module $D^*(\G_0)$ carries some natural operations:
 With this, we come to the main theorem of this Lecture:
 
 \begin{theorem}[{\cite[Th\'eor\`eme 4.2]{GrothendieckCristaux}, \cite[Sections III.8-9]{Demazure}}]\label{MainContraDieudonneThm}
-The functor $D^*$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups $\G_0$ over $k$ of finite $p$--height and \index{Dieudonne module@Dieudonn\'e module}\textit{Dieudonn\'e modules}, which are modules $M$ over the Cartier--Dieudonn\'e ring \[\Cart_p = \left. \W_p(k)\<F,V\> \middle/ \left( \begin{array}{c} FV = VF = p, \\ Fw = w^\phi F, \\ wV = Vw^\phi \end{array} \right) \right.\] which are free and finite rank over $\W_p(k)$.
+The (de Rham--Dieudonn\'e) functor $D^*$ determines a contravariant equivalence of categories between smooth $1$--dimensional formal groups $\G_0$ over $k$ of finite $p$--height and \index{Dieudonne module@Dieudonn\'e module}\textit{Dieudonn\'e modules}, which are modules $M$ over the ring \[\Cart_p = \left. \W_p(k)\<F,V\> \middle/ \left( \begin{array}{c} FV = VF = p, \\ Fw = w^\phi F, \\ wV = Vw^\phi \end{array} \right) \right.\] which are additionally free and finite rank over $\W_p(k)$.
 \end{theorem}
 
 \begin{remark}
@@ -745,7 +745,7 @@ There is also a relationship between this representation of the Dieudonn\'e func
 0 \arrow{r} & \Lie(\G_a) \arrow{r} & \Lie(E) \arrow{r} & \Lie(\G) \arrow{r} \arrow[bend right, densely dotted]{l} & 0
 \end{tikzcd}
 \end{center}
-associated to the group scheme extension $E$ classified by $e(f)$.
+associated to the group scheme extension $E$ classified by $e(f)$.  Studying the universal extension of $\G$ by an additive formal group is an exceedingly interesting thing to do~\cite[Section V.4]{GrothendieckCristaux}, \cite{MazurMessing}, \cite[Section 11]{HopkinsGrossEquivVBs}.
 \end{remark}
 
 Having gotten some feel for the behavior and the usefulness of the Dieudonn\'e functor, we now turn our attention to some alternative presentations of it.  In this next presentation we will not have to worry about lifts to $\W_p(k)$, so we take $\G$ itself to be a formal group over a perfect field $k$ of positive characteristic $p$.  Cartier's \idxentry{functor of curves} is defined by the formula \[C\G = \CatOf{FormalSchemes}(\A^1, \G).\]  This is, again, a kind of relaxing of familiar data from Lie theory, taken from a different direction: rather than studying just the exponential curves, $C\G$ tracks all possible curves.  In \Cref{MfgII:LargeScales}, we considered three kinds of operations on a given curve $\gamma\co \A^1 \to \G$:
@@ -761,64 +761,18 @@ A curve $\gamma$ on a formal group is \index{p typical@$p$--typical!curve}$p$--t
 \end{definition}
 
 \begin{lemma}[{\cite[Equation 4.13]{ZinkCartierTheory}}]
-In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D_* \G$.  There is a natural section $C\G \to D_* \G$ called $p$--typification, given by the same formula as in \Cref{EveryLogHaspTypification}. \qed
+In the case that the base ring is $p$--local, $C\G$ splits as a sum of copies of $D_* \G$.  The operation of $p$--typification gives a natural section $C\G \to D_* \G$, given by the same formula as in \Cref{EveryLogHaspTypification}. \qed
 \end{lemma}
 
 This construction also plays the role of a Dieudonn\'e functor:
 
 \begin{theorem}[{\cite[Theorem 3.5 and Theorem 3.28]{ZinkCartierTheory}}]\label{CurveDieudonneTheorem}
-The functor $D_*$ determines a \emph{covariant} equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and Dieudonn\'e modules satisfying the three technical conditions of \Cref{MainContraDieudonneThm}. \qed
+The (Cartier--Dieudonn\'e) functor $D_*$ determines a \emph{covariant} equivalence of categories between smooth $1$--dimensional formal groups over $k$ of finite $p$--height and Dieudonn\'e modules. \qed
 \end{theorem}
 
-One of the main ingredients in the proof of \Cref{CurveDieudonneTheorem} is a representability result, which comes out of the following interesting construction.  The \index{Witt!formal scheme}\textit{Witt scheme} $\W$ represents power series of the form $\prod_{j=1}^\infty (1 - a_j x^j)$, and it carries the structure of a group scheme by re-factoring the product of two such power series.  Using a rational exponential and logarithm, we also have
-\begin{align*}
-\prod_{j=1}^\infty (1 - a_j x^j) & = \exp \log \prod_{j=1}^\infty (1 - a_j x^j) \\
-& = \exp \sum_{j=1}^\infty \left(-\sum_{k=1}^\infty \frac{1}{k} (a_j x^j)^k\right) \\
-& = \exp \sum_{n=1}^\infty \frac{-t^n}{n} \sum_{m \mid n} m a_m^{n/m} =: \exp \sum_{n=1}^\infty \frac{-t^n}{n} w_n(a).
-\end{align*}
-These polynomials $w_n$, called \idxentry{ghost polynomials}, describe an injective logarithmic map \[(w_1, w_2, \ldots) \co \W \to \Ga^\infty,\] the image of which is characterized by the property $w_n(a) \equiv w_{n/p}(a)^p \pmod{p^j}$ for $p^j$ the maximum power of $p$ dividing $n$.  Over a $\Z_{(p)}$--algebra, there is a natural map on ghost components \[t(w_*(a_*))_{n'p^j} = (w_*(a_{p^j})),\] witnessing a decomposition $\W \times \Spec_{(p)} \cong \prod_{p \nmid n} \W_p$.  Both of these objects are natural limits of their truncations to finitely many power series product terms, and hence they both admit natural \emph{formal} objects, $\widehat{\W}$ and $\widehat{\W}_p$, by taking colimits of the formal completions of these truncations.
-
-\begin{lemma}[{\cite[Chapter 3]{ZinkCartierTheory}, \cite[Section III.4]{LazardCFGs}}]
-There are natural correspondences
-\begin{align*}
-\CatOf{FormalGroups}(\widehat{\W}, \G) & \cong \CatOf{FormalSchemes}(\A^1, \G) = C\G, \\
-\CatOf{FormalGroups}(\widehat{\W}_p, \G) & \cong D_*(\G),
-\end{align*}
-where the universal curve is specified by \todo[inline]{FINISH ME} \qed
-\end{lemma}
-
-This Lemma induces quite a lot of structure on $\widehat{\W}_p$: the Frobenius and Verschiebung operators on curves become operators acting on the formal Witt scheme, which on ghost components have the following behavior:
-\begin{align*}
-w_n(V_m a_*) & = m w_{nm}(a_*), &
-w_n(F_m a_*) & = \begin{cases} w_{n/m}(a_*) & \text{if $m \mid n$}, \\ 0 & \text{otherwise}. \end{cases}
-\end{align*}
-One can use this to give an explicit description of the inverse to the covariant Dieudonn\'e functor whose existence is asserted by \Cref{CurveDieudonneTheorem}: the idea is that the evaluation map $\widehat{\W}_p \times C\G \to \G$ is surjective, and so we can recover $\G$ by imposing intertwining relations stemming from the evaluation map.  Following this through results in the following presentation: \[{D_*}^{-1}(M)(T) = \left. (\widehat{\W}_p(T) \otimes_{\W_p(k)} M) \middle/ \left( \begin{array}{c} Va \otimes m = a \otimes Fm, \\ Fa \otimes m = a \otimes Vm \end{array} \right) \right. .\]
-
-We now seek to compare our two Dieudonn\'e functors.  In some sense, the comparison is inspired by an integration pairing: $D_*(\G)$ is populated by curves $\gamma$ on $\G$ and $D^*(\G)$ is populated by $1$--forms $\omega$ on $\G$, which we would like to sew together to form \[D_*(\G) \times D^*(\G) \xrightarrow{(\gamma, \omega) \mapsto \text{``$\operatorname{res}_{z=0} \gamma^* \omega$''}} \W_p(k).\]
-\todo[inline]{There is more to say here.  Can you give more intuition about how these two presentations are related, for example from Lie theory?  What curve does a cohomologically left-invariant form get sent to?  Is ``cohomologically-invariant'' analogous to ``$p$-typification'', perhaps along the lines of the ``crystalline''-ness of $H^1_{dR}$?  Can these primitives be furthermore related to the idea that taking primitive cooperations selects the additive ones? // Erick Knight suggested that there should be an alternative definition of covariant Dieudonn\'e theory also expressed by the cohomology of some sheaf, and that this will give rise to the desired duality pairing with values in some Tate-twisted ground object, which is precisely what we are looking for.  I wonder if the right thing to do is to form the bar complex on the de Rham sheaf...! // I talked to Mike about this, and his suggestion was to learn about Cartier's ``logarithmic modules'', which lift the $p$--typical curves on a formal group in positive characteristic to a preferred submodule of curves on a lift to mixed characteristic, and that once these two things ($1$--forms and logarithmic curves) are in the same place, the pairing I want is probably the residue map / the Serre duality pairing.  He half-heartedly suggested Lazard's book, especially VII.3.10 and V.7.3.  (Also on the table of ideas: the Cartier dual is witnessed by the existence of a Poincar\'e bundle, which is a biextension.  Maybe this leads somewhere?)}
-
-This can be made rigorous by noting the following basic but ultra-important fact about the Witt scheme:
-\begin{lemma}
-\todo{Sure seems to me like $\widehat{C\W}_p$ is (canonically, even??) isomorphic to $\widehat{\W}_p$.  It would be nice to sort this out.}
-There is a formal group scheme $\widehat{C\W}_p$ with the property
-\[\pushQED{\qed}
-\CatOf{FormalGroups}(\widehat{\W}_p, \G)^* \cong \CatOf{FormalGroups}(\G, \widehat{C\W}_p). \qedhere
-\popQED\]
-\end{lemma}
-
-\begin{corollary}[{\cite[Section II.15]{MazurMessing}, \cite[Equation 5.5.2]{Katz}}]
-There is an isomorphism $(D_* \G)^* \xrightarrow\cong D^* \G$.
-\end{corollary}
-\begin{proof}[Construction]
-There is a canonical short exact sequence \[0 \to \G_a \to \widehat{C\W}_p \xrightarrow{V} \widehat{C\W}_p \to 0,\] and a co-curve $\gamma^*\co \G \to \widehat{C\W}_p$ gives a pullback sequence
-\begin{center}
-\begin{tikzcd}
-0 \arrow{r} & \G_a \arrow{r} & \widehat{\W}_p \arrow["V"]{r} & \widehat{\W}_p \arrow{r} & 0 \\
-0 \arrow{r} & \G_a \arrow{r} \arrow[equal]{u} & E \arrow{r} \arrow{u} & \G \arrow{r} \arrow["\gamma^*"]{u} & 0.
-\end{tikzcd}
-\end{center}
-This latter sequence is a rigidified extension of $\G$ by $\G_a$, as in \Cref{ExtensionsPresentationOfDieudonne}.  The conclusion of Mazur and Messing is that this is an isomorphism.
-\end{proof}
+\begin{theorem}[{\cite[Section II.15]{MazurMessing}}]\label{DieudonneDualityThm}\footnote{This is a remarkbly difficult theorem to prove, cf.\ \Cref{OpenQuestionsSection}.}
+There is a natural isomorphism \[(D_* \G_0)^* \cong D^* \G_0. \pushQED\qed\qedhere\popQED\]
+\end{theorem}
 
 \begin{remark}[{\cite[Remark 18.1]{StricklandFPFP}}]
 A coordinate $x$ on $\CP^\infty_E$ induces a sequence of isomorphisms

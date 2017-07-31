@@ -39,6 +39,65 @@ The Stolz--Teichner program
 
 
 
+\section{Open questions}\label{OpenQuestionsSection}
+
+In this section, we discuss various topics (sometimes very sketchily, sometimes in more detail) which are currently poorly understood but which also are now coming over the horizon.  A number of these will likely be resolved by the time a second printing of this book were to come around.
+
+
+\subsection*{Geometry of Dieudonn\'e theories}
+
+In \Cref{SectionDieudonneModules}, we gave a pair of definitions of a Dieudonn\'e module, one contravariant and one covariant, and in \Cref{DieudonneDualityThm} we announced that the resulting modules were linearly dual to one another.  This is a remarkably difficult theorem to prove, it is hard to find an accessible proof in the literature,\footnote{In fact, Grothendieck introduced the de Rham--Dieudonn\'e functor and crystalline Dieudonn\'e theory in the same landmark paper, but elected not to provide a proof of an equivalence of his methods with past ones.} and a \emph{geometric} proof appears not to exist.
+
+To set the stage, we summarize the proof of Mazur and Messing~\cite[Section II.15]{MazurMessing}.  First, the functor of curves is both representable and corepresentable in the category of formal group schemes by the \textit{formal (co)Witt scheme}~\cite[Chapter 3]{ZinkCartierTheory}, \cite[Section III.4]{LazardCFGs}:
+\begin{align*}
+\CatOf{FormalSchemes}(\A^1, \G)^{\ptyp} & \cong \CatOf{FormalGroups}(\widehat{\W}_p, \G) \\
+& \cong \CatOf{FormalGroups}(\G^*, \widehat{C\mathbb W}_p).
+\end{align*}
+There is a canonical short exact sequence \[0 \to \G_a \to \widehat{C\W}_p \xrightarrow{V} \widehat{C\W}_p \to 0,\] and a co-curve $\gamma^*\co \G \to \widehat{C\W}_p$ gives a pullback sequence
+\begin{center}
+\begin{tikzcd}
+0 \arrow{r} & \G_a \arrow{r} & \widehat{\W}_p \arrow["V"]{r} & \widehat{\W}_p \arrow{r} & 0 \\
+0 \arrow{r} & \G_a \arrow{r} \arrow[equal]{u} & E \arrow{r} \arrow{u} & \G \arrow{r} \arrow["\gamma^*"]{u} & 0.
+\end{tikzcd}
+\end{center}
+This latter sequence is a \textit{rigidified extension} of $\G$ by $\G_a$, as in \Cref{ExtensionsPresentationOfDieudonne}.  The conclusion of Mazur and Messing is that this assignment is an isomorphism.
+
+We suspect that the two Dieudonn\'e functors can be connected via a \textit{residue pairing} between forms on $\G$ over $\W(k)$ and curves on $\G_0$ over $k$.  For inspiration, the residue pairing for an equicharacteristic local field \[\<-,-\>\co k(\!(z)\!) \times k(\!(z)\!)^* \to k\] is given by the formula \[\<g, f\> = \operatorname{Res}_{z=0}\left(g \cdot \frac{df}{f}\right) = \operatorname{Res}_{z=0}(g \cdot d\log f).\]  There are several ingredients in its construction for which we must find formal group analogues.  First, we must deal with the different ground objects $\W_p(k)$ and $k$ for $\G$ and $\G_0$:
+\begin{lemma}[{\cite[Lemma VII.7.5]{LazardCFGs}}]
+There is a $(\W, F)$--linear section $\sigma$ of the base-change map $D_* \G \to D_* \G_0$.
+\end{lemma}
+\begin{proof}[Construction]
+Cartier constructs an auxiliary Dieudonn\'e module $M$ by picking a presentation\footnote{The formal group so constructed does not actually depend upon the presentation.} \[D_* \G_0 = \left.\W_p(k)\{\gamma, V\gamma, \ldots, V^{d-1} \gamma\} \middle/ \left(F V^i \gamma = \sum_{j=0}^{d-1} c_{i,j} V^j \gamma\right) \right.\] and forming the module \[M := \left.\W_p(\W_p(k))\<\!\<V\>\!\>\{\widetilde\gamma_0, \ldots, \widetilde\gamma_{d-1}\} \middle/ \left(F \widetilde \gamma_i = \sum_{j=0}^{d-1} \Delta(c_{i,j}) \widetilde\gamma_j\right) \right. .\]  There is a $(\W, F)$--linear map $\tau\co D_* \G_0 \to M$ given by base-change along $\Delta$, and Cartier shows that this map has a universal property~\cite[VII.2.9]{LazardCFGs}: $(\W, F)$--linear objects under $D_* \G_0$ agree with Dieudonn\'e modules under $M$ by restriction along $\tau$.  Reapplying the change-of-rings functor $\pi_* M$ gives the Cartier--Dieudonn\'e module for the universal additive extension of $\G_0$~\cite[V.6.22 and VII.2.28]{LazardCFGs}, and hence $D_* \G$ is a Dieudonn\'e module under $\pi_* M$, and hence under $M$.  This gives the desired map \[\sigma\co D_* \G_0 \to D_* \G. \qedhere\]
+\end{proof}
+
+Second, we must produce an analogue of logarithmic differentiation, which is responsible for the bilinearity on the side of the differential form.  This arises naturally when trying to find analogues of differentiation internal to formal groups:
+\begin{enumerate}
+    \item The fiber sequence \[T_0 V \to T_* V \to V\] described around \Cref{ConstructionTangentAffineScheme} does not naturally split: an arbitrary formal variety has no intrinsic notion of ``constant vector field''~\cite[V.11.12]{LazardCFGs}.  However, in the presence of a formal group structure $\widehat{\mathbb H}$ on $V$, the tangent space acquires a natural splitting analogous to the splitting in classical Lie theory:\footnote{This topic also arises when trying to understand what is special about curves in the image of Cartier's section $\sigma$: they are \emph{horizontal} in a related sense.}
+    \begin{align*}
+    \mathbb H \times (\G_a \otimes \Lie \widehat{\mathbb H}) & \xrightarrow{\cong} T_* \widehat{\mathbb H}, \\
+    (x, \xi) & \mapsto x +_{\widehat{\mathbb H}} \eps \cdot \xi.
+    \end{align*}
+    This gives rise to an invariant notion of differentiation: given two formal groups $\G$, $\widehat{\mathbb H}$ as well as any pointed map $f\co \widehat{\mathbb H} \to \G$ of formal varieties, there is a function \[D_{\widehat{\mathbb H}}^{\G} f\co \widehat{\mathbb H} \to \G_a \otimes (\Lie \widehat{\mathbb H})^* \otimes \Lie \G\] characterized by \[T_* f(x +_{\widehat{\mathbb H}} \eps \cdot \xi) = f(x) +_{\widehat{\mathbb H}} \eps \cdot (D_{\G}^{\widehat{\mathbb H}} f)(x) \xi.\]
+    \item By taking $\G_a$ as a model for $\A^1$, any curve $\gamma\co \A^1 \to \G$ can be interpreted as a map of formal varieties $\gamma\co \G_a \to \G$.  Applying the recipe above gives rise to a function $\A^1 \to \G_a \otimes \Lie \G$, i.e., a series with coefficients in $\Lie \G$.  This series can actually be given explicitly~\cite[V.7.3]{LazardCFGs}: \[\gamma \mapsto \sum_{n=1}^\infty t^{n-1} \Lie(F_n \gamma).\]  In particular, for $\G = \G_a$, this computes the classical derivative of $\gamma$ expanded in the canonical coordinate~\cite[V.7.13]{LazardCFGs}.
+    \item This assignment is compatible with the Dieudonn\'e module structures on curves on $\G$ and curves on $\G_a \otimes \Lie \G$.  The inverse Dieudonn\'e functor then gives rise to a map \[\breve D_{\G}\co \G \to \G_a \otimes \Lie \G,\] called the \textit{reduced derivative}.  This construction is natural in $\G$, so if $\G$ had a logarithm, there would be a commuting square
+    \begin{center}
+    \begin{tikzcd}[column sep=4em]
+    \G \arrow["\breve D_{\G}"]{d} \arrow["\log_{\G}"]{r} & \G_a \otimes \Lie G \arrow["\breve D_{\G_a \otimes \Lie G}"]{d} \\
+    \G_a \otimes \Lie \G \arrow["\log_{\G_a \otimes \Lie \G}", equal]{r} & \G_a \otimes \Lie G.
+    \end{tikzcd}
+    \end{center}
+    The bottom logarithm is the identity, since the source is already additive.  If we evaluate these maps on a curve $\gamma \in C_* \G$, we arrive at the equation~\cite[V.8.5]{LazardCFGs} \[\breve D_{\G} \circ \gamma = \breve D_{\G_a \otimes \Lie G} \circ \log_{\G} \circ \gamma = \frac{d}{dt} \left( (\log_\G \circ \gamma)(t) \right).\]  Hence, $\breve D_{\G}$ plays the role of a logarithmic derivative.
+\end{enumerate}
+
+The conjecture, then, is that these pieces go much of the way towards describing a local residue pairing internal to the theory of formal groups, but there are still several details left to the enterprising reader, such as: should the de Rham complex be replaced?\footnote{Relatedly, can $\breve D_{\G}$ or $D_{\mathbb H}^{\mathbb G}$ be used to give a coordinate-free description of the deformation complex of \Cref{DeformationComplex}?}  Where do \emph{primitives} in de Rham cohomology enter play?  How do the formulas for $\sigma$ in terms of $\breve D_{\G}$~\cite[VII.6.14]{LazardCFGs} enter this story---presumably in demonstrating perfection?
+
+
+
+
+
+
+
+
 
 
 -----
@@ -48,8 +107,6 @@ Bousfield's work on the $K$--theory of infinite loopspaces \cite{BousfieldLambda
 Ask Mike (and Jacob?) if there are analogues of these results for $kO$ which explain Mahowald's generalized $K$--theoretic Brown--Gitler spectra.  3/29: I did ask Mike, he said he didn't know. I also asked Paul, and he said this seemed unreasonable, since $kO$ isn't valued in co/commutative Hopf algebras.  This is a fair point: one would need to invent an ``analogue'' of Dieudonn\'e theory for $kO$, in the sense that some category it takes values in would have to be identified as abelian, where the category is rigid enough that it often sends fiber sequences to exact sequences in the category.
 
 Constructing sheaves of spectra on $\moduli{fg}$: the no-go results for $E_\infty$ and $A_\infty$ rings on the flat site.  There's a little MO discussion about it here: \texttt{http://chat.stackexchange.com/transcript/message/35361282\#35361282}.
-
-Contexts for structured ring spectra
 
 Difficulty in computing $\S_d \actson E_d^*$. (Gross--Hopkins and the period map.)
 
