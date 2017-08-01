@@ -273,7 +273,7 @@ E^0 B\SU \from E^0 BU \xleftarrow{c_1 \mapsfrom c_1} E^0 BU(1). \qedhere
 \popQED\]
 \end{lemma}
 
-\noindent An equivalent statement is that there is a short exact sequence of formal group schemes\todo{Is this in Lecture 2.3? It should be.}
+\noindent An equivalent statement is that there is a short exact sequence of formal group schemes
 \begin{center}
 \begin{tikzcd}
 B\SU_E \arrow{r} \arrow[equal]{d} & BU_E \arrow{r}{B\det} \arrow[equal]{d} & BU(1)_E \arrow[equal]{d} \\
@@ -716,7 +716,7 @@ C^2(\G_a; \Gm) \arrow{r} & C^3(\G_a; \Gm) \arrow{r} & \InternalHom{FormalGroups}
 \end{center}
 Our task, as then, is to discern as much about these nodes as possible, as well as any exactness properties of the two sequences.\footnote{The quotes indicate that the right-hand topological node does not even make sense: $H_* \OS{H\Z}{3}$ is not even-concentrated, and we do not understand the algebraic geometry of spaces whose homology is not even-concentrated.  This is quite troubling---but we will press on for now.}
 
-We begin with the topological sequence.  The Serre spectral sequence \[E_2^{*, *} = H^* B\SU \otimes H^* \OS{H\Z}{3} \Rightarrow H^* BU[6, \infty)\] gives us easy access to the middle node, and we will recount the case of $p = 2$ in detail.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = \HFtwo^* B\SU \otimes \HFtwo^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ > 1 \end{array}\right].\]  Because the target is $6$--connective, we must have the transgressive differential $d_4 \iota_3 = c_2$, which via the Kudo transgression theorem spurs the much larger family of differentials \[d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2.\]  This necessitates understanding the action of the Steenrod operations on the cohomology of $B\SU$, which is due to \index{Wu formulas}Wu~\cite[Section 23.6]{MayConciseCourse}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 \equiv c_{1 + 2^j} \pmod{\text{decomposables}}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:\todo{This spectral sequence can be drawn in using Hood's package.}
+We begin with the topological sequence.  The Serre spectral sequence \[E_2^{*, *} = H^* B\SU \otimes H^* \OS{H\Z}{3} \Rightarrow H^* BU[6, \infty)\] gives us easy access to the middle node, and we will recount the case of $p = 2$ in detail.  In this case, the spectral sequence has $E_2$--page \[E_2^{*, *} = \HFtwo^* B\SU \otimes \HFtwo^* \OS{H\Z}{3} \cong \F_2[c_2, c_3, \ldots] \otimes \F_2\left[\Sq^I \iota_3 \middle| \begin{array}{c} I_j \ge 2I_{j+1}, \\ 2 I_1 - I_+ > 1 \end{array}\right].\]  Because the target is $6$--connective, we must have the transgressive differential $d_4 \iota_3 = c_2$, which via the Kudo transgression theorem spurs the much larger family of differentials \[d_{4+I_+} \Sq^I \iota_3 = \Sq^I c_2.\]  This necessitates understanding the action of the Steenrod operations on the cohomology of $B\SU$, which is due to \index{Wu formulas}Wu~\cite[Section 23.6]{MayConciseCourse}:\todo{Can these formulas be read off from the divisorial calculation?  Maybe not, since it's easy to read off the Milnor primitives but harder to see the Steenrod squares.} \[\Sq^{2^j} \cdots \Sq^4 \Sq^2 c_2 \equiv c_{1 + 2^j} \pmod{\text{decomposables}}.\]  Accounting for the squares of classes left behind, this culminates in the following calculation:
 
 \begin{theorem}\label{HF2BU6Calculation}
 There is an isomorphism
@@ -917,7 +917,6 @@ Before proceeding, the values $G_4(\Lambda)$ and $G_6(\Lambda)$ are themselves i
 \end{remark}
 
 There is a second standard embedding of a complex elliptic curve into projective space, using \index{theta function@$\theta$--function}\textit{$\theta$--functions}, which are most naturally expressed with an alternative basic presentation of an elliptic curve.  Select a lattice $\Lambda$ and a basis for it, and rescale the lattice so that the basis takes the form $\{1, \tau\}$ with $\tau$ in the upper half-plane.  Then, the normalized exponential function $\C \to \C^{\times}$ given by $z \mapsto \exp(2 \pi i z)$ has $1 \cdot \Z$ as its kernel.  Setting $q = \exp(2 \pi i \tau)$ to account for the missing component of the kernel of $\pi_\Lambda$, we get a second presentation of $E_\Lambda$ as $\C^\times / q^{\Z}$, as pictured in \Cref{AnnulusPicture}.
-\todo{Draw an exponential curve in the plan mirroring a meridinal band on the torus.}
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[baseline=(current bounding box.center),scale=0.6]
@@ -932,15 +931,24 @@ There is a second standard embedding of a complex elliptic curve into projective
     \draw[solid] (0,0) circle (2);
     \draw[solid] (0,0) circle (4);
     \draw[solid] (0,0) circle (0.5);
-    \fill (2,0) circle (0.12) ++(0.26,0.26) node {$1$};
-    \fill (0.5,0.866) circle (0.12) ++(0,-0.32) node {$q$};
+    \def\spiral#1{%
+      \pgfmathparse{int(#1)}%
+      \ifnum\pgfmathresult>0
+        \begin{scope}[rotate=60, scale=1/2]
+          \spiral{#1-1}
+        \end{scope}
+        \draw[very thick,red] (2,0) arc (30:90:1.9);
+      \fi
+    }
+    \spiral{6}
+    \fill (0:2) circle (0.12) ++(0.26,0.26) node {$1$};
+    \fill (60:1) circle (0.12) ++(0,-0.32) node {$q$};
     \fill[opacity=0.5] (2,-3.464) circle (0.12) ++(-0.26,0.26) node {$q^{-1}$};
     \fill[opacity=0.5] (-0.433,0.25) circle (0.12) ++(-0.28,0) node {$q^2$};
     \path [draw=none, fill=red, even odd rule, fill opacity = 0.1] (0,0) circle (2) (0,0) circle (1);
     \path [draw=none, fill=black, even odd rule, fill opacity = 0.1] (0,0) circle (1) (0,0) circle (0.5);
     \path [draw=none, fill=black, even odd rule, fill opacity = 0.1] (0,0) circle (4) (0,0) circle (2);
     \draw (3.2,-3.2) node {$\ddots$};
-    \draw(0.15,-0.05) node {$\ddots$};
 \end{tikzpicture}
 \quad \quad $\rightsquigarrow$ \quad \quad
 \begin{tikzpicture}[baseline=(current bounding box.center)]
@@ -972,6 +980,10 @@ There is a second standard embedding of a complex elliptic curve into projective
         ellipse (\elrad pt and 20pt);
     % End of foreach statement
     }
+    \pgfmathsetmacro\elrad{20*max(cos(45),.1)}
+    \draw[very thick, color=red]
+        (xyz polar cs:angle=225,radius=.75,x radius=1.5)
+        ellipse (\elrad pt and 20pt);
 \end{tikzpicture}
 \end{center}
 \caption{Presentation of an elliptic curve as the quotient of nested annuli.}\label{AnnulusPicture}

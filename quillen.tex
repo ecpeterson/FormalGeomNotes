@@ -125,7 +125,6 @@ In the motivating case where $F \cong \A^n$ is given, we can define $M$ to be \[
 \end{proof}
 
 \begin{corollary}[{\cite[Th\'eor\`eme III.2.1]{GrothendieckSGAI}}]
-\citeme{EGA? or something?}
 An $S$--point $x\co S \to X$ of a Noetherian scheme is formally smooth exactly when $T_x X$ is a free $S$--module and for any nilpotent thickenings $S \to \Spec B \to \Spec B'$ and any solid diagram
 \begin{center}
 \begin{tikzcd}[column sep=3em]
@@ -530,9 +529,23 @@ where the bottom map acts by \[(D_1, D_2 \subseteq \CP^\infty_E \times X_E) \map
 By the splitting principle, it is enough to check this on sums of line bundles.  A sum of line bundles corresponds to a totally decomposed divisor, so we consider the case of a pair of such divisors $\bigsqcup_{i=1}^n \{a_i\}$ and $\bigsqcup_{j=1}^m \{b_j\}$.  Referring to \Cref{DefnFormalGps}, the map acts by \index{divisor!convolution}convolution of divisors: \[\left(\bigsqcup_{i=1}^n \{a_i\} \right) \left( \bigsqcup_{j=1}^m \{b_j\} \right) = \bigsqcup_{i, j} \{\mu_{\CP^\infty_E}(a_i, b_j)\}. \qedhere\]
 \end{proof}
 
+\begin{corollary}\label{BdetCorollary}
+The determinant map \[BU(n)_E \xrightarrow{B\det} BU(1)_E\] models the summation map \[\Div^+_n \CP^\infty_E \xrightarrow{\sigma} \CP^\infty_E.\]
+\end{corollary}
+\begin{proof}
+This is a direct consequence of the splitting principle, the factorization
+\begin{center}
+\begin{tikzcd}
+BU(n) \arrow["B\det"]{r} & BU(1) \\
+BU(1)^{\times n} \arrow["\oplus"]{u} \arrow["\otimes"]{ru},
+\end{tikzcd}
+\end{center}
+and \Cref{ProductMapOfDivisorSchemes}.
+\end{proof}
+
 Finally, we can connect our analysis of the divisors coming from topological vector bundles with the line bundles studied at the start of the section.
-\begin{lemma}
-Let $\zeta: X_E \to X_E \times \CP^\infty_E$ denote the pointing of the formal curve $\CP^\infty_E$, and let $\sheaf I(\P(V)_E)$ denote the \index{sheaf!ideal}ideal sheaf on $X_E \times \CP^\infty_E$ associated to the divisor subscheme $\P(V)_E$.  There is a natural isomorphism of sheaves over $X_E$:\todo{In FPFP, Neil has a $-D$ rather than a $D$.} \[\zeta^* \sheaf I(\P(V)_E) \cong \ThomSheaf{V}.\]
+\begin{lemma}[{\cite[Section 19]{StricklandFPFP}}]
+Let $\zeta: X_E \to X_E \times \CP^\infty_E$ denote the pointing of the formal curve $\CP^\infty_E$, and let $\sheaf I(\P(V)_E)$ denote the \index{sheaf!ideal}ideal sheaf on $X_E \times \CP^\infty_E$ associated to the divisor subscheme $\P(V)_E$.  There is a natural isomorphism of sheaves over $X_E$: \[\zeta^* \sheaf I(\P(V)_E) \cong \ThomSheaf{V}.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
 In terms of a complex-oriented $E$ and \Cref{CohomologyOfProjectivization}, the effect of pulling back along the zero section is to set $t = 0$, which collapses the Chern polynomial to just the top class $c_n(V)$.  This element, called \index{Euler class}\textit{the Euler class of $V$}, provides the $E^* X$--module generator of $E^* T(V)$---or, equivalently, the trivializing section of $\ThomSheaf{V}$.
@@ -697,7 +710,6 @@ Eliminating the intermediate filtration stages with empty filtration quotients, 
 The effect of this Lemma is twofold.  For one, the Tate operation is not only additive, it is even \emph{stable}.  Secondly, it suffices to understand the behavior of passing to the Tate construction in the case of $X = *$, i.e., the effect of the map $E^{hC_p} \to E^{tC_p}$.  Since we are intending to make a computation, it will at this point be convenient to also specialize to our case of interest of where $E = MU$.
 
 \begin{theorem}
-\citeme{Credit Jeremy?}
 There is an isomorphism \[\pi_* MU^{tC_n} = MU^* BC_n[x^{-1}],\] where $x$ is the restriction to $MU^2 BC_n$ of the canonical class $x \in MU^2(\CP^\infty)$.\footnote{Everything we say here will actually be valid for any number $n$, not just a prime, as well as any ring spectrum $E$ under $MU$.}
 \end{theorem}
 \begin{proof}
@@ -752,7 +764,6 @@ Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n
 Our goal in the next Lecture will be to gain a computational understanding of $\mu_{n,2d}$.
 
 \begin{remark}[{\cite[Equations 3.10-11]{Quillen}}]
-\citeme{Christian Carrick?}
 The picture Quillen paints of all this is considerably different from ours.  He begins by giving a different presentation of the complex cobordism groups of a manifold $M$: a complex orientation of a smooth map $Z \to M$ is a factorization \[Z \xrightarrow{i} E \xrightarrow{\pi} M\] through a complex vector bundle $\pi\co E \to M$ by an embedding $i$, as well as a complex structure on the normal bundle $\nu_i$.  Up to suitable notions of stability (in the dimension of $E$) and homotopy equivalence (involving, in particular, isotopies of different embeddings $i$), these quotient to give cobordism classes of maps complex-oriented maps $Z \to M$.  The collection of cobordism classes over $M$ of codimension $q$ is isomorphic to $MU^q(M)$~\cite[Proposition 1.2]{Quillen}.  Quillen's definition of the power operations is then given in terms of this geometric model: a representative $f\co Z \to M$ of a cobordism class gives rise to another complex-oriented map $f^{\times n}\co Z^{\times n} \to M^{\times n}$, and he defines $P^{C_n}_{\mathrm{ext}}(f)$ to be the postcomposition with $M^{\times n} \to M^{\times n}_{hC_n}$ (after taking care that the target isn't typically a manifold).  All the properties of his construction must therefore be explored through the lens of groups acting on manifolds.
 \end{remark}
 
