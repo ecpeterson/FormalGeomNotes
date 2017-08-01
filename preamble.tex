@@ -1,11 +1,9 @@
 % -*- root: main.tex -*-
 
-\usepackage{natbib}
-
 \usepackage[pdftex,
             pdfauthor={Eric Peterson},
             pdftitle={Formal Geometry and Bordism Operations},
-            backref=page]{hyperref}
+            pagebackref=true]{hyperref}
 
 \usepackage[protrusion=true,expansion=true]{microtype}
 % \usepackage{savetrees}
@@ -377,8 +375,11 @@
 
 
 % make backrefs look pretty
-\makeatletter
-\patchcmd{\BR@backref}{\newblock}{\newblock(page~}{}{}
-\patchcmd{\BR@backref}{\par}{)\par}{}{}
-\makeatother
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{[%
+    \ifcase #1 Not cited.%
+          \or Cited on page~#2.%
+          \else Cited on pages #2.%
+    \fi%
+    ]}
 
