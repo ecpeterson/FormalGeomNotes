@@ -165,7 +165,14 @@ where the bottom arrow sends such a homomorphism to its image divisor.  This map
 \Spf E^0 BC_p / I_{\Tr} \arrow{r} \arrow{u} & (BC_p)_E \arrow{u} \arrow{ru}.
 \end{tikzcd}
 \end{center}
-The effect of killing the transfer ideal in $(BC_p)_E$ is to force the image divisor to be a subdivisor of $\CP^\infty_E[p]$\todo{Explain why.} (i.e., the zero homomorphism is disallowed), and this subscheme of homomorphisms is written $\Level(\Z/p, \CP^\infty_E)$.  Finally, passing to $B\Sigma_p$ from $BC_p$ exactly destroys the choice of generator of $\Z/p$, i.e., it encodes passing from the homomorphism to the image divisor.  This winds up giving an isomorphism \[\Spf E^0 B\Sigma_p / I_{\Tr} \cong \Sub_p \CP^\infty_E,\] where $\Sub_p$ denotes the subscheme of $\Div_p^+$ consisting of those effective Weil divisors of rank $p$ which are subgroup divisors.
+The quotient by the transfer ideal in $(BC_p)_E$ is modeled by the map
+\begin{center}
+\begin{tikzcd}
+E^0 BC_p / I_{\tr} \arrow[equal]{d} & E^0 BC_p \arrow{l} \arrow[equal]{d} \\
+E^0\ps{x} / \<p\>(x) & E^0\ps{x} / [p](x) \arrow{l},
+\end{tikzcd}
+\end{center}
+which disallows the zero homomorphism and forces the image divisor to be a subdivisor of $\CP^\infty_E[p]$.  Such a homomorphism is an example of a \index{level structure}\textit{level structure}, and the scheme of such homomorphisms is written $\Level(\Z/p, \CP^\infty_E)$.  Finally, passing to $B\Sigma_p$ from $BC_p$ exactly destroys the choice of generator of $\Z/p$, i.e., it encodes passing from the homomorphism to the image divisor.  This winds up giving an isomorphism \[\Spf E^0 B\Sigma_p / I_{\Tr} \cong \Sub_p \CP^\infty_E,\] where $\Sub_p$ denotes the subscheme of $\Div_p^+$ consisting of those effective Weil divisors of rank $p$ which are subgroup divisors.
 \end{example}
 
 The broad features of this example hold for a general index $j$.
@@ -296,14 +303,21 @@ If $f\co \G \to \widehat{\mathbb H}$ is any isogeny with kernel divisor $K$, the
 \qed
 \end{lemma}
 
-We now use this Lemma, along with properties of the Lubin--Tate moduli problem, to associate endo-isogenies to subgroup divisors.  To begin, consider the multiplication--by--$p$ endo-isogeny of a Lubin--Tate group $\G$.  Since $\G$ is finite height, this map is an isogeny and the Lemma above gives rise to an isomorphism\todo{This isn't a map of isomorphisms because it doesn't cover the identity.  This is what the Frobenius twist is about.}
+We now use this Lemma, along with properties of the Lubin--Tate moduli problem, to associate endo-isogenies to subgroup divisors.  To begin, consider the multiplication--by--$p$ endo-isogeny of a Lubin--Tate group $\G$.  Since $\G$ is finite height, this map is an isogeny and the Lemma above gives rise to an isomorphism of formal groups
 \begin{center}
 \begin{tikzcd}
 & \G \arrow["q"']{ld} \arrow["p"]{rd} \\
 \G/\G[p] \arrow["g", "\simeq"']{rr} & & \G.
 \end{tikzcd}
 \end{center}
-In particular, this diagram shows that the quotient map $\G / \G[p]$ is \emph{again} a universal deformation, as witnessed by a preferred isomorphism to $\G$.  For a generic subgroup divisor $K \le \G$, we have access to the isogeny $q_K$ using the methods described above, but it is the magic of the Lubin--Tate moduli that furnishes us with replacements for $p$ and for $g$.  Notice first that the problem simplifies dramatically for the formal group at the special fiber: all subgroups of the special fiber formal group are of the form $p^j \cdot [0]$, and hence we can always use the Frobenius map to complete the desired triangle:
+This diagram is one of formal groups, rather than of deformations---the map $p\co \G \to \G$ does not cover the identity upon reduction to the special fiber.  The Frobenius allows us to correct this to a diagram of deformations:
+\begin{center}
+\begin{tikzcd}
+& \G \arrow["q"']{ld} \arrow["p"]{rd} \\
+\G/\G[p] \arrow["g", "\simeq"']{rr} & & (\phi^d)^* \G.
+\end{tikzcd}
+\end{center}
+In particular, this latter diagram shows that the quotient map $\G / \G[p]$ is \emph{again} a universal deformation, as witnessed by a preferred isomorphism to $\G$.  For a generic subgroup divisor $K \le \G$, we have access to the isogeny $q_K$ using the methods described above, but it is the magic of the Lubin--Tate moduli that furnishes us with replacements for $p$ and for $g$.  Notice first that the problem simplifies dramatically for the formal group at the special fiber: all subgroups of the special fiber formal group are of the form $p^j \cdot [0]$, and hence we can always use the Frobenius map to complete the desired triangle:
 \begin{center}
 \begin{tikzcd}
 & \Gamma \arrow["q_{p^j[0]}"']{ld} \arrow["\Frob^j"]{rd} \\
@@ -348,11 +362,12 @@ Transferring this to a diagram of the sort at right, this gives the map $\psi_K$
 Applying this Lemma to the universal case gives the following result:
 
 \begin{corollary}
+\citeme{This must be a consequence of Strickland's / Rezk's results}
 There is a unique sequence of maps \[P^{\Sigma_{p^k}}\co \G \times \Sub_{p^k} \G \to \psi_{\Sigma_{p^k}}^* \G\] determined by the following properties:
 \begin{enumerate}
     \item Restricting to any point in $\Sub_{p^k} \G$ gives a group homomorphism with that kernel.
     \item (\textit{Deformation of Frobenius}:) At the special fiber, $P^{\Sigma_{p^k}}$ reduces to the $k${\th} Frobenius iterate.
-    \qed \todo{Prove me?}
+    \qed
 \end{enumerate}
 \end{corollary}
 
@@ -426,8 +441,7 @@ A line bundle $\L$ on $\G$ together with a level structure $\ell\co A \to \G$ in
 In particular, functions $\phi\co \G \to \A^1$ can be thought of as sections of the trivial line bundle $\sheaf O_{\G}$, and coordinates can be thought of as trivializations of the same trivial line bundle.  We also remarked in \Cref{NormForFns} that the property of being a coordinate is stable under the operations on both sides of the norm-coherence equation.\footnote{This is reflected in topology as the assertion that the two power operations give two Thom classes for the regular representation, which must therefore differ by a unit.}
 \end{example}
 
-\begin{theorem}[{\cite[Theorem 2.5.7]{Ando}}]\label{AndosAlgebraicTheorem}
-\citeme{Peterson-Stapleton}
+\begin{theorem}[{\cite[Theorem 2.5.7]{Ando}, \cite{PetersonStapleton}}]\label{AndosAlgebraicTheorem}
 Let $\L$ be a line bundle on a Lubin--Tate formal group $\G$, and let $s_0$ be a section of $\L_0$, the restriction of $\L$ to the formal group at the special fiber.  Then there exists exactly one norm-coherent section $s$ of $\L$ itself which restricts to $s_0$.
 \end{theorem}
 \begin{proof}[Proof sketch]
