@@ -36,7 +36,7 @@ If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T_n(\xi) = S^n \sm (X_+
 Let $\xi$ be the tautological $S^0$--bundle over the unpointed space $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, $EO(1)$, the cofiber degenerates and it follows that $T_1(\xi) = \RP^\infty$, a pointed space.\footnote{If you already know what's coming, this should comport with the Thom isomorphism: $x \cdot \HFtwo^* \RP^\infty \cong \widetilde{\HFtwo}^{* + 1} \RP^\infty$.}  More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
 \end{example}
 
-Now we catalog a bunch of useful properties of the Thom space functor.  Firstly, recall that a spherical bundle over $X$ is the same data~\cite{MayClassifyingSpaces} as a map $X \to B \GL_1 S^{n-1}$, where \index{spectrum of units, $\gl_1$}\index{spherical bundle}$\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback of spaces
+Now we catalog a bunch of useful properties of the Thom space construction.  Firstly, recall that a spherical bundle over $X$ is the same data~\cite{MayClassifyingSpaces} as a map $X \to B \GL_1 S^{n-1}$, where \index{spectrum of units, $\gl_1$}\index{spherical bundle}$\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback of spaces
 \begin{center}
 \begin{tikzcd}[column sep=1.1em]
 \GL_1 S^{n-1} \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & \CatOf{Spaces}(S^{n-1}, S^{n-1}) \arrow{d} \\
@@ -62,8 +62,8 @@ The block--sum maps $O(n) \times O(m) \to O(n+m)$ are compatible with the join m
 \noindent Again taking a cue from $K$--theory, we take the colimit as $n$ grows large, using the maps
 \begin{center}
 \begin{tikzcd}[column sep=1.5em]
-B\GL_1 S^{n-1} \arrow[equal]{r} \arrow{d} & B\GL_1 S^{n-1} \times * \arrow["\operatorname{id} \times \text{triv}"]{r} \arrow{d} & B\GL_1 S^{n-1} \times B\GL_1 S^0 \arrow["\ast"]{r} \arrow{d} & B\GL_1 S^n, \arrow{d} \\
-BO(n) \arrow[equal]{r} & BO(n) \times * \arrow["\operatorname{id} \times \text{triv}"]{r} & BO(n) \times BO(1) \arrow["\oplus"]{r} & BO(n+1).
+BO(n) \arrow[equal]{r} \arrow{d} & BO(n) \times * \arrow["\operatorname{id} \times \text{triv}"]{r} \arrow{d} & BO(n) \times BO(1) \arrow["\oplus"]{r} \arrow{d} & BO(n+1) \arrow{d} \\
+B\GL_1 S^{n-1} \arrow[equal]{r} & B\GL_1 S^{n-1} \times * \arrow["\operatorname{id} \times \text{triv}"]{r} & B\GL_1 S^{n-1} \times B\GL_1 S^0 \arrow["\ast"]{r} & B\GL_1 S^n.
 \end{tikzcd}
 \end{center}
 \begin{corollary}\label{DefnRealJHomomorphism}
@@ -153,7 +153,7 @@ There is also a \index{Thom isomorphism!cohomological}cohomological version of t
 \end{remark}
 
 \begin{example}\label{HF2RPinftyExample}
-We will close out this section by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T(\L \downarrow \RP^n) = \RP^{n+1}$.  Because $MO$ is a connective spectrum, the truncation map \[MO \to MO(-\infty, 0] = H\pi_0 MO = \HFtwo\] is a map of ring spectra~\cite[Lemma II.2.12]{MayRingSpacesSpectra}.  Hence, we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
+We will close out this section by using this to actually make a calculation. Recall from \Cref{RPnThomExample} that $T_1 \circ J_{\R}(\L \downarrow \RP^n)) = \RP^{n+1}$.  Because $MO$ is a connective spectrum, the truncation map \[MO \to MO(-\infty, 0] = H\pi_0 MO = \HFtwo\] is a map of ring spectra~\cite[Lemma II.2.12]{MayRingSpacesSpectra}.  Hence, we can apply the Thom isomorphism theorem to the mod--$2$ homology of Thom complexes coming from real vector bundles:
 \begin{align*}
 \pi_* (\HFtwo \sm T(\L - 1)) & \cong \pi_* (\HFtwo \sm T(0)) \tag{Thom isomorphism} \\
 \pi_* (\HFtwo \sm \Susp^{-1} \Susp^\infty \RP^{n+1}) & \cong \pi_* (\HFtwo \sm \Susp^\infty_+ \RP^n) \tag{\Cref{RPnThomExample}} \\
@@ -194,7 +194,7 @@ The functor $\mathbb A^n$ is called \index{scheme!affine $n$--space}\textit{affi
 
 We can also use this language to re-express another common object arising in algebraic topology: the Hopf algebra, which appears when taking the mod--$2$ cohomology of an $H$--group.  In addition to the usual ring structure on cohomology groups, the $H$--group multiplication, unit, and inversion maps additionally induce a diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
 \begin{lemma}
-For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \idxentry{group scheme}.  Conversely, a choice of group structure on $\Spec R$ endows $R$ with the structure of a \index{Hopf algebra}\textit{Hopf algebra}.
+For a Hopf $\F_2$--algebra $R$, the functor $\Spec R$ is naturally valued in groups.  Such functors are called \index{group scheme}\textit{group schemes}.  Conversely, a choice of group structure on $\Spec R$ endows $R$ with the structure of a \index{Hopf algebra}\textit{Hopf algebra}.
 \end{lemma}
 \begin{proof}[Proof sketch]
 This is a matter of recognizing the product in $\CatOf{Algebras}_{\F_2/}^{\mathrm{op}}$ as the tensor product, then using the Yoneda lemma to transfer structure around.
