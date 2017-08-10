@@ -805,10 +805,10 @@ We now appeal to basic results about $\moduli{ell} \times \Spec \Z[1/6]$ to comp
 
 \section{Orientations by \texorpdfstring{$E_\infty$}{Eoo} maps}\label{JuvitopTalkSection}
 
-We now recount a more modern take on the story of the $\sigma$--orientation which passes directly through the algebra of $E_\infty$ ring spectra.  Though technically intensive, our reward for grappling with this will be the modularity of the $\String$--orientation, enriching \Cref{WittensTheoremForBU6} to the real setting.  Luckily, most of the basic ideas are classically familiar, centering on a particular functor\index{spectrum of units, $\gl_1$} \[\gl_1\co E_\infty\CatOf{RingSpectra} \to \CatOf{Spectra}.\]  This functor derives its name from two compatible sources: for one, its underlying infinite loopspace is the construction $GL_1$ described in \Cref{LectureThomSpectra}; and secondly, it participates in an adjunction
+We now recount a more modern take on the story of the $\sigma$--orientation which passes directly through the algebra of $E_\infty$ ring spectra.  Though technically intensive, our reward for grappling with this will be the modularity of the $\String$--orientation, enriching \Cref{WittensTheoremForBU6} to the real setting.  Luckily, most of the basic ideas are classically familiar, centering on a particular functor\index{spectrum of units, $\gl_1$} \[\gl_1\co \EinftyRings \to \CatOf{Spectra}.\]  This functor derives its name from two compatible sources: for one, its underlying infinite loopspace is the construction $GL_1$ described in \Cref{LectureThomSpectra}; and secondly, it participates in an adjunction
 \begin{center}
 \begin{tikzcd}[column sep=4em]
-\CatOf{ConnectiveSpectra} \arrow[shift left=0.3\baselineskip, "\Susp^\infty_+ \Omega^\infty"]{r} & E_\infty\CatOf{RingSpectra} \arrow[shift left=0.3\baselineskip, "\gl_1"]{l}
+\CatOf{ConnectiveSpectra} \arrow[shift left=0.3\baselineskip, "\Susp^\infty_+ \Omega^\infty"]{r} & \EinftyRings \arrow[shift left=0.3\baselineskip, "\gl_1"]{l}
 \end{tikzcd}
 \end{center}
 analogous to the adjunction between the group of units and the group-ring constructions in classical algebra.  Its relevance to us is its participation in the theory of highly structured Thom spectra.  Let $j\co g \to \gl_1 \S$ be a map of connective spectra, begetting a map $J\co G \to \GL_1 \S$ of infinite loopspaces, where we have written $G = \Loops^\infty g$.
@@ -830,15 +830,15 @@ There is a natural equivalence between the space of null-homotopies of the compo
 Applying the mapping space functor $E_\infty(-, R)$ to the pushout diagram in the Lemma, we have a pullback diagram of mapping spaces:
 \begin{center}
 \begin{tikzcd}
-E_\infty(\Susp^\infty_+ \GL_1 \S, R) & E_\infty(\Susp^\infty_+ \Loops^\infty \gl_1 \S / g, R) \arrow{l} \\
-E_\infty(\S, R) \arrow{u} & E_\infty(MG, R) \arrow{l} \arrow{u}. \arrow[ul, phantom, "\ulcorner", very near start]
+\EinftyRings(\Susp^\infty_+ \GL_1 \S, R) & \EinftyRings(\Susp^\infty_+ \Loops^\infty \gl_1 \S / g, R) \arrow{l} \\
+\EinftyRings(\S, R) \arrow{u} & \EinftyRings(MG, R) \arrow{l} \arrow{u}. \arrow[ul, phantom, "\ulcorner", very near start]
 \end{tikzcd}
 \end{center}
 We can reidentify each of the three terms to get
 \begin{center}
 \begin{tikzcd}
 \CatOf{Spectra}(\gl_1 \S, \gl_1 R) & \CatOf{Spectra}(\gl_1 \S / g, \gl_1 R) \arrow{l} \\
-\{\gl_1 \eta_R\} \arrow{u} & E_\infty(MG, R) \arrow{l} \arrow{u}, \arrow[ul, phantom, "\ulcorner", very near start]
+\{\gl_1 \eta_R\} \arrow{u} & \EinftyRings(MG, R) \arrow{l} \arrow{u}, \arrow[ul, phantom, "\ulcorner", very near start]
 \end{tikzcd}
 \end{center}
 hence $E_\infty(MG, R)$ appears as the fiber at $\gl_1 \eta_R$ of the restriction map, which coincides with the space of nullhomotopies as claimed.
@@ -1057,7 +1057,7 @@ We have thus identified the legal fillers $C$ as those sequences of rational num
 
 We have identified three points where we want to understand the collection of stable $KO_p$ operations (which we will abbreviate to $KO$, since in this subsection we are concerned only with the $p$--adic case).  Although much of the main text of this book has been concerned with this sort of subject, this does not appear to be so immediately accessible: we want operations rather than cooperations, and $KO$ is \emph{not} a complex-orientable ring spectrum.  It is close to one, though, and we gain access to it through familiar approximation.
 
-The easy initial calculation is the continuous $p$--adic $K$--homology $K^\vee K$ can be computed to be $K^\vee K = \CatOf{Spaces}(\Z_p^\times, \Z_p)$, the ring of $\Z_p$--valued functions\footnote{\emph{Functions}, not homomorphisms!} on $\Z_p^\times$ which are continuous for the adic topologies on the domain and the target.  This comes out of the stable cooperations of \index{Landweber flat}Landweber flat homology theories discussed in \Cref{DefnChromaticHomologyThys}, where we showed that $E_\Gamma$ has cooperations given by the ring of functions on the pro-\'etale group scheme $\Aut \Gamma$.  For $\Gamma = \G_m$, this group scheme $\Aut \G_m$ is constant at $\Z_p^\times$, so that $K^\vee K$ is the ring of $\Z_p$--valued functions on $\Z_p^\times$.  Turning to cohomology, it follows by the universal coefficient spectral sequence that $K^0 K = \Hom(\CatOf{Spaces}(\Z_p^\times, \Z_p), \Z_p)$ and that $K^1 K = 0$.  These correspondences behave as follows:
+The easy initial calculation is the continuous $p$--adic $K$--homology $K^\vee K$ can be computed to be $K^\vee K = \CatOf{Spaces}(\Z_p^\times, \Z_p)$, the ring of $\Z_p$--valued functions\footnote{\emph{Functions}, not homomorphisms!} on $\Z_p^\times$ which are continuous for the adic topologies on the domain and the target.  This comes out of the stable cooperations of \index{Landweber flat}Landweber flat homology theories discussed in \Cref{DefnChromaticHomologyThys}, where we showed that $E_\Gamma$ has cooperations given by the ring of functions on the pro-\'etale group scheme $\Aut \Gamma$.  For $\Gamma = \G_m$, this group scheme $\Aut \G_m$ is constant at $\Z_p^\times$, so that $K^\vee K$ is the ring of $\Z_p$--valued functions on $\Z_p^\times$.  Turning to cohomology, it follows by the universal coefficient spectral sequence that $K^0 K = \CatOf{Groups}(\CatOf{Spaces}(\Z_p^\times, \Z_p), \Z_p)$ and that $K^1 K = 0$.  These correspondences behave as follows:
 \begin{enumerate}
     \item The \index{Kronecker pairing}Kronecker pairing \[\S^0 \xrightarrow{c} K \sm K \xrightarrow{1 \sm f} K \sm K \xrightarrow{\mu} K\] is computed by the evaulation pairing \[(c \in K^\vee K, f \in K^0 K) \mapsto f(c).\]
     \item The stable operation $\psi^\lambda$ attached to $[\lambda] \in \Aut \G_m$ is evaluation at $\lambda$.
@@ -1066,7 +1066,7 @@ The easy initial calculation is the continuous $p$--adic $K$--homology $K^\vee K
 
 \noindent These last two facts mean that the behavior of a stable operation on homotopy is identical information to the values of a functional $f$ on the standard polynomial functions $x^k$.  We record this algebraic model as follows:
 \begin{lemma}
-For any $N \ge 0$, the assignment \[\Hom(\CatOf{Spaces}(\Z_p^\times, \Z_p), \Z_p) \xrightarrow{(f(x \mapsto x^k))_k} \prod_{k \ge N} \Z_p\] is injective.  A sequence $(x_k)$ is said to be a \index{Kummer sequence@K\"ummer sequence}\textit{K\"ummer sequence} when it lies in this image.\footnote{A bit more explicitly: $(x_k)$ is K\"ummer when for all $h(x) = \sum_{k=N}^n a_k x^k \in \Q[x]$ we have $\sum_{k=N}^m a_k x_k \in \Z_p$.} \qed
+For any $N \ge 0$, the assignment \[\CatOf{Groups}(\CatOf{Spaces}(\Z_p^\times, \Z_p), \Z_p) \xrightarrow{(f(x \mapsto x^k))_k} \prod_{k \ge N} \Z_p\] is injective.  A sequence $(x_k)$ is said to be a \index{Kummer sequence@K\"ummer sequence}\textit{K\"ummer sequence} when it lies in this image.\footnote{A bit more explicitly: $(x_k)$ is K\"ummer when for all $h(x) = \sum_{k=N}^n a_k x^k \in \Q[x]$ we have $\sum_{k=N}^m a_k x_k \in \Z_p$.} \qed
 \end{lemma}
 
 \begin{remark}
@@ -1087,7 +1087,7 @@ K \sm KO & \simeq K \sm (K^{hC_2}) \tag{$KO$ is a homotopy fixed point spectrum}
 so that $\pi_0 K \sm KO = \CatOf{Spaces}(\Z_p^\times / C_2, \Z_p)$.  Taking fixed points again, we then also have $\pi_* KO \sm KO = \CatOf{Spaces}(\Z_p^\times / C_2, KO_*)$, and $KO^* KO$ is the $KO_*$--linear dual.  From this we gain the computations
 \begin{align*}
 [\Susp^{-1} KO, KO] & = 0, &
-[KO, KO] & = \Hom(\CatOf{Spaces}(\Z_p^\times / C_2, \Z_p), \Z_p)
+[KO, KO] & = \CatOf{Groups}(\CatOf{Spaces}(\Z_p^\times / C_2, \Z_p), \Z_p)
 \end{align*}
 We additionally see that $[KO, KO]$ torsion-free, which altogether accounts for all of our outstanding claims.
 
