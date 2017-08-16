@@ -224,7 +224,7 @@ In \Cref{DescentFromHFpToHZp}, we discussed translating from the algebra descent
 \end{remark}
 
 \begin{example}
-Most of the homology theories we will discuss have these {\CH} and {\FH} properties.  For an easy example, $\HFtwo P$ certainly has this property: there is only one possible algebraic map $\F_2 \to \mathcal A_*$, so {\FH} is necessarily satisfied.  Our work in \Cref{TheSteenrodAlgebraSection} thus grants us access to a description of the context for $\HFtwo$: \[\context{\HFtwo P} = \Spec \F_2 \mmod \InternalAut{\G_a}.\]
+Most of the homology theories we will discuss have these {\CH} and {\FH} properties.  For an easy example, $\HFtwo P$ certainly has this property: there is only one possible algebraic map $\F_2 \to \mathcal A_*$, so {\FH} is necessarily satisfied.  Our work in \Cref{TheSteenrodAlgebraSection} thus grants us access to a description of the context for $\HFtwo$:\footnote{This is a bit glib: this gives a presentation of the \emph{even} part of the context for $\HFtwo P$, and the ``$\G_a$'' in the formula is $\CP^\infty_{\HFtwo}$ rather than $\RP^\infty_{\HFtwo}$.  This sleight of hand abuts the discussion of Bocksteins in \Cref{ASSForLKdS}.} \[\context{\HFtwo P} = \Spec \F_2 \mmod \InternalAut{\G_a}.\]
 \end{example}
 
 \begin{example}\label{ContextOfMUPExample}
@@ -265,14 +265,6 @@ E \sm X & E \sm \overline E \sm X & E \sm \overline E^{\sm 2} \sm X & \cdots.
 \end{tikzcd}
 \end{center}
 This presentation makes the connection to descent much more opaque, but it does not require $E$ to be an $A_\infty$--ring spectrum.
-\end{remark}
-
-\begin{remark}
-With contexts in mind, the pro-spectrum $DX_+ = \{F(X_\alpha, \S)\}_\alpha$ gains our attention as a kind of universal example.  Because each $X_\alpha$ is a compact object, base-change along the unit map $\eta\co \S \to E$ can be computed by the following formula:
-\begin{align*}
-\eta^* DX_+ = E \sm \{F(X_\alpha, \S)\}_\alpha = \{E \sm F(X_\alpha, \S)\}_\alpha = \{F(X_\alpha, E)\}_\alpha.
-\end{align*}
-Applying the functor $\Spf \circ \pi_0$ to this pro-system yields the formal scheme $X_E$ considered in \Cref{FullDefnOfXE}.  One of the themes of this book will be to think of the objects $X$ and $DX_+$ as spectral incarnations of some formal group construction, which base-change along $\eta$ to specialize to classical algebro-geometric constructions applied to the formal group associated to $E$.
 \end{remark}
 
 \begin{remark}
@@ -690,14 +682,14 @@ For $g$ to be a coordinate transformation, we must have $b_0 = 1$, and because $
 We can now see see that $\pi_0 \moduli{fg}$, sometimes called the \index{formal group!coarse moduli}\textit{coarse moduli of formal groups}, is not representable by a scheme.  From \Cref{FGpsOverAlgClosedFields}, we see that there are infinitely many points in $\pi_0 \moduli{fg}(\F_p)$.  From \Cref{MfglIsSmooth}, we see that these lift along the surjection $\Z \to \F_p$ to give infinitely many distinct points in $\pi_0 \moduli{fg}(\Z)$.  On the other hand, by \Cref{RationalGeometricPointsOfMfg} there is a single $\Q$--point of the coarse moduli, whereas the $\Z$--points of a representable functor would inject into its $\Q$--points.
 \end{remark}
 
-We now turn to understanding the \index{formal scheme!formal neighborhood}infinitesimal neighborhoods of these geometric points.  In general, for $p\co \Spec k \to X$ a closed $k$--point of a scheme, we defined in \Cref{JetSpacesDefn} and \Cref{DefnCompletion} an infinitesimal neighborhood object $X^\wedge_p$ with a lifting property
+We now turn to understanding the \index{formal scheme!formal neighborhood}infinitesimal neighborhoods of these geometric points.  In general, for $x\co \Spec k \to X$ a closed $k$--point of a scheme, we defined in \Cref{JetSpacesDefn} and \Cref{DefnCompletion} an infinitesimal neighborhood object $X^\wedge_x$ with a lifting property
 \begin{center}
 \begin{tikzcd}
-\Spec k \arrow["p"]{r} \arrow{d} & X^\wedge_p \arrow{d} \\
+\Spec k \arrow["x"]{r} \arrow{d} & X^\wedge_x \arrow{d} \\
 \Spf R \arrow{r} \arrow[densely dotted]{ru} & X
 \end{tikzcd}
 \end{center}
-for any infinitesimal thickening $\Spf R$ of $\Spec k$.  Thinking of $X$ as representing a moduli problem, a typical choice for $\Spf R$ is $\A^1_k$, and a map $\A^1_k \to X$ extending $p$ gives a series solution to the moduli problem which specializes at the origin to $p$.  In turn, $X^\wedge_p$ is the smallest object through which all such maps factor, and so we think of it as classifying Taylor expansions of solutions passing through $p$.
+for any infinitesimal thickening $\Spf R$ of $\Spec k$.  Thinking of $X$ as representing a moduli problem, a typical choice for $\Spf R$ is $\A^1_k$, and a map $\A^1_k \to X$ extending $x$ is a series solution to the moduli problem which constant term $x$.  In turn, $X^\wedge_x$ is the smallest object through which all such maps factor, and so we think of it as classifying Taylor expansions of solutions with constant term $x$.
 
 For a formal group $\Gamma\co \Spec k \to \moduli{fg}$, the definition is formally similar, but actually writing it out is made complicated by \Cref{WarningAboutStacks}.  In particular, $p\co \Spec k \to X$ may not lift directly through $\Spf R \to X$, but instead $\Spec R/\m \to X$ may present $p$ on a cover $i\co \Spec R/\m \to \Spec k$.
 
@@ -742,7 +734,7 @@ and selecting formal group laws everywhere, the objects of the groupoid $(\modul
 where we have required an \emph{equality} of formal group laws over the common pullback.  A morphism in this groupoid is a formal group law isomorphism $f$ over $\Spf R$ which reduces to the identity over $\Spec R/\m$.
 \end{remark}
 
-The main result about this infinitesimal space $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate:
+The main result about $(\moduli{fg})^\wedge_\Gamma$ is due to Lubin and Tate:
 \begin{theorem}[{\cite[Theorem 3.1]{LubinTate}}]\label{LubinTateModuliThm}
 Suppose that $\height \Gamma < \infty$ for $\Gamma$ a formal group over $k$ a perfect field of positive characteristic $p$.  The functor $(\moduli{fg})^\wedge_\Gamma$ is valued in essentially discrete groupoids, and it is naturally equivalent to a smooth formal scheme over $\W_p(k)$ of dimension $(\height(\Gamma) - 1)$.
 \end{theorem}
@@ -792,7 +784,6 @@ Similarly, such a formal group law $+_\Delta$ admits a series expansion \[x +_\D
 Equating these gives the condition in the Lemma statement.
 \end{proof}
 
-\todo[inline]{I would like a coordinate-independent model for this complex, which will hopefully make the following Corollary self-evident.}
 The key observation is that these two conditions appear as cocycle conditions for the first two levels of a natural cochain complex.
 \begin{definition}[{\cite[Section 3]{LazarevDeformations}}]\label{DeformationComplex}
 The \index{deformation complex}deformation complex\footnote{Pieces are of this complex are visible in work of Drinfel'd~\cite[Section 4.A]{Drinfeld} and of Lubin--Tate~\cite{LubinTate}, but neither actually assemble the whole complex.} $\widehat C^*(+_\Gamma; k)$ is defined by \[k \to k\ps{x_1} \to k\ps{x_1, x_2} \to k\ps{x_1, x_2, x_3} \to \cdots\] with differential
@@ -820,7 +811,7 @@ Remarkably, we have already encountered this complex before:
 Write $\G$ for the formal group associated to the group law $+_\Gamma$.  The cochain complex $\widehat C^*(+_\Gamma; k)$ is quasi-isomorphic to the \index{formal group!cohomology}cohomology cochain complex considered in the proof of \Cref{Symmetric2CocycleLemma}:
 \begin{align*}
 \widehat C^*(+_\Gamma; k) & \to \InternalHom{FormalSchemes}(B\G, \G_a)(k) \\
-f & \mapsto \Gamma_1\left(0, \sumGamma_{i=1}^n x_i \right)^{-1} f(x_1, \ldots, x_n). \pushQED{\qed}\qedhere\popQED
+f & \mapsto \Gamma_1\left(0, \sumGamma_{i=1}^n x_i \right)^{-1} \cdot f(x_1, \ldots, x_n). \pushQED{\qed}\qedhere\popQED
 \end{align*}
 \end{lemma}
 
@@ -1111,7 +1102,7 @@ BP_* M_{|v_d| i_d}(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}}) \arrow{r}{v} \
 These maps are guaranteed by very careful study of Adams spectral sequences.
 \end{proof}
 
-They therefore conclude the strongest possible positive response to Ravenel's conjectures.  Not only can we continue the sequence \[\S, \; \S/p, \; \S/(p, v), \; \ldots,\] but in fact \emph{any} finite spectrum admits an (essentially unique) interesting periodic self-map.  This is maybe the most remarkable of the statements: although Nishida's theorem initially led us to think of periodic self-maps as rare, they are in fact ubiquitous.  Additionally, we learned that the shift\footnote{This is sometimes referred to as the ``wavelength'' in the chromatic analogy.} of this self-map is determined by the first nonvanishing $K(d)$--homology, giving an effective detection tool.  Finally, all such periodicity shifts arise: for any $d$, there is a spectrum admitting a $v_d$--self--map but no $v_{<d}$--self--maps.
+They therefore conclude the strongest possible positive response to Ravenel's conjectures.  Not only can we continue the sequence \[\S, \; \S/p, \; \S/(p, v), \; \ldots,\] but in fact \emph{any} finite spectrum admits an (essentially unique) interesting periodic self-map.  This may be the most remarkable of the statements: although Nishida's theorem initially led us to think of periodic self-maps as rare, they are in fact ubiquitous.  Additionally, we learned that the shift\footnote{This is sometimes referred to as the ``wavelength'' in the chromatic analogy.} of this self-map is determined by the first nonvanishing $K(d)$--homology, giving an effective detection tool.  Finally, all such periodicity shifts arise: for any $d$, there is a spectrum admitting a $v_d$--self--map but no $v_{<d}$--self--maps.
 
 
 
@@ -1249,7 +1240,7 @@ The homotopy limit of the tower \[\cdots \to L_d F \to L_{d-1} F \to \cdots \to 
 
 In addition to furthering the analogy, \Cref{ChromaticConvergence} suggests a method for analyzing the homotopy groups of spheres: we could study the homotopy groups of each $L_d \S$ and perform the reassembly process encoded by this inverse limit.  Additionally, \Cref{ChromaticFractureSquares} shows that this process is inductive: $L_d \S$ can be understood in terms of the spectrum $L_{d-1} \S$, the spectrum $\widehat L_d \S$, and some gluing data in the form of $L_{d-1} \widehat L_d \S$.  Hence, we become interested in the homotopy of $\widehat L_d \S$, which is the target of the $E_d$--Adams spectral sequence considered in \Cref{StableContextLecture}.
 
-\begin{theorem}[{\Cref{IdentifyingAdamsE2Page}, see also \Cref{Pi2AndInvariantDiffls}, \Cref{DefnOfNilpCompletionAndASS}, and \Cref{FHGivesComodules}}]
+\begin{theorem}[{\Cref{IdentifyingAdamsE2Page}, see also \Cref{Pi2AndInvariantDiffls}, \Cref{DefnOfNilpCompletionAndASS}, and \Cref{FHGivesComodules}}]\label{ASSForLKdS}
 The $E_d$--based\footnote{Although the $K(d)$--Adams spectral sequence more obviously targets $\widehat L_d \S$, we have chosen to analyze the $E_d$--Adams spectral sequence above because $K(d)$ fails to satisfy {\CH}.  Starting with $BPP_0 BPP \cong BPP_0[t_0^{\pm}, t_1, t_2, \ldots]$ from \Cref{DefnChromaticHomologyThys} and \Cref{IdIsAnInvariantIdeal}, we can calculate $E(d)P_0 E(d)P$ by base-changing this Hopf algebroid: $E(d)P_0 E(d)P = E(d)P_0 \otimes_{BPP_0} BPP_0 BPP \otimes_{BPP_0} E(d)P_0$, which is again free over $E(d)P_0$.  Since $K(d)P$ is formed from $E(d)P$ by quotienting by a regular sequence, we calculate that $K(d)P_0 E(d)P$ is free over $K(d)P_0$, generated by the same summands.  However, when quotienting by the regular sequence \emph{again} to form $K(d)P_* K(d)P$, the maps in the quotient sequences act by elements in $I_d = 0$, hence introduce Bocksteins.  The end result is \[K(d)P_* K(d)P = \left(K(d)P_* \otimes_{BPP_*} BPP_* BPP \otimes_{BPP_*} K(d)P_*\right) \otimes \Lambda[\tau_0, \ldots, \tau_{d-1}],\] where $\tau_j$ in degree $1$ controls the cofiber of $E(d)P \xrightarrow{v_j} E(d)P$.  This pattern seems to be quite generic: whenever odd-primary information appears near the formal geometric picture, it comes from a poorly behaved homotopical quotient: some element was killed twice, say, or in some specific case a map was zero but is generically nonzero.  So it is here.}
 Adams spectral sequence for the sphere converges strongly to $\pi_* \widehat L_d \S$.  Writing $\omega$ for the line bundle on $\context{E_d}$ of invariant differentials, we have
 \[\pushQED{\qed}
@@ -1267,7 +1258,7 @@ As a matter of emphasis, this Theorem does not give any description of the \emph
 \begin{itemize}
     \item The center of $\Aut \Gamma_d$ is given by $\Z_p^\times$, which is the subgroup consisting of the multiplication--by--$n$ maps.  This subgroup acts trivially on the deformation space.
     \item More generally, one can show that the action of $\W_p(k)$ extends this action.  It is the stabilizer of the \index{Lubin Tate stack@Lubin--Tate stack!canonical lift}\textit{canonical lift}, which is the $\W_p(k)$--point of Lubin--Tate space given by sending the generators $v_j$ to zero, $j \ge 1$.
-    \item The formula for the action of $a = \sum_{j=0}^{n-1} a_j S^j$ on the tangent space is specified by the linear system \[a^* \left( \begin{array}{c} u_0 \\ u_1 \\ \vdots \\ u_{n-1} \end{array}\right) \equiv a_0 \left( \begin{array}{cccc} a_0 & 0 & \cdots & 0 \\ a_1 & a_0^p & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ a_{n-1} & a_{n-2}^p & \cdots & a_0^{p^n} \end{array} \right)^{-1} \cdot \left( \begin{array}{c} u_0 \\ u_1 \\ \vdots \\ u_{n-1} \end{array} \right) \pmod{\mathfrak{m}^2}.\]
+    \item The formula for the action of $a = \sum_{j=0}^{n-1} a_j S^j$ on the tangent space is specified by the linear system \[a^* \left( \begin{array}{c} u_0 \\ u_1 \\ \vdots \\ u_{d-1} \end{array}\right) \equiv a_0 \left( \begin{array}{cccc} a_0 & 0 & \cdots & 0 \\ a_1 & a_0^p & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ a_{d-1} & a_{d-2}^p & \cdots & a_0^{p^d} \end{array} \right)^{-1} \cdot \left( \begin{array}{c} u_0 \\ u_1 \\ \vdots \\ u_{d-1} \end{array} \right) \pmod{\mathfrak{m}^2}.\]
     \item Plenty more information can be found in the work of Devinatz and Hopkins~\cite{DevinatzHopkins}, which is best digested after \Cref{SectionDieudonneModules}.
 \end{itemize}
 \end{remark}
@@ -1327,7 +1318,7 @@ Take $k$ to be a perfect field of positive characteristic $p$, and take $\Gamma$
 \end{center}
 At odd primes, this turns out to be the $v_1$--self-map $v\co M_{2(p-1)}(p) \to M_0(p)$ announced in \Cref{AdamsSelfMapThm} (cf.\ also \cite[Proposition 12.7]{AdamsJXIV}).\index{vd self map@$v_d$--self--map}
 
-This admits many extensions.  More generally, different powers $v_1^j$ of the section $v_1$ also give rise to homotopy elements $\alpha_{j/1} \in \pi_{2(p-1)j} M_0(p)$.  These have varying orders of divisibility, and we write $\alpha_{j/k}$ for the element of $\pi_* \S$ satisfying $p^{k-1} \alpha_{j/k} = \alpha_{j/1}$.  Additionally, each Moore spectrum supports an Adams $v_1$--self--map of the form \[v(p^j) \co M_{|v_1| p^{j-1}}(p^j) \to M_0(p^j),\] which collectively form commutative diagrams of the shape
+This admits many generalizations.  First, different powers $v_1^j$ of the section $v_1$ also give rise to homotopy elements $\alpha_{j/1} \in \pi_{2(p-1)j} M_0(p)$.  These have varying orders of divisibility, and we write $\alpha_{j/k}$ for the element of $\pi_* \S$ satisfying $p^{k-1} \alpha_{j/k} = \alpha_{j/1}$.  Additionally, each Moore spectrum supports an Adams $v_1$--self--map of the form \[v(p^j) \co M_{|v_1| p^{j-1}}(p^j) \to M_0(p^j),\] which collectively form commutative diagrams of the shape
 \begin{center}
 \begin{tikzcd}
 M_{p \cdot |v_1| p^{j-1}}(p^j) \arrow["v(p^j)^p"]{r} \arrow{d} & M_0(p^j) \arrow{d} \\
@@ -1341,7 +1332,14 @@ The other invariant functions described in \Cref{IdIsAnInvariantIdeal} (e.g., $v
 In the broader literature, the phrase ``Greek letter elements'' typically refers to the pushforward of the above elements to the homotopy groups of $\S$ by pinching to the top cell.  This is somewhat obscuring: for instance, this significantly entangles how multiplication by $\alpha_{j/k}$ behaves.  Finally, the incarnation of these elements in $\G_m$--local homotopy are exactly the elements witnessed by the invariant function $u^{2(p-1)k}$ in \Cref{piLK1SExample}.
 \end{remark}
 
-\todo[inline]{Danny was asking some interesting questions about the relationships between the $t_i$ and the $h_j$ elements of the Adams spectral sequence.  You could try to explain some of this comparison and how you get the Hopf invariant one theorem out of it~\cite{AdamsAtiyah}.  This could also include a brief discussion of the (geometric and algebraic) chromatic spectral sequence(s).}
+\begin{remark}[{\cite{AdamsAtiyah}, \cite[Section 5.2]{RavenelGreenBook}}]
+The second solution of the Hopf invariant one problem, due to Adams and Atiyah, can be rephrased in this language.  As discussed in \Cref{HopfInvariant1ExampleMO}, the ``Hopf invariant one problem'' refers to the question of whether the $1$--cocycles $h_j$ in the $\HFtwo$--Adams spectral sequence are permanent cycles, thereby producing stable homotopy classes.  The orientation $BP \to \HFtwo$ induces a map of Adams spectral sequences, so that if $h_j$ were to survive to detect a class, that class would also be present in the $BP$--Adams spectral sequence, and its filtration degree would be not more than that of $h_j$, which lies in degree $1$.  In turn, the $BP$--Adams $E_2$--term can be computed by an ad\`elic complex~\cite{BeilinsonAdeles,Huber}, which is itself the target of a \v{C}ech-type spectral sequence known internally to chromatic homotopy theory as the \textit{chromatic spectral sequence}\index{chromatic spectral sequence}~\cite[Section 3]{MRW}, \cite[Equation 4.60]{Wilson}: \[E^2_{*,*,d} = H^*(\moduli{fg}; v_d^{-1} BP_* / (p^\infty, v_1^\infty, \ldots, v_{d-1}^\infty)\widetilde{}) \Rightarrow H^*(\moduli{fg} \times \Spec \Z_{(p)}).\]  The $1$--line of this spectral sequence is entirely governed by \Cref{piLK1SExample}, and by finishing the even--primary form of that calculation, one discovers that the $2$--divisibilities of the relevant $\alpha$--elements are too low to produce \emph{any} classes on the classical Adams $1$--line.  It follows that the elements that start life on the classical Adams $1$--line cannot be permanent cycles, lest they contribute to a contradiction.
+\end{remark}
+
+\begin{remark}
+This method is nonconstructive, in the sense that we learn that the classes $h_j$ must participate in $\HFtwo$--Adams differentials, but we do not know what those differentials are.  By wholly different means~\cite[Corollary VI.1.5]{BMMS}, one can show for all $j$ the differential \[d_2 h_j = h_0 h_{j-1}^2,\] and the accident is that the right-hand side of the equation happens to be zero for $j \le 3$.  However, because we are working in characteristic $2$, the existence of these differentials gives no information about the survival of the classes $h_j^2$, sometimes referred to as the ``(Arf--)Kervaire invariant one problem''.\footnote{Remarkably, just as the Hopf invariant one problem finds geometric application in the question of $H$--space structures on spheres, the Kervaire invariant one problem predicts the existence of certain nonsmoothable manifolds~\cite{Browder}.}  Its recent solution by Hill, Hopkins, and Ravenel~\cite{HHR} follows in the footsteps of previous work by Ravenel~\cite{RavenelNonexistenceArfInvariantElts}, and one of the crucial leaps forward is the serious employ of the theory of abelian varieties~\cite{MoravaAbVarsAndKervaire}.
+\end{remark}
+
 
 
 
