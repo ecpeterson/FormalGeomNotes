@@ -5,4 +5,7 @@ Be sure to use the option --recurse when running git clone to pull down the subm
 
 To compile these notes after downloading them, run
 
-    $ pdflatex main
+    $ pdflatex main # generate list of desired bibliography entries
+    $ bibtex main   # generate bibliography itself
+    $ pdflatex main # rerun, matching bibliography entries to references
+    $ pdflatex main # rerun, updating page entries
