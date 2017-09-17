@@ -209,18 +209,36 @@ x_1(t_1) +_{\Gm} x_2(t_2) & = 1 - (1 - t_1)(1 - t_2) \\
 \end{align*}
 \end{example}
 
-As an application of all these tools, we will show that the \emph{rational} theory of formal groups is highly degenerate: every rational formal group is isomorphic to $\G_a$.  Suppose now that $R$ is a $\Q$--algebra and that $A = R\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $R$.  What's special about this rational curve case is that differentiation gives an isomorphism between the \index{Kahler differentials@K\"ahler differentials}K\"ahler differentials $\Omega^1_{A/R}$ and the ideal $(x)$ of functions vanishing at the origin (i.e., the ideal sheaf selecting the closed subscheme $0\co \Spec R \to \Spf A$).  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]  In pursuit of the construction of a \index{logarithm}\textit{logarithm} for a formal group $\G$ over $R$, we now take a cue from classical Lie theory:
+As an application of all these tools, we will show that the \emph{rational} theory of formal groups is highly degenerate: every rational formal group admits a \index{logarithm}\textit{logarithm}, i.e., an isomorphism to $\G_a$.  Suppose now that $R$ is a $\Q$--algebra and that $A = R\llbracket x \rrbracket$ is the coordinatized ring of functions on a formal line over $R$.  What's special about this rational curve case is that differentiation gives an isomorphism between the \index{Kahler differentials@K\"ahler differentials}K\"ahler differentials $\Omega^1_{A/R}$ and the ideal $(x)$ of functions vanishing at the origin (i.e., the ideal sheaf selecting the closed subscheme $0\co \Spec R \to \Spf A$).  Its inverse is formal integration: \[\int \co \left(\sum_{j=0}^\infty c_j x^j \right) dx \mapsto \sum_{j=0}^\infty \frac{c_j}{j+1} x^{j+1}.\]  In pursuit of the construction of a logarithm for a formal group $\G$ over $R$, we now take a cue from classical Lie theory:
 \begin{definition}
-A $1$--form $\omega \in \Omega^1_{A/R}$ is said to be \index{Kahler differentials@K\"ahler differentials!invariant}\textit{invariant (under a group law $+_\phi$)} when $\omega = T_y^* \omega$ for all translations $T_y(x) = x +_\phi y$.
+A $1$--form $\omega \in \Omega^1_{A/R}$ is said to be \index{Kahler differentials@K\"ahler differentials!invariant}\textit{invariant (under a group law $+_\phi$)} when $\omega = \tau_y^* \omega$ for all translations $\tau_y(x) = x +_\phi y$.  We write $\omega_{\G} \subseteq \Omega^1_{A/R}$ for the subsheaf of such invariant $1$--forms.
 \end{definition}
 
+\begin{lemma}\label{InvDifflsGiveLogsRationally}
+For $R$ a $\Q$--algebra, integration gives an isomorphism \[\int\co \omega_{\G} \to \CatOf{FormalGroups}(\G, \G_a).\]
+\end{lemma}
+\begin{proof}
+Suppose that $f \in \omega_{\G}$ is an invariant differential, which in terms of a coordinate $x$ indicates the equation
+\begin{align*}
+f(x) dx = \omega & = \tau_y^* \omega = f(x +_\phi y) d(x +_\phi y). \\
+\intertext{Writing $F(x) = \int f(x) dx$ for its formal integral, we use the multivariate chain rule to extend this equation to}
+\frac{\partial F(x)}{\partial x} dx = f(x) dx = \omega & = \tau_y^* \omega = f(x +_\phi y) d(x +_\phi y) = \frac{\partial F(x +_\phi y)}{\partial x} dx.
+\end{align*}
+It follows that $F(x +_\phi y)$ and $F(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $F(y)$, hence \[F(x +_\phi y) = F(x) + F(y).\]  This chain of steps can be read in reverse: starting with an $F(x)$ satisfying this last equation, differentiating against $x$ yields the long equation above, and hence an invariant differential $\omega = \frac{\partial F(x)}{\partial x} dx$.
+\end{proof}
+
+\begin{lemma}\label{InvDifflsAreDeterminedByConstantTerm}
+For $R$ any ring, there is an isomorphism $\omega_{\G} \cong T_0^* \G$.
+\end{lemma}
+\begin{proof}
+We set out to analyze the space of invariant differentials in terms of a coordinate $x$.  As above, a differential $\omega$ admits expression as $\omega = f(x) dx$, and the invariance condition above becomes \[f(x) dx = f(y +_\phi x) d(y +_\phi x) = f(y +_\phi x) \frac{\partial(y +_\phi x)}{\partial x} dx.\]  Restricting this equation to the origin by setting $x = 0$, we produce the condition \[f(0) = f(y) \cdot \left. \frac{\partial(y +_\phi x)}{\partial x} \right|_{x=0}.\]  The partial differential is a multiplicatively invertible power series, and hence we may rewrite $f(y)$ as \[f(y) = f(0) \cdot \left(\left. \frac{\partial(y +_\phi x)}{\partial x} \right|_{x=0}\right)^{-1}.\]  This shows that the assignment $f(y) \mapsto f(0)$ is bijective, establishing the desired isomorphism.
+\end{proof}
+
 \begin{theorem}\label{RationalFGLsHaveLogarithms}
-For $R$ a $\Q$--algebra, there is a canonical isomorphism of formal groups \[\log\co \G \to T_0^* \G \otimes \G_a.\]
+If $R$ is a $\Q$--algebra, there is a natural logarithm \[\log_{\G}\co \G \to \G_a \otimes T_0 \G.\]
 \end{theorem}
 \begin{proof}
-We set out to construct such an isomorphism in terms of a coordinate $x$.  In terms of $x$, a differential $\omega$ admits expression as $\omega = f(x) dx$, and the invariance condition above becomes \[f(x) dx = f(y +_\phi x) d(y +_\phi x) = f(y +_\phi x) \frac{\partial(y +_\phi x)}{\partial x} dx.\]  We will analyze the set of such invariant differentials.
-
-Restricting the above equation to the origin by setting $x = 0$, we produce the condition \[f(0) = f(y) \cdot \left. \frac{\partial(y +_\phi x)}{\partial x} \right|_{x=0}.\]  Since $R$ is a $\Q$--algebra, we may integrate against $y$ to yield \[\log_\phi(y) := \int f(y) \, dy = f(0) \int \left( \left. \frac{\partial(y +_\phi x)}{\partial x} \right|_{x=0} \right)^{-1} dy.\]  To see that the series $\log_\phi$ has the claimed homomorphism property, note that \[\frac{\partial \log_\phi(y +_\phi x)}{\partial x} dx = f(y +_\phi x) d(y +_\phi x) = f(x) dx = \frac{\partial \log_\phi(x)}{\partial x} dx,\] so $\log_\phi(y +_\phi x)$ and $\log_\phi(x)$ differ by a constant.  Checking at $x = 0$ shows that the constant is $\log_\phi(y)$, hence \[\log_\phi(x +_\phi y) = \log_\phi(x) + \log_\phi(y).\]  The choice of boundary value $f(0)$ corresponds to the choice of vector in $T_0 \G$, and the space of invariant differentials (and thus their corresponding logarithms) is parametrized by the tangent space of $\G$.
+First, \Cref{InvDifflsAreDeterminedByConstantTerm} shows that a choice of section of the cotangent space at the identity of $\G$ uniquely specifies an invariant differential.  Then, \Cref{InvDifflsGiveLogsRationally} shows that this uniquely specifies a logarithm function.  This describes an isomorphism \[T_0^* \G \to \CatOf{FormalGroups}(\G, \G_a),\] which we transpose to give the desired isomorphism \[\log_{\G}\co \G \to \G_a \otimes T_0 \G. \qedhere\]
 \end{proof}
 
 \begin{example}\label{GmAndItsLogExample}
