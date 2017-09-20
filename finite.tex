@@ -471,20 +471,15 @@ Let $k$ be any field of characteristic $0$.  Then $\G_a$ describes the unique ma
 \end{theorem}
 
 One of our overarching tasks from the introduction to this Case Study is to enhance this to a classification of \emph{all} of the geometric points of $\moduli{fg}$, including those where $k$ is a field of positive characteristic $p$: \[\G\co \Spec k \to \moduli{fg} \times \Spec \Z_{(p)}.\]  We proved this Theorem in the characteristic $0$ case by solving a certain differential equation, which necessitated integrating a power series, and integration is what we expect to fail in characteristic $p$.  The following definition tracks \emph{where} it fails:
-\begin{definition}
+\begin{definition}\label{HeightDefn}
 Let $+_\phi$ be a formal group law over a $\Z_{(p)}$--algebra.  Let $n$ be the largest degree such that there exists a formal power series $\ell$ with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., $\ell$ is a logarithm for the $(n-1)$--bud determined by $+_\phi$.  The \index{formal group!height}\textit{$p$--height of $+_\phi$} is defined to be $\log_p(n)$.
 \end{definition}
 
 \begin{example}
-The unit-speed invariant differential associated to the usual coordinate on the muliplicative group has the form \[\omega(x) = (1 + x + x^2 + \cdots + x^{p-1} + \cdots) dx.\]  The radius of convergence of this ordinary differential equation in $\Z_{(p)}$ is $p$, owing to the term \[\int x^{p-1} dx = \frac{x^p}{p} \not\in \Z_{(p)}[x].\]  We thus see that $\G_m$ has height $\log_p(p) = 1$.
+This definition is somewhat subtle, since $\ell$ is not required to integrate a truncation of the invariant differential.  Nonetheless, it will be a consequence of the results below that the height of a formal group law can be determined by attempting to integrate its unit-speed invariant differential and noting the first degree where the requisite division is impossible, provided that that degree is of the form $p^d$.  For example, the unit-speed invariant differential associated to the usual coordinate on the muliplicative group has the form \[\omega(x) = (1 + x + x^2 + \cdots + x^{p-1} + \cdots) dx.\]  The radius of convergence of this ordinary differential equation in $\Z_{(p)}$ is $p$, owing to the term \[\int x^{p-1} dx = \frac{x^p}{p} \not\in \Z_{(p)}[x].\]  We thus see that $\G_m$ has height $\log_p(p) = 1$.
 \end{example}
 
-This turns out to be a crucial invariant of a formal group law, admitting many other interesting presentations.  In this Lecture, investigation of this definition will lead us to a classification of the closed substacks of $\moduli{fg}$, another of our overarching tasks.  As a first step, we would like to show that this value is well-behaved in various senses, including the following:
-\begin{lemma}[{cf.\ \cite[Proposition 13.6]{LurieChromaticCourseNotes}}]\label{FGLHeightIsAnInteger}
-Over a field of positive characteristic $p$, the $p$--height of a formal group law is always an integer (or $\infty$).  (That is, the radius of convergence of the logarithmic differential equation is either $\infty$ or $p^d$ for some nonnegative natural $d$.)
-\end{lemma}
-
-\noindent We will have to develop some machinery to get there.  First, we note that this definition really depends on the formal group rather than the formal group law.
+This turns out to be a crucial invariant of a formal group law, admitting many other interesting presentations.  In this Lecture, investigation of this definition will lead us to a classification of the closed substacks of $\moduli{fg}$, another of our overarching tasks.  As a first step, we would like to show that this value is well-behaved in various senses---for instance, it is always an integer (or $\infty$).  First, we note that this definition really depends on the formal group rather than the formal group law.
 
 \begin{lemma}\label{HeightIsAnIsomInvariant}
 The height of a formal group law is an isomorphism invariant, i.e., it descends to give a function \[\height\co \pi_0 \moduli{fg}(T) \to \N \cup \{\infty\}\] for any local test $\Z_{(p)}$--algebra $T$.
@@ -493,82 +488,65 @@ The height of a formal group law is an isomorphism invariant, i.e., it descends 
 The series $\ell$ is a partial logarithm for the formal group law $\phi$, i.e., an isomorphism between the formal group defined by $\phi$ and the additive group.  Since isomorphisms compose, this statement follows.
 \end{proof}
 
-With this in mind, we look for a more standard form for formal group laws, where \Cref{FGLHeightIsAnInteger} will hopefully be obvious.  The most blindly optimistic standard form is as follows:
-\begin{definition}[{cf.\ \cite[Proposition 15.2.4]{Hazewinkel}}]\label{DefnpTypicalLog}
-Suppose that a formal group law $+_\phi$ does have a logarithm.  We say that its logarithm is \index{p typical@$p$--typical!logarithm}\textit{$p$--typical} when it takes the form \[\log_\phi(x) = \sum_{j=0}^\infty \ell_j x^{p^j}.\]
+With this in mind, we look for a more standard form for formal group laws, where \Cref{FGLHeightIsAnInteger} will hopefully be obvious.  In order to give ourselves more tools to work with, we assume that the our ground ring is torsion-free---and although our true goal is to understand formal groups over positive characteristic fields, we are free to make this assumption by \Cref{MfglIsSmooth}.  In this setting, the most blindly optimistic standard form is as follows:
+\begin{definition}[{cf.\ \cite[Proposition 15.2.4]{Hazewinkel}}]\label{DefnPTypInvDiffl}
+We say that a formal group law $+_\phi$ is \index{p typical@$p$--typical!logarithm}\textit{$p$--typical} when its invariant differential takes the form \[\omega(x) = \sum_{j=0}^\infty \ell_j x^{p^j-1} dx.\]
 \end{definition}
 
-\begin{lemma}[{\cite[Theorem 15.2.9]{Hazewinkel}}]\label{EveryLogHaspTypification}
-Every formal group law $+_\phi$ over a $\Z_{(p)}$--algebra with a logarithm $\log_\phi$ is naturally isomorphic to one whose logarithm is $p$--typical, called the \textit{$p$--typification} of $+_\phi$.
+\begin{lemma}[{\cite[Theorem 15.2.9]{Hazewinkel}}]\label{EveryLogHaspTypification}\label{EveryFGLIsPTypical}
+Every formal group law $+_\phi$ over a $\Z_{(p)}$--algebra is naturally isomorphic to a $p$--typical formal group law, called the \textit{$p$--typification} of $+_\phi$.
 \end{lemma}
 \begin{proof}
-Let $\G$ be the formal group associated to $+_\phi$, and denote its inherited parameter by \[g_0\co \A^1 \xrightarrow{\cong} \G,\] so that the composite \[\A^1 \xrightarrow{g_0} \G \xrightarrow{\log} \G_a \xrightarrow{x} \A^1\] expresses $\log_\phi = \log \circ g_0$ as the power series \[\log_\phi(x) = \sum_{n=1}^\infty a_n x^n.\]  Our goal is to perturb this coordinate to a new coordinate $g_\infty$ which couples with the logarithm in the same way to give a series expansion of the form \[\log(g_\infty(x)) = \sum_{n=0}^\infty a_{p^n} x^{p^n}.\]  To do this, we introduce four operators on functions\footnote{Unfortunately, it is standard in the literature to call these operators on ``curves'', which does not fit well with our previous use of the term in \Cref{ComplexBordismChapter}.} $\A^1 \to \G$:
+Let $\G$ be the formal group associated to $+_\phi$, denote its inherited parameter by \[g_0\co \A^1 \xrightarrow{\cong} \G,\] so that $\omega_0(x) = (g_0^* \omega)(x) = \sum_{n=0}^\infty a_n x^{n-1} dx$ is the invariant differential associated to $+_\phi$.  Our goal is to perturb this coordinate to a new coordinate $g_\infty$ so that its associated invariant differential has the form \[\sum_{n=0}^\infty a_{p^n} x^{p^n-1} dx.\]  To do this, we introduce four operators on functions\footnote{Unfortunately, it is standard in the literature to call these operators on ``curves'', which does not fit well with our previous use of the term in \Cref{ComplexBordismChapter}.} $\A^1 \to \G$:
 \begin{itemize}
-\item Given $r \in R$, we can define a \index{homothety}\textit{homothety} by rescaling the coordinate by $r$: \[\log(\theta_r g_0(x)) = \log(g_0(rx)) = \sum_{n=1}^\infty (a_n r^n) x^n.\]
-\item For $\ell \in \Z$, we can define a shift operator (or \index{Verschiebung}\textit{Verschiebung}) by \[\log(V_\ell g_0(x)) = \log(g(x^\ell)) = \sum_{n=1}^\infty a_n x^{n \ell}.\]
-\item Given an $\ell \in \Z_{(p)}$, we define the \index{formal group!l series@$\ell$--series}\textit{$\ell$--series} by\footnote{Note that for $\ell \in \Z$, this agrees with $[\ell](g_0(x)) = \overset{\text{$\ell$ times}}{\overbrace{g_0(x) +_{\G} \cdots +_{\G} g_0(x)}}$.} \[\log([\ell](g_0(x))) = \ell \log(g_0(x)) = \sum_{n=1}^\infty \ell a_n x^n.\]
-\item For $\ell \in \Z$, we can define a \index{Frobenius}\textit{Frobenius operator}\footnote{There are other definitions of the Frobenius operator which are less mysterious but less explicit.  For instance, it also arises from applying the Verschiebung to the character group (or ``Cartier dual'') of $\G$.} by \[\log(F_\ell g_0(x)) = \log\left(\sumG_{j=1}^\ell g_0(\zeta_\ell^j x^{1/\ell}) \right),\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$).  But, by pulling the logarithm through and noting \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$: \[\log(F_\ell g_0(x)) = \sum_{n=1}^\infty \ell a_{n \ell} x^n.\]
+\item Given $r \in R$, we can define a \index{homothety}\textit{homothety} by rescaling the coordinate by $r$: \[(\theta_r^* g_0^* \omega)(x) = \omega_0(rx) = \sum_{n=1}^\infty (a_n r^n) x^{n-1} dx.\]
+\item For $\ell \in \Z$, we can define a shift operator (or \index{Verschiebung}\textit{Verschiebung}) by \[(V_\ell^* g_0^* \omega)(x) = \omega_0(x^\ell) = \sum_{n=1}^\infty a_n \ell x^{n \ell - 1} dx.\]
+\item For $\ell \in \Z$, we define the $\ell$--series to be \[[\ell](g_0(x)) = \overset{\text{$\ell$ times}}{\overbrace{g_0(x) +_{\G} \cdots +_{\G} g_0(x)}}.\]  We can extend this definition slightly: given an $\ell \in \Z_{(p)}$, we form the $\ell$--series by writing $\ell$ as a fraction $\ell = s/t$ and composing the $s$--series with the inverse of the $t$--series.  The effect on the invariant differential is given by \[([\ell]^* g_0^* \omega)(x) = \ell \omega_0(x) = \sum_{n=1}^\infty \ell a_n x^{n-1} dx.\]
+\item For $\ell \in \Z$, we can define a \index{Frobenius}\textit{Frobenius operator}\footnote{There are other definitions of the Frobenius operator which are less mysterious but less explicit.  For instance, it also arises from applying the Verschiebung to the character group (or ``Cartier dual'') of $\G$.} by \[F_\ell g_0(x) = \sumG_{j=1}^\ell g_0(\zeta_\ell^j x^{1/\ell}),\] where $\zeta_\ell$ is a primitive $\ell${\th} root of unity.  Because this formula is Galois--invariant in choice of primitive root, it actually expands to a series which lies over the ground ring (without requiring an extension by $\zeta_\ell$ or by $z^{1/\ell}$).  Using the standard identity \[\sum_{j=1}^\ell \zeta_\ell^{jn} = \begin{cases}\ell & \text{if $\ell \mid n$}, \\ 0 & \text{otherwise}, \end{cases}\] we can explicitly compute the behavior of $F_\ell$ on the invariant differential: \[(F_\ell^* g_0^* \omega)(x) = \sum_{n=1}^\infty a_{n \ell} x^{n-1} dx.\]
 \end{itemize}
-Stringing these together, for $p \nmid \ell$ we have \[\log([1/\ell] V_\ell F_\ell g_0(x)) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell}.\]  Hence, we can iterate over primes $\ell \ne p$, and for two adjacent such primes $\ell' > \ell$ we consider the perturbation \[g_{\ell'} = g_\ell -_{\G} [1/\ell] V_\ell F_\ell g_\ell.\]  Each of these differences gives a parameter according to \Cref{InverseFunctionTheoremForFVars}, and the first possible nonzero term appears in degree $\ell$, hence the coefficients stabilize linearly in $\ell$.  Passing to the limit thus gives a new parameter $g_\infty$ on the same formal group $\G$, but now with a $p$--typical logarithm.
+Stringing these together, for $p \nmid \ell$ we have \[([1/\ell]^* V_\ell^* F_\ell^* g_0^* \omega)(x) = \sum_{n=1}^\infty a_{n \ell} x^{n \ell - 1} dx.\]  Hence, we can iterate over primes $\ell \ne p$, and for two adjacent such primes $\ell' > \ell$ we consider the perturbation \[g_{\ell'} = g_\ell -_{\G} [1/\ell] V_\ell F_\ell g_\ell.\]  Each of these differences gives a parameter according to \Cref{InverseFunctionTheoremForFVars}, and the first possible nonzero term appears in degree $\ell$, hence the coefficients stabilize linearly in $\ell$.  Passing to the limit thus gives a new parameter $g_\infty$ on the same formal group $\G$, but now with the $p$--typicality property.
 \end{proof}
 
-Of course, the whole idea of ``height'' is that not every formal group law supports a logarithm.  Because of this, we would like to re-express $p$--typicality in more general terms.  Our foothold for this is the following computation of the $p$--series of a formal group law with $p$--typical logarithm:
+\begin{lemma}
+If $x$ is a $p$--typical parameter for a formal group $\G$, then any other parameter $y$ admits a unique expression as \[y = \sumfgl{\G}_{j=0}^\infty \theta_{b_j}^* V_j^* x.\]
+\end{lemma}
+\begin{proof}
+This a quick induction: set $y = y_\infty$ and $x = y_2$, which satisfy \[y_\infty - y_1 \equiv 0 \pmod{x^{1+1}}.\]  We inductively define $y_n$ by examining \[y_\infty - y_{n-1} \equiv b_n x^n \pmod{x^{n+1}}\] and setting \[y_n = y_{n-1} +_{\G} \theta_{b_n}^* V_n^* x. \qedhere\]
+\end{proof}
 
-\begin{lemma}[{\cite[Section 4]{Araki}}]\label{pTypLogGivesNicePSeries}
-For a formal group $+_\phi$ with a logarithm $\log_\phi$, the logarithm is $p$--typical if and only if there are elements $v_d$ with \[[p]_\phi(x) = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_d x^{p^d} +_\phi \cdots.\]
+\begin{corollary}[{cf.\ \cite[Proposition 13.6]{LurieChromaticCourseNotes}}]\label{FGLHeightIsAnInteger}
+Let $x$ be a $p$--typical parameter for a formal group $\G$, and let $p^d-1$ be the minimal index so that the invariant differential is not integrable in that degree.  Then $\G$ has height $d$.  (In particular, the radius of convergence of the logarithmic differential equation is either $\infty$ or $p^d$ for some nonnegative natural $d$.)
+\end{corollary}
+\begin{proof}
+Take $x$ to be a $p$--typical parameter as in the statement.  Although \textit{a priori} the partial logarithm $\ell$ described in \Cref{HeightDefn} may not be the partial integral of the invariant differential associated to $x$, it is the partial logarithm associated to \emph{some} parameter $y$, and we use the preceding Lemma to re-express $y$ as \[y = \sumfgl{\G}_{n=0}^\infty \theta_{b_n}^* V_n^* x.\]  Consider the invariant differential associated to $y$, expressed in terms of $x$ and $dx$, using the rules described in the proof of \Cref{EveryFGLIsPTypical}: \[\omega_y = \sum_{j=0}^\infty \theta_{b_j}^* V_j^* \sum_{n=0}^\infty a_{p^n} x^{p^n-1} dx = \sum_{j=0}^\infty \sum_{n=0}^\infty j a_{p^n} b_j^{jp^n-1} x^{jp^n-1} dx.\]  Now consider the critical degree $p^d-1$: only terms of the form $b_{p^{d-n}}^{p^{d-n}p^n-1}$ can contribute, which we have all assumed to have positive $p$--adic valuation by virtue of the convergence of the partial logarithm for $y$, and hence they cannot modify the vanishing $p$--adic valuation of $a_{p^d}$.  In particular, this shows that the radius of convergence of the partial logarithm is at most $p^d-1$, and the existence of $x$ itself shows that it is at least $p^d-1$.
+\end{proof}
+
+In the course of the above discussion, manipulations with the $\ell$--series have played a critical role, and we have shied away from the $p$--series because of the noninvertibility of $p$ in $\Z_{(p)}$.  As a consequence, this means that the $p$--series contains an unusual amount of information even after $p$--typification of a coordiante, and so we turn to its analysis.
+
+\begin{lemma}[{\cite[Section 4]{Araki}}]\label{pTypLogGivesNicePSeries}\label{pTypLawsHaveNicePSeries}
+A formal group law $+_\phi$ is $p$--typical if and only if there are elements $v_d$ with \[[p]_\phi(x) = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_d x^{p^d} +_\phi \cdots.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
-Suppose first that $\log_\phi$ is $p$--typical.  We can then compare the two series
+Suppose first that $+_\phi$ is $p$--typical with invariant differential \[\omega(x) = \sum_{n=0}^\infty a_n x^{p^n-1} dx.\]  We can then compare the two series
 \begin{align*}
-\log_\phi(px) & = px + \cdots, \\
-\log_\phi([p]_\phi(x)) & = p \log_\phi(x) = px + \cdots.
+(\theta_p^* \omega)(x) & = p dx + \cdots, \\
+([p]^* \omega)(x) & = p \omega(x) = p dx + \cdots.
 \end{align*}
-The difference is concentrated in degrees of the form $p^d$, beginning in degree $p$, so we can find an element $v_1$ such that \[p \log_\phi(x) - (\log_\phi(px) + \log_\phi(v_1 x^p))\] is also concentrated in degrees of the form $p^d$ but now starts in degree $p^2$.  Iterating this gives the equation
+The difference is concentrated in degrees of the form $p^d-1$, beginning in degree $p-1$, so we can find an element $v_1$ such that \[[p]^* \omega(x) - (\theta_p^* \omega(x) + \theta_{v_1}^* V_p \omega(x))\] is also concentrated in degrees of the form $p^d$ but now starts in degree $p^2$.  Iterating this gives the equation
 \begin{align*}
-p \log_\phi(x) & = \log_\phi (px) + \log_\phi(v_1 x^p) + \log_\phi(v_2 x^{p^2}) + \cdots, \\
-\intertext{at which point we can use formal properties of the logarithm to deduce}
-\log_\phi [p]_\phi(x) & = \log_\phi \left(px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots\right), \\
+[p]^* \omega & = \theta_p^* \omega + \theta_{v_1}^* V_p^* \omega + \theta_{v_2}^* V_{p^2}^* \omega + \cdots, \\
+\intertext{at which point we can use the invariance property of $\omega$ to deduce}
 [p]_\phi(x) & = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_n x^{p^n} +_\phi \cdots.
 \end{align*}
-In the other direction, the logarithm coefficients can be recursively recovered from the coefficients $v_d$ for a formal group law with $p$--typical $p$--series, using a similar manipulation:
+In the other direction, the invariant differential coefficients can be recursively recovered from the coefficients $v_d$ for a formal group law with $p$--typical $p$--series, using a similar manipulation.  In fact, we can push this slightly further:
 \begin{align*}
-p \log_\phi(x) & = \log_\phi\left([p]_\phi(x)\right) \\
-p \sum_{n=0}^\infty m_n x^n & = \log_\phi \left(\sumphi_{d=0}^\infty v_d x^{p^d} \right) = \log_\phi(px) + \sum_{d=1}^\infty \log_\phi\left(v_d x^{p^d}\right), \\
-\intertext{which is only soluable if $\log_\phi$ is concentrated in degrees of the form $p^d$.  In that case, we can push this slightly further:}
-\sum_{d=0}^\infty p m_{p^d} x^{p^d} & = \sum_{d=0}^\infty \sum_{j=0}^\infty m_{p^j} v_d^{p^j} x^{p^{d+j}} = \sum_{n=0}^\infty \left( \sum_{k=0}^n m_{p^k} v_{n-k}^{p^k} \right) x^{p^n},
+\sum_{d=0}^\infty p a_{p^d} x^{p^d-1} dx & = \sum_{d=0}^\infty \sum_{j=0}^\infty p^d a_{p^j} v_d^{p^j} x^{p^{d+j}-1} dx \\
+& = \sum_{n=0}^\infty \left( \sum_{k=0}^n a_{p^k} p^{n-k} v_{n-k}^{p^k} \right) x^{p^n-1} dx,
 \end{align*}
 implicitly taking $m_1 = 1$ and $v_0 = p$.
 \end{proof}
 
-This result portends much of what is to come.  We now set our definition of $p$--typical to correspond to the manipulations we were making in the course of proving \Cref{EveryLogHaspTypification}.
-
-\begin{definition}\label{pTypicalityInGeneral}
-A parameter $g\co \A^1 \to \G$ of a formal group is said to be \index{p typical@$p$--typical!parameter}\textit{$p$--typical} when $F_\ell g = 0$ for all $p \nmid \ell$.
-\end{definition}
-
-\begin{corollary}[{cf.\ \Cref{EveryLogHaspTypification}}]\label{EveryFGLIsPTypical}
-Every formal group law $+_\phi$ is naturally isomorphic to a $p$--typical one. \qed
-\end{corollary}
-
-\begin{lemma}[{\cite[Section 4]{Araki}, cf.\ \Cref{pTypLogGivesNicePSeries}}]\label{pTypLawsHaveNicePSeries}
-If $+_\phi$ is a $p$--typical formal group law, then there are elements $v_d$ with \[[p]_\phi(x) = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_d x^{p^d} +_\phi \cdots.\]
-\end{lemma}
-\begin{proof}
-As before, let $\G$ denote the formal group associated to $+_\phi$ and let $g\co \A^1 \to \G$ denote the induced $p$--typical coordinate.  Any auxiliary function $h\co \A^1 \to \G$ can be expressed in the form \[h = \sumG_{m = 0}^\infty V_m \theta_{a_m} g.\]  We will show that if $h$ is $p$--typical (i.e., $F_\ell h = 0$ for $p \nmid \ell$) then $a_m = 0$ for every $m \ne p^d$.\footnote{The converse so this claim also holds: since $F_\ell F_p = F_p F_\ell$ for $p \nmid \ell$, we can commute $F_\ell$ through the sum expression (which is absent any non-commuting terms by hypothesis), where it then kills $g$ to give $F_\ell h = 0$.}  Suppose instead that we can find a smallest index $m = rp^d$ with $p \nmid r$, $r \ne 1$, and $a_m \ne 0$.  We can then write
-\begin{align*}
-F_\ell \left( h -_{\G} \sumG_{j=0}^{d} V_{p^j} \theta_{a_{p^j}} g \right) & = F_\ell(V_m \theta_{a_m} g + \cdots) \\
-& = r V_{p^d} \theta_{a_m} g + \cdots \ne 0.
-\end{align*}
-Since $p$--typical curves are closed under difference, $h$ could not have been $p$--typical.
-
-Finally, we specialize to the case $h = [p]_{\G}(g)$.  Since $F_\ell$ and $[p]$ commute, $[p]$ is $p$--typical, hence has an expression of the desired form.
-\end{proof}
-
-\begin{proof}[{Proof of \Cref{FGLHeightIsAnInteger}}]
-Replace the formal group law by its $p$--typification.  Using the formulas from \Cref{pTypLogGivesNicePSeries}, we see that the height of a $p$--typical formal group law over a field of characteristic $p$ coincides with the appearance of the first nonzero coefficient in its $p$--series.
-\end{proof}
-
-\Cref{pTypLogGivesNicePSeries} shows that the $p$--series of a formal group law with $p$--typical logarithm contains exactly as much information as the logarithm itself (and hence fully determines the formal group law).  We would again like to show that ``all'' of the data of a $p$--typical group law is found in its $p$--series, even if it does not have a logarithm to mediate the two.  The following important theorem makes this thought precise.
+\Cref{pTypLogGivesNicePSeries} shows that, at least in the case that the ground ring is an integral domain, the $p$--series of a $p$--typical formal group law contains exactly as much information as the logarithm itself (and hence fully determines the formal group law).  We make this observation precise in the following important theorem:
 
 \begin{theorem}[{cf.\ \cite[Proposition 5.1]{MillerNotesCobordism}, \cite[Theorem A2.2.3]{RavenelGreenBook}, and the proof of \cite[Proposition 19.10]{HopkinsCOCTALOS}}]\label{KudoArakiIsomorphism}
 The \index{Kudo Araki map@Kudo--Araki map}\textit{Kudo--Araki map} determined by \Cref{pTypLawsHaveNicePSeries} \[\Z_{(p)}[v_1, v_2, \ldots, v_d, \ldots] \xrightarrow{v} \sheaf O_{\moduli{fgl}^{\ptyp}}\] is an isomorphism.
@@ -596,6 +574,10 @@ For any sequence of coefficients $v_j \in R$ in a $\Z_{(p)}$--algebra $R$, there
 \[\pushQED{\qed}
 [p]_\phi = px +_\phi v_1 x^p +_\phi v_2 x^{p^2} +_\phi \cdots +_\phi v_d x^{p^d} +_\phi \cdots. \qedhere
 \popQED\]
+\end{corollary}
+
+\begin{corollary}
+In the case that the ground ring $R$ is a field of positive characteristic, the height of a formal group can be taken to be the size of its $p$--torsion: \[\height(\G) = \log_p \dim_R \sheaf O_{\G[p]} = \log_p \dim_R \sheaf (O_{\G} / [p](x)).\]  This is the first nonzero coefficient in the expansion of its $p$--series. \qed
 \end{corollary}
 
 Finally, we exploit these results to make deductions about the geometry of $\moduli{fg} \times \Spec \Z_{(p)}$.  There is an inclusion of groupoid--valued sheaves from $p$--typical formal group laws with $p$--typical isomorphisms to all formal group laws with all isomorphisms.  \Cref{EveryFGLIsPTypical} can be viewed as presenting this inclusion as a deformation retraction, witnessing a natural \index{stack!equivalence}\emph{equivalence} of groupoids.  It follows from \Cref{WarningAboutStacks} that they both present the same stack.  The central utility of this equivalence is that the Kudo--Araki moduli of $p$--typical formal group laws is a considerably smaller algebra than $\sheaf O_{\moduli{fgl}}$, resulting in a less noisy picture of the Hopf algebroid.
@@ -665,7 +647,7 @@ By \Cref{EveryLogHaspTypification}, we see that the $p$--typification of this ra
 \A^1 \arrow["\eps x"]{r} \arrow[bend left, "\log^{\ptyp}"]{rr} & \G_m \arrow["\log"]{r} & \G_a \arrow["\exp"]{r} \arrow[bend left,"\exp^{\mathrm{std}}"]{rr} & \G_m \arrow["x"]{r} & \A^1
 \end{tikzcd}
 \end{center}
-to produce the coordinate change from \Cref{EveryFGLIsPTypical}: \[1 - \exp \left( -\sum_{j=0}^\infty \frac{x^{p^j}}{p^j} \right) = 1 - E_p(-x).\]  This series $E_p(x)$ is known as the \index{Artin Hasse exponential@Artin--Hasse exponential}\textit{Artin--Hasse exponential}, and it has the miraculous property that it is a series lying in $\Z_{(p)}\ps{x} \subseteq \Q\ps{x}$, as it is a change of coordinate series on $\G_m$ over $\Spec \Z_{(p)}$.
+to produce the $p$--typifying coordinate change from \Cref{EveryFGLIsPTypical}: \[1 - \exp \left( -\sum_{j=0}^\infty \frac{x^{p^j}}{p^j} \right) = 1 - E_p(-x).\]  This series $E_p(x)$ is known as the \index{Artin Hasse exponential@Artin--Hasse exponential}\textit{Artin--Hasse exponential}, and it has the miraculous property that it is a series lying in $\Z_{(p)}\ps{x} \subseteq \Q\ps{x}$, as it is a change of coordinate series on $\G_m$ over $\Spec \Z_{(p)}$.
 \end{remark}
 
 
