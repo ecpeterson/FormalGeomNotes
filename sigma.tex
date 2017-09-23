@@ -474,8 +474,8 @@ This is called \index{adjoint map}\textit{the adjoint map}, and we write $\wideh
 \begin{remark}
 This construction converts many properties of $f$ into corresponding properties of this adjoint element.  For instance:
 \begin{itemize}
-    \item It is natural in the source: for $f\co X \to Y$ and $g\co W \to X$, we have \[\widehat{fg} = \widehat{f} \circ (g_E \times \id_{Y_E})\co W_E \times D(Y_E) \to \Gm.\]
-    \item It is natural in the target: for $f\co X \to Y$ and $h\co Y \to Z$ a map of $H$--spaces, we have \[\widehat{hf} = \widehat{f} \circ (\id_{X_E} \times D(h_E))\co X_E \times D(Z_E) \to \Gm.\]
+    \item It is natural in the source: for $f\co X \to Y$ and $g\co W \to X$, we have \[\widehat{fg} = \widehat{f} \circ (g_E \times 1)\co W_E \times D(Y_E) \to \Gm.\]
+    \item It is natural in the target: for $f\co X \to Y$ and $h\co Y \to Z$ a map of $H$--spaces, we have \[\widehat{hf} = \widehat{f} \circ (1 \times D(h_E))\co X_E \times D(Z_E) \to \Gm.\]
     \item It converts sums of classes to products of maps to $\Gm$.
 \end{itemize}
 \end{remark}
@@ -587,9 +587,9 @@ where $y$ is the standard Euler class in $H^2 \CP^\infty$ and the first block co
 Finally, we can use this to guess a formula for our desired map $f$: we set \[f = \mu(u \sm x) A_1 + \mu(x \sm u) A_2,\] because, for instance,
 \begin{align*}
 B_1^*(\sigma f) & = \sigma (\mu(u \sm x) A_1 + \mu(x \sm u) A_2) B_1 \\
-& = \sigma \mu(x \sm u) (j \sm \id_T),
-\intertext{where we used $A_1 B_1 = 0$ and $A_2 B_1 = (j \sm \id_T)$, a calculation similar to the calculation involving $\delta$ earlier in the proof.  Then, because $\sigma\co kU \to H\Z$ sends Euler classes to Euler classes, we have}
-\sigma \mu(x \sm u) (j \sm \id_T) & = \mu(y \sm w)(j \sm \id_T) \\
+& = \sigma \mu(x \sm u) (j \sm 1),
+\intertext{where we used $A_1 B_1 = 0$ and $A_2 B_1 = (j \sm 1)$, a calculation similar to the calculation involving $\delta$ earlier in the proof.  Then, because $\sigma\co kU \to H\Z$ sends Euler classes to Euler classes, we have}
+\sigma \mu(x \sm u) (j \sm 1) & = \mu(y \sm w)(j \sm 1) \\
 & = \mu(yj \sm w).
 \end{align*}
 Hence, we have crafted a class $f$ with $\sigma f - \beta_j \mu(\alpha \sm \alpha) \in (\ker B_1^*) \cap (\ker B_2^*)$.
@@ -625,7 +625,7 @@ We return to our putative map of cofiber sequences, and in particular to the rig
 This expresses $d$ in terms of $f$ in the cohomology ring $kU^*(\CP^\infty)^{\times 2}$, a by-now familiar situation.  Namely, we have
 \begin{align*}
 \beta d & = (\mu(u \sm x) A_1 - \mu(x \sm u) A_2)r \\
-& = \mu(u \sm x)(q \sm \id_{\CP^\infty}) - \mu(x \sm u)(\id_{\CP^\infty} \sm q) \\
+& = \mu(u \sm x)(q \sm 1) - \mu(x \sm u)(1 \sm q) \\
 & = \mu(q^* u \sm x) - \mu(x \sm q^* u). \\
 \intertext{At this point, we need to make an actual identification: $u$ is a Thom class associated to the line bundle $\L^{\oplus p^j}$, hence $q^* u$ is its associated Euler class, which we compute in terms of $x$ to be $q^* u = [p^j]_{\CP^\infty_{kU}}(x)$, where the $n$--series on $\CP^\infty_{kU}$ expressed in terms of the coordinate $x$ is given by \[[n]_{\CP^\infty_{kU}}(x) = \beta^{-1}(1 - (1 - \beta x)^n).\]  We use this formula to continue the calculation:}
 \mu(q^* u \sm x) - \mu(x \sm q^* u) & = [p^j]_{\CP^\infty_{kU}}(x_1) \cdot x_2 - x_1 \cdot [p^j]_{\CP^\infty_{kU}}(x_2) \\
@@ -1063,7 +1063,7 @@ The section $s(A; \L)$ satisfies three familiar properties:
 \begin{itemize}
 \item It is symmetric: pulling back $\Theta^3 \L$ along a shuffle automorphism of $A^3$ yields $\Theta^3 \L$ again, and the pullback of the section $s(A; \L)$ along this shuffle agrees with the original $s(A; \L)$ across this identification.
 \item It is rigid: by restricting to $* \times A \times A$, the tensor factors in $\Theta^3 \L$ cancel out to give the trivial bundle over $A \times A$.  The restriction of the section $s(A; \L)$ to this pullback bundle agrees with the extension of the rigidifying section.
-\item It satisfies a $2$--cocycle condition: in general, we define \[\Theta^k \L := \bigotimes_{I \subseteq \{1, \ldots, k\}} (p_I^* \L)^{(-1)^{|I| - 1}}.\]  In fact, $\Theta^{k+1} \L$ can be written as a pullback of $\Theta^k \L$: \[\Theta^{k+1} \L = \frac{(p_{12} \times \id_{A^{k-1}})^* \L}{(p_1 \times \id_{A^{k-1}})^* \L \otimes (p_2 \times \id_{A^{k-1}})^* \L},\] and pulling back a section $s$ along this map gives a new section \[(\delta s)(x_0, x_1, \ldots, x_k) := \frac{s(x_0 +_A x_1, x_2, \ldots, x_k)}{s(x_0, x_2, \ldots, x_k) \cdot s(x_1, x_2, \ldots, x_k)}.\]  Performing this operation on the first and second factors yields the defining equation of a $2$--cocycle.
+\item It satisfies a $2$--cocycle condition: in general, we define \[\Theta^k \L := \bigotimes_{I \subseteq \{1, \ldots, k\}} (p_I^* \L)^{(-1)^{|I| - 1}}.\]  In fact, $\Theta^{k+1} \L$ can be written as a pullback of $\Theta^k \L$: \[\Theta^{k+1} \L = \frac{(p_{12} \times 1)^* \L}{(p_1 \times 1)^* \L \otimes (p_2 \times 1)^* \L},\] and pulling back a section $s$ along this map gives a new section \[(\delta s)(x_0, x_1, \ldots, x_k) := \frac{s(x_0 +_A x_1, x_2, \ldots, x_k)}{s(x_0, x_2, \ldots, x_k) \cdot s(x_1, x_2, \ldots, x_k)}.\]  Performing this operation on the first and second factors yields the defining equation of a $2$--cocycle.
 \end{itemize}
 \end{remark}
 

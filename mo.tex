@@ -122,15 +122,15 @@ Let $\xi\co X \to BO$ classify a vector bundle and let $\phi\co MO \to E$ be a m
 To accommodate $X$ rather than $BO$ as the base, we redefine $\sigma\co BO \times X \to BO \times X$ by \[\sigma(x, y) = \sigma(x \xi(y)^{-1}, y).\]  Follow the same proof as before with the diagram
 \begin{center}
 \begin{tikzcd}
-BO \times X \rar["\sigma", equiv'] \arrow[bend right]{rrrd} & BO \times X \rar["\id \times \xi",equiv']& BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
+BO \times X \rar["\sigma", equiv'] \arrow[bend right]{rrrd} & BO \times X \rar["1 \times \xi",equiv']& BO \times BO \arrow{r}{\mu} \arrow{d}{J_{\R} \times J_{\R}} & BO \arrow{d}{J_{\R}} \\
 & & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
 This gives an equivalence $\theta_{MO}\co MO \sm T(\xi) \rightarrow MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram of $MO$--module spectra
 \begin{center}
 \begin{tikzcd}
-E \sm T(\xi) \arrow{d}{\eta_{MO} \sm \id \sm \id=f} \arrow[densely dotted]{r}{\theta_E} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm \id \sm \id} \\
-MO \sm E \sm T(\xi) \arrow{r}{\theta_{MO} \sm E} \arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id=g} & MO \sm E \sm \Susp^\infty_+ X\arrow{d}{(\mu \circ (\phi \sm \id)) \sm \id=h} \\
+E \sm T(\xi) \arrow{d}{\eta_{MO} \sm 1 \sm 1=f} \arrow[densely dotted]{r}{\theta_E} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm 1 \sm 1} \\
+MO \sm E \sm T(\xi) \arrow{r}{\theta_{MO} \sm E} \arrow{d}{(\mu \circ (\phi \sm 1)) \sm 1=g} & MO \sm E \sm \Susp^\infty_+ X\arrow{d}{(\mu \circ (\phi \sm 1)) \sm 1=h} \\
 E \sm T(\xi) \arrow[densely dotted]{r}{\theta_E} & E \sm \Susp^\infty_+ X
 \end{tikzcd}
 \end{center}
@@ -286,7 +286,7 @@ Recall that $\RP^\infty$ is an $H$--space in two equivalent ways:
 In either case, this induces a Hopf algebra diagonal \[\HFtwo^* \RP^\infty \otimes \HFtwo^* \RP^\infty \xleftarrow\Delta \HFtwo^* \RP^\infty\] which we would like to analyze.  This map is determined by where it sends the class $x$, and because it must respect gradings it must be of the form $\Delta x = ax_1 + bx_2$ for some constants $a, b \in \F_2$.  Furthermore, because it belongs to a Hopf algebra structure, it must satisfy the unitality axiom
 \begin{center}
 \begin{tikzcd}
-\HFtwo^* \RP^\infty \arrow[leftarrow]{r}{\begin{pmatrix} \epsilon \otimes \id \\ \id \otimes \epsilon \end{pmatrix}} & \HFtwo^* \RP^\infty \otimes \HFtwo^* \RP^\infty \arrow[leftarrow]{r}{\Delta} &\arrow[ll,bend left=15,"\id"]  \HFtwo^* \RP^\infty.
+\HFtwo^* \RP^\infty \arrow[leftarrow]{r}{\begin{pmatrix} \epsilon \otimes 1 \\ 1 \otimes \epsilon \end{pmatrix}} & \HFtwo^* \RP^\infty \otimes \HFtwo^* \RP^\infty \arrow[leftarrow]{r}{\Delta} &\arrow[ll,bend left=15,"1"]  \HFtwo^* \RP^\infty.
 \end{tikzcd}
 \end{center}
 and hence it takes the form \[\Delta(x) = x_1 + x_2.\]  Noticing that this is exactly the diagonal map in \Cref{InformalAdditiveGroupExample}, we tentatively identify ``$\RP^\infty_{\HFtwo}$'' with the additive group.  This is extremely suggestive but does not take into account the fact that $\RP^\infty$ is an infinite complex, so we have not yet allowed ourselves to write ``$\RP^\infty_{\HFtwo}$''.  In light of the rest of the material discussed in this section, we have left open a very particular point: it is not clear if we should use the name ``$\mathbb G_a$'' or ``$\G_a$''.  We will straighten this out in the subsequent Lecture.
@@ -345,14 +345,14 @@ H\F_2^* X & \from \mathcal A^* \otimes H\F_2^* X, \\
 \Spec \mathcal A_* \times X_{\HFtwo} & \xrightarrow{\alpha} X_{\HFtwo}.
 \end{align*}
 
-Having produced the action map $\alpha$, we are now moved to study $\alpha$ as well as the structure group $\Spec \mathcal A_*$ itself.  Milnor works out the Hopf algebra structure of $\mathcal A_*$ by defining elements $\xi_j \in \mathcal A_*$ dual to the \index{Milnor primitive}\textit{$j${\th} Milnor primitive}, which are defined by $Q_0 = \id$, by $Q_1 = \Sq^1$, and thereafter by the iterated commutator $Q_j = [Q_{j-1}, \Sq^{2^{j-1}}]$.  Taking $X = \RP^n$ and $x \in \HFtwo^1(\RP^n)$ the generator, he then observes two things: first, $\Sq^{2^{j-1}} \cdots \Sq^{2^0} x = x^{2^j}$, and second, any other admissible sequence of squares applied to $x$ vanishes for degree reasons.  It follows that $Q_j x = x^{2^j}$ is the only family of operators that act nontrivially on $x$, and from this we deduce the formula \[\lambda^*(x) = \sum_{j=0}^{\lfloor \log_2 n \rfloor} x^{2^j} \otimes \xi_j \text{\quad (in $\HFtwo^* \RP^n$)}.\]  Noticing that we can take the limit $n \to \infty$ to get a well-defined infinite sum, he then makes the following calculation, stable in $n$:
+Having produced the action map $\alpha$, we are now moved to study $\alpha$ as well as the structure group $\Spec \mathcal A_*$ itself.  Milnor works out the Hopf algebra structure of $\mathcal A_*$ by defining elements $\xi_j \in \mathcal A_*$ dual to the \index{Milnor primitive}\textit{$j${\th} Milnor primitive}, which are defined by $Q_0 = 1$, by $Q_1 = \Sq^1$, and thereafter by the iterated commutator $Q_j = [Q_{j-1}, \Sq^{2^{j-1}}]$.  Taking $X = \RP^n$ and $x \in \HFtwo^1(\RP^n)$ the generator, he then observes two things: first, $\Sq^{2^{j-1}} \cdots \Sq^{2^0} x = x^{2^j}$, and second, any other admissible sequence of squares applied to $x$ vanishes for degree reasons.  It follows that $Q_j x = x^{2^j}$ is the only family of operators that act nontrivially on $x$, and from this we deduce the formula \[\lambda^*(x) = \sum_{j=0}^{\lfloor \log_2 n \rfloor} x^{2^j} \otimes \xi_j \text{\quad (in $\HFtwo^* \RP^n$)}.\]  Noticing that we can take the limit $n \to \infty$ to get a well-defined infinite sum, he then makes the following calculation, stable in $n$:
 \begin{align*}
-(\lambda^* \otimes \id) \circ \lambda^*(x) & = (\id \otimes \Delta) \circ \lambda^*(x) \tag{coassociativity} \\
-(\lambda^* \otimes \id) \left( \sum_{j=0}^\infty x^{2^j} \otimes \xi_j \right) & = \\
+(\lambda^* \otimes 1) \circ \lambda^*(x) & = (1 \otimes \Delta) \circ \lambda^*(x) \tag{coassociativity} \\
+(\lambda^* \otimes 1) \left( \sum_{j=0}^\infty x^{2^j} \otimes \xi_j \right) & = \\
 \sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^i} \otimes \xi_i \right)^{2^j} \otimes \xi_j & = \tag{ring homomorphism} \\
-\sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = (\id \otimes \Delta) \circ \lambda^*(x). \tag{characteristic $2$} \\
+\sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = (1 \otimes \Delta) \circ \lambda^*(x). \tag{characteristic $2$} \\
 \intertext{Then, turning to the right-hand side:}
-\sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = (\id \otimes \Delta) \left( \sum_{m=0}^\infty x^{2^m} \otimes \xi_m \right) \\
+\sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = (1 \otimes \Delta) \left( \sum_{m=0}^\infty x^{2^m} \otimes \xi_m \right) \\
 \sum_{j=0}^\infty \left( \sum_{i=0}^\infty x^{2^{i+j}} \otimes \xi_i^{2^j} \right) \otimes \xi_j & = \sum_{m=0}^\infty x^{2^m} \otimes \Delta(\xi_m),
 \end{align*}
 from which it follows that \[\Delta \xi_m = \sum_{i+j=m} \xi_i^{2^j} \otimes \xi_j.\]  Finally, Milnor shows that this is the complete story:
@@ -494,10 +494,10 @@ Much of the results below do not rely on working with a Hopf algebra over the fi
 \end{remark}
 
 \begin{lemma}[{\cite[Definition A1.2.1]{RavenelGreenBook}}]
-Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  There is a \index{comodule!cofree}\textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{\id \otimes \Delta} N \otimes_k (A \otimes_k A) = (N \otimes_k A) \otimes_k A.\]
+Let $A$ be a Hopf $k$--algebra, let $M$ be an $A$--comodule, and let $N$ be a $k$--module.  There is a \index{comodule!cofree}\textit{cofree adjunction}: \[\CatOf{Comodules}_A(M, N \otimes_k A) \cong \CatOf{Modules}_k(M, N),\] where $N \otimes_k A$ is given the structure of an $A$--comodule by the coaction map \[N \otimes_k A \xrightarrow{1 \otimes \Delta} N \otimes_k (A \otimes_k A) = (N \otimes_k A) \otimes_k A.\]
 \end{lemma}
 \begin{proof}
-Given a map $f\co M \to N$ of $k$--modules, we can build the composite \[M \xrightarrow{\psi_M} M \otimes_k A \xrightarrow{f \otimes \id_A} N \otimes_k A.\]  Alternatively, given a map $g\co M \to N \otimes_k A$ of $A$--comodules, we build the composite \[M \xrightarrow{g} N \otimes_k A \xrightarrow{\id_N \otimes \eps} N \otimes_k k = N. \qedhere\]
+Given a map $f\co M \to N$ of $k$--modules, we can build the composite \[M \xrightarrow{\psi_M} M \otimes_k A \xrightarrow{f \otimes 1} N \otimes_k A.\]  Alternatively, given a map $g\co M \to N \otimes_k A$ of $A$--comodules, we build the composite \[M \xrightarrow{g} N \otimes_k A \xrightarrow{1 \otimes \eps} N \otimes_k k = N. \qedhere\]
 \end{proof}
 
 \begin{corollary}[{\cite[Lemma A1.2.2]{RavenelGreenBook}}]
@@ -538,7 +538,7 @@ A map $f\co \Spec S \to \Spec R$ induces maps $f^* \dashv f_*$ of categories of 
 One of the main uses of these operations is to define the cohomology of a sheaf.  Let $\pi\co X \to \Spec k$ be a scheme over $\Spec k$, $k$ a field, and let $\sheaf F$ be a sheaf over $X$.  The adjunction above induces a derived adjunction \[\Ext_X(\pi^* k, \sheaf F) \cong \Ext_{\Spec k}(k, R\pi_* \sheaf F),\] which is used to translate the \emph{definition} of sheaf cohomology to that of the cohomology of the derived pushforward $R\pi_* \sheaf F$, itself interpretable as a mere complex of $k$--modules.  This pattern is very general: the sense of ``cohomology'' relevant to a situation is often accessed by taking the derived pushforward to a suitably terminal object.\footnote{This perspective often falls under the heading of ``six--functor formalism''.}  To invent a notion of cohomology for comodules over a Hopf algebra, we are thus moved to produce push and pull functors for a map of Hopf algebras, and this is best motivated by another example.
 
 \begin{example}\label{HopfAlgebrasFromFiniteGroups}
-A common source of Hopf algebras is through \index{Hopf algebra!group--ring}group--rings: given a group $G$, we can define the Hopf $k$--algebra $k[G]$ consisting of formal $k$--linear combinations of elements of $G$.  This Hopf algebra is commutative exactly when $G$ is abelian, and $k[G]$--modules are naturally equivalent to $k$--linear $G$--representations.  Dually, the ring $k^G$ of $k$--valued functions on $G$ is always commutative, using pointwise multiplication of functions, and it is \emph{cocommutative} exactly when $G$ is abelian.  If $G$ is finite, then $k^G$ and $k[G]$ are $k$--linear dual Hopf algebras, and hence finite--dimensional $k^G$--comodules are naturally equivalent to finite--dimensional $k$--linear $G$--representations.\footnote{There is a variation on this equivalence that uses fewer dualities and which is instructive to expand.  The Hopf algebra $k^G = \prod_{g \in G} k$ is the ring of functions on the constant group scheme $G$, and its $k$--points $(\Spec k^G)(k)$ biject with points in $G$.  Namely, given $g \in G$ we can form a projection map $g\co k^G \to k$ and hence a composite $M \to M \otimes_k k^G \xrightarrow{\id \otimes g} M \otimes_k k \cong M$.  Collectively, this determines a map $G \times M \to M$ witnessing $M$ as a $G$--representation.  In the other direction, if $G$ is finite then we can construct a map $M \to M \otimes_k \prod_{g \in G} k$ sending $m \in M$ to $g \cdot m$ in the $g${\th} labeled component of the target.}
+A common source of Hopf algebras is through \index{Hopf algebra!group--ring}group--rings: given a group $G$, we can define the Hopf $k$--algebra $k[G]$ consisting of formal $k$--linear combinations of elements of $G$.  This Hopf algebra is commutative exactly when $G$ is abelian, and $k[G]$--modules are naturally equivalent to $k$--linear $G$--representations.  Dually, the ring $k^G$ of $k$--valued functions on $G$ is always commutative, using pointwise multiplication of functions, and it is \emph{cocommutative} exactly when $G$ is abelian.  If $G$ is finite, then $k^G$ and $k[G]$ are $k$--linear dual Hopf algebras, and hence finite--dimensional $k^G$--comodules are naturally equivalent to finite--dimensional $k$--linear $G$--representations.\footnote{There is a variation on this equivalence that uses fewer dualities and which is instructive to expand.  The Hopf algebra $k^G = \prod_{g \in G} k$ is the ring of functions on the constant group scheme $G$, and its $k$--points $(\Spec k^G)(k)$ biject with points in $G$.  Namely, given $g \in G$ we can form a projection map $g\co k^G \to k$ and hence a composite $M \to M \otimes_k k^G \xrightarrow{1 \otimes g} M \otimes_k k \cong M$.  Collectively, this determines a map $G \times M \to M$ witnessing $M$ as a $G$--representation.  In the other direction, if $G$ is finite then we can construct a map $M \to M \otimes_k \prod_{g \in G} k$ sending $m \in M$ to $g \cdot m$ in the $g${\th} labeled component of the target.}
 
 A map of groups $f\co G \to H$ induces a map $k^f\co k^H \to k^G$ of Hopf algebras, and it is reasonable to expect that the induced push and pull maps of comodules mimic those of $G$-- and $H$--representations.  Namely, given an $H$--representation $M$, we can produce a corresponding $G$--representation by precomposition with $f$.  However, given a $G$--representation $N$, two features may have to be corrected to extract an $H$--representation:
 \begin{enumerate}
