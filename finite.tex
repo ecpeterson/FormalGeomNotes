@@ -388,7 +388,17 @@ We now ground ourselves by fitting symmetric $2$--cocycles into a more general h
 \cdots
 \end{tikzcd}
 \right\}.\]
-By applying the functor $\InternalHom{FormalSchemes}(-, \G_a)(k)$, we get a cosimplicial abelian group stemming from the group scheme structure on $\G_a$, and this gives a cochain complex of which we can take the \index{formal group!cohomology}cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} what we've been calling $2$--cocycles\footnote{They aren't obligated to be symmetric or of homogeneous degree, though.}, so we are interested in computing $H^2$.  First, we can quickly compute $B^2$, since $C^1$ is so small: \[d^1(x^k) = d_k c_k.\]  Secondly, by sheer inspection one may think of this complex as a resolution computing the derived functor $\Tor_{\sheaf O_{\G}^*}(k, k)$.  We are now going to compute these last groups using a more efficient complex.
+By applying the functor $\InternalHom{FormalSchemes}(-, \G_a)(k)$, we get a cosimplicial abelian group stemming from the group scheme structure on $\G_a$, and this gives a cochain complex of which we can take the \index{formal group!cohomology}cohomology.  In the case $\G = \G_a$, the $2$--cocycles in this cochain complex are \emph{precisely} what we've been calling $2$--cocycles, so we may be interested in computing $H^2$.  In particular, although the elements of $H^2$ are \emph{not} required to be symmetric, we might find symmetry to be automatically enforced if $H^2$ and $B^2$ (and hence $C^2$) are sufficiently small.  Toward that end, we make the early remark that $B^2$ is indeed very small: the generators $x^k$ of $C^1$ allow us to compute generators for $B^2$ as \[d^1(x^k) = d_k c_k.\]
+
+Now we turn to the computation of $H^2$.  First, using the standard coordinate on $\G_a$, we can compute the above cochain complex to be \[C^* = \left\{ (0) \xrightarrow{\partial} (x_1) \xrightarrow{\partial} (x_1, x_2) \xrightarrow{\partial} \cdots \right\},\] where the indicated objects are ideals of $k$, $k\ps{x_1}$, $k\ps{x_1, x_2}$, and so on.  The differential in this complex is given by the formula
+\begin{align*}
+(\partial f)(x_1, \ldots, x_{n+1}) & = f(x_1, \ldots, x_n) \\
+& \quad + \sum_{j=1}^n (-1)^j f(x_1, \ldots, x_j + x_{j+1}, \ldots, x_n) \\
+& \quad + (-1)^{n+1} f(x_2, \ldots, x_{n+1}),
+\end{align*}
+and one sees from this definition that it extends to the constants in $k\ps{x_1, \ldots, x_n}$ and that the constants form an exact complex, hence we can include them without harming the cohomology of the complex to form \[C^* = \left\{ k \xrightarrow{\partial} k\ps{x_1} \xrightarrow{\partial} k\ps{x_1, x_2} \xrightarrow{\partial} \cdots \right\}.\]
+
+This complex plays a recognizable role: it computes $\Cotor_{k\ps{x}}(k, k)$, according to \Cref{ExtendedComodulesExist} and \Cref{CotensorDefn}.  We now seek to apply theorems from homological algebra to compute this derived functor in an alternative way.  First, note from \Cref{ExtAndCotorAgree} that there is an isomorphism \[\Cotor_{\sheaf O_{\G}}(k, k) \cong \Ext_{\sheaf O_{\G}}(k, k),\] where we have taken $\Ext$ in the category of comodules.  Then, we can apply Koszul duality to thread $k$--linear duality through the formula, effectively trading comodule calculations for module calculations: \[\Ext_{\sheaf O_{\G}}(k, k) \cong \left(\Tor_{\sheaf O_{\G}^*}(k, k)\right)^*.\]  These last groups, finally, are accessible by other, more efficient means.
 
 \begin{description}
 \item[$\Q$:] There is a free $\Q[t]$--module resolution
