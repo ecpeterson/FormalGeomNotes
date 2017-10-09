@@ -342,20 +342,27 @@ Recall that we have yet to prove the following Lemma:
 There is a canonical splitting $T_{2n} \to (Q \mathcal O_{\moduli{fgl}})_{2n}$.
 \end{lemma}
 
+In order to prove this Lemma, it will be useful to have a more moduli-theoretic interpretation of $Qu$.  The graded ring $\sheaf O_{\moduli{fgl}}$ splits naturally as $\Z$ in degree $0$ and the elements of positive degree, and using this we can extend the map $Qu$ to a ring homomorphism \[Qu\co \sheaf O_{\moduli{fgl}} \to \Z \oplus QL,\] which factors through $T$ and projects to degree $2n$ to give a ring homomorphism \[\sheaf O_{\moduli{fgl}} \to \Z \oplus T_{2n}.\]  For any abelian group $A$, a graded ring homomorphism $\sheaf O_{\moduli{fgl}} \to \Z \oplus \Susp^{2n} A$ selects a formal group law with two clear properties: modulo terms of degree $n$ it equals the additive group law, and it has no terms of degree greater than $n$.  The terms appearing in exactly degree $n$ take the following particular form:
+
 \begin{definition}\label{DefinitionSymmetric2Cocycle}
-In order to prove the missing \Cref{LazardSplittingLemma}, it will be useful to study the series $+_\phi$ ``up to degree $n$'', i.e., modulo $(x, y)^{n+1}$.  Such a truncated series satisfying the analogues of the formal group law axioms is called a \index{formal group!bud}\textit{formal $n$--bud}.\footnote{A formal $n$--bud determines a ``multiplication'' $(\A^1 \times \A^1)^{(n)} \to \A^{1,(n)}$.  Note that this does \emph{not} belong to a group object, since $(\A^1 \times \A^1)^{(n)} \not\simeq \A^{1,(n)} \times \A^{1,(n)}$.  This is the observation that the ideals $(x, y)^{n+1}$ and $(x^{n+1}, y^{n+1})$ are distinct.}  We will additionally be moved to study the difference between a formal $n$--bud and a formal $(n+1)$--bud extending it.  The simplest case of this is when the formal $n$--bud is just the additive law $x +_\phi y = x + y$, in which case any extension to an $(n+1)$--bud has the form $x + y + f(x, y)$ for $f(x, y)$ a homogeneous polynomial of degree $n$.  Symmetry of the group law requires $f(x, y)$ to be symmetric, and associativity of the group law requires $f(x, y)$ to satisfy the equation \[f(x, y) - f(t + x, y) + f(t, x + y) - f(t, x) = 0.\]  Such a polynomial is called a \index{symmetric 2 cocycle@symmetric $2$--cocycle}\textit{symmetric $2$--cocycle} (of degree $n$).\footnote{We will justify the ``$2$--cocycle'' terminology in the course of the proof of \Cref{Symmetric2CocycleLemma}.}
+A \index{symmetric 2 cocycle@symmetric $2$--cocycle}\textit{symmetric $2$--cocycle of degree $n$} is a polynomial $f(x, y)$ satisfying
+\begin{itemize}
+    \item Symmetry: $f(x, y) = f(y, x)$.
+    \item Homogeneity: $f$ consists solely of terms of total degree $n$.
+    \item $2$--cocycle condition:\footnote{We will justify the ``$2$--cocycle'' terminology in the course of the proof of \Cref{Symmetric2CocycleLemma}.} \[f(x, y) - f(t + x, y) + f(t, x + y) - f(t, x) = 0.\]
+\end{itemize}
 \end{definition}
 
-\begin{proof}[{Reduction of \Cref{LazardSplittingLemma} to \Cref{Symmetric2CocycleLemma}}]\index{symmetric 2 cocycle@symmetric $2$--cocycle!lemma}
-We now show that the following conditions are equivalent:
-\begin{enumerate}
-\item (\Cref{Symmetric2CocycleLemma}) Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{k} \middle| 0 < k < n \right)$.
-\item For $F$ is an $(n-1)$--bud, the set of $n$--buds extending $F$ form a torsor under addition for $R \otimes c_n$.
-\item Any homomorphism $(Q\mathcal O_{\moduli{fgl}})_{2n} \to A$ factors through $(Q \mathcal O_{\moduli{fgl}})_{2n} \to T_{2n}$.
-\item (\Cref{LazardSplittingLemma}) There is a canonical splitting $T_{2n} \to (Q \mathcal O_{\moduli{fgl}})_{2n}$.
-\end{enumerate}
+Dropping the homogeneity condition in favor of a bounded above condition, we also have the following definition:
+\begin{definition}
+A series satisfying the analogues of the formal group law axioms modulo terms of degree $(n+1)$ is called a \index{formal group!bud}\textit{formal $n$--bud}.\footnote{A formal $n$--bud determines a ``multiplication'' $(\A^1 \times \A^1)^{(n)} \to \A^{1,(n)}$.  Note that this does \emph{not} belong to a group object, since $(\A^1 \times \A^1)^{(n)} \not\simeq \A^{1,(n)} \times \A^{1,(n)}$.  This is the observation that the ideals $(x, y)^{n+1}$ and $(x^{n+1}, y^{n+1})$ are distinct.}
+\end{definition}
 
-To verify that Claims 1 and 2 are equivalent, note first that symmetric $2$--cocycles of degree $n$ parametrize the extensions of $+_{\G_a}$, considered as an $(n-1)$--bud, to an $n$--bud.  In fact, if $+_\phi$ and $+_\phi'$ are two $n$--buds reducing to the same $(n-1)$--bud, the perturbation carrying one to the other is also a symmetric $2$--cocycle of degree $n$, essentially because the higher-order group law terms have no impact on the top nonvanishing degree.  This is made explicit in the following calculation:
+\begin{lemma}\label{TwoNBudsDifferByACocycle}
+If $+_\phi$ and $+_\phi'$ are two $n$--buds which reduce to the same $(n-1)$--bud, the difference $(x +_\phi y) - (x +_\phi' y)$ is a symmetric $2$--cocycle of degree $n$.  Conversely, given such an $n$--bud $+_\phi$ and a symmetric $2$--cocycle $f$, the series \[x +_\phi' y := (x +_\phi y) + f(x, y)\] is also an $n$--bud.
+\end{lemma}
+\begin{proof}
+This is made explicit in the following calculation:
 \begin{align*}
 x +_\phi' (y +_\phi' z) & = x +_\phi' (y +_\phi z + f(y, z)) \\
 & = x +_\phi (y +_\phi z + f(y, z)) + f(x, y +_\phi z + f(y, z)) \\
@@ -364,17 +371,31 @@ x +_\phi' (y +_\phi' z) & = x +_\phi' (y +_\phi z + f(y, z)) \\
 & = (x +_\phi y + f(x, y)) +_\phi z + f(x +_\phi y + f(x, y), z) \\
 & \equiv (x +_\phi y) +_\phi z + f(x, y) + f(x + y, z) \pmod{(x, y)^{n+1}},
 \end{align*}
-resulting in the $2$--cocycle condition on $f$, and symmetry of $x +_\phi' y$ enforces the symmetry of $f$.  In addition to the equivalence of these two kinds of data, Claims 1 and 2 make an additional assertion (presented in either's vocabulary) about the set of such $2$--cocycles: it is cyclic and generated by a particular element.
+resulting in the $2$--cocycle condition on $f$, and symmetry of $x +_\phi' y$ enforces the symmetry of $f$.  Reading the sequence of equalities backwards shows the converse.
+\end{proof}
 
-To see that Claim 2 is equivalent to Claim 3, note that a group map \[(Q\mathcal O_{\moduli{fgl}})_{2n} \to A\] is equivalent data to a ring map \[\mathcal O_{\moduli{fgl}} \to Z \oplus A\] with the prescribed behavior on $(Q\mathcal O_{\moduli{fgl}})_{2n}$ and which sends all other indecomposables to $0$.  This shows that such a homomorphism of groups determines an extension of the $(n-1)$--bud $\G_a$ to an $n$--bud, which takes the form of a $2$--cocycle with coefficients in $A$, and hence factors through $T_{2n}$.
+\begin{proof}[{Reduction of \Cref{LazardSplittingLemma} to \Cref{Symmetric2CocycleLemma}}]\index{symmetric 2 cocycle@symmetric $2$--cocycle!lemma}
+We now show that the following conditions are equivalent:
+\begin{enumerate}
+\item (\Cref{Symmetric2CocycleLemma}) Symmetric $2$--cocycles of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{k} \middle| 0 < k < n \right)$.
+\item For $F$ is an $(n-1)$--bud, the set of $n$--buds extending $F$ form a torsor under addition for $R \otimes c_n$.
+\item Any homomorphism $(Q\mathcal O_{\moduli{fgl}})_{2n} \to A$ of additive groups factors through a homomorphism $(Q \mathcal O_{\moduli{fgl}})_{2n} \to T_{2n}$.
+\item (\Cref{LazardSplittingLemma}) There is a canonical splitting $T_{2n} \to (Q \mathcal O_{\moduli{fgl}})_{2n}$.
+\end{enumerate}
 
-Finally, Claim 4 is the universal case of Claim 3.
+To verify that Claims 1 and 2 are equivalent, note first that \Cref{TwoNBudsDifferByACocycle} shows that the set of $n$--buds in Claim 2 is a torsor for the group of such polynomials in Claim 1, and hence Claims 1 and 2 are a simultaneous assertion about the precise form of the structure group for that torsor.  The equivalence of Claims 2 and 3 amounts to our moduli-theoretic interpretation of formal group laws on rings formed by square-zero extensions: a group map \[(Q\mathcal O_{\moduli{fgl}})_{2n} \to A\] is equivalent data to a ring map \[\mathcal O_{\moduli{fgl}} \to Z \oplus A\] with the prescribed behavior on $(Q\mathcal O_{\moduli{fgl}})_{2n}$ and which sends all other indecomposables to $0$.  Finally, Claim 4 is the universal case of Claim 3, using the projection map $\sheaf O_{\moduli{fgl}} \to (Q \sheaf O_{\moduli{fgl}})_{2n}$.  Applying Claim 3 to this map yields a diagram
+\begin{center}
+\begin{tikzcd}
+\sheaf O_{\moduli{fgl}} \arrow{r} \arrow[equals]{rrd} & L \arrow[crossing over]{d} \\
+& \Z \oplus T_{2n} \arrow[densely dotted]{r} & \Z \oplus (\sheaf O_{\moduli{fgl}})_{2n}.
+\end{tikzcd}
+\end{center}
 \end{proof}
 
 We will now verify Claim 1 computationally, thereby completing the proof of \Cref{LazardSplittingLemma} (and hence \Cref{LazardsTheorem}).
 
 \begin{lemma}[{Symmetric $2$--cocycle lemma~\cite[Lemme 3]{LazardGroupesDeLie}, cf.\ \cite[Theorem 3.1]{HopkinsCOCTALOS}}]\label{Symmetric2CocycleLemma}
-Symmetric $2$--cocycles that are homogeneous polynomials of degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{k} \middle| 0 < k < n \right)$.
+Symmetric $2$--cocyclesof degree $n$ are spanned by \[c_n = \frac{1}{d_n} \cdot ((x + y)^n - x^n - y^n),\] where $d_n = \gcd\left( \binom{n}{k} \middle| 0 < k < n \right)$.
 \end{lemma}
 \begin{proof}
 We begin with a reduction of the sorts of rings over which we must consider the possible symmetric $2$--cocycles.  First, notice that only the additive group structure of the ring matters: the symmetric $2$--cocycle condition does not involve any ring multiplication.  Second, it suffices to show the Lemma over a finitely generated abelian group, as a particular polynomial has finitely many terms and hence involves finitely many coefficients.  Noticing that the Lemma is true for $A \oplus B$ if and only if it's true for $A$ and for $B$, we couple these facts to the structure theorem for finitely generated abelian groups to reduce to the cases $\Z$ and $\Z/p^r$.  From here, we can reduce to the prime fields: if $A \le B$ is a subgroup and the Lemma is true for $B$, it's true for $A$, so we will be able to deduce the case of $\Z$ from the case of $\Q$.  Lastly, we can also reduce from $\Z/p^r$ to $\Z/p$ using an inductive Bockstein-style argument over the extensions \[(p^{r-1}) / (p^r) \to \Z/p^r \to \Z/p^{r-1}\] and noticing that $(p^{r-1}) / (p^r) \cong \Z/p$ as abelian groups.  Hence, we can now freely assume that our ground object is a prime field.
