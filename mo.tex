@@ -126,15 +126,46 @@ BO \times X \rar["\sigma", equiv'] \arrow[bend right]{rrrd} & BO \times X \rar["
 & & B\GL_1 \S \times B\GL_1 \S \arrow{r}{\mu} & B\GL_1 \S.
 \end{tikzcd}
 \end{center}
-This gives an equivalence $\theta_{MO}\co MO \sm T(\xi) \rightarrow MO \sm \Susp^\infty_+ X$.  To introduce $E$, note that there is a diagram of $MO$--module spectra
+This gives an equivalence $\theta_{MO}\co MO \sm T(\xi) \rightarrow MO \sm \Susp^\infty_+ X$ of $MO$--modules.  To introduce $E$, note that there is a diagram of $MO$--module spectra
 \begin{center}
 \begin{tikzcd}
-E \sm T(\xi) \arrow{d}{\eta_{MO} \sm 1 \sm 1=f} \arrow[densely dotted]{r}{\theta_E} & E \sm \Susp^\infty_+ X \arrow{d}{\eta_{MO} \sm 1 \sm 1} \\
-MO \sm E \sm T(\xi) \arrow{r}{\theta_{MO} \sm E} \arrow{d}{(\mu \circ (\phi \sm 1)) \sm 1=g} & MO \sm E \sm \Susp^\infty_+ X\arrow{d}{(\mu \circ (\phi \sm 1)) \sm 1=h} \\
-E \sm T(\xi) \arrow[densely dotted]{r}{\theta_E} & E \sm \Susp^\infty_+ X
+E \sm T(\xi) \arrow{dr}[description]{\eta_{MO} \sm 1 \sm 1} \arrow[densely dotted]{rrr}{\theta_E} \arrow[bend right,equal]{dd} & & & E \sm \Susp^\infty_+ X \arrow{dl}[description]{\eta_{MO} \sm 1 \sm 1} \arrow[bend left,equal]{dd} \\
+& MO \sm E \sm T(\xi) \arrow{r}{\theta_{MO} \sm 1} \arrow{dl}[description]{(\mu \circ (\phi \sm 1)) \sm 1} & MO \sm E \sm \Susp^\infty_+ X\arrow{dr}[description]{(\mu \circ (\phi \sm 1)) \sm 1} \\
+E \sm T(\xi) \arrow[densely dotted]{rrr}{\theta_E} & & & E \sm \Susp^\infty_+ X,
 \end{tikzcd}
 \end{center}
-whose columns are retractions.  The dotted arrows $\theta_E$ are defined by following the solid path from corner to corner, and the retraction property shows that the two squares they form commute.  Since $\theta_{MO}$ is an equivalence, it has an inverse $\alpha_{MO}$, and this similarly begets a map $\alpha_E$, which we now want to show is the inverse to $\theta_E$.  This, too, follows from the fact that the vertical edges are retractions.
+whose columns are retractions.  The dotted arrows $\theta_E$ are defined by following the solid path from corner to corner.  We claim that the two trapezoids so formed both commute.  To see this, consider the repeated diagram
+\begin{center}
+\begin{tikzcd}
+& MO \sm E \sm T(\xi) \arrow{r}{\theta_{MO} \sm 1} \arrow{dl}[description]{(\mu \circ (\phi \sm 1)) \sm 1} & MO \sm E \sm \Susp^\infty_+ X\arrow{dr}[description]{(\mu \circ (\phi \sm 1)) \sm 1} \\
+E \sm T(\xi) \arrow{dr}[description]{\eta_{MO} \sm 1 \sm 1} \arrow[bend right,equal]{dd} & & & E \sm \Susp^\infty_+ X \arrow{dl}[description]{\eta_{MO} \sm 1 \sm 1} \arrow[bend left,equal]{dd} \\
+& MO \sm E \sm T(\xi) \arrow{r}{\theta_{MO} \sm 1} \arrow{dl}[description]{(\mu \circ (\phi \sm 1)) \sm 1} & MO \sm E \sm \Susp^\infty_+ X\arrow{dr}[description]{(\mu \circ (\phi \sm 1)) \sm 1} \\
+E \sm T(\xi) \arrow[densely dotted]{rrr}{\theta_E} & & & E \sm \Susp^\infty_+ X,
+\end{tikzcd}
+\end{center}
+where the hexagon commutes because it expresses that the trace of the identity on an $MO \sm E$--module is an isomorphism invariant.  Using this, we follow the chains
+\begin{align*}
+& \quad [MO \sm E \sm T(\xi) \to E \sm T(\xi) \to E \sm \Susp^\infty_+ X] \\
+& \equiv [MO \sm E \sm T(\xi) \to E \sm T(\xi) \to MO \sm E \sm T(\xi) \\
+& \quad \quad \to MO \sm E \sm \Susp^\infty_+ X \to E \sm \Susp^\infty_+ X] \\
+& \equiv [MO \sm E \sm T(\xi) \to MO \sm E \sm \Susp^\infty_+ X \to E \sm \Susp^\infty_+ X \\
+& \quad \quad \to MO \sm E \sm \Susp^\infty_+ X \to E \sm \Susp^\infty_+ X] \\
+& \equiv [MO \sm E \sm T(\xi) \to MO \sm E \sm \Susp^\infty_+ X \to E \sm \Susp^\infty_+ X = E \sm \Susp^\infty_+ X] \\
+& \equiv [MO \sm E \sm T(\xi) \to MO \sm E \sm \Susp^\infty_+ X \to E \sm \Susp^\infty_+ X],
+\end{align*}
+which yields one of the two trapezoids.  The other is similar.
+
+Since $\theta_{MO}$ is an equivalence, it has an inverse $\alpha_{MO}$, and this similarly begets a map $\alpha_E$, which participates in its own pair of trapezoids.  Stacking them yields the identity
+\begin{align*}
+& \quad [E \sm T(\xi) \xrightarrow{\theta_E} E \sm \Susp^\infty_+ X \xrightarrow{\alpha_E} E \sm T(\xi)] \\
+& \equiv [E \sm T(\xi) \to E \sm \Susp^\infty_+ X \to MO \sm E \sm \Susp^\infty_+ X \\
+& \quad \quad \to MO \sm E \sm T(\xi) \to E \sm T(\xi)] \\
+& \equiv [E \sm T(\xi) \to MO \sm E \sm T(\xi) \to MO \sm E \sm \Susp^\infty_+ X \\
+& \quad \quad \to MO \sm E \sm T(\xi) \to E \sm T(\xi)] \\
+& \equiv [E \sm T(\xi) \to MO \sm E \sm T(\xi) \to E \sm T(\xi)] \\
+& \equiv [E \sm T(\xi) = E \sm T(\xi)].
+\end{align*}
+Showing that $\alpha_E$ is the left-inverse of $\theta_E$ is also similar.
 \end{proof}
 
 \begin{remark}
