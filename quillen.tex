@@ -764,30 +764,30 @@ This last formula puts us in a position to calculate.  The Thom isomorphism for 
 
 To apply this machinery in our case, we need only equip $MU$ with the factorized multiplication maps appearing in the definition of an $H_\infty$--ring spectrum.  (In fact, we will note that this enriches to an  \index{H infty ring spectrum@$H_\infty$--ring spectrum!H infinity 2 on MU@$H_\infty^2$--structure on $MU$}$H_\infty^2$--ring spectrum structure in the next Lecture.)
 
-\begin{definition}[{\cite[Definition VII.7.4]{Rudyak}}]
-Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the cyclic group $C_n$ acts.  By taking the (homotopy) $C_n$--quotient of the fiber, total, and base spaces, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{hC_n}$ participating in the diagram
+\begin{definition}[{\cite[Definition VII.7.4]{Rudyak}}]\label{DefnAssociatedBundle}
+Suppose that $\xi\co X \to BU(k)$ presents a complex vector bundle of rank $k$ on $X$.  The $n$--fold direct sum of this bundle gives a new bundle \[X^{\times n} \xrightarrow{\xi^{\oplus n}} BU(k)^{\times n} \xrightarrow{\oplus} BU(n \cdot k)\] of rank $nk$ on which the symmetric group $\Sigma_n$ acts.  By taking the (homotopy) $\Sigma_n$--quotient of the fiber, total, and base spaces, we produce a vector bundle $\xi(n)$ on $X^{\times n}_{h\Sigma_n}$ participating in the diagram
 \begin{center}
 \begin{tikzcd}
-X^{\times n} \arrow["\xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow["\oplus"]{r} & BU(nk) \arrow[leftarrow, "\xi(n)"' near end]{lld} \\
-X^{\times n}_{hC_n} \arrow["\xi^{\oplus n}_{hC_n}"']{r} & BU(k)^{\times n}_{hC_n}. \arrow[densely dotted]{ru}[description]{\widetilde \mu_n} \arrow[crossing over, leftarrow]{u}
+X^{\times n} \arrow["\xi^{\oplus n}"]{r} \arrow{d} & BU(k)^{\times n} \arrow["\oplus"]{r} & BU(nk) \arrow[leftarrow, "\xi(\Sigma_n)"' near end]{lld} \\
+X^{\times n}_{h\Sigma_n} \arrow["\xi^{\oplus n}_{h\Sigma_n}"']{r} & BU(k)^{\times n}_{h\Sigma_n}. \arrow[densely dotted]{ru}[description]{\widetilde \mu_n} \arrow[crossing over, leftarrow]{u}
 \end{tikzcd}
 \end{center}
 The universal case gives the map $\widetilde \mu_n$.
 \end{definition}
 
 \begin{lemma}[{\cite[Equation VII.7.3]{Rudyak}}]\label{ThomSpectrumOfAssocBundle}
-There is an isomorphism of Thom spectra \[T(\xi(n)) \simeq (T\xi)^{\sm n}_{hC_n}.\]
+There is an isomorphism of Thom spectra \[T(\xi(\Sigma_n)) \simeq (T\xi)^{\sm n}_{h\Sigma_n}.\]
 \end{lemma}
 \begin{proof}
 This proof is mostly a matter of having had the idea to write down the Lemma to begin with.  From here, we string basic properties together:
 \begin{align*}
-T(\xi(n)) & = T(\xi^{\oplus n}_{hC_n}) \tag{definition} \\
-& = T(\xi^{\oplus n})_{hC_n} \tag{colimits commute with colimits} \\
-& = T(\xi)^{\sm n}_{hC_n}. \tag{$T$ is monoidal: \Cref{ThomSpacesAreMonoidal}}
+T(\xi(\Sigma)) & = T(\xi^{\oplus n}_{h\Sigma_n}) \tag{definition} \\
+& = T(\xi^{\oplus n})_{h\Sigma_n} \tag{colimits commute with colimits} \\
+& = T(\xi)^{\sm n}_{h\Sigma_n}. \tag{$T$ is monoidal: \Cref{ThomSpacesAreMonoidal}}
 \end{align*}
 \end{proof}
 
-Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n} \to MU(k)^{\sm n}_{hC_n} \to MU(nk)\] of the unstable multiplication map, and hence a stable factorization \[MU^{\sm n} \to MU^{\sm n}_{hC_n} \xrightarrow{\mu_n} MU.\]  In fact, this enriches to an $H_\infty^2$ structure: by applying \Cref{ThomSpectrumOfAssocBundle} in reverse (and harmlessly trading $C_n$ for $\Sigma_n$), the basic construction is
+Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n} \to MU(k)^{\sm n}_{h\Sigma_n} \to MU(nk)\] of the unstable multiplication map, and hence a stable factorization \[MU^{\sm n} \to MU^{\sm n}_{h\Sigma_n} \xrightarrow{\mu_n} MU.\]  In fact, this enriches to an $H_\infty^2$ structure: by applying \Cref{ThomSpectrumOfAssocBundle} in reverse, the basic construction is
 \begin{align*}
 \mu_{2,2}\co \S^2_{h\Sigma_2} \sm MU^{\sm 2}_{h\Sigma_2} & \xrightarrow{1 \sm \mu_2} \S^2_{h\Sigma_2} \sm MU \\
 & \simeq T(1_{\R}(2) \downarrow *) \sm MU \tag{\Cref{ThomSpectrumOfAssocBundle}} \\
@@ -795,6 +795,10 @@ Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n
 & \simeq \S^2 \sm MU. \tag{Thom spectrum of $1_{\C}$}
 \end{align*}
 Our goal in the next Lecture will be to gain a computational understanding of $\mu_{n,2d}$.
+
+\begin{remark}
+\Cref{DefnAssociatedBundle} and \Cref{ThomSpectrumOfAssocBundle} both hold with $\Sigma_n$ replaced by a subgroup of $\Sigma_n$, e.g., the cyclic group $C_n \le \Sigma_n$.
+\end{remark}
 
 \begin{remark}[{\cite[Equations 3.10-11]{Quillen}}]
 The picture Quillen paints of all this is considerably different from ours.  He begins by giving a different presentation of the complex cobordism groups of a manifold $M$: a complex orientation of a smooth map $Z \to M$ is a factorization \[Z \xrightarrow{i} E \xrightarrow{\pi} M\] through a complex vector bundle $\pi\co E \to M$ by an embedding $i$, as well as a complex structure on the normal bundle $\nu_i$.  Up to suitable notions of stability (in the dimension of $E$) and homotopy equivalence (involving, in particular, isotopies of different embeddings $i$), these quotient to give cobordism classes of maps complex-oriented maps $Z \to M$.  The collection of cobordism classes over $M$ of codimension $q$ is isomorphic to $MU^q(M)$~\cite[Proposition 1.2]{Quillen}.  Quillen's definition of the power operations is then given in terms of this geometric model: a representative $f\co Z \to M$ of a cobordism class gives rise to another complex-oriented map $f^{\times n}\co Z^{\times n} \to M^{\times n}$, and he defines $P^{C_n}_{\mathrm{ext}}(f)$ to be the postcomposition with $M^{\times n} \to M^{\times n}_{hC_n}$ (after taking care that the target isn't typically a manifold).  All the properties of his construction must therefore be explored through the lens of groups acting on manifolds.
