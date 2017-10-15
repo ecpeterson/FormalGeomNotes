@@ -395,6 +395,11 @@
 \patchcmd{\chapter}{\clearpage}{\cleardoublepage}{}{\error}
 \makeatother
 
+% make footnotes fully justified
+\makeatletter
+\patchcmd{\cref@old@makefntext}{\raggedright}{\relax}{}{\error}
+\makeatother
+
 % make backrefs look pretty
 \renewcommand*{\backref}[1]{}
 \renewcommand*{\backrefalt}[4]{[%
