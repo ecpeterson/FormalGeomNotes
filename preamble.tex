@@ -2,7 +2,61 @@
 
 % \usepackage{showframe}
 
+%%% Created by texsupport 20/09/2017
+
+\makeatletter
+\ifAJW@confsty
+%
+  \def\appendix{%
+    \apptmp=\c@chapter %save chapter number
+    \par
+    \AJW@appendixtrue
+    \def\section{\@startsection {section}{1}{\z@}
+      {-30\p@ \@plus-7\p@ \@minus-3.5\p@}{8\p@}{\Aheadsize\bfseries\centering Appendix~}}
+    \setcounter{section}{0}
+    \@addtoreset{figure}{subsection}
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
+% set tocdepth to chapter heads only whether multi-author or single-author
+    %\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+    \def\@chapapp{\appendixname}
+    \def\thechapter {\Alph{chapter}}
+    \def\thesection {\Alph{section}}
+    \def\thesubsection {\Alph{section}.\arabic{subsection}}
+    \def\thetable   {\Alph{section}.\@arabic\c@table}
+    \def\thefigure  {\Alph{section}.\@arabic\c@figure}
+    \def\theequation{\Alph{section}.\arabic{equation}}
+}
+
+% and only one appendix
+  \def\oneappendix{\AJW@oneappendixtrue\appendix
+    \def\thesection {}% remove the 'A' from Appendix heading
+  }
+\else
+%
+% single version
+\def\appendix{\par\clearpage
+ \AJW@appendixtrue
+ \setcounter{chapter}{0}
+ \setcounter{section}{0}
+% set tocdepth to chapter heads only whether multi-author or single-author
+ %\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+ \def\@chapapp{\appendixname}
+ \def\thechapter {\Alph{chapter}}
+ \def\thesection {\thechapter.\arabic{section}}
+ \def\thetable   {\thechapter.\@arabic\c@table}
+ \def\thefigure  {\thechapter.\@arabic\c@figure}
+ \def\theequation{\thechapter.\arabic{equation}}
+}
+%
+% and only one appendix
+    \def\oneappendix{\AJW@oneappendixtrue\appendix}
+\fi
+\def\AJW@numberline#1{{\@hangfrom{\itshape \appendixname\ #1\ \quad}}}%% texsupport
+\makeatother
+
 \usepackage[pdftex,
+            bookmarksnumbered=true,%% texsupport
             pdfauthor={Eric Peterson},
             pdftitle={Formal Geometry and Bordism Operations},
             pagebackref=true]{hyperref}
@@ -410,57 +464,4 @@
     ]}
 
 \allowdisplaybreaks
-
-%%% Created by texsupport 20/09/2017
-
-\makeatletter
-\ifAJW@confsty
-%
-  \def\appendix{%
-    \apptmp=\c@chapter %save chapter number
-    \par
-    \AJW@appendixtrue
-    \def\section{\@startsection {section}{1}{\z@}
-      {-30\p@ \@plus-7\p@ \@minus-3.5\p@}{8\p@}{\Aheadsize\bfseries\centering Appendix~}}
-    \setcounter{section}{0}
-    \@addtoreset{figure}{subsection}
-    \setcounter{figure}{0}
-    \setcounter{table}{0}
-% set tocdepth to chapter heads only whether multi-author or single-author
-    %\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
-    \def\@chapapp{\appendixname}
-    \def\thechapter {\Alph{chapter}}
-    \def\thesection {\Alph{section}}
-    \def\thesubsection {\Alph{section}.\arabic{subsection}}
-    \def\thetable   {\Alph{section}.\@arabic\c@table}
-    \def\thefigure  {\Alph{section}.\@arabic\c@figure}
-    \def\theequation{\Alph{section}.\arabic{equation}}
-}
-
-% and only one appendix
-  \def\oneappendix{\AJW@oneappendixtrue\appendix
-    \def\thesection {}% remove the 'A' from Appendix heading
-  }
-\else
-%
-% single version
-\def\appendix{\par\clearpage
- \AJW@appendixtrue
- \setcounter{chapter}{0}
- \setcounter{section}{0}
-% set tocdepth to chapter heads only whether multi-author or single-author
- %\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
- \def\@chapapp{\appendixname}
- \def\thechapter {\Alph{chapter}}
- \def\thesection {\thechapter.\arabic{section}}
- \def\thetable   {\thechapter.\@arabic\c@table}
- \def\thefigure  {\thechapter.\@arabic\c@figure}
- \def\theequation{\thechapter.\arabic{equation}}
-}
-%
-% and only one appendix
-    \def\oneappendix{\AJW@oneappendixtrue\appendix}
-\fi
-
-\makeatother
 
