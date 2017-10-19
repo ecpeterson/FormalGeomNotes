@@ -9,7 +9,7 @@ A simple observation about the bordism ring $MO_*(*)$ (or $MO_*(X)$ more general
 
 Our goal in discussing these results in the first Case Study of the book is to take the opportunity to introduce several key concepts that will serve us throughout.  First and foremost, we will require a definition of bordism spectrum that we can manipulate computationally, using just the tools of abstract homotopy theory.  Once that is established, we immediately begin to bring algebraic geometry into the mix: the main idea is that the cohomology ring of a space is better viewed as a scheme (with plenty of extra structure), and the homology groups of a spectrum are better viewed as representation for a certain elaborate algebraic group.  This data actually finds familiar expression in homotopy theory: we show that a form of group cohomology for this representation forms the input to the classical Adams spectral sequence, which classically takes the form \[\Cotor_{\mathcal A_*}^{*, *}(\F_2, \HFtwo_*(Y)) \Rightarrow \pi_*(Y),\] converging for certain very nice spectra $Y$---including, for instance, $Y = MO$.  In particular, we can bring the tools from the preceding discussion to bear on the homology and cohomology of $MO$, where we make an explicit calculation of its representation structure.  Finding that it is suitably free, we thereby gain control of the Adams spectral sequence, finish the computation, and prove the desired result.
 
-Our \emph{real} goal in this Case Study, however, is to introduce one of the main phenomena guiding this text: there is some governing algebro-geometric object, the formal group $\RP^\infty_{\HFtwo}$, which exerts an extraordinary amount of control over everything in sight.  We will endeavor to rephrase as much of this classical computation as possible so as to highlight its connection to this central object, and we will use this as motivation in future Case Studies to pursue similar objects, which will lead us down much deeper and more rewarding rabbit holes.  The counterbalance to this is that, at least for now, we will \emph{\emph{not}} introduce concepts or theorems in their maximum generality.  (For an obvious example, everything in this Case Study will be done relative to $\Spec \F_2$.)  Essentially everything mentioned in this Case Study will be re-examined more thoroughly in future Case Studies, so the reader is advised to look to those for the more expansive set of results.
+Our \emph{real} goal in this Case Study, however, is to introduce one of the main phenomena guiding this text: there is some governing algebro-geometric object, the formal group $\RP^\infty_{\HFtwo}$, which exerts an extraordinary amount of control over everything in sight.  We will endeavor to rephrase as much of this classical computation as possible so as to highlight its connection to this central object, and we will use this as motivation in future Case Studies to pursue similar objects, which will lead us down much deeper and more rewarding rabbit holes.  The counterbalance to this is that, at least for now, we will \emph{\emph{not}} introduce concepts or theorems in their maximum generality.\footnote{For an obvious example, everything in this Case Study will be done relative to $\Spec \F_2$.}  Essentially everything mentioned in this Case Study will be re-examined more thoroughly in future Case Studies, so the reader is advised to look to those for the more expansive set of results.
 
 
 
@@ -18,7 +18,7 @@ Our \emph{real} goal in this Case Study, however, is to introduce one of the mai
 
 \section{Thom spectra and the Thom isomorphism}\label{LectureThomSpectra}
 
-Our goal is a sequence of theorems about the unoriented bordism spectrum $MO$.  We will begin by recalling a definition of the spectrum $MO$ using just abstract homotopy theory, because it involves ideas that will be useful to us throughout the semester and because we cannot compute effectively with the chain-level definition given in the Introduction.
+Our goal is a sequence of theorems about the unoriented bordism spectrum $MO$.  We will begin by recalling a definition of the spectrum $MO$ using just abstract homotopy theory, because it involves ideas that will be useful to us throughout the text and because we cannot compute effectively with the chain-level definition given in the Introduction.
 
 \begin{definition}
 For a spherical bundle $S^{n-1} \to \xi \to X$, its \textit{Thom space} is given by the cofiber \[\xi \to X \xrightarrow{\text{cofiber}} T_n(\xi).\]
@@ -33,7 +33,7 @@ If $\xi = S^{n-1} \times X$ is the trivial bundle, then $T_n(\xi) = S^n \sm (X_+
 \end{example}
 
 \begin{example}\label{RPnThomExample}
-Let $\xi$ be the tautological $S^0$--bundle over the unpointed space $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, $EO(1)$, the cofiber degenerates and it follows that $T_1(\xi) = \RP^\infty$, a pointed space.\footnote{If you already know what's coming, this should comport with the Thom isomorphism: $x \cdot \HFtwo^* \RP^\infty \cong \widetilde{\HFtwo}^{* + 1} \RP^\infty$.}  More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
+Let $\xi$ be the tautological $S^0$--bundle over the unpointed space $\RP^\infty = BO(1)$.  Because $\xi$ has contractible total space, $EO(1)$, the cofiber degenerates and it follows that $T_1(\xi) = \RP^\infty$, a pointed space.\footnote{If you already know what's coming, this should comport with the Thom isomorphism, which asserts $x \cdot \HFtwo^* \RP^\infty \cong \widetilde{\HFtwo}^{* + 1} \RP^\infty$.}  More generally, arguing by cells shows that the Thom space for the tautological bundle over $\RP^n$ is $\RP^{n+1}$.
 \end{example}
 
 Now we catalog a bunch of useful properties of the Thom space construction.  Firstly, recall that a spherical bundle over $X$ is the same data~\cite{MayClassifyingSpaces} as a map $X \to B \GL_1 S^{n-1}$, where \index{spectrum of units, $\gl_1$}\index{spherical bundle}$\GL_1 S^{n-1}$ is the subspace of $F(S^{n-1}, S^{n-1})$ expressed by the pullback of spaces
@@ -105,13 +105,12 @@ T(\mu \circ (J_{\R} \times J_{\R})) & \simeq T(\mu \circ (J_{\R} \times J_{\R}) 
 T(J_{\R}) \sm T(J_{\R}) & \simeq T(J_{\R}) \sm \Susp^\infty_+ BO \tag{monoidality} \\
 MO \sm MO & \simeq MO \sm \Susp^\infty_+ BO. \tag{definition of $MO$}
 \end{align*}
-The equivalence is one of $MO$--modules because the $MO$--module structure of both sides comes from smashing with $MO$ on the left.
 \end{proof}
 
 \noindent From here, the general version of Thom's theorem follows quickly:
 
 \begin{definition}
-A map $\phi\co MO \to E$ of homotopy ring spectra is called an \idxentry{orientation} of $E$ (by $MO$).\footnote{Later, we will refer to analogous ring spectrum maps $MU \to E$ off of the complex bordism spectrum as \textit{complex-orientations} of $E$.  However, calling ring maps $MO \to E$ ``unoriented-orientations'' is rightfully considered distasteful.}
+A map $\phi\co MO \to E$ of homotopy ring spectra is called an \idxentry{orientation} of $E$ (by $MO$).\footnote{Later, we will refer to analogous ring spectrum maps $MU \to E$ off of the complex bordism spectrum as \textit{complex orientations} of $E$.  However, calling ring maps $MO \to E$ ``unoriented orientations'' is rightfully considered distasteful.}
 \end{definition}
 
 \begin{theorem}[Thom isomorphism]\label{GeneralThomIsom}
@@ -162,7 +161,7 @@ which is the identity on $E \sm \Susp^\infty_+ X$.  The proof that $\alpha_E$ is
 \end{proof}
 
 \begin{remark}
-One of the tentpoles of the theory of Thom spectra is that \Cref{GeneralThomIsom} has a kind of converse: if a ring spectrum $E$ has suitably natural and multiplicative Thom isomorphisms for Thom spectra formed from real vector bundles, then one can define an essentially unique ring map $MO \to E$ realizing these isomorphisms via the machinery of \Cref{GeneralThomIsom}.
+One of the tentpoles of the theory of Thom spectra is that \Cref{GeneralThomIsom} has a kind of converse: if a ring spectrum $E$ has suitably natural and multiplicative Thom isomorphisms for Thom spectra formed from real vector bundles, then one can define an essentially unique ring map $MO \to E$ that realizes these isomorphisms via the machinery of \Cref{GeneralThomIsom}.
 \end{remark}
 
 \begin{remark}\label{CohomologicalThomIso}
@@ -206,7 +205,7 @@ Set $R_n = \F_2[x_1, \ldots, x_n]$.  Elements of $(\Spec R_n)(T)$ can be identif
 \begin{align*}
 \mathbb A^n & := \Spec \F_2[x_1, \ldots, x_n], & \mathbb A^{n, J} & := \Spec \F_2[x_1, \ldots, x_n] / (x_k^{j_k+1}).
 \end{align*}
-The functor $\mathbb A^n$ is called \index{scheme!affine $n$--space}\textit{affine $n$--space}---reasonable, since the value $\mathbb A^n(T)$ is isomorphic to $T^n$.  In particular, we refer to $\mathbb A^1$ as the \textit{affine line}.  Note that the quotient map $R_1 \to R_1^{(j)}$ induces an inclusion $\mathbb A^{1, (j)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we declare ``$\mathbb A^{1, (0)}$'' to be the \textit{origin on the affine line} and $\mathbb A^{1, (j)}$ to be the \textit{$(n+1)$\textsuperscript{st} order (nilpotent) neighborhood of the origin} in the affine line.
+The functor $\mathbb A^n$ is called \index{scheme!affine $n$--space}\textit{affine $n$--space}---reasonable, since the value $\mathbb A^n(T)$ is isomorphic to $T^n$.  We refer to $\mathbb A^1$ as the \textit{affine line}.  Note that the quotient map $R_1 \to R_1^{(j)}$ induces an inclusion $\mathbb A^{1, (j)} \to \mathbb A^1$ and that $\mathbb A^{1, (0)}$ is a constant functor: \[\mathbb A^{1, (0)}(T) = \{f: \F_2[x] \to T \mid f(x) = 0\}.\]  Accordingly, we declare ``$\mathbb A^{1, (0)}$'' to be the \textit{origin on the affine line} and $\mathbb A^{1, (j)}$ to be the \textit{$(n+1)$\textsuperscript{st} order (nilpotent) neighborhood of the origin} in the affine line.
 \end{example}
 
 We can also use this language to re-express another common object arising in algebraic topology: the Hopf algebra, which appears when taking the mod--$2$ cohomology of an $H$--group.  In addition to the usual ring structure on cohomology groups, the $H$--group multiplication, unit, and inversion maps additionally induce a diagonal map $\Delta$, an augmentation map $\eps$, and an antipode $\chi$ respectively.  Running through the axioms, one quickly checks the following:
@@ -264,7 +263,7 @@ This example showcases the complications that algebraic geometry introduces to t
 \alpha_2 & \xrightarrow{\chi} \alpha_2 & -x & \mapsfrom x, \\
 \Spec \F_2 & \xrightarrow{\eta} \alpha_2 & 0 & \mapsfrom x.
 \end{align*}
-This group scheme has several interesting properties, which we will merely state for now, reserving their proofs for \Cref{WorkedAlpha2Example}.
+This group scheme has several interesting properties which we will merely state, reserving their proofs for \Cref{WorkedAlpha2Example}.
 \begin{enumerate}
 \item $\alpha_2$ has the same underlying structure ring as $\mu_2 := \mathbb{G}_m[2]$, the $2$--torsion points of $\mathbb G_m$, but is not isomorphic to it.
 \item There is no commutative group scheme $G$ of rank four such that $\alpha_2 = G[2]$.
