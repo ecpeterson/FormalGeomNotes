@@ -1111,7 +1111,7 @@ We additionally see that $[KO, KO]$ torsion-free, which altogether accounts for 
 Having learned enough about $KO$--operations to justify the program enacted in the previous subsections, we now need to show that there exist sequences of $p$--adic integers satisfying those criteria.
 
 \begin{theorem}[Mazur]
-For any auxiliary $c \in \Z_p^\times$, there is a functional $f_c$ satisfying\footnote{\[\text{Explicitly,\;} f_c(h) = \int_{\Z_p^\times} h(x) d\mu_c = \lim_{r \to \infty} \frac{1}{p^r} \sum_{\substack{0 \le i < p^r \\ p \nmid i}} \int_i^{ci} \frac{h(t)}{t} dt.\]  It also satisfies the normalizing property $\int_{\Z_p^\times} d\mu_c = \frac{1}{p} \log(c^{p-1})$.}\footnote{With considerable effort, this output can be halved~\cite[Section 10.3]{AHR}.} \[f_c(x^{k \ge 1}) = \frac{-B_k}{k}(1 - p^{k-1})(1 - c^k).\]
+For any auxiliary $c \in \Z_p^\times$, there is a functional $f_c$ satisfying\footnote{\[\text{Explicitly,\;} f_c(h) = \int_{\Z_p^\times} h(x) \mathrm d\mu_c = \lim_{r \to \infty} \frac{1}{p^r} \sum_{\substack{0 \le i < p^r \\ p \nmid i}} \int_i^{ci} \frac{h(t)}{t} \mathrm dt.\]  It also satisfies the normalizing property $\int_{\Z_p^\times} \mathrm d\mu_c = \frac{1}{p} \log(c^{p-1})$.}\footnote{With considerable effort, this output can be halved~\cite[Section 10.3]{AHR}.} \[f_c(x^{k \ge 1}) = \frac{-B_k}{k}(1 - p^{k-1})(1 - c^k).\]
 \end{theorem}
 
 \noindent This Theorem is stated in exactly the generality it was originally proven, and so you might wonder why Mazur had already proven \emph{exactly} what we needed.  To understand his program, recall these two facts about $\zeta$:
@@ -1126,17 +1126,17 @@ x \in [0, p^n) & \mapsto k^{-1} p^{n(k-1)} B_k(x p^{-n}).
 \end{align*}
 A distribution in general is a function on $\Z_p$ such that its value at any node in the $p$--adic tree is equal to the sum of the values of its immediate children, and the $p$--adic integral of a locally constant function with respect to such a distribution is defined by their convolution.  For example, the constant function $1$ factors through $\Z/p$, hence \[\int_{\Z_p} dE_k = \overset{\text{non-obvious}}{\overbrace{\frac{1}{k} \sum_{a=0}^{p-1} B_k\left(\frac{a}{p}\right) = \frac{B_k(0)}{k}}} = \frac{B_k}{k}.\]
 
-However, this distribution is not a \emph{measure}, in the sense that it is not bounded and hence does not extend to a functional on all continuous functions (rather than just locally constant ones).  The standard fix for this is called \index{regularization}\index{Bernoulli!measure}\textit{regularization}: pick $c \in \Z$ with $p \nmid c$, and set $E_{k,c}(x) = E_k(x) - c^kE_k(c^{-1}x)$.  This is a measure, and for $k \ge 1$ it has total volume given by \[\int_{\Z_p} dE_{k,c} = \int_{\Z_p} dE_k - c^k \int_{\Z_p} dE_k(c^{-1}x) = \frac{B_k}{k}(1 - c^k).\]
+However, this distribution is not a \emph{measure}, in the sense that it is not bounded and hence does not extend to a functional on all continuous functions (rather than just locally constant ones).  The standard fix for this is called \index{regularization}\index{Bernoulli!measure}\textit{regularization}: pick $c \in \Z$ with $p \nmid c$, and set $E_{k,c}(x) = E_k(x) - c^kE_k(c^{-1}x)$.  This is a measure, and for $k \ge 1$ it has total volume given by \[\int_{\Z_p} \mathrm dE_{k,c} = \int_{\Z_p} \mathrm dE_k - c^k \int_{\Z_p} \mathrm dE_k(c^{-1}x) = \frac{B_k}{k}(1 - c^k).\]
 
 These measures interrelate: $E_{k, c} = x^{k-1} E_{1, c}$, and hence the single measure $E_{1, c}$ has all of these values as moments.  We would like to perform $p$--adic interpolation\index{p adic interpolation@$p$--adic interpolation} in $k$ to remove the restriction $k \ge 1$, but this is not naively possible: if $k = 0$, say, then we naively have $E_{0, c} = x^{-1} E_{1, c}$, which will not make sense whenever $x \in p\Z_p$.  This is most easily solved by restricting $x$ to lie in $\Z_p^\times$, which has a predictable effect for $k \in \Z_{> 0}$:
 \begin{align*}
-\int_{\Z_p^\times} x^{k-1} dE_{1,c} & = \int_{\Z_p} x^{k-1} dE_{1,c} - \int_{p\Z_p} x^{k-1} dE_{1, c} \\
-& = \int_{\Z_p} x^{k-1} dE_{1,c} - p^{k-1} \int_{\Z_p} x^{k-1} dE_{1, c} \\
+\int_{\Z_p^\times} x^{k-1} \mathrm dE_{1,c} & = \int_{\Z_p} x^{k-1} \mathrm dE_{1,c} - \int_{p\Z_p} x^{k-1} \mathrm dE_{1, c} \\
+& = \int_{\Z_p} x^{k-1} \mathrm dE_{1,c} - p^{k-1} \int_{\Z_p} x^{k-1} \mathrm dE_{1, c} \\
 & = \frac{B_k}{k}(1 - c^k)(1 - p^{k-1}).
 \end{align*}
 Hence, the Mellin transform of the measure $dE_{1,c}$ on $\Z_p^\times$ gives a sort of $p$--adic interpolation of the $\zeta$--function.
 
-It also has \emph{exactly} the properties we need to guarantee the existence of an $E_\infty$--orientation $M\Spin \to KO$.  It is remarkable that the three factors in \[\int_{\Z_p^\times} x^{k-1} d E_{1, c} = \frac{B_k}{k} (1 - c^k)(1 - p^{k-1})\] have discernable provenances in the two fields.  In stable homotopy theory these arise respectively in the characteristic series of the orientation $MU \to KU$, in the finite Adams resolution for the $K(1)$--local sphere, and in the Rezk logarithm.  In $p$--adic analytic number theory, they arise as the special values of the $\zeta$--function, the regularization to make it a measure, and the restriction to perform $p$--adic interpolation.  It is completely mysterious how or if these operations correspond.
+It also has \emph{exactly} the properties we need to guarantee the existence of an $E_\infty$--orientation $M\Spin \to KO$.  It is remarkable that the three factors in \[\int_{\Z_p^\times} x^{k-1} \mathrm d E_{1, c} = \frac{B_k}{k} (1 - c^k)(1 - p^{k-1})\] have discernable provenances in the two fields.  In stable homotopy theory these arise respectively in the characteristic series of the orientation $MU \to KU$, in the finite Adams resolution for the $K(1)$--local sphere, and in the Rezk logarithm.  In $p$--adic analytic number theory, they arise as the special values of the $\zeta$--function, the regularization to make it a measure, and the restriction to perform $p$--adic interpolation.  It is completely mysterious how or if these operations correspond.
 
 
 \subsubsection{Footnotes on the $\tmf$ case}
