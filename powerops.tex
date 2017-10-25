@@ -192,8 +192,24 @@ The \index{context!abelian Einfty@abelian \(E_\infty\)}\textit{abelian \(E_\inft
 \noindent A consequence of \Cref{CharacterTheorySection} is that this map is \emph{injective} on Morava \(E\)--cohomology, so that we can understand the natural \(E_\infty\) context in terms of this larger object.  A benefit to this auxiliary context is that we can already predict its behavior in Morava \(E\)--theory: the cohomological formal scheme associated to an abelian group can be presented as an internal scheme of group homomorphisms, just as above.  Using this auxiliary context for reference, Strickland has proven the following results:
 
 \begin{theorem}[{\cite[Theorem 1.1]{StricklandEthyOfBSigma}}]
-There is an isomorphism \[\Spf E^0 B\Sigma_j / I_{\Tr} \cong \Sub_j \CP^\infty_E,\] where \(\Sub_j\) denotes the subscheme of \(\Div_j^+\) consisting of those effective Weil divisors of rank \(j\) which are \index{divisor!subgroup}subgroup divisors.\footnote{If \(j\) is not a power of \(p\), this is the terminal scheme.} \qed
+There is an isomorphism \[\Spf E^0 B\Sigma_j / I_{\Tr} \cong \Sub_j \CP^\infty_E,\] where \(\Sub_j\) denotes the subscheme of \(\Div_j^+\) consisting of those effective Weil divisors of rank \(j\) which are \index{divisor!subgroup}subgroup divisors.\footnote{If \(j\) is not a power of \(p\), this is the terminal scheme.}
 \end{theorem}
+\begin{proof}[Proof sketch, after Stapleton]
+The proof of this Theorem requires a very involved algebraic calculation (which can take different forms~\cite{StricklandFiniteSubgps,SchlankStapleton}), so we describe only the reduction to that calculation.  The object \(E^0 B\Sigma_j\) is accessible via the chromatic character theory from the previous Lecture, where we presented \(C_0 \otimes E^0 B\Sigma_j\) as a certain ring of \(C_0\)--valued class functions on the symmetric group.  The effect of quotienting by the transfer ideal is to delete all of the factors belonging to conjugacy classes that are not transitive.  On other side of the putative isomorphism, the formation of the scheme of subgroups commutes with base change, and hence we have \[\Spec C_0 \times \Sub_j \CP^\infty_E \cong \Sub_j (\Spec C_0 \times \CP^\infty_E) \cong \Sub_j \Lambda^*,\] where in the second isomorphism we have used the canonical isomorphism carried by the ring $C_0$.  After this character-theoretic base-change, there is a canonical bijection between the two sides: a map \[\Z_p^n \xrightarrow{\mathrm{transitive}} \Sigma_n\] has an image factorization \(\Z_p^n \to A \to \Sigma_n\), and the Pontryagin dual of the surjective map in the factorization gives an injective map \[\Lambda^* \leftarrow A^*.\]
+
+As described above, the permutation representation gives a natural map \(B\Sigma_j \to BU(j)\), which participates in the following square:
+\begin{center}
+\begin{tikzcd}
+E^0 BU(j) \arrow{r} \arrow["\simeq"]{d} & E^0 B\Sigma_j / I_{\Tr} \arrow["\mathrm{inj.}"]{r} & C_0 \otimes E^0 B\Sigma_j \arrow["\simeq"]{d} / I_{\Tr} \\
+\sheaf O(\Div_j^+ \CP^\infty_E) \arrow["\mathrm{surj.}"]{r} & \sheaf O(\Sub_j \CP^\infty_E) \arrow["\mathrm{inj.}"]{r} \arrow[densely dotted]{u} & \sheaf O(\Sub_j \Lambda^*).
+\end{tikzcd}
+\end{center}
+The left-hand isomorphism is stated in \Cref{IdentificationOfBUnWithDivn}; the right-hand isomorphism is the content of the previous paragraph; the top-left horizontal map is surjective because subgroup divisors form a closed subscheme of all divisors; and \Cref{CZeroIsFaithfullyFlat} shows that the two right-hand horizontal maps are injections.  Altogether, these can be used to define the middle vertical map: any element can be preimaged along the surjection, pulled upward along the isomorphism, and pushed back down along the map induced by the regular representation, and one quickly checks that this gives an injective $E^0$--algebra homomorphism.
+
+What remains to show, then, are that the source and target are finite and free of the same rank, and that the resulting determinant is a unit.  These are formidible tasks in both algebraic geometry and algebraic topology.
+\end{proof}
+
+Related methods also describe the abelian context:
 
 \begin{theorem}[{\cite[pg.\ 45]{StricklandFPFP}}]
 For a finite abelian group \(A\), there is a diagram
