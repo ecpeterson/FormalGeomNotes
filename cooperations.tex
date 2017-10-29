@@ -9,10 +9,10 @@ Remarkably, these unstable contexts also admit algebro-geometric interpretations
 \begin{itemize}
 \item (\Cref{UnstableContextsSection}:) For \(F = E = \HFtwo\), we compute the full unstable dual Steenrod algebra \(\HFtwo_* \OS{\HFtwo}{*}\) by means of iterated bar spectral sequences.  We then pass to the additive unstable cooperations, where we show by hand that this presents the endomorphism scheme \(\InternalHom{FormalGroups}(\G_a, \G_a)\).  Finally, we pass to the stable additive cooperations, and we check that our results here are compatible with the isomorphism \[\Spec \HFtwo_* \HFtwo \cong \InternalAut{\G_a}\] presented in \Cref{SteenrodAlgIdentifiedWithAutGa}.
 \item (\Cref{COableCoopnsII}:) We next consider the case where \(E = MU\) and where \(F\) is any complex-orientable theory.  We begin with the case \(F = \HFp\), where we can again approach the problem using iterated bar spectral sequences.  The resulting computation is sufficiently nice that we can use this special case of \(F = \HFp\) to deduce the further case of \(F = H\Z_{(p)}\), then \(F = H\Z\), then \(F = MU\), and then finally \(F\) any complex-orientable theory.
-\item (\Cref{LEFTCooperations}:) Having been able to vary \(F\) as widely as possible in the previous case, we then turn to trying to vary \(E\).  This is considerably harder, since the infinite loopspaces \(\OS{E}{*}\) associated to \(E\) are extremely complicated and vary wildly under even ``small'' changes in \(E\).  However, in the special case of \(F = \HFp\), we have an incredibly powerful trick available to us: Dieudonn\'e theory, discussed in \Cref{SectionDieudonneModules}, gives an equivalence of categories \[D_*\co \CatOf{GradedHopfAlgebras}^{> 0, \fin}_{\F_p/} \to \CatOf{GradedDMods},\] and applying this in the composite
+\item (\Cref{LEFTCooperations}:) Having been able to vary \(F\) as widely as possible in the previous case, we then turn to trying to vary \(E\).  This is considerably harder, since the infinite loopspaces \(\OS{E}{*}\) associated to \(E\) are extremely complicated and vary wildly under even ``small'' changes in \(E\).  However, in the special case of \(F = \HFp\), we have an incredibly powerful trick available to us: Dieudonn\'e theory, discussed in \Cref{SectionDieudonneModules}, gives an equivalence of categories \[D_*\co \CatOf{GradedHopfAlgs}^{> 0, \fin}_{\F_p/} \to \CatOf{GradedDMods},\] and applying this in the composite
 \begin{align*}
 \CatOf{Spectra} & \xrightarrow{\Loops^\infty} \CatOf{Loopspaces} \\
-& \xrightarrow{\HFp_*} \CatOf{GradedHopfAlgebras}^{>0, \fin}_{\F_p/} \\
+& \xrightarrow{\HFp_*} \CatOf{GradedHopfAlgs}^{>0, \fin}_{\F_p/} \\
 & \xrightarrow{D_*} \CatOf{GradedDMods} \\
 & \subseteq \CatOf{GradedModules}_{\Cart}
 \end{align*}
@@ -273,7 +273,8 @@ X \arrow{r} \arrow[bend left]{rru} \arrow[bend right]{rrd} & X^\wedge_{E \vee F}
 so that homotopy classes visible in either of \(X^\wedge_E\) or \(X^\wedge_F\) are therefore also visible in the homotopy of \(X^\wedge_{E \vee F}\).\index{operations!mixed}  Now consider the descent object \(\mathcal D_{E \vee F}(X)\) and its layers \(\mathcal D_{E \vee F}(X)[n]\):
 \begin{align*}
 \mathcal{UD}_{E \vee F}(X)[n] & = (E \vee F)^{\sm (n+1)} \sm (X) \\
-& \simeq (E^{\sm (n+1)} \sm X) \vee (F^{\sm (n+1)} \sm X) \vee \bigvee_{\substack{i+j=n+1 \\ i \ne 0 \ne j}} (E^{\sm i} \sm F^{\sm j} \sm X)^{\vee \binom{n}{i,j}}.
+& \simeq (E^{\sm (n+1)} \sm X) \vee (F^{\sm (n+1)} \sm X) \\
+& \quad \quad \vee \bigvee_{\substack{i+j=n+1 \\ i \ne 0 \ne j}} (E^{\sm i} \sm F^{\sm j} \sm X)^{\vee \binom{n}{i,j}}.
 \end{align*}
 In the edge cases of \(i = 0\) or \(j = 0\), we can identify the descent objects \(\mathcal D_E(X)\) and \(\mathcal D_F(X)\) as sub-cosimplicial objects of \(\mathcal D_{E \vee F}(X)\).  The role of the cross-terms at the end of the expression is to prevent the completion at \(E \vee F\) from double-counting the parts of \(X\) already simultaneously visible to the completions at \(E\) and at \(F\)---i.e., the cross-terms handle communication between \(E\) and \(F\).\footnote{From the perspective of spectral shemes, you might think of the descent object for \(E \vee F\) as that coming from the joint cover \(\{\S \to E, \S \to F\}\), and these cross-terms correspond to the scheme-theoretic intersection of \(E\) and \(F\) over \(\S\).}
 
@@ -600,11 +601,11 @@ First, because \(MU_{(p)}\) splits multiplicatively as a product of \(BP\)s, we 
 This is an impressively broad claim: the loopspaces \(\OS{MU}{2*}\) are quite complicated, and that any general statement can be made about them is remarkable.  That this fact follows from a calculation in \(\HFp\)--homology and some niceness observations is meant to showcase the density of \(\CP^\infty_H \cong \G_a\) inside of \(\moduli{fg}\).\footnote{It is worth pointing out that the success of this calculation is misleading as to how difficult unstable calculations can be.  For instance, the Johnson--Yosimura conjecture is that for a space \(X\) and \(x \in BP_n(X)\) a \(BP\)--homology class, \(x\) is \(v_n\)--torsion-free~\cite[pg.\ 37]{Wilson}.  Even related stable conjectures are unsettled: for \(\S^m \to X \to Y\) a cofibration of finite complexes with \(BP_*(X)\) of homological dimension less than \(n\), it is conjectured that the homological dimension of \(BP_*(Y)\) is less than \(n+1\)~\cite[Conjecture 6.8]{JohnsonWilsonProjDim}; and if \(0 \ne y \in BP\<n\>_s(X)\) is a \(v_n\)--torsion-element of a space $X$, it is conjectured that \(s < \dim(X)\)~\cite[Question 6.11]{JohnsonWilsonProjDim}.}
 
 \begin{remark}
-The analysis of the first bar spectral sequence in the proof of \Cref{HFpBPCooperationsInduction} also gave us a description of \(H_* \OS{BP}{2*+1}\), which is not directly visible to \(\AA(H, BP)\).  Namely, the Hopf ring \(H_* \OS{BP}{*}\) can be presented as \[H_* \OS{BP}{*} \xleftarrow{\simeq} \AA(H, BP)[e] / (e^{\circ 2} = \beta_{(0)}),\] with \index{homology suspension}\(e\) of degree \(1\).  Additionally, analyzing the cohomological bar spectral sequence (and noting that the dual of a divided power algebra is a polynomial algebra) shows that each \(H_* \OS{BP}{2*}\) forms a \index{Hopf algebra!bipolynomial}\textit{bipolynomial Hopf algebra}---i.e., both it and its dual are polynomial algebras.
+The analysis of the first bar spectral sequence in the proof of \Cref{HFpBPCooperationsInduction} also gave us a description of \(H_* \OS{BP}{2*+1}\), which is not directly visible to \(\AA(H, BP)\).  Namely, the Hopf ring \(H_* \OS{BP}{*}\) can be presented as \[H_* \OS{BP}{*} \xleftarrow{\simeq} \AA(H, BP)[e] / (e^{\circ 2} = \beta_{(0)}),\] with \index{homology suspension}\(e\) of degree \(1\).  Additionally, analyzing the cohomological bar spectral sequence (and noting that the dual of a divided power algebra is a polynomial algebra) shows that each \(H_* \OS{BP}{2*}\) forms a \index{Hopf algebra!bipolynomial}\textit{bipolynomial Hopf algebra}---i.e., both it and its dual are polynomial algebras.  These bipolynomial algebras also play a critical role in the next two sections.
 \end{remark}
 
 \begin{remark}[{\cite{Chan}, \cite[Section 10]{Wilson}}]
-There is an alternative proof, due to Chan, that \(H_* \OS{BP}{2j}\) forms a bipolynomial Hopf algebra for each choice of \(j\) that makes no reference to Hopf rings.  It proceeds along very similar lines, as it also studies the iterated bar spectral sequence, but it proceeds entirely by counting: the elements in the spectral sequence are never given explicit names, and hence there is no real hope of understanding the functor \(\SpH H_* \OS{BP}{2*}\) using these methods.  By contrast, the Ravenel--Wilson method can be used to give an explicit enumeration of these classes~\cite[Section 5]{RavenelWilsonHopfRingForMU}.  Our presentation here is something of a compromise.
+There is an alternative proof that \(H_* \OS{BP}{2j}\) forms a bipolynomial Hopf algebra for each choice of \(j\) that makes no reference to Hopf rings.  It proceeds along very similar lines, as it also studies the iterated bar spectral sequence, but it proceeds entirely by counting: the elements in the spectral sequence are never given explicit names, and hence there is no real hope of understanding the functor \(\SpH H_* \OS{BP}{2*}\).  By contrast, the Ravenel--Wilson method can be used to give an explicit enumeration of these classes~\cite[Section 5]{RavenelWilsonHopfRingForMU}.  Our presentation here is something of a compromise.
 \end{remark}
 
 \begin{remark}\label{WilsonSpaces}
@@ -614,8 +615,6 @@ Remarkably, these indecomposable spaces can themselves be identified.  For each 
 
 In particular, the spaces \(\OS{BP\<n\>}{k}\) in these bands \emph{are} independent of choice of parent spectrum \(BP\<n\>\), and all \(p\)--local \(H\)--spaces satisfying these freeness properties are automatically infinite loopspaces---both extremely surprising results.
 \end{remark}
-
-These bipolynomial algebras also play a critical role in the next two sections.
 
 
 
@@ -937,10 +936,10 @@ then \(H(n) = \F_p[x_0, x_1, \ldots, x_k]\) with the Witt vector diagonal, i.e.,
 \end{theorem}
 
 \begin{corollary}
-The category \(\CatOf{GradedHopfAlgebras}^{> 0, \fin}_{\F_p/}\) of finite-type graded connected Hopf \(\F_p\)--algebras is a full subcategory of modules over \[\bigoplus_{n, m} \CatOf{GradedHopfAlgebras}(H(n), H(m)).\]
+The category \(\CatOf{GradedHopfAlgs}^{> 0, \fin}_{\F_p/}\) of finite-type graded connected Hopf \(\F_p\)--algebras is a full subcategory of modules over \[\bigoplus_{n, m} \CatOf{GradedHopfAlgs}(H(n), H(m)).\]
 \end{corollary}
 \begin{proof}[Proof sketch]
-This is a general nonsense consequence of having found a set of projective generators.  The functor presenting the inclusion is \[M \mapsto \bigoplus_{n=0}^\infty \CatOf{GradedHopfAlgebras}(H(n), M),\] and since this functor is corepresented its automorphisms are encoded by the indicated ring.
+This is a general nonsense consequence of having found a set of projective generators.  The functor presenting the inclusion is \[M \mapsto \bigoplus_{n=0}^\infty \CatOf{GradedHopfAlgs}(H(n), M),\] and since this functor is corepresented its automorphisms are encoded by the indicated ring.
 \end{proof}
 
 We would also like to give a set of conditions, analogous to the technical conditions appearing in the previous two presentations, which select this full subcategory out from all possible modules over this endomorphism ring.
@@ -966,8 +965,8 @@ Suppose that \(n\) is even, written at odd primes in the form \(n = 2p^m k\) wit
 \begin{theorem}[{\cite[Section 5]{Schoeller}, \cite[Theorem 1.11]{GLM}}]
 The functor
 \begin{align*}
-D_*\co \CatOf{GradedHopfAlgebras}^{>0, \fin}_{\F_p/} & \to \CatOf{GradedDMods}, \\
-D_*(H) = \bigoplus_n D_n(H) & = \bigoplus_n \CatOf{GradedHopfAlgebras}^{>0, \fin}_{\F_p/}(H(n), H)
+D_*\co \CatOf{GradedHopfAlgs}^{>0, \fin}_{\F_p/} & \to \CatOf{GradedDMods}, \\
+D_*(H) = \bigoplus_n D_n(H) & = \bigoplus_n \CatOf{GradedHopfAlgs}^{>0, \fin}_{\F_p/}(H(n), H)
 \end{align*}
 is an exact equivalence of categories.  Moreover, \(D_* H(n)\) is characterized by the equation
 \[\pushQED{\qed}
