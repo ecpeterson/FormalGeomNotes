@@ -464,5 +464,13 @@
     \fi%
     ]}
 
-\allowdisplaybreaks
+% allow large align* blocks to be broken across pages...
+% ... but only from verso to recto!: https://tex.stackexchange.com/questions/224020/allow-displaybreak-only-from-even-to-odd-pages
+\makeatletter
+\everymath{%
+  \ifodd\value{page}\allowdisplaybreaks[0]%
+    \else \allowdisplaybreaks[4]%
+  \fi
+}
+\makeatother
 
