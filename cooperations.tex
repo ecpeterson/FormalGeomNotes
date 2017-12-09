@@ -629,16 +629,16 @@ In particular, the spaces \(\OS{BP\<n\>}{k}\) in these bands \emph{are} independ
 
 Our goal in this Lecture is to give a compact presentation of formal groups based on the following observation: the category of commutative cocommutative Hopf algebras of finite type over a ground field \(k\) forms an abelian category.  It follows abstractly that this category admits a presentation as the module category for some (possibly noncommutative) ring, but in fact this ring and the assignment from a group scheme to linear algebraic data can both be described explicitly.  This is the subject of \textit{Dieudonn\'e theory}, and we will give an overview of some of its main results, including two different presentations of the equivalence.\footnote{Emphasis on ``\emph{some of its results}''.  Dieudonn\'e theory is an enormous subject with many interesting results both internal and connected to arithmetic geometry and the theory of abelian varieties.  We will explore almost none of this.}
 
-In the first presentation, we follow notes by Weinstein~\cite[Lecture 1]{Weinstein}.  Begin with a \(1\)--dimensional formal group \(\G\) over a ring \(A\).  Our first avenue into Dieudonn\'e theory is to recall that we have previously been interested in the invariant differentials \(\omega_{\G} \subseteq \Omega^1_{\G/A}\) on \(\G\).  As explored in \Cref{RationalFGLsHaveLogarithms}, when \(A\) is a \(\Q\)--algebra such differentials give rise to logarithms through integration.  On the other hand, if \(A\) has positive characteristic \(p\) then there is a potential obstruction to integrating terms with exponents of the form \(-1 \pmod p\), and in \Cref{MfgII:LargeScales} we used this to lead us to the notion of \(p\)--height.  We now explore a third twist on this set-up, recalling that \(\Omega^1_{\G/A}\) forms the first level of the \index{de Rham complex}\textit{algebraic de Rham complex} \(\Omega^*_{\G/A}\).  The product map \[\mu\co \G \times \G \to \G\] and the two projection maps \[\pi_1, \pi_2\co \G \times \G \to \G\] induce maps \[\mu^*, \pi_1^*, \pi_2^*\co C_{dR}^1(\G/A) \to C_{dR}^1(\G \times \G / A).\]  The translation invariant differentials are exactly those in the kernel of \(\mu^* - \pi_1^* - \pi_2^*\), as considered at the chain level.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the de Rham complex.
+In the first presentation, we follow notes by Weinstein~\cite[Lecture 1]{Weinstein}.  Begin with a \(1\)--dimensional formal group \(\G\) over a ring \(A\), and recall that we have previously been interested in the invariant differentials \(\omega_{\G} \subseteq \Omega^1_{\G/A}\) on \(\G\).  As explored in \Cref{RationalFGLsHaveLogarithms}, when \(A\) is a \(\Q\)--algebra such differentials give rise to logarithms through integration.  On the other hand, if \(A\) has positive characteristic \(p\) then there is a potential obstruction to integrating terms with exponents of the form \(-1 \pmod p\), and in \Cref{MfgII:LargeScales} we used this to lead us to the notion of \(p\)--height.  We now explore a third twist on this set-up, recalling that \(\Omega^1_{\G/A}\) forms the first level of the \index{de Rham complex}\textit{algebraic de Rham complex} \(\Omega^*_{\G/A}\).  The product map \[\mu\co \G \times \G \to \G\] and the two projection maps \[\pi_1, \pi_2\co \G \times \G \to \G\] induce maps \[\mu^*, \pi_1^*, \pi_2^*\co C_{dR}^1(\G/A) \to C_{dR}^1(\G \times \G / A).\]  The translation invariant differentials are exactly those in the kernel of \(\mu^* - \pi_1^* - \pi_2^*\), as considered at the chain level.  We can weaken this to request only that that difference be \emph{exact}, or zero at the level of cohomology of the de Rham complex.
 
 \begin{definition}
 The \index{Kahler differentials@K\"ahler differentials!cohomologically invariant}\textit{cohomologically translation invariant differentials} constitute the \(A\)--submodule \(PH^1_{dR}(\G/A) \subseteq H^1_{dR}(\G/A)\) defined as the kernel of \(\mu^* - \pi_1^* - \pi_2^*\).\footnote{The symbol ``$P$'' here denotes the primitives.  Using the identity $\mu^* = \Delta$, the equation $\Delta(x) = x \otimes 1 + 1 \otimes x$ holds if and only if $x$ lies in the kernel of this operator.}
 \end{definition}
 
-\begin{example}{\cite[Lemma 5.1.2]{Katz}}
-Consider the case that \(A\) is torsion-free,\footnote{Or, if you like, ``\(\Z\)--flat''.} and set \(K = A \otimes \Q\) so that \(A \to K\) is an injection.  In this case the differentiation map \(x A\ps{x} \to A\ps{x}\) is an injection and integration of power series is possible in \(K\), so we can re-express first the definition of \(H^1_{dR}\) and second the conditions on our algebraic differentials in the following diagram of exact rows:
+\begin{example}[{\cite[Lemma 5.1.2]{Katz}}]
+Consider the case that \(A\) is torsion-free, and set \(K = A \otimes \Q\) so that \(A \to K\) is an injection.  In this case the differentiation map \(x A\ps{x} \to A\ps{x}\) is an injection and integration of power series is possible in \(K\), so we can re-express first the definition of \(H^1_{dR}\) and second the conditions on our algebraic differentials in the following diagram of exact rows:
 \begin{center}
-\begin{tikzcd}[column sep=0.5em, row sep=0.22em]
+\begin{tikzcd}[column sep=0.5em, row sep=0.5em]
 0 \arrow{r} & \left\{\begin{array}{c}\text{integrals} \\ \text{with \(A\)} \\ \text{coeff\textsuperscript{s}}\end{array}\right\} \arrow{r} \arrow[equal]{d} & \left\{\begin{array}{c}\text{all formal integrals} \\ \text{of differentials} \\ \text{defined over \(A\)}\end{array}\right\} \arrow{r} \arrow[equal]{d} & \left\{\begin{array}{c}\text{missing} \\ \text{integrals}\end{array}\right\} \arrow{r} \arrow[equal]{d} & 0 \\
 0 \arrow{r} & x A\ps{x} \arrow{r} & \{f \in x K\ps{x} \mid \mathrm{d}f \in A\ps{x}\dx\} \arrow{r}{d} & H^1_{dR}(\G/A) \arrow{r} & 0 \\
 0 \arrow{r} & x A\ps{x} \arrow{r} \arrow[equal]{u} & \left\{ f \in x K\ps{x} \middle| \begin{array}{c} \mathrm{d}f \in A\ps{x}\dx, \\ \delta f \in A\ps{x,y} \end{array} \right\} \arrow{u} \arrow{r}{d} & PH^1_{dR}(\G/A) \arrow{r} \arrow{u} & 0,
@@ -674,10 +674,10 @@ If \(f_1, f_2\co V \to V'\) are maps of pointed formal varieties which agree mod
 \end{corollary}
 
 \begin{corollary}[{\cite[Theorem 5.1.4]{Katz}}]
-Any map \(f\co \G' \to \G\) of pointed varieties which is a group homomorphism mod \(p\) restricts to give a map \(f^*\co PH^1_{dR}(\G/A) \to PH^1_{dR}(\G'/A)\).  Additionally, if \(f_1\), \(f_2\), and \(f_3\) are three such maps of pointed varieties satisfying \[f_3 \equiv f_1 + f_2 \in \CatOf{FormalGroups}(\G'/p, \G/p),\] then \(f_3^* = f_1^* + f_2^*\) as maps \(PH^1_{dR}(\G/A) \to PH^1_{dR}(\G'/A)\). \qed
+Any map \(f\co \G' \to \G\) of pointed varieties which is a group homomorphism mod \(p\) induces a map \[f^*\co PH^1_{dR}(\G/A) \to PH^1_{dR}(\G'/A).\]  Additionally, if \(f_1\), \(f_2\), and \(f_3\) are three such maps satisfying \[f_3 \equiv f_1 + f_2 \in \CatOf{FormalGroups}(\G'/p, \G/p),\] then \(f_3^* = f_1^* + f_2^*\) as maps \(PH^1_{dR}(\G/A) \to PH^1_{dR}(\G'/A)\). \qed
 \end{corollary}
 
-In the case that \(k\) is a \emph{perfect} field, the ring \(\W_p(k)\) of \(p\)--typical Witt vectors on \(k\) is simultaneously torsion-free and universal among nilpotent thickenings of the residue field \(k\).  This emboldens us to make the following definition:\footnote{There is a better definition one might hope for, which instead assigns to each potential thickening and lift a ``Dieudonne module'', and then work to show that they all arise as base-changes of this universal one.  This is possible and technically superior to the approach we are taking here~\cite[Theorem 5.1.6]{Katz},~\cite[Chapter 4]{Messing},~\cite{GrothendieckCristaux}.}
+In the case that \(k\) is a \emph{perfect} field, recall from \Cref{UnivPropertyOfWittRing} that the ring \(\W_p(k)\) of \(p\)--typical Witt vectors on \(k\) is simultaneously torsion-free and universal among nilpotent thickenings of the residue field \(k\).  This emboldens us to make the following definition:\footnote{There is a better definition one might hope for, which instead assigns to each potential thickening and lift a ``Dieudonne module'', and then work to show that they all arise as base-changes of this universal one.  This is possible and technically superior to the approach we are taking here~\cite[Theorem 5.1.6]{Katz},~\cite[Chapter 4]{Messing},~\cite{GrothendieckCristaux}.}
 
 \begin{definition}{\cite[Section 5.5]{Katz}}
 Let \(k\) be a perfect field of characteristic \(p > 0\), and let \(\G_0\) be a (\(1\)--dimensional) formal group over \(k\).  Then, choose a lift \(\G\) of \(\G_0\) to \(\W_p(k)\), and define the \index{Dieudonn\'e module!contravariant functor}\textit{(contravariant) Dieudonn\'e module} of \(\G_0\) by \(D^*(\G_0) := PH^1_{dR}(\G / \W_p(k))\).
@@ -687,7 +687,7 @@ Let \(k\) be a perfect field of characteristic \(p > 0\), and let \(\G_0\) be a 
 This is independent of choice of lift up to coherent isomorphism.  Given any other lift \(\G'\) of \(\G_0\) to \(\W_p(k)\), we can find \emph{some} power series---not necessarily a group homomorphism---covering the identity on \(\G_0\).  \Cref{H1dRIsCrystalline} then shows that this map induces a \emph{canonical} isomorphism between the two potential definitions of \(D^*(\G_0)\).
 \end{remark}
 
-Note that the module \(D^*(\G_0)\) carries some natural operations:
+Next, note that the module \(D^*(\G_0)\) carries some natural operations:
 \begin{itemize}
 \item Arithmetic: \(D^*(\G_0)\) is naturally a \(\W_p(k)\)--module, with the action by \(\ell \in \W_p(k)\) corresponding to multiplication--by--\(\ell\) internal to \(\G_0\).
 \item \index{Frobenius}Frobenius: The map \(x \mapsto x^p\) is a homomorphism of formal groups modulo \(p\), so it induces a \(\phi\)--semilinear map \(F\co D^*(\G_0) \to D^*(\G_0)\).  That is, \[F(\alpha v) = \alpha^\phi F(v),\] where \(\phi\) is a lift of the Frobenius on \(k\) to \(\W_p(k)\).
@@ -695,7 +695,7 @@ Note that the module \(D^*(\G_0)\) carries some natural operations:
 \end{itemize}
 With this, we come to the main theorem of this Lecture:
 
-\begin{theorem}[{\cite[Th\'eor\`eme 4.2]{GrothendieckCristaux}, \cite[Sections III.8-9]{Demazure}}]\label{MainContraDieudonneThm}
+\begin{theorem}[{\cite[Th\'eor\`eme 4.2]{GrothendieckCristaux}, \cite[Sections III.8--9]{Demazure}}]\label{MainContraDieudonneThm}
 The (de Rham--Dieudonn\'e) functor \(D^*\) determines a contravariant equivalence of categories between smooth \(1\)--dimensional formal groups \(\G_0\) over \(k\) of finite \(p\)--height and \index{Dieudonn\'e module}\textit{Dieudonn\'e modules}, which are modules \(M\) over the ring \[\Cart_p = \left. \W_p(k)\<F,V\> \middle/ \left( \begin{array}{c} FV = VF = p, \\ Fw = w^\phi F, \\ wV = Vw^\phi \end{array} \right) \right.\] which are additionally free and finite rank over \(\W_p(k)\). \qed
 \end{theorem}
 
@@ -721,7 +721,7 @@ Dieudonn\'e theory admits an extension to finite group schemes over \(k\) as wel
 \end{itemize}
 \end{example}
 
-\begin{example}\label{FormOfStabilizerGroup}
+\begin{example}[{cf.\ \Cref{FormOfStabilizerGroupEarly}}]\label{FormOfStabilizerGroup}
 We can also use Dieudonn\'e theory to compute the automorphism group of a fixed \index{formal group!Honda group}Honda formal group, which is information we wanted back in \Cref{ChromaticLocalizationSection}.  Take \(\Gamma_d\) to be Honda formal group law of height \(d\) over \(\F_{p^d}\), which has Dieudonn\'e module \[D^*(\Gamma_d) = \Cart_p / (F^d = p).\]  The endomorphism ring of a quotient $R$--module $M = R / I$ is canonically isomorphic to $R/I$ itself, giving\index{Lubin Tate stack@Lubin--Tate stack!stabilizer}\index{Morava stabilizer group|see {Lubin--Tate stack}}
 \begin{align*}
 \End \Gamma_d & \cong \left. \W_p(\F_{p^d}) \<F\> \middle/ \left( \begin{array}{c} Fw = w^\phi F, \\ F^d = p \end{array} \right) \right. \\
@@ -771,7 +771,7 @@ The contravariant Dieudonn\'e functor described above has a natural extension by
 \end{remark}
 
 \begin{remark}[{cf. \cite[Section 2.3]{MoravaCobordismComodules}}]\label{ThePeriodMapSection}
-Dieudonn\'e theory gives rise to an important function called the \idxentry{period map}.  Although the crystalline nature of the cohomology group \(H^1_{dR}\) makes our definition of \(D^*\) invariant of choice of lift, the underlying chain complex is \emph{not} invariant of choice of lift.  In particular, the subsheaf of honestly invariant differentials \(\omega_{\G}\) selects an interesting \(1\)--dimensional vector subspace of \(PH^1_{dR}(\G)\)~\cite[Section 2.3]{MoravaCobordismComodules}.  Thinking of \(\G\) as a point in \((\moduli{fg})^\wedge_{\G_0}(\W_p(k))\), this observation gives rise to an interesting function
+Dieudonn\'e theory gives rise to an important function called the \idxentry{period map}, which we will not have direct use for in this book but which we would be negligent to omit.  Although the crystalline nature of the cohomology group \(H^1_{dR}\) makes our definition of \(D^*\) invariant of choice of lift, the underlying chain complex is \emph{not} invariant of choice of lift.  In particular, the subsheaf of honestly invariant differentials \(\omega_{\G}\) selects an interesting \(1\)--dimensional vector subspace of \(PH^1_{dR}(\G)\)~\cite[Section 2.3]{MoravaCobordismComodules}.  Thinking of \(\G\) as a point in \((\moduli{fg})^\wedge_{\G_0}(\W_p(k))\), this observation gives rise to an interesting function
 \begin{align*}
 \pi_{GH}\co (\moduli{fg})^\wedge_{\G_0}(\W_p(k)) & \to \P(D^*(\G)), \\
 \G & \mapsto [\omega_{\G} \subseteq D^*(\G)].
@@ -780,10 +780,10 @@ This map has incredibly good properties.  It is equivariant for the action of \(
 
 In \Cref{PeriodMapFigure} we sketch the period map at \(n = 2\) and \(p = 2\), which has the following list of properties~\cite[Appendix 25]{HopkinsGrossEquivVBs}, \cite{Yu}:
 \begin{itemize}
-\item The center of the \(\Z_{p^2}\)--points of Lubin--Tate space corresponds to the canonical lift, which is the formal group that further acquires an \(\mathcal O_A\)--module structure.  It has \(\pi\)--series \([\pi](x) = \pi x + x^{q^2}\).
-\item There are three nontrivial points in \(\G[2]\): \(\alpha\), \(\beta\), and \(\alpha + \beta\).  Quotienting by them gives three points at order \(1/(q+1)\), the first bunch of \index{Lubin Tate stack@Lubin--Tate stack!canonical lift!quasicanonical}\textit{quasicanonical lifts}, which have partial formal \(\mathcal O_A\)--module structures.
+\item The center of the \(\Z_{p^2}\)--points of Lubin--Tate space corresponds to the canonical lift, which is the formal group that further acquires an \(\mathcal O_A\)--module structure.  It has \(\pi\)--series \([\pi](x) = \pi x + x^{p^2}\).
+\item There are three nontrivial points in \(\G[2]\): \(\alpha\), \(\beta\), and \(\alpha + \beta\).  Quotienting by them gives three points at order \(1/(p+1)\), the first bunch of \index{Lubin Tate stack@Lubin--Tate stack!canonical lift!quasicanonical}\textit{quasicanonical lifts}, which have partial formal \(\mathcal O_A\)--module structures.
 \item The map \(\pi_{GH}\) sends the canonical lift to \(0 = [1:0]\), sends the first order quasicanonical points to \(\infty = [0:1]\), and alternates from there.  The three branches of ``directions to quotient'' carve \(\mathbb P^1\) up into three lobes.  This is because \(\pi_{GH}\) is equivariant for \index{isogeny}\textit{isogenies}, and quotienting by one of these order \(2\) subgroups is a lift of the Frobenius isogeny on the residue formal group.
-\item Out to order \(1/q\), \(\pi_{GH}\) is injective.
+\item Out to order \(1/p\), \(\pi_{GH}\) is injective.
 \item You can compute these orders using the Newton polygon associated to the \(\pi\)--series.
 \item At each quasicanonical point, you also also form three quotients: two of them make the situation ``worse'', and one of them makes the situation ``better'', which is a kind of witness to the identification \(\G / \G[2] \cong \G\).
 \item The canonical Frobenius \(F_{can} = \left[ \begin{array}{cc} 0 & p \\ 1 & 0 \end{array} \right]\) first flips the two coordinates (and scales one by \(p\)), then flips them back (and scales the other by \(p\)), and after two flips scaling everything by \(p\) scales back down by homogeneous coordinates.
@@ -929,7 +929,7 @@ Let \(S(n)\) denote the free graded-commutative Hopf algebra over \(\F_p\) on a 
 \begin{itemize}
 \item If either of the following conditions hold...
 \begin{itemize}
-\item \(p = 2\) and \(n = 2^m k\) for \(2 \nmid k\) and \(m > 0\), \emph{or}
+\item \(p = 2\) and \(n = 2^m k\) for \(2 \nmid k\) and \(m > 0\), or
 \item \(p \ne 2\) and \(n = 2p^m k\) for \(p \nmid k\) and \(m > 0\),
 \end{itemize}
 then \(H(n) = \F_p[x_0, x_1, \ldots, x_k]\) with the Witt vector diagonal, i.e., the diagonal is arranged so that the elements \(w_j = x_0^{p^j} + p x_1^{p^{j-1}} + \cdots + x_j\) are primitive.
@@ -989,7 +989,7 @@ D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.
 \noindent This Theorem is not especially easy to prove: one works very directly with unstable modules over the Steenrod algebra, the bar spectral sequence, and Postnikov decomposition of infinite loopspaces.  We refer the reader to the paper directly, as we have been unable to find a useful improvement upon or even summary of the results presented there.  Nonetheless, granting this Theorem, we use Brown representability to draw the following consequence:
 
 \begin{corollary}[{\cite[Theorem 2.1, Remark 2.9]{GLM}}]\label{BrownGitlerSpectraDefn}
-For \(n > 1\) an integer satisfying \(n \not\equiv \pm 1 \pmod{2p}\),\footnote{As convention, when \(n \equiv \pm 1 \pmod{2p}\) we set \(B(n) := B(n-1)\), and \(B(0) := \S^0\).} the \index{Brown--Gitler spectrum}\textit{Brown--Gitler spectrum} \(B(n)\) is the spectrum satisfying \[\pushQED{\qed}B(n)_n X \cong D_n H_* \Loops^\infty X. \qedhere\popQED\]
+For \(n > 1\) an integer satisfying \(n \not\equiv \pm 1 \pmod{2p}\),\footnote{As convention, when \(n \equiv \pm 1 \pmod{2p}\) we set \(B(n) := B(n-1)\), and \(B(0) := \S^0\).} the \index{Brown--Gitler spectrum}\textit{Brown--Gitler spectrum} \(B(n)\) is defined to be the spectrum satisfying \[\pushQED{\qed}B(n)_n X \cong D_n H_* \Loops^\infty X. \qedhere\popQED\]
 \end{corollary}
 
 Before exploiting this result to compute something about unstable cooperations, we will prove a sequence of small results making these spectra somewhat more tangible.
@@ -1080,7 +1080,7 @@ Goerss's original proof of \Cref{LandweberFlatUnstableCoopns}~\cite{GoerssDieudo
 \end{remark}
 
 \begin{remark}[{\cite[Proposition 11.6, Remark 11.4]{GoerssDieudonne}}]
-The Dieudonn\'e algebra framework also makes it easy to add in the odd part after the fact.  Namely, suppose that \(E\) is a torsion--free ring spectrum and suppose that \(E_* B(n)\) is even for all \(n\).  In this setting, we can verify the purely topological version of this statement: \index{homology suspension}the map \[D_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}\] is an isomorphism.  To see this, note that because \[E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}\] is onto and \(E_{2n-2k-1} B(2n)\) is assumed zero, the group \(D_{2n} H_* \OS{E}{2k+1}\) vanishes as well.  A bar spectral sequence argument shows that \(D_{2n+1} H_* \OS{E}{2k+2}\) is also empty~\cite[Lemma 11.5.1]{GoerssDieudonne}.  Hence, the map on even parts \[(D_E[e] / (e^2 - b_1))_{*, 2n} \to (D_* H_* \OS{E}{*})_{*, 2n}\] is an isomorphism, and we need only show that \[D_* H_* \OS{E}{2n} \xrightarrow{e \circ -} D_* H_* \OS{E}{2n+1}\] is an isomorphism as well.  Since we have \(e(Fx) = F(Ve \circ x) = 0\) generally and \(D_* A / FD_* A \cong Q^* A\) for a Hopf algebra \(A\), we see that \(e\) kills decomposables and suspends indecomposables: \[e \circ D_* H_* \OS{E}{2n} = \Susp QH_* \OS{E}{2n}.\]  This is also what happens in the bar spectral sequence, and the claim follows.  In light of \Cref{LandweberFlatUnstableCoopns}, this means that for Landweber flat \(E\), the comparison isomorphism can be augmented to a further isomorphism \[R_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
+The Dieudonn\'e algebra framework also makes it easy to add in the odd part after the fact.  Namely, suppose that \(E\) is a torsion--free ring spectrum and suppose that \(E_* B(2n)\) is even for all \(n\).  In this setting, we can verify the purely topological version of this statement: \index{homology suspension}the map \[D_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}\] is an isomorphism.  To see this, note that because \[E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}\] is onto and \(E_{2n-2k-1} B(2n)\) is assumed zero, the group \(D_{2n} H_* \OS{E}{2k+1}\) vanishes as well.  A bar spectral sequence argument shows that \(D_{2n+1} H_* \OS{E}{2k+2}\) is also empty~\cite[Lemma 11.5.1]{GoerssDieudonne}.  Hence, the map on even parts \[(D_E[e] / (e^2 - b_1))_{*, 2n} \to (D_* H_* \OS{E}{*})_{*, 2n}\] is an isomorphism, and we need only show that \[D_* H_* \OS{E}{2n} \xrightarrow{e \circ -} D_* H_* \OS{E}{2n+1}\] is an isomorphism as well.  Since we have \(e(Fx) = F(Ve \circ x) = 0\) generally and \(D_* A / FD_* A \cong Q^* A\) for a Hopf algebra \(A\), we see that \(e\) kills decomposables and suspends indecomposables: \[e \circ D_* H_* \OS{E}{2n} = \Susp QH_* \OS{E}{2n}.\]  This is also what happens in the bar spectral sequence, and the claim follows.  In light of \Cref{LandweberFlatUnstableCoopns}, this means that for Landweber flat \(E\), the comparison isomorphism can be augmented to a further isomorphism \[R_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
 \end{remark}
 
 \begin{remark}[{\cite{HopkinsHunton}}]
