@@ -56,16 +56,16 @@ Y \arrow{r} \arrow[leftarrow, "\simeq"]{d} & X \arrow[leftarrow, "\simeq"]{d} \\
 \end{definition}
 
 \begin{definition}\label{DefnOfCoTangentSpaces}
-Take \(S = \Spec R\) to be our base scheme, let \(X = \Spec A\) be an affine scheme over \(S\), and consider an \(S\)--point \(x\co S \to X\) of \(X\).  The point \(x\) is automatically closed, so that \(x\) is presented as \(\Spec A/I \to \Spec A\) for some ideal \(I\).  The \index{cotangent space}\textit{cotangent space} \(T^*_x X\) is defined by the quotient \(R\)--module \[T^*_x X := I / I^2,\] consisting of functions vanishing at \(x\) as considered up to first order.  Examples of these include the linear parts of curves passing through \(x\), so we additionally define the \index{tangent space}\textit{tangent space} \(T_x X\) by \[T_x X = \CatOf{Schemes}_{\Spec R/}(\Spec R[\eps] / \eps^2, X),\] i.e., maps \(\Spec R[\eps] / \eps^2 \to X\) which restrict to \(x\co S \to X\) upon setting \(\eps = 0\).
+Take \(S = \Spec R\) to be our base scheme, let \(X = \Spec A\) be an affine scheme over \(S\), and consider an \(S\)--point \(s\co S \to X\) of \(X\).  The point \(x\) is automatically closed, so that \(s\) is presented as \(\Spec A/I \to \Spec A\) for some ideal \(I\).  The \index{cotangent space}\textit{cotangent space} \(T^*_s X\) is defined by the quotient \(R\)--module \[T^*_s X := I / I^2,\] consisting of functions vanishing at \(s\) as considered up to first order.  Examples of these include the linear parts of curves passing through \(s\), so we additionally define the \index{tangent space}\textit{tangent space} \(T_s X\) by \[T_s X = \CatOf{Schemes}_{\Spec R/}(\Spec R[\eps] / \eps^2, X),\] i.e., maps \(\Spec R[\eps] / \eps^2 \to X\) which restrict to \(s\co S \to X\) upon setting \(\eps = 0\).
 \end{definition}
 
 \begin{remark}
-In the situation above, there is a naturally occurring map \[T_x X \to \CatOf{Modules}_R(T^*_x X, R).\]  Namely, a map \(\sheaf O_X \to R[\eps] / \eps^2\) induces a map \(I \to (\eps)\), and hence induces a further map \[I / I^2 \to (\eps) / (\eps^2) \cong R,\] which can be interpreted as a point in \(T^*_x X\).
+In the situation above, there is a naturally occurring map \[T_s X \to \CatOf{Modules}_R(T^*_s X, R).\]  Namely, a map \(\sheaf O_X \to R[\eps] / \eps^2\) induces a map \(I \to (\eps)\), and hence induces a further map \[I / I^2 \to (\eps) / (\eps^2) \cong R,\] which can be interpreted as a point in \(T^*_s X\).
 \end{remark}
 
 Harkening back to \Cref{FirstAppearanceOfInternalAut}, the definition of the \(R\)--module tangent space begs promotion to an \(S\)--scheme.
 \begin{lemma}\label{ConstructionTangentAffineScheme}
-There is an affine scheme \(T_x X\) defined by \[(T_x X)(T) := \left\{ (u, f) \middle| \begin{array}{c} u\co \Spec T \to S, \\ f \in T_{u^* x} u^* X \end{array} \right\}.\]
+There is an affine scheme \(T_s X\) defined by \[(T_s X)(u\co \Spec T \to S) := \left\{ f \mid f \in T_{u^* x} u^* X \right\}.\]
 \end{lemma}
 \begin{proof}[Proof sketch]
 We specialize an argument of Strickland~\cite[Proposition 2.94]{StricklandFSFG} to the case at hand.\footnote{Strickland also shows that mapping schemes between formal schemes exist considerably more generally~\cite[Theorem 4.69]{StricklandFSFG}.  The source either has to be ``finite'' in some sense, in which case the proof proceeds along the lines presented here, or it has to be \index{scheme!coalgebraic}\textit{coalgebraic}, which is an important technical tool that we discuss much later in \Cref{DefnCoalgebraicFormalScheme}.}  We start by seeking an \(R\)--algebra \(B\) such that \(R\)--algebra maps \(B \to T\) biject with pairs of maps \(u\co R \to T\) and \(T\)--algebra maps \[f\co A \otimes_R T \to R[\eps] / \eps^2 \otimes_R T.\]  Such maps \(f\) biject with \(R\)--algebra maps \[A \to R[\eps] / \eps^2 \otimes_R T.\]  Using the sequence of inclusions
@@ -74,7 +74,7 @@ We specialize an argument of Strickland~\cite[Proposition 2.94]{StricklandFSFG} 
 & \cong \CatOf{Modules}_R(A \otimes_R (R[\eps] / \eps^2)^*, T) \\
 & \cong \CatOf{Algebras}_{R/}(\Sym_R(A \otimes_R (R[\eps] / \eps^2)^*), T),
 \end{align*}
-we see that we can pick out the original mapping set by passing to a quotient of the domain.  After some thought, we arrive at the equation \[\InternalHom{Schemes}_{/S}(\Spec R[\eps] / \eps^2, X) = \Spec \frac{A\{1, \operatorname{d\mathit{a}} \mid a \in A\}}{\left( \begin{array}{c} \text{\(\operatorname{d\mathit{r}} = 0\) for \(r \in R\)}, \\ \operatorname{d}(a_1 a_2) = \operatorname{d\mathit{a}_1} \cdot a_2 + a_1 \cdot \operatorname{d\mathit{a}_2} \end{array} \right)} .\]  To extract the scheme \(T_x X\) from this, we construct the pullback \[T_x X := \InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) \times_X S,\] where the structure maps are given on the left by setting \(\eps = 0\) and on the right using the point \(x\).  Expanding the formulas again shows that the coordinate ring of this affine scheme is given by \[\sheaf O_{T_x X} = A / I^2 \cong R \oplus T^*_x X. \qedhere\]
+we see that we can pick out the original mapping set by passing to a quotient of the domain.  After some thought, we arrive at the equation \[\InternalHom{Schemes}_{/S}(\Spec R[\eps] / \eps^2, X) = \Spec \frac{A\{1, \operatorname{d\mathit{a}} \mid a \in A\}}{\left( \begin{array}{c} \text{\(\operatorname{d\mathit{r}} = 0\) for \(r \in R\)}, \\ \operatorname{d}(a_1 a_2) = \operatorname{d\mathit{a}_1} \cdot a_2 + a_1 \cdot \operatorname{d\mathit{a}_2} \end{array} \right)} .\]  To extract the scheme \(T_s X\) from this, we construct the pullback \[T_s X := \InternalHom{Schemes}_S(\Spec R[\eps] / \eps^2, X) \times_X S,\] where the structure maps are given on the left by setting \(\eps = 0\) and on the right using the point \(s\).  Expanding the formulas again shows that the coordinate ring of this affine scheme is given by \[\sheaf O_{T_s X} = A / I^2 \cong R \oplus T^*_s X. \qedhere\]
 \end{proof}
 
 \begin{definition}
@@ -87,12 +87,12 @@ The ring of functions appearing in the proof above fits into an exact sequence
 The kernel \(\Omega_{A/R}\) is called the module of \index{Kahler differentials@K\"ahler differentials}\textit{K\"ahler differentials} (of \(A\), relative to \(R\)).  The map \(\operatorname d\co A\to \Omega^1_{A/R}\) is the universal \(R\)--linear derivation into an \(A\)--module, i.e., \[\CatOf{Derivations}_R(A, M) = \CatOf{Modules}_A(\Omega^1_{A/R}, M).\]
 \end{definition}
 
-The upshot of this calculation is that \(\Spec A/I^2\) is a natural place to study the linear behavior of functions on \(X\) near \(x\).  We have also set the definitions up so that we can easily generalize to higher-order approximations:
+The upshot of this calculation is that \(\Spec A/I^2\) is a natural place to study the linear behavior of functions on \(X\) near \(s\).  We have also set the definitions up so that we can easily generalize to higher-order approximations:
 \begin{definition}\label{JetSpacesDefn}
-More generally, the \textit{\(n\){\th} jet space} of \(X\) at \(x\), or the \textit{\(n\){\th} order neighborhood} of \(x\) in \(X\), is defined by \[\InternalHom{Schemes}_S(\Spec R[\eps] / \eps^{n+1}, X) \times_X S \cong \Spec A / I^{n+1}.\]  Each jet space has an inclusion from the one before, modeled by the closed subscheme \(\Spec A/I^n \to \Spec A / I^{n+1}\).
+More generally, the \textit{\(n\){\th} jet space} of \(X\) at \(s\), or the \textit{\(n\){\th} order neighborhood} of \(s\) in \(X\), is defined by \[\InternalHom{Schemes}_S(\Spec R[\eps] / \eps^{n+1}, X) \times_X S \cong \Spec A / I^{n+1}.\]  Each jet space has an inclusion from the one before, modeled by the closed subscheme \(\Spec A/I^n \to \Spec A / I^{n+1}\).
 \end{definition}
 
-In order to study analytic expansions of functions, we bundle these jet spaces together into a single object embodying formal expansions in \(X\) at \(x\):
+In order to study analytic expansions of functions, we bundle these jet spaces together into a single object embodying formal expansions in \(X\) at \(s\):
 \begin{definition}\label{DefnCompletion}
 Fix a scheme \(S\).  A \index{formal scheme}\textit{formal \(S\)--scheme} \(X = \{X_\alpha\}_\alpha\) is an ind-system of \(S\)--schemes \(X_\alpha\).\footnote{This definition, owing to Strickland~\cite[Definition 4.1]{StricklandFSFG}, is somewhat idiosyncratic.  Its generality gives it good categorical properties, but it is somewhat disconnected from the formal schemes familiar to algebraic geometers, which primarily arise through linearly topologized rings~\cite[pg.\ 194]{Hartshorne}.  For functor-of-points definitions that hang more tightly with the classical definition, the reader is directed toward Strickland's solid formal schemes~\cite[Section 4.2]{StricklandFSFG} or to Beilinson and Drinfel'd~\cite[Section 7.11.1]{BeilinsonDrinfeld}.}  Given a closed subscheme \(Y\) of an affine \(S\)--scheme \(X\), we define the \textit{\(n\){\th} order neighborhood of \(Y\) in \(X\)} to be the scheme \(\Spec R/I^{n+1}\).  The \index{formal scheme!formal neighborhood}\textit{formal neighborhood of \(Y\) in \(X\)} is then defined to be the formal scheme \[X^\wedge_Y := \Spf R^\wedge_I := \left\{ \Spec R/I \to \Spec R/I^2 \to \Spec R/I^3 \to \cdots \right\}.\]  In the case that \(Y = S\), this specializes to the system of jet spaces as in \Cref{JetSpacesDefn}.
 \end{definition}
@@ -100,12 +100,12 @@ Fix a scheme \(S\).  A \index{formal scheme}\textit{formal \(S\)--scheme} \(X = 
 Although we will make use of these definitions generally, the following ur-example captures the most geometrically-intuitive situation.
 
 \begin{example}\label{MapsOfFVarsArePowerSeries}
-Picking the affine scheme \(X = \Spec R[x_1, \ldots, x_n] = \mathbb A^n\) and the point \(x = (x_1 = 0, \ldots, x_n = 0)\) gives a formal scheme known as \index{formal scheme!affine n space@affine \(n\)--space}\textit{formal affine \(n\)--space}, given explicitly by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  Evaluated on a test algebra \(T\), \(\A^1(T)\) yields the ideal of nilpotent elements in \(T\) and \(\A^n(T)\) its \(n\)--fold Cartesian power.  Pointed maps \(\A^n \to \A^m\) naturally biject with \(m\)--tuples of \(n\)--variate power series with no constant term.\footnote{In some sense, this Lemma is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology have long been expressed in terms of power series rings, and with this Lemma we are provided geometric interpretations for such statements.}
+Picking the affine scheme \(X = \Spec R[x_1, \ldots, x_n] = \mathbb A^n\) and the point \(s = (x_1 = 0, \ldots, x_n = 0)\) gives a formal scheme known as \index{formal scheme!affine n space@affine \(n\)--space}\textit{formal affine \(n\)--space}, given explicitly by \[\A^n = \Spf R\llbracket x_1, \ldots, x_n\rrbracket.\]  Evaluated on a test algebra \(T\), \(\A^1(T)\) yields the ideal of nilpotent elements in \(T\) and \(\A^n(T)\) its \(n\)--fold Cartesian power.  Pointed maps \(\A^n \to \A^m\) naturally biject with \(m\)--tuples of \(n\)--variate power series with no constant term.\footnote{In some sense, this Lemma is a full explanation for why anyone would even think to involve formal geometry in algebraic topology (nevermind how useful the program has been in the long run).  Calculations in algebraic topology have long been expressed in terms of power series rings, and with this Lemma we are provided geometric interpretations for such statements.}
 \end{example}
 
 Part of the point of the geometric language is to divorce abstract rings (e.g., \(E^0 \CP^\infty\)) from concrete presentations (e.g., \(E^0\ps{x}\)), so we additionally reserve some vocabulary for the property of being isomorphic to \(\A^n\):
 \begin{definition}\label{DefnFormalVariety}
-A \index{formal scheme!formal variety}\textit{formal affine variety} (of dimension \(n\)) is a formal scheme \(V\) which is (noncanonically) isomorphic to \(\A^n\)---or, equivalently, \(\sheaf O_V\) is (noncanonically) isomorphic to a power series ring.  The two maps in an isomorphism pair \[V \xrightarrow{\simeq} \A^n, \quad V \xleftarrow{\simeq} \A^n\] are called a \index{coordinate!system}\textit{coordinate (system)} and a \index{parameter!system}\textit{parameter (system)} respectively.  Finally, an \(S\)--point \(x\co S \to X\) is called \index{formal scheme!smooth}\textit{formally smooth} when \(X^\wedge_x\) gives a formal variety.
+A \index{formal scheme!formal variety}\textit{formal affine variety} (of dimension \(n\)) is a formal scheme \(V\) which is (noncanonically) isomorphic to \(\A^n\)---or, equivalently, \(\sheaf O_V\) is (noncanonically) isomorphic to a power series ring.  The two maps in an isomorphism pair \[V \xrightarrow{\simeq} \A^n, \quad V \xleftarrow{\simeq} \A^n\] are called a \index{coordinate!system}\textit{coordinate (system)} and a \index{parameter!system}\textit{parameter (system)} respectively.  Finally, an \(S\)--point \(s\co S \to X\) is called \index{formal scheme!smooth}\textit{formally smooth} when \(X^\wedge_s\) gives a formal variety.
 \end{definition}
 
 This definition allows local theorems from analytic differential geometry to be imported in coordinate-free language.  For instance, there is the following version of the \index{inverse function theorem}inverse function theorem:
@@ -131,10 +131,10 @@ In the motivating case where \(F \cong \A^n\) is given, we can define \(M\) to b
 \end{proof}
 
 \begin{corollary}[{\cite[Th\'eor\`eme III.2.1]{GrothendieckSGAI}}]
-An \(S\)--point \(x\co S \to X\) of a Noetherian scheme is formally smooth exactly when \(T_x X\) is a free \(R\)--module and for any nilpotent thickenings \(S \to \Spec B \to \Spec B'\) and any solid diagram
+An \(S\)--point \(s\co S \to X\) of a Noetherian scheme is formally smooth exactly when \(T_s X\) is a free \(R\)--module and for any nilpotent thickenings \(S \to \Spec B \to \Spec B'\) and any solid diagram
 \begin{center}
 \begin{tikzcd}[column sep=3em]
-S \arrow{r} \arrow["x"]{rd} & \Spec B \arrow{r} \arrow{d} & \Spec B' \arrow[densely dotted]{ld} \\
+S \arrow{r} \arrow["s"]{rd} & \Spec B \arrow{r} \arrow{d} & \Spec B' \arrow[densely dotted]{ld} \\
 & X
 \end{tikzcd}
 \end{center}
