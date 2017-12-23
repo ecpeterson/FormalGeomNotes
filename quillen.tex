@@ -1050,7 +1050,7 @@ This proof actually also goes through for \(MO\) as well.  In that case, it's ev
 
 Take \(\moduli{fgl}\) to be the moduli functor of formal group laws.  Since a formal group law is a power series satisfying some algebraic identities, this moduli object is an affine scheme with coordinate ring \(\sheaf O_{\moduli{fgl}}\).  A rephrasing of \Cref{QuillenSurjective} is that the natural map \[\sheaf O_{\moduli{fgl}} \to MU_*\] is \emph{surjective}.  This is reason enough to start studying \(\moduli{fgl}\) in earnest, which we take up in the next Case Study---but if we anachronistically assume one algebraic fact about \(\sheaf O_{\moduli{fgl}}\), we can prove that the natural map is an \emph{isomorphism}.  We begin with the following topological observation about mixing complex--orientations:
 
-\begin{lemma}[{\cite[Lemma 6.3 and Corollary 6.5]{AdamsBlueBook}}]\label{OrientationsOnEAndMU}
+\begin{lemma}[{\cite[Lemma II.6.3 and Corollary II.6.5]{AdamsBlueBook}}]\label{OrientationsOnEAndMU}
 Let \(\phi\co MU \to E\) be a complex--oriented ring spectrum and consider the two orientations on \(E \sm MU\) given by
 \begin{align*}
 \S \sm MU & \xrightarrow{\eta_E \sm 1} E \sm MU, &
@@ -1061,20 +1061,21 @@ The two induced coordinates \(x^E\) and \(x^{MU}\) on \(\CP^\infty_{E \sm MU}\) 
 x^{MU} & = \sum_{j=0}^\infty b_j^E (x^E)^{j+1} =: g(x^E), \\
 g^{-1}(x^{MU} +_{MU} y^{MU}) & = g^{-1}(x^{MU}) +_E g^{-1}(y^{MU}).
 \end{align*}
-where \(E_* MU \cong \frac{\Sym_{E_*} E_*\{\beta_1, \beta_2, \beta_3, \ldots\}}{\beta_1 = 1} \cong E_*[b_1, b_2, \ldots]\), as in \Cref{HF2BOIsSymAlg}, \Cref{HF2MOisFree}, and \Cref{CPinftyNiceCalculation}.
+where \(E_* MU \cong \frac{\Sym_{E_*} E_*\{\beta_0, \beta_1, \beta_2, \ldots\}}{\beta_0 = 1} \cong E_*[b_1, b_2, \ldots]\), as in \Cref{HF2BOIsSymAlg}, \Cref{HF2MOisFree}, and \Cref{CPinftyNiceCalculation}.
 \end{lemma}
 \begin{proof}
-The second formula is a direct consequence of the first.  The first formula comes from taking the module generators \(\beta_{j+1} \in E_{2(j+1)} \CP^\infty = E_{2j} MU(1)\) and pushing them forward to get the algebra generators \(b_j \in E_{2j} MU\).  Then, the triangle
+The second formula is a direct consequence of the first.  For the first formula, note that because \(\{\beta_j^E\}_j\) provides a homology basis for \((E \sm MU)_* \CP^\infty\), we can decompose \(x^{MU}\) by the Kronecker pairing: \[x^{MU} = \sum_{j=0}^\infty \<x^{MU}, \beta_j^E\> (x^E)^{j+1}.\]  Expending the definition of the pairing gives
 \begin{center}
 \begin{tikzcd}
-{[\CP^\infty, MU]} \arrow{rr} \arrow{rd} & & {[\CP^\infty, E \sm MU]} \arrow{ld}{\cong} \\
-& \CatOf{Modules}_{E_*}(E_* \CP^\infty, E_* MU)
+\S^{2j} \arrow{r} \arrow[bend left=15]{rr}{\beta_j^E} \arrow["{\<x^{MU}, \beta_j^E\>}"']{rdd} & E \sm MU(1) \arrow["1 \sm \eta_{MU} \sm 1"']{r} \arrow["1 \sm u_1"]{dd} & E \sm MU \sm MU(1) \arrow["1 \sm 1 \sm u_1"]{d} \arrow[bend left=90]{dd}{1 \sm 1 \sm x^{MU}} \\
+& & E \sm MU \sm MU \arrow["1 \sm 1 \sm \eta \sm 1"]{d} \\
+& E \sm MU & (E \sm MU)^{\sm 2} \arrow{l}{\mu}.
 \end{tikzcd}
 \end{center}
-allows us to pair \(x^{MU}\) with \((x^E)^{j+1}\) to determine the coefficients of the series.
+By definition, the module generators \(\beta_{j+1} \in E_{2(j+1)} \CP^\infty = E_{2j} MU(1)\) push forward along \(u_1\co MU(1) \to MU\) to define the algebra generators \(b_j \in E_{2j} MU\), giving the desired identification.
 \end{proof}
 
-\begin{corollary}[{\cite[Corollary 6.6]{AdamsBlueBook}}]\label{HZMUCarriesALog}
+\begin{corollary}[{\cite[Corollary II.6.6]{AdamsBlueBook}}]\label{HZMUCarriesALog}
 In particular, for the orientation \(MU \to H\Z\) we have \[x_1 +_{MU} x_2 = \exp^H(\log^H(x_1) + \log^H(x_2)),\] where \(\exp^H(x) = \sum_{j=0}^\infty b_j x^{j+1}\). \qed
 \end{corollary}
 
