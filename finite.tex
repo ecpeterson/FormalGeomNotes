@@ -511,20 +511,20 @@ One of our overarching tasks from the introduction to this Case Study is to enha
 Let \(+_\phi\) be a formal group law over a \(\Z_{(p)}\)--algebra.  Let \(n\) be the largest degree such that there exists an invertible formal power series \(\ell\) with \[\ell(x +_\phi y) = \ell(x) + \ell(y) \pmod{(x, y)^{n}},\] i.e., \(\ell\) is a logarithm for the \((n-1)\)--bud determined by \(+_\phi\).  The \index{formal group!height}\textit{\(p\)--height of \(+_\phi\)} is defined to be \(\log_p(n)\).
 \end{definition}
 
-\begin{example}
+\begin{example}\label{HeightOfGmExample}
 This definition is somewhat subtle, since \(\ell\) is not required to integrate a truncation of the invariant differential.  Nonetheless, it will be a consequence of the results below that the height of a formal group law can be determined by attempting to integrate its unit-speed invariant differential and noting the first degree where the requisite division is impossible, provided that that degree is of the form \(p^d\).  For example, the unit-speed invariant differential associated to the usual coordinate on the muliplicative group has the form \[\omega(x) = (1 + x + x^2 + \cdots + x^{p-1} + \cdots) \dx.\]  The radius of convergence of this ordinary differential equation in \(\Z_{(p)}\) is \(p\), owing to the term \[\int x^{p-1} \dx = \frac{x^p}{p} \not\in \Z_{(p)}[x].\]  We thus see that \(\G_m\) has height \(\log_p(p) = 1\).
 \end{example}
 
 This turns out to be a crucial invariant of a formal group law, admitting many other interesting presentations.  In this Lecture, investigation of this definition will lead us to a classification of the closed substacks of \(\moduli{fg}\), another of our overarching tasks.  As a first step, we would like to show that this value is well-behaved in various senses---for instance, it is always an integer (or \(\infty\)).  First, we note that this definition really depends on the formal group rather than the formal group law.
 
 \begin{lemma}\label{HeightIsAnIsomInvariant}
-The height of a formal group law is an isomorphism invariant, i.e., it descends to give a function \[\height\co \pi_0 \moduli{fg}(T) \to \N \cup \{\infty\}\] for any local test \(\Z_{(p)}\)--algebra \(T\).
+The height of a formal group law is an isomorphism invariant, i.e., it descends to give a function \[\height\co \pi_0 \moduli{fg}(T) \to \R_{> 0} \cup \{\infty\}\] for any local test \(\Z_{(p)}\)--algebra \(T\).
 \end{lemma}
 \begin{proof}
 The series \(\ell\) is a partial logarithm for the formal group law \(\phi\), i.e., an isomorphism between the formal group defined by \(\phi\) and the additive group.  Since isomorphisms compose, this statement follows.
 \end{proof}
 
-With this in mind, we look for a more standard form for formal group laws, where \Cref{FGLHeightIsAnInteger} will hopefully be obvious.  In order to give ourselves more tools to work with, we assume that the our ground ring is torsion-free---and although our true goal is to understand formal groups over positive characteristic fields, we are free to make this assumption by \Cref{MfglIsSmooth}.  In this setting, the most blindly optimistic standard form is as follows:
+With this in mind, we look for a more standard form for formal group laws, where height taking on integer values will hopefully be obvious.  In order to give ourselves more tools to work with, we assume that the our ground ring is torsion-free---and although our true goal is to understand formal groups over positive characteristic fields, we are free to make this assumption by \Cref{MfglIsSmooth}.  In this setting, the most blindly optimistic standard form is as follows:
 \begin{definition}[{cf.\ \cite[Proposition 15.2.4]{Hazewinkel}}]\label{DefnPTypInvDiffl}
 We say that a formal group law \(+_\phi\) is \index{p typical@\(p\)--typical!logarithm}\textit{\(p\)--typical} when its invariant differential takes the form \[\omega(x) = \sum_{j=0}^\infty \ell_j x^{p^j-1} \dx.\]
 \end{definition}
@@ -550,11 +550,18 @@ If \(x\) is a parameter for a formal group \(\G\), then any other parameter \(y\
 This a quick induction: set \(y = y_\infty\) and select the unit \(b_1\) such that setting \(b_1 x = y_1\) gives \[y_\infty - y_1 = y_\infty - \theta_{b_1}^* V_1^* x \equiv 0 \pmod{x^{1+1}}.\]  We inductively define \(y_n\) by examining \[y_\infty - y_{n-1} \equiv b_n x^n \pmod{x^{n+1}}\] and setting \[y_n = y_{n-1} +_{\G} \theta_{b_n}^* V_n^* x. \qedhere\]
 \end{proof}
 
-\begin{corollary}[{cf.\ \cite[Proposition 13.6]{LurieChromaticCourseNotes}}]\label{FGLHeightIsAnInteger}
-Let \(x\) be a \(p\)--typical parameter for a formal group \(\G\), and let \(p^d-1\) be the minimal index so that the invariant differential is not integrable in that degree.  Then \(\G\) has height \(d\).  (In particular, the radius of convergence of the logarithmic differential equation is either \(\infty\) or \(p^d\) for some nonnegative natural \(d\).)
+\begin{corollary}[{cf.\ \Cref{HeightOfGmExample}, cf.\ also \cite[Proposition 13.6]{LurieChromaticCourseNotes}}]\label{GoodParametersComputeHeight}
+Let \(x\) be some parameter for a formal group \(\G\), and suppose that the minimal index so that the invariant differential is not integrable in that degree takes the form \(p^d-1\).  Then \(\G\) has height \(d\).
 \end{corollary}
 \begin{proof}
-Take \(x\) to be a \(p\)--typical parameter as in the statement.  Although \textit{a priori} the partial logarithm \(\ell\) of \Cref{HeightDefn} may not be the partial integral of the invariant differential associated to \(x\), it is the partial logarithm associated to \emph{some} parameter \(y\), and we use the preceding Lemma to re-express \(y\) as \[y = \sumfgl{\G}_{n=0}^\infty \theta_{b_n}^* V_n^* x.\]  Consider the invariant differential associated to \(y\), expressed in terms of \(x\) and \(dx\), using the rules described in the proof of \Cref{EveryFGLIsPTypical}: \[\omega_y = \sum_{j=0}^\infty \theta_{b_j}^* V_j^* \left(\sum_{n=0}^\infty a_{p^n} x^{p^n-1} \dx\right) = \sum_{j=0}^\infty \sum_{n=0}^\infty j a_{p^n} b_j^{jp^n-1} x^{jp^n-1} \dx.\]  The terms in the critical degree \((p^d-1)\) take the form \[\sum_{n=0}^d p^{d-n} a_{p^n} b_{p^{d-n}}^{p^d-1} x^{p^d-1} \dx.\]  The term \(a_{p^n}\) is assumed to have \(p\)--adic valuation at least \(n\) for \(n < d\), and hence \(p^{d-n}a_{p^n}\) has \(p\)--adic valuation at least \(d\) for \(n < d\).  Since in the case \(n = d\) the coefficient \(a_{p^d}\) has assumed to have \(p\)--adic valuation strictly less than \(d\), this sum must also have \(p\)--adic valuation strictly less than \(d\).  In particular, this shows that the radius of convergence of the partial logarithm is at most \(p^d-1\), and the existence of \(x\) itself shows that it is at least \(p^d-1\).
+Take \(x\) to be a parameter as in the statement.  Although \textit{a priori} the partial logarithm \(\ell\) of \Cref{HeightDefn} may not be the partial integral of the invariant differential associated to \(x\), it is the partial logarithm associated to \emph{some} parameter \(y\), and we use the preceding Lemma to re-express \(y\) as \[y = \sumfgl{\G}_{n=0}^\infty \theta_{b_n}^* V_n^* x.\]  Consider the invariant differential associated to \(y\), expressed in terms of \(x\) and \(dx\), using the rules described in the proof of \Cref{EveryFGLIsPTypical}: \[\omega_y = \sum_{j=0}^\infty \theta_{b_j}^* V_j^* \left(\sum_{n=0}^\infty a_{p^n} x^{p^n-1} \dx\right) = \sum_{j=0}^\infty \sum_{n=0}^\infty j a_{p^n} b_j^{jp^n-1} x^{jp^n-1} \dx.\]  The terms in the critical degree \((p^d-1)\) take the form \[\sum_{n=0}^d p^{d-n} a_{p^n} b_{p^{d-n}}^{p^d-1} x^{p^d-1} \dx.\]  The term \(a_{p^n}\) is assumed to have \(p\)--adic valuation at least \(n\) for \(n < d\), and hence \(p^{d-n}a_{p^n}\) has \(p\)--adic valuation at least \(d\) for \(n < d\).  Since in the case \(n = d\) the coefficient \(a_{p^d}\) has assumed to have \(p\)--adic valuation strictly less than \(d\), this sum must also have \(p\)--adic valuation strictly less than \(d\).  In particular, this shows that the radius of convergence of the partial logarithm is at most \(p^d-1\), and the existence of \(x\) itself shows that it is at least \(p^d-1\).
+\end{proof}
+
+\begin{corollary}\label{FGLHeightIsAnInteger}
+The height of a formal group law lies in \(\N \cup \{\infty\}\).
+\end{corollary}
+\begin{proof}
+A \(p\)--typical coordinate is guaranteed to satisfy the preconditions of \Cref{GoodParametersComputeHeight}, and \Cref{EveryFGLIsPTypical} guarantees such coordinates.
 \end{proof}
 
 In the course of the above discussion, manipulations with the \(\ell\)--series have played a critical role, and we have shied away from the \(p\)--series because of the noninvertibility of \(p\) in \(\Z_{(p)}\).  As a consequence, this means that the \(p\)--series contains an unusual amount of information even after \(p\)--typification of a coordiante, and so we turn to its analysis.
