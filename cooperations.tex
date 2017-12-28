@@ -93,15 +93,21 @@ A \otimes_R (A \otimes_R A) \arrow{r}{1 \otimes \ast} \arrow{d}{\Delta \otimes (
 A \idxentry{Hopf ring} is a module along with structure maps \(+\), \(-\), \(\cdot\), \(\ast\), \(\circ\), \(\Delta\), and \(\chi\) subject to the axioms declared above.\footnote{Equivalently, a Hopf ring is a ring object in the category of comodules.  This has the virtue of concision, but taking comodules as the base category does not seem to align with our perspective in the coming Lecture.}
 \end{definition}
 
+These structures are enough to pin down the behavior of both \(E_0 X\) as the unstable descent object:
+
+\begin{definition}[{cf.\ \Cref{CofreeComoduleAdjunction}}]
+Let \(E\) satisfy {\UFH}.  The associated Hopf ring \(E_0 \OS{E}{0}\) gives rise to a comonad \(G(M) = M \otimes_{E_0} E_0 \OS{E}{0}\), and comodules for the Hopf ring are defined to be \(G\)--coalgebras.\index{comodule!coalgebra}
+\end{definition}
+
 \begin{lemma}\label{HopfRingFromOneRingSpectrum}
-If \(X\) is a space with \(E_* X\) a free \(E_*\)--module, then \(E_0 X\) furthermore forms a \index{comodule!coalgebra}coalgebra for the comonad \(G\) associated to the enriched Hopf ring \(\pi_0 \sheaf{UD}_E(S^0)\).
+If \(E\) satisfies {\UFH} and \(X\) is a space with \(E_* X\) a free \(E_*\)--module, then \(E_0 X\) forms a \(G\)--coalgebra.
 \end{lemma}
 \begin{proof}
 The proof is a matter of spelling out the precondition.  For \(X\) satisfying this freeness condition, there is again a splitting \(E(X) \simeq \prod_\ell \OS{E}{n_\ell}\).  We interpret this at the level of algebra by defining a functor \[G\co \CatOf{Modules}_{E_0}^{\mathrm{free}} \to \CatOf{Modules}_{E_0}\] which sends \(E_0\) to \(E_0 \OS{E}{0}\) and which splits over direct sums.  The enriched Hopf ring structure of \(\pi_0 \sheaf{UD}_E(S^0)[\le 2]\) endows \(G\) with a comonad structure, and the structure maps of \(\pi_0 \sheaf{UD}_E(X)[\le 2]\) endow \(E_0 X\) itself with the structure of a \(G\)--coalgebra.
 \end{proof}
 
 \begin{theorem}[{\cite[Theorem 6.17]{BCM}}]
-In the above case, the cosimplicial object \(\pi_0 \sheaf{UD}_E(X)\) is the cobar resolution for the free Hopf module comonad, and the \(E_2\)--page of the \index{Adams spectral sequence!unstable}unstable descent spectral sequence is presented as
+In the above case, the cosimplicial object \(\pi_0 \sheaf{UD}_E(X)\) is the cobar resolution for \(G\), and the \(E_2\)--page of the \index{Adams spectral sequence!unstable}unstable descent spectral sequence is presented as
 \[\pushQED{\qed}
 E_2^{s} = L^s\CatOf{Coalgebras}_G(E_0, E_0 X). \qedhere
 \popQED
