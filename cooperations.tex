@@ -273,13 +273,13 @@ There is a similar (but algebraically murkier) story for the unstable descent ob
 \mathcal{UD}_{E \vee F}(X)[1] & = (E \vee F)(E(X) \times F(X)) \\
 & = E(E(X) \times F(X)) \times F(E(X) \times F(X)).
 \end{align*}
-Restricting attention to just the first factor, \(E(E(X) \times F(X))\), its homotopy receives a map \[\pi_* E(E(X)) \otimes_{E_*} \pi_* E(F(X)) \to \pi_*(E(E(X) \times F(X)),\] and if \(E\) has K\"unneth isomorphisms then the induced map off of the tensor product is an equivalence.  Again, we can identify the \(E(E(X))\) part of this expression as belonging to \(\mathcal{UD}_E(X)[1]\), and there is a cross-term \(E(F(X))\) accounting for the shared information with \(F\).  The other term also contains information present in \(\mathcal{UD}_F(X)[1]\) and a cross-term \(F(E(X))\) accounting for shared information with \(E\).  In order to understand how these cross-terms affect the reconstruction process, we are thus drawn to understanding the following objects: \[\sheaf O(\Ucontext{E \vee F}(S^n)[1]) \leftarrow \pi_* F(E(S^n)) = F_* \OS{E}{n},\] and as \(n\) ranges these again form a Hopf ring.
+Restricting attention to just the first factor, \(E(E(X) \times F(X))\), its homotopy receives a map \[\pi_* E(E(X)) \otimes_{E_*} \pi_* E(F(X)) \to \pi_*(E(E(X) \times F(X)),\] and if \(E\) has K\"unneth isomorphisms then the induced map off of the tensor product is an equivalence.  Again, we can identify the \(E(E(X))\) part of this expression as belonging to \(\mathcal{UD}_E(X)[1]\), and there is a cross-term \(E(F(X))\) accounting for the shared information with \(F\).  The other term also contains information present in \(\mathcal{UD}_F(X)[1]\) and a cross-term \(F(E(X))\) accounting for shared information with \(E\).  In order to understand how these cross-terms affect the reconstruction process, we are thus drawn to the following objects: \[\sheaf O(\Ucontext{E \vee F}(S^n)[1]) \leftarrow \pi_* F(E(S^n)) = F_* \OS{E}{n}.\]  As \(n\) ranges these again form a Hopf ring:
 
 \begin{definition}
 We will refer to \(F_*(\OS{E}{*})\) as the \index{Hopf ring!mixed unstable cooperations}\textit{Hopf ring of mixed unstable cooperations} (from \(F\) to \(E\)) or the \index{Hopf ring!topological}\textit{topological Hopf ring} (from \(F\) to \(E\)).
 \end{definition}
 
-We thus set about trying to understand the Hopf rings \(F_*(\OS{E}{*})\) in general.  In our computational example in \Cref{UnstableContextsSection}, we found that the topological Hopf ring \(\HFtwo_*(\OS{\HFtwo}{*})\) modeled endomorphisms of the additive formal group after passing to a suitable quotient, and we will take this as inspiration to construct an algebraic model, or ``expected answer'', approximating the topological Hopf ring.
+We thus set about trying to understand the Hopf rings \(F_*(\OS{E}{*})\) in general.  In our computational example in \Cref{UnstableContextsSection}, we found that the topological Hopf ring \(\HFtwo_*(\OS{\HFtwo}{*})\) modeled endomorphisms of the additive formal group after passing to a suitable quotient, and we will take this as inspiration to construct an algebraic model which approximates the topological Hopf ring.
 
 We approach this problem in stages.  To start, note that homotopy elements both of \(F\) and of \(E\) can be used to contribute elements to the topological Hopf ring: an element \(f \in F_n\) begets a family of natural elements \(f_m \in F_n \OS{E}{m}\), and an element \(e \in E^n = \pi_0 \OS{E}{n}\) begets an element \([e] \in F_0 \OS{E}{n}\) by Hurewicz.  The interaction of these rings \(F_*\) and \(E^*\) is captured in the following definition:
 
@@ -419,7 +419,7 @@ Finally, we are able to explain the phenomenon uncovered by computation in \Cref
 	\item How does this functor interact with classical rings?
 \end{enumerate}
 
-Towards the second, we have already described an interesting embedding of \(\CatOf{Algebras}_{k/}\) into \(\CatOf{HopfRings}\), \(R \mapsto k[R]\), analogous to the group-ring construction embedding groups into Hopf algebras.  Note that we can describe the arithmetic in its ring of \(\ast\)--indecomposables:
+Towards the second, we have already described an interesting bifunctorial embedding of \(\CatOf{Rings}\) into \(\CatOf{HopfRings}\), \(S \mapsto R[S]\), analogous to the group-ring construction embedding groups into Hopf algebras.  We can describe the arithmetic in its ring of \(\ast\)--indecomposables:
 
 \begin{lemma}\label{ArithmeticInQAst}
 For \(H\) a Hopf ring and \(x \in H\), write \(\<x\> = x - \eps(x) \cdot [0]\) for the corresponding element of \(\ker \eps\).  In the \(\ast\)--indecomposable quotient, there are the formulas
@@ -448,7 +448,7 @@ c\co Q^* R[S] & \to R \otimes S, \\
 \end{align*}
 \end{proof}
 
-Specializing to \(R = \Z\) and varying \(S\), the map \(c\) looks as though it might play the role of a counit for an adjunction.  However, when trying to construct a corresponding unit map, one finds that the definition of the \(\ast\)--product in the ring-ring construction is too free to easily map into.  To ameliorate this, we might destroy the \(\ast\)--product by quotienting by \((\ker \eps)^{\ast 2}\).\footnote{One should compare this with an analogous construction in classical rings: the computation in \Cref{ConstructionTangentAffineScheme} shows \(A / I^2 = R \oplus (I / I^2) \cong \Sym(T_0^* A) / (T_0^* A)^2\).}  One quickly checks that this defines a Hopf ring ideal, as in the following steps:
+Specializing to \(R = \Z\) and varying \(S\), the map \(c\) looks as though it might play the role of a counit for an adjunction.  However, when trying to construct a corresponding unit map, one finds that the definition of the \(\ast\)--product in the ring-ring construction is too free to easily map into.  To ameliorate this, we might destroy the \(\ast\)--product instead by quotienting by \((\ker \eps)^{\ast 2}\).\footnote{One should compare this with an analogous construction in classical rings: the computation in \Cref{ConstructionTangentAffineScheme} shows \(A / I^2 = R \oplus (I / I^2) \cong \Sym(T_0^* A) / (T_0^* A)^2\).}  One quickly checks that this defines a Hopf ring ideal, as in the following steps:
 \begin{align*}
 \intertext{Closure under \(\chi\):}
 \chi(\<r\> \ast \<s\>) & = \<-r\> \ast \<-s\>. \\
@@ -457,8 +457,9 @@ Specializing to \(R = \Z\) and varying \(S\), the map \(c\) looks as though it m
 \intertext{Closure under \(\circ\):}
 (\<r\> \ast \<s\>) \circ [r'] & = (\<r\> \circ [r']) \ast (\<s\> \circ [r']) = \<rr'\> \ast \<sr'\>. \\
 \intertext{Closure under \(\Delta\):}
-\Delta(\<r\> \ast \<s\>) & = [r+s] | (\<r\>\ast\<s\>) + (\<r\>\ast\<s\>) | [r] + (\<r\>\ast\<s\>) | [s] \\
-& \quad - (\<r\>\ast\<s\>) | 1 + \<s\>|\<r\> + \<r\>|\<s\>.
+\Delta(\<r\> \ast \<s\>) & = [r+s] \otimes (\<r\>\ast\<s\>) + (\<r\>\ast\<s\>) \otimes [r] \\
+& \quad + (\<r\>\ast\<s\>) \otimes [s] - (\<r\>\ast\<s\>) \otimes 1 \\
+& \quad + \<s\>\otimes\<r\> + \<r\>\otimes\<s\>.
 \end{align*}
 
 \begin{lemma}\label{HopfRingsAndRingsAdjunction}
@@ -481,7 +482,7 @@ This is a matter of calculating \(Q^* \AA(F, E)\), which is possible to do coord
 \end{proof}
 
 \begin{remark}
-Using the equivalence \(\CP^1 \simeq \S^2\), the \index{homology suspension}homology suspension element \(e_2\) is modeled by \(\beta_1\).  It follows immediately that \(\Spec (Q^* \AA(F, E))[\beta_1^{-1}]\) models the scheme \(\InternalHom{FormalGroups}(\CP^\infty_F, \CP^\infty_E)^{\mathrm{gpd}}\) of isomorphisms.
+Using the equivalence \(\CP^1 \simeq \S^2\), the \index{homology suspension}homology suspension element \(e_2\) is modeled by \(\beta_1\).  It follows immediately that the stable algebraic approximation \(\Spec (Q^* \AA(F, E))[\beta_1^{-1}]\) models the scheme of formal group isomorphisms \(\InternalHom{FormalGroups}(\CP^\infty_F, \CP^\infty_E)^{\mathrm{gpd}}\).
 \end{remark}
 
 \begin{remark}
