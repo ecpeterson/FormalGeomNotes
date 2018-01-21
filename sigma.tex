@@ -931,18 +931,9 @@ There is a second standard embedding of a complex elliptic curve into projective
     \draw[solid] (0,0) circle (2);
     \draw[solid] (0,0) circle (4);
     \draw[solid] (0,0) circle (0.5);
-    \def\spiral#1{%
-      \pgfmathparse{int(#1)}%
-      \ifnum\pgfmathresult>0
-        \begin{scope}[rotate=60, scale=1/2]
-          \spiral{#1-1}
-        \end{scope}
-        \draw[very thick,red] (2,0) arc (30:85:1.9);
-      \fi
-    }
-    \begin{scope}[rotate=-60, scale=2]
-      \spiral{6}
-    \end{scope}
+    \draw [very thick,red,domain=-1.5:6,variable=\t,smooth,samples=100]
+        plot ({\t*60.0}: {2.0*(0.5^\t)});
+
     \fill (0:2) circle (0.12) ++(0.26,0.26) node {\(1\)};
     \fill (60:1) circle (0.12) ++(0,-0.32) node {\(q\)};
     \fill[opacity=0.5] (2,-3.464) circle (0.12) ++(-0.26,0.26) node {\(q^{-1}\)};
