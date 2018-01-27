@@ -305,37 +305,29 @@ Let \(X\) and \(Y\) be schemes over \(S = \Spec R\), such that \(\sheaf O_X\) fo
 
 \noindent The mode of proof of this result is to form the symmetric \(R\)--algebra on the \(R\)--module \(\sheaf O_Y \otimes_R \sheaf O_X^*\), then quotient by the relations encoding multiplicativity of functions and unitality of multiplication.  These are the same steps we will take to form a Hopf ring embodying homomorphisms of formal groups \(\CP^\infty_F \to \CP^\infty_E\).
 
-\begin{definition}[{cf.\ \cite[Equation 1.17]{RavenelWilsonHopfRingForMU}}]\label{DefnAlgebraicModelOfCoopns}
-Given a \(R\)--coalgebra \(A\) and an \(S\)--algebra \(B\), we form the \index{Hopf ring!free}\textit{free relative Hopf \(R[S]\)--ring} \(A_{R[S]}[B]\) generated under the Hopf ring operations by symbols \(a[b]\) for \(a \in A\), \(b \in B\), according to the atomic rules
-\begin{align*}
-A_{R[S]}[B] \otimes_R A_{R[S]}[B] & \xrightarrow{\ast} A_{R[S]}[B] &
-a[b] \ast a'[b'] & = (a \ast a') [b + b'], \\
-A_{R[S]}[B] \otimes_R A_{R[S]}[B] & \xrightarrow{\circ} A_{R[S]}[B] &
-a[b] \circ a'[b'] & = (a \circ a') [b b'], \\
-A_{R[S]}[B] & \xrightarrow{\chi} A_{R[S]}[B] &
-\chi(a[b]) & = a[-b], \\
-A_{R[S]}[B] & \xrightarrow{\Delta} A_{R[S]}[B] &
-\Delta(a[b]) & = \sum_j (a'_j[b] \otimes a''_j[b]),
-\end{align*}
-where \(\Delta(a) = \sum_j a'_j \otimes a''_j\) and where the symbols \(a \ast a'\), \(a \circ a'\), and \(\chi a\) are all formal symbols.  There are four additional families of relations we might impose:
+\begin{definition}[{cf.\ \cite[Lemma 1.12 and Equation 1.17]{RavenelWilsonHopfRingForMU}}]\label{DefnAlgebraicModelOfCoopns}
+For a coaugmented \(R\)--coalgebra \(A\) and an \(S\)--algebra \(B\), the \index{Hopf ring!free}\textit{free relative Hopf \(R[S]\)--ring} \(A_{R[S]}[B]\) is generated under the Hopf ring operations by symbols \(a[b]\) for \(a \in A\) and \(b \in B\), thought of as ``\(a \circ [b]\)''.  These are subject to the following rules:
 \begin{enumerate}
-    \item For \(a \in A\) and \(b', b'' \in B\), we devise the relation \[\sum_j (a'_j[b'] \circ a''_j[b'']) = a[b'b'']\] as an analogue of the multiplicativity relation imposed in \Cref{MappingSchemeStatement}.
-    \item For \(a \in A\), we devise the relation \[a[\eta(1)] = \eps(a)\] as an analogue of the unitality relation imposed in \Cref{MappingSchemeStatement}.
-    \item Assume further that the coalgebra \(A\) is coaugmented and that the algebra \(B\) is augmented.  We can then consider the pointedness relation \[(\eta(1))[b] = [\eps(b)].\]
-    \item Finally, assume the entire structure of a Hopf \(R\)--algebra on \(A\) and of a Hopf \(S\)--algebra on \(B\).  For each \(a', a'' \in A\) and \(b \in B\) with diagonal given by \(\Delta b = \sum_j b'_j \otimes b''_j\), we can consider the homomorphism relation \[(a'a'')[b] = \bigast_j (a'[b'_j] \circ a''[b''_j]).\]
+    \item For \(\Delta(a) = \sum_j a'_j \otimes a''_j\), we have \[\Delta(a[b]) = \sum_j (a'_j[b] \otimes a''_j[b]).\]
+    \item Accordingly, we have \[a [b' + b''] = \sum_j a'_j[b'] \ast a''_j[b''], \quad a [b' b''] = \sum_j a'_j[b'] \circ a''_j[b''].\]
+    \item Thinking of the antipode as \(\chi(h) = [-1] \circ h\) gives \[\chi(a[b]) = a[-b].\]
+    \item Lastly, multiplication by zero gives \[a[0] = \eta\eps(a)[0].\]
+\enumeratext{Noting the similarity of the second and fourth relations to those imposed in \Cref{MappingSchemeStatement}, there are two additional families of relations we might consider:}
+    \item The dual to the fourth relation is \[(\eta(1))[b] = [\eta\eps(b)].\]
+    \item The dual to the second relation requires the presence of Hopf algebra structures on \(A\) and \(B\).  In this setting, for \(a', a'' \in A\) and for \(b \in B\) with diagonal given by \(\Delta(b) = \sum_j b'_j \otimes b''_j\), the dual relation is then \[(a'a'')[b] = \bigast_j \sum_k a_{jk}'[b'_j] \circ a_{jk}''[b''_j].\]
 \end{enumerate}
-We call the resulting quotient Hopf ring the \index{Hopf ring!Kronecker}\textit{Kronecker Hopf ring--ring}, and we denote it by \(A_{R[S]}^{\circulatearrows}[B]\).
+Imposing these additional relations, we call the resulting quotient Hopf ring the \index{Hopf ring!Kronecker}\textit{Kronecker Hopf ring--ring}, and we denote it by \(A_{R[S]}^{\circulatearrows}[B]\).
 \end{definition}
 
 \begin{lemma}\label{HopfRingComparisonMap}
 There is a natural map \[(F_* \CP^\infty)_{F_*[E^*]}^{\circulatearrows}[E^* \CP^\infty] \to F_*(\OS{E}{*}).\]
 \end{lemma}
 \begin{proof}
-For any space \(X\), we construct a \index{Kronecker pairing}Kronecker-type pairing \[\<-,-\>\co F_n Z \times E^m Z \to F_n(\OS{E}{m})\] as follows: given a class \(f \in \pi_n F(X)\) and a class \(e\co X \to \OS{E}{m}\), we can compose the two to produce an element \(e_*(f) \in \pi_n F(\OS{E}{m})\).  This pairing is ``bilinear'' in the following senses:
+For any space \(X\), we construct a \index{Kronecker pairing}Kronecker-type pairing \[\<-,-\>\co F_n Z \times E^m Z \to F_n(\OS{E}{m})\] as follows: given a class \(f \in \pi_n F(X)\) and a class \(e\co X \to \OS{E}{m}\), we can compose the two to produce an element \(e_*(f) \in \pi_n F(\OS{E}{m})\).\footnote{This map was considered by Goerss~\cite[Proposition 10.2]{GoerssDieudonne}, who cites Strickland as inspiration.}  This pairing is ``bilinear'' in the following senses:
 \begin{align*}
 \<a' + a'', b\> & = \<a', b\> + \<a'', b\>, &
 \<f \cdot a, b\> & = f \cdot \<a, b\>, \\
-\<a, b' + b''\> & = \<a, b'\> \ast \<a, b''\>, &
+\<a, b' + b''\> & = \sum_j \<a'_j, b'\> \ast \<a''_j, b''\>, &
 \<a, e \cdot b\> & = [e] \circ \<a, b\>.
 \end{align*}
 Universality of the free relative Hopf ring thus gives a Hopf ring map \((F_* X)_{F_*[E^*]}[E^* X] \to F_*(\OS{E}{*})\).  Specializing to \(X = \CP^\infty\),\footnote{In fact, any $H$--space $X$ produces an algebraic approximation, but it is the case $X = \CP^\infty$ where the map tends to be an isomorphism.} the factorization of this map through the indicated Hopf ring quotient follows the duality property of this enhanced Kronecker pairing.  Namely, the four maps and their associated diagrams pictured in \Cref{KroneckerPairingFigure} respectively witness the relations
@@ -345,12 +337,13 @@ Universality of the free relative Hopf ring thus gives a Hopf ring map \((F_* X)
 \<\eps_* 1, b\> & = \<1, \eps^* b\>, &
 \<\eta_* 1, b\> & = \<1, \eta^* b\>.
 \end{align*}
-The Kronecker pairings are related to the K\"unneth isomorphisms for \(F_*(\CP^\infty \times \CP^\infty)\) and \(E^*(\CP^\infty \times \CP^\infty)\) by the product formula \[\<a' \otimes a'', b' \otimes b''\> = \<a', b'\> \circ \<a'', b''\>.\]  Hence, writing \(\Delta_* a = \sum_j a_j' \otimes a_j''\) and \(\mu^* b = \sum_j b'_j \otimes b''_j\), these relations become exactly the four equations
+The Kronecker pairings relate to the K\"unneth isomorphisms for \(F_*(\CP^\infty \times \CP^\infty)\) and \(E^*(\CP^\infty \times \CP^\infty)\) by the product formula \[\<a' \otimes a'', b' \otimes b''\> = \<a', b'\> \circ \<a'', b''\>.\]  Hence, writing \(\Delta_* a = \sum_j a_j' \otimes a_j''\) and \(\mu^* b = \sum_j b'_j \otimes b''_j\), these relations become exactly the four equations
 \begin{align*}
 \sum_j (a'_j[b'] \circ a''_j[b'']) & = a[b'b''], &
-(a' a'')[b] & = \bigast_j (a'[b'_j] \circ a''[b''_j]), \\
-(\eta(1))[b] & = [\eps(b)], &
-a[\eta(1)] & = \eps(a).
+(a' a'')[b] & = \bigast_j \sum_k a_{jk}'[b'_j] \circ a_{jk}''[b''_j], \\
+%& & & = \bigast_j (a'[b'_j] \circ a''[b''_j]), \\
+(\eta(1))[b] & = [\eta\eps(b)], &
+a[\eta(1)] & = \eta\eps(a)[\eta(1)].
 \qedhere
 \end{align*}
 \end{proof}
@@ -398,12 +391,12 @@ For \(F\) and \(E\) ring spectra, we define their \index{Hopf ring!algebraic}\te
 \begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}, \cite[Theorem 9.7]{Wilson}}]\label{UnstableRWRelation}
 After choosing complex orientations of \(E\) and \(F\), there is a natural isomorphism of Hopf rings \[\AA(F, E) \cong \frac{(F_* \CP^\infty)_{F_*[E^*]}[E^*]}{\beta(s +_F t) = \beta(s) +_{[E]} \beta(t)},\] where the equation is of power series and the equality is imposed term-by-term on the Hopf ring.\footnote{This relation is often referred to as the Ravenel--Wilson relation.\index{Ravenel--Wilson relation}}  The formal sum \(\beta(s)\) is given by \(\beta(s) = \sum_j \beta_j x^j\), where \(\beta_j\) is dual to the \(j\){\th} power of the chosen coordinate in \(F^* \CP^\infty\), and the formal group law expressions expand to
 \begin{align*}
-\beta(s +_F t) & = \sum_n \beta_n \left(\sum_{i, j} a_{ij}^F s^i t^j \right)^n, \\
-\beta(s) +_{[E]} \beta(t) & = \bigast_{i, j} \left([a_{ij}^E] \circ \left( \sum_k \beta_k s^k \right)^{\circ i} \circ \left( \sum_\ell \beta_\ell t^\ell \right)^{\circ j} \right).
+\beta(s +_F t) & = \sum_n \beta_n[1] \left(\sum_{i, j} a_{ij}^F s^i t^j \right)^n, \\
+\beta(s) +_{[E]} \beta(t) & = \bigast_{i, j} \left(\beta_0[a_{ij}^E] \circ \left( \sum_k \beta_k[1] s^k \right)^{\circ i} \circ \left( \sum_\ell \beta_\ell[1] t^\ell \right)^{\circ j} \right).
 \end{align*}
 \end{lemma}
 \begin{proof}[Proof sketch]
-The orientations of \(E\) and \(F\) give rise to classes \(x^j \in E^{2j} \CP^\infty\) and \(\beta_k \in F_{2k} \CP^\infty\), and hence classes \(\beta_k[x^j] \in \AA(F, E)\).  The duality relations imposed on this Hopf ring give us three useful identities:
+The orientations of \(E\) and \(F\) give rise to classes \(x^j \in E^{2j} \CP^\infty\) and \(\beta_k \in F_{2k} \CP^\infty\), and hence classes \(\beta_k[x^j] \in \AA(F, E)\).  The four core relations imposed on this Hopf ring give us three useful identities:
 \begin{enumerate}
     \item The relation \[\beta_k[x^0] = \eps(\beta_k) = \begin{cases} 1 & \text{if \(k = 0\)}, \\ 0 & \text{if \(k \ne 0\)}\end{cases}\] eliminates all elements of this form except \(\beta_0[x^0] = 1\).
     \item The relation \[\beta_k[x^{j+1}] = \sum_{k' + k'' = k} \beta_{k'}[x^j] \circ \beta_{k''}[x]\] lets us rewrite these terms as \(\circ\)--products of terms of lower \(j\)--degree and no larger \(k\)--degree.
@@ -480,7 +473,7 @@ We are thus algebraically motivated to understand \(\Spec Q^* \AA(F, E)\), as th
 For complex-orientable \(F\) and \(E\), we have\index{formal group!homomorphism} \[\Spec Q^* \AA(F, E) \cong \InternalHom{FormalGroups}(\CP^\infty_F, \CP^\infty_E).\]
 \end{corollary}
 \begin{proof}
-This is a matter of calculating \(Q^* \AA(F, E)\), which is possible to do coordinate-freely (using \Cref{HopfRingComparisonMap} and \cite[Proposition 6.15]{StricklandFSFG}), but it is at least as clear to just give in and pick coordinates.  Making such a choice, using \Cref{ArithmeticInQAst}, and abbreviating $\langle \kappa \rangle$ to merely $\kappa$, we have \[\bigast_{i, j} \left(\left\<a_{ij}^E\right\> \circ \left( \sum_k \beta_k s^k \right)^{\circ i} \circ \left( \sum_\ell \beta_\ell t^\ell \right)^{\circ j} \right) \equiv \sum_{i, j} a_{ij}^E \left( \sum_k \beta_k s^k \right)^i \left( \sum_\ell \beta_\ell t^\ell \right)^j \tag{in \(Q^*\)},\] from which it follows that \[Q^* \AA(F, E) = \left. (F_* \otimes E_*)[\beta_0, \beta_1, \beta_2, \ldots] \middle/ \left( \beta(s +_F t) = \beta(s) +_E \beta(t) \right) \right. . \qedhere\]
+This is a matter of calculating \(Q^* \AA(F, E)\), which is possible to do coordinate-freely (using \Cref{HopfRingComparisonMap} and \cite[Proposition 6.15]{StricklandFSFG}), but it is at least as clear to just give in and pick coordinates.  Making such a choice and using \Cref{ArithmeticInQAst}, we abbreviate \(\langle \beta_0[a_{ij}^E] \rangle\) to \(\<a_{ij}^E\>\) and \(\beta_j[1]\) to \(\beta_j\) to form \[\bigast_{i, j} \left(\left\<a_{ij}^E\right\> \circ \left( \sum_k \beta_k s^k \right)^{\circ i} \circ \left( \sum_\ell \beta_\ell t^\ell \right)^{\circ j} \right) \equiv \sum_{i, j} a_{ij}^E \left( \sum_k \beta_k s^k \right)^i \left( \sum_\ell \beta_\ell t^\ell \right)^j \tag{in \(Q^*\)},\] from which it follows that \[Q^* \AA(F, E) = \left. (F_* \otimes E_*)[\beta_0, \beta_1, \beta_2, \ldots] \middle/ \left( \beta(s +_F t) = \beta(s) +_E \beta(t) \right) \right. . \qedhere\]
 \end{proof}
 
 \begin{remark}
@@ -1250,7 +1243,7 @@ Although the method of starting with the \(j = \infty\) case and deducing from i
 \end{remark}
 
 \begin{remark}
-\Cref{MainKThyOfEMSpacesTheorem} has a statement in the language of \Cref{UnstableAlgebraicModelSection}.  Rather than forming the algebraic approximation \[\AA(K, H) = K_*(\CP^\infty)_{K_*[H_*]}^{\circulatearrows}[H_* \CP^\infty]\] as usual, we form the modified version \[\AA_{p^j}(K, H) = K_*(\OS{H(S^1[p^j])}{1})_{K_*[H_*]}^{\circulatearrows}[H_* \OS{H(S^1[p^j])}{1}].\]  Using the same unstable Kronecker pairing, this supports a natural map to \(K_* \OS{H}{*}\), and a summary of this Lecture's results is that it is an isomorphism.  In particular, this auxiliary approximation makes use of \emph{odd}--dimensional Eilenberg--Mac Lane spaces.
+\Cref{MainKThyOfEMSpacesTheorem} has a statement in the language of \Cref{UnstableAlgebraicModelSection}.  Rather than forming the algebraic approximation \[\AA(K, H) = K_*(\CP^\infty)_{K_*[H_*]}^{\circulatearrows}[H_* \CP^\infty]\] as usual, we form the modified version \[\AA_{p^j}(K, H) = K_*(\OS{H(S^1[p^j])}{1})_{K_*[H_*]}^{\circulatearrows}[H_* \OS{H(S^1[p^j])}{1}].\]  Using the same unstable Kronecker pairing, this supports a natural map to \(K_* \OS{H}{*}\), and a summary of this Lecture's results is that it is an isomorphism.  This auxiliary approximation has two interesting features: it makes use of \emph{odd}--dimensional Eilenberg--Mac Lane spaces, and it is an elaborate name for the alternating Hopf ring on a Hopf algebra.
 \end{remark}
 
 

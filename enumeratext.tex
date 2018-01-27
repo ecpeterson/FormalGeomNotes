@@ -1,0 +1,13 @@
+
+% https://tex.stackexchange.com/questions/135726/intertext-like-command-in-enumerate-environment
+
+\newcounter{saveenumerate}
+\makeatletter
+\newcommand{\enumeratext}[1]{%
+\setcounter{saveenumerate}{\value{enum\romannumeral\the\@enumdepth}}
+\end{enumerate}
+#1
+\begin{enumerate}
+\setcounter{enum\romannumeral\the\@enumdepth}{\value{saveenumerate}}%
+}
+\makeatother
