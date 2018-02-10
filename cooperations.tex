@@ -991,7 +991,50 @@ D_n H_* \Loops^\infty X \to D_n H_* \Loops^\infty Y \to D_n H_* \Loops^\infty Z.
 For \(n > 1\) an integer satisfying \(n \not\equiv \pm 1 \pmod{2p}\),\footnote{As convention, when \(n \equiv \pm 1 \pmod{2p}\) we set \(B(n) := B(n-1)\), and \(B(0) := \S^0\).} the \index{Brown--Gitler spectrum}\textit{Brown--Gitler spectrum} \(B(n)\) is defined to be the spectrum satisfying \[\pushQED{\qed}B(n)_n X \cong D_n H_* \Loops^\infty X. \qedhere\popQED\]
 \end{corollary}
 
-Before exploiting this result to compute something about unstable cooperations, we will prove a sequence of small results making these spectra somewhat more tangible.
+
+We will now use the \(B(n)\) spectra to analyze the \index{Hopf ring}Hopf rings arising from unstable cooperations.  Our intention is to prove the following:
+\begin{theorem}[{cf.\ \Cref{UnstableEthyCooperations}}]\label{LEFTUnstableCooperations}
+For \(F = H\) and \(E\) a \index{Landweber flat}Landweber flat homology theory, the comparison map \[\AA(H, E) \to H_* \OS{E}{2*}\] is an isomorphism of Hopf rings.
+\end{theorem}
+\noindent We have previously computed that the comparison map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  In order to make use of this statement now, we must reimagine it in terms of Dieudonn\'e theory.  In order to do that, we again have to reimagine some of Dieudonn\'e theory itself, as our description of it is concerned with \emph{Hopf algebras} rather than \emph{Hopf rings}.  A Hopf ring is not much structure on top of an (externally) graded system of (internally) graded Hopf algebras \(A_*\): it is a multiplication map \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``\(\boxtimes\)'' is a kind of graded \index{Hopf algebra!tensor product}tensor product of externally graded Hopf algebras~\cite[Proposition 2.6]{HuntonTurner}, \cite[Definition 2.2]{BuchstaberLazarev}, \cite[Section 5]{GoerssDieudonne}.  Since \(D_*\) gives an equivalence of categories between internally graded Hopf algebras and internally graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of \index{Dieudonn\'e module!tensor product}Dieudonn\'e modules.
+
+\begin{definition}{\cite[pg.\ 154]{GoerssDieudonne}}
+The naive tensor product \(M \otimes N\) of Dieudonn\'e modules \(M\) and \(N\) receives the structure of a \(\Z_p[V]\)--module, where \(V(x \otimes y) = V(x) \otimes V(y)\).  We define the \textit{tensor product of Dieudonn\'e modules}\footnote{This definition is specialized to \(\F_p\) and \(\mathbb W_p(\F_p) = \Z_p\), where we don't have to worry about Frobenius semi-linearity.} by \[M \boxtimes N = \left.\frac{\Z_p[F, V]}{(VF = p)} \otimes_{\Z_p[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+\end{definition}
+
+\begin{lemma}[{\cite[Corollary 8.14]{GoerssDieudonne}}]
+The natural map \[D_*(M) \boxtimes D_*(N) \to D_*(M \boxtimes N)\] is an isomorphism. \qed
+\end{lemma}
+
+\begin{definition}
+For a ring \(R\), a \index{Dieudonn\'e module!algebra}\textit{Dieudonn\'e \(R\)--algebra} \(A_*\) is an externally graded Dieudonn\'e module equipped with an \(R\)--action and a unital multiplication \[\circ\co A_* \boxtimes A_* \to A_*.\]
+\end{definition}
+
+\begin{example}[{\cite[Proposition 10.2]{GoerssDieudonne}}]
+Inspired by \Cref{UnstableRWRelation} and our interest in \(H_* \OS{E}{*}\), for a complex-oriented homology theory \(E\) we define its \textit{algebraic Dieudonn\'e \(E_*\)--algebra} by \[R_E = \left. E_*[b_1, b_2, \ldots] \middle/ \left( \begin{array}{c} b(s+t) = b(s) +_E b(t) \end{array} \right) \right.,\] where \(V\) is multiplicative, \(V\) fixes \(E_*\), and \(V\) satisfies \(Vb_{pj} = b_j\).\footnote{If \(E_*\) is torsion-free, then this determines the behavior of \(F\) by \(FV = p\).}  This is the Dieudonn\'e-theoretic analogue of the algebraic approximation \(\AA(H, E)\).  We also write \(D_E = \{D_{2m} H_* \OS{E}{2n}\}\) for the even part of the topological Dieudonn\'e algebra, and these come with natural comparison maps \[R_E \to D_E \to D_* H_* \OS{E}{2*}.\]
+\end{example}
+
+\begin{theorem}[{Dieudonn\'e theoretic form of \Cref{LEFTUnstableCooperations}, \cite[Theorem 11.7]{GoerssDieudonne}}]\label{LandweberFlatUnstableCoopns}
+Restricting attention to the even parts, the maps \[R_E \to D_E \to D_* H_* \OS{E}{2*}\] are isomorphisms for \(E\) Landweber flat.
+\end{theorem}
+\begin{proof}
+In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for \(E = BP\).  However, the right--hand object can be identified via Brown--Gitler juggling: \[D_n H_* \OS{E}{2j} = B(n)_n \Susp^{2j} E = E_{2j+n} B(n).\]  It follows that if \(E\) is Landweber flat, then the middle-- and right--terms are determined by change-of-base from the respective \(BP\) terms.  Finally, the left term commutes with change-of-base by its algebraic definition, and the theorem follows.
+\end{proof}
+
+\begin{remark}
+Goerss's original proof of \Cref{LandweberFlatUnstableCoopns}~\cite{GoerssDieudonne} involved a lot more work, essentially because he didn't want to assume \Cref{HFpBPCooperationsTheorem} or \Cref{HopfRingForEBP}.  Instead, he used the fact that \(\Susp^\infty_+ \Loops^2 S^3\) is a regrading of the ring spectrum \(\bigvee_n B(n)\), together with knowledge of \(BP_* \Loops^2 S^3\).
+\end{remark}
+
+\begin{remark}[{\cite[Proposition 11.6, Remark 11.4]{GoerssDieudonne}}]
+The Dieudonn\'e algebra framework also makes it easy to add in the odd part after the fact.  Namely, suppose that \(E\) is a torsion--free ring spectrum and suppose that \(E_* B(2n)\) is even for all \(n\).  In this setting, we can verify the purely topological version of this statement: \index{homology suspension}the map \[D_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}\] is an isomorphism.  To see this, note that because \[E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}\] is onto and \(E_{2n-2k-1} B(2n)\) is assumed zero, the group \(D_{2n} H_* \OS{E}{2k+1}\) vanishes as well.  A bar spectral sequence argument shows that \(D_{2n+1} H_* \OS{E}{2k+2}\) is also empty~\cite[Lemma 11.5.1]{GoerssDieudonne}.  Hence, the map on even parts \[(D_E[e] / (e^2 - b_1))_{*, 2n} \to (D_* H_* \OS{E}{*})_{*, 2n}\] is an isomorphism, and we need only show that \[D_* H_* \OS{E}{2n} \xrightarrow{e \circ -} D_* H_* \OS{E}{2n+1}\] is an isomorphism as well.  Since we have \(e(Fx) = F(Ve \circ x) = 0\) generally and \(D_* A / FD_* A \cong Q^* A\) for a Hopf algebra \(A\), we see that \(e\) kills decomposables and suspends indecomposables: \[e \circ D_* H_* \OS{E}{2n} = \Susp QH_* \OS{E}{2n}.\]  This is also what happens in the bar spectral sequence, and the claim follows.  In light of \Cref{LandweberFlatUnstableCoopns}, this means that for Landweber flat \(E\), the comparison isomorphism can be augmented to a further isomorphism \[R_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
+\end{remark}
+
+\begin{remark}[{\cite{HopkinsHunton}}]
+The results of this Lecture are accessed from a different perspective by Hopkins and Hunton, essentially by forming a tensor product of Hopf rings and showing that Landweber flatness induces a kind of flatness with respect to the Hopf ring tensor product as well.
+\end{remark}
+
+
+Before moving on, we prove a sequence of small results which make these spectra \(B(n)\) somewhat more tangible, though we advise the reader that these do not bear any further on our investigation of unstable cooperations.
 
 \begin{lemma}[{\cite[Lemma 3.2]{GLM}}]
 The spectrum \(B(n)\) is connective and \(p\)--complete.
@@ -1031,7 +1074,7 @@ H_k B(n) & = D_n H_* K(\F_p, n-k) \\
 & = \CatOf{Modules}_{\F_p}(G(n)_{n-k}, \F_p).
 \end{align*}
 
-We learn immediately that \(H_* B(n)\) is finite.  We would like to show, furthermore, that \(H_* B(n)\) is the Spanier--Whitehead dual \(\Susp^n DG(n)\).  It suffices to show \[\CatOf{Modules}_{\mathcal A^*}(G(n), \Susp^j \mathcal A_*) = \CatOf{Modules}_{\mathcal A^*}(\F_p, \Susp^j \mathcal A_* \otimes H_* B(n))\] for all values of \(j\).  This follows from calculating \(B(n)_n \Susp^{n+j} H\) using the same method.  Finally, we apply linear-algebraic duality and \Cref{SpanierWhiteheadDualOfGeneratingModule}.
+We learn immediately that \(H_* B(n)\) is finite, so that a unique Spanier--Whitehead predual exists and agrees with the Spanier--Whitehead dual.  The statement then follows from the previous equality.
 \end{proof}
 
 Lastly, for a \emph{space} \(X\), we definitionally have that have \(H_* X\) forms an unstable module over the Steenrod algebra, i.e., \(\Loops^\infty H_* X = H_* X\).  This has the following direct sequence (with minor fuss at the bad indices \(n \equiv \pm 1 \pmod p\)):
@@ -1043,47 +1086,8 @@ B(n)_n X \to H_n X. \qedhere
 \popQED\]
 \end{lemma}
 
-
-
-Let's now work toward using the \(B(n)\) spectra to analyze the \index{Hopf ring}Hopf rings arising from unstable cooperations.  Our intention is to prove the following:
-\begin{theorem}[{cf.\ \Cref{UnstableEthyCooperations}}]\label{LEFTUnstableCooperations}
-For \(F = H\) and \(E\) a \index{Landweber flat}Landweber flat homology theory, the comparison map \[\AA(H, E) \to H_* \OS{E}{2*}\] is an isomorphism of Hopf rings.
-\end{theorem}
-\noindent We have previously computed that the comparison map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  We will now reimagine this statement in terms of Dieudonn\'e theory, but in order to do this we again have to reimagine some of Dieudonn\'e theory itself, as our description of it is concerned with \emph{Hopf algebras} rather than \emph{Hopf rings}.  A Hopf ring is not much structure on top of an (externally) graded system of (internally) graded Hopf algebras \(A_*\): it is a multiplication map \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``\(\boxtimes\)'' is a kind of graded \index{Hopf algebra!tensor product}tensor product of externally graded Hopf algebras~\cite[Proposition 2.6]{HuntonTurner}, \cite[Definition 2.2]{BuchstaberLazarev}, \cite[Section 5]{GoerssDieudonne}.  Since \(D_*\) gives an equivalence of categories between internally graded Hopf algebras and internally graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of \index{Dieudonn\'e module!tensor product}Dieudonn\'e modules.
-
-\begin{definition}{\cite[pg.\ 154]{GoerssDieudonne}}
-The naive tensor product \(M \otimes N\) of Dieudonn\'e modules \(M\) and \(N\) receives the structure of a \(\Z_p[V]\)--module, where \(V(x \otimes y) = V(x) \otimes V(y)\).  We define the \textit{tensor product of Dieudonn\'e modules}\footnote{This definition is specialized to \(\F_p\) and \(\mathbb W_p(\F_p) = \Z_p\), where we don't have to worry about Frobenius semi-linearity.} by \[M \boxtimes N = \left.\frac{\Z_p[F, V]}{(VF = p)} \otimes_{\Z_p[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
-\end{definition}
-
-\begin{lemma}[{\cite[Corollary 8.14]{GoerssDieudonne}}]
-The natural map \[D_*(M) \boxtimes D_*(N) \to D_*(M \boxtimes N)\] is an isomorphism. \qed
-\end{lemma}
-
-\begin{definition}
-For a ring \(R\), a \index{Dieudonn\'e module!algebra}\textit{Dieudonn\'e \(R\)--algebra} \(A_*\) is an externally graded Dieudonn\'e module equipped with an \(R\)--action and a unital multiplication \[\circ\co A_* \boxtimes A_* \to A_*.\]
-\end{definition}
-
-\begin{example}[{\cite[Proposition 10.2]{GoerssDieudonne}}]
-Inspired by \Cref{UnstableRWRelation} and our interest in \(H_* \OS{E}{*}\), for a complex-oriented homology theory \(E\) we define its \textit{algebraic Dieudonn\'e \(E_*\)--algebra} by \[R_E = \left. E_*[b_1, b_2, \ldots] \middle/ \left( \begin{array}{c} b(s+t) = b(s) +_E b(t) \end{array} \right) \right.,\] where \(V\) is multiplicative, \(V\) fixes \(E_*\), and \(V\) satisfies \(Vb_{pj} = b_j\).\footnote{If \(E_*\) is torsion-free, then this determines the behavior of \(F\) by \(FV = p\).}  This is the Dieudonn\'e-theoretic analogue of the algebraic approximation \(\AA(H, E)\).  We also write \(D_E = \{D_{2m} H_* \OS{E}{2n}\}\) for the even part of the topological Dieudonn\'e algebra, and these come with natural comparison maps \[R_E \to D_E \to D_* H_* \OS{E}{2*}.\]
-\end{example}
-
-\begin{theorem}[{Dieudonn\'e theoretic form of \Cref{LEFTUnstableCooperations}, \cite[Theorem 11.7]{GoerssDieudonne}}]\label{LandweberFlatUnstableCoopns}
-Restricting attention to the even parts, the maps \[R_E \to D_E \to D_* H_* \OS{E}{2*}\] are isomorphisms for \(E\) Landweber flat.
-\end{theorem}
-\begin{proof}
-In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for \(E = BP\).  However, the right--hand object can be identified via Brown--Gitler juggling: \[D_n H_* \OS{E}{2j} = B(n)_n \Susp^{2j} E = E_{2j+n} B(n).\]  It follows that if \(E\) is Landweber flat, then the middle-- and right--terms are determined by change-of-base from the respective \(BP\) terms.  Finally, the left term commutes with change-of-base by its algebraic definition, and the theorem follows.
-\end{proof}
-
-\begin{remark}
-Goerss's original proof of \Cref{LandweberFlatUnstableCoopns}~\cite{GoerssDieudonne} involved a lot more work, essentially because he didn't want to assume \Cref{HFpBPCooperationsTheorem} or \Cref{HopfRingForEBP}.  Instead, he used the fact that \(\Susp^\infty_+ \Loops^2 S^3\) is a regrading of the ring spectrum \(\bigvee_n B(n)\), together with knowledge of \(BP_* \Loops^2 S^3\).
-\end{remark}
-
-\begin{remark}[{\cite[Proposition 11.6, Remark 11.4]{GoerssDieudonne}}]
-The Dieudonn\'e algebra framework also makes it easy to add in the odd part after the fact.  Namely, suppose that \(E\) is a torsion--free ring spectrum and suppose that \(E_* B(2n)\) is even for all \(n\).  In this setting, we can verify the purely topological version of this statement: \index{homology suspension}the map \[D_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}\] is an isomorphism.  To see this, note that because \[E_{2n-2k-1} B(2n) \to D_{2n} H_* \OS{E}{2k+1}\] is onto and \(E_{2n-2k-1} B(2n)\) is assumed zero, the group \(D_{2n} H_* \OS{E}{2k+1}\) vanishes as well.  A bar spectral sequence argument shows that \(D_{2n+1} H_* \OS{E}{2k+2}\) is also empty~\cite[Lemma 11.5.1]{GoerssDieudonne}.  Hence, the map on even parts \[(D_E[e] / (e^2 - b_1))_{*, 2n} \to (D_* H_* \OS{E}{*})_{*, 2n}\] is an isomorphism, and we need only show that \[D_* H_* \OS{E}{2n} \xrightarrow{e \circ -} D_* H_* \OS{E}{2n+1}\] is an isomorphism as well.  Since we have \(e(Fx) = F(Ve \circ x) = 0\) generally and \(D_* A / FD_* A \cong Q^* A\) for a Hopf algebra \(A\), we see that \(e\) kills decomposables and suspends indecomposables: \[e \circ D_* H_* \OS{E}{2n} = \Susp QH_* \OS{E}{2n}.\]  This is also what happens in the bar spectral sequence, and the claim follows.  In light of \Cref{LandweberFlatUnstableCoopns}, this means that for Landweber flat \(E\), the comparison isomorphism can be augmented to a further isomorphism \[R_E[e] / (e^2 - b_1) \to D_* H_* \OS{E}{*}.\]
-\end{remark}
-
-\begin{remark}[{\cite{HopkinsHunton}}]
-The results of this Lecture are accessed from a different perspective by Hopkins and Hunton, essentially by forming a tensor product of Hopf rings and showing that Landweber flatness induces a kind of flatness with respect to the Hopf ring tensor product as well.
+\begin{remark}[{\cite{Cohen}}]
+These properties actually uniquely characterize the spectra \(B(n)\) as \textit{Brown--Gitler spectra}\index{Brown--Gitler spectrum}, which arise in many other settings in stable homotopy theory.  For instance, the stable James splitting for \(\Loops^2 S^3\) is given by \[\Susp^\infty_+ \Loops^2 \Susp^2 S^1 \simeq \bigvee_{j=0}^\infty \Susp^j B(\lfloor j/2 \rfloor).\]
 \end{remark}
 
 
