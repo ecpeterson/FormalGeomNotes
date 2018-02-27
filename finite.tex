@@ -1114,7 +1114,7 @@ A full subcategory of a triangulated category (e.g., the homotopy category of \(
 \noindent The categories \(\CatOf D_d\) are the ones we are interested in analyzing, and we hope to identify these putative spectra \(V(d)\) inside of them.  Ravenel shows the following foothold interrelating the \(\CatOf C_d\):
 
 \begin{lemma}[{\cite[Theorem 2.11]{RavenelLocalizationWRTPeriodic}}]\label{CdCategoriesNest}
-For \(X\) a finite complex, there is a bound \[\dim K(d-1)_* X \le \dim K(d)_* X.\]  In particular, there is an inclusion \(\CatOf C_d \subseteq \CatOf C_{d+1}\).
+For \(X\) a finite complex, there is a bound \[\dim K(d-1)_* X \le \dim K(d)_* X.\]  In particular, there is an inclusion \(\CatOf C_d \supseteq \CatOf C_{d+1}\).
 \end{lemma}
 \begin{proof}[Proof sketch]
 One should compare this with the statement that the stalk dimension of a coherent sheaf is upper semi-continuous.  In fact, this analogy gives the essentials of Ravenel's proof: one considers the ring spectrum \(v_d^{-1} BP / I_{d-1}\), which admits two maps
@@ -1132,7 +1132,7 @@ Hopkins and Smith are able to use their local nilpotence detection result, \Cref
 Any thick subcategory \(\CatOf C\) of the category of \(p\)--local finite spectra must be \(\CatOf C_d\) for some \(d\).
 \end{theorem}
 \begin{proof}
-Since \(\CatOf C_d\) are nested by \Cref{CdCategoriesNest} and they form an exhaustive filtration (i.e., \(\CatOf C_\infty\) = 0), it is thus sufficient to show that any object \(X \in \CatOf C\) with \(X \in \CatOf C_d \setminus \CatOf C_{d-1}\) induces an inclusion \(\CatOf C_d \subseteq \CatOf C\).  Write \(R\) for the endomorphism ring spectrum \(R = F(X, X)\), and write \(F\) for the fiber of its unit map: \[F \xrightarrow{f} \S \xrightarrow{\eta_R} R.\]  Finally, let \(Y \in \CatOf C_d\) be \emph{any} finite spectrum of type at least \(d\).  Our goal is to demonstrate \(Y \in \CatOf C\).  
+Since \(\CatOf C_d\) are nested by \Cref{CdCategoriesNest} and they form an exhaustive filtration (i.e., \(\CatOf C_\infty\) = 0), it is thus sufficient to show that any object \(X \in \CatOf C\) with \(X \in \CatOf C_d \setminus \CatOf C_{d+1}\) induces an inclusion \(\CatOf C_d \subseteq \CatOf C\).  Write \(R\) for the endomorphism ring spectrum \(R = F(X, X)\), and write \(F\) for the fiber of its unit map: \[F \xrightarrow{f} \S \xrightarrow{\eta_R} R.\]  Finally, let \(Y \in \CatOf C_d\) be \emph{any} finite spectrum of type at least \(d\).  Our goal is to demonstrate \(Y \in \CatOf C\).  
 
 Now consider applying \(K(n)\)--homology (for \emph{arbitrary} \(n\)) to the map \[1 \sm f\co Y \sm F \to Y \sm \S.\]  The induced map is always zero:
 \begin{itemize}
@@ -1144,10 +1144,10 @@ By a small variant of local nilpotence detection (\Cref{LocalNilpotenceDetection
 We now work to show that this smash product lies in the thick subcategory \(\CatOf C\) of interest.  First, note that it suffices to show that \(\cofib f^{\sm j}\) on its own lies in \(\CatOf C\): a finite spectrum (such as \(Y\) or \(F\)) can be expressed as a finite gluing diagram of spheres, and smashing this through with \(\cofib f^{\sm j}\) then expresses \(Y \sm \cofib f^{\sm j}\) as the iterated cofiber of maps with source and target in \(\CatOf C\).  With that in mind, we will in fact show that \(\cofib f^{\sm k}\) lies in \(\CatOf C\) for all \(k \ge 1\).  Consider the following smash version of the octahedral axiom: the factorization \[F \sm F^{\sm (k-1)} \xrightarrow{1 \sm f^{\sm (k-1)}} F \sm \S^{\sm (k-1)} \xrightarrow{f \sm 1} \S \sm \S^{\sm (k-1)}\] begets a cofiber sequence \[F \sm \cofib f^{\sm (k-1)} \to \cofib f^{\sm k} \to \cofib f \sm \S^{\sm (k-1)}.\]  Noting that the base case \(\cofib(f) = R = X \sm DX\) lies in \(\CatOf C\), we can inductively use the \(2\)-out-of-\(3\) property on the octahedral cofiber sequence to see that \(\cofib(f^{\sm k})\) lies in \(\CatOf C\) for all \(k\).  It follows in particular that \(Y \sm \cofib(f^{\sm j})\) lies in \(\CatOf C\), and using the retraction \(Y\) belongs to \(\CatOf C\) as well.
 \end{proof}
 
-Although this didn't affect the previous Theorem statement, one is led by its proof to wonder there exist such spectra $X \in \CatOf C_d \setminus \CatOf C_{d-1}$---i.e., whether these nested containments are proper.  The following result lays this to rest:
+Although this didn't affect the previous Theorem statement, one is led by its proof to wonder there exist such spectra $X \in \CatOf C_d \setminus \CatOf C_{d+1}$---i.e., whether these nested containments are proper.  The following result lays this to rest:
 
 \begin{theorem}[{Hopkins--Smith Periodicity Theorem, \cite[Proposition 5.14, Theorem 9]{HopkinsSmith}}]\label{CdEqualsDd}
-A \(p\)--local finite spectrum is \(K(d-1)\)--acyclic exactly when it admits a \(v_d\)--self--map.  Additionally, the inclusion \(\CatOf C_d \subsetneq \CatOf C_{d-1}\) is proper.
+A \(p\)--local finite spectrum is \(K(d-1)\)--acyclic exactly when it admits a \(v_d\)--self--map.  Additionally, the inclusion \(\CatOf C_d \supsetneq \CatOf C_{d+1}\) is proper.
 \end{theorem}
 \begin{proof}[Executive summary of proof]
 Given the classification of thick subcategories, if a property is closed under thickness then one need only exhibit a single spectrum with the property to know that all the spectra in the thick subcategory it generates also all have that property.  Inductively, they manually construct finite spectra\footnote{They actually first construct spectra \(X_n\) with \(v_n\)--self--maps without attempting to constrain their \(BP\)--homology~\cite[Theorem 4.11]{HopkinsSmith}.} \index{Moore spectrum}\(M_0(p^{i_0}, v_1^{i_1}, \ldots, v_{d-1}^{i_{d-1}})\) for sufficiently large\footnote{We ran into the asymptotic condition \(I \gg 0\) earlier, when we asserted that there is no root of the \(2\)--local \(v_1\)--self--map \(v\co M_8(2) \to M_0(2)\).} indices \(i_*\) which admit a self-map \(v\) governed by a commuting square
