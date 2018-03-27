@@ -90,7 +90,7 @@ A \otimes_R (A \otimes_R A) \arrow{r}{1 \otimes \ast} \arrow{d}{\Delta \otimes (
 \caption{The distributivity axiom for \(\ast\) over \(\circ\) in a Hopf ring.}\label{DistributivityDiagram}
 \end{figure}
 
-\begin{definition}[{\cite[Summary 10.46]{BJW}}]
+\begin{definition}[{\cite[Summary 10.46]{BJW}}]\label{HopfRingManualDefinition}
 A \idxentry{Hopf ring} is a module equipped with structure maps \(\eps\), \(\ast\), \(\circ\), \(\Delta\), and \(\chi\), as well as unit classes \([0]\) and \([1]\) for \(\ast\) and \(\circ\) respectively, subject to the axioms described above.\footnote{Equivalently, a Hopf ring is a ring object in the category of coalgebras.  This has the virtue of concision, but taking comodules as the base category does not seem to align with our perspective in the coming Lecture.}\footnote{There are a few more pieces of topological structure that Boardman--Johnson--Wilson call an \index{Hopf ring!enriched}\textit{enriched Hopf ring}, which we omit from the algebraic definition because they do not affect the homological algebra of modules for a Hopf ring.  They are: an element \(v \in \pi_0 E\) selects a connected component of \(\OS{E}{0}\), and there is an attached element \([v] \in E_0 \OS{E}{0}\) (i.e., the right unit structure map); a cohomology operation \(r\co E^0(-) \to E^0(-)\) induces a map \(\OS{E}{0} \to \OS{E}{0}\) and hence a map on \(E\)--homology \(r_*\co E_0 \OS{E}{0} \to E_0 \OS{E}{0}\); and, in particular, this gives a homology suspension element \(e = (e_2)_*\), where \(e_2\co E^0(-) \to E^2(-) \cong E^0(\Loops^2 -)\) is the map witnessing the \(2\)--periodicity of \(E\).}
 \end{definition}
 
@@ -407,13 +407,34 @@ By consequence, the remaining terms are all sums of \(\circ\)--products of terms
 
 
 
-Finally, we are able to explain the phenomenon uncovered by computation in \Cref{UnstableContextsSection}, where we passed to the \(\ast\)--indecomposables to find the classical ring of functions on the endomorphism scheme of \(\G_a\).  Our explanation arises out of two parallel questions:
-\begin{enumerate}
-	\item Define the \textit{Hopf ring spectrum}\index{Hopf ring!spectrum, \(\SpH\)} of a Hopf ring \(H\) by the formula \[(\SpH H)(T) = \CatOf{HopfRings}(H, T).\]  What functor \(\SpH \AA(F, E)\) does the Hopf ring \(\AA(F, E)\) corepresent?
-	\item How does this functor interact with classical rings?
-\end{enumerate}
+We now turn to practicing functorial algebraic geometry with Hopf rings, by defining the \textit{Hopf ring spectrum}\index{Hopf ring!spectrum, \(\SpH\)} of a Hopf ring \(H\) using the formula \[(\SpH H)(T) = \CatOf{HopfRings}(H, T).\]  Our goal for the remainder of this Lecture will be to give a (partial) description of the functor \(\SpH \AA(F, E)\).  In order to gain traction on this project, we seek a link with the notions of algebraic geometry that we have introduced so far, and we can find one in the form of a comparison of defintions.  The description of Hopf rings given in \Cref{HopfRingManualDefinition} was very manual, but it admits a repackaging in terms of the category theory used to define rings and ring spectra.  Just as abelian groups form the abelian group objects in \(\CatOf{Sets}\), commutative Hopf \(R\)--algebras form the abelian group objects in \(\CatOf{Coalgebras}_R\).  Both of these categories admit interesting monoidal structures capturing bilinearity: the category of abelian groups acquires a tensor product, and the category of Hopf algebras acquires the \(\boxtimes\)--product~\cite[Section 5]{GoerssDieudonne}.  Commutative algebras for the tensor monoidal structure on abelian groups define commutative rings, and commutative algebras for the \(\boxtimes\)--product define Hopf rings.
 
-Towards the second, we have already described an interesting bifunctorial embedding \((R, S) \mapsto R[S]\) analogous to the group-ring construction embedding groups into Hopf algebras.  The following observation describes the arithmetic in its ring of \(\ast\)--indecomposables:
+\begin{lemma}[{\cite[Proposition 6.1]{GoerssDieudonne}}]
+The functor \[Q^*\co \CatOf{HopfAlgebras}_R \to \CatOf{Modules}_R\] is compatible with the indicated monoidal structures: \[Q^*(H \boxtimes_R H') = Q^* H \otimes_R Q^* H'. \pushQED\qed\qedhere\popQED\]
+\end{lemma}
+
+In particular, we learn that \(Q^*\) induces a compatible functor \[Q^*\co \CatOf{HopfRings}_R \to \CatOf{Algebras}_{R/},\] so that we might build our program around it.  The key observation is:
+
+\begin{corollary}
+Both functors \(Q^*\) admit right-adjoints as in the diagram
+\begin{center}
+\begin{tikzcd}
+\CatOf{HopfRings}_R \arrow[shift left=0.3em, "Q^*"]{r} \arrow{d} & \CatOf{Algebras}_R \arrow{d} \arrow[shift left=0.3em, "i", densely dotted]{l} \\
+\CatOf{HopfAlgebras}_R \arrow[shift left=0.3em, "Q^*"]{r} & \CatOf{Modules}_R, \arrow[shift left=0.3em, "i", densely dotted]{l}
+\end{tikzcd}
+\end{center}
+\end{corollary}
+\begin{proof}
+We begin at the simpler level of Hopf algebras and abelian groups.  The situation here is clarified by breaking it into two components, unexpected from the perspective of the decomposition of definitions above:
+\begin{center}
+\begin{tikzcd}
+\CatOf{HopfAlgebras}_R \arrow[shift left=0.3em, "U"]{r} & \CatOf{Algebras}_{R/} \arrow[shift left=0.3em, "F"]{l} \arrow[shift left=0.3em, "Q^*"]{r} & \CatOf{Modules}_R \arrow[shift left=0.3em, "j"]{l}.
+\end{tikzcd}
+\end{center}
+The presence of the forgetful functor \(U\) records that the antipode and diagonal play no role in \(Q^*\).  The functor \(j\) sends an \(R\)--module to its square-zero extension, and together these form an adjoint pair.  The right-adjoint to the forgetful functor is considerably more complex but nonetheless exists~\cite{Fox}.  Category theory then lifts us to the setting of Hopf rings: the right-adjoint to a strongly monoidal functor is lax monoidal, which is enough to preserve algebra objects.
+\end{proof}
+
+As a consequence, we deduce that there is a special class of Hopf rings where the Hopf ring spectrum behaves like an object in ordinary algebraic geometry: \[(\SpH H)(iA) = \CatOf{HopfRings}(H, iA) = \CatOf{Rings}(Q^* H, A) = (\Spec Q^* H)(A).\]  On this locus, we have a real shot of understanding the behavior of \(\SpH \AA(F, E)\) by analyzing the quotient \(Q^* \AA(F, E)\).  We begin with two helpful results:
 
 \begin{lemma}\label{ArithmeticInQAst}
 For \(H\) a Hopf ring and \(x \in H\), write \(\<x\> = x - \eps(x) \cdot [0]\) for the corresponding element of \(\ker \eps\).  In the \(\ast\)--indecomposable quotient, there are the formulas
@@ -442,32 +463,7 @@ c\co Q^* R[S] & \to R \otimes S, \\
 \end{align*}
 \end{proof}
 
-Specializing to \(R = \Z\) and varying \(S\), the map \(c\) looks as though it might play the role of a counit for an adjunction.  However, when trying to construct a corresponding unit map, one finds that the definition of the \(\ast\)--product in the ring-ring construction is too free to easily map into.  To ameliorate this, we might destroy the \(\ast\)--product instead by quotienting by \((\ker \eps)^{\ast 2}\).\footnote{One should compare this with an analogous construction in classical rings: the computation in \Cref{ConstructionTangentAffineScheme} shows \(A / I^2 = R \oplus (I / I^2) \cong \Sym(T_0^* A) / (T_0^* A)^2\).}  One quickly checks that this defines a Hopf ring ideal, as in the following steps:
-\begin{align*}
-\intertext{Closure under \(\chi\):}
-\chi(\<r\> \ast \<s\>) & = \<-r\> \ast \<-s\>. \\
-\intertext{Closure under \(\ast\):}
-(\<r\> \ast \<s\>) \ast (\<r'\> \ast \<s'\>) & = (\<r+s\> - \<r\> \eps(s) - \eps(r)\<s\>) \\
-& \quad \ast (\<r' + s'\> - \<r'\> \eps(s') - \eps(r') \<s'\>). \\
-\intertext{Closure under \(\circ\):}
-(\<r\> \ast \<s\>) \circ [r'] & = (\<r\> \circ [r']) \ast (\<s\> \circ [r']) = \<rr'\> \ast \<sr'\>. \\
-\intertext{Closure under \(\Delta\):}
-\Delta(\<r\> \ast \<s\>) & = [r+s] \otimes (\<r\>\ast\<s\>) + (\<r\>\ast\<s\>) \otimes [r] \\
-& \quad + (\<r\>\ast\<s\>) \otimes [s] - (\<r\>\ast\<s\>) \otimes 1 \\
-& \quad + \<s\>\otimes\<r\> + \<r\>\otimes\<s\>.
-\end{align*}
-
-\begin{lemma}\label{HopfRingsAndRingsAdjunction}
-The functor \(i\co \CatOf{Rings} \to \CatOf{HopfRings}\) defined by \[i(R) = \Z[R] / (\ker \eps)^{\ast 2}\] participates in an adjunction\footnote{Incidentally, the primitives functor admits a left-adjoint.}
-\begin{center}
-\begin{tikzcd}
-\CatOf{HopfRings} \arrow[shift left=0.2\baselineskip, "Q^*"]{r} & \CatOf{Rings} \arrow[shift left=0.2\baselineskip, "i"]{l}.
-\end{tikzcd}
-\end{center}
-Moreover, \(i\) is an embedding, as \(c\co Q^* i R \xrightarrow\cong R\). \qed
-\end{lemma}
-
-We are thus algebraically motivated to understand \(\Spec Q^* \AA(F, E)\), as this encodes \(\SpH \AA(F, E)\) on the subcategory of classical rings selected by \(i\).
+Finally, we are able to explain the phenomenon uncovered by computation in \Cref{UnstableContextsSection}, where we passed to the \(\ast\)--indecomposables to find the classical ring of functions on the endomorphism scheme of \(\G_a\).
 
 \begin{corollary}
 For complex-orientable \(F\) and \(E\), we have\index{formal group!homomorphism} \[\Spec Q^* \AA(F, E) \cong \InternalHom{FormalGroups}(\CP^\infty_F, \CP^\infty_E).\]
@@ -996,7 +992,7 @@ We will now use the \(B(n)\) spectra to analyze the \index{Hopf ring}Hopf rings 
 \begin{theorem}[{cf.\ \Cref{UnstableEthyCooperations}}]\label{LEFTUnstableCooperations}
 For \(F = H\) and \(E\) a \index{Landweber flat}Landweber flat homology theory, the comparison map \[\AA(H, E) \to H_* \OS{E}{2*}\] is an isomorphism of Hopf rings.
 \end{theorem}
-\noindent We have previously computed that the comparison map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  In order to make use of this statement now, we must reimagine it in terms of Dieudonn\'e theory.  In order to do that, we again have to reimagine some of Dieudonn\'e theory itself, as our description of it is concerned with \emph{Hopf algebras} rather than \emph{Hopf rings}.  A Hopf ring is not much structure on top of an (externally) graded system of (internally) graded Hopf algebras \(A_*\): it is a multiplication map \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``\(\boxtimes\)'' is a kind of graded \index{Hopf algebra!tensor product}tensor product of externally graded Hopf algebras~\cite[Proposition 2.6]{HuntonTurner}, \cite[Definition 2.2]{BuchstaberLazarev}, \cite[Section 5]{GoerssDieudonne}.  Since \(D_*\) gives an equivalence of categories between internally graded Hopf algebras and internally graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of \index{Dieudonn\'e module!tensor product}Dieudonn\'e modules.
+\noindent We have previously computed that the comparison map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  In order to make use of this statement now, we must reimagine it in terms of Dieudonn\'e theory.  In order to do that, we again have to reimagine some of Dieudonn\'e theory itself, as our description of it is concerned with \emph{Hopf algebras} rather than \emph{Hopf rings}.  Recall that a Hopf ring is an algebra object \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``\(\boxtimes\)'' is a kind of graded \index{Hopf algebra!tensor product}tensor product of externally graded Hopf algebras~\cite[Proposition 2.6]{HuntonTurner}, \cite[Definition 2.2]{BuchstaberLazarev}, \cite[Section 5]{GoerssDieudonne}.  Since \(D_*\) gives an equivalence of categories between internally graded Hopf algebras and internally graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of \index{Dieudonn\'e module!tensor product}Dieudonn\'e modules.
 
 \begin{definition}{\cite[pg.\ 154]{GoerssDieudonne}}
 The naive tensor product \(M \otimes N\) of Dieudonn\'e modules \(M\) and \(N\) receives the structure of a \(\Z_p[V]\)--module, where \(V(x \otimes y) = V(x) \otimes V(y)\).  We define the \textit{tensor product of Dieudonn\'e modules}\footnote{This definition is specialized to \(\F_p\) and \(\mathbb W_p(\F_p) = \Z_p\), where we don't have to worry about Frobenius semi-linearity.} by \[M \boxtimes N = \left.\frac{\Z_p[F, V]}{(VF = p)} \otimes_{\Z_p[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
