@@ -407,13 +407,15 @@ By consequence, the remaining terms are all sums of \(\circ\)--products of terms
 
 
 
-We now turn to practicing functorial algebraic geometry with Hopf rings, by defining the \textit{Hopf ring spectrum}\index{Hopf ring!spectrum, \(\SpH\)} of a Hopf ring \(H\) using the formula \[(\SpH H)(T) = \CatOf{HopfRings}(H, T).\]  Our goal for the remainder of this Lecture will be to give a (partial) description of the functor \(\SpH \AA(F, E)\).  In order to gain traction on this project, we seek a link with the notions of algebraic geometry that we have introduced so far, and we can find one in the form of a comparison of defintions.  The description of Hopf rings given in \Cref{HopfRingManualDefinition} was very manual, but it admits a repackaging in terms of the category theory used to define rings and ring spectra.  Just as abelian groups form the abelian group objects in \(\CatOf{Sets}\), commutative Hopf \(R\)--algebras form the abelian group objects in \(\CatOf{Coalgebras}_R\).  Both of these categories admit interesting monoidal structures capturing bilinearity: the category of abelian groups acquires a tensor product, and the category of Hopf algebras acquires the \(\boxtimes\)--product~\cite[Section 5]{GoerssDieudonne}.  Commutative algebras for the tensor monoidal structure on abelian groups define commutative rings, and commutative algebras for the \(\boxtimes\)--product define Hopf rings.
+We now turn to practicing functorial algebraic geometry with Hopf rings, defining the \textit{Hopf ring spectrum}\index{Hopf ring!spectrum, \(\SpH\)} of a Hopf ring \(H\) using the formula \[(\SpH H)(T) = \CatOf{HopfRings}(H, T).\]  Our goal for the remainder of this Lecture will be to give a (partial) description of the functor \(\SpH \AA(F, E)\).  In order to gain traction on this project, we seek a link with the notions of algebraic geometry that we have introduced so far, and we can find one in the form of a comparison of defintions.  The description of Hopf rings given in \Cref{HopfRingManualDefinition} was very manual, but it admits a repackaging in terms of the category theory used to define rings and ring spectra.  Just as abelian groups form the abelian group objects in \(\CatOf{Sets}\), commutative Hopf \(R\)--algebras form the abelian group objects in \(\CatOf{Coalgebras}_R\).  Both of these categories admit interesting monoidal structures capturing bilinearity: the category of abelian groups acquires a tensor product, and the category of Hopf algebras acquires the \(\boxtimes\)--product~\cite[Section 5]{GoerssDieudonne}.  Commutative algebras for the tensor monoidal structure on abelian groups define commutative rings, and commutative algebras for the \(\boxtimes\)--product define Hopf rings.
+
+We now seek a functor \(\CatOf{HopfAlgebras}_R \to \CatOf{Modules}_R\) which is compatible with the two monoidal structures.  Indeed, we have already brushed up against one in the previous Lecture:
 
 \begin{lemma}[{\cite[Proposition 6.1]{GoerssDieudonne}}]
-The functor \[Q^*\co \CatOf{HopfAlgebras}_R \to \CatOf{Modules}_R\] is compatible with the indicated monoidal structures: \[Q^*(H \boxtimes_R H') = Q^* H \otimes_R Q^* H'. \pushQED\qed\qedhere\popQED\]
+The functor \[Q^*\co \CatOf{HopfAlgebras}_R \to \CatOf{Modules}_R\] is strongly monoidal: \[Q^*(H \boxtimes_R H') = Q^* H \otimes_R Q^* H'. \pushQED\qed\qedhere\popQED\]
 \end{lemma}
 
-In particular, we learn that \(Q^*\) induces a compatible functor \[Q^*\co \CatOf{HopfRings}_R \to \CatOf{Algebras}_{R/},\] so that we might build our program around it.  The key observation is:
+\noindent In particular, we learn that \(Q^*\) induces a compatible functor \[Q^*\co \CatOf{HopfRings}_R \to \CatOf{Algebras}_{R/},\] so that we might build our program around it.  The key observation is:
 
 \begin{corollary}
 Both functors \(Q^*\) admit right-adjoints as in the diagram
@@ -434,7 +436,7 @@ We begin at the simpler level of Hopf algebras and abelian groups.  The situatio
 The presence of the forgetful functor \(U\) records that the antipode and diagonal play no role in \(Q^*\).  The functor \(j\) sends an \(R\)--module to its square-zero extension, and together these form an adjoint pair.  The right-adjoint to the forgetful functor is considerably more complex but nonetheless exists~\cite{Fox}.  Category theory then lifts us to the setting of Hopf rings: the right-adjoint to a strongly monoidal functor is lax monoidal, which is enough to preserve algebra objects.
 \end{proof}
 
-As a consequence, we deduce that there is a special class of Hopf rings where the Hopf ring spectrum behaves like an object in ordinary algebraic geometry: \[(\SpH H)(iA) = \CatOf{HopfRings}(H, iA) = \CatOf{Rings}(Q^* H, A) = (\Spec Q^* H)(A).\]  On this locus, we have a real shot of understanding the behavior of \(\SpH \AA(F, E)\) by analyzing the quotient \(Q^* \AA(F, E)\).  We begin with two helpful results:
+As a consequence, we deduce that there is a class of test Hopf rings where the Hopf ring spectrum behaves like an object in ordinary algebraic geometry: \[(\SpH H)(iA) = \CatOf{HopfRings}(H, iA) = \CatOf{Rings}(Q^* H, A) = (\Spec Q^* H)(A).\]  Before turning to \(\SpH \AA(F, E)\) itself, we note that \(i\) is an embedding, using the following sequence of generally useful results:
 
 \begin{lemma}\label{ArithmeticInQAst}
 For \(H\) a Hopf ring and \(x \in H\), write \(\<x\> = x - \eps(x) \cdot [0]\) for the corresponding element of \(\ker \eps\).  In the \(\ast\)--indecomposable quotient, there are the formulas
@@ -453,17 +455,25 @@ We can also directly calculate \[\<x\> \circ \<y\> = x \circ y - \eps(x) \eps(y)
 \end{proof}
 
 \begin{corollary}\label{QAstAndTensors}
-There is an isomorphism \(Q^* R[S] \cong R \otimes S\).
+There is an isomorphism \(Q^* R[S] \cong S\).
 \end{corollary}
 \begin{proof}[Construction]
 The inverse to the map \(x \mapsto \<[x]\>\) is given by
 \begin{align*}
-c\co Q^* R[S] & \to R \otimes S, \\
+c\co Q^* R[S] & \to S, \\
 \sum_j r_j ([s_j] - [0]) & \mapsto \sum_j r_j \otimes s_j. \qedhere
 \end{align*}
 \end{proof}
 
-Finally, we are able to explain the phenomenon uncovered by computation in \Cref{UnstableContextsSection}, where we passed to the \(\ast\)--indecomposables to find the classical ring of functions on the endomorphism scheme of \(\G_a\).
+\begin{corollary}\label{iEmbeds}
+The functor \(i\) is an embedding.
+\end{corollary}
+\begin{proof}
+This follows from the equivalence \[\CatOf{Algebras}_{R/}(A, B) = \CatOf{HopfRings}_R(R[A], iB).\]  Distinct algebras \(B\) and \(B'\) determine distinct functors \(\CatOf{Algebras}_{R/}(-, B)\) and \(\CatOf{Algebras}_{R/}(-, B')\), and this distinction induces a difference in the functors \(\CatOf{HopfRings}_R(-, iB)\) and \(\CatOf{HopfRings}_R(-, iB')\).
+\end{proof}
+
+
+Finally, we turn to \(Q^* \AA(F, E)\) directly, with the goal of explaining the phenomenon uncovered in \Cref{UnstableContextsSection}, where we passed to the \(\ast\)--indecomposables to find the classical ring of functions on the endomorphism scheme of \(\G_a\).
 
 \begin{corollary}
 For complex-orientable \(F\) and \(E\), we have\index{formal group!homomorphism} \[\Spec Q^* \AA(F, E) \cong \InternalHom{FormalGroups}(\CP^\infty_F, \CP^\infty_E).\]
