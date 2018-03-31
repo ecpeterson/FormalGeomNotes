@@ -98,7 +98,7 @@ Our introduction of \(E_\infty\)--rings also automatically introduces a few inte
 & \CatOf{Spectra} \arrow[shift left=0.4em, "(-) \sm E"]{u} \arrow["\P", shift left=0.4em]{r} & \EinftyRings. \arrow[shift left=0.4em, "(-) \sm E"]{u} \arrow[shift left=0.4em]{l}
 \end{tikzcd}
 \end{center}
-The first functor sends a space \(X\) to its spectrum of \(E\)--cochains \(E^{\Susp^\infty_+ X}\), and the other two functors form a free/forgetful monad\index{descent!monadic} resolving a mapping space in \(\EinftyRings_E\) by a sequence of mapping spaces in \(\CatOf{Modules}_E\).  These kinds of functors are familiar to us from the discussion of contexts in \Cref{StableContextLecture} and \Cref{UnstableContextsSection}, and the recipe applied in those situations gives an analogous story here.  First, there is a natural map \[\CatOf{Spaces}(*, X) \to \EinftyRings_E(E^{X_+}, E),\] which one hopes is an equivalence under (often very strong) hypotheses on \(E\) and on \(X\).\footnote{It is an unpublished theorem of Hopkins and Lurie that if \(X\) is a space admitting a finite Postnikov system with at most \(\height \Gamma\) stages and involving only finite groups, then the natural map \(F(*, X) \to \EinftyRings_{E_\Gamma/}(E_\Gamma^{X_+}, E_\Gamma)\) is an equivalence.}  Second, the adjunction gives a mechanism for resolving \(E^{X_+}\), which feeds into a spectral sequence computing this right-hand mapping space.  The functors \(\P\) and \(\P_E\) can be given by explicit formulas:
+The first functor sends a space \(X\) to its spectrum of \(E\)--cochains \(E^{\Susp^\infty_+ X}\), and the other two functors form a free/forgetful monad\index{descent!monadic} resolving a mapping space in \(\EinftyRings_E\) by a sequence of mapping spaces in \(\CatOf{Modules}_E\).  These kinds of functors are familiar to us from the discussion of contexts in \Cref{StableContextLecture} and \Cref{UnstableContextsSection}, and the recipe applied in those situations gives an analogous story here.  First, there is a natural map \[\CatOf{Spaces}(*, X) \to \EinftyRings_E(E^{X_+}, E),\] which one hopes is an equivalence under (often very strong) hypotheses on \(E\) and on \(X\).\footnote{Mandell has shown this assignment for \(E = \HFp\) is an equivalence on connected \(p\)--complete nilpotent spaces of finite \(p\)--type~\cite{Mandell}.  There is an analogous unpublished theorem of Hopkins and Lurie: this assignment for \(E = E_\Gamma\) is an equivalence if \(X\) is a nilpotent space admitting a finite Postnikov system with at most \(\height \Gamma\) stages and involving only finite groups.}  Second, the adjunction gives a mechanism for resolving \(E^{X_+}\), which feeds into a spectral sequence computing this right-hand mapping space.  The functors \(\P\) and \(\P_E\) can be given by explicit formulas:
 \begin{align*}
 \P(X) & = \bigvee_{j=0}^\infty X^{\sm j}_{h\Sigma_j}, &
 \P_E(M) & = \bigvee_{j=0}^\infty M^{\sm_E j}_{h\Sigma_j}.
@@ -146,7 +146,7 @@ We thus set out to understand the formal schemes constituting the \(E_\infty\) c
 Accordingly, we set the \index{context!natural Einfty@natural \(E_\infty\)}\textit{natural \(E_\infty\) context} to be \[\Econtext{E_\Gamma} = \SpH E^0 B\Sigma_*.\]
 \end{definition}
 
-The effect of this functor on classical rings is given by \Cref{UnstableAlgebraicModelSection}: \(\Econtext{E_\Gamma}(T) = \CatOf{Algebras}_{E_\Gamma^0}(Q^* E^0 B\Sigma_*, T)\), where \[Q^* E^0 B\Sigma_* = \frac{E^0 B\Sigma_*}{\im\left(\Tr_{\Sigma_{*_1} \times \Sigma_{*_2}}^{\Sigma_{*_1 + *_2}}\co E^0 B\Sigma_{*_1} \times E^0 B\Sigma_{*_2} \to E^0 B\Sigma_{*_1 + *_2}\right)}.\]  The ideal appearing in this equation is called the \index{norm}\index{transfer|see {norm, equivariant}}\textit{transfer ideal}, written \(I_{\Tr}\).
+The effect of this functor on classical rings follows from our work in \Cref{UnstableAlgebraicModelSection}: \(\Econtext{E_\Gamma}(T) = \CatOf{Algebras}_{E_\Gamma^0}(Q^* E^0 B\Sigma_*, T)\), where \[Q^* E^0 B\Sigma_* = \frac{E^0 B\Sigma_*}{\bigcup_{j+k=*}\im\left(\Tr_{\Sigma_j \times \Sigma_k}^{\Sigma_{j + k}}\co E^0 B\Sigma_j \times E^0 B\Sigma_k \to E^0 B\Sigma_{j+k}\right)}.\]  The ideal appearing in this equation is called the \index{norm}\index{transfer|see {norm, equivariant}}\textit{transfer ideal}, written \(I_{\Tr}\).
 
 \begin{remark}
 In terms of the descent spectral sequence described in the previous subsection, all of the \(*\)--decomposables are in the image of the \(d^1\)--differential, so already do not contribute to the \(E^2\)--page of the spectral sequence.
@@ -533,13 +533,13 @@ A \index{sheaf!infty sheaf@\(\infty\)--sheaf}\textit{\(\CatOf{D}\)--valued sheaf
 \end{definition}
 
 \begin{definition}[{\cite[Remark 4.1]{GoerssTMF}}]
-Let \(f\co \stack N \to \moduli{fg}\) be a flat, representable morphism of stacks.  A \index{stack!topological enrichment}\textit{topological enrichment} of \(\stack N\) is a sheaf of \(E_\infty\)--ring spectra \(\sheaf O\) on \(\stack N\) such that\footnote{In particular, \(\pi_0 \sheaf O\) recovers the structure sheaf of \(\stack N\).} \[\pi_n \circ \sheaf O \cong \begin{cases} f^* \omega^{\otimes k} & \text{if \(n = 2k\) is even}, \\ 0 & \text{if \(n\) is odd}. \end{cases}\]  Fix a fixed map \(f\co \stack N \to \moduli{fg}\), this has its own associated moduli problem of topological enrichments of \(f\).
+Let \(f\co \stack N \to \moduli{fg}\) be a flat, representable morphism of stacks.  A \index{stack!topological enrichment}\textit{topological enrichment} of \(\stack N\) is a sheaf of \(E_\infty\)--ring spectra \(\sheaf O\) on \(\stack N\) such that\footnote{In particular, \(\pi_0 \sheaf O\) recovers the structure sheaf of \(\stack N\).} \[(\pi_n \circ \sheaf O)(\text{\(U \subseteq \stack N\), affine and open}) \cong \begin{cases} (f^* \omega^{\otimes k})|_U & \text{if \(n = 2k\) is even}, \\ 0 & \text{if \(n\) is odd}. \end{cases}\]  Fix a fixed map \(f\co \stack N \to \moduli{fg}\), this has its own associated moduli problem of topological enrichments of \(f\).
 \end{definition}
 
 Our goal, then, is to outline the proof of the following theorem:
 
 \begin{theorem}[{Goerss--Hopkins--Miller~\cite{HopkinsMiller,GoerssHopkins}; Behrens~\cite[Theorem 1.1]{BehrensConstruction}; Lurie~\cite{LurieSurveyOfEll}}]\label{UniqueTopEnrichmentOfMell}
-The moduli of topological enrichments of \(\moduli{ell}\), the \index{elliptic curve!moduli}moduli of elliptic curves equipped with the \'etale topology, is contractible.
+The moduli of topological enrichments of \(\moduli{ell}\), the \index{elliptic curve!moduli}moduli of elliptic curves equipped with the \'etale topology, is nonempty.
 \end{theorem}
 
 
@@ -554,10 +554,10 @@ y & \mapsto \lambda^3 y + sx + t,
 \end{align*}
 the universal one of which is defined over \[\moduli{Weier.trans.} = \moduli{Weier} \times \Spec \Z[\lambda^{\pm}, r, s, t].\]  The evident structure map belongs to a groupoid scheme structure on \(\moduli{ell} = (\moduli{Weier}, \moduli{Weier.trans.})\), for which there is a descended map \[\moduli{ell} \to \moduli{fg}.\]
 
-With the moduli of elliptic curves now specified, we will construct a topological enrichment of \(\moduli{ell}\) by doing so locally, then gluing the resulting local definitions together along common subsets to generate a sheaf on the entire object.  We first divide \(\moduli{ell}\) up over primes by passing to the \(p\)--completion, then we further divide the \(p\)--complete moduli itself into two regions via the following result:
+With the moduli of elliptic curves now specified, we will construct a topological enrichment of \(\moduli{ell}\) by doing so locally, then gluing the resulting local definitions together along common subsets.  We first divide \(\moduli{ell}\) up over primes by passing to the \(p\)--completion, and then we further divide the \(p\)--complete moduli into two regions via the following result:
 
 \begin{lemma}
-The \index{p divisible group@\(p\)--divisible group!elliptic curve}\index{elliptic curve!p divisible group@\(p\)--divisible group}\(p\)--divisible group of an elliptic curve is either formal of height \(2\) (called the \index{elliptic curve!supersingular}\textit{supersingular} case) or an extension of an \'etale \(p\)--divisible group of height \(1\) by a formal group of height \(1\) (called the \index{elliptic curve!ordinary}\text{ordinary} case).
+Over a base field of characteristic \(p\), the \index{p divisible group@\(p\)--divisible group!elliptic curve}\index{elliptic curve!p divisible group@\(p\)--divisible group}\(p\)--divisible group of an elliptic curve is either formal of height \(2\) (called the \index{elliptic curve!supersingular}\textit{supersingular} case) or an extension of an \'etale \(p\)--divisible group of height \(1\) by a formal group of height \(1\) (called the \index{elliptic curve!ordinary}\text{ordinary} case).
 \end{lemma}
 \begin{proof}
 The category of Dieudonn\'e modules with quasi-isogenies inverted becomes semisimple, and the simple components all take the form \[M_{m, n} = \Cart_{\overline{\F}_p} / (V^m = F^n),\] for \(m\) and \(n\) coprime~\cite{Manin}.  An \index{abelian variety}abelian variety is always isogenous to its dual~\cite[Section 7]{Milne}, and hence in this semisimple category the \index{Dieudonn\'e module}Dieudonn\'e module associated to an abelian variety decomposes into a Cartier self-symmetric sum of generators.\footnote{This is called the \index{Riemann--Manin symmetry}\textit{Riemann--Manin symmetry condition}.}  An abelian variety of dimension \(d\) has \(p\)--divisible group of height \(2d\), and Cartier duality on these simple components obeys the formula \(DM_{m,n} = M_{n,m}\), from which it follows that the only possibilities for the quasi-isogenous components of a \(p\)--divisible group associated to an elliptic curve are \(M_{1,1}\) and \(M_{1,0} \oplus M_{0,1}\).
@@ -569,10 +569,10 @@ The names supersingular and ordinary are partially explained by the following re
 The supersingular locus of \(\moduli{ell}\) is \(0\)--dimensional.  In fact, it is the zero-locus of a polynomial of degree at most \(\lfloor (p-1)/12 \rfloor + 2\). \qed
 \end{lemma}
 
-\noindent We write \(i\co \moduli{ell}^{\ord} \to \moduli{ell}\) for the open inclusion of the ordinary locus.  We then plan to recover a topological enrichment $\sheaf O_{\top}$ of $\moduli{ell}$ by constructing the pieces of the following pullback:
+\noindent We write \(i\co \moduli{ell}^{\ord} \to (\moduli{ell})^\wedge_p\) for the open inclusion of the ordinary locus.  We then plan to recover a topological enrichment $(\sheaf O_{\top})^\wedge_p$ of $\moduli{ell}$ by constructing the pieces of the following pullback:
 \begin{center}
 \begin{tikzcd}
-& \sheaf O_{\top} \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & (\sheaf O_{\top})^\wedge_{\moduli{ell}^{\ss}} \arrow{d} & \sheaf O^{\ss} \arrow[equal]{l} \\
+& (\sheaf O_{\top})^\wedge_p \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & (\sheaf O_{\top})^\wedge_{\moduli{ell}^{\ss}} \arrow{d} & \sheaf O^{\ss} \arrow[equal]{l} \\
 \sheaf O^{\ord} \arrow[equal]{r} & i_* i^* \sheaf O_{\top} \arrow{r} & i_* i^* \left((\sheaf O_{\top})^\wedge_{\moduli{ell}^{\ss}}\right).
 \end{tikzcd}
 \end{center}
@@ -616,7 +616,7 @@ This buys more than just a bouquet of Morava \(E\)--theories, or even the global
 
 We now turn to the ordinary locus, which constitutes the bulk of the problem: remember that the supersingular locus was essentially discrete, and we are setting out to construct a sheaf, which means that we will be manufacturing a \emph{lot} of spectra.  The main tool for analyzing this situation is a specialization of the obstruction theory of Goerss--Hopkins--Miller.  First, note that completed \(p\)--adic \(K\)--homology (i.e., continuous Morava \(E\)--theory for \(\G_m\)) carries an action by \(\Aut \G_m\), and using the results of \Cref{PowerOpnsSection} this extends to an action by \(\End \G_m\) using the \(p\){\th} power operation.  In turn, the completed \(p\)--adic \(K\)--homology of an \(E_\infty\)--ring spectrum carries an action by \(\End \G_m\), which is sometimes referred to as the structure of a \index{obstruction theory!theta algebra@\(\theta\)--algebra}\textit{\(\theta\)--algebra}.  To be more explicit:
 \begin{theorem}[{\cite{McClure}}]
-The homotopy of a \(K(1)\)--local commutative \(K_p\)--algebra spectrum \(R\), such as \(\widehat L_1 (K_p \sm E)\), carries an extra family of ring operations \(\psi^k\) indexed on \(k \in \Z_p\), as well as a ring map \(\theta\),\footnote{If \(E_*\) is torsion-free, then \(\theta\) is redundant data.} such that
+The homotopy of a \(K(1)\)--local commutative \(K_p\)--algebra spectrum \(R\), such as \(\widehat L_1 (K_p \sm E)\), carries an extra family of ring operations \(\psi^k\) indexed on \(k \in \Z_p\), as well as a ring map \(\theta\),\footnote{If \(E_*\) is torsion-free, then \(\theta\) is redundant data, but that it's a ring map is not a redundant condition.} such that
 \pushQED{\qed}
 \begin{align*}
 \psi^1(x) & = x, &
@@ -659,15 +659,16 @@ In order to apply this theorem, we need a guess as to what \(\theta\)--algebra s
 \end{tikzcd}
 \end{center}
 
-\noindent Defined via these moduli, \(V^\wedge_\infty\) has a natural structure as a solution to a moduli problem itself: it parameterizes pairs \((C, \eta\co \G_m \xrightarrow{\cong} \widehat C)\) of ordinary elliptic curves and markings of their associated formal groups.  It also carries a natural interpretation as a \(\theta\)--algebra~\cite[Equation 5.3]{BehrensConstruction}: the interesting operation \(\psi^p\) acts by
+\noindent Defined via these moduli, \(V^\wedge_\infty\) has a natural structure as a solution to a moduli problem itself: it parameterizes pairs \((C, \eta\co \G_m \xrightarrow{\cong} \widehat C)\) of ordinary elliptic curves and markings of their associated formal groups.  It carries a natural interpretation as a \(\theta\)--algebra~\cite[Equation 5.3]{BehrensConstruction}, where the interesting operation \(\psi^p\) acts by
 \[
-\psi^p\co (C, \eta\co \G_m \xrightarrow\cong \widehat C) \mapsto \left(
+\psi^p\co \left(C, \eta\co \G_m \xrightarrow\cong \widehat C\right) \mapsto \left(C^{(p)}, \eta^{(p)}\co \G_m \to C^{(p)}\right),\]
+where \(\eta^{(p)}\) is the factorization
+\begin{center}
 \begin{tikzcd}
 \G_m[p] \arrow{r} \arrow{d} & \G_m \arrow["p"]{r} \arrow["\eta"]{d} & \G_m \arrow[densely dotted, red, "\eta^{(p)}"]{d} \\
-C[p]\arrow{r} & C \arrow["p"]{r} & C^{(p)}
+C[p]\arrow{r} & C \arrow["p"]{r} & C^{(p)}.
 \end{tikzcd}
-\right).
-\]
+\end{center}
 Unfortunately, this \(\theta\)--algebra is not nice enough to apply the Goerss--Hopkins--Miller theorem.  In order to fix this, it becomes convenient to work at \(p \ge 5\) for simplicity, and then pass to a slightly more rigid moduli: we introduce a \index{level structure!formal}formal \((\Z/p)\)--level structure, i.e., an isomorphism \(\Z/p \cong (\widehat C)[p]\).\footnote{This partial rigidification of the formal component of the elliptic curve is related to the observations of Hopkins on the connection between homology and stacky pullbacks mentioned in \Cref{RemovingStackinessFromSpectra}~\cite[Section 3.1]{HopkinsFromSpectraToStacks}, \cite[Section 12]{Rezk512Notes}.}  This \'etale \((\Z/p)^\times\)--cover of \(\moduli{ell}^{\ord}\), known as the first \index{Igusa tower}Igusa cover, has the following exceptional property:
 
 \begin{lemma}[{\cite[Theorem 2.9.4]{Hida}, \cite[Lemma 5.2]{BehrensConstruction}}]
@@ -738,11 +739,11 @@ There is another way to construct \(\TMF^{\ord}\) at low primes, given by a comp
 \end{remark}
 
 \begin{remark}[{\cite[Section 7]{LawsonAbVars}}]
-There is an analogous (and much easier) picture for the moduli of forms of the multiplicative group: any ordered pair of puncture points in \(\mathbb A^1\) can be used to give \(\mathbb P^1\) the unique structure of a group with identity at \(\infty\), and the associated formal group is classified by a map \(\moduli{\mathbb G_m} \to \moduli{fg}\); there is an equivalence \(\moduli{\mathbb G_m} \simeq BC_2\); and \(KU\) forms the global sections of a topological enhancement of \(\Spec \Z \to \moduli{fg}\) which descends using the complex-conjugation action to \(BC_2 \to \moduli{fg}\).
+There is an analogous (and much easier) picture for the moduli of forms of the multiplicative group: any unordered pair of puncture points in \(\mathbb A^1\) can be used to give \(\mathbb P^1\) the unique structure of a group with identity at \(\infty\), and the associated formal group is classified by a map \(\moduli{\mathbb G_m} \to \moduli{fg}\); there is an equivalence \(\moduli{\mathbb G_m} \simeq BC_2\); and \(KU\) forms the global sections of a topological enhancement of \(\Spec \Z \to \moduli{fg}\) which descends using the complex-conjugation action to \(BC_2 \to \moduli{fg}\).
 \end{remark}
 
 \begin{remark}
-With some effort, the construction of \(\sheaf O_{\top}\) outlined here extends to the compactified moduli \(\overline{\moduli{ell}}\) where Weierstrass curves with nodal singularities are allowed, i.e., where \(\Delta\) is \emph{not} inverted (as in \(y^2 + xy = x^3\)).  The resulting global sections yields a spectrum \(\Tmf\), which is \emph{not} a periodic ring spectrum.  The connective truncation of that spectrum is denoted \(\tmf\), and it arises as the global sections of a topological enrichment of a stack of generalized cubics, i.e., where cuspidal singularities are also allowed (as in \(y^2 = x^3\)).
+With some effort, the construction of \(\sheaf O_{\top}\) outlined here extends to the compactified moduli \(\overline{\moduli{ell}}\) where Weierstrass curves with nodal singularities are allowed, i.e., where \(\Delta\) is \emph{not} inverted (as in \(y^2 + xy = x^3\)).  The resulting global sections yields a spectrum \(\Tmf\), a close cousin to \(\TMF\).  The connective truncation of that spectrum is denoted \(\tmf\), and it arises as the global sections of a topological enrichment of a stack of generalized cubics, i.e., where cuspidal singularities are also allowed (as in \(y^2 = x^3\)).
 \end{remark}
 
 \begin{remark}[{\cite{Stojanoska}}]
@@ -797,19 +798,12 @@ Consider the \index{Cech complex@\v{C}ech complex}\v{C}ech complex associated to
 \end{proof}
 
 \begin{example}
-We now appeal to basic results about \(\moduli{ell} \times \Spec \Z[1/6]\) to compute \(\pi_* TMF[1/6]\) using these methods.\footnote{This is admittedly a rather elaborate way of recovering the homotopy of the \emph{complex-orientable} ring spectrum \(\TMF[1/6]\); see Bauer's exposition~\cite{BauerTMF} for results without $6$ inverted.}  After inverting \(2\) and \(3\), we can use scaling and translation transformations to complete both the cube and the square, replacing an arbitrary Weierstrass curve with a \emph{unique} one of the form \(y^2 = x^3 + c_4 x + c_6\).  This exhausts the morphisms in the groupoid \(\moduli{ell}\): the map \[\Spec \Z[c_4, c_6, \Delta^{-1}][1/6] \to \moduli{ell} \times \Spec \Z[1/6]\] is an equivalence of stacks (cf.\ \Cref{MFRemark}).  Since the quasicoherent sheaf cohomology of affines is always amplitude \(0\), this spectral sequence is concentrated on the \(0\)--line, and we recover \[\pi_* \TMF[1/6] \cong \Z[c_4, c_6, \Delta^{-1}][1/6].\]
+We now appeal to basic results about \(\moduli{ell} \times \Spec \Z[1/6]\) to compute \(\pi_* TMF[1/6]\) using these methods.\footnote{This is admittedly a rather elaborate way of recovering the homotopy of the \emph{complex-orientable} ring spectrum \(\TMF[1/6]\).}  After inverting \(2\) and \(3\), we can use scaling and translation transformations to complete both the cube and the square, replacing an arbitrary Weierstrass curve with a \emph{unique} one of the form \(y^2 = x^3 + c_4 x + c_6\).  This exhausts the morphisms in the groupoid \(\moduli{ell}\): the map \[\Spec \Z[c_4, c_6, \Delta^{-1}][1/6] \to \moduli{ell} \times \Spec \Z[1/6]\] is an equivalence of stacks (cf.\ \Cref{MFRemark}).  Since the quasicoherent sheaf cohomology of affines is always amplitude \(0\), this spectral sequence is concentrated on the \(0\)--line, and we recover \[\pi_* \TMF[1/6] \cong \Z[c_4, c_6, \Delta^{-1}][1/6].\]
 \end{example}
 
-
-
-
-
-
-
-
-
-
-
+\begin{remark}
+The calculation of \(\pi_* \TMF\) has been completed integrally by Hopkins and Mahowald; see Bauer for detailed exposition of these results~\cite{BauerTMF}.  One of the central features of the calculation is that a power of the periodicity generator from degree \(2\) survives, so that \(\pi_* \TMF\) becomes \(576\)--periodic.  By contrast, neither \(\Tmf\) nor \(\tmf\) are periodic spectra.
+\end{remark}
 
 
 
@@ -883,7 +877,7 @@ We begin with the two rational nodes in the pullback diagram.  As a first approx
 \begin{center}
 \begin{tikzcd}
 MU \arrow[densely dotted, "D"]{r} \arrow{rd} & \Q \otimes R \\
-\S \arrow{u} \arrow[crossing over]{ru} \arrow{r} & H\Q \arrow{u}
+\S \arrow[crossing over]{ru} \arrow{r} & H\Q \arrow{u}
 \end{tikzcd}
 \end{center}
 constructed out of the unit map \(\S \to MU\), the unit map \(\S \to \Q \otimes R\), the rationalization map \(\S \to \Q \otimes \S \cong H\Q\), and the standard additive orientation \(MU \to H\Q\) of an Eilenberg--Mac Lane spectrum.  When \(\EinftyRings(MU, T)\) is nonempty, it is a torsor for \([bu, \gl_1 T]\), and since we have a preferred orientation \(D\) we thus have isomorphisms
@@ -892,7 +886,7 @@ constructed out of the unit map \(\S \to MU\), the unit map \(\S \to \Q \otimes 
 & \xleftarrow{\cong} [bu, \Q \otimes \gl_1 R] \\
 &\xrightarrow{\cong} [\Q \otimes bu, \Q \otimes \gl_1 R],
 \end{align*}
-the last of which is specified by a sequence of rational numbers \((t_{2k})_{k \ge 1}\).  The role played by the sequence \((t_{2k})\) is to perturb the Thom class.
+the last of which is specified by a sequence \((t_{2k})_{k \ge 1} \in \pi_* (\Q \otimes \gl_1 R)\).  The role played by the sequence \((t_{2k})\) is to perturb the Thom class.
 
 \begin{lemma}[{\cite[Proposition 3.12]{AHR}}]
 Write \(x\) for the Thom class of \(\L\) on \(\CP^\infty\) in \((\Q \otimes R)\)--cohomology as furnished by the automatic orientation \(D\).  The Thom class associated to some other orientation of \(\Q \otimes R\) is tracked by a \index{characteristic series}difference series \(x / \exp_F(x)\), and the sequence \((t_k)\) above is expressed by \(x / \exp_F(x) = \exp(\sum_k t_k/k! \cdot x^k)\).
@@ -947,7 +941,7 @@ execute at end picture={
 & \Susp^{-1} \Q/\Z \otimes \gl_1 KO_p \arrow{r} & |[alias=glKOp]| \gl_1 KO_p \arrow{r} & \Q \otimes \gl_1 KO_p \arrow{r} & \Q/\Z \otimes \gl_1 KO_p.
 \end{tikzcd}
 \end{center}
-There is a canonical bolded vertical lift of \(\gl_1 \eta_{KO_p}\) since \(\gl_1 \S\) is a torsion spectrum, and this precomposes with \(j\) to give another vertical map.  Notice now that selecting a filler triangle \(A\) gives a commuting square with choice of homotopy and that \([\gl_1 \S, \Q \otimes \gl_1 KO_p] = 0\), and hence we would get a natural map (and natural homotopy) off of the homotopy cofibers:
+There is a canonical bolded vertical lift of \(\gl_1 \eta_{KO_p}\) since \(\gl_1 \S\) is a torsion spectrum, and this precomposes with \(j\) to give the diagonal map.  Notice now that selecting a filler triangle \(A\) gives a commuting square with choice of homotopy and that \([\gl_1 \S, \Q \otimes \gl_1 KO_p] = 0\), and hence we would get a natural map (and natural homotopy) off of the homotopy cofibers:
 \begin{center}
 \begin{tikzcd}[column sep=0.7em,
 execute at end picture={
@@ -976,7 +970,7 @@ For each \(d \ge 1\), the \index{Bousfield--Kuhn functor}\textit{Bousfield--Kuhn
 \end{lemma}
 
 \begin{definition}[{\cite[Section 3]{RezkLogarithm}}]
-The natural equivalence \[(\GL_1 R)[1, \infty) \to (\Loops^\infty R)[1, \infty)\] gives rise to a map \(\ell\) as in the diagram
+The natural equivalence \[(\GL_1 R)[1, \infty) \to (\Loops^\infty R)[1, \infty)\] gives rise to a map \(\ell_d\) as in the diagram
 \begin{center}
 \begin{tikzcd}
 & \Phi_d (\GL_1 R)[1, \infty) \arrow["\simeq"]{r} & \Phi_d (\Loops^\infty R)[1, \infty) \\
@@ -1092,7 +1086,7 @@ For any \(N \ge 0\), the assignment \[\CatOf{Groups}(\CatOf{Spaces}(\Z_p^\times,
 \end{lemma}
 
 \begin{remark}
-An interesting feature of the Lemma is the auxiliary index \(N\), which is \emph{not} part of the property of being K\"ummer.  In \(p\)--adic geometry, this is reflected by the \(p\)--adic convergence of the sequence \[d + (p-1)p^r \xrightarrow{r \to \infty} d,\] and hence the continuous reconstruction property \[x_d = \lim_{r \to \infty} x_{d + (p-1)p^r}.\]  In homotopy theory, this is reflected by the reconstruction property \[KU \sm KU[2k, \infty) \simeq KU \sm KU.\]
+An interesting feature of the Lemma is the auxiliary index \(N\), which is \emph{not} part of the property of being K\"ummer.  In \(p\)--adic geometry, this is reflected by the \(p\)--adic convergence of the sequence \[d + (p-1)p^r \xrightarrow{r \to \infty} d,\] and hence the continuous reconstruction property \[x_d = \lim_{r \to \infty} x_{d + (p-1)p^r}.\]  In homotopy theory, this is reflected by the \(p\)--adic reconstruction property \[KU \sm KU[2k, \infty) \simeq KU \sm KU.\]
 \end{remark}
 
 \begin{remark}
