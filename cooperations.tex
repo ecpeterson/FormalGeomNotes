@@ -1005,7 +1005,7 @@ For \(F = H\) and \(E\) a \index{Landweber flat}Landweber flat homology theory, 
 \noindent We have previously computed that the comparison map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  In order to make use of this statement now, we must reimagine it in terms of Dieudonn\'e theory.  In order to do that, we again have to reimagine some of Dieudonn\'e theory itself, as our description of it is concerned with \emph{Hopf algebras} rather than \emph{Hopf rings}.  Recall that a Hopf ring is an algebra object \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``\(\boxtimes\)'' is a kind of graded \index{Hopf algebra!tensor product}tensor product of externally graded Hopf algebras~\cite[Proposition 2.6]{HuntonTurner}, \cite[Definition 2.2]{BuchstaberLazarev}, \cite[Section 5]{GoerssDieudonne}.  Since \(D_*\) gives an equivalence of categories between internally graded Hopf algebras and internally graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of \index{Dieudonn\'e module!tensor product}Dieudonn\'e modules.
 
 \begin{definition}{\cite[pg.\ 154]{GoerssDieudonne}}
-The naive tensor product \(M \otimes N\) of Dieudonn\'e modules \(M\) and \(N\) receives the structure of a \(\Z_p[V]\)--module, where \(V(x \otimes y) = V(x) \otimes V(y)\).  We define the \textit{tensor product of Dieudonn\'e modules}\footnote{This definition is specialized to \(\F_p\) and \(\mathbb W_p(\F_p) = \Z_p\), where we don't have to worry about Frobenius semi-linearity.} by \[M \boxtimes N = \left.\frac{\Z_p[F, V]}{(VF = p)} \otimes_{\Z_p[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+The naive tensor product \(M \otimes N\) of Dieudonn\'e modules \(M\) and \(N\) receives the structure of a \(\Z_p\<V\>\)--module, where \(V(x \otimes y) = V(x) \otimes V(y)\).  We define the \textit{tensor product of Dieudonn\'e modules}\footnote{This definition is specialized to \(\F_p\) and \(\mathbb W_p(\F_p) = \Z_p\), where we don't have to worry about Frobenius semi-linearity.} by \[M \boxtimes N = \left.\frac{\Z_p\<F, V\>}{(VF = p)} \otimes_{\Z_p[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
 \end{definition}
 
 \begin{lemma}[{\cite[Corollary 8.14]{GoerssDieudonne}}]
@@ -1073,14 +1073,14 @@ We restrict attention to \(n \not\equiv \pm 1 \pmod p\), where we can use \Cref{
 \begin{align*}
 H_k B(n) = B(n)_n \Susp^{n-k} H = D_n H_* K(\F_p, n-k).
 \end{align*}
-The unstable module \(G(n)\) also enjoys a universal property in the category of \emph{stable} \(\mathcal A^*\)--modules, by passing to the maximal unstable quotient \(\Loops^\infty M\) of a stable module \(M\): \[\CatOf{Modules}_{\mathcal A^*}(G(n), M) \cong [\Loops^\infty M]_n.\]  Hence, we can continue our computation:
+The unstable module \(G(n)\) also enjoys a universal property in the category of \emph{stable} \(\mathcal A^*\)--modules, by passing to the maximal unstable submodule \(\Loops^\infty M\) of a stable module \(M\): \[\CatOf{Modules}_{\mathcal A^*}(G(n), M) \cong [\Loops^\infty M]_n.\]  Hence, we can continue our computation:
 \begin{align*}
 H_k B(n) & = D_n H_* K(\F_p, n-k) \\
 & = \CatOf{Modules}_{\mathcal A^*}(G(n), \Susp^{n-k} \mathcal A_*) \\
 & = \CatOf{Modules}_{\F_p}(G(n)_{n-k}, \F_p).
 \end{align*}
 
-We learn immediately that \(H_* B(n)\) is finite, so that a unique Spanier--Whitehead predual exists and agrees with the Spanier--Whitehead dual.  The statement then follows from the previous equality.
+We learn immediately that the \(H_* B(n)\) spectrum, which we already knew to be bounded-below and p-complete, is a finite spectrum.  It follows that a unique Spanier--Whitehead predual exists and agrees with the Spanier--Whitehead dual; the statement then follows from the previous equality.
 \end{proof}
 
 Lastly, for a \emph{space} \(X\), we definitionally have that have \(H_* X\) forms an unstable module over the Steenrod algebra, i.e., \(\Loops^\infty H_* X = H_* X\).  This has the following direct sequence (with minor fuss at the bad indices \(n \equiv \pm 1 \pmod p\)):
@@ -1144,10 +1144,10 @@ d\left(\alpha_{()}^{[p^{jd}]}\right) & = \alpha'_{()}, \\
 \end{align*}
 The spectral sequence collapses after this differential.  In the case \(1 < j < \infty\), there are some hidden multiplicative extensions in the spectral sequence, but these too are all determined by already knowing the multiplicative structure on \(K_* \OS{H(S^1[p^j])}{1}\).
 
-However, the case of \(j = \infty\) is a bit different, beginning with the following Lemma:
+However, the case of \(j = \infty\) is a bit different, beginning with the following:
 
 \begin{lemma}
-For \(q \ge 1\), there is a \(p\)--adic equivalence of \(K(\Q/\Z_{(p)}, q)\) with \(K(\Z, q+1)\).
+For \(q \ge 1\), \(K(\Q/\Z_{(p)}, q)\) and \(K(\Z, q+1)\) are \(p\)--adically equivalent.
 \end{lemma}
 \begin{proof}
 This is a consequence of the fiber sequence \[K(\Q, q) \to K(\Q/\Z_{(p)}, q) \to K(\Z_{(p)}, q+1).\]  The first term has vanishing mod--\(p\) homology, forcing the \(\HFp\)--Serre spectral sequence of the fibration to collapse and for the edge homomorphism to be an isomorphism.  Similarly, the map \(K(\Z, q+1) \to K(\Z_{(p)}, q+1)\) is an equivalence on mod--\(p\) homology.
@@ -1175,6 +1175,10 @@ Over a perfect field of positive characteristic \(p\), a connected \(p\)--divisi
 \begin{proof}[Correspondence]
 The maps in both directions are easy: a \(p\)--divisible group is sent to its colimit, and a formal group of finite height is sent to its system of \(p^j\)--torsion subgroups.  In both directions there is something mild to check: that the colimit gives a formal variety, and that the system of \(p^j\)--torsion subgroups has the indicated exactness properties.
 \end{proof}
+
+\begin{remark}
+Using the extension of Dieudonn\'e theory to finite group schemes described in \Cref{WorkedAlpha2Example}, the Dieudonn\'e modules of a connected \(p\)--divisible group \(\mathbb G\) and its associated formal group \(\G\) belong to a short exact sequence: \[0 \to D_*(\G) \to \Q \otimes D_*(\G) \to \colim_j D_*(\mathbb G_j) \to 0.\]
+\end{remark}
 
 We will soon see that these interrelations among the bar spectral sequences for the different Eilenberg--Mac Lane spaces, as well as the special behavior of the spectral sequence at \(j = \infty\), are generic phenomena in \(q\).  We record the steps in our upcoming induction in the following Theorem:
 
@@ -1237,11 +1241,11 @@ From here, it is a matter of \emph{carefully} pairing elements (cf.\ \cite[pg.\ 
 \end{proof}
 
 \begin{remark}
-\Cref{MainKThyOfEMSpacesTheorem} admits a restatement purely in terms of \index{Hopf algebra}Hopf algebras, although Dieudonn\'e theory was essential in its proof.  The cup product gives a natural map \[\Alt^q K_* \OS{H(S^1[p^j])}{1} \to K_* \OS{H(S^1[p^j])}{q},\] where ``\(\Alt\)'' refers to the alternating \index{Hopf algebra!alternating}Hopf algebra.\footnote{Note that this alternation condition becomes dramatically more complicated in the case that the formal group law and its formal group inverse series become more complicated than that of \(\G_a\).}  The main result of this section is that this map is an isomorphism for all \(q\), and indeed that the map from the free alternating \emph{Hopf ring} maps isomorphically to the topological Hopf ring.
+\Cref{MainKThyOfEMSpacesTheorem} admits a restatement purely in terms of \index{Hopf algebra}Hopf algebras, although Dieudonn\'e theory was essential in its proof.  The cup product gives a natural map\footnote{Note that this alternation condition becomes dramatically more complicated in the case that the formal group law and its formal group inverse series become more complicated than that of \(\G_a\).}\index{Hopf algebra!alternating} \[K_* \OS{H(S^1[p^j])}{1}^{\wedge q} \to K_* \OS{H(S^1[p^j])}{q}.\]  The main result of this section is that this map is an isomorphism for all \(q\), and indeed that the map from the free exterior \emph{Hopf ring} maps isomorphically to the topological Hopf ring.
 \end{remark}
 
 \begin{remark}[{\cite[Section 3]{HopkinsLurie}, \cite{HedayatzadehFieldCase}, \cite{HedayatzadehGeneralCase}}]\label{EThyOfEMSpaces}
-Because \(K^* \OS{H\Z/p^j}{q}\) is even, you can hope to augment this to a calculation of \(E^* \OS{H\Z/p^j}{q}\) for \(E = E_\Gamma\) the associated continuous Morava \(E\)--theory.  This is indeed possible, and the analogous formula is true at the level of Hopf algebras: \[E_* \OS{H(S^1[p^j])}{q} \cong \Alt^q E_* \OS{H(S^1[p^j])}{1}.\] However, the attendant algebraic geometry is quite complicated: you either need a form of Dieudonn\'e theory that functions over \(\context{E_\Gamma}\) (and then attempt to drag the proof above through that setting), or you need to directly confront what ``\index{p divisible group@\(p\)--divisible group!alternating power}alternating power of a \(p\)--divisible group'' means at the level of \(p\)--divisible groups (and forego all of the time-saving help afforded to you by Dieudonn\'e theory).
+Because \(K^* \OS{H\Z/p^j}{q}\) is even, you can hope to augment this to a calculation of \(E^* \OS{H\Z/p^j}{q}\) for \(E = E_\Gamma\) the associated continuous Morava \(E\)--theory.  This is indeed possible, and the analogous formula is true at the level of Hopf algebras: \[E_* \OS{H(S^1[p^j])}{q} \cong E_* \OS{H(S^1[p^j])}{1}^{\wedge q}.\] However, the attendant algebraic geometry is quite complicated: you either need a form of Dieudonn\'e theory that functions over \(\context{E_\Gamma}\) (and then attempt to drag the proof above through that setting), or you need to directly confront what ``\index{p divisible group@\(p\)--divisible group!alternating power}alternating power of a \(p\)--divisible group'' means at the level of \(p\)--divisible groups (and forego all of the time-saving help afforded to you by Dieudonn\'e theory).
 \end{remark}
 
 \begin{remark}[{cf.\ \Cref{StableMixedKthyCoopnsVanish}}]
