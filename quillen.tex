@@ -672,7 +672,7 @@ T(\xi(\Sigma_n)) & = T(\xi^{\times n}_{h\Sigma_n}) \tag{definition} \\
 Applying the Lemma to the universal case produces a factorization \[MU(k)^{\sm n} \to MU(k)^{\sm n}_{h\Sigma_n} \to MU(nk)\] of the unstable multiplication map, and hence a stable factorization \[MU^{\sm n} \to MU^{\sm n}_{h\Sigma_n} \xrightarrow{\mu_n} MU.\]  We now enrich this to an \(H_\infty^2\) structure~(\cite[Section 3.2]{JohnsonNoel}, \cite[Corollary VIII.5.3]{BMMS}): by applying \Cref{ThomSpectrumOfAssocBundle} in reverse, the construction is
 \begin{align*}
 \mu_{n,2q}\co \S^{2qn}_{h\Sigma_n} \sm MU^{\sm n}_{h\Sigma_n} & \xrightarrow{1 \sm \mu_n} \S^{2qn}_{h\Sigma_n} \sm MU \\
-& \simeq T(\mathrm{triv}^{\oplus q}(\Sigma_n) \downarrow B\Sigma_n) \sm MU \tag{\Cref{ThomSpectrumOfAssocBundle}} \\
+& \simeq T(\text{\(\mathrm{triv}^{\oplus q}(\Sigma_n)\) over \(B\Sigma_n\)}) \sm MU \tag{\Cref{ThomSpectrumOfAssocBundle}} \\
 & \simeq \Sigma^{2qn}_+ B\Sigma_n \sm MU \tag{Thom isomorphism} \\
 & \to \Sigma^{2qn} MU. \tag{project to basepoint}
 \end{align*}
@@ -690,7 +690,7 @@ We now return to the setting of a general \(H_\infty\)--ring spectrum \(E\).  So
 \end{center}
 This construction is useful when studying composites of power operations: the group \(\Sigma_k \wr \Sigma_n \subseteq \Sigma_{nk}\) acts naturally on \((E^{\sm k})^{\sm n} \simeq E^{\sm nk}\), and indeed there is an equivalence \[P^{\Sigma_n} \circ P^{\Sigma_k} = P^{\Sigma_k \wr \Sigma_n}.\]  In order to understand these modified power operations more generally, we are motivated to study such maps \(\phi\) more seriously.  Some basic constructions are summarized in the following definition:
 \begin{definition}[{\cite[Sections XI.3 and XXV.3]{MayAlaskaNotes}, cf.\ also \cite[Section 6.1.6]{LurieHA}}]
-Let \(\phi\co G \to H\) be an inclusion of finite groups and let \(F\) be an \(H\)--spectrum.  There is a natural map of homotopy colimits \(\phi_*\co F_{hG} \to F_{hH}\) which induces a \index{restriction}\textit{restriction map} on cohomology: \[\Res_G^H\co E^0 F_{hH} \to E^0 F_{hG}.\]  The spectrum \((H/G) \times F\) considered as a \(H\)--spectrum with the diagonal \(H\)--action has the property \(((H/G) \times F)_{hH} = F_{hG}\), and the \(G\)--equivariant averaging map \[F \xrightarrow{\displaystyle \sum_{[h] \in H/G} [h] \times (-)} (H/G) \times F\] passes on homotopy orbits to the \index{norm!equivariant}\textit{additive norm map} \(N_G^H\co F_{hH} \to F_{hG}\), which again induces a map on cohomology classes \[\Tr_G^H\co E^0 F_{hG} \to E^0 F_{hH}\] called the \textit{transfer map}.  The composite \(\phi_* \circ N_G^H\) acts by multiplication by the index \(|H/G|\), and hence this is also true of \(\Res^H_G \Tr^H_G\).
+Let \(\phi\co G \to H\) be an inclusion of finite groups and let \(F\) be an \(H\)--spectrum.  There is a natural map of homotopy colimits \(\phi_*\co F_{hG} \to F_{hH}\) which induces a \index{restriction}\textit{restriction map} on cohomology: \[\Res_G^H\co E^0 F_{hH} \to E^0 F_{hG}.\]  The spectrum \(\bigvee_{H/G} F\) considered as a \(H\)--spectrum with the diagonal \(H\)--action has the property \((\bigvee_{H/G} F)_{hH} = F_{hG}\), and the \(H\)--equivariant averaging map \[F \xrightarrow{\bigvee_{H/G} \operatorname{id}} \bigvee_{H/G} F\] passes on homotopy orbits to the \index{norm!equivariant}\textit{additive norm map} \(N_G^H\co F_{hH} \to F_{hG}\), which again induces a map on cohomology classes \[\Tr_G^H\co E^0 F_{hG} \to E^0 F_{hH}\] called the \textit{transfer map}.  The composite \(\phi_* \circ N_G^H\) acts by multiplication by the index \(|H/G|\), and hence this is also true of \(\Res^H_G \Tr^H_G\).
 \end{definition}
 
 The restriction and transfer maps appear prominently in the following formula, which measures the failure of the power operation construction to be additive:
@@ -711,7 +711,7 @@ P \arrow{r} \arrow{d} \arrow[dr, phantom, "\lrcorner", very near start] & * \mmo
 * \mmod G_2 \arrow{r} & * \mmod H.
 \end{tikzcd}
 \end{center}
-Given any identification \(P \simeq \coprod_K (* \mmod K)\), there is a \index{push-pull}push-pull interchange formula
+Given any identification \(P \simeq \coprod_K (* \mmod K)\),\footnote{These \(K\) are \emph{not} canonically identified with subgroups of \(H\).} there is a \index{push-pull}push-pull interchange formula
 \[\pushQED{\qed}
 \Res_{G_1}^H \Tr_{G_2}^H = \sum_K \Tr^{G_1}_K \Res_K^{G_2}. \qedhere
 \popQED\]
@@ -720,8 +720,8 @@ Given any identification \(P \simeq \coprod_K (* \mmod K)\), there is a \index{p
 \begin{corollary}
 For a transitive subgroup \(G \le \Sigma_n\), there is a congruence \[P^G(f + g) \equiv P^G(f) + P^G(g) \pmod{\text{transfers from proper subgroups of \(G\)}}.\]
 \end{corollary}
-\begin{proof}
-Note that \(P^G\) can be defined by means of restriction: \(P^G = \Res^{\Sigma_n}_G P^{\Sigma_n}\).  We can hence reuse the previous binomial formula: \[P^G(f + g) = \Res^{\Sigma_n}_G P^{\Sigma_n}(f + g) = \sum_{i+j = n} \Res^{\Sigma_n}_G \Tr_{\Sigma_i \times \Sigma_j}^{\Sigma_n}\left(P^{\Sigma_i}(f) \cdot P^{\Sigma_j}(g)\right).\]  In the cases \(i = 0\) or \(j = 0\), the transfer map is the identity operation, and we recover \(P^G(g)\) and \(P^G(f)\) respectively.  In all the other terms, the interchange lemma lets us pull the transfer to the outside.
+\begin{proof}[Proof sketch]
+Note that \(P^G\) can be defined by means of restriction, as in \(P^G = \Res^{\Sigma_n}_G P^{\Sigma_n}\).  We can hence reuse the previous binomial formula: \[P^G(f + g) = \Res^{\Sigma_n}_G P^{\Sigma_n}(f + g) = \sum_{i+j = n} \Res^{\Sigma_n}_G \Tr_{\Sigma_i \times \Sigma_j}^{\Sigma_n}\left(P^{\Sigma_i}(f) \cdot P^{\Sigma_j}(g)\right).\]  In the cases \(i = 0\) or \(j = 0\), the transfer map is the identity operation, and we recover \(P^G(g)\) and \(P^G(f)\) respectively.  In all the other terms, the interchange lemma lets us pull the transfer to the outside, and transitivity of \(G\) guarantees this new transfer is proper.
 \end{proof}
 
 Since the only operations we understand so far are stable operations, which are in particular additive, we are moved to find a target for the power operation \(P^G\) which kills the ideal generated by the proper transfers (i.e., the intermediate terms in the binomial formula) yet which remains computable.
@@ -737,14 +737,14 @@ f \arrow[|->]{r} & P^G f \arrow[|->]{rr} & & P^G_{\Tate} f.
 \end{definition}
 
 \begin{example}\label{TateDestruction}
-The Tate spectrum is quite a destructive operation in the case of \(G = C_p\).\footnote{In fact, its job in general is to be destructive, and the failure of this Example for other groups is a sign that we have chosen the ``wrong'' definition. For a general group \(G\), the definition of ``Tate construction'' can be modified to kill all intermediate transfers, not just those which transfer up from the trivial subgroup---but this requires understanding \textit{families} of subgroups, which is more equivariant homotopy theory than we otherwise need.}  For example, take \(X\) to be a trivial \(C_p\)--spectrum, and let \(\bigvee_{C_p} X\) be the \(C_p\)--indexed wedge with the free action.  The norm, transfer, and restriction maps belong to the following diagram:
+The Tate spectrum is quite a destructive operation in the case of \(G = C_p\).\footnote{In fact, its job in general is to be destructive, and the failure of this Example for other groups is a sign that we have chosen the ``wrong'' definition.  For a general group \(G\), the definition of ``Tate construction'' can be modified to kill all intermediate transfers, not just those which transfer up from the trivial subgroup---but this requires understanding \textit{families} of subgroups~\cite[Section XXI.4]{MayAlaskaNotes} and the corresponding generalized norm map~\cite[Section XXV.6]{MayAlaskaNotes}, which is more equivariant homotopy theory than we otherwise need.}  For example, take \(X\) to be a \emph{finite} trivial \(C_p\)--spectrum, and let \(\bigvee_{C_p} X\) be the \(C_p\)--indexed wedge with the free action.  The norm, transfer, and restriction maps belong to the following diagram:
 \begin{center}
 \begin{tikzcd}
 (X^{\vee C_p})_{hC_p} \arrow{r} & (X^{\vee C_p})^{hC_p} \arrow{r} & X^{\vee C_p} \arrow{r} & (X^{\vee C_p})_{hC_p} \\
 X \arrow[equal]{u} \arrow{r} & X \arrow[equal]{u} \arrow["\Delta"]{r} & X^{\vee C_p} \arrow[equal]{u} \arrow["\mu"]{r} & X \arrow[equal]{u},
 \end{tikzcd}
 \end{center}
-where on the bottom row we have identified the homotopy orbits and fixed points of the wedge.  We claim that the norm map is an equivalence.  This diagram is natural in \(X\) and each node preserves cofiber sequences, so it suffices to check the claim the spheres \(\S^n\).  Recalling that the long horizontal composite is multiplication by \(|C_p| = p\), we have factored \(p \in \pi_0 \End \S^n = \Z\) as some map followed by the diagonal and fold maps, which themselves compose to \(p\).  This forces the norm map itself to be an equivalence, and hence the cofiber sequence \[(X^{\vee C_p})_{hC_p} \xrightarrow{\simeq} (X^{\vee C_p})^{hC_p} \to (X^{\vee C_p})^{tC_p}\] causes \((X^{\vee C_p})^{tC_p}\) to be contractible.
+where on the bottom row we have identified the homotopy orbits and fixed points of the wedge.  We claim that the norm map is an equivalence.  This diagram is natural in \(X\) and each node preserves cofiber sequences, so for finite \(X\) it suffices to check the claim the spheres \(\S^n\).  Recalling that the long horizontal composite is multiplication by \(|C_p| = p\), we have factored \(p \in \pi_0 \End \S^n = \Z\) as some map followed by the diagonal and fold maps, which themselves compose to \(p\).  This forces the norm map itself to be an equivalence, and hence the cofiber sequence \[(X^{\vee C_p})_{hC_p} \xrightarrow{\simeq} (X^{\vee C_p})^{hC_p} \to (X^{\vee C_p})^{tC_p}\] causes \((X^{\vee C_p})^{tC_p}\) to be contractible.
 \end{example}
 
 As another example of the destructiveness of the Tate operation, we have the following:
@@ -760,7 +760,7 @@ The real miracle is that these cyclic Tate power operations are not only additiv
 
 \begin{lemma}\label{TateConstructionIsACohomThy}
 \citeme{This is Prop 2.2.3 of DAG XIII, which will appear as Chapter IX in SAG}
-The assignment \(X \mapsto \pi_0 (E^{(\Susp^\infty_+ X)^{\sm p}})^{tC_p}\) is a cohomology theory.
+The assignment \(X \mapsto \pi_0 (E^{(\Susp^\infty_+ X)^{\sm p}})^{tC_p}\) is a cohomology theory on finite spectra \(X\), represented by \(E^{tC_p}\).
 \end{lemma}
 \begin{proof}
 The Eilenberg--Steenrod axioms are clear except for the cofiber sequence axiom, which we will boil down to checking that the assignment \(X \mapsto (X^{\sm p})^{tC_p}\) preserves cofiber sequences of finite complexes.  A cofiber sequence \[X \to Y \to Y/X\] of pointed spaces is equivalent data to the diagram \[X \to Y,\] which has colimit \(Y\) and which admits a filtration by distance from the initial node with filtration quotients:
@@ -806,10 +806,10 @@ Consider the \(C_n\)--equivariant cofiber sequence \[S(\C^m)_+ \to S^0 \to S^{\C
     & = \left( \colim_{m \to \infty} MU \sm S^{\C^m} \right)^{hC_n}.
     \end{align*}
 \end{enumerate}
-This last formula puts us in a position to calculate.  The Thom isomorphism for \(MU\) gives an identification \(MU \sm S^{\C} \simeq \Susp^2 MU\) as \(C_n\)--spectra, and the map \[(MU \sm S^0)^{hC_n} \to (MU \sm S^{\C})^{hC_n}\] can be identified with multiplication by the Thom class: \[MU^{\Susp^\infty BC_n} \xrightarrow{x \cdot -} (\Susp^2 MU)^{\Susp^\infty BC_n}.\]  In all, this gives
+This last formula puts us in a position to calculate.  The Thom isomorphism for \(MU\) gives an identification \(MU \sm S^{\C} \simeq \Susp^2 MU\) as \(C_n\)--spectra, and the map \[(MU \sm S^0)^{hC_n} \to (MU \sm S^{\C})^{hC_n}\] can be identified with multiplication by the Thom class: \[MU^{\Susp^\infty BC_n} \xrightarrow{t \cdot -} (\Susp^2 MU)^{\Susp^\infty BC_n}.\]  In all, this gives
 \begin{align*}
 MU^{tC_n} & \simeq \colim_{m \to \infty} \left((MU \sm S^{\C^m})^{hC_n}\right) \\
-& \simeq \colim_{m \to \infty} \left((\Susp^{2m} MU)^{BC_n}\right) \simeq MU^{BC_n}[x^{-1}]. \qedhere
+& \simeq \colim_{m \to \infty} \left((\Susp^{2m} MU)^{BC_n}\right) \simeq MU^{BC_n}[t^{-1}]. \qedhere
 \end{align*}
 \end{proof}
 
@@ -849,7 +849,7 @@ Having thus demonstrated that the Tate variant of the cyclic power operation dec
 
 We would like to leverage the Thom isomorphism to gain a description of \(E^* MU\) generally and \(MU^* MU\) specifically.  However, the former is \emph{not} a ring, and although the latter is a ring its multiplication is exceedingly complicated\footnote{For a space \(X\), \(E^* X\) has a ring structure because \(X\) has a diagonal, and \(MU\) does not have a diagonal.  In the special case of \(E = MU\), there is a ring product coming from endomorphism composition.}, which means that our extremely compact algebraic description of \(E^* BU\) in \Cref{IdentificationOfBUnWithDivn} will be of limited use.  Instead, we will have to content ourselves with an \(E_*\)--module basis of \(E^* MU\).
 \begin{definition}
-Take \(MU \to E\) to be a complex-oriented ring spectrum, which presents \(E^* BU\) as the subalgebra of symmetric functions inside of an infinite--dimensional polynomial algebra: \[E^* BU \subseteq E^* BU(1)^{\times \infty} \cong E^*\ps{x_1, x_2, \ldots}.\]  For any nonnegative multi-index \(\alpha = (\alpha_1, \alpha_2, \ldots)\) with finitely many entries nonzero, there is an associated \textit{symmetric monomial}\index{symmetric function!monomial} \(b_\alpha\), which is the sum of those monomials whose exponent lists contain exactly \(\alpha_j\) many instances of \(j\).\footnote{For example, \(\alpha = (1, 2, 0, 0, \ldots)\) corresponds to the sum \[b_\alpha = \sum_i \sum_{j \ne i} \sum_{\substack{k \ne i \\ k > j}} x_i x_j^2 x_k^2 = x_1 x_2^2 x_3^2 + x_1^2 x_2 x_3^2 + x_1^2 x_2^2 x_3 + \cdots.\]}  We then set \(s_\alpha \in E^* MU\) to be the image of \(b_\alpha\) under the Thom isomorphism of \(E_*\)--modules \[E^* MU \cong E^* BU.\]  It is called the \index{operations!Landweber Novikov@Landweber--Novikov}\textit{\(\alpha\){\th} Landweber--Novikov operation} with respect to the orientation \(MU \to E\).
+Take \(\phi\co MU \to E\) to be a complex-oriented ring spectrum, which presents \(E^* BU\) as the subalgebra of symmetric functions inside of an infinite--dimensional polynomial algebra: \[E^* BU \subseteq E^* BU(1)^{\times \infty} \cong E^*\ps{x_1, x_2, \ldots}.\]  For any nonnegative multi-index \(\alpha = (\alpha_1, \alpha_2, \ldots)\) with finitely many entries nonzero, there is an associated \textit{symmetric monomial}\index{symmetric function!monomial} \(c_\alpha\), which is the sum of those monomials whose exponent lists contain exactly \(\alpha_j\) many instances of \(j\).\footnote{For example, \(\alpha = (1, 0, 2, 0, \ldots)\) corresponds to the sum \[b_\alpha = \sum_i \sum_{j \ne i} \sum_{\substack{k \ne i \\ k > j}} x_i x_j^3 x_k^3 = x_1 x_2^3 x_3^3 + x_1^3 x_2 x_3^3 + x_1^3 x_2^3 x_3 + \cdots.\]}  We then set \(s_\alpha \in E^* MU\) to be the image of \(c_\alpha\) under the Thom isomorphism of \(E_*\)--modules \[E^* MU \cong E^* BU.\]  It is called the \index{operations!Landweber Novikov@Landweber--Novikov}\textit{\(\alpha\){\th} Landweber--Novikov operation} with respect to \(\phi\).
 \end{definition}
 
 \begin{definition}
@@ -857,11 +857,12 @@ In the case of the identity orientation \(MU \xrightarrow{1} MU\), the resulting
 \end{definition}
 
 \begin{remark}
-For a vector bundle \(V\) and a complex-oriented cohomology theory \(E\), we define the \index{Chern class!total symmetric}\textit{total symmetric Chern class} of \(V\) by the sum \[c_{\t}(V) = \sum_\alpha c_\alpha(V) \t^{\alpha}.\]  In the case of a line bundle \(\L\) with first Chern class \(c_1(\L) = x\), this degenerates to the sum \[c_{\t}(\L) = \sum_{j=0}^\infty x^j t_j.\]  For a direct sum \(U = V \oplus W\), the total symmetric Chern class satisfies a Cartan formula: \[c_{\t}(U) = c_{\t}(V \oplus W) = c_{\t}(V) \cdot c_{\t}(W).\]  Again specializing to line bundles \(\L\) and \(\H\) with first Chern classes \(c_1(\L) = x\) and \(c_1(\H) = y\), this gives
+For a vector bundle \(V\) and a complex-oriented cohomology theory \(E\), we define the \index{Chern class!total symmetric}\textit{total symmetric Chern class} of \(V\) by the sum \[c_{\t}(V) = \sum_\alpha c_\alpha(V) \t^{\alpha}.\]  In the case of a line bundle \(\L\) with first Chern class \(c_1(\L) = x\), this degenerates to the sum \[c_{\t}(\L) = \sum_{j=0}^\infty x^j t_j.\]  For a direct sum, \(c_{\t}(V \oplus W)\) satisfies a Cartan formula: \[c_{\t}(V \oplus W) = c_{\t}(V) \cdot c_{\t}(W).\]  Again specializing to line bundles \(\L\) and \(\H\) with first Chern classes \(c_1(\L) = x\) and \(c_1(\H) = y\), this gives
 \begin{align*}
-c_{\t}(U) & = c_{\t}(\L \oplus \H) = \left( \sum_{j=0}^\infty x^j t_j \right) \cdot \left( \sum_{k=0}^\infty y^k t_k \right) = \sum_{j = 0}^{\infty} \sum_{k=0}^\infty x^j y^k t_j t_k \\
+c_{\t}(\L \oplus \H) & = \left( \sum_{j=0}^\infty x^j t_j \right) \cdot \left( \sum_{k=0}^\infty y^k t_k \right) = \sum_{j = 0}^{\infty} \sum_{k=0}^\infty x^j y^k t_j t_k \\
 & = 1 + (x + y)t_1 + (xy)t_1^2 + (x^2 + y^2)t_2 + (xy^2 + x^2y)t_1 t_2 + \cdots \\
-& = 1 + c_1(U)t_1 + c_2(U)t_1^2 + (c_1^2(U) - 2c_2(U))t_2 + (c_1(U) c_2(U))t_1t_2 + \cdots,
+& = 1 + c_1(U)t_1 + c_2(U)t_1^2 + \\
+& \quad \quad + (c_1^2(U) - 2c_2(U))t_2 + (c_1(U) c_2(U))t_1t_2 + \cdots,
 \end{align*}
 where we have expanded out some of the pieces of the total symmetric Chern class in polynomials in the usual Chern classes.
 \end{remark}
@@ -882,42 +883,28 @@ Having now set up an encompassing theory of stable operations, we now seek to gi
 \begin{center}
 \begin{tikzcd}
 \Susp^\infty_+ BU(1) \arrow["\Delta"]{d} \arrow{r} & \Susp^\infty_+ BU(1) \sm \Susp^\infty_+ BC_n \arrow["\Delta_{hC_n}"]{d} \\
-(\Susp^\infty_+ BU(1))^{\sm n} \arrow{r} \arrow[bend right=15, "\L^{\times n}"' near start]{rr} \arrow["c_1^{\sm n}"]{d} & \Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \arrow["\L(n)"]{r} \arrow[crossing over]{d} \arrow["P^{C_n}_{\mathrm{ext}}" near end, crossing over]{rd} & \Susp^\infty_+ BU(n) \arrow["c_n"]{d} \\
+(\Susp^\infty_+ BU(1))^{\sm n} \arrow{r} \arrow[bend right=15, "\L^{\times n}"' near start]{rr} \arrow["c_1^{\sm n}"]{d} & \Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \arrow["\L(C_n)"]{r} \arrow[crossing over]{d} \arrow["P^{C_n}_{\mathrm{ext}}" near end, crossing over]{rd} & \Susp^\infty_+ BU(n) \arrow["c_n"]{d} \\
 (\Susp^2 MU)^{\sm n} \arrow{r} & (\Susp^2 MU)^{\sm n}_{hC_n} \arrow{r} & \Susp^{2n} MU.
 \end{tikzcd}
 \end{center}
-The commutativity of the widest rectangle (i.e., the justification for the name ``\(c_n\)'' on the right-most vertical arrow) comes from the Cartan formula for Chern classes: because \(\L^{\oplus n}\) splits as the sum of \(n\) line bundles, \(c_n(\L^{\oplus n})\) is computed as the product of the \(1\)\textsuperscript{st} Chern classes of those line bundles.  Second, the commutativity of the right-most square is not trivial: it is a specific consequence of how the multiplicative structure on \(MU\) arises from the direct sum of vector bundles.\footnote{In general, any notion of first Chern class \(\Susp^\infty_+ BU(1) \to \Susp^2 E\) gives rise to a \emph{noncommuting} diagram of this same shape.  The two composites \(\Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \to \Susp^{2n} E\) need not agree, since \(\L(n)\) has no \textit{a priori} reason to be compatible with the factorization appearing in the \(H_\infty^2\)--structure.  They turn out to be loosely related nonetheless, and their exact relation (as well as a procedure for making them agree in certain cases) is the subject of \Cref{PowerOpnsSection}.}  The commutativities of the other two squares comes from the natural transformation from a \(C_n\)--space to its homotopy orbit space.
+The commutativity of the widest rectangle (i.e., the justification for the name ``\(c_n\)'' on the right-most vertical arrow) comes from the Cartan formula for Chern classes: because \(\L^{\oplus n}\) splits as the sum of \(n\) line bundles, \(c_n(\L^{\oplus n})\) is computed as the product of the \(1\)\textsuperscript{st} Chern classes of those line bundles.  Second, the commutativity of the right-most square is not trivial: it is a specific consequence of how the multiplicative structure on \(MU\) arises from the direct sum of vector bundles.\footnote{In general, any notion of first Chern class \(\Susp^\infty_+ BU(1) \to \Susp^2 E\) gives rise to a \emph{noncommuting} diagram of this same shape.  The two composites \(\Susp^\infty_+ BU(1)^{\sm n}_{hC_n} \to \Susp^{2n} E\) need not agree, since \(\L(C_n)\) has no \textit{a priori} reason to be compatible with the factorization appearing in the \(H_\infty^2\)--structure.  They turn out to be loosely related nonetheless, and their exact relation (as well as a procedure for making them agree in certain cases) is the subject of \Cref{PowerOpnsSection}.}  The commutativities of the other two squares comes from the natural transformation from a \(C_n\)--space to its homotopy orbit space.
 
-Hence, the internal cyclic power operation \(P^{C_n}(x)\) applied to the canonical coordinate \(x\) is defined by the composite \[\Susp^\infty_+ BU(1)_{hC_n} \xrightarrow{\Delta_{hC_n}} (\Susp^\infty_+ BU(1))^{\sm n}_{hC_n} \to \Susp^{2n} MU^{\sm n}_{hC_n} \to \Susp^{2n} MU,\] which is to say \[P^{C_n}(x) = c_n(\Delta_{hC_n}^* \L(n)).\]  We have thus reduced to computing a particular Conner--Floyd--Chern class of a particular bundle.  Our next move is to realize that we have not lost information by passing from the bundle \(\Delta^* \L^{\times n}\) to the bundle \(\Delta_{hC_n}^* \L(n)\).
+Hence, the internal cyclic power operation \(P^{C_n}(x)\) applied to the canonical coordinate \(x\) is defined by the composite \[\Susp^\infty_+ BU(1)_{hC_n} \xrightarrow{\Delta_{hC_n}} (\Susp^\infty_+ BU(1))^{\sm n}_{hC_n} \to \Susp^{2n} MU^{\sm n}_{hC_n} \to \Susp^{2n} MU,\] which is to say \[P^{C_n}(x) = c_n(\Delta_{hC_n}^* \L(C_n)).\]  We have thus reduced to computing a particular Conner--Floyd--Chern class of a particular bundle.  Our next move is to transport more information from the \(C_n\)--equivariant bundle \(\Delta^* \L^{\times n}\) to the bundle \(\Delta_{hC_n}^* \L(C_n)\).
 
-\begin{theorem}\label{GEquivBundlesVsBundlesOverBG}
-There is a natural bijection between \index{equivariant vector bundle}\(G\)--equivariant vector bundles over a base \(X\) on which \(G\) acts trivially and vector bundles on \(X \times BG\).
-\end{theorem}
-\begin{proof}[Construction]
-This is the exponential adjunction
-\begin{center}
-\begin{tikzcd}[row sep=0.5em]
-\CatOf{Spaces}(X \times BG, BU) \arrow[shift left=0.3\baselineskip]{r} & \CatOf{Spaces}(* \mmod G, \CatOf{Spaces}(X, BU)) \arrow[shift left=0.3\baselineskip]{l} , \\
-V_{hG} \arrow[shift left=0.3\baselineskip, |->]{r} & V \arrow[shift left=0.3\baselineskip, |->]{l} .
-\end{tikzcd}
-\end{center}
-The right-hand side consists of \(G\)--equivariant vector bundles over the \(G\)--trivial base \(X\), and the left-hand side consists of vector bundles over \(X \times BG\).
-\end{proof}
+\begin{lemma}[{cf.\ \Cref{DefnAssociatedBundle}}]\label{GEquivBundlesVsBundlesOverBG}
+Given a \(G\)--equivariant bundle \(V\) over a base \(X\) on which \(G\) acts trivially, the homotopy quotient bundle \(V_{hG}\) determines a vector bundle over \(X_{hG} \simeq X \times BG\).  This construction preserves direct sums, and it preserves tensor products when one of the factors has the trivial action. \pushQED\qed\qedhere\popQED
+\end{lemma}
 
-\begin{corollary}
-Under this bijection, the vector bundle \(\Delta_{hC_n}^* \L(n)\) on \(BU(1) \times BC_n\) corresponds to the \(C_n\)--equivariant vector bundle \(\Delta^* \L^{\times n}\) on \(BU(1)\). \qed
-\end{corollary}
+We thus proceed to analyze \(\Delta^*_{hC_n} \L(C_n)\) by first decomposing the \(C_n\)--equivariant bundle \(\Delta^* \L^{\times n}\).  The \(C_n\)--action is given by permutation of the factors, and hence we have an identification \[\Delta^* \L^{\times n} \cong \L \otimes \pi^* \rho,\] where \(\rho\) is the permutation representation of \(C_n\) (considered as a vector bundle over a point) and \(\pi\co BU(1) \to *\) is the constant map.  The permutation representation for the abelian group \(C_n\), also known as its regular representation, is accessible by character theory.  The generating character \(\chi\co U(1)[n] \to U(1)\) gives a decomposition \[\rho \cong \bigoplus_{j=0}^{n-1} \chi^{\otimes j}.\]  Applying this to our situation, we get a sequence of isomorphisms of \(C_n\)--equivariant vector bundles \[\Delta^* \L^{\times n} \cong \L \otimes \pi^* \rho \cong \L \otimes \bigoplus_{j=0}^{n-1} \pi^* \chi^{\otimes j} \cong \bigoplus_{j=0}^{n-1} \L \otimes \pi^* \chi^{\otimes j}.\]  Applying \Cref{GEquivBundlesVsBundlesOverBG}, we recast this as a calculation of the bundle \(\Delta_{hC_n}^* \L(C_n)\): \[\Delta_{hC_n}^* \L(C_n) = \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j},\] where \(\eta\) is the bundle classified by \(\eta\co BU(1)[n] \to BU(1)\) and \(\pi_1\), \(\pi_2\) are the two projections off of \(BU(1) \times BC_n\).
 
-We thus proceed to analyze \(\Delta^*_{hC_n} \L(n)\) by studying the \(C_n\)--equivariant bundle \(\Delta^* \L^{\times n}\) instead.  The \(C_n\)--action is given by permutation of the factors, and hence we have an identification \[\Delta^* \L^{\times n} \cong \L \otimes \pi^* \rho,\] where \(\rho\) is the permutation representation of \(C_n\) (considered as a vector bundle over a point) and \(\pi\co BU(1) \to *\) is the constant map.  The permutation representation for the abelian group \(C_n\), also known as its regular representation, is accessible by character theory.  The generating character \(\chi\co U(1)[n] \to U(1)\) gives a decomposition \[\rho \cong \bigoplus_{j=0}^{n-1} \chi^{\otimes j}.\]  Applying this to our situation, we get a sequence of isomorphisms of \(C_n\)--equivariant vector bundles \[\Delta^* \L^{\times n} \cong \L \otimes \pi^* \rho \cong \L \otimes \bigoplus_{j=0}^{n-1} \pi^* \chi^{\otimes j} \cong \bigoplus_{j=0}^{n-1} \L \otimes \pi^* \chi^{\otimes j}.\]  Applying \Cref{GEquivBundlesVsBundlesOverBG}, we recast this as a calculation of the bundle \(\Delta_{hC_n}^* \L(n)\): \[\Delta_{hC_n}^* \L(n) = \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j},\] where \(\eta\) is the bundle classified by \(\eta\co BU(1)[n] \to BU(1)\) and \(\pi_1\), \(\pi_2\) are the two projections off of \(BU(1) \times BC_n\).
-
-We can use this to access \(c_n(\Delta_{hC_n}^* \L(n))\).  As the top Chern class of this \(n\)--dimensional vector bundle, we think of this as a calculation of its Euler class, which lets us lean on multiplicativity:
+We can use this to access \(c_n(\Delta_{hC_n}^* \L(C_n))\).  As the top Chern class of this \(n\)--dimensional vector bundle, we think of this as a calculation of its Euler class, which lets us lean on multiplicativity:
 \begin{align*}
-P^{C_n}(x) = c_n(\Delta_{hC_n}^* \L(n)) & = e\left( \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right)
+P^{C_n}(x) = c_n(\Delta_{hC_n}^* \L(C_n)) & = e\left( \bigoplus_{j=0}^{n-1} \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right)
 = \prod_{j=0}^{n-1} e\left( \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right) \\
 & = \prod_{j=0}^{n-1} c_1\left( \pi_1^* \L \otimes \pi_2^* \eta^{\otimes j} \right)
 = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)).
 \end{align*}
-Here \(x\) is still the \(1\)\textsuperscript{st} Conner--Floyd--Chern class of \(\L\) and \(t\) is the Euler class of \(\eta\).  We now try to make sense of this product expression for \(c_n(\Delta_{hC_n}^* \L(n))\) by expanding it in powers of \(x\) and identifying its component pieces.
+Here \(x\) is still the \(1\)\textsuperscript{st} Conner--Floyd--Chern class of \(\L\) and \(t\) is the Euler class of \(\eta\).  We now try to make sense of this product expression for \(c_n(\Delta_{hC_n}^* \L(C_n))\) by expanding it in powers of \(x\) and identifying its component pieces.
 \begin{lemma}\label{AjAndBjAreInTheFGLSubring}
 There is a series expansion in \(MU^* BU(1)_{hC_n}\): \[P^{C_n}(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where \(a_j(t)\) is a series with coefficients in the subring \(C \subseteq MU_*\) spanned by the coefficients of the natural \(MU\)--formal group law.  The leading term \[w = e(\overline \rho) = \prod_{j=0}^{n-1} e(\eta^{\otimes j}) = \prod_{j=0}^{n-1} [j]_{MU} (e(\eta)) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the reduced permutation representation, and, again, the elements \(b_j\) lie in the subring \(C\). \qed
 \end{lemma}
