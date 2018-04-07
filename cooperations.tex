@@ -628,7 +628,7 @@ In particular, the spaces \(\OS{BP\<n\>}{k}\) in these bands \emph{are} independ
 
 
 
-\section{Dieudonn\'e modules}\label{SectionDieudonneModules}
+\vspace{-1.5\baselineskip}\section{Dieudonn\'e modules}\label{SectionDieudonneModules}
 
 Our goal in this Lecture is to give a compact presentation of formal groups based on the following observation: the category of commutative cocommutative Hopf algebras of finite type over a ground field \(k\) forms an abelian category.  It follows abstractly that this category admits a presentation as a full subcategory of the module category for some (possibly noncommutative) ring, but in fact this ring and the assignment from a group scheme to linear algebraic data can both be described explicitly.  This is the subject of \textit{Dieudonn\'e theory}, and we will give an overview of some of its main results, including two different presentations of the equivalence.\footnote{Emphasis on ``\emph{some of its results}''.  Dieudonn\'e theory is an enormous subject with many interesting results both internal and connected to arithmetic geometry and the theory of abelian varieties.  We will explore almost none of this.}
 
@@ -698,9 +698,9 @@ This is independent of choice of lift up to coherent isomorphism.  Given any oth
 
 Next, note that the module \(D^*(\G_0)\) carries some natural operations:
 \begin{itemize}
-\item Arithmetic: \(D^*(\G_0)\) is a \(\W_p(k)\)--module, with the action by \(\ell \in \W_p(k)\) corresponding to multiplication--by--\(\ell\) internal to \(\G_0\).
-\item \index{Frobenius}Frobenius: The map \(x \mapsto x^p\) is a homomorphism of formal groups modulo \(p\), so it induces a \(\phi\)--semilinear map \(F\co D^*(\G_0) \to D^*(\G_0)\).  That is, \[F(\alpha v) = \alpha^\phi F(v),\] where \(\phi\) is a lift of the Frobenius on \(k\) to \(\W_p(k)\).
-\item \index{Verschiebung}Verschiebung: Inspired by \Cref{EveryLogHaspTypification}, we might also seek a Verschiebung operator \(V\) satisfying \(VF = p\).  Our explicit formula for \(F\) lets us guess such a map: \[V\co \sum_{n=1}^\infty a_n x^{n-1} \mathrm{d}x \mapsto \sum_{n=1}^\infty a_{pn}^{\phi^{-1}} x^{n-1} \mathrm{d}x.\]  It satisfies \(VF = p\) and anti-semilinearity: \(aV(v) = V(a^\phi v)\).
+\item Arithmetic: \(D^*(\G_0)\) is a \(\Z^\wedge_p\)--module, with the action by \(\ell \in \Z \subseteq \Z^\wedge_p\) corresponding to multiplication--by--\(\ell\) internal to \(\G_0\).
+\item \index{Frobenius}Frobenius: Modulo \(p\), the map \(x \mapsto x^p\) determines a homomorphism \(\G_0 \to \operatorname{Frob}^* \G_0\), in turn inducing a map \(F\co D^*(\G_0) \to D^*(\phi^* \G_0)\).  This map is sometimes referred to as \textit{\(\phi\)--semilinear}, owing to the identification \(D^*(\phi^* \G_0) \cong \W_p(k) \otimes^\phi_{\W_p(k)} D^*(\G_0)\) and hence the formula \[F(\alpha v) = \alpha^\phi F(v),\] where \(\phi\) is a lift of the Frobenius on \(k\) to \(\W_p(k)\).
+\item \index{Verschiebung}Verschiebung: Inspired by \Cref{EveryLogHaspTypification}, we seek a Verschiebung operator \(V\) satisfying \(VF = p\).  Our explicit formula for \(F\) lets us guess such a map: \[V\co \sum_{n=1}^\infty a_n x^{n-1} \mathrm{d}x \mapsto \sum_{n=1}^\infty a_{pn}^{\phi^{-1}} x^{n-1} \mathrm{d}x.\]  It satisfies \(VF = p\) and anti-semilinearity: \(aV(v) = V(a^\phi v)\).
 \end{itemize}
 With this, we come to the main theorem of this Lecture:
 
@@ -713,7 +713,7 @@ It is possible to read off several invariants of the formal group via its Dieudo
 \end{remark}
 
 \begin{example}
-Using \Cref{InvariantsFromDModule}, we see that the Dieudonn\'e module associated to a formal group \(\Gamma\) of height \(1\) must take the form \[D^*(\Gamma) = \left. \W_p(k)\{x\} \middle/ \left( \begin{array}{c} Fx = (u^{-1})^{-\phi}px \\ Vx = ux \end{array} \right)\right.\] for a constant \(u\), referred to as the \textit{modulus}~(cf.\ \cite[Theorem 4.2.2]{MoravaFormsOfKthy}).  In the case of \(\Gamma = \G_m\), this constant is simply \(u = 1\), owing essentially to the formula \([p](x) = x^p\) for the standard coordinate on the multiplicative formal group.
+Using \Cref{InvariantsFromDModule}, we see that the Dieudonn\'e module associated to a formal group \(\Gamma\) of height \(1\) must take the form \[D^*(\Gamma) = \left. \W_p(k)\{x\} \middle/ \left( \begin{array}{c} Fx = p (u^{-1})^\phi x^\phi \\ Vx = u x^{-\phi} \end{array} \right)\right.\] for a constant \(u\), referred to as the \textit{modulus}~(cf.\ \cite[Theorem 4.2.2]{MoravaFormsOfKthy}).  In the case of \(\Gamma = \G_m\), this constant is simply \(u = 1\), owing essentially to the formula \([p](x) = x^p\) for the standard coordinate on the multiplicative formal group.
 \end{example}
 
 \begin{example}
@@ -721,7 +721,7 @@ We also give a kind of non-example: \(\G_a\) is \emph{not} a finite height forma
 \end{example}
 
 \begin{example}[{cf.\ \Cref{Alpha2Example}}]\label{WorkedAlpha2Example}
-Dieudonn\'e theory admits an extension to finite group schemes over \(k\) as well, and the appropriate quotient of the Dieudonn\'e module of a formal group agrees with the Dieudonn\'e module associated to the appropriate subscheme: \[D^*(\G_0[p^j]) = D^*(\G_0) / p^j.\]  For example, this gives \[D^*(\G_m[p]) = \left.k\{x\} \middle/\left(\begin{array}{c} Fx = 0, \\ Vx = x \end{array}\right)\right. .\]  Specializing to \(k = \F_2\), we extract the subgroup scheme \(\alpha_2\) as the finite Dieudonn\'e quotient module \(D^*(\alpha_2) = \F_2\{x\} \leftarrow D^*(\G_a)\) of the Dieudonn\'e module associated to \(\G_a\) above.  We can now verify the four claims from \Cref{Alpha2Example}:
+Dieudonn\'e theory admits an extension to finite group schemes over \(k\) as well, and the appropriate quotient of the Dieudonn\'e module of a formal group agrees with the Dieudonn\'e module associated to the appropriate subscheme: \[D^*(\G_0[p^j]) = D^*(\G_0) / p^j.\]  For example, this gives \[D^*(\G_m[p]) = \left.k\{x\} \middle/\left(\begin{array}{c} F(cx) = 0, \\ V(cx) = c^{-\phi} x \end{array}\right)\right. .\]  Specializing to \(k = \F_2\), we extract the subgroup scheme \(\alpha_2\) as the finite Dieudonn\'e quotient module \(D^*(\alpha_2) = \F_2\{x\} \leftarrow D^*(\G_a)\) of the Dieudonn\'e module associated to \(\G_a\) above.  We can now verify the four claims from \Cref{Alpha2Example}:
 \begin{itemize}
 \item \textit{The group scheme \(\alpha_2\) has the same underlying structure ring as \(\mu_2 = \mathbb{G}_m[2]\) but is not isomorphic to it.}  There are now several ways to see this, the simplest of which is that the Verschiebung operator acts nontrivially on \(D^*(\mu_2)\) but wholly trivially on \(D^*(\alpha_2)\).\footnote{See also~\cite[Example 8.5]{StricklandFPFP}.}
 \item \textit{There is no commutative group scheme \(G\) of rank four such that \(\alpha_2 = G[2]\).}  Suppose that \(G\) were such a group scheme, so that \(D^*(G) / 2\) would give \(D^*(\alpha_2)\).  It can't be the case that \(D^*(G)\) has only \(2\)--torsion, since then this quotient would be a null operation, so it must be the case that \(D^*(G) = \Z/4\{x\}\).  The action of both \(F\) and \(V\) on \(x\) must vanish after quotienting by \(2\), so it must be the case that \(Fx = 2cx\) and \(Vx = 2dx\) for some constants \(c\) and \(d\)---but this violates \(VFx = 2x\).
@@ -731,7 +731,7 @@ Dieudonn\'e theory admits an extension to finite group schemes over \(k\) as wel
 \end{example}
 
 \begin{example}[{cf.\ \Cref{FormOfStabilizerGroupEarly}}]\label{FormOfStabilizerGroup}
-We can also use Dieudonn\'e theory to compute the automorphism group of a fixed \index{formal group!Honda group}Honda formal group, which is information we wanted back in \Cref{ChromaticLocalizationSection}.  Take \(\Gamma_d\) to be Honda formal group law of height \(d\) over \(\F_{p^d}\), which has Dieudonn\'e module \[D^*(\Gamma_d) = \Cart_p / (F^d = p).\]  The endomorphism ring of a quotient $R$--module $M = R / I$ is canonically isomorphic to $R/I$ itself, giving\index{Lubin Tate stack@Lubin--Tate stack!stabilizer}\index{Morava stabilizer group|see {Lubin--Tate stack}}
+We can also use Dieudonn\'e theory to compute the automorphism group of a fixed \index{formal group!Honda group}Honda formal group, which is information we wanted back in \Cref{ChromaticLocalizationSection}.  Take \(\Gamma_d\) to be Honda formal group law of height \(d\) over a perfect field \(k\) containing \(\F_{p^d}\).  Its Dieudonn\'e module is \[D^*(\Gamma_d) = \Cart_p / (\Cart_p \cdot (p - F^d)),\] where the relation stems from the defining \(p\)--series: \([p]_{\Gamma_d}(x) = x^{p^d}\).  In general, the endomorphism ring of a quotient \(R\)--module \(M = R / I\) is canonically isomorphic to the \(I\)--torsion in \(R/I\); in our case, this gives\index{Lubin Tate stack@Lubin--Tate stack!stabilizer}\index{Morava stabilizer group|see {Lubin--Tate stack}}
 \begin{align*}
 \End \Gamma_d & \cong \left. \W_p(\F_{p^d}) \<F\> \middle/ \left( \begin{array}{c} Fw = w^\phi F, \\ F^d = p \end{array} \right) \right. \\
 \intertext{and hence}
@@ -768,7 +768,7 @@ In the case that the base ring is \(p\)--local, \(C\G\) splits as a sum of copie
 This construction also plays the role of a Dieudonn\'e functor:
 
 \begin{theorem}[{\cite[Theorem 3.5 and Theorem 3.28]{ZinkCartierTheory}}]\label{CurveDieudonneTheorem}
-For \(k\) a perfect field of characteristic \(p\), the (Cartier--Dieudonn\'e) functor \(D_*\) determines a \emph{covariant} equivalence of categories between smooth \(1\)--dimensional formal groups over \(k\) of finite \(p\)--height and Dieudonn\'e modules. \qed
+For \(k\) a perfect field of characteristic \(p\), the (Cartier--Dieudonn\'e) functor \(D_*\) determines a \emph{covariant} equivalence of categories between smooth \(1\)--dimensional formal groups over \(k\) of finite \(p\)--height and Dieudonn\'e modules, which again are modules over the Cartier ring that are additionally free and finite rank over \(\W_p(k)\). \qed
 \end{theorem}
 
 \begin{theorem}[{\cite[Section II.15]{MazurMessing}}]\label{DieudonneDualityThm}\footnote{This is a remarkbly difficult theorem to prove, cf.\ \Cref{OpenQuestionsSection}.}
@@ -943,10 +943,10 @@ then \(H(n) = \F_p[x_0, x_1, \ldots, x_k]\) with the Witt vector diagonal, i.e.,
 \end{itemize}
 \end{theorem}
 
-\begin{corollary}
-The category \(\CatOf{GradedHopfAlgs}^{> 0, \fin}_{\F_p/}\) of finite-type graded connected Hopf \(\F_p\)--algebras is a full subcategory of modules over \[\bigoplus_{n, m} \CatOf{GradedHopfAlgs}(H(n), H(m)).\]
+\begin{corollary}[{\cite[Section 5]{Schoeller}}]
+The category \(\CatOf{GradedHopfAlgs}^{> 0, \fin}_{\F_p/}\) of finite-type graded connected Hopf algebras under \(\F_p\) is a full subcategory of modules for the ring \[\bigoplus_{n, m} \CatOf{GradedHopfAlgs}(H(n), H(m)).\]
 \end{corollary}
-\begin{proof}[Proof sketch]
+\begin{proof}[Construction]
 This is a general nonsense consequence of having found a set of projective generators.  The functor presenting the inclusion is \[M \mapsto \bigoplus_{n=0}^\infty \CatOf{GradedHopfAlgs}(H(n), M),\] and since this functor is corepresented its endomorphisms are encoded by the indicated ring.
 \end{proof}
 
@@ -1059,7 +1059,7 @@ H\Z_k B(n) & = B(n)_n \Susp^{n-k} H\Z \\
 \end{align*}
 \end{proof}
 
-We can use a similar trick as in the second part of the proof to calculate the cohomology groups \(H^* B(n)\):
+We can use a similar trick to calculate the cohomology groups \(H^* B(n)\):
 
 \begin{definition}[{\cite[Example 3.6]{GLM}}]\label{SpanierWhiteheadDualOfGeneratingModule}
 Let \(G(n)\) denote the free \index{Steenrod algebra!unstable module}unstable \(\mathcal A^*\)--module on a degree \(n\) generator.\footnote{This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if \(p > 2\)}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if \(p = 2\)}. \end{cases}\]  The Spanier--Whitehead dual of this right-module, \(DG(n)\), is given by \[\Susp^n (D G(n))^* = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if \(p > 2\)}, \\ \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if \(p = 2\)}. \end{cases}\]}  For \(M\) an unstable \(\mathcal A^*\)--module, \[\CatOf{Modules}_{\mathcal A^*}(G(n), M) = M_n.\]
@@ -1090,7 +1090,7 @@ For \(X\) a space, there is a natural surjection \(B(n)_n X \to H_n X\).
 \end{lemma}
 
 \begin{remark}[{\cite{Cohen}}]
-These properties actually uniquely characterize the spectra \(B(n)\) as \textit{Brown--Gitler spectra}\index{Brown--Gitler spectrum}, which arise in many other settings in stable homotopy theory.  For instance, the stable James splitting for \(\Loops^2 S^3\) is given by \[\Susp^\infty_+ \Loops^2 \Susp^2 S^1 \simeq \bigvee_{j=0}^\infty \Susp^j B(\lfloor j/2 \rfloor).\]
+These properties uniquely characterize the spectra \(B(n)\) as \textit{Brown--Gitler spectra}\index{Brown--Gitler spectrum}, which arise in many other settings in stable homotopy theory.  For instance, the stable James splitting for \(\Loops^2 S^3\) is given by \[\Susp^\infty_+ \Loops^2 \Susp^2 S^1 \simeq \bigvee_{j=0}^\infty \Susp^j B(\lfloor j/2 \rfloor).\]
 \end{remark}
 
 
