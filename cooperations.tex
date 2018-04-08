@@ -107,11 +107,11 @@ If an even-periodic ring spectrum \(E\) satisfies {\UFH} and \(X\) is a space wi
 For \(X\) satisfying this freeness condition, there is a splitting \[E(X) \simeq {\prod_\ell}' \OS{E}{n_\ell} \simeq {\prod_\ell}' \OS{E}{0},\] where the second equivalence is by even-periodicity.  Since \(E\) satisfies {\UFH}, the K\"unneth spectral sequence for the comparison map \(\prod_\ell E(\OS{E}{0}) \to E(E(X))\) collapses to an equivalence, so that \[\pi_0 E(E(X)) \cong \pi_0 \left({\prod_\ell}' E(\OS{E}{0})\right) \cong E_0(\OS{E}{0}) \otimes_{E_0} E(X).\]  Continuing inductively in this way, the levelwise homotopy of the entire unstable descent object \(\sheaf{UD}_E(X)\) can be identified as the cobar complex for \(G\), and the structure maps of \(\pi_0 \sheaf{UD}_E(X)[\le 2]\) endow \(E_0 X\) itself with the structure of a \(G\)--coalgebra.
 \end{proof}
 
-At this point, it is instructive to work through an extended example to understand the kinds of objects under consideration.  At first appraisal, they appear so bottomlessly complicated that it must be hopeless to actually compute even the enriched Hopf ring associated to a spectrum \(E\).  In fact, the abundance of structure maps involved gives enough footholds that this is actually often feasible, provided we have sufficiently strong stomachs.  Our example will be the aperiodic spectrum \(E = \HFtwo\), and the place to start is with a very old result:
+At this point, it is instructive to work through an extended example to understand the kinds of objects under consideration.  At first appraisal, they appear so bottomlessly complicated that it must be hopeless to actually compute even the enriched Hopf ring associated to a spectrum \(E\).  In fact, the abundance of structure maps involved gives enough footholds that this is actually often feasible, provided we have sufficiently strong stomachs.  Our example will be the aperiodic spectrum \(E = \HFtwo\) (and so we switch back into the graded setting), and the place to start is with a very old result:
 \begin{lemma}
 If \(E\) is a spectrum with \(\pi_{-1} E = 0\), then \(\OS{E}{1} \simeq B\OS{E}{0}\).  If \(E\) is a connective spectrum then \(\OS{E}{n} = B^n \OS{E}{0}\) for \(n \ge 0\). \qed
 \end{lemma}
-\noindent There is a natural skeletal filtration on \(B(-)\) which we use to form a spectral sequence.
+\noindent We use the natural skeletal filtration on \(B(-)\) to form a spectral sequence.
 \begin{lemma}[{\cite[Proposition 3.2]{Segal}, \cite[Theorem 2.1]{RavenelWilsonKthyOfEMSpaces}}]
 For \(G\) a loopspace, there is a \index{bar spectral sequence}spectral sequence of signature \[E^1_{*, j} = F_*(\Susp G)^{\sm j} \Rightarrow F_* BG.\]  If \(G\) is a double loopspace, then the spectral sequence is one of algebras.  If \(F\) has K\"unneth isomorphisms \[\widetilde F_*((\Susp G)^{\sm j}) \cong \widetilde F_*(\Susp G)^{\otimes_{F_*} j},\] then the \(E^2\)--page is given by \[E^2_{*, *} \cong \Tor^{F_* G}_{*, *}(F_*, F_*).\]  If both extra conditions hold, then the spectral sequence is of Hopf algebras. \qed
 \end{lemma}
@@ -155,7 +155,7 @@ d((\alpha_{(j_2-j_1)} \circ \cdots \circ \alpha_{(j_{t+1}-j_1)})^{[2^{j_1}]}) & 
 & = \alpha_{(j_1)} \circ d(\alpha_{(j_2)} \circ \cdots \circ \alpha_{(j_{t+1})}) \tag{\Cref{CircProductAndDifferentials}} \\
 & = 0. \tag{inductive hyp.}
 \end{align*}
-Hence, the spectral sequence collapses.  To see that there are no multiplicative extensions, note that the only potentially undetermined multiplications occur as \(\ast\)--squares of exterior classes.  However, the \(\ast\)--squaring map is induced by the topological map \[\OS{\HFtwo}{t} \xrightarrow{\cdot 2} \OS{\HFtwo}{t},\] which is already null on the level of spaces.  It follows that there are no extensions and the induction holds.
+Hence, the spectral sequence collapses.  To see that there are no multiplicative extensions, note that the only potentially undetermined multiplications occur as \(\ast\)--squares of exterior classes.  However, the \(\ast\)--squaring map is induced by the topological map\footnote{This is true only for the case of \(E = \HFp\).  In \Cref{COableCoopnsII} and \Cref{CoopnsForMoravaKandHA}, we will require a most robust proof that there are no extensions, which can be found in \cite[Proof of 8.11]{Wilson}.} \[\OS{\HFtwo}{t} \xrightarrow{\cdot 2} \OS{\HFtwo}{t},\] which is already null on the level of spaces.  It follows that there are no extensions and the induction holds.
 \end{proof}
 
 \begin{corollary}\label{CalculationOfUnstableSteenrodHopfRing}
@@ -273,15 +273,15 @@ There is a similar (but algebraically murkier) story for the unstable descent ob
 \mathcal{UD}_{E \vee F}(X)[1] & = (E \vee F)(E(X) \times F(X)) \\
 & = E(E(X) \times F(X)) \times F(E(X) \times F(X)).
 \end{align*}
-Restricting attention to just the first factor, \(E(E(X) \times F(X))\), its homotopy receives a map \[\pi_* E(E(X)) \otimes_{E_*} \pi_* E(F(X)) \to \pi_*(E(E(X) \times F(X)),\] and if \(E\) has K\"unneth isomorphisms then the induced map off of the tensor product is an equivalence.  Again, we can identify the \(E(E(X))\) part of this expression as belonging to \(\mathcal{UD}_E(X)[1]\), and there is a cross-term \(E(F(X))\) accounting for the shared information with \(F\).  The other term also contains information present in \(\mathcal{UD}_F(X)[1]\) and a cross-term \(F(E(X))\) accounting for shared information with \(E\).  In order to understand how these cross-terms affect the reconstruction process, we are thus drawn to the following objects: \[\sheaf O(\Ucontext{E \vee F}(S^n)[1]) \leftarrow \pi_* F(E(S^n)) = F_* \OS{E}{n}.\]  As \(n\) ranges these again form a Hopf ring:
+Restricting attention to just the first factor, \(E(E(X) \times F(X))\), its homotopy receives a map \[\pi_0 E(E(X)) \otimes_{E_0} \pi_0 E(F(X)) \to \pi_0(E(E(X) \times F(X)),\] and if \(E\) has K\"unneth isomorphisms then the induced map off of the tensor product is an equivalence.  Again, we can identify the \(E(E(X))\) part of this expression as belonging to \(\mathcal{UD}_E(X)[1]\), and there is a cross-term \(E(F(X))\) accounting for the shared information with \(F\).  The other term also contains information present in \(\mathcal{UD}_F(X)[1]\) and a cross-term \(F(E(X))\) accounting for shared information with \(E\).  In order to understand how these cross-terms affect the reconstruction process, we are thus drawn to the following objects: \[\sheaf O(\Ucontext{E \vee F}(S^n)[1]) \leftarrow \pi_0 F(E(S^n)) = F_0 \OS{E}{n}.\]  As \(n\) ranges these again form a Hopf ring:
 
 \begin{definition}
-We will refer to \(F_*(\OS{E}{*})\) as the \index{Hopf ring!mixed unstable cooperations}\textit{Hopf ring of mixed unstable cooperations} (from \(F\) to \(E\)) or the \index{Hopf ring!topological}\textit{topological Hopf ring} (from \(F\) to \(E\)).
+We will refer to \(F_0(\OS{E}{0})\) as the \index{Hopf ring!mixed unstable cooperations}\textit{Hopf ring of mixed unstable cooperations} (from \(F\) to \(E\)) or the \index{Hopf ring!topological}\textit{topological Hopf ring} (from \(F\) to \(E\)).
 \end{definition}
 
-We thus set about trying to understand the Hopf rings \(F_*(\OS{E}{*})\) in general.  In our computational example in \Cref{UnstableContextsSection}, we found that the topological Hopf ring \(\HFtwo_*(\OS{\HFtwo}{*})\) modeled endomorphisms of the additive formal group after passing to a suitable quotient, and we will take this as inspiration to construct an algebraic model which approximates the topological Hopf ring.
+We thus set about trying to understand the Hopf rings \(F_0(\OS{E}{0})\) in general.  In our computational example in \Cref{UnstableContextsSection}, we found that the topological Hopf ring \(\HFtwo_*(\OS{\HFtwo}{*})\) modeled endomorphisms of the additive formal group after passing to a suitable quotient, and we will take this as inspiration to construct an algebraic model which approximates the topological Hopf ring.
 
-We approach this problem in stages.  To start, note that homotopy elements both of \(F\) and of \(E\) can be used to contribute elements to the topological Hopf ring: an element \(f \in F_n\) begets a family of natural elements \(f_m \in F_n \OS{E}{m}\), and an element \(e \in E^n = \pi_0 \OS{E}{n}\) begets an element \([e] \in F_0 \OS{E}{n}\) by Hurewicz.  The interaction of these rings \(F_*\) and \(E^*\) is captured in the following definition:
+We approach this problem in stages.  To start, note that homotopy elements both of \(F\) and of \(E\) can be used to contribute elements to the topological Hopf ring: an element \(f \in F_0\) begets a natural element \(f \in F_0 \OS{E}{0}\), and an element \(e \in E^0 = \pi_0 \OS{E}{0}\) begets an element \([e] \in F_0 \OS{E}{0}\) by Hurewicz.  The interaction of these rings \(F_0\) and \(E^0\) is captured in the following definition:
 
 \begin{definition}[{\cite[pg.\ 706]{RavenelWilsonKthyOfEMSpaces}}]
 Let \(R\) and \(S\) be graded rings.  The \index{Hopf ring!ring--ring}\textit{Hopf ring--ring} \(R[S]\) forms a Hopf ring over \(R\): as an \(R\)--module, it is free and generated by symbols \([s]\) for \(s \in S\), and the ring structure on \(S\) is promoted up a level to become the Hopf ring operations.  Explicitly, the Hopf ring structure maps \(\ast\), \(\circ\), \(\chi\), and \(\Delta\) are determined by the formulas
@@ -295,7 +295,7 @@ R[S] & \xrightarrow{\eps} R & \eps[s] & = 1.
 \end{definition}
 
 \begin{lemma}[{\cite[pg.\ 706]{RavenelWilsonKthyOfEMSpaces}}]
-There are natural maps of Hopf rings \[F_*[E^*] \to F_*(\OS{E}{*}) \to F_*[E^*]\] augmenting the topological Hopf ring over the Hopf ring--ring. \qed
+There are natural maps of Hopf rings \[F_0[E^0] \to F_0(\OS{E}{0}) \to F_0[E^0]\] augmenting the topological Hopf ring over the Hopf ring--ring. \qed
 \end{lemma}
 
 Supposing that \(E\) and \(F\) are complex-orientable, we now seek to involve their formal groups.  The construction we are about to undertake is a variation on the proof of \Cref{ConstructionTangentAffineScheme}, which is itself a variation of a more general result in the theory of formal schemes:
@@ -320,24 +320,24 @@ Imposing these additional relations, we call the resulting quotient Hopf ring th
 \end{definition}
 
 \begin{lemma}\label{HopfRingComparisonMap}
-There is a natural map \[(F_* \CP^\infty)_{F_*[E^*]}^{\circulatearrows}[E^* \CP^\infty] \to F_*(\OS{E}{*}).\]
+There is a natural map \[(F_0 \CP^\infty)_{F_0[E^0]}^{\circulatearrows}[E^0 \CP^\infty] \to F_0(\OS{E}{0}).\]
 \end{lemma}
 \begin{proof}
-For any space \(X\), we construct a \index{Kronecker pairing}Kronecker-type pairing \[\<-,-\>\co F_n X \times E^m X \to F_n(\OS{E}{m})\] as follows: given a class \(f \in \pi_n F(X)\) and a class \(e\co X \to \OS{E}{m}\), we can compose the two to produce an element \(e_*(f) \in \pi_n F(\OS{E}{m})\).\footnote{This map was considered by Goerss~\cite[Proposition 10.2]{GoerssDieudonne}, who cites Strickland as inspiration.}  This pairing is ``bilinear'' in the following senses:
+For any space \(X\), we construct a \index{Kronecker pairing}Kronecker-type pairing \[\<-,-\>\co F_0 X \times E^0 X \to F_0(\OS{E}{0})\] as follows: given a class \(f \in \pi_0 F(X)\) and a class \(e\co X \to \OS{E}{0}\), we can compose the two to produce an element \(e_*(f) \in \pi_0 F(\OS{E}{0})\).\footnote{This map was considered by Goerss~\cite[Proposition 10.2]{GoerssDieudonne}, who cites Strickland as inspiration.}  This pairing is ``bilinear'' in the following senses:
 \begin{align*}
 \<a' + a'', b\> & = \<a', b\> + \<a'', b\>, &
 \<f \cdot a, b\> & = f \cdot \<a, b\>, \\
 \<a, b' + b''\> & = \sum_j \<a'_j, b'\> \ast \<a''_j, b''\>, &
 \<a, e \cdot b\> & = [e] \circ \<a, b\>.
 \end{align*}
-Universality of the free relative Hopf ring thus gives a Hopf ring map \((F_* X)_{F_*[E^*]}[E^* X] \to F_*(\OS{E}{*})\).  Specializing to \(X = \CP^\infty\),\footnote{In fact, any $H$--space $X$ produces an algebraic approximation, but it is the case $X = \CP^\infty$ where the map tends to be an isomorphism.} the factorization of this map through the indicated Hopf ring quotient follows the duality property of this enhanced Kronecker pairing.  Namely, the four maps and their associated diagrams pictured in \Cref{KroneckerPairingFigure} respectively witness the relations
+Universality of the free relative Hopf ring thus gives a Hopf ring map \((F_0 X)_{F_0[E^0]}[E^0 X] \to F_0(\OS{E}{0})\).  Specializing to \(X = \CP^\infty\),\footnote{In fact, any $H$--space $X$ produces an algebraic approximation, but it is the case $X = \CP^\infty$ where the map tends to be an isomorphism.} the factorization of this map through the indicated Hopf ring quotient follows the duality property of this enhanced Kronecker pairing.  Namely, the four maps and their associated diagrams pictured in \Cref{KroneckerPairingFigure} respectively witness the relations
 \begin{align*}
 \<\Delta_* a, b' \otimes b''\> & = \<a, \Delta^*(b' \otimes b'')\>, &
 \<\mu_*(a' \otimes a''), b\> & = \<a' \otimes a'', \mu^* b\>, \\
 \<\eps_* 1, b\> & = \<1, \eps^* b\>, &
 \<\eta_* 1, b\> & = \<1, \eta^* b\>.
 \end{align*}
-The Kronecker pairings relate to the K\"unneth isomorphisms for \(F_*(\CP^\infty \times \CP^\infty)\) and \(E^*(\CP^\infty \times \CP^\infty)\) by the product formula \[\<a' \otimes a'', b' \otimes b''\> = \<a', b'\> \circ \<a'', b''\>.\]  Hence, writing \(\Delta_* a = \sum_j a_j' \otimes a_j''\) and \(\mu^* b = \sum_j b'_j \otimes b''_j\), these relations become exactly the four equations
+The Kronecker pairings relate to the K\"unneth isomorphisms for \(F_0(\CP^\infty \times \CP^\infty)\) and \(E^0(\CP^\infty \times \CP^\infty)\) by the product formula \[\<a' \otimes a'', b' \otimes b''\> = \<a', b'\> \circ \<a'', b''\>.\]  Hence, writing \(\Delta_* a = \sum_j a_j' \otimes a_j''\) and \(\mu^* b = \sum_j b'_j \otimes b''_j\), these relations become exactly the four equations
 \begin{align*}
 \sum_j (a'_j[b'] \circ a''_j[b'']) & = a[b'b''], &
 (a' a'')[b] & = \bigast_j \sum_k a_{jk}'[b'_j] \circ a_{jk}''[b''_j], \\
@@ -385,24 +385,24 @@ S^n \arrow["\sigma"]{r} \arrow["F(\eta)_* \sigma"']{rd} \& F(*) \arrow["F(\eta)"
 The main theme of this Case Study is that this induced map off of the quotient is very often an isomorphism (and, in turn, that the theory of formal groups also captures everything about the theory of unstable cooperations).  Because we will be carrying this algebraic model around with us, we pause to give it a name.
 
 \begin{definition}
-For \(F\) and \(E\) ring spectra, we define their \index{Hopf ring!algebraic}\textit{algebraic Hopf ring} \(\AA(F, E)\) (or \index{algebraic approximation|see {Hopf ring!algebraic}}\textit{algebraic approximation}) by \[\AA(F, E) = (F_* \CP^\infty)_{F_*[E^*]}^{\circulatearrows}[E^* \CP^\infty].\]
+For \(F\) and \(E\) ring spectra, we define their \index{Hopf ring!algebraic}\textit{algebraic Hopf ring} \(\AA(F, E)\) (or \index{algebraic approximation|see {Hopf ring!algebraic}}\textit{algebraic approximation}) by \[\AA(F, E) = (F_0 \CP^\infty)_{F_0[E^0]}^{\circulatearrows}[E^0 \CP^\infty].\]
 \end{definition}
 
 \begin{lemma}[{\cite[Theorem 3.8]{RavenelWilsonHopfRingForMU}, \cite[Theorem 9.7]{Wilson}}]\label{UnstableRWRelation}
-After choosing complex orientations of \(E\) and \(F\), there is a natural isomorphism of Hopf rings \[\AA(F, E) \cong \frac{(F_* \CP^\infty)_{F_*[E^*]}[E^*]}{\beta(s +_F t) = \beta(s) +_{[E]} \beta(t)},\] where the equation is of power series and the equality is imposed term-by-term on the Hopf ring.\footnote{This relation is often referred to as the Ravenel--Wilson relation.\index{Ravenel--Wilson relation}}  The formal sum \(\beta(s)\) is given by \(\beta(s) = \sum_j \beta_j x^j\), where \(\beta_j\) is dual to the \(j\){\th} power of the chosen coordinate in \(F^* \CP^\infty\), and the formal group law expressions expand to
+After choosing complex orientations of \(E\) and \(F\), there is a natural isomorphism of Hopf rings \[\AA(F, E) \cong \frac{(F_0 \CP^\infty)_{F_0[E^0]}[E^0]}{\beta(s +_F t) = \beta(s) +_{[E]} \beta(t)},\] where the equation is of power series and the equality is imposed term-by-term on the Hopf ring.\footnote{This relation is often referred to as the Ravenel--Wilson relation.\index{Ravenel--Wilson relation}}  The formal sum \(\beta(s)\) is given by \(\beta(s) = \sum_j \beta_j x^j\), where \(\beta_j\) is dual to the \(j\){\th} power of the chosen coordinate in \(F^* \CP^\infty\), and the formal group law expressions expand to
 \begin{align*}
 \beta(s +_F t) & = \sum_n \beta_n[1] \left(\sum_{i, j} a_{ij}^F s^i t^j \right)^n, \\
 \beta(s) +_{[E]} \beta(t) & = \bigast_{i, j} \left(\beta_0[a_{ij}^E] \circ \left( \sum_k \beta_k[1] s^k \right)^{\circ i} \circ \left( \sum_\ell \beta_\ell[1] t^\ell \right)^{\circ j} \right).
 \end{align*}
 \end{lemma}
 \begin{proof}[Proof sketch]
-The orientations of \(E\) and \(F\) give rise to classes \(x^j \in E^{2j} \CP^\infty\) and \(\beta_k \in F_{2k} \CP^\infty\), and hence classes \(\beta_k[x^j] \in \AA(F, E)\).  The four core relations imposed on this Hopf ring give us three useful identities:
+The orientations of \(E\) and \(F\) give rise to classes \(x^j \in E^0 \CP^\infty\) and \(\beta_k \in F_0 \CP^\infty\), and hence classes \(\beta_k[x^j] \in \AA(F, E)\).  The four core relations imposed on this Hopf ring give us three useful identities:
 \begin{enumerate}
     \item The relation \[\beta_k[x^0] = \eps(\beta_k) = \begin{cases} 1 & \text{if \(k = 0\)}, \\ 0 & \text{if \(k \ne 0\)}\end{cases}\] eliminates all elements of this form except \(\beta_0[x^0] = 1\).
     \item The relation \[\beta_k[x^{j+1}] = \sum_{k' + k'' = k} \beta_{k'}[x^j] \circ \beta_{k''}[x]\] lets us rewrite these terms as \(\circ\)--products of terms of lower \(j\)--degree and no larger \(k\)--degree.
     \item The relation \[\beta_0[x^j] = [\eps(x^j)] = \begin{cases} [1] & \text{if \(j = 0\)}, \\ [0] & \text{if \(j \ne 0\)}\end{cases}\] couples to the above relation to give \[\beta_k[x^{j+1}] = \sum_{\substack{k' + k'' = k \\ k', k'' \ne 0}} \beta_{k'}[x^j] \circ \beta_{k''}[x],\] so that the rewrite is in terms of both lower \(j\)--degree \emph{and} lower \(k\)--degree.
 \end{enumerate}
-By consequence, the remaining terms are all sums of \(\circ\)--products of terms of the form \(\beta_k[x]\), so that imposing these three relations produces a surjection \[(F_* \CP^\infty)_{F_*[E^*]}[E^*] \to \AA(F, E).\]  The remaining assertion is a now a matter of imposing the fourth relation, i.e., of calculating the behavior of \[\CP^\infty \times \CP^\infty \xrightarrow{\mu} \CP^\infty \xrightarrow{x} \OS{E}{2}\] in two different ways: using the effect of \(\mu\) in \(F\)--homology and pushing forward in \(x\), or using the effect of \(\mu\) in \(E\)--cohomology and pushing forward along the Hurewicz map \(\S \to F\).
+By consequence, the remaining terms are all sums of \(\circ\)--products of terms of the form \(\beta_k[x]\), so that imposing these three relations produces a surjection \[(F_0 \CP^\infty)_{F_0[E^0]}[E^0] \to \AA(F, E).\]  The remaining assertion is a now a matter of imposing the fourth relation, i.e., of calculating the behavior of \[\CP^\infty \times \CP^\infty \xrightarrow{\mu} \CP^\infty \xrightarrow{x} \OS{E}{0}\] in two different ways: using the effect of \(\mu\) in \(F\)--homology and pushing forward in \(x\), or using the effect of \(\mu\) in \(E\)--cohomology and pushing forward along the Hurewicz map \(\S \to F\).
 \end{proof}
 
 
@@ -487,7 +487,7 @@ Using the equivalence \(\CP^1 \simeq \S^2\), the \index{homology suspension}homo
 \end{remark}
 
 \begin{remark}
-In the unmixed case of \(E = F\), as we saw in the computational example in \Cref{UnstableContextsSection}, the algebraic Hopf ring \(\AA(E, E)\) picks up an extra diagonal corresponding to the composition of formal group endomorphisms of \(\CP^\infty_E\), and the resulting pair \((\Spec E_*, \underline{\operatorname{End}}(\CP^\infty_E))\) forms a category scheme.  These schemes act by pre- and post-composition on the mixed algebraic Hopf ring \(\Spec Q^* \AA(F, E)\), and these actions are compatible with the structure maps in the unstable context \(\Ucontext{E \vee F}\) described at the beginning of this Lecture.  This description is also compatible with pulling back to the stable context \(\context{E \vee F}\): it is exactly the inclusion of the simplicial subobject consisting of the formal group isomorphisms and automorphisms.
+In the unmixed case of \(E = F\), as we saw in the computational example in \Cref{UnstableContextsSection}, the algebraic Hopf ring \(\AA(E, E)\) picks up an extra diagonal corresponding to the composition of formal group endomorphisms of \(\CP^\infty_E\), and the resulting pair \((\Spec E_0, \underline{\operatorname{End}}(\CP^\infty_E))\) forms a category scheme.  These schemes act by pre- and post-composition on the mixed algebraic Hopf ring \(\Spec Q^* \AA(F, E)\), and these actions are compatible with the structure maps in the unstable context \(\Ucontext{E \vee F}\) described at the beginning of this Lecture.  This description is also compatible with pulling back to the stable context \(\context{E \vee F}\): it is exactly the inclusion of the simplicial subobject consisting of the formal group isomorphisms and automorphisms.
 \end{remark}
 
 
@@ -514,7 +514,7 @@ Our theme for the rest of this Case Study is that the comparison map \[\AA(F, E)
 The natural homomorphism \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  (In particular, \(H_* \OS{BP}{2*}\) is even--concentrated.)
 \end{theorem}
 
-\noindent This is proved by a fairly elaborate counting argument: the rough idea is to show that the topological Hopf ring is polynomial, the comparison map is surjective, and the degrees arrange themselves so that the map then has no choice but to be an isomorphism.  Our first move will thus be to produce an upper bound for the size of the source Hopf ring, so that surjectivity can be used to compare it with the size of the algebraic approximation.
+\noindent Again, because we are working through a computation, we rest on the graded form of homology.  With this tool available, this result is proved by a fairly elaborate counting argument: the rough idea is to show that the topological Hopf ring is polynomial, the comparison map is surjective, and the degrees arrange themselves so that the map then has no choice but to be an isomorphism.  Our first move will thus be to produce an upper bound for the size of the source Hopf ring, so that surjectivity can be used to compare it with the size of the algebraic approximation.
 
 Crucially, polynomiality will often let us replace the full Hopf ring by its ring of \(\ast\)--indecomposables.  To begin, recall the following consequence of \Cref{QAstAndTensors}:
 
