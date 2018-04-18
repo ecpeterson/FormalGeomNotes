@@ -269,7 +269,7 @@ Let \(R\) be a complete local ring.  Every degree \(d\) isogeny \(f\co \A^1_R \t
 
 \noindent In the case of formal groups over a perfect field of positive characteristic, this reduces to two familiar structural results:
 
-\begin{corollary}
+\begin{corollary}\label{FrobeniusFactorizations}
 Every nonzero map of formal groups over a perfect field of positive charactersitic can be factored as an iterate of Frobenius and a coordinate change.\footnote{Incidentally, the Frobenius iterate appearing in the Weierstrass factorization of the multiplication-by-\(p\) isogeny \(p\co \G \to \G\) is another definition of the height of \(\G\).} \qed
 \end{corollary}
 
@@ -333,17 +333,17 @@ This diagram is one of formal groups, rather than of deformations---the map \(p\
 \begin{center}
 \begin{tikzcd}[row sep=1em]
 & \G \arrow["q"']{ld} \arrow["p"]{rd} \\
-\G/\G[p] \arrow["g", "\simeq"']{rr} & & (\phi^d)^* \G.
+\G/\G[p] \arrow["g'", "\simeq"']{rr} & & (\phi^d)^* \G,
 \end{tikzcd}
 \end{center}
-In particular, this latter diagram shows that the quotient map \(\G / \G[p]\) is \emph{again} a universal deformation, as witnessed by a preferred isomorphism to \(\G\).  For a generic subgroup divisor \(K \le \G\), we have access to the isogeny \(q_K\) using the methods described above, but it is the magic of the Lubin--Tate moduli that furnishes us with replacements for \(p\) and for \(g\).  Notice first that the problem simplifies dramatically for the formal group at the special fiber: all subgroups of the special fiber formal group are of the form \(p^j \cdot [0]\), and hence we can always use the Frobenius map to complete the desired triangle:
+where we have had to modify \(g\) by the map appearing in \Cref{FrobeniusFactorizations}.  This latter diagram shows that the quotient \(\G / \G[p]\) is \emph{again} a universal deformation, as witnessed by a preferred isomorphism to \(\G\).  For a generic subgroup divisor \(K \le \G\), we have access to the isogeny \(q_K\) using the methods described above, but it is the magic of the Lubin--Tate moduli that furnishes us with replacements for \(p\) and for \(g\).  Notice first that the problem simplifies dramatically for the formal group at the special fiber: all subgroups of the special fiber formal group are of the form \(p^j \cdot [0]\), and hence we can always use the Frobenius map to complete the desired triangle:
 \begin{center}
 \begin{tikzcd}[row sep=1em]
 & \Gamma \arrow["q_{p^j[0]}"']{ld} \arrow["\Frob^j"]{rd} \\
 \Gamma/(p^j\cdot[0]) \arrow["g_{p^j[0]}", "\simeq"']{rr} & & (\phi^j)^* \Gamma,
 \end{tikzcd}
 \end{center}
-where \(\phi\co k \to k\) is the Frobenius on coefficients and \(\Frob\co \Gamma \to \phi^* \Gamma\) is the ``geometric Frobenius'', specified at the level of formal group \emph{laws} by the equation \(\Frob(x) = x^p\) and \[(x +_\Gamma y)^p = x^p +_{\phi^* \Gamma} y^p.\]
+where \(\phi\co k \to k\) is the Frobenius on coefficients and \(\Frob\co \Gamma \to \phi^* \Gamma\) is the ``geometric Frobenius'', specified at the level of points by \(\Frob(x) = x^p\) and hence at the level of formal group \emph{laws} by \[(x +_\Gamma y)^p = x^p +_{\phi^* \Gamma} y^p.\]
 
 \begin{lemma}[{\cite[Section 12.3]{AHSHinfty}}]
 Let \(G\) be an infinitesimal deformation of a finite height formal group \(\Gamma\) to a complete local ring \(R\).  Associated to a subgroup divisor \(K \le G\), there is a commuting triangle
@@ -353,7 +353,7 @@ Let \(G\) be an infinitesimal deformation of a finite height formal group \(\Gam
 G/K \arrow["g_K", "\simeq"']{rr} & & \psi_K^* \G
 \end{tikzcd}
 \end{center}
-for a map \(\psi_K\co \Spf R \to (\moduli{fg})^\wedge_\Gamma\) and \(\G\) the Lubin--Tate universal deformation of \(\Gamma\).
+for a map \(\psi_K\co \Spf R \to (\moduli{fg})^\wedge_\Gamma\) and \(\G\) a universal deformation of \(\Gamma\).
 \end{lemma}
 \begin{proof}
 The main content of the deformation theory of finite height formal groups, recounted in \Cref{SectionMfgSmallScales}, is that there is a natural correspondence between the following two kinds of deformation data:
@@ -383,24 +383,11 @@ Applying this Lemma to the universal case gives the following result:
 \begin{corollary}\label{DeterminationOfPowerMaps}
 There is a unique sequence of maps \[P^{\Sigma_{p^k}}\co \G \times \Sub_{p^k} \G \to \psi_{p^k}^* \G\] determined by the following properties:
 \begin{enumerate}
-    \item Restricting to any point in \(\Sub_{p^k} \G\) gives a group homomorphism with that kernel.
+    \item Restricting to any point in \(\Sub_{p^k} \G\) gives an isogeny with that kernel.
     \item (\textit{Deformation of Frobenius}:) At the special fiber, \(P^{\Sigma_{p^k}}\) reduces to the \(k\){\th} Frobenius iterate.
     \qed
 \end{enumerate}
 \end{corollary}
-
-Amazingly, this is exactly the behavior of any theory of \index{power operation}power operations for \(E\)--theory as applied to \(\CP^\infty\).  An \(H_\infty\) structure on Morava \(E\)--theory carries a \(\Sigma_{p^k}\)--power operation map \[E^0 \CP^\infty \otimes E^0 B\Sigma_{p^k} \from E^0 \CP^\infty,\] which corresponds to a map of formal schemes:
-\begin{center}
-\begin{tikzcd}
-\Spf (E^0 \CP^\infty \otimes E^0 B\Sigma_{p^k} / I_{\Tr}) \arrow{r} \arrow[equal]{d} & \Spf E^0 \CP^\infty \arrow[equal]{d} \\
-\CP^\infty_E \times \Sub_{p^k} \CP^\infty_E \arrow["P^{\Sigma_{p^k}}"]{r} & \CP^\infty_E.
-\end{tikzcd}
-\end{center}
-This becomes an \(E^0\)--algebra map (i.e., a map of schemes over \((\moduli{fg})^\wedge_\Gamma\)) when the bottom map is factored as \[\CP^\infty_E \times \Sub_{p^k} \CP^\infty_E \xrightarrow{P^{\Sigma_{p^k}}} \psi_{\Sigma_{p^k}}^* \CP^\infty_E \to \CP^\infty_E.\]  This map has exactly the prescribed kernel, and by its very nature as a \emph{power operation} it reduces to the Frobenius on the special fiber---and thus the unicity of \Cref{DeterminationOfPowerMaps} applies.  Finally, this identification is definitionally compatible with the map sending a power operation to its constituent sum of unstable operations, i.e., the map from the natural \(E_\infty\) context to the unstable context.
-
-\begin{remark}[{\cite[1.4.2.3]{CCO}}]
-There is a useful result about isogenies that more topologists ought to be aware of, although it doesn't tie in directly to any of our exposition here.  Nonetheless, we record its statement: for \(R\) a sufficiently nice complete local ring, and for \(\mathbb G\) and \(\mathbb G'\) two \(p\)--divisible groups over \(R\), reduction to the special fiber gives an injection \[\Isog(\mathbb G, \mathbb G') \into \Isog(\mathbb G \times \Spec R/\m, \mathbb G' \times \Spec R/\m).\]
-\end{remark}
 
 
 
@@ -414,7 +401,14 @@ There is a useful result about isogenies that more topologists ought to be aware
 
 \subsection*{\(H_\infty\)--orientations}
 
-Having worked through enough of the underlying algebra, we now return to our intended application: \(H_\infty\) complex-orientations of Morava \(E\)--theory.  As we have avoided endowing \(E\)--theory with an \(H_\infty\)--structure so far, there are some open questions as to what this might mean.  To resolve this ambiguity, recall first from \Cref{OmnibusEinftyTheorem} that there exists at least one \(H_\infty\)--ring structure on Morava \(E\)--theory.  Next, notice that the set of \(H_\infty\)--ring maps is the subset of homotopy classes of ring maps which commute with the \(\Sigma_n\)--power operations on the source and target.  In the case of \(MUP\)--orientations, this has a surprising effect: since an ordinary ring map \(MUP \to E\) corresponds to a map \(\CP^\infty \to E\), the theory of \(H_\infty\)--orientations can be entirely read off from the behavior of the power operations on \(\CP^\infty\).  Additionally, the behavior of \emph{any} putative theory of \(E\)--theoretic power operations on this particular space was totally determined in the previous section.  We therefore need not be more specific.
+Having worked through enough of the underlying algebra, we now return to our intended application: \(H_\infty\) complex-orientations of Morava \(E\)--theory.  As we have avoided endowing \(E\)--theory with an \(H_\infty\)--structure so far, there are some open questions as to what this might mean.  To resolve this ambiguity, recall first from \Cref{OmnibusEinftyTheorem} that there exists at least one \(H_\infty\)--ring structure on Morava \(E\)--theory.  Next, notice that the set of \(H_\infty\)--ring maps is the subset of homotopy classes of ring maps which commute with the \(\Sigma_n\)--power operations on the source and target.  In the case of \(MUP\)--orientations, this has a surprising effect: since an ordinary ring map \(MUP \to E\) corresponds to a map \(\CP^\infty \to E\), the theory of \(H_\infty\)--orientations can be entirely read off from the behavior of the power operations on \(\CP^\infty\).  The behavior of power operations as restricted to this setting is wholly captured in \Cref{DeterminationOfPowerMaps}: an \(H_\infty\) structure on Morava \(E\)--theory carries a \(\Sigma_{p^k}\)--power operation map \[E^0 \CP^\infty \otimes E^0 B\Sigma_{p^k} \from E^0 \CP^\infty,\] which corresponds to the map of formal schemes
+\begin{center}
+\begin{tikzcd}
+\Spf (E^0 \CP^\infty \otimes E^0 B\Sigma_{p^k} / I_{\Tr}) \arrow{r} \arrow[equal]{d} & \Spf E^0 \CP^\infty \arrow[equal]{d} \\
+\CP^\infty_E \times \Sub_{p^k} \CP^\infty_E \arrow["P^{\Sigma_{p^k}}"]{r} & \CP^\infty_E.
+\end{tikzcd}
+\end{center}
+This becomes an \(E^0\)--algebra map (i.e., a map of schemes over \((\moduli{fg})^\wedge_\Gamma\)) when the bottom map is factored as \[\CP^\infty_E \times \Sub_{p^k} \CP^\infty_E \xrightarrow{P^{\Sigma_{p^k}}} \psi_{\Sigma_{p^k}}^* \CP^\infty_E \to \CP^\infty_E.\]  This map has exactly the prescribed kernel, and by its very nature as a \emph{power operation} it reduces to the Frobenius on the special fiber---and thus the unicity of \Cref{DeterminationOfPowerMaps} applies.\footnote{This identification is also compatible with the map sending a power operation to its constituent sum of unstable operations, i.e., the map from the natural \(E_\infty\) context to the unstable context.}  Since this analysis applies to \emph{any} putative theory of \(E\)--theoretic power operations, we need not specify what \(H_\infty\)--structure we take on \(E\)--theory for the purpose of studying orientations.
 
 Beyond these observations, there are two reductions, both due to McClure, that lighten our workload from infinitely many conditions to check to two:
 
