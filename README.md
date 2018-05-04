@@ -10,11 +10,10 @@ through the Cambridge University Press website:
 
 ## Compilation
 
-Be sure to use the option --recurse when running git clone to pull down the submodules.
-
 To compile these notes after downloading them, run
 
-    $ pdflatex main # generate list of desired bibliography entries
-    $ bibtex main   # generate bibliography itself
-    $ pdflatex main # rerun, matching bibliography entries to references
-    $ pdflatex main # rerun, updating page entries
+    $ pdflatex main  # generate list of desired bibliography entries
+    $ bibtex main    # generate bibliography itself
+    $ pdflatex main  # rerun, matching bibliography entries to references
+    $ makeindex main # generate book index, index page references
+    $ pdflatex main  # rerun, updating PDF page entries
