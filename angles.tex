@@ -1,0 +1,51 @@
+% -*- root: main.tex -*-
+
+% kudos: hood chatham
+
+\newbox\mylanglebox
+\newbox\mylangleboxscript
+\newbox\mylangleboxscriptscript
+
+\newbox\myranglebox
+\newbox\myrangleboxscript
+\newbox\myrangleboxscriptscript
+
+\def\myanglescale{0.12}
+\def\myanglescalescript{0.08}
+\def\myanglescalescriptscript{0.06}
+
+\def\myangletikz#1#2{
+\hskip-2.35pt\tikz[x=0.01pt, y=0.01pt,xscale=\myanglescale,yscale=\csname myanglescale#1\endcsname,xscale=0.8,yscale=0.9,xscale=#2]
+ \fill
+(0, 138)--(857, 1927)--(1711, 3715)--(2091, 3708)--(1319, 1917)--(552, 138)--(552, 138)--(1319, -1641)--(2091, -3432)--(1711, -3439)--(857, -1651)--(0, 138);
+ }
+
+
+\setbox\mylanglebox = \hbox{\myangletikz{}{1}}
+\setbox\myranglebox = \hbox{\myangletikz{}{-1}}
+\setbox\mylangleboxscript = \hbox{\myangletikz{script}{1}}
+\setbox\myrangleboxscript = \hbox{\myangletikz{script}{-1}}
+\setbox\mylangleboxscriptscript = \hbox{\myangletikz{scriptscript}{1}}
+\setbox\myrangleboxscriptscript = \hbox{\myangletikz{scriptscript}{-1}}
+
+
+\settowidth{\wd\mylanglebox}{$\langle$}
+\settowidth{\wd\myranglebox}{$\langle$}
+\settowidth{\wd\mylangleboxscript}{$\scriptstyle\langle$}
+\settowidth{\wd\myrangleboxscript}{$\scriptstyle\langle$}
+\settowidth{\wd\mylangleboxscriptscript}{$\scriptscriptstyle\langle$}
+\settowidth{\wd\myrangleboxscriptscript}{$\scriptscriptstyle\langle$}
+
+
+\def\mylangle{\mathchoice
+     {\lower 0.7pt\copy\mylanglebox}
+     {\lower 0.7pt\copy\mylanglebox}
+     {\hskip-0.3pt\lower 0.3pt\copy\mylangleboxscript\hskip0.3pt}
+     {\hskip-0.5pt\lower 0.4pt\copy\mylangleboxscriptscript\hskip0.5pt}
+}
+\def\myrangle{\mathchoice
+    {\lower 0.7pt\copy\myranglebox}
+    {\lower 0.7pt\copy\myranglebox}
+    {\hskip-0.3pt\lower 0.3pt\copy\myrangleboxscript\hskip0.3pt}
+    {\hskip-0.5pt\lower 0.4pt\copy\myrangleboxscriptscript\hskip0.5pt}
+}
