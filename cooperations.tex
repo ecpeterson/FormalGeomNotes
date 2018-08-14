@@ -1006,11 +1006,11 @@ For \(F = H\) and \(E\) a \index{Landweber flat}Landweber flat homology theory, 
 \noindent We have previously computed that the comparison map \[\AA(H, BP) \to H_* \OS{BP}{2*}\] is an isomorphism.  In order to make use of this statement now, we must reimagine it in terms of Dieudonn\'e theory.  In order to do that, we again have to reimagine some of Dieudonn\'e theory itself, as our description of it is concerned with \emph{Hopf algebras} rather than \emph{Hopf rings}.  Recall that a Hopf ring is an algebra object \[\circ\co A_* \boxtimes A_* \to A_*,\] where ``\(\boxtimes\)'' is a kind of graded \index{Hopf algebra!tensor product}tensor product of externally graded Hopf algebras~\cite[Proposition 2.6]{HuntonTurner}, \cite[Definition 2.2]{BuchstaberLazarev}, \cite[Section 5]{GoerssDieudonne}.  Since \(D_*\) gives an equivalence of categories between internally graded Hopf algebras and internally graded Dieudonn\'e modules, we should be able to find an analogous formula for the tensor product of \index{Dieudonn\'e module!tensor product}Dieudonn\'e modules.
 
 \begin{definition}{\cite[pg.\ 154]{GoerssDieudonne}}
-The naive tensor product \(M \otimes N\) of Dieudonn\'e modules \(M\) and \(N\) receives the structure of a \(\Z_p\<V\>\)--module, where \(V(x \otimes y) = V(x) \otimes V(y)\).  We define the \textit{tensor product of Dieudonn\'e modules}\footnote{This definition is specialized to \(\F_p\) and \(\mathbb W_p(\F_p) = \Z_p\), where we don't have to worry about Frobenius semi-linearity.} by \[M \boxtimes N = \left.\frac{\Z_p\<F, V\>}{(VF = p)} \otimes_{\Z_p[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
+Let \(M\) and \(N\) be connected graded Dieudonn\'e modules.  Their module tensor product \(M \otimes N\) receives the structure of a \(\Z_p\<V\>\)--module, where \(V(x \otimes y) = V(x) \otimes V(y)\).  We define the \textit{tensor product of Dieudonn\'e modules}\footnote{This definition is specialized to \(\F_p\) and \(\mathbb W_p(\F_p) = \Z_p\), where we don't have to worry about Frobenius semi-linearity.} by \[M \boxtimes N = \left.\frac{\Z_p\<F, V\>}{(VF = p)} \otimes_{\Z_p[V]} (M \otimes N) \middle/ \left( \begin{array}{c} 1 \otimes Fx \otimes y = F \otimes x \otimes Vy, \\ 1 \otimes x \otimes Fy = F \otimes Vx \otimes y \end{array} \right) \right. .\]
 \end{definition}
 
 \begin{lemma}[{\cite[Corollary 8.14]{GoerssDieudonne}}]
-The natural map \[D_*(M) \boxtimes D_*(N) \to D_*(M \boxtimes N)\] is an isomorphism. \qed
+The natural map \[D_*(H) \boxtimes D_*(H') \to D_*(H \boxtimes H')\] is an isomorphism. \qed
 \end{lemma}
 
 \begin{definition}
@@ -1025,7 +1025,7 @@ Inspired by \Cref{UnstableRWRelation} and our interest in \(H_* \OS{E}{*}\), for
 Restricting attention to the even parts, the maps \[R_E \to D_E \to D_* H_* \OS{E}{2*}\] are isomorphisms for \(E\) Landweber flat.
 \end{theorem}
 \begin{proof}
-In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for \(E = BP\).  However, the right--hand object can be identified via Brown--Gitler juggling: \[D_n H_* \OS{E}{2j} = B(n)_n \Susp^{2j} E = E_{2j+n} B(n).\]  It follows that if \(E\) is Landweber flat, then the middle-- and right--terms are determined by change-of-base from the respective \(BP\) terms.  Finally, the left term commutes with change-of-base by its algebraic definition, and the theorem follows.
+In \Cref{HopfRingForEBP}, we showed that these maps are isomorphisms for \(E = BP\).  However, the right--hand object can be identified via Brown--Gitler juggling: \[D_n H_* \OS{E}{2j} = B(n)_n \Susp^{2j} E = E_{2j+n} B(n).\]  It follows that if \(E\) is Landweber flat, then the middle-- and right--terms are determined by change-of-base from the respective \(BP\) terms.  Finally, the formation of \(R_E\) commutes with change-of-base, and the theorem follows.
 \end{proof}
 
 \begin{remark}
@@ -1041,10 +1041,14 @@ The results of this Lecture are accessed from a different perspective by Hopkins
 \end{remark}
 
 
-Before moving on, we prove a sequence of small results which make these spectra \(B(n)\) somewhat more tangible, though we advise the reader that these do not bear any further on our investigation of unstable cooperations.
+Before moving on, we prove a sequence of small results which make these spectra \(B(n)\) somewhat more tangible, though we advise the reader that these do not bear any further on our investigation of unstable cooperations.  We begin with a definition:
 
-\begin{lemma}[{\cite[Lemma 3.2]{GLM}}]
-The spectrum \(B(n)\) is connective and \(p\)--complete.
+\begin{definition}[{\cite[Example 3.6]{GLM}}]\label{SpanierWhiteheadDualOfGeneratingModule}
+Let \(G(n)\) denote the free \index{Steenrod algebra!unstable module}unstable \(\mathcal A^*\)--module on a degree \(n\) generator.\footnote{This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if \(p > 2\)}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if \(p = 2\)}. \end{cases}\]  The Spanier--Whitehead dual of this right-module, \(DG(n)\), is given by \[\Susp^n (D G(n))^* = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if \(p > 2\)}, \\ \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if \(p = 2\)}. \end{cases}\]}  For \(M\) an unstable \(\mathcal A^*\)--module, \[\CatOf{Modules}_{\mathcal A^*}(G(n), M) = M_n.\]
+\end{definition}
+
+\begin{lemma}[{\cite[Proof of Theorem 3.1, Lemma 3.2]{GLM}}]
+The spectrum \(B(n)\) is connective and \(p\)--complete, and there is an isomorphism \[H_* B(n) \cong \Susp^{-n} G(n)^*.\]
 \end{lemma}
 \begin{proof}
 First, rearrange:
@@ -1056,39 +1060,21 @@ If \(k < 0\), \(n\) is below the connectivity of \(\Loops^\infty \S^{n-k}\) and 
 H\Z_k B(n) & = B(n)_n \Susp^{n-k} H\Z \\
 & = D_n H_* K(\Z, n-k) \\
 & = [H(n), H_* K(\Z, n-k)]_n \\
-& = [Q^* H_* K(\Z, n-k)]_n. \qedhere
+& = [Q^* H_* K(\Z, n-k)]_n.
 \end{align*}
-\end{proof}
-
-We can use a similar trick to calculate the cohomology groups \(H^* B(n)\):
-
-\begin{definition}[{\cite[Example 3.6]{GLM}}]\label{SpanierWhiteheadDualOfGeneratingModule}
-Let \(G(n)\) denote the free \index{Steenrod algebra!unstable module}unstable \(\mathcal A^*\)--module on a degree \(n\) generator.\footnote{This module admits a presentation as \[G(n) = \begin{cases} \Susp^n \mathcal A / \{\beta^\eps P^i \mid 2pi + 2\eps > n\}\mathcal A & \text{if \(p > 2\)}, \\ \Susp^n \mathcal A / \{\Sq^i \mid 2i > n\}\mathcal A & \text{if \(p = 2\)}. \end{cases}\]  The Spanier--Whitehead dual of this right-module, \(DG(n)\), is given by \[\Susp^n (D G(n))^* = \begin{cases}\mathcal A / \mathcal A \{\chi(\beta^\eps P^i) \mid 2pi + 2\eps > n\} & \text{if \(p > 2\)}, \\ \mathcal A / \mathcal A \{\chi{\Sq^i} \mid 2i > n\} & \text{if \(p = 2\)}. \end{cases}\]}  For \(M\) an unstable \(\mathcal A^*\)--module, \[\CatOf{Modules}_{\mathcal A^*}(G(n), M) = M_n.\]
-\end{definition}
-
-\begin{theorem}[{\cite[Proof of Theorem 3.1]{GLM}}]
-There is an isomorphism \[H^* B(n) \cong \Susp^n(DG(n))^*.\]
-\end{theorem}
-\begin{proof}
-We restrict attention to \(n \not\equiv \pm 1 \pmod p\), where we can use \Cref{BrownGitlerSpectraDefn} directly.  Start, as before, by addressing the dual problem of computing the mod--\(p\) homology:
-\begin{align*}
-H_k B(n) = B(n)_n \Susp^{n-k} H = D_n H_* K(\F_p, n-k).
-\end{align*}
-The unstable module \(G(n)\) also enjoys a universal property in the category of \emph{stable} \(\mathcal A^*\)--modules, by passing to the maximal unstable submodule \(\Loops^\infty M\) of a stable module \(M\): \[\CatOf{Modules}_{\mathcal A^*}(G(n), M) \cong [\Loops^\infty M]_n.\]  Hence, we can continue our computation:
+From this, we conclude completeness.  To finish the mod--\(p\) homology calculation, note that the unstable module \(G(n)\) also enjoys a universal property in the category of \emph{stable} \(\mathcal A^*\)--modules by first passing to the maximal unstable submodule \(\Loops^\infty M\) of a stable module \(M\): \[\CatOf{Modules}_{\mathcal A^*}(G(n), M) \cong [\Loops^\infty M]_n.\]  Given this, we can perform the mod--\(p\) version of the above computation:
 \begin{align*}
 H_k B(n) & = D_n H_* K(\F_p, n-k) \\
 & = \CatOf{Modules}_{\mathcal A^*}(G(n), \Susp^{n-k} \mathcal A_*) \\
-& = \CatOf{Modules}_{\F_p}(G(n)_{n-k}, \F_p).
+& = \CatOf{Modules}_{\F_p}(G(n)_{n-k}, \F_p). \qedhere
 \end{align*}
-
-We learn immediately that the \(H_* B(n)\) spectrum, which we already knew to be bounded-below and p-complete, is a finite spectrum.  It follows that a unique Spanier--Whitehead predual exists and agrees with the Spanier--Whitehead dual; the statement then follows from the previous equality.
 \end{proof}
 
 Lastly, for a \emph{space} \(X\), we definitionally have that have \(H_* X\) forms an unstable module over the Steenrod algebra, i.e., \(\Loops^\infty H_* X = H_* X\).  This has the following direct sequence (with minor fuss at the bad indices \(n \equiv \pm 1 \pmod p\)):
 
-\begin{lemma}[{\cite[Lemma 3.3]{GLM}}]
+\begin{corollary}[{\cite[Lemma 3.3]{GLM}}]
 For \(X\) a space, there is a natural surjection \(B(n)_n X \to H_n X\). \qed
-\end{lemma}
+\end{corollary}
 
 \begin{remark}[{\cite{Cohen}}]
 These properties uniquely characterize the spectra \(B(n)\) as \textit{Brown--Gitler spectra}\index{Brown--Gitler spectrum}, which arise in many other settings in stable homotopy theory.  For instance, the stable James splitting for \(\Loops^2 S^3\) is given by \[\Susp^\infty_+ \Loops^2 \Susp^2 S^1 \simeq \bigvee_{j=0}^\infty \Susp^j B(\lfloor j/2 \rfloor).\]
@@ -1108,7 +1094,7 @@ These properties uniquely characterize the spectra \(B(n)\) as \textit{Brown--Gi
 
 Our discussion of unstable cooperations has touched on each of the families of chromatic homology theories described in \Cref{DefnChromaticHomologyThys} except one: the \index{Morava K theory@Morava \(K\)--theory}\index{Morava E theory@Morava \(E\)--theory}Morava \(K\)-- and \(E\)--theories.  Our final goal before moving on to other subjects is to describe some of the \index{operations!mixed}\index{operations!unstable}mixed unstable cooperations for \((K_\Gamma)_* \OS{K_{\Gamma'}}{*}\).  In complete generality, this seems like a difficult problem: our algebraic model is rooted in formal group homomorphisms, and we have not proven any theorems about the moduli of such for arbitrary finite-height formal groups.  However, the landscape brightens considerably in the case where we pick \(\Gamma' = \G_a\), as this is the sort of calculation we considered in \Cref{LazarevComparisonOfCplxes} and \Cref{CalculationOfLTTangentSpace}.  In light of this, we specialize \(\Gamma'\) to \(\G_a\) (and hence \(K_{\Gamma'}\) to an Eilenberg--Mac Lane spectrum \(H\)), and we abbreviate \(K_\Gamma\) to just \(K\).
 
-As with all the other major results of this Case Study, our approach will rest on the \index{bar spectral sequence}bar spectral sequence \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}.\]  The analysis of this spectral sequence was first accomplished by Ravenel and Wilson~\cite{RavenelWilsonKthyOfEMSpaces}, but has since been re-envisioned by Hopkins and Lurie~\cite[Section 2]{HopkinsLurie}.  In order to give an effective analysis of this spectral sequence in line with the theme of this book, we will endeavor to give algebro-geometric interpretations of its input and its output, beginning with the case \(q = 0\) and \(H = H(S^1[p^j])\) for some \(1 \le j \le \infty\).  This task itself begins with giving just \emph{algebraic} descriptions of the input and output.  For \(j < \infty\), we have essentially already computed the output by other means:
+As with all the other major results of this Case Study, our approach will rest on the \index{bar spectral sequence}bar spectral sequence \[\Tor^{K_* \OS{H}{q}}_{*, *}(K_*, K_*) \Rightarrow K_* \OS{H}{q+1}.\]  The analysis of this spectral sequence was first accomplished by Ravenel and Wilson~\cite{RavenelWilsonKthyOfEMSpaces}, but has since been re-envisioned by Hopkins and Lurie~\cite[Section 2]{HopkinsLurie}.  In order to give an effective analysis of this spectral sequence in line with the theme of this book, we will endeavor to give algebro-geometric interpretations of its input and its output, beginning with the case \(q = 0\) and \(H = H(S^1[p^j])\) for some \(1 \le j \le \infty\).  This task begins with giving just \emph{algebraic} descriptions of the input and output.  For \(j < \infty\), we have essentially already computed the output by other means:
 
 \begin{theorem}[{\cite[Theorem 5.7]{RavenelWilsonKthyOfEMSpaces}, \cite[Proposition 2.4.4]{HopkinsLurie}}]\label{KtheoryConvertsTorsionToTorsion}
 There is an isomorphism \[BS^1[p^j]_K \cong BS^1_K[p^j].\]
@@ -1155,16 +1141,16 @@ This is a consequence of the fiber sequence \[K(\Q, q) \to K(\Q/\Z_{(p)}, q) \to
 Thinking of \(K(\Z, q+1)\) as \(B^q S^1\), one can also think of this theorem as giving a \(p\)--adic equivalence between \(B^q(S^1[p^\infty])\) and \(B^q S^1\)---i.e., the prime--to--\(p\) parts of \(S^1\) do not matter for \(p\)--adic homotopy theory.
 \end{remark}
 
-We use this to continue the analysis of the case \(q = 1\) and \(j = \infty\), where the Lemma gives \(B(S^1[p^\infty]) = \CP^\infty\).  The bar spectral sequence of interest then takes the form \[\Tor^{K_* S^1}_{*, *}(K_*, K_*) \Rightarrow K_* \CP^\infty.\]  The input algebra \(K_* S^1\) is exterior on a single generator in odd degree, and so its \(\Tor\)--algebra is linearly dual to a power series algebra on a single generator in even degree.  Since all of its input is even, this spectral sequence collapses immediately.\footnote{Thinking of this as the limiting ``\(j \to \infty\)'' instance of the family of examples above is a great opportunity to meditate on the role of odd-dimensional classes in homotopy theory.}
+We use this to continue the analysis of the case \(q = 1\) and \(j = \infty\), where the Lemma gives a \(p\)--adic equivalence \(B(S^1[p^\infty]) = \CP^\infty\).  The bar spectral sequence of interest then takes the form \[\Tor^{K_* S^1}_{*, *}(K_*, K_*) \Rightarrow K_* \CP^\infty.\]  The input algebra \(K_* S^1\) is exterior on a single generator in odd degree, and so its \(\Tor\)--algebra is linearly dual to a power series algebra on a single generator in even degree.  Since all of its input is even, this spectral sequence collapses immediately.\footnote{Thinking of this as the limiting ``\(j \to \infty\)'' instance of the family of examples above is a great opportunity to meditate on the role of odd-dimensional classes in homotopy theory.}
 
-There is a lot of structure visible in this collection of spectral sequences, as considered simultaneously.  Without further inspection, the spectral sequence at \(j = \infty\) records that \(\CP^\infty_K\) is a formal variety, and the spectral sequences at the finite values \(1 \le j < \infty\) encode in their differentials the behavior of the map \(p^j\co \Gamma \to \Gamma\) on functions---indeed, this appears to be the entire job of \(\alpha'_{()}\).  Lastly, we notice that the \(E_\infty\) page of each finite-range spectral sequence includes into the spectral sequence at \(j = \infty\), and moreover this filtration is exhaustive: every term in the \(j = \infty\) spectral sequence appears at some \(j < \infty\) stage.  Since this last property is about the \(E_\infty\) pages, it is really a property of the formal group \(\Gamma\), which we record in a definition:
+There is a lot of structure visible in this collection of spectral sequences, as considered simultaneously.  Without further inspection, the spectral sequence at \(j = \infty\) records that \(\CP^\infty_K\) is a formal variety, and the spectral sequences at the finite values \(1 \le j < \infty\) encode in their differentials the behavior of the map \(p^j\co \Gamma \to \Gamma\) on functions.  Lastly, we notice that the \(E_\infty\) page of each finite-range spectral sequence includes into the spectral sequence at \(j = \infty\), and moreover this filtration is exhaustive: every term in the \(j = \infty\) spectral sequence appears at some \(j < \infty\) stage.  Since this last property is about the \(E_\infty\) pages, it is really a property of the formal group \(\Gamma\), which we record in a definition:
 
 \begin{definition}[{\cite[Definition 4.1]{GrothendieckCristaux}}]\label{DefnPDivGp}
 A \index{p divisible group@\(p\)--divisible group}\textit{\(p\)--divisible group}\footnote{Some like to call these \index{Barsotti--Tate group|see {\(p\)--divisible group}}\textit{Barsotti--Tate groups}, which is probably the better name, since ``\(p\)--divisible group'' does not communicate these subtle extra properties.} of height \(d\) over a field is a system \(\mathbb G_j\) of finite group schemes satisfying \(\operatorname{dim} \sheaf O(\mathbb G_j) = p^{jd}\), as well as maps \(i_k^j\co \mathbb G_k \to \mathbb G_j\) for \(k < j\) which belong to exact sequences \[0 \to \mathbb G_k \xrightarrow{i_k^j} \mathbb G_j \xrightarrow{p^k} \mathbb G_j.\]
 \end{definition}
 
 \begin{definition}
-A \(p\)--divisible group is said to be \index{p divisible group@\(p\)--divisible group!connected}\textit{connected} when its constituent subgroups \(\mathbb G_j\) are infinitesimal thickenings of \(\Spec k\).  An example of this is the sequence of torsion subgroups \(\G[p^j]\) of a formal group \(\G\).  An example of a \(p\)--divisible group which is \emph{not} connected is the sequence of constant group schemes \(\G_j = S^1[p^j]\).
+A \(p\)--divisible group is said to be \index{p divisible group@\(p\)--divisible group!connected}\textit{connected} when its constituent subgroups \(\mathbb G_j\) are infinitesimal thickenings of \(\Spec k\).  An example of this is the sequence of torsion subgroups \(\G[p^j]\) of a formal group \(\G\).  An example of a \(p\)--divisible group which is \emph{not} connected is the sequence of constant group schemes \(\mathbb G_j = S^1[p^j]\).
 \end{definition}
 
 \begin{lemma}[{\cite[Section 6.7]{GrothendieckCristaux}}]
@@ -1184,8 +1170,8 @@ We will soon see that these interrelations among the bar spectral sequences for 
 The following claims give a complete description of the Morava \(K\)--theory schemes associated to the Eilenberg--Mac Lane spaces \(\OS{HS^1[p^j]}{q}\).
 \begin{enumerate}
     \item The formal scheme \((\OS{H(S^1[p^\infty])}{q})_K\) is a formal variety of dimension \(\binom{d-1}{q-1}\).
-    \item Suppose that \((\OS{H(S^1[p^\infty])}{q-1})_K\) is a \(p\)--divisible formal group of height \(\binom{d}{q-1}\) and dimension \(\binom{d-1}{q-1}\), that \((\OS{H(S^1[p])}{q-1})_K\) models its \(p\)--torsion, and that the cup product induces an isomorphism \[\theta^{q-1}\co \Q / \Z_{(p)} \otimes D(\OS{H(S^1[p^\infty])}{1})^{\wedge (q-1)} \to D(\OS{H(S^1[p^\infty])}{q-1}),\] where \(D(G)\) denotes the \index{Dieudonn\'e module}Dieudonn\'e module associated to \(K_0(G)\), where \[K_*(G) = K_0(G) \otimes_k K_*\] is a \(p\)--divisible Hopf algebra.  The same claims are then true with \(q-1\) replaced everywhere by \(q\).
-    \item Consider the model \(\Q / \Z_{(p)} \cong S^1[p^\infty]\) for the \(p\)--primary part of the circle group.  Suppose that for each \(j\), the short exact sequence of groups \[0 \to \frac{1/p^j \cdot \Z_{(p)}}{\Z_{(p)}} \to \frac{\Q}{\Z_{(p)}} \to \frac{\Q}{1/p^j \cdot \Z_{(p)}} \to 0\] induces a short exact sequence of group-schemes upon applying \((\OS{H(-)}{q-1})_K\).  The sequence of group schemes under \((\OS{H(-)}{q})_K\) is then also short-exact.
+    \item As a group scheme, it is a \(p\)--divisible formal group of height \(\binom{d}{q-1}\) and dimension \(\binom{d-1}{q-1}\), \((\OS{H(S^1[p])}{q-1})_K\) models its \(p\)--torsion, and the cup product induces an isomorphism \[\theta^{q-1}\co \Q / \Z_{(p)} \otimes D(\OS{H(S^1[p^\infty])}{1})^{\wedge (q-1)} \to D(\OS{H(S^1[p^\infty])}{q-1}).\]  Here \(D(G)\) denotes the \index{Dieudonn\'e module}Dieudonn\'e module associated to \(K_0(G)\), where \[K_*(G) = K_0(G) \otimes_k K_*\] is a \(p\)--divisible Hopf algebra.
+    \item Consider the model \(\Q / \Z_{(p)} \cong S^1[p^\infty]\) for the \(p\)--primary part of the circle group.  For each \(j\), the short exact sequence of groups \[0 \to \frac{1/p^j \cdot \Z_{(p)}}{\Z_{(p)}} \to \frac{\Q}{\Z_{(p)}} \to \frac{\Q}{1/p^j \cdot \Z_{(p)}} \to 0\] induces a short exact sequence of group-schemes upon applying \((\OS{H(-)}{q-1})_K\).
 \end{enumerate}
 \end{theorem}
 \begin{proof}[Proof of Part 1]\renewcommand{\qedsymbol}{\relax}
@@ -1217,7 +1203,7 @@ The other claims in Part 2 are formal after we check that \(\theta^q\) is an iso
 0 \arrow{r} & M^{\wedge q} \arrow{r} & \Q \otimes M^{\wedge q} \arrow{r} & \Q / \Z_{(p)} \otimes M^{\wedge q} \arrow{r} & 0
 \end{tikzcd}
 \end{center}
-the middle map is an isomorphism.  This forces \(V\) to be a surjective endomorphism of \(M^{\wedge q} \otimes \Q/\Z_{(p)}\), and the snake lemma shows that there is an isomorphism \[\ker(V\co \Q/\Z_{(p)} \otimes M^{\wedge q} \to \Q/\Z_{(p)} \otimes M^{\wedge q}) \cong \operatorname{coker}(V\co M^{\wedge q} \to M^{\wedge q}).\]  Picking any coordinate \(x\) and considering it as an element in the curves model of the Dieudonn\'e functor, we see that the right-hand side is spanned by elements \(x \sm V^{\sm I} x\), and hence the left-hand side has \(k\)--vector--space dimension \(\binom{d-1}{q}\).
+the middle map is an isomorphism.  The snake lemma then shows both that \(V\) is a surjective endomorphism of \(M^{\wedge q} \otimes \Q/\Z_{(p)}\) and that there is an isomorphism \[\ker(V\co \Q/\Z_{(p)} \otimes M^{\wedge q} \to \Q/\Z_{(p)} \otimes M^{\wedge q}) \cong \operatorname{coker}(V\co M^{\wedge q} \to M^{\wedge q}).\]  Picking any coordinate \(x\) and considering it as an element in the curves model of the Dieudonn\'e functor, we see that the right-hand side is spanned by elements \(x \sm V^{\sm I} x\), and hence the left-hand side has \(k\)--vector--space dimension \(\binom{d-1}{q}\).
 
 By very carefully studying the bar spectral sequence, one can learn that \(\theta^q\) induces a surjection\footnote{The proof of this is quite complicated, and it rests on a pairing between the spectral sequence for \(q = 1\) and the spectral sequence at \(q - 1\), mapping to the spectral sequence for \(q\).  Remarkably, this same pairing is the main tool that powers the original approach of  Ravenel--Wilson~\cite{RavenelWilsonKthyOfEMSpaces} and of our approach to the unstable dual Steenrod algebra in \Cref{UnstableContextsSection} (cf.\ \Cref{CircProductAndDifferentials}).  There, their program is to fix \(j = 1\) and inductively analyze \(q\) using this same pairing, then use these base cases to ground a strong induction on \(j\) and \(q\), and then finally to fix \(q\) and take the limit as \(j \to \infty\).} \[\ker V|_{\Q / \Z_{(p)} \otimes M^{\wedge q}} \to \ker V|_{D(\OS{H(S^1[p^\infty])}{q})}.\]  In fact, since these two have the same rank, \(\theta^q|_{\ker V}\) is an isomorphism on these subspaces.  This is enough to conclude that \(\theta^q\) is an injection: since the action of \(V\) is locally nilpotent, if \(\theta^q\) ever failed to be an injection then we could apply \(V\) enough times to get an example of a nontrivial element in \(\ker V|_{\Q / \Z_{(p)} \otimes M^{\wedge q}}\) mapping to zero.  Finally, to show that \(\theta^q\) is surjective, we again use the local nilpotence of \(V\) to filter \(\Q / \Z_{(p)} \otimes M^{\sm q}\) by the subspaces \(\ker V^\ell\), \(\ell \ge 1\), and it is then possible (though we omit the proof) to use our understanding of \(\ker V\) to form preimages.
 \end{proof}
