@@ -852,7 +852,7 @@ hence \(\EinftyRings(MG, R)\) appears as the fiber at \(\gl_1 \eta_R\) of the re
 There exist \(E_\infty\) maps \(MG \to R\) if and only if \(\gl_1 \eta_R \circ j\) is null-homotopic.  If this is the case, then the set \[\EinftyRings(MG, R)\] is a torsor for \([\Susp g, \gl_1 R]\). \qed
 \end{corollary}
 
-Ando, Hopkins, and Rezk~\cite{AHR} have used this presentation to understand the mapping space \(\EinftyRings(M\String, \tmf)\).  In this Lecture, we will use this same technology to understand the mapping space \[\EinftyRings(M\Spin, KO_{(p)}),\] which proceeds along entirely similar lines but is a \emph{considerably} simpler computation.\footnote{Ando, Hopkins, and Rezk also do \(\EinftyRings(M\Spin, KO)\) as a warm-up computation~\cite[Section 7]{AHR}, and we are further \(p\)--localizing that result so as not to have to think about arithmetic fracture.  Working arithmetically globally should be an easy exercise for the reader.}  The approach to this computation is to mix the presentation above with \index{chromatic localization!fracture}chromatic fracture applied to the target:
+Ando, Hopkins, and Rezk~\cite{AHR} have used this presentation to understand the mapping space \(\EinftyRings(M\String, \tmf)\).  Before turning to this, we will use this same technology to first understand the mapping space \[\EinftyRings(M\Spin, KO_{(p)}),\] which proceeds along entirely similar lines but is a \emph{considerably} simpler computation.\footnote{Ando, Hopkins, and Rezk also do \(\EinftyRings(M\Spin, KO)\) as a warm-up computation~\cite[Section 7]{AHR}, and we are further \(p\)--localizing that result so as not to have to think about arithmetic fracture.  Working arithmetically globally should be an easy exercise for the reader.}  The approach to this computation is to mix the presentation above with \index{chromatic localization!fracture}chromatic fracture applied to the target:
 \begin{center}
 \begin{tikzcd}
 M\Spin \arrow[densely dotted]{r} \arrow[bend left=15]{rr} \arrow{rrd} \arrow{rd} & KO_{(p)} \arrow{r} \arrow[crossing over]{d} \arrow[rd, phantom, "\lrcorner", very near start] & KO_p \arrow{d} \\
@@ -986,7 +986,7 @@ L_1 \gl_1 R \arrow[crossing over]{rr} \arrow{dd} \arrow[equal]{ru} \arrow[rrdd, 
 The front and back faces are connected by logarithms of \emph{different} heights---or, equivalently, the bottom horizontal arrow of the back face is \emph{twisted} from the usual chromatic fracture presentation of \(L_1 R\).  The identification of this map is the usual sticking point in this approach.
 \end{remark}
 
-\begin{theorem}[{\cite[Theorem 1.9]{RezkLogarithm}}]
+\begin{theorem}[{\cite[Theorem 1.9]{RezkLogarithm}}]\label{RezkLogFormula}
 For \(R\) a \(K(1)\)--local \(E_\infty\)--ring with \(\pi_0 R\) torsion--free, the map \(\pi_0 \ell_1\co \pi_0 R^\times \to \pi_0 R\) is given by the formula\footnote{The analogue of this formula for \(E_\Gamma\) (but not an arbitrary \(K(d)\)--local \(E_\infty\)--ring spectrum) is given in \cite[Subsection 1.10]{RezkLogarithm}.} \[\pushQED{\qed} \ell_1(x) = \frac{1}{p} \log\left(\frac{x^p}{\psi^p x}\right) = \sum_{k=1}^\infty \frac{p^{k-1}}{k} \left(\frac{\theta(x)}{x^p}\right)^k. \qedhere \popQED\]
 \end{theorem}
 
@@ -1057,8 +1057,8 @@ The Todd orientation \(MU \to KU\) is known to be \(A_\infty\)~\cite[Theorem V.4
 
 We have thus identified the legal fillers \(C\) as those sequences of rational numbers \(t_{4k}\) satisfying conditions:
 \begin{enumerate}
-    \item \(t_{4k}\) has the correct denominators: for \(k \ge 1\), \(t_{4k} \equiv -B_k/(2k) \pmod{\Z}\).
-    \item \(b_{4k}\) is the effect on homotopy of some map \(B'\co KO_p \to KO_p\).
+    \item \(t_{4k}\) has the correct denominators: for \(k \ge 1\), \(t_{4k} \equiv -B_k/(2k) \pmod{\Z}\). \label{KOMillerCondition}
+    \item \(b_{4k}\) is the effect on homotopy of some map \(B'\co KO_p \to KO_p\). \label{KOKummerCondition}
 \end{enumerate}
 
 
@@ -1074,7 +1074,7 @@ The easy initial calculation is the continuous \(p\)--adic \(KU\)--homology \(KU
 \end{enumerate}
 
 \noindent These last two facts mean that the behavior of a stable operation on homotopy is identical information to the values of a functional \(f\) on the standard polynomial functions \(x^k\).  We record this algebraic model as follows:
-\begin{lemma}
+\begin{lemma}\label{KOKummerLemma}
 For any \(N \ge 0\), the assignment \[\CatOf{Groups}(\CatOf{Spaces}(\Z_p^\times, \Z_p), \Z_p) \xrightarrow{(f(x \mapsto x^k))_k} \prod_{k \ge N} \Z_p\] is injective.  A sequence \((x_k)\) is said to be a \index{Kummer sequence@K\"ummer sequence}\textit{K\"ummer sequence} when it lies in this image.\footnote{A bit more explicitly: \((x_k)\) is K\"ummer when for all \(h(x) = \sum_{k=N}^n a_k x^k \in \Q[x]\) we have \(\sum_{k=N}^m a_k x_k \in \Z_p\).} \qed
 \end{lemma}
 
@@ -1105,8 +1105,12 @@ where the isomorphism is given by sending an operation \(f\co KO \to KO\) to the
 
 Having learned enough about \(KO\)--operations to justify the program enacted in the previous subsections, we now need to show that there exist sequences of \(p\)--adic integers satisfying those criteria.
 
-\begin{theorem}[{\cite{Mazur}}]
-For any auxiliary \(c \in \Z_p^\times\), there is a functional \(f_c\) satisfying\footnote{Explicitly, \[f_c(h) = \int_{\Z_p^\times} h(x) \mathrm d\mu_c = \lim_{r \to \infty} \frac{1}{p^r} \sum_{\substack{0 \le i < p^r \\ p \nmid i}} \int_i^{ci} \frac{h(t)}{t} \mathrm dt, \; \; \; \; \int_{\Z_p^\times} \mathrm d\mu_c = \frac{1}{p} \log(c^{p-1}).\]}\footnote{With considerable effort, this output can be halved~\cite[Section 10.3]{AHR}.} \[f_c(x^{k \ge 1}) = \frac{-B_k}{k}(1 - p^{k-1})(1 - c^k).  \pushQED\qed \qedhere \popQED\]
+\begin{theorem}[{\cite{Mazur}}]\label{MazurMeasuresThm}
+For any auxiliary \(c \in \Z_p^\times\), there is a functional \(f_c\) given by
+\begin{align*}
+f_c(h) = \int_{\Z_p^\times} h(x) \mathrm d\mu_c & := \lim_{r \to \infty} \frac{1}{p^r} \sum_{\substack{0 \le i < p^r \\ p \nmid i}} \int_i^{ci} \frac{h(t)}{t} \mathrm dt
+\end{align*}
+which satisfies\footnote{With considerable effort, this output can be halved~\cite[Section 10.3]{AHR}.} \[f_c(x^{k \ge 1}) = -\frac{B_k}{k}(1 - p^{k-1})(1 - c^k) \quad \text{and} \quad \int_{\Z_p^\times} \mathrm d\mu_c = \frac{1}{p} \log(c^{p-1}). \pushQED\qed \qedhere \popQED\]
 \end{theorem}
 
 \noindent This Theorem is stated in exactly the generality it was originally proven, and so you might wonder why Mazur had already proven \emph{exactly} what we needed.  To understand his program, recall these two facts about \(\zeta\):
@@ -1134,23 +1138,110 @@ Hence, the Mellin transform of the measure \(dE_{1,c}\) on \(\Z_p^\times\) gives
 It also has \emph{exactly} the properties we need to guarantee the existence of an \(E_\infty\)--orientation \(M\Spin \to KO\).  It is remarkable that the three factors in \[\int_{\Z_p^\times} x^{k-1} \mathrm d E_{1, c} = \frac{B_k}{k} (1 - c^k)(1 - p^{k-1})\] have discernable provenances in the two fields.  In stable homotopy theory these arise respectively in the characteristic series of the orientation \(MU \to KU\), in the finite Adams resolution for the \(K(1)\)--local sphere, and in the Rezk logarithm.  In \(p\)--adic analytic number theory, they arise as the special values of the \(\zeta\)--function, the regularization to make it a measure, and the restriction to perform \(p\)--adic interpolation.  It is completely mysterious how or if these operations correspond.\footnote{Walker's PhD thesis gives a kind of generalization of this correspondence: for a height \(1\) formal group \(\Gamma\) over a field of characteristic \(p > 2\), he associates to an \(H_\infty\)--orientation \(MU \to E_\Gamma\) a sequence of generalized Bernoulli numbers and demonstrates that they appear as the moments of a \(p\)--adic measure on \(\Z_p^\times\)~\cite{Walker}.}
 
 
-\subsection{Footnotes on the \(\tmf\) case}
-
-The case of \(M\String \to \tmf\) has all of the same trappings, but while many of the steps remain the same, many details become much more intricate:
-\begin{enumerate}
-    \item Begin with a rational orientation, which is basically the Witten genus valued in holomorphic expansions of modular forms.
-    \item Analyze the homotopy type of \(\widehat L_1 \tmf\) and compare it to that of \(KO\).  This lets us use another universal coefficient theorem to lift our description of \(KO^* KO\) as \(KO^*\)--valued measures to \((\widehat L_1 \tmf)^* KO\) as \(\widehat L_1 \tmf^*\)--valued measures.
-    \item The homotopy type of \(\widehat L_2 \tmf\) is ``naively irrelevant'' in the chromatic fracture square: maps \(b\spin \to \widehat L_2 \tmf\) factor through \(\widehat L_2 b\spin = \widehat L_2 KO_p = 0\).
-    \item However, the logarithm's presence \(\widehat L_1 \tmf \to \widehat L_1 \widehat L_2 \tmf\) has a real effect that must be understood.  This is not easy: the higher height logarithm is not so accessible, and in general it is best cast in the language of \(p\)--divisible groups.\footnote{Behrens has claimed, but has not yet put into print, that the transchromatic logarithms are described by an analogue of Rezk's formulas for the logarithm at height \(n\)~\cite[Subsections 1.10 and 1.12]{RezkLogarithm}, where the collection of subgroups appearing in the formula are replaced by those subgroups of a certain \(p\)--divisible group which have no interaction with the \'etale component.}  In the specific case of \(\tmf\), it requires a real understanding of its theory of power operations, which must be assembled out of the discussion of power operations for \(E\)--theories given above.
-    \item You also have to calculate the Miller invariant associated to \(\tmf\).  In the case of \(\EinftyRings(M\Spin, KO)\), one uses the \(A_\infty\)--orientation \(MU \to KU\), as well as a rational understanding of the maps \(\pi_* BU \to \pi_* BO\) and \(\pi_* KO \to \pi_* KU\), and one must replace each of these ingredients with \(\tmf\) analogues.  The main point is that there are very few modular forms whose constant term is a given Bernoulli number\index{Bernoulli!number}.\footnote{There is an alternative approach, along the lines of Miller's original calculation~\cite{MillerBernoulliNos}, that takes as input a calculation of a certain \(S^1\)--transfer.  There is, supposedly, a second alternative approach that applies the Bousfield--Kuhn functor to an \(H_\infty\)--orientation to determine the Miller invariant, but I am unable to reconstruct this argument.}
-    \item Finally, you have to ramp up the algebraic part of the calculation by identifying the analogues of the Mazur moments in \(\pi_* \widehat L_1 \tmf\).  These turn out to be normalized \index{Eisenstein series}Eisenstein series.
-\end{enumerate}
 
 
+\subsection{The \(\sigma\)--orientation of \(\tmf\)}
 
+We now turn to the analysis of the space of \(E_\infty\) orientations of \(\tmf\) by \(M\String\), where our primary tools will again be arithmetic fracture (which we again leave to the imagination of the reader and concern ourselves solely with \(\tmf^\wedge_p\), abbreviated to \(\tmf\)), chromatic fracture (which now additionally involves height \(2\) information), and explicit formulas for Rezk's logarithm (where we draw on \Cref{ConstructionOfTMFSection} for our understanding of the \(\tmf\) operation \(\psi^p\)).
 
+To keep the chromatic fracture argument clean, we introduce some facilitating notation: for a space \(i\co \gl_1 \S \to X\) under \(\gl_1 \S\) (e.g., \(\gl_1 \eta_{\tmf}\co \gl_1 \S \to \gl_1 \tmf\)), let \(\mathbf A(X)\) denote the space of fillers
+\begin{center}
+\begin{tikzcd}[column sep=3em,
+execute at end picture={
+    \coordinate (glS) at (glS.center);
+    \coordinate (Cj) at (Cj.center);
+    \coordinate (glX) at (glX.center);
+    \fill[opacity=0.3] 
+        (glS) -- (Cj) -- (glX) -- cycle;
+    \node[fill=white, fill opacity=0.33, text opacity=1] (A) at ([shift={(225:0.75)}]Cj) {\scriptsize \(A\)};
+}]
+\mathit{string} \arrow{r}[description]{j} & |[alias=glS]| \gl_1 \S \arrow{r} \arrow{rd}[description]{i} & |[alias=Cj]| Cj \arrow{d} \\
+& & |[alias=glX]| X.
+\end{tikzcd}
+\end{center}
+Our first observation is that, for the purposes of designing \(\String\)--orientations, \(\tmf\) is essentially \(L_2\)--local: since the group of units depends only on the connective homotopy type, the equivalence \(\tmf \simeq (L_2 \tmf) [0, \infty)\) yields \[\gl_1 \tmf \simeq \gl_1 (L_2 \tmf) [0, \infty) \simeq \gl_1 L_2 \tmf.\]  \Cref{DiscrepancyDefinition} shows that the fiber of \[\gl_1 L_2 \tmf \to L_2 \gl_1 L_2 \tmf\] is torsion and \(2\)--coconnective, from which we conclude an equivalence \[\mathbf A(\gl_1 \tmf) \simeq \mathbf A(L_{K(1) \vee K(2)} \gl_1 \tmf).\]
 
+This target then submits to chromatic fracture.  The fracture square
+\begin{center}
+\begin{tikzcd}
+L_{K(1) \vee K(2)} \gl_1 \tmf \arrow{r} \arrow{d} \arrow[rd, phantom, "\lrcorner", very near start] & \widehat L_2 \gl_1 \tmf \arrow{d} \\
+\widehat L_1 \gl_1 \tmf \arrow{r} & \widehat L_1 \widehat L_2 \gl_1 \tmf
+\end{tikzcd}
+\end{center}
+induces a pullback square
+\begin{center}
+\begin{tikzcd}
+\mathbf A(L_{K(1) \vee K(2)} \gl_1 \tmf) \arrow{r} \arrow{d} \arrow[rd, phantom, "\lrcorner", very near start] & \mathbf A(\widehat L_2 \gl_1 \tmf) \arrow{d} \\
+\mathbf A(\widehat L_1 \gl_1 \tmf) \arrow{r} & \mathbf A(\widehat L_1 \widehat L_2 \gl_1 \tmf).
+\end{tikzcd}
+\end{center}
+Because \(b\mathit{string}\) is \(K(2)\)--locally null, \(\mathbf A(\widehat L_2 \gl_1 \tmf)\) is contractible, mapping to the path component of the zero sequence in \(\mathbf A(\widehat L_1 \widehat L_2 \gl_1 \tmf)\)~\cite[Proposition 13.7]{AHR}.  This reduces the above pullback square to a fiber sequence \[\mathbf A(\gl_1 \tmf) \to \mathbf A(\widehat L_1 \gl_1 \tmf) \to \mathbf A(\widehat L_1 \widehat L_2 \gl_1 \tmf).\]
 
+Our analysis of the individual nodes \(\mathbf A(\widehat L_1 \gl_1 \tmf)\) and \(\mathbf A(\widehat L_1 \widehat L_2 \gl_1 \tmf)\) follows along very similar lines to our previous analysis of the \(\Spin\)--orientation of \(KO\).  We now proceed to study \(\mathbf A(\widehat L_1 \gl_1 \tmf)\) in detail, making the necessary modifications from the analysis of \(KO\) as we go, and the careful reader can check that the same modifications fell \(\mathbf A(\widehat L_1 \widehat L_2 \gl_1 \tmf)\).  After beginning with a particular filler \(A \in \mathbf A(\widehat L_1 \gl_1 \tmf)\), we will ultimately be led to study the induced map \(C\co b\mathit{string} \to \Q \otimes \widehat L_1 \gl_1 \tmf\) on homotopy, where \(C\) is as indicated in \Cref{AHRDiagramForTMF}.  The main difference from \Cref{MainAHRDiagram} is that, since \(\widehat L_1 \gl_1 \tmf\) is already \(K(1)\)--local, we have instead replaced the lower edge of the back face with the relevant logarithm terms and made explicit the map \(B'' = \ell_1 \circ B'\).
+
+\begin{sidewaysfigure}
+\centering
+\begin{tikzcd}[column sep=0em,
+execute at end picture={
+    \coordinate (glS) at (glS.center);
+    \coordinate (Cj) at (Cj.center);
+    \coordinate (glKOp) at (glKOp.center);
+    \fill[black,opacity=0.2] 
+        (glS) -- (Cj) -- (glKOp) -- cycle;
+    \node[fill=white, fill opacity=0.33, text opacity=1] (A) at ([shift={(225:1.5)}]Cj) {\scriptsize \(A\)};
+}]
+& & & \widehat L_1 \S \arrow{rr} \arrow[equal]{d} & & KO_p \arrow[equal]{d} \arrow["1 - \psi^c"]{rr} & & KO_p \arrow[equal]{d} \\
+& & & \widehat L_1 \gl_1 \S \arrow{rr} & & \widehat L_1 Cj \arrow[very thick, "B''" near start]{dd} \arrow{lddd}[description]{B'} \arrow[very thick]{rr} & & \widehat L_1 b\mathit{string} \\
+\mathit{string} \arrow{rr}[description]{j} \arrow{rrdd} & & |[alias=glS]| \gl_1 \S \arrow{rr} \arrow{dd} \arrow{ru} \arrow{rrdd}[description]{\widehat L_1 \gl_1 \eta_{tmf}} & & |[alias=Cj]| Cj \arrow{ru} \arrow{dd}[description]{B} \arrow[crossing over]{rr} & & b\mathit{string} \arrow[very thick]{ru} \arrow[crossing over]{rr} \arrow[bend left=20, crossing over]{rrdd} & & b\gl_1 \S \arrow{dd} \\
+& & & & & \widehat L_1 \tmf \arrow[very thick]{rr} & & \Q \otimes \widehat L_1 \tmf \\
+& & \Susp^{-1} \Q/\Z \otimes \widehat L_1 \gl_1 \tmf \arrow{rr} & & |[alias=glKOp]| \widehat L_1 \gl_1 \tmf \arrow{ru}[description]{\ell_1} \arrow{rr} & & \Q \otimes \widehat L_1 \gl_1 \tmf \arrow[very thick]{ru}[description]{\ell_1} \arrow{rr} \arrow[densely dotted, leftarrow, crossing over, "C"' near end]{uu} & & \Q/\Z \otimes \widehat L_1 \gl_1 \tmf.
+\end{tikzcd}
+\caption{A diagram showing the interconnections among the main components of the \(\tmf\) variant of the Ando--Hopkins--Rezk argument.  The variant of this diagram with \(\widehat L_1 \gl_1 \tmf\) and \(\widehat L_1 \tmf\) everywhere replaced by \(\widehat L_1 \widehat L_2 \gl_1 \tmf\) and \(\widehat L_1 \widehat L_2 \tmf\) is also relevant.}\label{AHRDiagramForTMF}
+\end{sidewaysfigure}
+
+We are now in a position to compute the action of \(C\) on a homotopy class in \(\pi_{4k} b\mathit{string}\) using the same steps as before: push it forward to a class in \(\widehat L_1 b\mathit{string}\), pull that back along \(1 - \psi^c\) by dividing by \((1 - c^{2k})\), apply the map \(B''\) to select a class \(b''_{4k} \in \pi_{4k} \widehat L_1 \tmf\), and finally pass to the rational part of the ring \(\Q \otimes \pi_* \widehat L_1 \tmf\) of \(p\)--adic modular forms.  Altogether, this yields an equality \[(1 - c^{2k})^{-1} b''_{4k} = \ell_1(t_{4k}),\] where \(b''_{4k}\) is the effect on homotopy of the map \(B''\co KO_p \to \widehat L_1 \tmf\).  In order to compute the effect of the \(K(1)\)--local logarithm, we must draw upon results from \Cref{ConstructionOfTMFSection}: we learned there that the \(\psi^p\)--operation on \(\widehat L_1 \tmf\) acts on a \(p\)--adic modular form \(t_{2k}(q) = \sum_{n=0}^\infty a_n q^n \in \pi_{2k} \widehat L_1 \tmf\) of weight \(k\) by \[\psi^p(t_{2k})(q) = p^k V(t_{2k})(q) := p^k \sum_{n=0}^\infty a_n q^{pn}.\]  Coupling this to \Cref{RezkLogFormula} gives \(\ell_1(1 + t_{2k}) = (1 - p^{k-1}V)t_{2k}\), i.e., \[b''_{4k} = (1 - c^{2k}) (1 - p^{2k-1}V) t_{4k}.\]  Our analysis of \(KO\)--operations extends~\cite[Proposition 11.4.iv]{AHR} to cover the case of maps \(KO \to \widehat L_1 \tmf\), from which we learn that the \(p\)--adic modular forms \(b''_{4k}\) must satisfy an analogue of the Kummer congruences from \Cref{KOKummerLemma}: given \(h = \sum_{k=0}^\infty a_k z^k \in \Q_p[z]\) a polynomial satisfying \(h(\Z_p^\times) \subseteq \Z_p\), we must always have \(\sum_{k=0}^\infty a_{2k} b''_{4k} \in \Z_p\ps{q}\).  Conversely, given such a sequence we may construct a map \(B''\) and maps \(B\) and \(C\) commuting with it.
+
+In order for the map \(B\) constructed in this way to commute with the rest of the diagram (i.e., in order for it to belong to a filler \(A\)), we must impose a further condition.  The most definitionally straightforward such condition is compatibility with the Miller invariant, as we used in the analysis of \(KO\)---but our usage there required being able to \emph{compute} this invariant, and to accomplish that we relied on the presence of an \(A_\infty\) orientation.  As \(\tmf\) does not have a preexisting structured orientation, this approach is insuitable for us now.\footnote{The approach presented here is not the only alternative.  A second, along the lines of Miller's original calculation~\cite{MillerBernoulliNos}, takes as input a calculation of a certain \(S^1\)--transfer.  Supposedly, there is even a third alternative that applies the Bousfield--Kuhn functor to an \(H_\infty\)--orientation to determine the Miller invariant, but I am unable to reconstruct this argument.}  Instead, we follow the effect of \(\widehat L_1 \gl_1 \eta_{\tmf}\) through the back face: naturality of the logarithm shows that the composite \(\widehat L_1 \S \to \widehat L_1 \tmf\) passing through \(B''\) must be equivalent to \(\widehat L_1 \eta_{\widehat L_1 \tmf}\), i.e., \(\rho(c) \cdot b''_0 = 1\) for \(\rho(c)\co \widehat L_1 \S \to \widehat L_1 C j\).  Critically, the class \(\rho(c)\) has no dependence on \(\widehat L_1 \tmf\): the same class satisfying the same condition appears when studying \(KO\)--orientations, and so we may calculate \(\rho(c)\) using the moments associated to the orientation \(M\Spin \to KO\), as in
+\begin{align*}
+b_0 & = \lim_{r \to \infty} b_{(p-1) p^r} \tag{interpolation of homotopy groups} \\
+& = \int_{\Z_p^\times} x^{(p-1) p^r} d\mu_c \tag{interpretation as moments} \\
+& = \int_{\Z_p^\times} d\mu_c \tag{interpolation of moments} \\
+& = \frac{1}{2p} \log c^{p-1}, \tag{\Cref{MazurMeasuresThm}}
+\end{align*}
+from which it follows that \(B\) belongs to a filler \(A\) if and only if \[\lim_{r \to \infty} b''_{(p-1)p^r} = \frac{1}{2p} \log c^{p-1}.\]
+
+After completing an identical analysis of \(\mathbf A(\widehat L_1 \widehat L_2 \gl_1 \tmf)\), what remains is to study the fiber in the sequence \[\mathbf A(\gl_1 \tmf) \to \mathbf A(\widehat L_1 \gl_1 \tmf) \to \mathbf A(\widehat L_1 \widehat L_2 \gl_1 \tmf).\]  To calculate the effect of this second map on a putative sequence of homotopy elements \(t_{4k}\), we entwine the logarithm:
+\begin{center}
+\begin{tikzcd}
+\pi_{2k} \widehat L_1 \gl_1 \tmf \arrow{rr} \arrow["\ell_1"]{d} & & \pi_{2k} \widehat L_1 \widehat L_2 \gl_1 \tmf \arrow["\widehat L_1 \ell_2"]{d} \\
+\pi_{2k} \widehat L_1 \tmf \arrow[densely dotted]{r} & \pi_{2k} \widehat L_1 \tmf \arrow{r} & \pi_{2k} \widehat L_1 \widehat L_2 \tmf.
+\end{tikzcd}
+\end{center}
+We claim that there exists a dotted map making the diagram commute.  To verify this, we use Rezk's formula for \(\ell_2\):
+
+\begin{theorem}[{\cite[Section 1.12]{RezkLogarithm}}]
+Define Hecke operators
+\begin{align*}
+T(p^k) & = p^{-k} \sum_{\substack{A \subseteq \Lambda^* \\ |A| = p^k}} \psi^A, &
+T_j & = p^{-j} \sum_{\substack{A \subseteq \Lambda^*[p] \\ |A| = p^j}} \psi^A.
+\end{align*}
+These operators are related as in the formal series
+\begin{align*}
+F_X & = \sum_{j=0}^\infty (-1)^j p^{\binom{j}{2}} T_j X^j, &
+F_X^{-1} & = \sum_{k=0}^\infty T(p^k) X^k
+\end{align*}
+The \(K(n)\)--local logarithm for Morava \(E\)--theory is given by \(\ell(x) = F_1(\log x)\).\footnote{Behrens has claimed, but has not yet put into print, that the transchromatic logarithms are described by an analogue of Rezk's formulas for the logarithm at height \(n\)~\cite[Subsections 1.10 and 1.12]{RezkLogarithm}, where the collection of subgroups appearing in the formula are replaced by those subgroups of a certain \(p\)--divisible group which have no interaction with the \'etale component.} \qed
+\end{theorem}
+
+\noindent For the Morava \(E\)--theory associated to a supersingular elliptic curve, \(F_1\) becomes \[\ell_2(x) = \left(1 - T(p) + \frac{1}{p} \psi^p\right)(\log x),\] where \(T(p) = U + p^{k-1} V\) is the classical Hecke operator and \(U\) is the Atkin operator: for a \(p\)--adic modular form \(t_{2k}(q) = \sum_{n=0}^\infty a_n q^n\) of weight \(k\), \(U(t_{2k})(q) = \sum_{n=0}^\infty a_{pn} q^n\).  The effect of the dotted map in positive degrees is then
+\begin{align*}
+\widehat L_1 \ell_2(t_{2k}) & = (1 - T(p) + p^{k-1})(t_{2k}) \\
+& = (1 - U - p^{k-1} V + p^{k-1} UV)(t_{2k}) \\
+& = (1 - U)(1 - p^{k-1}V)(t_{2k}).
+\end{align*}
+It follows that the image of \(\pi_0 \mathbf A(\gl_1 \tmf)\) in \(\pi_0 \mathbf A(\widehat L_1 \gl_1 \tmf)\) are those sequences of \(p\)--adic modular forms \(t_{4k}\) which additionally lie in the kernel of \((1 - U)\).
+
+Our final step is to refer to the literature on modular forms.  Recall from \Cref{WittenCharSeries} that the characteristic series of the Witten genus is \[K_{\mathrm{Witten}}(x) = \exp\left( \sum_{k=2}^\infty 2 G_{2k} \cdot \frac{x^{2k}}{(2k)!} \right)\] where \(G_{2k}\) denotes the \(2k\)\textsuperscript{th} Eisenstein series\index{Eisenstein series}.  The Eisenstein series are then the posited quantities \(t_{2k}\), and they can be seen to satisfy all of the desiderata: they are killed by \((1 - U)\)~\cite[Proposition 15.3]{AHR}, they satisfy the modular analogues of the Kummer congruences, and the measure for which they are moments has the desired total volume~\cite[Proposition 10.10]{AHR}.  As the Eisenstein series are all additionally integral, arithmetic fracture completes the proof that the Witten genus enriches to an \(E_\infty\) orientation.
 
 
 
