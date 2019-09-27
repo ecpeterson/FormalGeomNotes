@@ -821,15 +821,34 @@ We now recount a more modern take on the story of the \(\sigma\)--orientation wh
 \end{center}
 analogous to the adjunction between the group of units and the group-ring constructions in classical algebra.  Its relevance to us is its participation in the theory of highly structured Thom spectra.  Let \(j\co g \to \gl_1 \S\) be a map of connective spectra, begetting a map \(J\co G \to \GL_1 \S\) of infinite loopspaces, where we have written \(G = \Loops^\infty g\).
 \begin{lemma}[{\cite[Section 4]{ABGHR}, \cite[Section IV.2]{MayRingSpacesSpectra}}]
-The Thom spectrum of the map \(BJ\) is presented by the pushout of \(E_\infty\)--rings\footnote{This is a kind of ``twisted group-ring'' construction.}
+The Thom spectrum of the map \(BJ\) is presented by the pushout of \(E_\infty\)--rings
 \begin{center}
 \begin{tikzcd}
-\Susp^\infty_+ \GL_1 \S \arrow["\Loops^\infty \Susp j"]{r} \arrow{d} & \Susp^\infty_+ \Loops^\infty \gl_1 \S / g \arrow{d}  \\
-\S \arrow{r} & MG. \arrow[ul, phantom, "\ulcorner", very near start]
+\Susp^\infty_+ \GL_1 \S \arrow{r} \arrow{d} & \Susp^\infty_+ \Loops^\infty Cj \arrow{d}  \\
+\S \arrow{r} & MG, \arrow[ul, phantom, "\ulcorner", very near start]
 \end{tikzcd}
 \end{center}
-\qed
+where \(Cj\) is the cone of \(j\).
 \end{lemma}
+\begin{proof}[Proof sketch]
+The map \(BJ\co BG \to B\GL_1 \S\) classifying the stable spherical bundle can be equivalently viewed as the data of a homotopy-coherent \(G\)--action on the trivial stable spherical bundle over a point---i.e., on \(\S\) itself, which we denote by \(\S_J\) to record the role of \(J\) in the action.  In turn, this data is adjoint to a homotopy-coherent \(\Susp^\infty_+ \Omega^\infty g\)--module structure on \(\S\).  Under this correspondence (and analogously to the classical setting), the homotopy colimit used to form the Thom spectrum is given by passing to the coinvariants: \[T(BJ) = \S_J \sm_{\Susp^\infty_+ \Omega^\infty g} \S,\] where the right-hand \(\S\) carries the trivial \(\Susp^\infty_+ \Omega^\infty g\)--module structure.  The nontrivial action of \(G\) on \(\S_J\) tautologically passes through that of \(\GL_1 \S\), so that we may expand the left-hand factor to give \[T(BJ) = \S_J \sm_{\Susp^\infty_+ \Omega^\infty \gl_1 \S} \Susp^\infty_+ \Omega^\infty \gl_1 \S \sm_{\Susp^\infty_+ \Omega^\infty g} \S.\]
+
+We now apply twice the fact that smash products of \(E_\infty\)--rings can be computed as their pushout.  First, identify the right-hand smash product as the pushout of the following span of \(E_\infty\)--rings
+\begin{center}
+\begin{tikzcd}
+\Susp^\infty_+ \Omega^\infty g \arrow{r} \arrow["\Susp^\infty_+ \Omega^\infty j"']{d} & \S \\
+\Susp^\infty_+ \Omega^\infty \gl_1 \S. &
+\end{tikzcd}
+\end{center}
+Because \(\S = \Susp^\infty_+ \Omega^\infty(*)\) and because \(\Susp^\infty_+ \Omega^\infty\) is a left-adjoint, we may equivalently compute the pushout of connective spectra
+\begin{center}
+\begin{tikzcd}
+g \arrow{r} \arrow["j"']{d} & * \arrow{d} \\
+\gl_1 \S \arrow{r} & Cj, \arrow[ul, phantom, "\ulcorner", very near start]
+\end{tikzcd}
+\end{center}
+so that \[\Susp^\infty_+ \Omega^\infty \gl_1 \S \sm_{\Susp^\infty_+ \Omega^\infty g} \S \simeq \Susp^\infty_+ \Omega^\infty Cj.\]   Combining this with our previous formula for \(T(BJ)\) yields \[T(BJ) = \S_J \sm_{\Susp^\infty_+ \Omega^\infty \gl_1 \S} \Susp^\infty_+ \Omega^\infty Cj.\] Finally, we make the same trade for the pushout of \(E_\infty\)--rings to produce the original claim.
+\end{proof}
 
 \begin{corollary}[{\cite[Section 4]{ABGHR}, \cite[Section IV.3]{MayRingSpacesSpectra}}]
 There is a natural equivalence between the space of null-homotopies of the composite \[g \xrightarrow j \gl_1 \S \xrightarrow{\gl_1 \eta_R} \gl_1 R\] and the space of \(E_\infty\)--ring maps \(MG \to R\), where \(MG\) is the Thom spectrum of the stable spherical bundle classified by \(J\).\footnote{The underlying infinite loopspace \(\GL_1 R\) also plays a role in the theory of Thom isomorphisms at the level of individual bundles: \(R\)--orientations of a spherical bundle \(X \to \GL_1 \S\) biject with null-homotopies of the composite \(X \to \GL_1 \S \to \GL_1 R\).  As an example consequence, first note that the sequence of maps \[BO \xrightarrow{j} \GL_1 \S \to \GL_1 KO\] is a \(2\)--equivalence.  It thus follows that if the the tangent bundle of a manifold \(\tau\co M \to BO\) admits a Thom isomorphism in \(KO\)--homology, then there exists a lift \(\widetilde\tau\co M \to BO[3, \infty) = B\Spin\).}
@@ -838,14 +857,14 @@ There is a natural equivalence between the space of null-homotopies of the compo
 Applying the mapping space functor \(\EinftyRings(-, R)\) to the pushout diagram in the Lemma, we have a pullback diagram of mapping spaces:
 \begin{center}
 \begin{tikzcd}
-\EinftyRings(\Susp^\infty_+ \GL_1 \S, R) & \EinftyRings(\Susp^\infty_+ \Loops^\infty \gl_1 \S / g, R) \arrow{l} \\
+\EinftyRings(\Susp^\infty_+ \GL_1 \S, R) & \EinftyRings(\Susp^\infty_+ \Loops^\infty Cj, R) \arrow{l} \\
 \EinftyRings(\S, R) \arrow{u} & \EinftyRings(MG, R) \arrow{l} \arrow{u}. \arrow[ul, phantom, "\ulcorner", very near start]
 \end{tikzcd}
 \end{center}
 We can reidentify each of the three terms to get
 \begin{center}
 \begin{tikzcd}
-\CatOf{Spectra}(\gl_1 \S, \gl_1 R) & \CatOf{Spectra}(\gl_1 \S / g, \gl_1 R) \arrow{l} \\
+\CatOf{Spectra}(\gl_1 \S, \gl_1 R) & \CatOf{Spectra}(Cj, \gl_1 R) \arrow{l} \\
 \{\gl_1 \eta_R\} \arrow{u} & \EinftyRings(MG, R) \arrow{l} \arrow{u}, \arrow[ul, phantom, "\ulcorner", very near start]
 \end{tikzcd}
 \end{center}
