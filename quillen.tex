@@ -878,11 +878,18 @@ Take \(MU \xrightarrow{1} MU\) as the orientation, so that we are considering \(
 \item \(s_\alpha\) is stable: \(s_\alpha(\sigma x) = \sigma(s_\alpha x)\).
 \item \(s_\alpha\) is additive: \(s_\alpha(x + y) = s_\alpha(x) + s_\alpha(y)\).
 \item \(s_\alpha\) satisfies a \index{Cartan formula}Cartan formula.  Define \[s_{\t}(x) := \sum_{\alpha} s_\alpha(x) \t^\alpha := \sum_\alpha s_\alpha(x) \cdot t_1^{\alpha_1} t_2^{\alpha_2} \cdots t_n^{\alpha_n} \cdots \in MU^*(X)\ps{t_1, t_2, \ldots}\] for an infinite sequence of indeterminates \(t_1\), \(t_2\), \ldots.  Then \[s_{\t}(x y) = s_{\t}(x) \cdot s_{\t}(y).\]
-\item Let \(\xi\co X \to BU(n)\) classify a vector bundle and let \(\phi\) denote the Thom isomorphism \[\phi\co MU^* X \to MU^* T(\xi).\]  Then the Chern classes of \(\xi\) are related to the Landweber--Novikov operations on the Thom spectrum by the formula \[\phi(c_\alpha(\xi)) = s_\alpha(\phi(1)).\]
+\item Let \(\xi\co X \to BU(n)\) classify a vector bundle and let \(\phi\) denote the Thom isomorphism \[\phi\co MU^* X \to MU^{*+n} T(\xi).\]  Then the Chern classes of \(\xi\) are related to the Landweber--Novikov operations on the Thom spectrum by the formula \[\phi(c_\alpha(\xi)) = s_\alpha(\phi(1)).\]
 \end{itemize}
 \end{definition}
 
-Having set up an encompassing theory of stable operations, we now seek to give a formula for the cyclic Tate power operation in this framework.  In order to approach this, we initially set our sights on the too-lofty goal of computing the total power operation \(P^{C_n}(f)\) for \(f \in MU^{2q}(X)\) an \(MU\)--cohomology class on a finite complex \(X\), without necessarily passing to the Tate construction.  Because of the definition \(MU = \colim_k MU(k)\) and because \(P^{C_n}\) is natural under pullback, it will suffice for us to study the effect of \(P^{C_n}\) on the universal classes \[u_m\co MU(m) \to MU,\] after using the canonical \(MU\)--Thom isomorphism to reinterpret them as classes on a suspension spectrum.  We begin with the canonical orientation itself: \[u_1 = x \in h\CatOf{Spectra}(MU(1), MU) \cong MU^2 \CP^\infty.\]  In order to understand the effect \(P^{C_n}(x)\) of the power operation on \(x\), recall that \(x\) is also the \(1\)\textsuperscript{st} Conner--Floyd--Chern class of the \index{canonical bundle}\index{tautological bundle|see {canonical bundle}}tautological bundle \(\L\) on \(\CP^\infty\), i.e., \[x\co MU(1) \to MU\] is both the Thomification of the block inclusion \[\L\co BU(1) \to BU\] as well as its first Chern class in the canonical orientation for \(MU\)--theory.  The \(H_\infty^2\)--ring spectrum construction defining \(P^{C_n}_{\mathrm{ext}}(x)\) thus fits into the following diagram:
+Having set up an encompassing theory of stable operations, we now seek to give a formula for the cyclic Tate power operation in this framework.  In order to approach this, we initially set our sights on the too-lofty goal of computing the total power operation \(P^{C_n}(f)\) for \(f \in MU^{2q}(X)\) an \(MU\)--cohomology class on a finite complex \(X\), without necessarily passing to the Tate construction.  Using the definition
+\begin{align*}
+MU & = \colim \left( \cdots \to MU(k) \to MU(k+1) \to \cdots \right) \\
+& = \colim \left( \cdots \to \Susp^{-2k} T_k BU(k) \to \Susp^{-2(k+1)} T_{k+1} BU(k+1) \to \cdots \right)
+\end{align*}
+and the fact that \(P^{C_n}\) is natural under pullback, it will suffice for us to study the effect of \(P^{C_n}\) on the universal classes \[u_m\co MU(m) \to MU,\] after reinterpreting them as classes \(\bar u_m\co T_m BU(m) \to \Susp^{2m} MU\) on a space.
+
+We begin with the canonical orientation itself, \(\bar u_1 \in MU^2 T_1 BU(1)\).  Our access to this class comes from relating it to \(MU\)--Chern classes: the complex analogue of \Cref{RPnThomExample} shows the zero-section map \(\zeta_1\co BU(1) \to T_1 BU(1)\) to be a reduced cohomology isomorphism which sends \(\bar u_1\) to the canonical coordinate \(x = c_1(\L) \in MU^2 \CP^\infty\), so that we can equivalently compute \(P^{C_n}(x)\).  Then, \(MU\)--Chern classes intertwine with the \(H_\infty^2\)--structure on \(MU\) according to the following diagram:
 \begin{center}
 \begin{tikzcd}
 \Susp^\infty_+ BU(1) \arrow["\Delta"]{d} \arrow{r} & \Susp^\infty_+ BU(1) \sm \Susp^\infty_+ BC_n \arrow["\Delta_{hC_n}"]{d} \\
@@ -909,28 +916,31 @@ P^{C_n}(x) = c_n(\Delta_{hC_n}^* \L(C_n)) & = e\left( \bigoplus_{j=0}^{n-1} \pi_
 \end{align*}
 Here \(x\) is still the \(1\)\textsuperscript{st} Conner--Floyd--Chern class of \(\L\) and \(t\) is the Euler class of \(\eta\).  We now try to make sense of this product expression for \(c_n(\Delta_{hC_n}^* \L(C_n))\) by expanding it in powers of \(x\) and identifying its component pieces.
 \begin{lemma}\label{AjAndBjAreInTheFGLSubring}
-There is a series expansion in \(MU^* BU(1)_{hC_n}\): \[P^{C_n}(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = w + \sum_{j=1}^\infty a_j(t) x^j,\] where \(+_{MU}\) is the natural formal group law on \(MU_*\), \([j]_{MU}(t)\) is the \(j\)--fold sum of \(t\) with itself using \(+_{MU}\), and \(a_j(t)\) is a series with coefficients in the subring \(C \subseteq MU_*\) spanned by the coefficients of \(+_{MU}\).  The leading term \[w = e(\overline \rho) = \prod_{j=0}^{n-1} e(\eta^{\otimes j}) = \prod_{j=0}^{n-1} [j]_{MU} (e(\eta)) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the reduced permutation representation, and, again, the elements \(b_j\) lie in the subring \(C\). \qed
+There is a series expansion in \(MU^* BU(1)_{hC_n}\): \[P^{C_n}(x) = \prod_{j=0}^{n-1} (x +_{MU} [j]_{MU}(t)) = x \cdot \left( w + \sum_{j=1}^\infty a_j(t) x^j \right),\] where \(+_{MU}\) is the natural formal group law on \(MU_*\), \([j]_{MU}(t)\) is the \(j\)--fold sum of \(t\) with itself using \(+_{MU}\), and \(a_j(t)\) is a series with coefficients in the subring \(C \subseteq MU_*\) spanned by the coefficients of \(+_{MU}\).  The leading term \[w = e(\overline \rho) = \prod_{j=1}^{n-1} e(\eta^{\otimes j}) = \prod_{j=1}^{n-1} [j]_{MU} (t) = (n-1)! t^{n-1} + \sum_{j \ge n} b_j t^j\] is the Euler class of the reduced permutation representation, and, again, the elements \(b_j\) lie in the subring \(C\). \qed
 \end{lemma}
 
-We now turn from the \(1\)\textsuperscript{st} universal case to our original goal: understanding the action of \(P^{C_n}\) on each of the canonical classes \[u_m\co MU(m) \to MU.\]  We approach this via the splitting principle, first recasting the main formula in \Cref{AjAndBjAreInTheFGLSubring} so that it carries a Cartan formula:
+We now turn back to to our original goal of understanding the action of \(P^{C_n}\) on each of the canonical classes\footnote{Note that we have not yet quite finished even the case of $m = 1$!} \[\bar u_m\co T_m BU(m) \to MU.\]  We approach this via the splitting principle, first recasting the main formula in \Cref{AjAndBjAreInTheFGLSubring} so that it carries a Cartan formula:
 \begin{align*}
-P^{C_n}(c_1(\L)) & = \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) c_\alpha(\L), &
+P^{C_n}(c_1(\L)) & = e(\L) \cdot \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) c_\alpha(\L), &
 a_\alpha(t) & = \prod_{j=0}^\infty a_j(t)^{\alpha_j}.
 \end{align*}
 
 \begin{corollary}
-There is the universal formula \[P^{C_n}(u_m) = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m).\]
+There is the universal formula \[P^{C_n}(\bar u_m) = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(\bar u_m).\]
 \end{corollary}
 \begin{proof}
-Writing \(\phi\) for the canonical Thom isomorphism associated to \(MU\)--cohomology, the main new observation is 
+Again, we make judicious use of both the Thom isomorphism and restriction along the zero-section \(\zeta_m\co BU(m) \to T_m BU(m)\).  Note both that \(\zeta_m^*\co MU^* T_m BU(m) \to MU^* BU(m)\) is injective and that it specifically sends \(\bar u_m\) to \(\zeta_m^* \bar u_m = c_m(\xi_m)\).  With this observation, we can pull back to the larger ring \(MU^* BU(m)\) and reduce to computing \[\zeta_m^* P^{C_n}(\bar u_m) = P^{C_n}(c_m(\xi_m)).\]  In fact, we can use the splitting principle to pull back to the still larger ring \(MU^* BU(1)^{\times n}\), where we find:
 \begin{align*}
-P^{C_n}(u_m) & = \phi(P^{C_n}(c_m(\xi_m))). \\
-\intertext{From here, we apply the splitting principle, multiplicativity of power operations, and properties of Landweber--Novikov operations:}
-& = \phi(P^{C_n}(c_1(\L_1) \cdots c_1(\L_m))) \\
-& = \phi(P^{C_n}(c_1(\L_1)) \cdots P^{C_n}(c_1(\L_m))) \\
-& = \phi\left(\left(\sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) c_\alpha(\L_1)\right) \cdots \left( \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) c_\alpha(\L_m) \right)\right) \\
-& = \phi\left(\sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) c_\alpha(\L_1 \oplus \cdots \oplus \L_m)\right) \\
-& = \phi\left(\sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) c_\alpha(\xi_m) \right) = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m). \qedhere
+P^{C_n}(c_m(\xi_m)) & = P^{C_n}(c_1(\L_1) \cdots c_1(\L_m)) \\
+& = P^{C_n}(c_1(\L_1)) \cdots P^{C_n}(c_1(\L_m)) \\
+& = e(\L_1)\sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) c_\alpha(\L_1) \cdots e(\L_m) \sum_{|\alpha| \le 1} w^{1 - |\alpha|} a_\alpha(t) c_\alpha(\L_m) \\
+& = e(\L_1 \oplus \cdots \oplus \L_m) \cdot \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) c_\alpha(\L_1 \oplus \cdots \oplus \L_m) \\
+& = e(\xi_m) \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) c_\alpha(\xi_m).
+\end{align*}
+This element also lies in the image of \(\zeta_m^*\), witnessed by the preceding factor of \(e(\xi_m) = c_m(\xi_m)\).  Dividing this out (i.e., eliminating the pull back along \(\zeta_m\)) shows that the original class \(P^{C_n}(\bar u_m)\) is given by
+\begin{align*}
+P^{C_n}(\bar u_m) & = \phi\left( \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) c_\alpha(\xi_m) \right) \\
+& = \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(\bar u_m). \qedhere
 \end{align*}
 \end{proof}
 
@@ -940,9 +950,9 @@ We will use this to power the following conclusion about cohomology classes in g
 For \(f \in MU^{2q}(X)\) a cohomology class in a finite complex \(X\), there is the \index{homology suspension}suspension relation \[P^{C_n}(\sigma^{2m} f) = w^m \sigma^{2m} P^{C_n}(f).\]
 \end{lemma}
 \begin{proof}
-We calculate \(P^{C_n}\) applied to the fundamental class \[S^{2m} \xrightarrow{\iota_{2m}} T_m BU(m) \simeq \Susp^{2m} MU(m) \xrightarrow{\Susp^{2m} u_m} \Susp^{2m} MU\] by restricting the universal formula:
+We calculate \(P^{C_n}\) applied to the fundamental class \[S^{2m} \xrightarrow{\iota_{2m}} T_m BU(m) \xrightarrow{\bar u_m} \Susp^{2m} MU\] by restricting the universal formula:
 \begin{align*}
-P^{C_n}(\iota_{2m}^* u_m) = \iota_{2m}^* P^{C_n}(u_m) & = \iota_{2m}^* \left( \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(u_m) \right) = w^m \iota_{2m},
+P^{C_n}(\iota_{2m}^* \bar u_m) = \iota_{2m}^* P^{C_n}(\bar u_m) & = \iota_{2m}^* \left( \sum_{|\alpha| \le m} w^{m - |\alpha|} a_\alpha(t) s_\alpha(\bar u_m) \right) = w^m \iota_{2m},
 \end{align*}
 since \(s_\alpha(\iota_{2m}) = 0\) for any nonzero \(\alpha\), as the cohomology of \(S^{2m}\) is too sparse.  Because \(\sigma^{2m} f = \iota_{2m} \sm f\), we conclude the proof by multiplicativity of \(P^{C_n}\).
 \end{proof}
@@ -951,10 +961,10 @@ since \(s_\alpha(\iota_{2m}) = 0\) for any nonzero \(\alpha\), as the cohomology
 Let \(X\) be a finite pointed space and let \(f\) be a cohomology class \[f \in \widetilde{MU}^{2q}(X).\]  For \(m \gg 0\), there is a formula \[w^m P^{C_n}(f) = \sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) s_\alpha(f),\] with \(t\), \(w\), and \(a_\alpha(t)\) as defined above.\footnote{The reader comparing with Quillen's paper will notice various apparent discrepancies between the statements of our Theorem and of his.  These are notational: he grades his cohomology functor homologically, which occasionally causes our \(q\) to match his \(-q\), so that his \(n\) is comparable to our \(m-q\).}
 \end{theorem}
 \begin{proof}
-We take \(m\) large enough so that \(f\) is represented by an unstable map \[g\co \Susp^{2m} X \to T_{m+q} BU(m+q),\] in the sense that \(g\) intertwines \(f\) with the universal class \(u_{m+q}\) by the formula \[g^* u_{m+q} = \sigma^{2m} f.\]  We use \Cref{PowerOpnsOnSuspensions} and naturality to conclude
+We take \(m\) large enough so that \(f\) is represented by an unstable map \[g\co \Susp^{2m} X \to T_{m+q} BU(m+q),\] in the sense that \(g\) intertwines \(f\) with the universal class \(\bar u_{m+q}\) by the formula \[g^* \bar u_{m+q} = \sigma^{2m} f.\]  We use \Cref{PowerOpnsOnSuspensions} and naturality to conclude
 \begin{align*}
-w^m \sigma^{2m} P^{C_n}(f) & = P^{C_n}(\sigma^{2m} f) = P^{C_n}(g^* u_{m+q}) = g^* P^{C_n}(u_{m+q}) \\
-& = g^* \left(\sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) s_\alpha(u_{m+q}) \right) \\
+w^m \sigma^{2m} P^{C_n}(f) & = P^{C_n}(\sigma^{2m} f) = P^{C_n}(g^* \bar u_{m+q}) = g^* P^{C_n}(\bar u_{m+q}) \\
+& = g^* \left(\sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) s_\alpha(\bar u_{m+q}) \right) \\
 & = \sum_{|\alpha| \le m+q} w^{m+q - |\alpha|} a_\alpha(t) \sigma^{2m} s_\alpha(f). \qedhere
 \end{align*}
 \end{proof}
@@ -1027,7 +1037,7 @@ This is the case of \Cref{CGenerationForFiniteCplx} where we set \(X = *\).
 \end{proof}
 
 \begin{remark}
-This proof actually also goes through for \(MO\) as well.  In that case, it's even easier, since the equation \(2 = 0\) in \(\pi_0 MO\) causes much of the algebra to collapse.  The proof does not extend further to cases like \(M\SO\) or \(M\mathit{Sp}\): these bordism theories do not have associated formal group laws, and so we lose the control we earned in \Cref{StabilizingTheMUSteenrodOps}.
+This proof actually also goes through for \(MO\) as well, but .  In that case, it's even easier, since the equation \(2 = 0\) in \(\pi_0 MO\) causes much of the algebra to collapse.  The proof does not extend further to cases like \(M\SO\) or \(M\mathit{Sp}\): these bordism theories do not have associated formal group laws, and so we lose the control we earned in \Cref{StabilizingTheMUSteenrodOps}.
 \end{remark}
 
 Take \(\moduli{fgl}\) to be the moduli functor of formal group laws.  Since a formal group law is a power series satisfying some algebraic identities, this moduli object is an affine scheme with coordinate ring \(\sheaf O_{\moduli{fgl}}\).  A rephrasing of \Cref{QuillenSurjective} is that the natural map \[\sheaf O_{\moduli{fgl}} \to MU_*\] is \emph{surjective}.  This is reason enough to start studying \(\moduli{fgl}\) in earnest, which we take up in the next Case Study---but if we anachronistically assume one algebraic fact about \(\sheaf O_{\moduli{fgl}}\), we can prove that the natural map is an \emph{isomorphism}.  We begin with the following topological observation about mixing complex-orientations:
