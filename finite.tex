@@ -437,7 +437,7 @@ to which we apply \((-) \otimes_{\Q[t]} \Q\) to calculate \[H^* \InternalHom{For
 \[H^* \InternalHom{FormalSchemes}(B\G_a, \G_a)(\F_p) =\hspace{12em}\]
 \[\hspace{8.5em}=
 \begin{cases}
-\frac{\F_p[\alpha_k \mid k \ge 0]}{\alpha_k^2 = 0} \otimes \F_p[\beta_k \mid k \ge 0] & \text{when \(p > 2\)}, \\
+\frac{\F_p[\alpha_k \mid k \ge 0]}{\alpha_k^2 = 0} \otimes \F_p[\beta_k \mid k \ge 1] & \text{when \(p > 2\)}, \\
 \F_2[\alpha_k \mid k \ge 0] & \text{when \(p = 2\)},
 \end{cases}\] with \(\alpha_k \in H^1\) and \(\beta_k \in H^2\).  Now that we know what to look for, we can find representatives of each of these classes:
 \begin{itemize}
@@ -794,7 +794,7 @@ The presence of the \index{Witt vectors}\textit{\(p\)--local Witt ring} \(\W_p(k
 k \arrow["i"]{r} & R/\m
 \end{tikzcd}
 \end{center}
-For the finite perfect fields \(k = \F_{p^d} = \F_p(\zeta_{p^d-1})\), the Witt ring can be computed to be \(\W_p(\F_{p^d}) = \Z_p(\zeta_{p^d-1})\).
+For the finite fields \(k = \F_{p^d} = \F_p(\zeta_{p^d-1})\), the Witt ring can be computed to be \(\W_p(\F_{p^d}) = \Z_p(\zeta_{p^d-1})\).
 \end{remark}
 
 \begin{remark}\label{LubinTateModuliThmInFGLTerms}
@@ -867,12 +867,12 @@ f & \mapsto \Gamma_1\left(0, \sumGamma_{i=1}^n x_i \right)^{-1} \cdot f(x_1, \ld
 In the course of proving \Cref{Symmetric2CocycleLemma}, we computed the cohomology of this complex in the specific case of \(\G = \G_a\).  This is the one case where Lubin and Tate's theorem does \emph{not} apply, since it requires \(\height \G < \infty\).  Nonetheless, by filtering the multiplication on \(\G\) by degree, we can use this specific calculation to get up to the one we now seek.
 
 \begin{lemma}\label{CalculationOfLTTangentSpace}
-Let \(\G\) be a formal group of finite height \(d\) over a field \(k\).  Then \(H^1(\G; \G_a) = 0\) and \(H^2(\G; \G_a)\) is a free \(k\)--vector space of dimension \(d\).\index{formal group!cohomology}
+Let \(\G\) be a formal group of finite height \(d\) over a field \(k\).  Then \(H^1(\G; \G_a) = 0\) and \(H^2(\G; \G_a)\) is a free \(k\)--vector space of dimension \(d-1\).\index{formal group!cohomology}
 \end{lemma}
 \begin{proof}[Proof (after Hopkins)]
 We select a \(p\)--typical coordinate on \(\G\) of the form \[x +_\phi y = x + y + \mathrm{unit} \cdot c_{p^d}(x, y) + \cdots,\] where \(c_{p^d}(x, y)\) is as in one of Lazard's symmetric \(2\)--cocycles, as in \Cref{Symmetric2CocycleLemma}.  Filtering \(\G\) by degree, the multiplication projects to \(x +_\phi y = x + y\) in the associated graded, and the resulting \index{tangent spectral sequence}filtration spectral sequence has signature \[[H^*(\G_a; \G_a)]_* \Rightarrow H^*(\G; \G_a),\] where the second grading comes from the degree of the homogeneous polynomial representatives of classes in \(H^*(\G_a; \G_a)\).
 
-Because \Cref{Symmetric2CocycleLemma} gives different calculations of \(H^*(\G_a; \G_a)\) for \(p = 2\) and \(p > 2\), we specialize to \(p > 2\) for the remainder of the proof and leave the similar \(p = 2\) case to the reader.  For \(p > 2\), \Cref{Symmetric2CocycleLemma} gives \[[H^*(\G_a; \G_a)]_* = \left[\frac{k[\alpha_j \mid j \ge 0]}{\alpha_j^2 = 0} \otimes k[\beta_j \mid j \ge 0]\right]_*,\] where \(\alpha_j\) is represented by \(x^{p^j}\) and \(\beta_j\) is represented by \(c_{p^j}(x, y)\).  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest nonzero degree.  For instance, to compute \(d(\alpha_j)\) we examine the series \[(x +_\phi y)^{p^j} - (x^{p^j} + y^{p^j}) = (\text{unit}) \cdot c_{p^{d + j}}(x, y) + \cdots,\] where we used \(c_{p^d}^{p^j} = c_{p^{j+d}}\), giving \(d(\alpha_j) = \beta_{j+d}\).  So, we see that nothing in the \(1\)--column of the spectral sequence is a permanent cocycle and that there are \(d\) classes at the bottom of the \(2\)--column of the spectral sequence which are not coboundaries.  To conclude the Lemma statement, we need only to check that they are indeed permanent cocycles.  To do this, we note that they are realized as deformations, by observing \[x +_{\mathrm{univ}} y \cong x + y + v_j c_{p^j}(x, y) \pmod{v_1, \ldots, v_{j-1}, (x, y)^{p^j+1}}\] where \(+_{\mathrm{univ}}\) is the Kudo--Araki universal \(p\)--typical law (cf.\ \cite[Proposition 1.1]{LubinTate}).
+Because \Cref{Symmetric2CocycleLemma} gives different calculations of \(H^*(\G_a; \G_a)\) for \(p = 2\) and \(p > 2\), we specialize to \(p > 2\) for the remainder of the proof and leave the similar \(p = 2\) case to the reader.  For \(p > 2\), \Cref{Symmetric2CocycleLemma} gives \[[H^*(\G_a; \G_a)]_* = \left[\frac{k[\alpha_j \mid j \ge 0]}{\alpha_j^2 = 0} \otimes k[\beta_j \mid j \ge 1]\right]_*,\] where \(\alpha_j\) is represented by \(x^{p^j}\) and \(\beta_j\) is represented by \(c_{p^j}(x, y)\).  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest nonzero degree.  For instance, to compute \(d(\alpha_j)\) we examine the series \[(x +_\phi y)^{p^j} - (x^{p^j} + y^{p^j}) = (\text{unit}) \cdot c_{p^{d + j}}(x, y) + \cdots,\] where we used \(c_{p^d}^{p^j} = c_{p^{j+d}}\), giving \(d(\alpha_j) = \beta_{j+d}\).  So, we see that nothing in the \(1\)--column of the spectral sequence is a permanent cocycle and that there are \(d\) classes at the bottom of the \(2\)--column of the spectral sequence which are not coboundaries.  To conclude the Lemma statement, we need only to check that they are indeed permanent cocycles.  To do this, we note that they are realized as deformations, by observing \[x +_{\mathrm{univ}} y \cong x + y + v_j c_{p^j}(x, y) \pmod{v_1, \ldots, v_{j-1}, (x, y)^{p^j+1}}\] where \(+_{\mathrm{univ}}\) is the Kudo--Araki universal \(p\)--typical law (cf.\ \cite[Proposition 1.1]{LubinTate}).
 \end{proof}
 
 \begin{proof}[{Proof of \Cref{LubinTateModuliThm} using \Cref{LubinTateModuliThmInFGLTerms}}]
