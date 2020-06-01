@@ -801,17 +801,40 @@ For the finite fields \(k = \F_{p^d} = \F_p(\zeta_{p^d-1})\), the Witt ring can 
 In light of \Cref{LubinTateStackInFGLTerms}, we can also state \Cref{LubinTateModuliThm} in terms of formal group laws and their \(\star\)--isomorphisms.  For a group law \(+_\Gamma\) over a perfect field \(k\) of positive characteristic, it claims that there exists a ring \(X\), noncanonically isomorphic to \(\W_p(k)\ps{u_1, \ldots, u_{d-1}}\), as well as a certain group law \(+_{\widetilde \Gamma}\) on this ring.  The group law \(+_{\widetilde \Gamma}\) has the following property: if \(+_\G\) is a formal group law on an infinitesimal thickening \(\Spf R\) of \(\Spec k\) which reduces along \(\pi\co \Spec R/\m \to \Spf R\) to \(+_\Gamma\), then there is a unique ring map \(f\co X \to R\), compatible with the identifications \(X / \mathfrak{m} \cong k \cong R / \mathfrak{m}\), such that \(f^* (+_{\widetilde \Gamma})\) is \(\star\)--isomorphic to \(+_{\G}\), and this \(\star\)--isomorphism is unique.
 \end{remark}
 
-We will spend the rest of this Lecture working towards a proof of \Cref{LubinTateModuliThm}.  We first consider a very particular sort of infinitesimal thickening: the square-zero extension \(R = k[\eps] / \eps^2\) with pointing \(\eps = 0\).  We are interested in two kinds of data over \(R\): formal group laws \(+_\Delta\) over \(R\) reducing to \(+_\Gamma\) at the pointing, and formal group law automorphisms \(\phi\) of \(+_\Gamma\) which reduce to the identity automorphism at the pointing.
-\begin{lemma}
-Define
+We will spend the rest of this Lecture working towards a proof of \Cref{LubinTateModuliThm}.  To set the stage for the proof, let us recount the construction of the \index{Kodaira--Spencer map}\textit{Kodaira--Spencer map}.
+
+\begin{definition}[cf.\ \cite{Kodaira}]
+Suppose that \(\pi\co G \to S\) is a formal group over a scheme \(S\), and select a geometric point \(s \in S\) with fiber \(\Gamma = G_s\).  Let us analyze the structure of the induced map on tangent bundles \(D\pi\co TG \to TS\) at \(s\) by pulling it apart through various inverse images.  The inverse image \(D_s\pi^{-1}(0)\) consists of \(\Gamma = \pi^{-1}(s)\) and \(\Lie \Gamma\) in the form of the vertical part of the tangent space of \(G\) at \(s\).  In fact, since \(G\) is itself a formal group, \(D_s\pi^{-1}(0)\) decomposes into a split exact sequence of commutative formal groups \[0 \to \G_a \otimes \Lie \Gamma \to D_s\pi^{-1}(0) \to \Gamma \to 0.\]  For a generic tangent vector \(v\) based at \(s\), the inverse image \(D_s\pi^{-1}(v)\) again belongs to a short exact sequence of commutative formal groups with the same endpoints, but it need not split; instead, these extensions collectively assemble into a classifying map \[\mathit{KS}\co T_s S \to H^2(\Gamma; \G_a \otimes \Lie \Gamma).\]
+\end{definition}
+
+The meta-theorem of Kodaira and Spencer is that, for a suitable cohomology theory and in the universal case (i.e., \(S = (\moduli{fg})^\wedge_\Gamma\)), this map is often an isomorphism.  Taking this as inspiration, our approach becomes two-pronged:
+\begin{enumerate}
+    \item Demonstrate in the universal case that the construction of a \((\G_a \otimes \Lie \Gamma)\)--extension of \(\Gamma\) from a first-order deformation of \(\Gamma\), exploited in the definition of \(\mathit{KS}\), comes from a homotopy equivalence of chain complexes.
+    \item Compute the relevant cohomology groups in the case where \(\Gamma\) is a formal group of finite height.
+\end{enumerate}
+From this, we will be able to conclude \Cref{LubinTateModuliThm}.  We begin by making concrete the complex under discussion.
+
+\begin{definition}[{\cite[Section 3]{LazarevDeformations}, \cite[Section 4.A]{Drinfeld}, \cite{LubinTate}}]\label{DeformationComplex}
+A choice of a coordinate on \(\Gamma\) induces a presentation of the \index{deformation complex}\textit{deformation complex} \[C^*(\Gamma; \G_a \otimes \Lie \Gamma)(k) = \left\{k \to k\ps{x_1} \to k\ps{x_1, x_2} \to k\ps{x_1, x_2, x_3} \to \cdots \right\}\] with differential
 \begin{align*}
-\Gamma_1 & = \frac{\partial(x +_\Gamma y)}{\partial x}, &
-\Gamma_2 & = \frac{\partial(x +_\Gamma y)}{\partial y}.
+(df)(x_1, \ldots, x_{n+1}) & = \Gamma_1\left(\sumGamma_{i=1}^n x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
+& \quad + \sum_{i=1}^n (-1)^i \cdot f(x_1, \ldots, x_i +_\Gamma x_{i+1}, \ldots, x_{n+1}) \\
+& \quad + (-1)^{n+1} \cdot \Gamma_2\left(x_1, \sumGamma_{i=2}^{n+1} x_i \right) \cdot f(x_2, \ldots, x_{n+1}),
 \end{align*}
-Such automorphisms \(\phi\) are determined by series \(\psi\) satisfying \[0 = \Gamma_1(x, y) \psi(x) - \psi(x +_\Gamma y) + \psi(y) \Gamma_2(x, y).\]  Such formal group laws \(+_\Delta\) are determined by bivariate series \(\delta(x, y)\) satisfying \[0 = \Gamma_1(x +_\Gamma y, z) \delta(x, y) - \delta(x, y +_\Gamma z) + \delta(x +_\Gamma y, z) - \delta(y, z) \Gamma_2(x, y +_\Gamma z).\]
+where we have abbreviated the partial derivatives
+\begin{align*}
+\Gamma_1(x, y) & = \frac{\partial(x +_\Gamma y)}{\partial x}, &
+\Gamma_2(x, y) & = \frac{\partial(x +_\Gamma y)}{\partial y}.
+\end{align*}
+\end{definition}
+
+\begin{lemma}\label{InterpretLTCoboundaries}
+In the cohomology of the coordinatized deformation complex, classes of degree \(1\) biject with first-order deformations of the identity automorphism, and classes of degree \(2\) biject with first-order deformations of the formal group law \(+_\Gamma\).
 \end{lemma}
-\begin{proof}
-Such an automorphism \(\phi\) admits a series expansion
+\begin{proof}[Proof sketch]
+Throughout, we consider the square-zero extension \(R = k[\eps] / \eps^2\) with pointing \(\eps = 0\), thought of as a universal tangent vector off of a \(k\)--point.
+
+First, we address \(1\)--cocycles.  An automorphism \(\phi\) over \(R\) which reduces to the identity over \(k\) admits a series expansion
 \begin{align*}
 \phi(x) & = x + \eps \cdot \psi(x). \\
 \intertext{Then, we take the homomorphism property}
@@ -820,7 +843,9 @@ Such an automorphism \(\phi\) admits a series expansion
 \intertext{and apply \(\left. \frac{\partial}{\partial\eps} \right|_{\eps = 0}\) to get}
 \psi(x +_\Gamma y) & = \Gamma_1(x, y) \cdot \psi(x) + \Gamma_2(x, y) \cdot \psi(y).
 \end{align*}
-Similarly, such a formal group law \(+_\Delta\) admits a series expansion \[x +_\Delta y = (x +_\Gamma y) + \eps \cdot \delta(x, y).\]  Beginning with the associativity property \[(x +_\Delta y) +_\Delta z = x +_\Delta (y +_\Delta z),\] we compute \(\left. \frac{\partial}{\partial \eps} \right|_{\eps = 0}\) applied to both sides:
+This is precisely a \(1\)--cocycle in the coordinatized deformation complex.
+
+Similarly, a formal group law \(+_\Delta\) defined over \(R\) which reduces to \(+_\Gamma\) over \(k\) admits a series expansion \[x +_\Delta y = (x +_\Gamma y) + \eps \cdot \delta(x, y).\]  Beginning with the associativity property \[(x +_\Delta y) +_\Delta z = x +_\Delta (y +_\Delta z),\] we compute \(\left. \frac{\partial}{\partial \eps} \right|_{\eps = 0}\) applied to both sides:
 \begin{align*}
 & \left. \frac{\partial}{\partial \eps} \right|_{\eps = 0} \left((x +_\Delta y) +_\Delta z \right) \\
 & \quad = \!\!\left. \frac{\partial}{\partial \eps} \right|_{\eps = 0} \left((((x +_\Gamma y) + \eps \cdot \delta(x, y)) +_\Gamma z) + \eps \cdot \delta(x +_\Gamma y, z)\right) \\
@@ -830,47 +855,28 @@ Similarly, such a formal group law \(+_\Delta\) admits a series expansion \[x +_
 & \quad = \!\!\left. \frac{\partial}{\partial \eps} \right|_{\eps = 0} \left( (x +_\Gamma ((y +_\Gamma z) + \eps \cdot \delta(y, z))) + \eps \cdot \delta(x, y +_\Gamma z) \right) \\
 & \quad = \Gamma_2(x, y +_\Gamma z) \cdot \delta(y, z) + \delta(x, y +_\Gamma z).
 \end{align*}
-Equating these gives the condition in the Lemma statement.
+This is precisely a \(2\)--cocycle in the coordinatized deformation complex.
+
+We leave to the reader the entirely similar calculations verifying that two classes are cohomologous if and only if they are isomorphic as deformations.
 \end{proof}
 
-The key observation is that these two conditions appear as cocycle conditions for the first two levels of a natural cochain complex.
-\begin{definition}[{\cite[Section 3]{LazarevDeformations}}]\label{DeformationComplex}
-The \index{deformation complex}deformation complex\footnote{Pieces are of this complex are visible in work of Drinfel'd~\cite[Section 4.A]{Drinfeld} and of Lubin--Tate~\cite{LubinTate}, but neither actually assemble the whole complex.}\footnote{It would be great to have a geoemtric definition of this complex, i.e., one using \(\Gamma\) rather than \(+_{\Gamma}\).} \(\widehat C^*(+_\Gamma; k)\) is defined by \[k \to k\ps{x_1} \to k\ps{x_1, x_2} \to k\ps{x_1, x_2, x_3} \to \cdots\] with differential
-\begin{align*}
-(df)(x_1, \ldots, x_{n+1}) & = \Gamma_1\left(\sumGamma_{i=1}^n x_i, x_{n+1} \right) \cdot f(x_1, \ldots, x_n) \\
-& \quad + \sum_{i=1}^n (-1)^i \cdot f(x_1, \ldots, x_i +_\Gamma x_{i+1}, \ldots, x_{n+1}) \\
-& \quad + (-1)^{n+1} \cdot \Gamma_2\left(x_1, \sumGamma_{i=2}^{n+1} x_i \right) \cdot f(x_2, \ldots, x_{n+1}),
-\end{align*}
-where we have again written
-\begin{align*}
-\Gamma_1(x, y) & = \frac{\partial(x +_\Gamma y)}{\partial x}, &
-\Gamma_2(x, y) & = \frac{\partial(x +_\Gamma y)}{\partial y}.
-\end{align*}
-\end{definition}
-
-The complex even knits the information together intelligently:
-
-\begin{corollary}[{\cite[p.\ 1320]{LazarevDeformations}}]\label{InterpretLTCoboundaries}
-Two extensions \(+_\Delta\) and \(+_{\Delta'}\) of \(+_\Gamma\) to \(k[\eps] / \eps^2\) are isomorphic if their corresponding \(2\)--cocycles in \(\widehat{Z}^2(+_\Gamma; k)\) differ by an element in \(\widehat B^2(+_\Gamma; k)\). \qed
-\end{corollary}
-
-Remarkably, we have already encountered this complex before:
+Now we turn to the matter of calculation.  Our method hinges on the following recognition result:
 
 \begin{lemma}[{\cite[p.\ 1320]{LazarevDeformations}}]\label{LazarevComparisonOfCplxes}
-Write \(\G\) for the formal group associated to the group law \(+_\Gamma\).  The cochain complex \(\widehat C^*(+_\Gamma; k)\) is quasi-isomorphic to the \index{formal group!cohomology}cohomology cochain complex considered in the proof of \Cref{Symmetric2CocycleLemma}:
+The cochain complex \(C^*(\Gamma; \G_a \otimes \Lie \Gamma)(k)\) is quasi-isomorphic to the \index{formal group!cohomology}cohomology cochain complex considered in the proof of \Cref{Symmetric2CocycleLemma}.  Choosing a coordinate on \(\Gamma\), the quasi-isomorphism is given by
 \begin{align*}
-\widehat C^*(+_\Gamma; k) & \to \InternalHom{FormalSchemes}(B\G, \G_a)(k) \\
+C^*(\Gamma; \G_a \otimes \Lie \Gamma)(k) & \to \InternalHom{FormalSchemes}(B\Gamma, \G_a)(k) \\
 f & \mapsto \Gamma_1\left(0, \sumGamma_{i=1}^n x_i \right)^{-1} \cdot f(x_1, \ldots, x_n). \pushQED{\qed}\qedhere\popQED
 \end{align*}
 \end{lemma}
 
-In the course of proving \Cref{Symmetric2CocycleLemma}, we computed the cohomology of this complex in the specific case of \(\G = \G_a\).  This is the one case where Lubin and Tate's theorem does \emph{not} apply, since it requires \(\height \G < \infty\).  Nonetheless, by filtering the multiplication on \(\G\) by degree, we can use this specific calculation to get up to the one we now seek.
+In the course of proving \Cref{Symmetric2CocycleLemma}, we computed the cohomology of this complex in the specific case of \(\Gamma = \G_a\).  This is the one case where Lubin and Tate's theorem does \emph{not} apply, since it requires \(\height \Gamma < \infty\).  Nonetheless, by filtering the multiplication on \(\Gamma\) by degree, we can use this specific calculation to get up to the one we now seek.
 
 \begin{lemma}\label{CalculationOfLTTangentSpace}
-Let \(\G\) be a formal group of finite height \(d\) over a field \(k\).  Then \(H^1(\G; \G_a) = 0\) and \(H^2(\G; \G_a)\) is a free \(k\)--vector space of dimension \(d-1\).\index{formal group!cohomology}
+Let \(\Gamma\) be a formal group of finite height \(d\) over a field \(k\).  Then \(H^1(\Gamma; \G_a) = 0\) and \(H^2(\Gamma; \G_a)\) is a free \(k\)--vector space of dimension \(d-1\).\index{formal group!cohomology}
 \end{lemma}
 \begin{proof}[Proof (after Hopkins)]
-We select a \(p\)--typical coordinate on \(\G\) of the form \[x +_\phi y = x + y + \mathrm{unit} \cdot c_{p^d}(x, y) + \cdots,\] where \(c_{p^d}(x, y)\) is as in one of Lazard's symmetric \(2\)--cocycles, as in \Cref{Symmetric2CocycleLemma}.  Filtering \(\G\) by degree, the multiplication projects to \(x +_\phi y = x + y\) in the associated graded, and the resulting \index{tangent spectral sequence}filtration spectral sequence has signature \[[H^*(\G_a; \G_a)]_* \Rightarrow H^*(\G; \G_a),\] where the second grading comes from the degree of the homogeneous polynomial representatives of classes in \(H^*(\G_a; \G_a)\).
+We select a \(p\)--typical coordinate on \(\Gamma\) of the form \[x +_\phi y = x + y + \mathrm{unit} \cdot c_{p^d}(x, y) + \cdots,\] where \(c_{p^d}(x, y)\) is as in one of Lazard's symmetric \(2\)--cocycles, as in \Cref{Symmetric2CocycleLemma}.  Filtering \(\Gamma\) by degree, the multiplication projects to \(x +_\phi y = x + y\) in the associated graded, and the resulting \index{tangent spectral sequence}filtration spectral sequence has signature \[[H^*(\G_a; \G_a)]_* \Rightarrow H^*(\Gamma; \G_a),\] where the second grading comes from the degree of the homogeneous polynomial representatives of classes in \(H^*(\G_a; \G_a)\).
 
 Because \Cref{Symmetric2CocycleLemma} gives different calculations of \(H^*(\G_a; \G_a)\) for \(p = 2\) and \(p > 2\), we specialize to \(p > 2\) for the remainder of the proof and leave the similar \(p = 2\) case to the reader.  For \(p > 2\), \Cref{Symmetric2CocycleLemma} gives \[[H^*(\G_a; \G_a)]_* = \left[\frac{k[\alpha_j \mid j \ge 0]}{\alpha_j^2 = 0} \otimes k[\beta_j \mid j \ge 1]\right]_*,\] where \(\alpha_j\) is represented by \(x^{p^j}\) and \(\beta_j\) is represented by \(c_{p^j}(x, y)\).  To compute the differentials in this spectral sequence, one computes by hand the formula for the differential in the bar complex, working up to lowest nonzero degree.  For instance, to compute \(d(\alpha_j)\) we examine the series \[(x +_\phi y)^{p^j} - (x^{p^j} + y^{p^j}) = (\text{unit}) \cdot c_{p^{d + j}}(x, y) + \cdots,\] where we used \(c_{p^d}^{p^j} = c_{p^{j+d}}\), giving \(d(\alpha_j) = \beta_{j+d}\).  So, we see that nothing in the \(1\)--column of the spectral sequence is a permanent cocycle and that there are \(d\) classes at the bottom of the \(2\)--column of the spectral sequence which are not coboundaries.  To conclude the Lemma statement, we need only to check that they are indeed permanent cocycles.  To do this, we note that they are realized as deformations, by observing \[x +_{\mathrm{univ}} y \cong x + y + v_j c_{p^j}(x, y) \pmod{v_1, \ldots, v_{j-1}, (x, y)^{p^j+1}}\] where \(+_{\mathrm{univ}}\) is the Kudo--Araki universal \(p\)--typical law (cf.\ \cite[Proposition 1.1]{LubinTate}).
 \end{proof}
@@ -889,7 +895,7 @@ g_r(x) & = h(x) - f(x), &
 \end{proof}
 
 \begin{remark}\label{ActionBySnLiftsToLTn}
-Our calculation \(H^1(\G; \G_a) = 0\) shows that the automorphisms \(\alpha\co \Gamma \to \Gamma\) of the special fiber induce \index{Lubin Tate stack@Lubin--Tate stack!automorphisms}automorphisms of the entire Lubin--Tate stack by universality.  Namely, for \(\Gamma \to \widetilde \Gamma\) the universal deformation, the precomposite \[\Gamma \xrightarrow{\alpha} \Gamma \to \widetilde \Gamma\] presents \(\widetilde \Gamma\) as a deformation of \(\Gamma\) in a different way, hence induces a map \[\widetilde \alpha\co \widetilde \Gamma \to \widetilde \Gamma,\] which by \Cref{LubinTateModuliThm} is in turn induced by a map \[\widetilde \alpha\co (\moduli{fg})^\wedge_\Gamma \to (\moduli{fg})^\wedge_\Gamma.\]  The action is \emph{highly} nontrivial in all but the most degenerate cases, and its study is of serious interest to homotopy theorists (cf.\ \Cref{ChromaticLocalizationSection}) and to arithmetic geometers (cf.\ \Cref{ThePeriodMapSection} as well as \Cref{OpenQuestionsSection}).
+Our calculation \(H^1(\Gamma; \G_a) = 0\) shows that the automorphisms \(\alpha\co \Gamma \to \Gamma\) of the special fiber uniquely induce \index{Lubin Tate stack@Lubin--Tate stack!automorphisms}automorphisms of the entire Lubin--Tate stack by universality.  Namely, for \(\Gamma \to \widetilde \Gamma\) the universal deformation, the precomposite \[\Gamma \xrightarrow{\alpha} \Gamma \to \widetilde \Gamma\] presents \(\widetilde \Gamma\) as a deformation of \(\Gamma\) in a different way, hence induces a map \[\widetilde \alpha\co \widetilde \Gamma \to \widetilde \Gamma,\] which by \Cref{LubinTateModuliThm} is in turn induced by a map \[\widetilde \alpha\co (\moduli{fg})^\wedge_\Gamma \to (\moduli{fg})^\wedge_\Gamma.\]  The action is \emph{highly} nontrivial in all but the most degenerate cases, and its study is of serious interest to homotopy theorists (cf.\ \Cref{ChromaticLocalizationSection}) and to arithmetic geometers (cf.\ \Cref{ThePeriodMapSection} as well as \Cref{OpenQuestionsSection}).
 \end{remark}
 
 \begin{remark}
