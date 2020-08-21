@@ -743,12 +743,26 @@ We now turn to understanding the \index{formal scheme!formal neighborhood}infini
 \Spf R \arrow{r} \arrow[densely dotted]{ru} & X
 \end{tikzcd}
 \end{center}
-for any infinitesimal thickening \(\Spf R\) of \(\Spec k\).  Thinking of \(X\) as representing a moduli problem, a typical choice for \(\Spf R\) is \(\A^1_k\), and a map \(\A^1_k \to X\) extending \(s\) is a series solution to the moduli problem which constant term \(s\).  In turn, \(X^\wedge_s\) is the smallest object through which all such maps factor, and so we think of it as classifying Taylor expansions of solutions with constant term \(s\).
+for any infinitesimal thickening \(\Spf R\) of \(\Spec k\).  Thinking of \(X\) as representing a moduli problem, a typical choice for \(\Spf R\) is \(\A^1_k\), and a map \(\A^1_k \to X\) extending \(s\) is a series solution to the moduli problem with constant term \(s\).  In turn, \(X^\wedge_s\) is the smallest object through which all such maps factor, so we think of it as classifying Taylor expansions of solutions with constant term \(s\).
 
-For a formal group \(\Gamma\co \Spec k \to \moduli{fg}\), the definition is formally similar, but actually writing it out is made complicated by \Cref{WarningAboutStacks}.  In particular, \(p\co \Spec k \to X\) may not lift directly through \(\Spf R \to X\), but instead \(\Spec R/\m \to X\) may present \(p\) on a cover \(i\co \Spec R/\m \to \Spec k\).
+For a formal group \(\Gamma\co \Spec k \to \moduli{fg}\), the definition is formally similar, but actually writing it out is made complicated by the behavior of stacks.
+To warm up, let us consider just the closed substack of \(\moduli{fg}\) associated to \(\Gamma\)---which is not \(\Gamma\) itself, essentially because \(\Gamma\) has automorphisms as a point of \(\moduli{fg}\), but \(\Spec k\) does not.
+After picking a lift \(\Gamma\co \Spec k \to \moduli{fgl}\), the closed substack of \(\moduli{fg}\) which \(\Gamma\) covers is presented by \[\Gamma^* \moduli{fg} := \left\{
+\begin{tikzcd}[ampersand replacement=\&]
+\Spec k \arrow{r} \arrow[leftarrow,shift left=\baselineskip]{r} \arrow[leftarrow,shift right=\baselineskip]{r} \&
+\begin{array}{c} \Spec k \\ \times_{\moduli{fgl}, \Gamma} \\ \InternalAut(\A^1) \\ \times_{\moduli{fgl}, \Gamma} \\ \Spec k \end{array} \arrow[leftarrow, shift left=(2*\baselineskip)]{r} \arrow[shift left=\baselineskip]{r} \arrow[leftarrow]{r} \arrow[shift right=\baselineskip]{r} \arrow[leftarrow, shift right=(2*\baselineskip)]{r} \&
+\cdots
+\end{tikzcd}
+\right\} \to \moduli{fg},\] which is equivalent to \(\Gamma^* \moduli{fg} \simeq \Spec k \mmod \InternalAut(\Gamma)\).%
+\footnote{Given a Hopf algebroid \((A, \Gamma)\) and a map of rings \(f\co A \to B\), one can construct a Hopf algebroid \(f^*(A, \Gamma) = (B, B \otimes_A \Gamma \otimes_A B)\), which is initial among Hopf algebroids under \(B\) for \(A, \Gamma\).}%
+\footnote{The sequence of maps \(\Spec k \to \Spec k \mmod \InternalAut(\Gamma) \to \moduli{fg}\) is an epi-mono factorization.}
+Meanwhile, the moduli \(\Fact(\Gamma)\) of factorizations through \(\Gamma\) has objects given by triples \[(\Delta\co \Spec T \to \moduli{fg}, f\co \Spec T \to \Spec k, \alpha\co \Delta \sim f^* \Gamma),\] and the unique morphism between two objects with the same \(f\) are given by patching the two \(1\)--cells.
+This stack is discrete, and it is related to \(\Gamma^* \moduli{fg}\) by \[\Fact(\Gamma) \mmod \InternalAut(\Gamma) \simeq \Gamma^* \moduli{fg}.\]
+
+Similarly, there are multiple levels at which we can make sense of the formal completion:
 
 \begin{definition}[{\cite[Section 2.4]{RezkFelixKlein}, cf.\ \cite[Section 6]{StricklandFiniteSubgps}}]\label{LubinTateDefn}
-Define the \index{Lubin Tate stack@Lubin--Tate stack}\textit{Lubin--Tate stack} \((\moduli{fg})^\wedge_\Gamma\) to be the groupoid-valued functor on the category of infinitesimal thickenings of \(k\)\footnote{We are being somewhat cavalier by using the word ``stack'' to refer to a groupoid-valued functor that we have \emph{not} defined on all rings, as opposed to the usage in \Cref{FHGivesComodules} and \Cref{WarningAboutStacks}.  The reader is advised to privilege the word ``stack'' with the same flexibility as the word ``sheaf'', which many authors freely take to have quite exotic source categories and which satisfy unusual and varied descent properties.} which on such a thickening \(R\) has objects
+The \index{Lubin Tate stack@Lubin--Tate stack}\textit{Lubin--Tate stack} \((\moduli{fg})^\wedge_\Gamma\) is the minimal formally closed substack through which an infinitesimal deformation of \(\Gamma\) must factor.  The \textit{Lubin--Tate cover} \(\LT(\Gamma)\) is the moduli of infinitesimal thickenings of \(\Gamma\) with a specified factorization over the special fiber, and the two are related by \[(\moduli{fg})^\wedge_\Gamma \simeq \LT(\Gamma) \mmod \InternalAut(\Gamma).\]  This cover is given explicitly by the groupoid-valued functor on the category of infinitesimal thickenings\footnote{Here we are being somewhat cavalier by using the word ``stack'' to refer to a groupoid-valued functor that we have \emph{not} defined on all rings, as opposed to the usage in \Cref{FHGivesComodules} and \Cref{WarningAboutStacks}.  The reader is advised to privilege the word ``stack'' with the same flexibility as the word ``sheaf'', which many authors freely take to have quite exotic source categories and which satisfy unusual and varied descent properties.} of \(k\) which on such a thickening \(R\) has objects
 \begin{center}
 \begin{tikzcd}[row sep=2.5em, column sep=4em]
 & \moduli{fg} \\
@@ -771,14 +785,14 @@ where \(i\) is an inclusion of \(k\) into the residue field \(R/\m\) and \(\alph
 \end{definition}
 
 \begin{remark}[{cf.\ \cite[Section 4.1]{RezkNotesOnHMThm}}]\label{LubinTateStackInFGLTerms}
-Because the ground field \(k\) is a local ring, the formal group \(\Gamma\co \Spec k \to \moduli{fg}\) at the special fiber always has trivializable Lie algebra, hence \Cref{CoordinatizbleFGs} shows that it always admits a presentation by a formal group law.  In fact, any deformation \(\G\co \Spf R \to \moduli{fg}\) of \(\Gamma\) also has a trivializable Lie algebra, since projective modules (such as \(T_0 \G\)) over local rings like \(R\) are automatically free (i.e., trivializable).  It follows that the groupoid \((\moduli{fg})^\wedge_\Gamma(R)\) admits a presentation in terms of formal group \emph{laws}.  Starting with the pullback square of groupoids
+Because the ground field \(k\) is a local ring, the formal group \(\Gamma\co \Spec k \to \moduli{fg}\) at the special fiber always has trivializable Lie algebra, hence \Cref{CoordinatizbleFGs} shows that it always admits a presentation by a formal group law.  In fact, any deformation \(\G\co \Spf R \to \moduli{fg}\) of \(\Gamma\) also has a trivializable Lie algebra, since projective modules (such as \(T_0 \G\)) over local rings like \(R\) are automatically free (i.e., trivializable).  It follows that the groupoid \(\LT(\Gamma)(R)\) admits a presentation in terms of formal group \emph{laws}.  Starting with the pullback square of groupoids
 \begin{center}
 \begin{tikzcd}
-(\moduli{fg})^\wedge_\Gamma(R) \arrow{d} \arrow{rr} \arrow[drr, phantom, "\lrcorner", very near start] & & \moduli{fg}(R) \arrow{d} \\
+\LT(\Gamma)(R) \arrow{d} \arrow{rr} \arrow[drr, phantom, "\lrcorner", very near start] & & \moduli{fg}(R) \arrow{d} \\
 \displaystyle\coprod_{i\co \Spec R/\m \to \Spec k} \{\Gamma\} \arrow{r} & \displaystyle\coprod_{i\co \Spec R/\m \to \Spec k} \moduli{fg}(k) \arrow{r} & \moduli{fg}(R/\m)
 \end{tikzcd}
 \end{center}
-and selecting formal group laws everywhere, the objects of the groupoid \((\moduli{fg})^\wedge_\Gamma(R)\) are given by diagrams
+and selecting formal group laws everywhere, the objects of the groupoid \(\LT(\Gamma)(R)\) are given by diagrams
 \begin{center}
 \begin{tikzcd}[column sep=1em]
 {(\A^1_k, +_\Gamma)} \arrow{d} & {(\A^1_{R/\m}, +_{i^* \Gamma})} \arrow{rd} \arrow[ld, phantom, "\llcorner", very near start] \arrow[equal]{rr} \arrow{l} & & {(\A^1_{R/\m}, +_{\pi^* \G})} \arrow{ld} \arrow{r} \arrow[dr, phantom, "\lrcorner", very near start] & {(\A^1_R, +_{\G})} \arrow{d} \\
@@ -788,9 +802,9 @@ and selecting formal group laws everywhere, the objects of the groupoid \((\modu
 where we have required an \emph{equality} of formal group laws over the common pullback.  A morphism in this groupoid is a formal group law isomorphism \(f\) over \(\Spf R\) which reduces to the identity over \(\Spec R/\m\).
 \end{remark}
 
-The main result about \((\moduli{fg})^\wedge_\Gamma\) is due to Lubin and Tate:
+The main result about \(\LT(\Gamma)\) is due to Lubin and Tate:
 \begin{theorem}[{Lubin--Tate theorem, \cite[Theorem 3.1]{LubinTate}}]\label{LubinTateModuliThm}
-Suppose that \(\height \Gamma < \infty\) for \(\Gamma\) a formal group over \(k\) a perfect field of positive characteristic \(p\).  The functor \((\moduli{fg})^\wedge_\Gamma\) is valued in essentially discrete groupoids, and it is naturally equivalent to a smooth formal scheme of dimension \((\height(\Gamma) - 1)\) over \(\W_p(k)\).
+Suppose that \(\height \Gamma < \infty\) for \(\Gamma\) a formal group over \(k\) a perfect field of positive characteristic \(p\).  The functor \(\LT(\Gamma)\) is valued in essentially discrete groupoids, and it is naturally equivalent to a smooth formal scheme of dimension \((\height(\Gamma) - 1)\) over \(\W_p(k)\).
 \end{theorem}
 
 \begin{remark}[{\cite[Theorem 4.35]{ZinkCartierTheory}}]\label{UnivPropertyOfWittRing}
@@ -814,7 +828,7 @@ We will spend the rest of this Lecture working towards a proof of \Cref{LubinTat
 Suppose that \(\pi\co G \to S\) is a formal group over a scheme \(S\), and select a geometric point \(s \in S\) with fiber \(\Gamma = G_s\).  Let us analyze the structure of the induced map on tangent bundles \(D\pi\co TG \to TS\) at \(s\) by pulling it apart through various inverse images.  The inverse image \(D_s\pi^{-1}(0)\) consists of \(\Gamma = \pi^{-1}(s)\) and \(\Lie \Gamma\) in the form of the vertical part of the tangent space of \(G\) at \(s\).  In fact, since \(G\) is itself a formal group, \(D_s\pi^{-1}(0)\) decomposes into a split exact sequence of commutative formal groups \[0 \to \G_a \otimes \Lie \Gamma \to D_s\pi^{-1}(0) \to \Gamma \to 0.\]  For a generic tangent vector \(v\) based at \(s\), the inverse image \(D_s\pi^{-1}(v)\) again belongs to a short exact sequence of commutative formal groups with the same endpoints, but it need not split; instead, these extensions collectively assemble into a classifying map \[\mathit{KS}\co T_s S \to H^2(\Gamma; \G_a \otimes \Lie \Gamma).\]
 \end{definition}
 
-The meta-theorem of Kodaira and Spencer is that, for a suitable cohomology theory and in the universal case (i.e., \(S = (\moduli{fg})^\wedge_\Gamma\)), this map is often an isomorphism.  Taking this as inspiration, our approach becomes two-pronged:
+The meta-theorem of Kodaira and Spencer is that, for a suitable cohomology theory and in the universal case (i.e., \(S = \LT(\Gamma)\)), this map is often an isomorphism.  Taking this as inspiration, our approach becomes two-pronged:
 \begin{enumerate}
     \item Demonstrate in the universal case that the construction of a \((\G_a \otimes \Lie \Gamma)\)--extension of \(\Gamma\) from a first-order deformation of \(\Gamma\), exploited in the definition of \(\mathit{KS}\), comes from a homotopy equivalence of chain complexes.
     \item Compute the relevant cohomology groups in the case where \(\Gamma\) is a formal group of finite height.
@@ -902,7 +916,7 @@ g_r(x) & = h(x) - f(x), &
 \end{proof}
 
 \begin{remark}\label{ActionBySnLiftsToLTn}
-Our calculation \(H^1(\Gamma; \G_a) = 0\) shows that the automorphisms \(\alpha\co \Gamma \to \Gamma\) of the special fiber uniquely induce \index{Lubin Tate stack@Lubin--Tate stack!automorphisms}automorphisms of the entire Lubin--Tate stack by universality.  Namely, for \(\Gamma \to \widetilde \Gamma\) the universal deformation, the precomposite \[\Gamma \xrightarrow{\alpha} \Gamma \to \widetilde \Gamma\] presents \(\widetilde \Gamma\) as a deformation of \(\Gamma\) in a different way, hence induces a map \[\widetilde \alpha\co \widetilde \Gamma \to \widetilde \Gamma,\] which by \Cref{LubinTateModuliThm} is in turn induced by a map \[\widetilde \alpha\co (\moduli{fg})^\wedge_\Gamma \to (\moduli{fg})^\wedge_\Gamma.\]  The action is \emph{highly} nontrivial in all but the most degenerate cases, and its study is of serious interest to homotopy theorists (cf.\ \Cref{ChromaticLocalizationSection}) and to arithmetic geometers (cf.\ \Cref{ThePeriodMapSection} as well as \Cref{OpenQuestionsSection}).
+Our calculation \(H^1(\Gamma; \G_a) = 0\) shows that the automorphisms \(\alpha\co \Gamma \to \Gamma\) of the special fiber uniquely induce \index{Lubin Tate stack@Lubin--Tate stack!automorphisms}automorphisms of the entire Lubin--Tate cover by universality.  Namely, for \(\Gamma \to \widetilde \Gamma\) the universal deformation, the precomposite \[\Gamma \xrightarrow{\alpha} \Gamma \to \widetilde \Gamma\] presents \(\widetilde \Gamma\) as a deformation of \(\Gamma\) in a different way, hence induces a map \[\widetilde \alpha\co \widetilde \Gamma \to \widetilde \Gamma,\] which by \Cref{LubinTateModuliThm} is in turn induced by a map \[\widetilde \alpha\co \LT(\Gamma) \to \LT(\Gamma).\]  The action is \emph{highly} nontrivial in all but the most degenerate cases, and its study is of serious interest to homotopy theorists (cf.\ \Cref{ChromaticLocalizationSection}) and to arithmetic geometers (cf.\ \Cref{ThePeriodMapSection} as well as \Cref{OpenQuestionsSection}).
 \end{remark}
 
 \begin{remark}
