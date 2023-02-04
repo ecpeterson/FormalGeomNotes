@@ -456,7 +456,7 @@ Noting the homomorphism condition appeaing in \Cref{SteenrodAlgIdentifiedWithAut
 The projection \(\mathcal AP_0 \to \F_2[\xi_0^\pm]\) is split as Hopf algebras, and hence there is a decomposition \[\InternalAut \G_a \cong \Gm \times \InternalAut_1 \G_a,\] where \(\InternalAut_1 \G_a\) consists of those automorphisms with leading coefficient \(\xi_0\) exactly equal to \(1\).  This can be read to mean that the ``interesting'' part of the Steenrod algebra, \(\InternalAut_1 \G_a\), consists of stable operations, in the sense that their action is independent of the degree--tracking mechanism.
 \end{remark}
 
-\begin{example}
+\begin{example}\label{SteenrodStructureMaps}
 Remembering the slogan \[\Spec \mathcal AP_0 \cong \InternalAut \G_a\] also makes it easy to recall the structure formulas for the dual Steenrod algebra.  For instance, consider the antipode map, which has the effect on \(\InternalAut \G_a\) of sending a power series to its compositional inverse.  That is:
 \begin{align*}
 \sum_{j=0}^\infty \chi(\xi_j) \left( \sum_{k=0}^\infty \xi_k x^{2^k} \right)^{2^j} & = \sum_{j=0}^\infty \sum_{k=0}^\infty \chi(\xi_j) \xi_k^{2^j} x^{2^{j+k}} \\
@@ -840,12 +840,34 @@ The claim for mod--\(2\) homology follows directly from the retraction \(\HFtwo 
 \end{proof}
 
 \begin{remark}
-We are also in a position to understand the stable cooperations \(MO_* MO\).  We may rewrite this as
+We recount a moduli theoretic interpretation of \Cref{CalculationOfAutGaActionOnMO}.  A choice of logarithm overdetermines a formal group, as two such logarithms \(\log_1, \log_2\co \G \to \G_a\) differ by an automorphism \(\alpha \in \Aut \G_a\) as in
+\begin{center}
+\begin{tikzcd}[column sep=6em, row sep=4em]
+\G \arrow[equal]{r} \arrow[bend left, "\log"]{d} \arrow[phantom, d, "\simeq" description] & \G \arrow[bend left, "\log'"]{d} \arrow[phantom, d, "\simeq" description] \\
+\G_a \arrow[bend left, "\exp"]{u} \arrow[densely dotted, "\alpha"]{r} & \G_a \arrow[bend left, "\exp'"]{u}.
+\end{tikzcd}
+\end{center}
+\Cref{CalculationOfAutGaActionOnMO} attaches to each formal group law which admits a logarithm a canonical such \(\widetilde{\log}\), eliminating this extra parameter \(\alpha\) and presenting the scheme \(\Spec \pi_* MO\) as the moduli of formal group laws which admit logarithms.
+
+We can push this slightly further to understand the stable cooperations \(MO_* MO\).  These may be rewritten as
 \begin{align*}
 MO_* MO & = \pi_* MO \sm MO = \pi_* MO \sm_{\HFtwo} (\HFtwo \sm MO) \\
 & \Leftarrow \Tor^{\F_2}_{*, *}(MO_*, \HFtwo_* MO) = MO_* \otimes_{\F_2} \HFtwo_* MO.
 \end{align*}
-Hence, a point in \(\Spec MO_* MO\) consists of a pair of points in \(\Spec MO_*\) and \(\Spec \HFtwo_* MO\), which we have already identified respectively as formal group laws with vanishing \(2\)--series,\footnote{The \textit{\(2\)--series} of a formal group law \(+_\phi\) is the univariate power series \([2]_\phi(x) = x +_\phi x\).} a property, and formal group laws with specified logarithms, data.\footnote{This description can be amplified to capture all of the structure maps: a formal group law with vanishing \(2\)--series admits a logarithm, which indicates how the composition and conjugation maps of \Cref{FHGivesComodules} behave.}
+Hence, a point in \(\Spec MO_* MO\) consists of a pair of points in \(\Spec MO_*\) and \(\Spec \HFtwo_* MO\) --- that is, a pair \((+_1, \log_2)\) of a formal group law \(+_1\) which admits some logarithm as well as a specified logarithm \(\log_2\) for some second formal group law.  Applying \Cref{CalculationOfAutGaActionOnMO} to equip the first formal group law with its canonical logarithm \(\widetilde{\log}_1\), we define a formal group law isomorphism \(\beta\co \G_1 \to \G_2\) as in the diagram
+\begin{center}
+\begin{tikzcd}[column sep=6em, row sep=4em]
+\G_1 \arrow[densely dotted, "\beta"]{r} \arrow[bend left, "\widetilde{\log}_1"]{d} \arrow[phantom, d, "\simeq" description] & \G_2 \arrow[bend left, "\log_2"]{d} \arrow[phantom, d, "\simeq" description] \\
+\G_a \arrow[bend left, "\widetilde{\exp}_1"]{u} \arrow[equal]{r} & \G_a \arrow[bend left, "\exp_2"]{u}.
+\end{tikzcd}
+\end{center}
+Thus, the pair \((+_1, \log_2)\) is altogether equivalent data to the triple \((\G_1, \G_2, \beta)\) of two formal group laws which admit logarithms and an arbitrary formal group law isomorphism between them.
+
+This description can be amplified to capture all of the structure maps present on stable cooperations along the lines of \Cref{SteenrodStructureMaps}.  For example,
+\begin{align*}
+\Spec \Delta\co (\G_1, \G_2, \beta_1), (\G_2, \G_3, \beta_2) & \mapsto (\G_1, \G_3, \beta_2 \circ \beta_1), \\
+\Spec \chi\co (\G_1, \G_2, \beta) & \mapsto (\G_2, \G_1, \beta^{-1}).
+\end{align*}
 \end{remark}
 
 
