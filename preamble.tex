@@ -358,6 +358,18 @@
 \newtheorem{remark}[dummy]{Remark}
 \newtheorem{example}[dummy]{Example}
 
+% needed to compile with texlive ≥2024: https://tex.stackexchange.com/a/732053
+\AddToHook{env/theorem/begin}{\crefalias{dummy}{theorem}}
+\AddToHook{env/proposition/begin}{\crefalias{dummy}{proposition}}
+\AddToHook{env/lemma/begin}{\crefalias{dummy}{lemma}}
+\AddToHook{env/corollary/begin}{\crefalias{dummy}{corollary}}
+\AddToHook{env/conjecture/begin}{\crefalias{dummy}{conjecture}}
+\AddToHook{env/definition/begin}{\crefalias{dummy}{definition}}
+\AddToHook{env/construction/begin}{\crefalias{dummy}{construction}}
+\AddToHook{env/warning/begin}{\crefalias{dummy}{warning}}
+\AddToHook{env/remark/begin}{\crefalias{dummy}{remark}}
+\AddToHook{env/example/begin}{\crefalias{dummy}{example}}
+
 % sseqpages definitions
 
 \DeclareSseqGroup\tower {m} {
@@ -438,7 +450,7 @@
    \kern-\scriptspace%
    #2}
 
-% from hood chatham: 
+% from hood chatham:
 \makeatletter
 \def\idxentry{\@ifnextchar[{\idxentry@}{\idxentry@dbl}}
 % \def\idxentry@dbl#1{\mycommand@[#1]{#1}}
