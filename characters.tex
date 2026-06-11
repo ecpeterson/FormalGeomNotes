@@ -6,11 +6,13 @@
 
 %Introduce \(E = E_{\Gamma}\), the universal deformation, and borel equivariant cohomology theories. Use 2.6.1 to identify \(E^*(BC_p)\) (look at how gradings have been discussed in the book ie. graded formal schemes?). Use Kunneth to identify \(E^*(BA)\). End by introducing the ``approximation problem", approximating \(E^0(X)\) be rational cohomology - good for finite complexes, bad for big complexes.
 
-Let \(\Gamma\) be a height \(d\) formal group over \(k\), a perfect field of characteristic \(p\). By \Cref{LubinTateModuliThm}, there is a noncanonical isomorphism 
+Let \(\Gamma\) be a height \(d\) formal group over \(k\), a perfect field of characteristic \(p\).
+By \Cref{LubinTateModuliThm}, there is a noncanonical isomorphism 
 \[
 \sheaf O_{(\moduli{fg})^\wedge_\Gamma} \cong W(k)\ps{u_1, \ldots, u_{d-1}}
 \] 
-and this ring carries the universal deformation of \(\Gamma\), which we denote as \(\G\). By \Cref{DefnChromaticHomologyThys}, there is an associated chromatic cohomology theory
+and this ring carries the universal deformation of \(\Gamma\), which we denote as \(\G\).
+By \Cref{DefnChromaticHomologyThys}, there is an associated chromatic cohomology theory
 \[
 E = E_{\Gamma}
 \]
@@ -24,32 +26,57 @@ x +_{\G} y.
 \]
 
 \begin{proposition}[{\cite[Proposition 5.2 and Lemma 5.7]{HKR}, cf.\ \Cref{KtheoryOfClassifyingSpace}}] \label{app:cyclic}
-Let \(C_{m} = S^1[m]\). There is an isomorphism (depending on the chosen coordinate) 
+Let \(C_{m} = S^1[m]\).
+There is an isomorphism (depending on the chosen coordinate) 
 \[
 E^*(BC_{m}) \cong E^*\ps{x}/([m]_{\G}(x))
 \]
-of \(E^*\)-algebras. Moreover, \(E^*(BC_{m})\) is free as an \(E^*\)-module of rank \(p^{kd}\) where \(p^k|m\) and \(p^{k+1} \nmid m\).\footnote{To prove this result it is most natural to set \(|x| = 2\), but for the purposes of this Lecture (and, indeed, this textbook) it is most natural to set \(|x| = 0\). We can move back and forth between these choices by the change of coordinates \(x \leftrightarrow ux\), where \(u\) is a generator of \(\pi_2 E\).} \pushQED\qed \qedhere \popQED
+of \(E^*\)-algebras.
+Moreover, \(E^*(BC_{m})\) is free as an \(E^*\)-module of rank \(p^{kd}\) where \(p^k|m\) and \(p^{k+1} \nmid m\).%
+\footnote{%
+    To prove this result it is most natural to set \(|x| = 2\), but for the purposes of this Lecture (and, indeed, this textbook) it is most natural to set \(|x| = 0\).
+    We can move back and forth between these choices by the change of coordinates \(x \leftrightarrow ux\), where \(u\) is a generator of \(\pi_2 E\).
+}
+\pushQED\qed \qedhere \popQED
 \end{proposition}
 
 \begin{corollary}[{\cite[Corollary 5.10]{HKR}}] \label{app:ab}
 Let 
 \[
-A \cong C_{m_1} \times \cdots \times C_{m_i}
+A \cong C_{m_1} \times \cdots \times C_{m_n}
 \]
-be a finite abelian group.  There is then an isomorphism of \(E^*\)-algebras
+be a finite abelian group.
+There is then an isomorphism of \(E^*\)-algebras
 \[
-E^*(BA) \cong E^*\ps{x_1, \ldots, x_{i}}/([m_1]_{\G}(x_1), \ldots, [m_i]_{\G}(x_i)). \pushQED\qed \qedhere \popQED
+E^*(BA) \cong E^*\ps{x_1, \ldots, x_{n}}/([m_1]_{\G}(x_1), \ldots, [m_n]_{\G}(x_n)).
+\pushQED\qed \qedhere \popQED
 \]
 \end{corollary}
 
 
-If \(A \cong C_{p^{k_1}} \times \cdots \times C_{p^{k_i}}\) is an abelian \(p\)-group, it follows that \(E^*(BA)\) is a free \(E^*\)-module of rank \(p^{k_1d+\cdots + k_id}\). If \(m\) is prime to \(p\), then \([m]_{\G}(x)/x\) is a unit in \(E^*\ps{x}\). This implies that the rank of \(E^*(BA)\) only depends on the Sylow \(p\)-subgroup of \(A\). Even more, it implies that the inclusion of the Sylow \(p\)-subgroup of \(A\) into \(A\) induces an isomorphism after applying $E$-cohomology. We will now always assume that \(A\) is an abelian \(p\)-group.
+If \(A \cong C_{p^{k_1}} \times \cdots \times C_{p^{k_n}}\) is an abelian \(p\)-group, it follows that \(E^*(BA)\) is a free \(E^*\)-module of rank \(p^{k_1 d + \cdots + k_n d}\).
+If \(m\) is prime to \(p\), then \([m]_{\G}(x)/x\) is a unit in \(E^*\ps{x}\).
+This implies that the rank of \(E^*(BA)\) only depends on the Sylow \(p\)-subgroup of \(A\).
+Even more, it implies that the inclusion of the Sylow \(p\)-subgroup of \(A\) into \(A\) induces an isomorphism after applying $E$-cohomology.
+We will now always assume that \(A\) is an abelian \(p\)-group.
 
-The most computable of chromatic cohomology theories is periodic rational cohomology. For a \(\Q\)-algebra \(R\), the formal group associated to \(HRP\) is the (height \(0\)) additive formal group. It is natural to want to gain information regarding \(E^*(X)\) (for any chromatic cohomology theory \(E\)) by comparing \(E\)-cohomology with periodic rational cohomology.\footnote{We have employed a similar-sounding strategy elsewhere in this text, where we have approximated an arbitrary complex-orientable theory by \(\HFp P\), using the fact that the infinite-height group \(\G_a \otimes \F_p\) is a dense point in \(\moduli{fg} \times \Spec \Z_{(p)}\).  However, the height \(0\) point \(\G_a \otimes \Q\) is \emph{not} dense, and so our intention here is much more delicate.}  For instance, this is the purpose of the classical Chern character: for \(X\) a space, the Chern character is a map of commutative rings
+The most computable of chromatic cohomology theories is periodic rational cohomology.
+For a \(\Q\)-algebra \(R\), the formal group associated to \(HRP\) is the (height \(0\)) additive formal group.
+It is natural to want to gain information regarding \(E^*(X)\) (for any chromatic cohomology theory \(E\)) by comparing \(E\)-cohomology with periodic rational cohomology.%
+\footnote{%
+    We have employed a similar-sounding strategy elsewhere in this text, where we have approximated an arbitrary complex-orientable theory by \(\HFp P\), using the fact that the infinite-height group \(\G_a \otimes \F_p\) is a dense point in \(\moduli{fg} \times \Spec \Z_{(p)}\).
+    However, the height \(0\) point \(\G_a \otimes \Q\) is \emph{not} dense, and so our intention here is much more delicate.
+}
+For instance, this is the purpose of the classical Chern character: for \(X\) a space, the Chern character is a map of commutative rings
 \[
 KU^0(X) \to H\Q P^0(X)
 \] 
-induced by the map of spectra\footnote{We could replace \(\Q\) with \(\R\) or \(\C\) and the result would still hold.} \[KU \to H\Q \wedge KU \simeq H\Q P.\] For \(X\) a finite \(CW\)-complex, it induces an isomorphism
+induced by the map of spectra%
+\footnote{%
+    We could replace \(\Q\) with \(\R\) or \(\C\) and the result would still hold.
+}
+\[KU \to H\Q \wedge KU \simeq H\Q P.\]
+For \(X\) a finite \(CW\)-complex, it induces an isomorphism
 \[
 \Q \otimes KU^0(X) \cong H\Q P^0(X).
 \]
@@ -58,13 +85,17 @@ When \(X\) is a finite CW complex, there is an isomorphism
 \begin{equation*}
 \Q \otimes E^*(X) \cong H(\Q \otimes E^0)P^*(X).
 \end{equation*}
-This follows from the fact that \(\Q \otimes E^*\) is a flat \(E^*\)-algebra. When \(X\) is not a finite CW complex, Proposition \ref{app:ab} gives a non-example. It implies that
+This follows from the fact that \(\Q \otimes E^*\) is a flat \(E^*\)-algebra.
+When \(X\) is not a finite CW complex, Proposition \ref{app:ab} gives a non-example.
+It implies that
 \[
 \Q \otimes E^*(BA)
 \]
-is free as a \(\Q \otimes E^*\)-module of rank \(p^{k_1d + \ldots + k_id}\). However, \[H(\Q \otimes E^0)P^*(BA) \cong \Q \otimes E^*\] is free of rank \(1\), a direct consequence of Maschke's theorem.
+is free as a \(\Q \otimes E^*\)-module of rank \(p^{k_1 d + \cdots + k_n d}\).
+However, \[H(\Q \otimes E^0)P^*(BA) \cong \Q \otimes E^*\] is free of rank \(1\), a direct consequence of Maschke's theorem.
 
-To explain one of the inputs into the main theorem of this Lecture, we need one more notion. For \(G\) a finite group, a \(G\)--CW complex \(X\) is a \(G\)--space built inductively by attaching ``cells'' of the form \((G/H) \times D^n\), as in the following pushout diagram:
+To explain one of the inputs into the main theorem of this Lecture, we need one more notion.
+For \(G\) a finite group, a \(G\)--CW complex \(X\) is a \(G\)--space built inductively by attaching ``cells'' of the form \((G/H) \times D^n\), as in the following pushout diagram:
 \begin{center}
 \begin{tikzcd}
 \coprod_{i \in I} (G/H_i \times S^{n-1}) \arrow{r} \arrow{d} & \coprod_{i \in I} (G/H_i \times D^n) \arrow{d} \\
@@ -74,7 +105,8 @@ X^{(n-1)} \arrow{r} & X^{(n)}.
 We say that a \(G\)--CW complex is finite if it can be built out of finitely many cells of the form \(G/H \times D^n\).
 
 \begin{theorem}[{Equivariant CW Approximation, \cite[Theorem I.3.6]{MayAlaskaNotes}}] \label{app:CWapprox}
-Every \(G\)--space is weakly equivalent to a \(G\)--CW complex. \qed
+Every \(G\)--space is weakly equivalent to a \(G\)--CW complex.
+\qed
 \end{theorem}
 
 Given a cohomology theory \(E\), an equivariant version of the cohomology theory can be formed by setting
@@ -85,42 +117,57 @@ where \(X\) is a \(G\)-space and
 \[
 X_{hG} \simeq EG \times_G X = (EG \times X)/G
 \]
-is the homotopy orbits for the \(G\)-action on \(X\). The resulting equivariant cohomology theory is called \textit{Borel equivariant \(E\)--theory}.
+is the homotopy orbits for the \(G\)-action on \(X\).
+The resulting equivariant cohomology theory is called \textit{Borel equivariant \(E\)--theory}.
 
-The purpose of this Case Study is to explain, in the case of \(E = E_{\Gamma}\), how to extend the above formula \[\Q \otimes E^*(X) \cong H(\Q \otimes E^0)P^*(X),\] originally stated for finite complexes \(X\), to an analogous formula for finite \(G\)--CW complexes. Said another way, for each finite group, we want to approximate Borel equivariant \(E\)--cohomology (restricted to finite \(G\)--CW complexes) by some version of Borel equivariant rational cohomology. We call this ``the approximation problem".  In particular, this encompasses our original goal of understanding \(E^*(B\Sigma_n)\), as it appears as a special case of Borel equivariant cohomology as in the formula \[E^*(B\Sigma_n) = E_{\Sigma_n}^*((\Sigma_n / \Sigma_n) \times *).\]
+The purpose of this Case Study is to explain, in the case of \(E = E_{\Gamma}\), how to extend the above formula \[\Q \otimes E^*(X) \cong H(\Q \otimes E^0)P^*(X),\] originally stated for finite complexes \(X\), to an analogous formula for finite \(G\)--CW complexes.
+Said another way, for each finite group, we want to approximate Borel equivariant \(E\)--cohomology (restricted to finite \(G\)--CW complexes) by some version of Borel equivariant rational cohomology.
+We call this ``the approximation problem''.
+In particular, this encompasses our original goal of understanding \(E^*(B\Sigma_n)\), as it appears as a special case of Borel equivariant cohomology as in the formula \[E^*(B\Sigma_n) = E_{\Sigma_n}^*((\Sigma_n / \Sigma_n) \times *).\]
 
 \subsection*{Formal Geometry}
 
 %p-divisible groups from formal groups (reference 4.4-5.1). Algebro-geometric description of \(\Spf E^0(BA)\). Fix \(S^1\), build p-divisible group from \(p^k\)-torsion in \(S^1\). Note that all of this makes sense over \(\Spec E^0\). Return to approximation problem for \(E^0(BC_{p^k})\), phrase it in an algebro geometric way and work out the need to build \(C_0\).
 
-Recall from \Cref{DefnPDivGp} that associated to a finite height formal group is a connected \(p\)--divisible group built out of the \(p^k\)--torsion of the formal group as \(k\) varies. Associated to the universal deformation \(\G\) is the following \(p\)--divisible group of height \(d\)
+Recall from \Cref{DefnPDivGp} that associated to a finite height formal group is a connected \(p\)--divisible group built out of the \(p^k\)--torsion of the formal group as \(k\) varies.
+Associated to the universal deformation \(\G\) is the following \(p\)--divisible group of height \(d\)
 \[
 \G[p] \hookrightarrow \G[p^2] \hookrightarrow \ldots,
 \]
-where the maps are the inclusions of the \(p^k\)--torsion into the \(p^{k+1}\)--torsion.  \Cref{app:cyclic} implies first 
+where the maps are the inclusions of the \(p^k\)--torsion into the \(p^{k+1}\)--torsion.
+\Cref{app:cyclic} implies first 
 \[
 B(C_{p^k})_{E} \cong \G[p^k],
 \]
-and that the \(p\)--divisible group associated to \(\G\) can be formed using the inclusions \(C_{p^k} = S^1[p^k] \hookrightarrow C_{p^{k+1}} = S^1[p^{k+1}]\). 
+and that the \(p\)--divisible group associated to \(\G\) can be formed using the inclusions \(C_{p^k} = S^1[p^k] \hookrightarrow C_{p^{k+1}} = S^1[p^{k+1}]\).
 %as the system of schemes
 %\[
 %BS^1[p]_{E} \hookrightarrow BS^1[p^2]_{E} \hookrightarrow \ldots.
 %\]
-\Cref{app:cyclic} also implies that all of the schemes in this system are finite flat commutative group schemes over \(\Spf E^0\). The \(p\)--divisible group is called ``height \(d\)'' because \(\G[p]\) is a finite group scheme of order \(p^d\) or, equivalently, since \(E^0(BC_p)\) has rank \(p^d\) as a free module over \(E^0\).
+\Cref{app:cyclic} also implies that all of the schemes in this system are finite flat commutative group schemes over \(\Spf E^0\).
+The \(p\)--divisible group is called ``height \(d\)'' because \(\G[p]\) is a finite group scheme of order \(p^d\) or, equivalently, since \(E^0(BC_p)\) has rank \(p^d\) as a free module over \(E^0\).
 
-There are \(p\)--divisible groups that are \emph{not} built from formal groups, and the simplest of these plays a role in this story.  We define the \textit{constant \(p\)--divisible group of height \(1\)} to be 
+There are \(p\)--divisible groups that are \emph{not} built from formal groups, and the simplest of these plays a role in this story.
+We define the \textit{constant \(p\)--divisible group of height \(1\)} to be 
 \[
 C_{p^{\infty}} = S^1[p^\infty] = \colim \big ( C_p \hookrightarrow C_{p^2} \hookrightarrow \ldots \big ).
 \]
-It is called \textit{constant} because it is made up of constant group schemes, and it is called height \(1\) because \(|S^1[p]| = p^1\).  The constant \(p\)--divisible group of height \(d\) is then the \(d\)--fold product \(C_{p^\infty}^{\times d} = (S^1)^{\times d}[p^\infty]\). The constant height \(d\) \(p\)-divisible group \(C_{p^\infty}^{\times d}\) is the unique height \(d\) \(p\)-divisible group $\G[p^{\infty}]$ with the property that
+It is called \textit{constant} because it is made up of constant group schemes, and it is called height \(1\) because \(|S^1[p]| = p^1\).
+The constant \(p\)--divisible group of height \(d\) is then the \(d\)--fold product \(C_{p^\infty}^{\times d} = (S^1)^{\times d}[p^\infty]\).
+The constant height \(d\) \(p\)-divisible group \(C_{p^\infty}^{\times d}\) is the unique height \(d\) \(p\)-divisible group $\G[p^{\infty}]$ with the property that
 \[
 \sheaf O_{\G[p^k]} \cong \prod_{C_{p^k}^{\times d}}R,
 \]
-where $R$ is the base ring.\footnote{An unimportant aside: a generic \(p\)--divisible group contains a maximal formal subgroup, and the quotient by this subgroup is an \textit{\'etale group}---and, whatever these are, they (and the attendant extension problems) form the ``new'' components of the theory of \(p\)--divisible groups.  In the case of a ground field of positive characteristic, \'etale groups admit a pleasant characterization: they are exactly those that become isomorphic to the constant group after base-change to the algebraic closure, and so in this sense the constant \(p\)--divisible groups of different ranks play a role similar to the Honda formal group laws of \Cref{FGpsOverAlgClosedFields}.}
+where $R$ is the base ring.%
+\footnote{%
+    An unimportant aside: a generic \(p\)--divisible group contains a maximal formal subgroup, and the quotient by this subgroup is an \textit{\'etale group}---and, whatever these are, they (and the attendant extension problems) form the ``new'' components of the theory of \(p\)--divisible groups.
+    In the case of a ground field of positive characteristic, \'etale groups admit a pleasant characterization: they are exactly those that become isomorphic to the constant group after base-change to the algebraic closure, and so in this sense the constant \(p\)--divisible groups of different ranks play a role similar to the Honda formal group laws of \Cref{FGpsOverAlgClosedFields}.
+}
 
 %Let \(R\) be a commutative ring. There is a functor from finite abelian groups to finite commutative group schemes over \(\Spec(R)\) sending \(A\) to \(\Spec(\prod_{A}R)\). The constant height \(d\) \(p\)-divisible group \(C_{p^\infty}^{\times d}\) is the unique height \(d\) \(p\)-divisible group with the property that its \(p^k\)-torsion is in the image of this functor for all \(k\).
 
-More generally, a similar description of \(BA_{E}\) can be given using formal geometry when \(A\) is a finite abelian group. Let \(A^*\) be the Pontryagin dual of \(A\) and let
+More generally, a similar description of \(BA_{E}\) can be given using formal geometry when \(A\) is a finite abelian group.
+Let \(A^*\) be the Pontryagin dual of \(A\) and let
 \[
 \InternalHom{FormalGroups}(A^*, \G)
 \]
@@ -128,7 +175,8 @@ be the formal scheme that associates to a complete local \(E^0\)--algebra \(R\)
 \[
 \InternalHom{FormalGroups}(A^*, \G)(R) = \CatOf{AbelianGroups}(A^*, \G(R)).
 \]
-For large enough \(k\), we have \(A = A[p^k]\), and from this it follows that any map from \(A^*\) to \(\G(R)\) must land in the \(p^k\)--torsion \(\G[p^k](R)\).  There is thus an isomorphism of formal schemes
+For large enough \(k\), we have \(A = A[p^k]\), and from this it follows that any map from \(A^*\) to \(\G(R)\) must land in the \(p^k\)--torsion \(\G[p^k](R)\).
+There is thus an isomorphism of formal schemes
 \[
 \InternalHom{FormalGroups}(A^*, \G) \cong \InternalHom{FormalGroups}(A^*, \G[p^k]).
 \]
@@ -137,31 +185,44 @@ There is a canonical isomorphism of formal schemes
 \[
 \Spf(E^0(BA)) \cong \InternalHom{FormalGroups}(A^*, \G),
 \]
-natural in maps of finite abelian groups. \qed
+natural in maps of finite abelian groups.
+\qed
 \end{proposition}
 
 
-The formal scheme \(\InternalHom{FormalGroups}(A^*,\G)\) is finite and flat over \(\Spf(E^0)\). Because of this, this formal scheme can be viewed as a scheme---really a scheme, and not a formal scheme!---over \(\Spec(E^0)\). Without going into the technical details of formal to informal constructions, the main idea is that the topology on a complete local \(E^0\)-algebra is not important to \(\G[p^k]\): for a continuous \(E^0\)-algebra \(R\), there is a bijection
+The formal scheme \(\InternalHom{FormalGroups}(A^*,\G)\) is finite and flat over \(\Spf(E^0)\).
+Because of this, this formal scheme can be viewed as a scheme---really a scheme, and not a formal scheme!---over \(\Spec(E^0)\).
+Without going into the technical details of formal to informal constructions, the main idea is that the topology on a complete local \(E^0\)-algebra is not important to \(\G[p^k]\): for a continuous \(E^0\)-algebra \(R\), there is a bijection
 \[
 \CatOf{Algebras}_{E^0}^{\mathrm{cts}}(E^0(BC_p),R) \cong \CatOf{Algebras}_{E^0}(E^0(BC_p),R).
 \]
-The same cannot be said for \(E^0(BS^1)\).  In the case of our \emph{finite} abelian group $A$, we may thus restrict our attention to the scheme
+The same cannot be said for \(E^0(BS^1)\).
+In the case of our \emph{finite} abelian group $A$, we may thus restrict our attention to the scheme
 \[
 \InternalHom{FormalGroups}(A^*,\G[p^k]) \co \CatOf{Algebras}_{E^0} \rightarrow \CatOf{Sets}
 \]
 sending an \(E^0\)--algebra \(R\) to
-\[
-\CatOf{AbelianGroups}(A^*, \G[p^k](R)) \cong \CatOf{GroupSchemes}(A^*, \Spec(R) \underset{{\Spec(E^0)}}{\times} \G[p^k]).
-\]
+\begin{align*}
+& \CatOf{AbelianGroups}(A^*, \G[p^k](R)) \\
+& \quad \quad \cong \CatOf{GroupSchemes}(A^*, \Spec(R) \underset{{\Spec(E^0)}}{\times} \G[p^k]).
+\end{align*}
 Since the ring map \(E^0 \rightarrow \Q \otimes E^0\) is not continuous, this discussion is important to phrasing an algebro-geometric version of the appoximation problem explained at the end of the previous section.
 
 When \(G = A\) and \(X = *\), the approximation problem can now be given an algebro-geometric description: we would like to find a \((\Q \otimes E^0)\)--algebra \(R\) such that 
-\[
-\Spec(R) \times \InternalHom{FormalGroups}(A^*, \G[p^k]) \cong  \InternalHom{FormalGroups}(A^*, \Spec(R) \times \G[p^k])
-\]
-is recognizable as \(\Spec(-)\) of the \(HRP\)-cohomology of a space. This would only solve the approximation problem for \(E^0(BA)\)---but, astoundingly, it will turn out that this is enough.
+\begin{align*}
+& \Spec(R) \times \InternalHom{FormalGroups}(A^*, \G[p^k]) \\
+& \quad \quad \cong \InternalHom{FormalGroups}(A^*, \Spec(R) \times \G[p^k])
+\end{align*}
+is recognizable as \(\Spec(-)\) of the \(HRP\)-cohomology of a space.
+This would only solve the approximation problem for \(E^0(BA)\)---but, astoundingly, it will turn out that this is enough.
 
-There is a surprisingly simple answer to the approximation problem in this case.  Fix\footnote{This choice of \(\Lambda\) is the only choice made in this Lecture, and the last subsection of this Lecture addresses how natural the character map is in automorphisms of \(\Lambda\).  From a certain perspective, the results of Barthel--Stapleton~\cite{BarthelStapleton} can be viewed as an analysis of how natural the character map is among finite index maps \(\Lambda \hookrightarrow \Lambda\).} \(\Lambda = \Z_{p}^{d}\) and let \(\Lk = \Lambda/p^k\Lambda\), so that there are non-canonical isomorphisms
+There is a surprisingly simple answer to the approximation problem in this case.
+Fix%
+\footnote{%
+    This choice of \(\Lambda\) is the only choice made in this Lecture, and the last subsection of this Lecture addresses how natural the character map is in automorphisms of \(\Lambda\).
+    From a certain perspective, the results of Barthel--Stapleton~\cite{BarthelStapleton} can be viewed as an analysis of how natural the character map is among finite index maps \(\Lambda \hookrightarrow \Lambda\).
+}
+\(\Lambda = \Z_{p}^{d}\) and let \(\Lk = \Lambda/p^k\Lambda\), so that there are non-canonical isomorphisms
 \[
 \Lambda^* \cong (\Q/\Z_{(p)})^d \cong (S^1[p^{\infty}])^d
 \] 
@@ -187,7 +248,8 @@ and
 \Spec(R) \times_{\Spec(E^0)} \InternalHom{FormalGroups}(A^*, \G[p^k]) & \cong \InternalHom{FormalGroups}(A^*, \Lambda_{k}^*) \\
 & \cong A^{\times d}.
 \end{align*}
-That is, we would be able to give the simplest answer imaginable: we will have approximated \(E^0(BA)\) by the \(HRP\)-cohomology of a collection of points. In the next section we construct a \(\Q \otimes E^0\)-algebra \(C_0\) with this property.
+That is, we would be able to give the simplest answer imaginable: we will have approximated \(E^0(BA)\) by the \(HRP\)-cohomology of a collection of points.
+In the next section we construct a \(\Q \otimes E^0\)-algebra \(C_0\) with this property.
 
 
 %Let \(\Lk = (\Z/p^k)^n\) so that there are canonical isomorphisms
@@ -217,7 +279,8 @@ The goal of this section is to construct a \((\Q \otimes E^0)\)--algebra \(C_0\)
 \[
 \Spec(C_0) \times_{\Spec(E^0)} \G[p^k] \cong \Lambda_{k}^*
 \]
-for each \(k>0\). That is, there should be an isomorphism of \(p\)--divisible groups
+for each \(k>0\).
+That is, there should be an isomorphism of \(p\)--divisible groups
 \[
 \Spec(C_0) \times_{\Spec(E^0)} \G[p^\infty] \cong \Lambda^*.
 \]
@@ -235,7 +298,8 @@ C_0 \xrightarrow{u_f} T
 \]
 such that \(f = \Spec(T) \times_{\Spec(C_0)} u\), where the pullback is along \(u_f\).
 
-The idea of the construction of \(C_0\) is quite simple.  \Cref{app:abeliangroupdualhom} implies \[E^0(B\Lk) \cong \sheaf O(\InternalHom{FormalGroups}(\Lk^*,\G[p^k])).\]  To construct \(C_0\), it suffices to understand the open subscheme of the mapping scheme \(\InternalHom{FormalGroups}(\Lk^*,\G[p^k])\) which consists of the homomorphisms that are isomorphisms. 
+The idea of the construction of \(C_0\) is quite simple.
+\Cref{app:abeliangroupdualhom} implies \[E^0(B\Lk) \cong \sheaf O(\InternalHom{FormalGroups}(\Lk^*,\G[p^k])).\]  To construct \(C_0\), it suffices to understand the open subscheme of the mapping scheme \(\InternalHom{FormalGroups}(\Lk^*,\G[p^k])\) which consists of the homomorphisms that are isomorphisms.
 
 Since \(E^0(B\Lk)\) corepresents \(\InternalHom{FormalGroups}(\Lk^*,\G[p^k])\), it carries the universal homomorphism of group schemes
 \[
@@ -275,9 +339,11 @@ E^0(B\Lk) \cong E^0\ps{x_1, \ldots, x_d}/([p^k]_{\G}(x_1), \ldots, [p^k]_{\G}(x_
 \]
 and the behavior of \(u^*\) on the factor corresponding to \((i_1, \ldots, i_d) \in \Lk^*\) is then
 \[
-u^* \colon x \mapsto [i_1]_{\G}(x_1)+_{\G} \ldots +_{\G} [i_k]_{\G}(x_d).
+u^* \colon x \mapsto [i_1]_{\G}(x_1)+_{\G} \ldots +_{\G} [i_d]_{\G}(x_d).
 \]
-By \Cref{app:ab}, these are free \(E^0(B\Lk)\)-modules of the same rank. To force the map to be an isomorphism, it suffices to invert the determinant. Let
+By \Cref{app:ab}, these are free \(E^0(B\Lk)\)-modules of the same rank.
+To force the map to be an isomorphism, it suffices to invert the determinant.
+Let
 \begin{align*}
 S_k &= \im \big (\Lk^* \setminus 0 \rightarrow \G[p^k](E^0(B\Lk)) \big ) \\ &= \{ [i_1]_{\G}(x_1)+_{\G} \ldots +_{\G} [i_d]_{\G}(x_d)| 0 \neq (i_1, \ldots, i_d) \in \Lk^* \}.
 \end{align*}
@@ -313,18 +379,24 @@ for a unit \(v\).
 Thus the determinant is, up to multiplication by a unit, 
 \begin{align*}
 \prod_{1 \leq s < t \leq p^k} ([\overline{j_t}](\overline{x}) -_{\G} [\overline{j_s}](\overline{x})) & = \prod_{1 \leq s < t \leq p^k} ([\overline{j_t} - \overline{j_s}](\overline{x})) \\
-& = \prod_{0 \neq \overline{j} \in \Lk^*} [\overline{j}](\overline{x})^{p^k-1}. \qedhere
+& = \prod_{0 \neq \overline{j} \in \Lk^*} [\overline{j}](\overline{x})^{p^k-1}.
+\qedhere
 \end{align*} 
 \end{proof}
 
 \begin{corollary}
-Inverting \(S_k\) in \(E^0(B\Lk)\) inverts \(p\). \pushQED\qed \qedhere \popQED
+Inverting \(S_k\) in \(E^0(B\Lk)\) inverts \(p\).
+\pushQED\qed \qedhere \popQED
 \end{corollary}
 
-Set \(C_{0,k} = S_{k}^{-1}E^0(B\Lk)\).  The set \(S_k\) consists largely of zero divisors. Because of this, we should be concerned that \(C_{0,k}\) is the zero ring. The following result of Hopkins--Kuhn--Ravenel saves the day:
+Set \(C_{0,k} = S_{k}^{-1}E^0(B\Lk)\).
+The set \(S_k\) consists largely of zero divisors.
+Because of this, we should be concerned that \(C_{0,k}\) is the zero ring.
+The following result of Hopkins--Kuhn--Ravenel saves the day:
 
 \begin{proposition}[{\cite[Proposition 6.5]{HKR}}]\label{CZeroIsFaithfullyFlat}
-The ring \(C_{0,k}\) is a faithfully flat \(\Q \otimes E^0\)-algebra. \pushQED\qed \qedhere \popQED
+The ring \(C_{0,k}\) is a faithfully flat \(\Q \otimes E^0\)-algebra.
+\pushQED\qed \qedhere \popQED
 \end{proposition}
 
 By construction, the \(E^0\)--algebra \(C_{0,k}\) carries the universal isomorphism
@@ -366,11 +438,13 @@ to the \(p^k\)--torsion.
 % \end{example}
 
 \begin{example} \label{padicktheory}
-Let us work out \(C_0\) in the case of $p$-complete $K$-theory \(E_{\G_m} = KU_p\). In this case 
+Let us work out \(C_0\) in the case of $p$-complete $K$-theory \(E_{\G_m} = KU_p\).
+In this case 
 \[
 \G = \G_m,
 \]
-is the formal multiplicative group over \(\Z_p\).  Because \(\G_m\) is the formal completion of the multiplicative group scheme \(\mathbb G_m\) and the base ring is \(p\)--complete, we have
+is the formal multiplicative group over \(\Z_p\).
+Because \(\G_m\) is the formal completion of the multiplicative group scheme \(\mathbb G_m\) and the base ring is \(p\)--complete, we have
 \[
 \G_m[p^k] \cong \mathbb{G}_m[p^k].
 \]
@@ -394,25 +468,31 @@ which is
 after applying the isomorphism.
 There is the factorization
 \[
-x^{p^k}-1 = \prod_{i=1,\ldots,k}\Phi_{p^i}(x),
+x^{p^k}-1 = \prod_{j=1}^k \Phi_{p^j}(x),
 \]
-where \(\Phi_{p^i}(x)\) is the \((p^i)\){\th} cyclotomic polynomial. But
+where \(\Phi_{p^j}(x)\) is the \((p^j)\){\th} cyclotomic polynomial.
+But
 \[
-x^{p^{k-1}}-1 = \prod_{i=1,\ldots,(k-1)}\Phi_{p^i}(x)
+x^{p^{k-1}}-1 = \prod_{j=1}^{k-1} \Phi_{p^j}(x)
 \]
-and this is one of the elements in \(S_k\). Clearly it is a zero-divisor in \(KU_{p}^0(B\Z/p^k)\), thus
+and this is one of the elements in \(S_k\).
+Clearly it is a zero-divisor in \(KU_{p}^0(B\Z/p^k)\), thus
 \[
 S_{k}^{-1}KU_{p}^0(B\Z/p^k) \cong S_{k}^{-1}\Z_p[x]/(\Phi_{p^k}(x)).
 \]
 
-We can also see that inverting the elements of \(S_{k}\) inverts \(p\). It suffices to show that the ideal generated by \(p\) in \(S_{k}^{-1}\Z_p[x]/(\Phi_{p^k}(x))\) is the whole ring. Recall the identity of cyclotomic polynomials 
+We can also see that inverting the elements of \(S_{k}\) inverts \(p\).
+It suffices to show that the ideal generated by \(p\) in \(S_{k}^{-1}\Z_p[x]/(\Phi_{p^k}(x))\) is the whole ring.
+Recall the identity of cyclotomic polynomials 
 \[
 \Phi_{p^k}(x) = \Phi_p(x^{p^{k-1}}).
 \]
 Thus we have
-\[
-\big ( S_{k}^{-1}\Z_p[x]/(\Phi_{p^k}(x)) \big )/(p) \cong S_{k}^{-1}\F_p[x]/(\Phi_{p}(x^{p^{k-1}})) \cong S_{k}^{-1}\F_p[x]/(\Phi_{p}(x)^{p^{k-1}}),
-\]
+\begin{align*}
+\big ( S_{k}^{-1}\Z_p[x]/(\Phi_{p^k}(x)) \big )/(p)
+& \cong S_{k}^{-1}\F_p[x]/(\Phi_{p}(x^{p^{k-1}})) \\
+& \cong S_{k}^{-1}\F_p[x]/(\Phi_{p}(x)^{p^{k-1}}),
+\end{align*}
 but \(\Phi_{p}(x) \in S_k\), so this is the zero-ring.
 
 Now that we have argued that inverting \(S_k\) inverts \(p\), we see that we have a canonical map
@@ -428,7 +508,8 @@ But \(\Q_p[x]/(\Phi_{p^k}(x))\) is a field so the canonical map
 \[
 \Q_p[x]/(\Phi_{p^k}(x)) \xrightarrow{\cong} (x^{p^{k-1}}-1)^{-1}\Q_p[x]/(x^{p^k}-1)
 \]
-is an isomorphism. Thus \(C_{0,k}\) is just \(\Q_p\) adjoin a primitive \((p^k)\){\th} root of unity and
+is an isomorphism.
+Thus \(C_{0,k}\) is just \(\Q_p\) adjoin a primitive \((p^k)\){\th} root of unity and
 \[
 C_0 = \colim_k C_{0,k} \cong \colim_k \Q_p(\zeta_{p^k})
 \]
@@ -438,7 +519,8 @@ is \(\Q_p\) with all \(p\)-power roots of unity adjoined---a totally ramified ex
 \subsection*{The inertia groupoid}
 %Introduce the inertia groupoid and rational cohomology composed with the inertia groupoid.
 
-Recall our goal of approximating \(E^*(EG \times_G X)\) by the \(HC_0P\)--cohomology of some space determined by \(EG \times_G X\). Stated more precisely, we'd like to find a space \(F(EG \times_G X)\) and a map of cohomology theories
+Recall our goal of approximating \(E^*(EG \times_G X)\) by the \(HC_0P\)--cohomology of some space determined by \(EG \times_G X\).
+Stated more precisely, we'd like to find a space \(F(EG \times_G X)\) and a map of cohomology theories
 \[
 E^*(EG \times_G X) \to HC_0P^*(F(EG \times_G X))
 \]
@@ -446,9 +528,11 @@ such that the induced map
 \[
 C_0 \otimes_{E^0} E^*(EG \times_G X) \to HC_0P^*(F(EG \times_G X))
 \]
-is an isomorphism. The purpose of this section is understand the operation \(F(-)\). 
+is an isomorphism.
+The purpose of this section is understand the operation \(F(-)\). 
 
-One condition that we have already agreed on is that \(HC_0P^0(F(BC_{p^k}))\) must be canonically isomorphic to \(HC_0P^0(\Lk^*) \cong \prod_{\Lk^*}C_0\). Thus there is a natural first guess for what \(F(-)\) might be: we could set 
+One condition that we have already agreed on is that \(HC_0P^0(F(BC_{p^k}))\) must be canonically isomorphic to \(HC_0P^0(\Lk^*) \cong \prod_{\Lk^*}C_0\).
+Thus there is a natural first guess for what \(F(-)\) might be: we could set 
 \[
 F(EG \times_G X) = \InternalHom{Spaces}(B\Lambda, EG \times_G X).
 \]
@@ -460,7 +544,8 @@ Since \(C_0\) is a rational algebra (so \(|G|\) is invertible in \(C_0\)), we ha
 \[
 HC_0P^0(BG) \cong C_0
 \]
-for any finite group \(G\). Thus
+for any finite group \(G\).
+Thus
 \[
 HC_0P^0\left(\coprod_{\Lk^*} BC_{p^k}\right) \cong \prod_{\Lk^*}C_0,
 \]
@@ -473,7 +558,8 @@ However, there is a problem with this construction: the functor \(\InternalHom{S
 \ast \arrow{r} & S^1,
 \end{tikzcd}
 \end{center}
-thus \(HC_0P^*(F(-))\) is not a cohomology theory.  It turns out that the \textit{inertia groupoid functor} fixes both of these problems at once, and we describe it now.
+thus \(HC_0P^*(F(-))\) is not a cohomology theory.
+It turns out that the \textit{inertia groupoid functor} fixes both of these problems at once, and we describe it now.
 
 %
 % We'd like to do this in a naturally in \(X\) so that when \(G = C_p\) and \(X = *\)
@@ -491,7 +577,7 @@ denote the set of continuous homomorphisms from \(\Lambda\) to \(G\).
 
 Choosing a basis for \(\Lambda\) gives an isomorphism to the set of \(d\)--tuples of commuting \(p\)--power order elements of \(G\):
 \[
-G_{p}^{d} \cong \{(g_1,\ldots, g_d)|[g_i,g_j] = e, \text{ } g_{i}^{p^k}=e \text{ for } k \text{ large enough}\}.
+G_{p}^{d} \cong \{(g_1,\ldots, g_d) \mid [g_j,g_k] = e, \text{ } g_{j}^{p^k}=e \text{ for } k \text{ large enough}\}.
 \]
 The group \(G\) acts on this set by conjugation and we will write \(G_{p}^{d}/G\) for the quotient by this action.
 
@@ -503,9 +589,13 @@ For a finite \(G\)--CW complex \(X\), let
 where \(X^{\im \alpha}\) is the fixed points of \(X\) with respect to the image of \(\alpha\).
 \end{definition}
 
-This is a finite \(G\)--CW complex by intertwining the action of \(G\) on \(G_{p}^{d}\) by conjugation and the action of \(G\) on \(X\). To be precise, for \(x \in X^{\im \alpha}\), we let \(gx \in X^{\im g \alpha g^{-1}}\).
+This is a finite \(G\)--CW complex by intertwining the action of \(G\) on \(G_{p}^{d}\) by conjugation and the action of \(G\) on \(X\).
+To be precise, for \(x \in X^{\im \alpha}\), we let \(gx \in X^{\im g \alpha g^{-1}}\).
 
-The \(G\)--space \(\Fix_d(X)\) is also known as the \(d\)--fold inertia groupoid of the \(G\)--space \(X\).\footnote{This is really a \(p\)--adic form of the inertia groupoid since \(\Lambda = \Z_{p}^{\times d}\) and not \(\Z^{\times d}\).} That is, the definition above can be made for all finite groups uniformly in the category of topological groupoids. Let \(X \mmod G\) be the action topological groupoid associated to the finite \(G\)--CW complex \(X\). This is the groupoid object in topological spaces with object space \(X\) and morphism space \(X \times G\). The source and target maps
+The \(G\)--space \(\Fix_d(X)\) is also known as the \(d\)--fold inertia groupoid of the \(G\)--space \(X\).\footnote{This is really a \(p\)--adic form of the inertia groupoid since \(\Lambda = \Z_{p}^{\times d}\) and not \(\Z^{\times d}\).} That is, the definition above can be made for all finite groups uniformly in the category of topological groupoids.
+Let \(X \mmod G\) be the action topological groupoid associated to the finite \(G\)--CW complex \(X\).
+This is the groupoid object in topological spaces with object space \(X\) and morphism space \(X \times G\).
+The source and target maps
 \[
 X \times G \rightrightarrows X,
 \]
@@ -515,11 +605,15 @@ are the projection and action maps, respectively.
 
 The category of topological groupoids is easy to enrich in spaces: the mapping space between two topological groupoids is the subspace of the product of the space of maps between the objects and the space of maps between the morphisms that are maps of topological groupoids. 
 
-This construction can be upgraded further to an enrichment in topological groupoids so that the object space is the mapping space described above. Let \([\underline{1}] := (0 \rightarrow 1)\) be the free-standing isomorphism and let \([\underline{0}]\) be the category with one object and only the identity morphism. There are two functors 
+This construction can be upgraded further to an enrichment in topological groupoids so that the object space is the mapping space described above.
+Let \([\underline{1}] := (0 \rightarrow 1)\) be the free-standing isomorphism and let \([\underline{0}]\) be the category with one object and only the identity morphism.
+There are two functors 
 \[
 [\underline{0}] \rightarrow [\underline{1}]
 \]
-picking out \(0\) and \(1\). The internal mapping topological groupoid between two action groupoids \(W \mmod F\) and \(X\mmod G\), \(\InternalHom{TopologicalGroupoids}(W \mmod F, X \mmod G)\), can be described in the following way: The objects are the space of maps from \(W \mmod F \times [\underline{0}] \cong W \mmod F\) to \(X \mmod G\) and morphisms are the space of maps from \(W \mmod F \times [\underline{1}]\) to \(X \mmod G\). The structure maps are induced by the functors \([\underline{0}] \rightrightarrows [\underline{1}]\) and the cocomposition map
+picking out \(0\) and \(1\).
+The internal mapping topological groupoid between two action groupoids \(W \mmod F\) and \(X\mmod G\), \(\InternalHom{TopologicalGroupoids}(W \mmod F, X \mmod G)\), can be described in the following way: The objects are the space of maps from \(W \mmod F \times [\underline{0}] \cong W \mmod F\) to \(X \mmod G\) and morphisms are the space of maps from \(W \mmod F \times [\underline{1}]\) to \(X \mmod G\).
+The structure maps are induced by the functors \([\underline{0}] \rightrightarrows [\underline{1}]\) and the cocomposition map
 \[
 [\underline{1}] \rightarrow [\underline{1}] \sqcup_{[\underline{0}]} [\underline{1}].
 \]
@@ -535,17 +629,22 @@ picking out \(0\) and \(1\). The internal mapping topological groupoid between t
 %where the maps are induced by the inclusion of \(0\) and \(1\) in \([\underline{1}]\).
 
 \begin{lemma} \label{inertialemma}
-Let \(\ast \mmod \Lambda\) be the topological groupoid with a single object and with \(\Lambda\) automorphisms. There is a natural isomorphism 
+Let \(\ast \mmod \Lambda\) be the topological groupoid with a single object and with \(\Lambda\) automorphisms.
+There is a natural isomorphism 
 \[
 \InternalHom{TopologicalGroupoids}(\ast \mmod \Lambda, X \mmod G) \cong \Fix_d(X) \mmod G.
 \]
 \end{lemma} 
 \begin{proof}
-We indicate the proof. We only need to do this for \(n=1\) as higher \(n\) follow by adjunction. It also suffices to replace \(\ast \mmod \Z_p\) by \(\ast \mmod \Z/p^k\) for \(k\) large enough. Now a functor
+We indicate the proof.
+We only need to do this for \(n=1\) as higher \(n\) follow by adjunction.
+It also suffices to replace \(\ast \mmod \Z_p\) by \(\ast \mmod \Z/p^k\) for \(k\) large enough.
+Now a functor
 \[
 \ast \mmod \Z/p^k \xrightarrow{} X \mmod G
 \]
-picks out an element of \(X\) and a \(p\)--power order element of \(G\) that fixes it. Thus the collection of functors are in bijective correspondence with
+picks out an element of \(X\) and a \(p\)--power order element of \(G\) that fixes it.
+Thus the collection of functors are in bijective correspondence with
 \[
 \coprod_{\alpha \in G^{1}_{p}} X^{\im \alpha}.
 \]
@@ -556,7 +655,11 @@ A natural transformation between two functors is a map
 \ast \sqcup \ast \arrow{r} & X.
 \end{tikzcd}
 \end{center}
-The domain here is \(\ast \mmod \Z/p^k \times [\underline{1}]\). The two \(\Z/p^k\)'s on the sides come from the identity morphisms in \([\underline{1}]\). The \(\Z/p^k\) in the middle is the important one. Given two functors picking out \(x_1 \in X^{\im \alpha_1}\) and \(x_2 \in X^{\im \alpha_2}\), a commuting diagram above implies that a morphism from \(x_1\) to \(x_2\) in the inertia groupoid is an element \(g \in G\) sending \(x_1\) to \(x_2\) in \(X\). However, the composition diagram implies that \(g\) must conjugate \(\alpha_1\) to \(\alpha_2\).
+The domain here is \(\ast \mmod \Z/p^k \times [\underline{1}]\).
+The two \(\Z/p^k\)'s on the sides come from the identity morphisms in \([\underline{1}]\).
+The \(\Z/p^k\) in the middle is the important one.
+Given two functors picking out \(x_1 \in X^{\im \alpha_1}\) and \(x_2 \in X^{\im \alpha_2}\), a commuting diagram above implies that a morphism from \(x_1\) to \(x_2\) in the inertia groupoid is an element \(g \in G\) sending \(x_1\) to \(x_2\) in \(X\).
+However, the composition diagram implies that \(g\) must conjugate \(\alpha_1\) to \(\alpha_2\).
 \end{proof}
 
 We now compute \(EG \times_G \Fix_d(X)\) in several cases.
@@ -566,7 +669,8 @@ When \(X = \ast\),
 \[
 EG \times_G \Fix_d(\ast) \cong EG \times_{G}^{\text{conj}} G_{p}^{d}.
 \]
-Fixing an element \(\alpha\) in a conjugacy class \([\alpha]\) of \(G_{p}^{d}/G\), the stabilizer of the element is precisely the centralizer of the image of \(\alpha\) in \(G\). Thus there is an equivalence
+Fixing an element \(\alpha\) in a conjugacy class \([\alpha]\) of \(G_{p}^{d}/G\), the stabilizer of the element is precisely the centralizer of the image of \(\alpha\) in \(G\).
+Thus there is an equivalence
 \[
 EG \times_{G}^{\text{conj}} G_{p}^{d} \simeq \coprod_{[\alpha] \in G_{p}^{d}/G} BC(\im \alpha).
 \]
@@ -598,19 +702,22 @@ Let \(E\) be a cohomology theory, then
 \[
 E^*(EG \times_G \Fix_d(-))
 \]
-is a cohomology theory on finite \(G\)-CW complexes. \pushQED\qed \qedhere \popQED
+is a cohomology theory on finite \(G\)-CW complexes.
+\pushQED\qed \qedhere \popQED
 \end{proposition}
 
 
 
 
 \begin{example} \label{app:classfncs}
-Let \(C_{0}^{*} = \pi_{-*}HC_0P \cong C_0[u,u^{-1}]\) where \(|u|=-2\). When \(X = *\), \Cref{xapoint2} gives an isomorphism
+Let \(C_{0}^{*} = \pi_{-*}HC_0P \cong C_0[u,u^{-1}]\) where \(|u|=-2\).
+When \(X = *\), \Cref{xapoint2} gives an isomorphism
 \begin{align*}
 HC_{0}P^*(EG \times_G \Fix_d(*)) &\cong HC_{0}P^{*}\left(\coprod_{[\alpha] \in G_{p}^{d}/G} BC(\im \alpha)\right) \\
 &\cong \prod_{[\alpha] \in G_{p}^{d}/G}C_{0}^{*}.
 \end{align*}
-The last isomorphism follows from the fact that \(HC_{0}P^{*}(BG) = C_{0}^{*}\). The codomain is the ring of generalized class functions on \(G_{p}^{d}\) taking values in \(C_{0}^{*}\):
+The last isomorphism follows from the fact that \(HC_{0}P^{*}(BG) = C_{0}^{*}\).
+The codomain is the ring of generalized class functions on \(G_{p}^{d}\) taking values in \(C_{0}^{*}\):
 \[
 \mathrm{Cl}(G_{p}^{d}, C_{0}^{*}) = \{C_{0}^{*} \text{--valued functions on } G_{p}^{d}/G\}.
 \]
@@ -624,13 +731,19 @@ HC_{0}P^0(EG \times_G \Fix_d(*)) \cong \mathrm{Cl}(G_{p}^{d}, C_{0}).
 \subsection*{Complex oriented descent}
 %Definition of complex oriented descent for a cohomology theory. Prove that if two cohomology theories satisfy complex oriented descent and we have a map between them, then it suffices to show that the map is an isomorphism on finite abelian groups.
 
-Given a pair of cohomology theories \(E\) and \(F\) as well as a map of cohomology theories \(g \colon E^*(-) \rightarrow F^*(-)\), the axioms of a cohomology theory (homotopy invariance, Mayer-Vietoris, \ldots) ensure that \(g\) is an isomorphism if and only if it is an isomorphism on a point. For equivariant cohomology theories only a small change is required, a map
+Given a pair of cohomology theories \(E\) and \(F\) as well as a map of cohomology theories \(g \colon E^*(-) \rightarrow F^*(-)\), the axioms of a cohomology theory (homotopy invariance, Mayer-Vietoris, \ldots) ensure that \(g\) is an isomorphism if and only if it is an isomorphism on a point.
+For equivariant cohomology theories only a small change is required, a map
 \[
 g \colon E_{G}^*(-) \rightarrow F_{G}^{*}(-)
 \]
-is an isomorphism if and only if it is an isomorphism on spaces of the form \(G/H\). These spaces are the generalization of the point to \(G\)--spaces. \todo{How true is this, really? Do you also need conditions on the coefficients of \(E\), for instance?}The purpose of complex oriented descent is to give conditions on Borel equivariant cohomology theories \(E\) and \(F\) so that a map \(g\) is an isomorphism if and only if it is an isomorphism on all spaces of the form \(G/A\), where \(A \subseteq G\) is abelian. The idea is that certain equivariant cohomology theories have the property that, for a \(G\)-CW complex \(X\), \(E_{G}^*(X)\) can be recovered from \(E_{G}^*(F)\) for a certain space \(F\) with the property that the cells of \(F\) are all of the form \(G/A \times D^n\).
+is an isomorphism if and only if it is an isomorphism on spaces of the form \(G/H\).
+These spaces are the generalization of the point to \(G\)--spaces.
+\todo{How true is this, really? Do you also need conditions on the coefficients of \(E\), for instance?}The purpose of complex oriented descent is to give conditions on Borel equivariant cohomology theories \(E\) and \(F\) so that a map \(g\) is an isomorphism if and only if it is an isomorphism on all spaces of the form \(G/A\), where \(A \subseteq G\) is abelian.
+The idea is that certain equivariant cohomology theories have the property that, for a \(G\)-CW complex \(X\), \(E_{G}^*(X)\) can be recovered from \(E_{G}^*(F)\) for a certain space \(F\) with the property that the cells of \(F\) are all of the form \(G/A \times D^n\).
 
-In the cases that we are interested in, the space \(F\) will be the bundle of complete flags associated to a vector bundle on \(X\). Let \(f \colon V \rightarrow X\) be an \(m\)-dimensional complex vector bundle. Associated to \(V\) is a space \(\Flag(V)\) over \(X\) such that the fiber over \(x \in X\) is the space of sequences of inclusions
+In the cases that we are interested in, the space \(F\) will be the bundle of complete flags associated to a vector bundle on \(X\).
+Let \(f \colon V \rightarrow X\) be an \(m\)-dimensional complex vector bundle.
+Associated to \(V\) is a space \(\Flag(V)\) over \(X\) such that the fiber over \(x \in X\) is the space of sequences of inclusions
 \[
 \{0\} \subset V_1 \subset V_2 \subset \ldots \subset V_{m-1} \subset f^{-1}(x),
 \]
@@ -644,28 +757,35 @@ Let \(V\) be an \(m\)--dimensional complex vector space, then there is an equiva
 where \(\mathbb{T} \cong (S^1)^m\) is the maximal torus in \(U(m)\).
 \end{lemma}
 \begin{proof}
-The idea is simply that \(U(m)\) acts transitively on \(\Flag(V)\) and the stabilizer is \(\mathbb{T}\). This can be seen by viewing a flag as a sequence of unit length normal vectors.
+The idea is simply that \(U(m)\) acts transitively on \(\Flag(V)\) and the stabilizer is \(\mathbb{T}\).
+This can be seen by viewing a flag as a sequence of unit length normal vectors.
 \end{proof}
 
 
 \begin{proposition}[{\cite[Proposition 2.4(2)]{HKR}}] \label{finitefreeflags}
-Let \(X\) be a space and let \(\Flag(V) \rightarrow X\) be the bundle of complete flags of a complex vector bundle \(V\) over \(X\).  For \(E\) complex-oriented, \(E^*(\Flag(V))\) is a finitely-generated free \(E^*(X)\)--module. \pushQED\qed \qedhere \popQED
+Let \(X\) be a space and let \(\Flag(V) \rightarrow X\) be the bundle of complete flags of a complex vector bundle \(V\) over \(X\).
+For \(E\) complex-oriented, \(E^*(\Flag(V))\) is a finitely-generated free \(E^*(X)\)--module.
+\pushQED\qed \qedhere \popQED
 \end{proposition}
 
-Since \(f \colon V \rightarrow X\) is an \(m\)--dimensional complex vector bundle, it follows (cf.\ \Cref{DefnAssociatedBundle}) that \(EG \times V \rightarrow EG \times X\) is an \(m\)--dimensional complex vector bundle (this is the external product with a \(0\)--dimensional complex vector bundle). Since \(G\) acts freely on \(EG \times X\), the quotient \(EG \times_G V \rightarrow EG \times_G X\) is also an \(m\)--dimensional complex vector bundle.
+Since \(f \colon V \rightarrow X\) is an \(m\)--dimensional complex vector bundle, it follows (cf.\ \Cref{DefnAssociatedBundle}) that \(EG \times V \rightarrow EG \times X\) is an \(m\)--dimensional complex vector bundle (this is the external product with a \(0\)--dimensional complex vector bundle).
+Since \(G\) acts freely on \(EG \times X\), the quotient \(EG \times_G V \rightarrow EG \times_G X\) is also an \(m\)--dimensional complex vector bundle.
 
-We proceed with two propositions, the proofs of which can both be found in Hopkins--Kuhn--Ravenel~\cite[Proposition 2.6]{HKR}. The first proposition explains the relationship between flag bundles and the Borel construction, the second proposition gives the relationship between the inertia groupoid construction and flag bundles.
+We proceed with two propositions, the proofs of which can both be found in Hopkins--Kuhn--Ravenel~\cite[Proposition 2.6]{HKR}.
+The first proposition explains the relationship between flag bundles and the Borel construction, the second proposition gives the relationship between the inertia groupoid construction and flag bundles.
 
 \begin{proposition} \label{app:orbitflags}
 Let \(X\) be a finite \(G\)--CW complex and let \(V \rightarrow X\) be a \(G\)--equivariant vector bundle, then there is an equivalence
 \[
 EG \times_G \Flag(V) \simeq \Flag(EG \times_G V)
 \]
-of spaces over \(EG \times_G X\). \qed
+of spaces over \(EG \times_G X\).
+\qed
 \end{proposition}
 
 \begin{proposition} \label{app:inertiaflags}
-Let \(X\) be a finite \(G\)--CW complex and let \(V \rightarrow X\) be a \(G\)--equivariant vector bundle, then \(\Flag(V)^A\) is a disjoint union of fiber products of flag bundles over \(X^A\) when \(A \subseteq G\) is abelian. \qed
+Let \(X\) be a finite \(G\)--CW complex and let \(V \rightarrow X\) be a \(G\)--equivariant vector bundle, then \(\Flag(V)^A\) is a disjoint union of fiber products of flag bundles over \(X^A\) when \(A \subseteq G\) is abelian.
+\qed
 \end{proposition}
 
 Recall from \Cref{StrictCechDescentRemark} that a commutative ring map \(R \rightarrow S\) gives rise to a cosimplicial commutative ring
@@ -677,7 +797,9 @@ S \arrow[leftarrow]{r} \arrow[shift left=\baselineskip]{r} \arrow[shift right=\b
 \cdots
 \end{tikzcd}
 \right\}.\]
-Recall also from \Cref{OriginalFFDescent} that if \(S\) is faithfully flat as an \(R\)-algebra, then the above complex is exact except at the first spot and there the homology is \(R\).  This digression has important consequences for us. Since \(E^*(\Flag(V))\) is free as an \(E^*(X)\)-module, there is an isomorphism
+Recall also from \Cref{OriginalFFDescent} that if \(S\) is faithfully flat as an \(R\)-algebra, then the above complex is exact except at the first spot and there the homology is \(R\).
+This digression has important consequences for us.
+Since \(E^*(\Flag(V))\) is free as an \(E^*(X)\)-module, there is an isomorphism
 \[
 E^*(\Flag(V) \times_X \Flag(V)) \cong E^*(\Flag(V)) \otimes_{E^*(X)} E^*(\Flag(V))
 \]
@@ -690,7 +812,8 @@ and applying \(E^*(-)\) to the simplicial space
 \cdots
 \end{tikzcd}
 \right\}\]
-produces the descent object for the canonical map \(E^*(X) \rightarrow E^*(\Flag(V))\). Since a finitely-generated free extension is faithfully flat, \Cref{finitefreeflags} gives a sufficient condition so that
+produces the descent object for the canonical map \(E^*(X) \rightarrow E^*(\Flag(V))\).
+Since a finitely-generated free extension is faithfully flat, \Cref{finitefreeflags} gives a sufficient condition so that
 \begin{equation*}
 E^*(X) \cong \ker \big (E^*(\Flag(V)) \rightarrow E^*(\Flag(V) \times_X \Flag(V)) \big ).
 \end{equation*}
@@ -702,13 +825,17 @@ Since it suffices to take the trivial bundle over \(X\) in these constructions, 
 Let \(\rho \colon G \rightarrow U(n)\) be an injective map, then \(U(n)/\mathbb{T}\) with the induced \(G\)-action is a finite \(G\)--CW complex with abelian stabilizers.
 \end{proposition}
 \begin{proof}
-By \Cref{app:CWapprox}, since \(U(n)/\mathbb{T}\) is compact it is equivalent to a finite \(G\)--CW complex. Let \(A \subset G\) be abelian, then \(\rho(A) \subset u\mathbb{T}u^{-1}\) for some \(u \in U(n)\). Thus for \(a \in A\), \(a = utu^{-1}\) for some \(t \in \mathbb{T}\), so \(A\) fixes the coset \(u\mathbb{T}\).
+By \Cref{app:CWapprox}, since \(U(n)/\mathbb{T}\) is compact it is equivalent to a finite \(G\)--CW complex.
+Let \(A \subset G\) be abelian, then \(\rho(A) \subset u\mathbb{T}u^{-1}\) for some \(u \in U(n)\).
+Thus for \(a \in A\), \(a = utu^{-1}\) for some \(t \in \mathbb{T}\), so \(A\) fixes the coset \(u\mathbb{T}\).
 
 On the other hand, if \(H \subset G\) is nonabelian then it cannot be contained inside a maximal
-torus because the representation \(\rho\) is faithful. Therefore it will not fix any coset of \(\mathbb{T} \subset U(n)\).
+torus because the representation \(\rho\) is faithful.
+Therefore it will not fix any coset of \(\mathbb{T} \subset U(n)\).
 \end{proof}
 
-Putting these results together, if \(X\) is a finite \(G\)--CW complex we can take \(V \cong X \times \C^n \rightarrow X\) to be the \(G\)-vector bundle where \(G\) acts on \(\C^n\) through a faithful representation \(\rho \colon G \hookrightarrow U(n)\). Then 
+Putting these results together, if \(X\) is a finite \(G\)--CW complex we can take \(V \cong X \times \C^n \rightarrow X\) to be the \(G\)-vector bundle where \(G\) acts on \(\C^n\) through a faithful representation \(\rho \colon G \hookrightarrow U(n)\).
+Then 
 \[
 EG \times_G (X \times \C^n) \rightarrow EG \times_G X
 \]
@@ -719,7 +846,8 @@ is an \(n\)--dimensional vector bundle over \(EG \times_G X\) and
 Since \(E^{*}_{G}(X) = E^*(EG \times_G X)\) can be recovered from the flag bundle as above, these equivalences show that \(E^*(EG \times_G X)\) can be recovered from spaces with fixed points only for abelian subgroups. 
 
 \begin{proposition} \label{app:codescent}
-Let \(g \colon E_{G}^*(-) \rightarrow F_{G}^*(-)\) be a map of Borel equivariant cohomology theories on finite \(G\)-CW complexes satisfying complex oriented descent, then \(g\) is an isomorphism if and only if it is an isomorphism when applied to spaces of the form \(X = G/A\) for \(A \subset G\) abelian. \qed
+Let \(g \colon E_{G}^*(-) \rightarrow F_{G}^*(-)\) be a map of Borel equivariant cohomology theories on finite \(G\)-CW complexes satisfying complex oriented descent, then \(g\) is an isomorphism if and only if it is an isomorphism when applied to spaces of the form \(X = G/A\) for \(A \subset G\) abelian.
+\qed
 \end{proposition}
 
 %We are interested in applying complex oriented descent to two cohomology theories, \(E = (E_{\Gamma})^*(EG \times_G -)\) and \(F = HC_0^*(EG \times_G \Fix_n(-))\). To apply complex oriented descent to \(HC_0^*(EG \times_G \Fix_n(-))\) we need a result regarding fixed points of bundles.
@@ -745,7 +873,8 @@ C_0 \otimes_{E^0} E^*(EG \times_G X) \xrightarrow{\cong} HC_{0}P^{*}(EG \times_G
 
 The map \(\chi_G\) will be constructed as the composite of two maps: a ``topological map'' induced by a map of topological spaces and an ``algebraic map'' that is a consequence of the algebro-geometric description of \(C_0\).
 
-Assume that \(k\) is large enough that any map \(\Lambda \rightarrow G\) factors through \(\Lk\).  \Cref{inertialemma} provides us with equivalences
+Assume that \(k\) is large enough that any map \(\Lambda \rightarrow G\) factors through \(\Lk\).
+\Cref{inertialemma} provides us with equivalences
 \begin{align*}
 \InternalHom{TopologicalGroupoids}(* \mmod \Lambda, X \mmod G) & \simeq \\
 \InternalHom{TopologicalGroupoids}(* \mmod \Lk, X \mmod G) & \simeq \Fix_d(X)\mmod G.
@@ -811,17 +940,21 @@ E^*(BG) \xrightarrow{E^*(B\alpha)} E^*(B\Lk) \xrightarrow{\text{can}} C_{0}^{*}.
 The Borel equivariant cohomology theories \(E^*(EG \times_G -)\) and \(HC_{0}P^{*}(EG \times_G \Fix_d(-))\) both satisfy complex oriented descent.
 \end{proposition}
 \begin{proof}
-For \(E^*(EG \times_G -)\), this follows immediately from the previous discussion.  The key ingredient is \Cref{finitefreeflags} along with \Cref{app:orbitflags}, which say that \(E^*(EG \times_G \Flag(V))\) is a finitely generated free \(E^*(EG \times_G X)\)--module. 
+For \(E^*(EG \times_G -)\), this follows immediately from the previous discussion.
+The key ingredient is \Cref{finitefreeflags} along with \Cref{app:orbitflags}, which say that \(E^*(EG \times_G \Flag(V))\) is a finitely generated free \(E^*(EG \times_G X)\)--module. 
 
-It is a bit harder to prove that \(HC_{0}P^{*}(EG \times_G \Fix_d(-))\) satisfies complex oriented descent. First recall that since \(G\) is finite and \(C_0\) is rational, for any \(G\)-space \(X\) there is an isomorphism
+It is a bit harder to prove that \(HC_{0}P^{*}(EG \times_G \Fix_d(-))\) satisfies complex oriented descent.
+First recall that since \(G\) is finite and \(C_0\) is rational, for any \(G\)-space \(X\) there is an isomorphism
 \[
 HC_0P^*(EG \times_G X) \cong HC_0P^*(X)^G.
 \]
-By Proposition \ref{app:inertiaflags}, \(\Fix_d(\Flag(V))\) is component-wise a disjoint union of fiber products of flag bundles over the components of \(\Fix_d(X)\). Thus Proposition \ref{finitefreeflags} implies that
+By Proposition \ref{app:inertiaflags}, \(\Fix_d(\Flag(V))\) is component-wise a disjoint union of fiber products of flag bundles over the components of \(\Fix_d(X)\).
+Thus Proposition \ref{finitefreeflags} implies that
 \[
 HC_0P^*(\Fix_d(\Flag(V)))
 \]
-is finitely generated and free over \(HC_0P^*(\Fix_d(X))\). Applying fixed points \((-)^G\) to the exact sequence
+is finitely generated and free over \(HC_0P^*(\Fix_d(X))\).
+Applying fixed points \((-)^G\) to the exact sequence
 \begin{align*}
 0 & \to HC_0P^*(\Fix_d(X)) \\
 & \to HC_0P^*(\Fix_d(\Flag(V))) \\
@@ -831,20 +964,25 @@ is finitely generated and free over \(HC_0P^*(\Fix_d(X))\). Applying fixed point
 & \to HC_0P^*(\Fix_d(\Flag(V)))^G \\
 & \to HC_0P^*(\Fix_d(\Flag(V)) \times_{\Fix_d(X)} \Fix_d(\Flag(V)))^G
 \end{align*}
-since fixed points is left exact. This implies that \(HC_0P^*(EG \times_G \Fix_d(X))\) can be recovered from \(HC_0P^*(EG \times_G-)\) of finite \(G\)--CW complexes with abelian stabilizers.
+since fixed points is left exact.
+This implies that \(HC_0P^*(EG \times_G \Fix_d(X))\) can be recovered from \(HC_0P^*(EG \times_G-)\) of finite \(G\)--CW complexes with abelian stabilizers.
 \end{proof}
 
 
 \begin{proof}[{Proof of \Cref{app:mainthm1}}]
-By \ref{app:codescent}, it suffices to prove that the map is an isomorphism for \(X = G/A\). Since we have an equivalence
+By \ref{app:codescent}, it suffices to prove that the map is an isomorphism for \(X = G/A\).
+Since we have an equivalence
 \[
 (G/A) \mmod G \simeq * \mmod A,
 \]
-we are reduced to the case \(G = A\) and \(X = *\). Since both sides of the character map have Kunneth isomorphisms for products of finite abelian groups, we are reduced to cyclic groups. We want to show that 
+we are reduced to the case \(G = A\) and \(X = *\).
+Since both sides of the character map have Kunneth isomorphisms for products of finite abelian groups, we are reduced to cyclic groups.
+We want to show that 
 \[
 C_0 \otimes_{E^0} E^*(BC_{p^k}) \xrightarrow{\cong} \mathrm{Cl}((C_{p^k})_{p}^{d}, C_{0}^{*})
 \]
-is an isomorphism. Since we have isomorphisms
+is an isomorphism.
+Since we have isomorphisms
 \[
 C_0 \otimes_{E^0} E^*(BC_{p^k}) \cong C_{0} \otimes_{E_0} E^* \otimes_{E^0} E^0(BC_{p^k}) \cong C_{0}^* \otimes_{C_0} C_0 \otimes_{E^0} E^0(BC_{p^k})
 \]
@@ -852,7 +990,8 @@ and
 \[
 \mathrm{Cl}((C_{p^k})_{p}^{d}, C_{0}^{*}) \cong C_{0}^* \otimes_{C_0} \mathrm{Cl}((C_{p^k})_{p}^{d}, C_{0})
 \]
-and since \(C_{0}^*\) is faithfully flat over \(C_0\), it suffices to prove the isomorphism in degree \(0\). Example \ref{app:charmapexample} that this map is given by 
+and since \(C_{0}^*\) is faithfully flat over \(C_0\), it suffices to prove the isomorphism in degree \(0\).
+Example \ref{app:charmapexample} that this map is given by 
 \[
 C_0 \otimes_{E^0} E^0(BC_{p^k}) \xrightarrow{\prod C_{0} \otimes_{E^0} E^0(B\alpha)} E^0(B\Lk) \xrightarrow{\mathrm{incl}} \prod_{\alpha \in \Lk^*}C_0.
 \]
@@ -895,11 +1034,14 @@ This is the same as the map \(C_0 \otimes_{E^0(B\Lk)} u^*\) built far above.%
 %The following example explains how \(\Phi_G\) was built to reduce to the algebraic geometry of \pdiv groups. 
 
 \begin{example}\label{KUCharacterExample}
-When \(n=1\) and \(X = *\) the character map produces a \(p\)--complete version of the classical character map from representation theory that is due to Adams~\cite[Section 2]{AdamsClassifyingSpacesII}). The map takes the form
+When \(n=1\) and \(X = *\) the character map produces a \(p\)--complete version of the classical character map from representation theory that is due to Adams~\cite[Section 2]{AdamsClassifyingSpacesII}).
+The map takes the form
 \[
 KU_{p}^{0}(BG) \xrightarrow{} \mathrm{Cl}(G_{p}^{1}, C_0),
 \]
-where \(C_0\) is the maximal ramified extension of \(\Q_p\) discussed in \Cref{padicktheory}.  This map is injective.  Above height \(1\), though, this is not generally true~\cite{Kriz}, but it \emph{is} true for $G = \Sigma_n$~\cite[Theorem 7.3]{HKR}, which is enough to conclude that $E^0 B\Sigma_n$ is free of finite rank.
+where \(C_0\) is the maximal ramified extension of \(\Q_p\) discussed in \Cref{padicktheory}.
+This map is injective.
+Above height \(1\), though, this is not generally true~\cite{Kriz}, but it \emph{is} true for $G = \Sigma_n$~\cite[Theorem 7.3]{HKR}, which is enough to conclude that $E^0 B\Sigma_n$ is free of finite rank.
 \end{example}
 
 \begin{remark}
@@ -916,17 +1058,21 @@ Recall that \(\Spec C_0\) carries the universal isomorphism of \(p\)-divisible g
 \[
 \Lambda^* \xrightarrow{\cong} \G[p^\infty].
 \]
-Precomposing with the Pontryagin dual of an element in \(\mathrm{Aut}(\Lambda)\) gives another isomorphism and thus induces an \(E^0\)-algebra automorphism of \(C_0\). The quotient map
+Precomposing with the Pontryagin dual of an element in \(\mathrm{Aut}(\Lambda)\) gives another isomorphism and thus induces an \(E^0\)-algebra automorphism of \(C_0\).
+The quotient map
 \[
 \mathrm{Aut}(\Lambda) \to \mathrm{Aut}(\Lk)
 \]  
 gives an action of \(\mathrm{Aut}(\Lambda)\) on \(E^0(B\Lk)\) and, by Proposition \ref{app:abeliangroupdualhom}, the inclusion \(E^0(B\Lk) \to C_0\) is equivariant for these actions.
 
-There is also an action of \(\mathrm{Aut}(\Lambda)\) on \(\InternalHom{TopologicalGroupoids}(* \mmod \Lambda, X \mmod G)\) given by precomposition. These actions combine to give a conjugation action on \(HC_{0}P^{*}(EG \times_G \Fix_d(X))\). Explictly, for \(\phi \in \mathrm{Aut}(\Lambda)\) this action is induced by the action on 
+There is also an action of \(\mathrm{Aut}(\Lambda)\) on \(\InternalHom{TopologicalGroupoids}(* \mmod \Lambda, X \mmod G)\) given by precomposition.
+These actions combine to give a conjugation action on \(HC_{0}P^{*}(EG \times_G \Fix_d(X))\).
+Explictly, for \(\phi \in \mathrm{Aut}(\Lambda)\) this action is induced by the action on 
 \[
 * \mmod \Lambda \times \InternalHom{TopologicalGroupoids}(* \mmod \Lambda, X \mmod G)
 \]
-given by \(\phi \times (\phi^{-1})^*\). There is an action of \(\mathrm{Aut}(\Lambda)\) on \(C_0 \otimes_{E^0} E^*(EG \times_G X)\) by just acting on \(C_0\).
+given by \(\phi \times (\phi^{-1})^*\).
+There is an action of \(\mathrm{Aut}(\Lambda)\) on \(C_0 \otimes_{E^0} E^*(EG \times_G X)\) by just acting on \(C_0\).
 
 
 
@@ -945,7 +1091,8 @@ It turns out that \(C_0\) is an \(\mathrm{Aut}(\Lambda)\)-Galois extension of \(
 \begin{proposition}[{\cite[Corollary 6.8.iii]{HKR}}]
 There is an isomorphism
 \[
-C_{0}^{\mathrm{Aut}(\Lambda)} \cong \Q \otimes E^0. \pushQED\qed \qedhere \popQED
+C_{0}^{\mathrm{Aut}(\Lambda)} \cong \Q \otimes E^0.
+\pushQED\qed \qedhere \popQED
 \]
 \end{proposition}
 
@@ -963,7 +1110,8 @@ That is, the rationalization of the \(E\)-cohomology of \(BG\) is a subring of g
 In the context of \Cref{KUCharacterExample}, the character map gives the usual ring homomorphism to class functions
 \begin{align*}
 \chi_G\co R(G) & \to \mathrm{Cl}(G_p, C_0)^{\widehat{\Z}}, \\
-\intertext{where \(R(G)\) is the representation ring of \(G\), \(C_0 = \Q(\zeta_j : j \ge 0)\) is the maximal abelian extension of \(\Q\), and \(\widehat{\Z}\) is both the Galois group of the extension and \(\Aut(\Lambda)\).  After tensoring up, this yields two isomorphisms}
+\intertext{where \(R(G)\) is the representation ring of \(G\), \(C_0 = \Q(\zeta_j : j \ge 0)\) is the maximal abelian extension of \(\Q\), and \(\widehat{\Z}\) is both the Galois group of the extension and \(\Aut(\Lambda)\).
+After tensoring up, this yields two isomorphisms}
 C_0 \otimes \chi_G\co C_0 \otimes R(G) & \to \mathrm{Cl}(G_p, C_0), \\
 \Q_p \otimes \chi_G\co \Q_p \otimes R(G) & \to \mathrm{Cl}(G_p, C_0)^{\widehat{\Z}}.
 \end{align*}
